@@ -500,16 +500,18 @@ export default function Dashboard() {
             const awayScore = game.awayScore ?? 0;
             const homeScore = game.homeScore ?? 0;
             const actualTotal = awayScore + homeScore;
-            const vegasSpread = prediction.vegasSpread ?? 0;
             const vegasTotal = prediction.vegasTotal ?? 44;
 
-            // Spread result: vegasSpread is from home perspective (positive = home underdog)
-            // Home covers if: homeScore + vegasSpread > awayScore
-            // Away covers if: awayScore > homeScore + vegasSpread
-            const homeAdjusted = homeScore + vegasSpread;
+            // Spread result: standardized grading
+            // homeMargin + homeSpread: >0 home covers, <0 away covers, =0 push
+            // Use displaySpread (falls back to ourSpread if no Vegas line)
+            const homeMargin = homeScore - awayScore;
+            const ats = homeMargin + displaySpread;
+            const homeCovered = ats > 0;
+            const pickSide: 'home' | 'away' = pickHomeSpread ? 'home' : 'away';
             const spreadResult: 'win' | 'loss' | 'push' | null = !isFinal ? null :
-              awayScore === homeAdjusted ? 'push' :
-              (pickHomeSpread ? awayScore < homeAdjusted : awayScore > homeAdjusted) ? 'win' : 'loss';
+              ats === 0 ? 'push' :
+              pickSide === 'home' ? (homeCovered ? 'win' : 'loss') : (!homeCovered ? 'win' : 'loss');
 
             const mlResult: 'win' | 'loss' | null = !isFinal ? null :
               (pickHomeML ? homeScore > awayScore : awayScore > homeScore) ? 'win' : 'loss';
@@ -769,12 +771,14 @@ export default function Dashboard() {
             const awayScore = game.awayScore ?? 0;
             const homeScore = game.homeScore ?? 0;
             const actualTotal = awayScore + homeScore;
-            const vegasSpread = prediction.vegasSpread ?? 0;
-            const vegasTotal = prediction.vegasTotal ?? 44;
             const ourSpread = prediction.predictedSpread;
             const ourTotal = prediction.predictedTotal;
             const homeWinProb = prediction.homeWinProbability;
             const hasVegas = prediction.vegasSpread !== undefined;
+
+            // Use Vegas spread if available, otherwise use our predicted spread
+            const spreadForGrading = prediction.vegasSpread ?? ourSpread;
+            const vegasTotal = prediction.vegasTotal ?? 44;
 
             const pickHomeSpread = ourSpread < 0;
             const pickHomeML = homeWinProb > 0.5;
@@ -784,10 +788,16 @@ export default function Dashboard() {
             const ouConf = prediction.ouConfidence || 'medium';
             const mlConf = prediction.mlConfidence || 'medium';
 
-            // ATS: home covers if homeScore + vegasSpread > awayScore
-            const homeAdjusted = homeScore + vegasSpread;
-            if (awayScore === homeAdjusted) { atsP++; if (atsConf === 'high') hiAtsP++; }
-            else if (pickHomeSpread ? awayScore < homeAdjusted : awayScore > homeAdjusted) {
+            // ATS: standardized grading
+            // homeMargin + homeSpread: >0 home covers, <0 away covers, =0 push
+            const homeMargin = homeScore - awayScore;
+            const ats = homeMargin + spreadForGrading;
+            const homeCovered = ats > 0;
+            const pickSide: 'home' | 'away' = pickHomeSpread ? 'home' : 'away';
+            const atsWin = pickSide === 'home' ? homeCovered : !homeCovered;
+
+            if (ats === 0) { atsP++; if (atsConf === 'high') hiAtsP++; }
+            else if (atsWin) {
               atsW++; if (atsConf === 'high') hiAtsW++;
             } else {
               atsL++; if (atsConf === 'high') hiAtsL++;
@@ -907,14 +917,18 @@ export default function Dashboard() {
               const awayScore = game.awayScore ?? 0;
               const homeScore = game.homeScore ?? 0;
               const actualTotal = awayScore + homeScore;
-              const vegasSpread = prediction.vegasSpread ?? 0;
               const vegasTotal = prediction.vegasTotal ?? 44;
 
-              // Spread result: home covers if homeScore + vegasSpread > awayScore
-              const homeAdjusted = homeScore + vegasSpread;
+              // Spread result: standardized grading
+              // homeMargin + homeSpread: >0 home covers, <0 away covers, =0 push
+              // Use displaySpread (falls back to ourSpread if no Vegas line)
+              const homeMargin = homeScore - awayScore;
+              const ats = homeMargin + displaySpread;
+              const homeCovered = ats > 0;
+              const pickSide: 'home' | 'away' = pickHomeSpread ? 'home' : 'away';
               const spreadResult: 'win' | 'loss' | 'push' =
-                awayScore === homeAdjusted ? 'push' :
-                (pickHomeSpread ? awayScore < homeAdjusted : awayScore > homeAdjusted) ? 'win' : 'loss';
+                ats === 0 ? 'push' :
+                pickSide === 'home' ? (homeCovered ? 'win' : 'loss') : (!homeCovered ? 'win' : 'loss');
 
               const mlResult: 'win' | 'loss' =
                 (pickHomeML ? homeScore > awayScore : awayScore > homeScore) ? 'win' : 'loss';
