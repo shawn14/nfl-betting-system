@@ -34,7 +34,10 @@ export async function fetchNFLOdds(): Promise<Map<string, Partial<Odds>[]>> {
 
   const url = `${ODDS_API_BASE}/sports/americanfootball_nfl/odds/?apiKey=${apiKey}&regions=us&markets=spreads,totals,h2h&oddsFormat=american`;
 
-  const response = await fetch(url);
+  const response = await fetch(url, {
+    cache: 'no-store',
+    headers: { 'Cache-Control': 'no-cache' }
+  });
   if (!response.ok) {
     throw new Error(`Odds API error: ${response.statusText}`);
   }
