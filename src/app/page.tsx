@@ -95,7 +95,6 @@ export default function Dashboard() {
   const [liveGames, setLiveGames] = useState<LiveGame[]>([]);
   const [loading, setLoading] = useState(true);
   const [syncing, setSyncing] = useState(false);
-  const [view, setView] = useState<'time' | 'ticket'>('ticket');
   const scoreboardRef = useRef<HTMLDivElement>(null);
 
   const scrollScoreboard = (direction: 'left' | 'right') => {
@@ -441,135 +440,23 @@ export default function Dashboard() {
 
       {/* Upcoming Picks Header */}
       <div className="flex justify-between items-center border-b border-gray-200 pb-3">
-        <div className="flex items-center gap-4">
-          <h1 className="text-xl font-bold text-gray-900">This Week's Picks</h1>
-          <div className="flex items-center bg-gray-100 rounded-lg p-0.5">
-            <button
-              onClick={() => setView('ticket')}
-              className={`px-3 py-1 text-xs font-medium rounded-md transition-colors ${
-                view === 'ticket'
-                  ? 'bg-white text-gray-900 shadow-sm'
-                  : 'text-gray-500 hover:text-gray-700'
-              }`}
-            >
-              Ticket
-            </button>
-            <button
-              onClick={() => setView('time')}
-              className={`px-3 py-1 text-xs font-medium rounded-md transition-colors ${
-                view === 'time'
-                  ? 'bg-white text-gray-900 shadow-sm'
-                  : 'text-gray-500 hover:text-gray-700'
-              }`}
-            >
-              All Games
-            </button>
-          </div>
+        <h1 className="text-xl font-bold text-gray-900">This Week's Picks</h1>
+        <div className="flex items-center gap-3 text-xs text-gray-500">
+          <span className="flex items-center gap-1"><span className="w-3 h-3 bg-green-600 rounded"></span> Strong</span>
+          <span className="flex items-center gap-1"><span className="w-3 h-3 bg-blue-500 rounded"></span> Lean</span>
+          <span className="flex items-center gap-1"><span className="w-3 h-3 bg-gray-300 rounded"></span> Avoid</span>
         </div>
-        {view === 'time' && (
-          <div className="flex items-center gap-3 text-xs text-gray-500">
-            <span className="flex items-center gap-1"><span className="w-3 h-3 bg-green-600 rounded"></span> Strong</span>
-            <span className="flex items-center gap-1"><span className="w-3 h-3 bg-blue-500 rounded"></span> Lean</span>
-            <span className="flex items-center gap-1"><span className="w-3 h-3 bg-gray-300 rounded"></span> Avoid</span>
-          </div>
-        )}
       </div>
 
       {games.length === 0 ? (
         <div className="bg-white rounded-lg p-8 text-center text-gray-500 border border-gray-200">
           No upcoming games. Check back later.
         </div>
-      ) : view === 'ticket' ? (
-        /* TICKET VIEW - Clean list of strong picks only */
-        (() => {
-          const strongPicks: { game: Game; prediction: Prediction; type: 'ml' | 'ou' | 'ats'; pick: string; line?: string }[] = [];
-
-          games.forEach(({ game, prediction }) => {
-            const away = game.awayTeam?.abbreviation || 'AWAY';
-            const home = game.homeTeam?.abbreviation || 'HOME';
-            const displaySpread = prediction.vegasSpread ?? prediction.predictedSpread;
-            const displayTotal = prediction.vegasTotal ?? prediction.predictedTotal;
-            const pickHomeSpread = prediction.predictedSpread < 0;
-            const pickHomeML = prediction.homeWinProbability > 0.5;
-            const hasVegas = prediction.vegasSpread !== undefined;
-            const pickOver = hasVegas ? prediction.predictedTotal > prediction.vegasTotal! : prediction.predictedTotal > 44;
-
-            // Add high confidence picks
-            if (prediction.mlConfidence === 'high') {
-              strongPicks.push({
-                game,
-                prediction,
-                type: 'ml',
-                pick: pickHomeML ? home : away,
-                line: `@ ${pickHomeML ? away : home}`
-              });
-            }
-            if (prediction.ouConfidence === 'high') {
-              strongPicks.push({
-                game,
-                prediction,
-                type: 'ou',
-                pick: pickOver ? 'OVER' : 'UNDER',
-                line: `${Math.round(displayTotal * 2) / 2} (${away}/${home})`
-              });
-            }
-            if (prediction.atsConfidence === 'high') {
-              const spreadTeam = pickHomeSpread ? home : away;
-              const spreadValue = pickHomeSpread ? displaySpread : -displaySpread;
-              strongPicks.push({
-                game,
-                prediction,
-                type: 'ats',
-                pick: spreadTeam,
-                line: `${spreadValue > 0 ? '+' : ''}${spreadValue}`
-              });
-            }
-          });
-
-          if (strongPicks.length === 0) {
-            return (
-              <div className="bg-white rounded-lg p-8 text-center text-gray-500 border border-gray-200">
-                No strong plays this week. Check "All Games" for full analysis.
-              </div>
-            );
-          }
-
-          return (
-            <div className="bg-white rounded-xl border border-gray-200 shadow-sm overflow-hidden max-w-md">
-              <div className="bg-gray-900 text-white px-3 py-2 flex items-center justify-between">
-                <span className="font-bold text-sm uppercase tracking-wide">Week 16 Card</span>
-                <span className="text-xs text-gray-400">{strongPicks.length} plays</span>
-              </div>
-              <div className="px-3 py-2 space-y-1">
-                {strongPicks.map((pick, idx) => (
-                  <div
-                    key={`${pick.game.id}-${pick.type}-${idx}`}
-                    className="flex items-center gap-2 text-sm"
-                  >
-                    <span className={`text-[9px] font-bold w-7 text-center py-0.5 rounded ${
-                      pick.type === 'ml' ? 'bg-green-600 text-white' :
-                      pick.type === 'ou' ? 'bg-blue-500 text-white' :
-                      'bg-purple-500 text-white'
-                    }`}>
-                      {pick.type === 'ml' ? 'ML' : pick.type === 'ou' ? 'O/U' : 'ATS'}
-                    </span>
-                    <span className="font-bold text-gray-900">{pick.pick}</span>
-                    <span className="text-gray-400 text-xs">{pick.line}</span>
-                  </div>
-                ))}
-              </div>
-              <div className="border-t border-gray-100 px-3 py-1.5 text-[9px] text-gray-400">
-                ML 77.9% • O/U 57.4% historical
-              </div>
-            </div>
-          );
-        })()
       ) : (
-        /* ALL GAMES VIEW - Full cards sorted by time */
         <div className="grid gap-4 md:grid-cols-2">
-          {[...games].sort((a, b) => {
-            return new Date(a.game.gameTime).getTime() - new Date(b.game.gameTime).getTime();
-          }).map(({ game, prediction }) => {
+          {[...games]
+            .sort((a, b) => new Date(a.game.gameTime).getTime() - new Date(b.game.gameTime).getTime())
+            .map(({ game, prediction }) => {
             const away = game.awayTeam?.abbreviation || 'AWAY';
             const home = game.homeTeam?.abbreviation || 'HOME';
             const ourSpread = prediction.predictedSpread;
