@@ -8,6 +8,7 @@ const NFL_STADIUMS: Record<string, { lat: number; lon: number; indoor: boolean }
   'Highmark Stadium': { lat: 42.7738, lon: -78.7870, indoor: false },
   'Empower Field at Mile High': { lat: 39.7439, lon: -105.0201, indoor: false },
   'FirstEnergy Stadium': { lat: 41.5061, lon: -81.6995, indoor: false },
+  'Huntington Bank Field': { lat: 41.5061, lon: -81.6995, indoor: false }, // Cleveland (renamed)
   'Gillette Stadium': { lat: 42.0909, lon: -71.2643, indoor: false },
   'Hard Rock Stadium': { lat: 25.9580, lon: -80.2389, indoor: false },
   'Lumen Field': { lat: 47.5952, lon: -122.3316, indoor: false },
