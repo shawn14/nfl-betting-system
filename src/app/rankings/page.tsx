@@ -67,7 +67,7 @@ export default function RankingsPage() {
               <tr key={team.id} className="hover:bg-gray-50 transition-colors">
                 <td className="px-4 py-3">
                   <span className={`inline-flex items-center justify-center w-6 h-6 rounded-full text-xs font-bold ${
-                    index < 3 ? 'bg-red-600 text-white' :
+                    index < 3 ? 'bg-green-600 text-white' :
                     index < 10 ? 'bg-gray-200 text-gray-700' : 'text-gray-400'
                   }`}>
                     {index + 1}
