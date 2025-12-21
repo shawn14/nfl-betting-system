@@ -379,7 +379,7 @@ export async function GET(request: Request) {
     const getDivision = (abbr: string) => Object.entries(DIVISIONS).find(([, teams]) => teams.includes(abbr))?.[0];
 
     // Enrich existing results with historical odds and situation flags
-    const enrichedExistingResults = existingResults.map(r => {
+    const enrichedExistingResults = existingResults.map((r: any) => {
       const storedOdds = historicalOdds[r.gameId];
       const vegasSpread = storedOdds?.vegasSpread ?? r.vegasSpread;
       const vegasTotal = storedOdds?.vegasTotal ?? r.vegasTotal;
