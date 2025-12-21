@@ -662,8 +662,8 @@ export default function Dashboard() {
                   </div>
                 )}
 
-                {/* Injury info - DISABLED: ESPN API returning bad data */}
-                {false && prediction.injuries && prediction.injuries.impactLevel !== 'none' && (
+                {/* Injury info - from NFL.com */}
+                {prediction.injuries && prediction.injuries.impactLevel !== 'none' && (
                   <div className={`px-4 py-2 border-b border-gray-100 flex items-center justify-between text-xs ${
                     prediction.injuries.impactLevel === 'major' ? 'bg-red-50' :
                     prediction.injuries.impactLevel === 'significant' ? 'bg-orange-50' : 'bg-yellow-50'
