@@ -214,27 +214,29 @@ export default function Dashboard() {
           {games.map(({ game, prediction }) => {
             const away = game.awayTeam?.abbreviation || 'AWAY';
             const home = game.homeTeam?.abbreviation || 'HOME';
-            const vegasSpread = prediction.vegasSpread;
-            const vegasTotal = prediction.vegasTotal;
             const ourSpread = prediction.predictedSpread;
             const ourTotal = prediction.predictedTotal;
             const homeWinProb = prediction.homeWinProbability;
 
-            // Determine picks based on edge
-            const spreadEdge = vegasSpread !== undefined ? vegasSpread - ourSpread : 0;
-            const totalEdge = vegasTotal !== undefined ? ourTotal - vegasTotal : 0;
+            // Use Vegas lines if available, otherwise use our predictions
+            const displaySpread = prediction.vegasSpread ?? ourSpread;
+            const displayTotal = prediction.vegasTotal ?? ourTotal;
+            const hasVegas = prediction.vegasSpread !== undefined;
 
-            // Spread pick: positive edge means home covers, negative means away covers
-            const pickHomeSpread = spreadEdge > 0;
-            const spreadStrong = Math.abs(spreadEdge) >= 2.5;
+            // Spread pick: negative spread = home favored, we pick based on our prediction
+            // If our spread is more negative than Vegas, we like home more (pick home)
+            const spreadEdge = hasVegas ? (prediction.vegasSpread! - ourSpread) : 0;
+            const pickHomeSpread = ourSpread < 0; // We pick home if we predict home favored
+            const spreadStrong = hasVegas ? Math.abs(spreadEdge) >= 2.5 : Math.abs(ourSpread) >= 3;
 
             // ML pick: based on win probability
             const pickHomeML = homeWinProb > 0.5;
             const mlStrong = homeWinProb > 0.6 || homeWinProb < 0.4;
 
-            // O/U pick: positive edge means over
-            const pickOver = totalEdge > 0;
-            const ouStrong = Math.abs(totalEdge) >= 2.5;
+            // O/U pick: if our total > 44 (league avg), pick over
+            const totalEdge = hasVegas ? (ourTotal - prediction.vegasTotal!) : 0;
+            const pickOver = ourTotal > 44;
+            const ouStrong = hasVegas ? Math.abs(totalEdge) >= 2.5 : Math.abs(ourTotal - 44) >= 3;
 
             return (
               <div key={game.id} className="bg-white rounded-xl border border-gray-200 shadow-sm overflow-hidden hover:shadow-md transition-shadow">
@@ -271,42 +273,38 @@ export default function Dashboard() {
                   {/* Spread */}
                   <div className="p-3">
                     <div className="text-[10px] font-bold text-gray-400 uppercase tracking-wider mb-2 text-center">Spread</div>
-                    {vegasSpread !== undefined ? (
-                      <div className="flex flex-col gap-1.5">
-                        <div
-                          className={`flex items-center justify-between px-2 py-1.5 rounded-lg text-sm font-medium ${
-                            !pickHomeSpread
-                              ? spreadStrong
-                                ? 'bg-emerald-500 text-white'
-                                : 'bg-emerald-100 text-emerald-800 ring-1 ring-emerald-200'
-                              : 'bg-gray-50 text-gray-500'
-                          }`}
-                        >
-                          <div className="flex items-center gap-1.5">
-                            <img src={getLogoUrl(away)} alt="" className="w-4 h-4 object-contain" />
-                            <span>{away}</span>
-                          </div>
-                          <span className="font-mono">{formatSpread(-vegasSpread)}</span>
+                    <div className="flex flex-col gap-1.5">
+                      <div
+                        className={`flex items-center justify-between px-2 py-1.5 rounded-lg text-sm font-medium ${
+                          !pickHomeSpread
+                            ? spreadStrong
+                              ? 'bg-emerald-500 text-white'
+                              : 'bg-emerald-100 text-emerald-800 ring-1 ring-emerald-200'
+                            : 'bg-gray-50 text-gray-500'
+                        }`}
+                      >
+                        <div className="flex items-center gap-1.5">
+                          <img src={getLogoUrl(away)} alt="" className="w-4 h-4 object-contain" />
+                          <span>{away}</span>
                         </div>
-                        <div
-                          className={`flex items-center justify-between px-2 py-1.5 rounded-lg text-sm font-medium ${
-                            pickHomeSpread
-                              ? spreadStrong
-                                ? 'bg-emerald-500 text-white'
-                                : 'bg-emerald-100 text-emerald-800 ring-1 ring-emerald-200'
-                              : 'bg-gray-50 text-gray-500'
-                          }`}
-                        >
-                          <div className="flex items-center gap-1.5">
-                            <img src={getLogoUrl(home)} alt="" className="w-4 h-4 object-contain" />
-                            <span>{home}</span>
-                          </div>
-                          <span className="font-mono">{formatSpread(vegasSpread)}</span>
-                        </div>
+                        <span className="font-mono">{formatSpread(-displaySpread)}</span>
                       </div>
-                    ) : (
-                      <div className="text-gray-300 text-center py-4">—</div>
-                    )}
+                      <div
+                        className={`flex items-center justify-between px-2 py-1.5 rounded-lg text-sm font-medium ${
+                          pickHomeSpread
+                            ? spreadStrong
+                              ? 'bg-emerald-500 text-white'
+                              : 'bg-emerald-100 text-emerald-800 ring-1 ring-emerald-200'
+                            : 'bg-gray-50 text-gray-500'
+                        }`}
+                      >
+                        <div className="flex items-center gap-1.5">
+                          <img src={getLogoUrl(home)} alt="" className="w-4 h-4 object-contain" />
+                          <span>{home}</span>
+                        </div>
+                        <span className="font-mono">{formatSpread(displaySpread)}</span>
+                      </div>
+                    </div>
                   </div>
 
                   {/* Moneyline */}
@@ -343,34 +341,30 @@ export default function Dashboard() {
                   {/* Over/Under */}
                   <div className="p-3">
                     <div className="text-[10px] font-bold text-gray-400 uppercase tracking-wider mb-2 text-center">Total</div>
-                    {vegasTotal !== undefined ? (
-                      <div className="flex flex-col gap-1.5">
-                        <div
-                          className={`px-2 py-1.5 rounded-lg text-sm font-medium text-center ${
-                            pickOver
-                              ? ouStrong
-                                ? 'bg-emerald-500 text-white'
-                                : 'bg-emerald-100 text-emerald-800 ring-1 ring-emerald-200'
-                              : 'bg-gray-50 text-gray-500'
-                          }`}
-                        >
-                          O {vegasTotal}
-                        </div>
-                        <div
-                          className={`px-2 py-1.5 rounded-lg text-sm font-medium text-center ${
-                            !pickOver
-                              ? ouStrong
-                                ? 'bg-emerald-500 text-white'
-                                : 'bg-emerald-100 text-emerald-800 ring-1 ring-emerald-200'
-                              : 'bg-gray-50 text-gray-500'
-                          }`}
-                        >
-                          U {vegasTotal}
-                        </div>
+                    <div className="flex flex-col gap-1.5">
+                      <div
+                        className={`px-2 py-1.5 rounded-lg text-sm font-medium text-center ${
+                          pickOver
+                            ? ouStrong
+                              ? 'bg-emerald-500 text-white'
+                              : 'bg-emerald-100 text-emerald-800 ring-1 ring-emerald-200'
+                            : 'bg-gray-50 text-gray-500'
+                        }`}
+                      >
+                        O {Math.round(displayTotal * 2) / 2}
                       </div>
-                    ) : (
-                      <div className="text-gray-300 text-center py-4">—</div>
-                    )}
+                      <div
+                        className={`px-2 py-1.5 rounded-lg text-sm font-medium text-center ${
+                          !pickOver
+                            ? ouStrong
+                              ? 'bg-emerald-500 text-white'
+                              : 'bg-emerald-100 text-emerald-800 ring-1 ring-emerald-200'
+                            : 'bg-gray-50 text-gray-500'
+                        }`}
+                      >
+                        U {Math.round(displayTotal * 2) / 2}
+                      </div>
+                    </div>
                   </div>
                 </div>
               </div>
