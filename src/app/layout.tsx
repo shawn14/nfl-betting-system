@@ -85,9 +85,18 @@ export default function RootLayout({
         {/* Footer */}
         <footer className="bg-white border-t border-gray-200 mt-12">
           <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-6">
-            <div className="flex items-center justify-between text-sm text-gray-500">
-              <span>Prediction Matrix - AI-Powered NFL Predictions</span>
-              <span>Spread: 60.7% | ML: 63.4% | O/U: 63.6%</span>
+            <div className="flex flex-col gap-4">
+              <div className="flex items-center justify-between text-sm text-gray-500">
+                <span>Prediction Matrix - AI-Powered NFL Predictions</span>
+                <span>Spread: 60.7% | ML: 63.4% | O/U: 63.6%</span>
+              </div>
+              <div className="flex items-center justify-between text-xs text-gray-400 border-t border-gray-100 pt-4">
+                <div className="flex items-center gap-4">
+                  <a href="/terms" className="hover:text-gray-600">Terms of Service</a>
+                  <a href="/privacy" className="hover:text-gray-600">Privacy Policy</a>
+                </div>
+                <span>For entertainment purposes only. Must be 21+. Gambling problem? Call 1-800-522-4700</span>
+              </div>
             </div>
           </div>
         </footer>
