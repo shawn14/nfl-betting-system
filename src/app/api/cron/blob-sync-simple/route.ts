@@ -60,9 +60,25 @@ export async function GET() {
     log(`Fetched ${espnTeams.length} teams`);
 
     // Build team map with Elo starting at 1500
-    const teamsMap = new Map<string, typeof espnTeams[0] & { eloRating: number }>();
+    interface TeamData {
+      id: string;
+      name: string;
+      abbreviation: string;
+      eloRating: number;
+      ppg?: number;
+      ppgAllowed?: number;
+    }
+    const teamsMap = new Map<string, TeamData>();
     for (const team of espnTeams) {
-      teamsMap.set(team.id, { ...team, eloRating: 1500 });
+      if (!team.id) continue;
+      teamsMap.set(team.id, {
+        id: team.id,
+        name: team.name || '',
+        abbreviation: team.abbreviation || '',
+        eloRating: team.eloRating || 1500,
+        ppg: team.ppg,
+        ppgAllowed: team.ppgAllowed,
+      });
     }
 
     // 2. Fetch all completed games
@@ -80,6 +96,7 @@ export async function GET() {
 
     for (const game of completedGames) {
       if (game.homeScore === undefined || game.awayScore === undefined) continue;
+      if (!game.homeTeamId || !game.awayTeamId) continue;
 
       const homeTeam = teamsMap.get(game.homeTeamId);
       const awayTeam = teamsMap.get(game.awayTeamId);
@@ -135,8 +152,8 @@ export async function GET() {
       else ouPushes++;
 
       backtestResults.push({
-        gameId: game.id,
-        gameTime: game.gameTime,
+        gameId: game.id || '',
+        gameTime: game.gameTime || '',
         week: game.week,
         homeTeam: homeTeam.abbreviation,
         awayTeam: awayTeam.abbreviation,
@@ -174,6 +191,7 @@ export async function GET() {
     // 5. Generate predictions for upcoming
     const gamesWithPredictions = [];
     for (const game of upcoming) {
+      if (!game.id || !game.homeTeamId || !game.awayTeamId) continue;
       const homeTeam = teamsMap.get(game.homeTeamId);
       const awayTeam = teamsMap.get(game.awayTeamId);
       if (!homeTeam || !awayTeam) continue;
