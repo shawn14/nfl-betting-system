@@ -83,6 +83,7 @@ interface HistoricalOdds {
   vegasSpread: number;
   vegasTotal: number;
   capturedAt: string;
+  lockedAt?: string; // Timestamp when odds were locked (1 hour before game)
 }
 
 interface CachedWeather {
@@ -550,41 +551,61 @@ export async function GET(request: Request) {
       let vegasSpread: number | undefined;
       let vegasTotal: number | undefined;
       const gameDate = new Date(game.gameTime || '').toISOString().split('T')[0];
+      const gameTime = new Date(game.gameTime || '');
+      const now = new Date();
+      const hoursUntilGame = (gameTime.getTime() - now.getTime()) / (1000 * 60 * 60);
 
-      for (const [key, oddsArray] of oddsMap) {
-        // Key format: "homeTeam_awayTeam_timestamp"
-        const keyParts = key.split('_');
-        const oddsHomeTeam = keyParts[0] || '';
-        const oddsAwayTeam = keyParts[1] || '';
-        const oddsTime = keyParts.slice(2).join('_'); // Rejoin in case timestamp has underscores
-        const oddsDate = oddsTime ? new Date(oddsTime).toISOString().split('T')[0] : '';
+      // Check if odds are already locked (stored and within 1 hour of game time)
+      const existingOdds = historicalOdds[game.id];
+      const shouldLockNow = existingOdds && hoursUntilGame <= 1 && !existingOdds.lockedAt;
+      const oddsAreLocked = existingOdds?.lockedAt !== undefined;
 
-        // Match team names AND date
-        const teamsMatch = matchesTeamName(oddsHomeTeam, homeTeam.name) && matchesTeamName(oddsAwayTeam, awayTeam.name);
-        const dateMatches = !oddsDate || !gameDate || oddsDate === gameDate;
+      if (shouldLockNow) {
+        // Lock the odds now - set lockedAt timestamp
+        existingOdds.lockedAt = new Date().toISOString();
+        vegasSpread = existingOdds.vegasSpread;
+        vegasTotal = existingOdds.vegasTotal;
+        log(`Locked odds for ${awayTeam.abbreviation}@${homeTeam.abbreviation}: spread ${vegasSpread}, total ${vegasTotal}`);
+      } else if (oddsAreLocked) {
+        // Use already locked odds - don't update
+        vegasSpread = existingOdds.vegasSpread;
+        vegasTotal = existingOdds.vegasTotal;
+      } else {
+        // Odds not locked yet - fetch latest and store
+        for (const [key, oddsArray] of oddsMap) {
+          // Key format: "homeTeam_awayTeam_timestamp"
+          const keyParts = key.split('_');
+          const oddsHomeTeam = keyParts[0] || '';
+          const oddsAwayTeam = keyParts[1] || '';
+          const oddsTime = keyParts.slice(2).join('_'); // Rejoin in case timestamp has underscores
+          const oddsDate = oddsTime ? new Date(oddsTime).toISOString().split('T')[0] : '';
 
-        if (teamsMatch && dateMatches) {
-          const consensus = getConsensusOdds(oddsArray);
-          if (consensus) {
-            vegasSpread = consensus.homeSpread;
-            vegasTotal = consensus.total;
-            // Store in historical odds for future use (persists across resets)
-            if (vegasSpread !== undefined && vegasTotal !== undefined) {
-              historicalOdds[game.id] = {
-                vegasSpread,
-                vegasTotal,
-                capturedAt: new Date().toISOString(),
-              };
+          // Match team names AND date
+          const teamsMatch = matchesTeamName(oddsHomeTeam, homeTeam.name) && matchesTeamName(oddsAwayTeam, awayTeam.name);
+          const dateMatches = !oddsDate || !gameDate || oddsDate === gameDate;
+
+          if (teamsMatch && dateMatches) {
+            const consensus = getConsensusOdds(oddsArray);
+            if (consensus) {
+              vegasSpread = consensus.homeSpread;
+              vegasTotal = consensus.total;
+              // Store in historical odds (will be locked once within 1 hour of game)
+              if (vegasSpread !== undefined && vegasTotal !== undefined) {
+                historicalOdds[game.id] = {
+                  vegasSpread,
+                  vegasTotal,
+                  capturedAt: new Date().toISOString(),
+                };
+              }
             }
+            break;
           }
-          break;
         }
       }
 
       // Fetch weather (use cache if less than 6 hours old)
       let weather: WeatherData | null = null;
       const cachedWeather = weatherCache[game.id];
-      const now = new Date();
       const cacheAge = cachedWeather ? (now.getTime() - new Date(cachedWeather.fetchedAt).getTime()) / (1000 * 60 * 60) : Infinity;
 
       if (cachedWeather && cacheAge < WEATHER_CACHE_HOURS) {
@@ -701,6 +722,7 @@ export async function GET(request: Request) {
           confidence: 0.5,
           vegasSpread,
           vegasTotal,
+          oddsLockedAt: existingOdds?.lockedAt,
           spreadEdge: vegasSpread !== undefined ? Math.round((predictedSpread - vegasSpread) * 2) / 2 : undefined,
           totalEdge: vegasTotal !== undefined ? Math.round((predictedTotal - vegasTotal) * 2) / 2 : undefined,
           atsConfidence,

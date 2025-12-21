@@ -57,6 +57,7 @@ interface Prediction {
   confidence: number;
   vegasSpread?: number;
   vegasTotal?: number;
+  oddsLockedAt?: string;
   spreadEdge?: number;
   totalEdge?: number;
   atsConfidence?: 'high' | 'medium' | 'low';
@@ -656,7 +657,7 @@ export default function Dashboard() {
                     </div>
                     {(prediction.weatherImpact ?? 0) > 0 && (
                       <span className={`font-medium ${getWeatherImpactColor(prediction.weatherImpact ?? 0)}`}>
-                        -{((prediction.weatherImpact ?? 0) * 5).toFixed(1)} pts adj
+                        -{((prediction.weatherImpact ?? 0) * 3).toFixed(1)} pts adj
                       </span>
                     )}
                   </div>
@@ -690,6 +691,23 @@ export default function Dashboard() {
                       <span className="text-red-600 font-bold text-[10px] bg-red-100 px-1.5 py-0.5 rounded">
                         QB OUT
                       </span>
+                    )}
+                  </div>
+                )}
+
+                {/* Vegas line status */}
+                {hasVegas && (
+                  <div className="px-4 py-1.5 bg-gray-50 border-b border-gray-100 flex items-center justify-between text-[10px]">
+                    <span className="text-gray-500">Vegas Lines</span>
+                    {prediction.oddsLockedAt ? (
+                      <span className="text-green-600 font-medium flex items-center gap-1">
+                        <svg className="w-3 h-3" fill="currentColor" viewBox="0 0 20 20">
+                          <path fillRule="evenodd" d="M5 9V7a5 5 0 0110 0v2a2 2 0 012 2v5a2 2 0 01-2 2H5a2 2 0 01-2-2v-5a2 2 0 012-2zm8-2v2H7V7a3 3 0 016 0z" clipRule="evenodd" />
+                        </svg>
+                        Locked {new Date(prediction.oddsLockedAt).toLocaleTimeString([], { hour: 'numeric', minute: '2-digit' })}
+                      </span>
+                    ) : (
+                      <span className="text-gray-400">Live - locks 1hr before game</span>
                     )}
                   </div>
                 )}
