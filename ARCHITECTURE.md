@@ -9,7 +9,7 @@ This is a Next.js-based NFL betting prediction system that uses Elo ratings, tea
 ┌─────────────────────────────────────────────────────────────────────┐
 │                          External APIs                               │
 ├─────────────────────────────────────────────────────────────────────┤
-│  ESPN API  │  The Odds API  │  OpenWeather API  │  ESPN Injuries   │
+│  ESPN API  │  The Odds API  │  OpenWeather API  │  NFL.com Injuries  │
 └─────────────────────────────────────────────────────────────────────┘
                                     │
                                     ▼
@@ -123,11 +123,14 @@ This is a Next.js-based NFL betting prediction system that uses Elo ratings, tea
 
 ### Caching Strategy
 
-**Historical Odds Cache** (Permanent)
+**Historical Odds Cache** (Locked 1 hour before game)
 - Vegas spreads/totals captured when games are upcoming
 - Stored in `historicalOdds` map by gameId
+- **Locking mechanism**: Odds lock 1 hour before game time
+  - Before lock: Updates on each sync to capture latest lines
+  - After lock: `lockedAt` timestamp set, odds never change again
 - Persists across resets for accurate backtesting
-- Never refetched once captured
+- Frontend shows lock status with timestamp
 
 **Weather Cache** (6-hour refresh)
 - Stored in `weatherCache` by gameId
@@ -183,17 +186,29 @@ NFL_STADIUMS: Record<string, { lat: number; lon: number; indoor: boolean }>
 let impact = 0;
 if (windSpeed > 15) impact += 0.5;  // Affects passing game
 if (windSpeed > 25) impact += 1.0;  // Severely affects passing
+if (temp < 32) impact += 0.5;       // Freezing
 if (temp < 20) impact += 0.5;       // Extreme cold
 if (temp < 10) impact += 0.5;       // Severe cold
-if (temp > 95) impact += 0.3;       // Extreme heat
-if (precipitation > 30) impact += 0.5;  // Rain/snow
-if (precipitation > 60) impact += 0.5;  // Heavy precipitation
+if (precipitation > 0) impact += 0.5;   // Any precipitation
+if (precipitation > 0.1) impact += 0.5; // Heavy precipitation
 ```
 
-**Applied to Predictions:**
+**Applied to Predictions** (Optimized via simulation):
 ```typescript
-predictedTotal = baseTotal - (weatherImpact * 3);  // Reduces scoring
+// Multiplier 3 is optimal based on 227-game simulation
+// Tested multipliers 0-8, multiplier 3 achieved best results:
+// - Win Rate: 55.7%
+// - ROI: 6.3%
+predictedTotal = baseTotal - (weatherImpact * 3);
 ```
+
+**Weather Performance Analysis** (from historical backtest):
+| Condition | Games | Win Rate | Insight |
+|-----------|-------|----------|---------|
+| Calm wind (<10 mph) | 79 | 62.3% | Model performs best |
+| Mild temp (40-80°F) | 74 | 60.3% | Sweet spot |
+| Cold (<40°F) | 11 | 33.3% | Model struggles |
+| Windy (10-20 mph) | 18 | 35.3% | Model struggles |
 
 ### Caching
 - **Cache duration**: 6 hours
@@ -318,7 +333,10 @@ homeNewElo = homeElo + adjustedK * (homeActual - homeExpected);
 ## 5. Injury System
 
 ### Data Source
-**API:** ESPN Injuries API (https://site.api.espn.com/apis/site/v2/sports/football/nfl/injuries)
+**Source:** NFL.com Injuries (https://www.nfl.com/injuries/)
+- ESPN API was returning corrupted/outdated data
+- NFL.com provides accurate, up-to-date injury reports
+- Falls back to hardcoded current week injuries if scraping fails
 
 ### Key Positions Tracked
 ```typescript
@@ -510,8 +528,22 @@ interface BacktestResult {
 - Tests combinations of ELO_TO_POINTS, HOME_FIELD_ADVANTAGE, SPREAD_REGRESSION
 
 #### `/api/admin/backfill-weather`
-- Fetch historical weather for past games
+- Fetch historical weather for past games using Open-Meteo Archive API
+- Populates `historicalWeather` in blob for all backtest games
+- Calculates weather impact for each game
 - Useful for backtesting improvements
+
+#### `/api/admin/optimize-weather`
+- Tests weather multipliers 0-8 on historical data
+- Calculates win rate and ROI for each multiplier
+- Analyzes performance by temperature, wind, precipitation
+- Found optimal multiplier of 3 (55.7% win rate)
+
+#### `/api/admin/recalculate-backtest`
+- Recalculates all 227 backtest games with weather adjustments
+- Uses optimized multiplier (3) to adjust predictions
+- Updates O/U results based on weather-adjusted totals
+- Logs which picks were flipped due to weather
 
 #### `/api/admin/backfill-injuries`
 - Fetch historical injury data
@@ -583,18 +615,30 @@ interface BacktestResult {
 **Component Structure:**
 ```typescript
 Dashboard
-├── Recent Scores (ESPN-style scoreboard)
-├── Best Bets Section (60%+ ATS situations)
+├── Live Scoreboard (ESPN-style, horizontally scrollable)
+│   ├── Left/Right navigation arrows
+│   ├── Live games with real-time scores
+│   └── Completed games with final scores
+├── Best Bets Section (60%+ ATS situations, collapsible)
+│   └── Cards for high-confidence picks
 └── Upcoming Picks Grid
     └── GameCard (per game)
         ├── Game Header (teams, score prediction, time)
-        ├── Weather Info (if outdoor game)
+        ├── Weather Info (if outdoor game, shows adjustment)
         ├── Injury Info (if significant injuries)
+        ├── Vegas Line Status (locked/live indicator)
         └── Picks Grid
             ├── Spread (with ATS confidence)
             ├── Moneyline
             └── Over/Under (with O/U confidence)
 ```
+
+**Live Scoreboard Features:**
+- Fetches from ESPN Scoreboard API every 60 seconds during games
+- Horizontal scroll with navigation arrows
+- Touch-friendly for mobile
+- Shows quarter/time for in-progress games
+- Winner highlighted on completed games
 
 **Data Flow:**
 1. `useEffect` → `fetchData()` on mount
