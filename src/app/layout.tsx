@@ -41,7 +41,10 @@ export default function RootLayout({
                   <div className="w-8 h-8 bg-red-600 rounded-lg flex items-center justify-center">
                     <span className="text-white font-bold text-sm">PM</span>
                   </div>
-                  <span className="text-lg font-bold text-gray-900">Prediction Matrix</span>
+                  <div className="flex flex-col">
+                    <span className="text-lg font-bold text-gray-900 leading-tight">Prediction Matrix</span>
+                    <span className="text-[10px] text-gray-500 uppercase tracking-wider leading-tight">AI-Powered NFL Predictions</span>
+                  </div>
                 </a>
                 <div className="flex">
                   <a href="/" className="text-gray-700 hover:text-red-700 hover:border-b-2 hover:border-red-600 px-4 py-4 text-sm font-semibold transition-colors">
@@ -55,9 +58,21 @@ export default function RootLayout({
                   </a>
                 </div>
               </div>
-              <div className="flex items-center gap-2">
-                <span className="text-xs font-semibold text-gray-500 uppercase tracking-wide">NFL</span>
-                <span className="bg-gray-100 text-gray-700 text-xs font-bold px-2 py-1 rounded">2025</span>
+              <div className="flex items-center gap-4">
+                <div className="hidden md:flex items-center gap-1 text-xs text-gray-500">
+                  <span className="font-medium">Spread:</span>
+                  <span className="font-bold text-green-600">60.7%</span>
+                  <span className="text-gray-300 mx-1">|</span>
+                  <span className="font-medium">ML:</span>
+                  <span className="font-bold text-green-600">63.4%</span>
+                  <span className="text-gray-300 mx-1">|</span>
+                  <span className="font-medium">O/U:</span>
+                  <span className="font-bold text-green-600">63.6%</span>
+                </div>
+                <div className="flex items-center gap-2">
+                  <span className="text-xs font-semibold text-gray-500 uppercase tracking-wide">NFL</span>
+                  <span className="bg-gray-100 text-gray-700 text-xs font-bold px-2 py-1 rounded">2025</span>
+                </div>
               </div>
             </div>
           </div>
