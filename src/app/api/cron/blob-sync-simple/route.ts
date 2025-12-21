@@ -3,7 +3,8 @@ import { put, head } from '@vercel/blob';
 import { fetchNFLTeams, fetchNFLSchedule, fetchAllCompletedGames } from '@/services/espn';
 import { updateEloAfterGame } from '@/services/elo';
 import { fetchNFLOdds, getConsensusOdds } from '@/services/odds';
-import { Team, Odds } from '@/types';
+import { fetchWeatherForVenue, getWeatherImpact } from '@/services/weather';
+import { Team, Odds, WeatherData } from '@/types';
 
 // Constants - Optimized via simulation (927 parameter combinations tested)
 // Previous: ELO_TO_POINTS=0.0593, HOME_FIELD_ADVANTAGE=2.28, SPREAD_REGRESSION=0.55, ELO_CAP=4
@@ -83,11 +84,18 @@ interface HistoricalOdds {
   capturedAt: string;
 }
 
+interface CachedWeather {
+  data: WeatherData;
+  fetchedAt: string;
+  gameId: string;
+}
+
 interface BlobState {
   generated: string;
   teams: TeamData[];
   processedGameIds: string[];
   historicalOdds: Record<string, HistoricalOdds>; // gameId -> odds (persists across resets)
+  weatherCache: Record<string, CachedWeather>; // gameId -> weather (refresh every 6 hours)
   games: unknown[];
   recentGames: unknown[];
   backtest: {
@@ -161,6 +169,10 @@ export async function GET(request: Request) {
     // Preserve historical odds across resets
     const historicalOdds: Record<string, HistoricalOdds> = rawExistingState?.historicalOdds || {};
     log(`Loaded ${Object.keys(historicalOdds).length} historical odds records`);
+
+    // Preserve weather cache (refresh every 6 hours)
+    const weatherCache: Record<string, CachedWeather> = rawExistingState?.weatherCache || {};
+    const WEATHER_CACHE_HOURS = 6;
 
     // On reset, ignore processed games but keep odds
     log(forceReset ? 'RESET requested - reprocessing all games with new parameters (preserving Vegas odds)' : 'Checking existing blob state...');
@@ -497,6 +509,31 @@ export async function GET(request: Request) {
         }
       }
 
+      // Fetch weather (use cache if less than 6 hours old)
+      let weather: WeatherData | null = null;
+      const cachedWeather = weatherCache[game.id];
+      const now = new Date();
+      const cacheAge = cachedWeather ? (now.getTime() - new Date(cachedWeather.fetchedAt).getTime()) / (1000 * 60 * 60) : Infinity;
+
+      if (cachedWeather && cacheAge < WEATHER_CACHE_HOURS) {
+        weather = cachedWeather.data;
+      } else if (game.venue && game.gameTime) {
+        try {
+          weather = await fetchWeatherForVenue(game.venue, new Date(game.gameTime));
+          if (weather) {
+            weatherCache[game.id] = {
+              data: weather,
+              fetchedAt: now.toISOString(),
+              gameId: game.id,
+            };
+          }
+        } catch (err) {
+          // Weather fetch failed, continue without
+        }
+      }
+
+      const weatherImpact = getWeatherImpact(weather);
+
       const { homeScore: predHome, awayScore: predAway } = predictScore(
         homeTeam.eloRating, awayTeam.eloRating,
         homeTeam.ppg || LEAGUE_AVG_PPG, homeTeam.ppgAllowed || LEAGUE_AVG_PPG,
@@ -507,7 +544,8 @@ export async function GET(request: Request) {
       const homeWinProb = 1 / (1 + Math.pow(10, (awayTeam.eloRating - adjustedHomeElo) / 400));
 
       const predictedSpread = calculateSpread(predHome, predAway);
-      const predictedTotal = predHome + predAway;
+      // Apply weather impact to total (bad weather = lower scoring)
+      const predictedTotal = (predHome + predAway) - (weatherImpact * 3);
 
       // 60%+ Situation Detection (based on backtesting 169 games)
       const absVegasSpread = vegasSpread !== undefined ? Math.abs(vegasSpread) : 3;
@@ -606,22 +644,35 @@ export async function GET(request: Request) {
           sixtyPlusFactors,
           eloDiff: Math.round(eloDiff),
           week,
+          // Weather data
+          weather: weather ? {
+            temperature: weather.temperature,
+            windSpeed: weather.windSpeed,
+            conditions: weather.conditions,
+            precipitation: weather.precipitation,
+          } : null,
+          weatherImpact,
         },
       });
     }
+
+    // Log weather stats
+    const gamesWithWeather = gamesWithPredictions.filter((g: any) => g.prediction.weather).length;
+    log(`Weather data: ${gamesWithWeather}/${gamesWithPredictions.length} games`);
 
     // 8. Build blob data
     const spreadTotal = spreadWins + spreadLosses;
     const mlTotal = mlWins + mlLosses;
     const ouTotal = ouWins + ouLosses;
 
-    log(`Storing ${Object.keys(historicalOdds).length} historical odds records`);
+    log(`Storing ${Object.keys(historicalOdds).length} historical odds, ${Object.keys(weatherCache).length} weather records`);
 
     const blobData: BlobState = {
       generated: new Date().toISOString(),
       teams: Array.from(teamsMap.values()).sort((a, b) => b.eloRating - a.eloRating),
       processedGameIds: Array.from(processedGameIds),
       historicalOdds, // Persists Vegas odds across resets
+      weatherCache, // Persists weather data (refresh every 6 hours)
       games: gamesWithPredictions.sort((a, b) =>
         new Date(a.game.gameTime || 0).getTime() - new Date(b.game.gameTime || 0).getTime()
       ),
