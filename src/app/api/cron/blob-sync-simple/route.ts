@@ -329,13 +329,6 @@ export async function GET() {
     try {
       oddsMap = await fetchNFLOdds();
       log(`Fetched odds for ${oddsMap.size} games`);
-      // Debug: log first game's odds
-      const firstEntry = oddsMap.entries().next().value;
-      if (firstEntry) {
-        const [key, odds] = firstEntry;
-        const consensus = getConsensusOdds(odds);
-        log(`Sample odds - ${key.split('_').slice(0,2).join(' vs ')}: spread=${consensus?.homeSpread}, total=${consensus?.total}, books=${odds.length}`);
-      }
     } catch (err) {
       log(`Failed to fetch odds: ${err instanceof Error ? err.message : 'Unknown error'}`);
     }

@@ -47,15 +47,6 @@ export async function fetchNFLOdds(): Promise<Map<string, Partial<Odds>[]>> {
   const data: OddsAPIEvent[] = await response.json();
   const oddsMap = new Map<string, Partial<Odds>[]>();
 
-  // Debug: log first event's totals
-  if (data.length > 0 && data[0].bookmakers?.length > 0) {
-    const firstEvent = data[0];
-    const firstBook = firstEvent.bookmakers[0];
-    const totals = firstBook.markets.find(m => m.key === 'totals');
-    console.log(`[Odds API Debug] First event: ${firstEvent.away_team} @ ${firstEvent.home_team}`);
-    console.log(`[Odds API Debug] First bookmaker totals:`, JSON.stringify(totals));
-  }
-
   for (const event of data) {
     const gameKey = `${event.home_team}_${event.away_team}_${event.commence_time}`;
     const oddsForGame: Partial<Odds>[] = [];
@@ -75,11 +66,6 @@ export async function fetchNFLOdds(): Promise<Map<string, Partial<Odds>[]>> {
       const awayMLOutcome = moneyline?.outcomes.find(o => o.name === event.away_team);
 
       const totalValue = overOutcome?.point || 0;
-
-      // Debug first few entries
-      if (oddsForGame.length < 2 && event.home_team.includes('Cleveland')) {
-        console.log(`[Odds Debug] ${event.away_team} @ ${event.home_team} - ${bookmaker.title}: total=${totalValue}, totalsMarket=${JSON.stringify(totals)}`);
-      }
 
       oddsForGame.push({
         bookmaker: bookmaker.title,
