@@ -87,7 +87,7 @@ export async function GET() {
     log(`Fetched ${completedGames.length} completed games`);
 
     // 3. Process games chronologically to build Elo
-    completedGames.sort((a, b) => new Date(a.gameTime).getTime() - new Date(b.gameTime).getTime());
+    completedGames.sort((a, b) => new Date(a.gameTime || 0).getTime() - new Date(b.gameTime || 0).getTime());
 
     const backtestResults = [];
     let spreadWins = 0, spreadLosses = 0, spreadPushes = 0;
@@ -231,7 +231,7 @@ export async function GET() {
     const blobData = {
       generated: new Date().toISOString(),
       games: gamesWithPredictions.sort((a, b) =>
-        new Date(a.game.gameTime).getTime() - new Date(b.game.gameTime).getTime()
+        new Date(a.game.gameTime || 0).getTime() - new Date(b.game.gameTime || 0).getTime()
       ),
       recentGames: backtestResults.slice().reverse().slice(0, 10).map(r => ({
         id: r.gameId,
