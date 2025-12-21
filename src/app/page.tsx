@@ -62,8 +62,11 @@ interface Prediction {
   totalEdge?: number;
   atsConfidence?: 'high' | 'medium' | 'low';
   ouConfidence?: 'high' | 'medium' | 'low';
+  mlConfidence?: 'high' | 'medium' | 'low';
   isAtsBestBet?: boolean;
   isOuBestBet?: boolean;
+  isMlBestBet?: boolean;
+  mlEdge?: number;
   // 60%+ situation flags
   isDivisional?: boolean;
   isLateSeasonGame?: boolean;
@@ -437,7 +440,7 @@ export default function Dashboard() {
       )}
 
       {/* Best Bets Section - Collapsible */}
-      {games.filter(g => g.prediction.isAtsBestBet || g.prediction.isOuBestBet).length > 0 && (
+      {games.filter(g => g.prediction.isAtsBestBet || g.prediction.isOuBestBet || g.prediction.isMlBestBet).length > 0 && (
         <div className="bg-gradient-to-r from-green-50 to-emerald-50 rounded-xl border border-green-200 overflow-hidden">
           <button
             onClick={() => setShowBestBets(!showBestBets)}
@@ -447,7 +450,7 @@ export default function Dashboard() {
               <span className="text-base">🎯</span>
               <h2 className="text-sm font-bold text-green-800 uppercase tracking-wide">Best Bets</h2>
               <span className="text-xs text-green-600 bg-green-100 px-2 py-0.5 rounded-full">
-                {games.filter(g => g.prediction.isAtsBestBet || g.prediction.isOuBestBet).length} picks
+                {games.filter(g => g.prediction.isAtsBestBet || g.prediction.isOuBestBet || g.prediction.isMlBestBet).length} games
               </span>
             </div>
             <svg
@@ -462,13 +465,14 @@ export default function Dashboard() {
           {showBestBets && (
           <div className="px-4 pb-4">
           <div className="grid gap-2 md:grid-cols-2 lg:grid-cols-3">
-            {games.filter(g => g.prediction.isAtsBestBet || g.prediction.isOuBestBet).map(({ game, prediction }) => {
+            {games.filter(g => g.prediction.isAtsBestBet || g.prediction.isOuBestBet || g.prediction.isMlBestBet).map(({ game, prediction }) => {
               const away = game.awayTeam?.abbreviation || 'AWAY';
               const home = game.homeTeam?.abbreviation || 'HOME';
               const pickHomeSpread = prediction.predictedSpread < 0;
               const displaySpread = prediction.vegasSpread ?? prediction.predictedSpread;
               const displayTotal = prediction.vegasTotal ?? prediction.predictedTotal;
               const pickOver = prediction.predictedTotal > (prediction.vegasTotal ?? 44);
+              const pickHomeML = prediction.homeWinProbability > 0.5;
 
               // Situation badges
               const situations: string[] = [];
@@ -507,9 +511,17 @@ export default function Dashboard() {
                         </div>
                       </div>
                     )}
+                    {prediction.isMlBestBet && (
+                      <div className="flex-1 bg-amber-100 rounded px-2 py-1.5 text-center">
+                        <div className="text-[10px] text-amber-600 font-medium">ML 78%</div>
+                        <div className="text-sm font-bold text-amber-800">
+                          {pickHomeML ? home : away}
+                        </div>
+                      </div>
+                    )}
                     {prediction.isOuBestBet && (
                       <div className="flex-1 bg-green-100 rounded px-2 py-1.5 text-center">
-                        <div className="text-[10px] text-green-600 font-medium">TOTAL</div>
+                        <div className="text-[10px] text-green-600 font-medium">O/U 60%</div>
                         <div className="text-sm font-bold text-green-800">
                           {pickOver ? 'OVER' : 'UNDER'} {Math.round(displayTotal * 2) / 2}
                         </div>
@@ -521,7 +533,7 @@ export default function Dashboard() {
             })}
           </div>
           <div className="mt-3 text-[10px] text-green-600">
-            Based on 169 games: Divisional 61.5% • Late Season 62.9% • Large Spreads 61.7% • Small Spreads 60% • Elo Mismatch 61.4%
+            High confidence picks: ML 15%+ edge = 77.9% • O/U 5+ pt edge = 59.7% • ATS w/ 60%+ factors
           </div>
           </div>
         )}
@@ -574,6 +586,7 @@ export default function Dashboard() {
             // Confidence indicators
             const atsConf = prediction.atsConfidence || 'medium';
             const ouConf = prediction.ouConfidence || 'medium';
+            const mlConf = prediction.mlConfidence || 'medium';
 
             // 60%+ situation badges
             const situations: string[] = [];
@@ -758,7 +771,12 @@ export default function Dashboard() {
 
                   {/* Moneyline */}
                   <div className="p-3">
-                    <div className="text-[10px] font-bold text-gray-400 uppercase tracking-wider mb-2 text-center">Moneyline</div>
+                    <div className="text-[10px] font-bold text-gray-400 uppercase tracking-wider mb-2 text-center flex items-center justify-center gap-1">
+                      Moneyline
+                      <span className={`w-1.5 h-1.5 rounded-full ${
+                        mlConf === 'high' ? 'bg-green-500' : mlConf === 'medium' ? 'bg-yellow-500' : 'bg-red-400'
+                      }`}></span>
+                    </div>
                     <div className="flex flex-col gap-1.5">
                       <div
                         className={`flex items-center justify-center gap-1.5 px-2 py-1.5 rounded-lg text-sm font-medium ${

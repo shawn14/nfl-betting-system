@@ -725,16 +725,25 @@ export async function GET(request: Request) {
         atsConfidence = 'medium';
       }
 
-      // O/U confidence
+      // O/U confidence - edge >= 5 points = 59.7% hit rate
       const totalEdge = vegasTotal !== undefined ? Math.abs(predictedTotal - vegasTotal) : 0;
       let ouConfidence: 'high' | 'medium' | 'low' = 'medium';
-      if (totalEdge >= 4) ouConfidence = 'high';
-      else if (totalEdge >= 2) ouConfidence = 'medium';
+      if (totalEdge >= 5) ouConfidence = 'high';
+      else if (totalEdge >= 3) ouConfidence = 'medium';
       else ouConfidence = 'low';
 
-      // Best bet = has 60%+ factors and NOT medium spread
+      // ML confidence - based on win probability edge from 50%
+      // Edge >= 10% = 70.3%, Edge >= 15% = 77.9%, Edge >= 20% = 81.1%
+      const mlEdge = Math.abs(homeWinProb - 0.5) * 100;
+      let mlConfidence: 'high' | 'medium' | 'low' = 'medium';
+      if (mlEdge >= 15) mlConfidence = 'high';
+      else if (mlEdge >= 7) mlConfidence = 'medium';
+      else mlConfidence = 'low';
+
+      // Best bet flags
       const isAtsBestBet = sixtyPlusFactors >= 1 && !isMediumSpread;
-      const isOuBestBet = totalEdge >= 4;
+      const isOuBestBet = totalEdge >= 5;
+      const isMlBestBet = mlEdge >= 15;
 
       gamesWithPredictions.push({
         game: {
@@ -757,8 +766,11 @@ export async function GET(request: Request) {
           totalEdge: vegasTotal !== undefined ? Math.round((predictedTotal - vegasTotal) * 2) / 2 : undefined,
           atsConfidence,
           ouConfidence,
+          mlConfidence,
           isAtsBestBet,
           isOuBestBet,
+          isMlBestBet,
+          mlEdge: Math.round(mlEdge * 10) / 10,
           // 60%+ situation flags
           isDivisional,
           isLateSeasonGame,
