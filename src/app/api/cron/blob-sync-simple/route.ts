@@ -16,7 +16,7 @@ const ELO_TO_POINTS = 0.11;        // Was 0.0593 - weight Elo differences more h
 const HOME_FIELD_ADVANTAGE = 3.25; // Was 2.28 - increase home field impact on totals
 const ELO_HOME_ADVANTAGE = 48;
 const SPREAD_REGRESSION = 0.45;    // Was 0.55 - less regression toward 0
-const ELO_CAP = 0;                 // Was 4 - remove cap on Elo adjustment
+const ELO_CAP = 16;                // Max ±8 pts per team to prevent unrealistic scores
 
 // Team name mapping for Odds API matching
 const TEAM_NAME_VARIANTS: Record<string, string[]> = {

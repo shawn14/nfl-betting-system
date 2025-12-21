@@ -512,9 +512,9 @@ export default function Dashboard() {
                       </div>
                     )}
                     {prediction.isMlBestBet && (
-                      <div className="flex-1 bg-amber-100 rounded px-2 py-1.5 text-center">
-                        <div className="text-[10px] text-amber-600 font-medium">ML 78%</div>
-                        <div className="text-sm font-bold text-amber-800">
+                      <div className="flex-1 bg-green-100 rounded px-2 py-1.5 text-center">
+                        <div className="text-[10px] text-green-600 font-medium">ML 78%</div>
+                        <div className="text-sm font-bold text-green-800">
                           {pickHomeML ? home : away}
                         </div>
                       </div>
@@ -600,10 +600,10 @@ export default function Dashboard() {
               <div key={game.id} className={`bg-white rounded-xl border shadow-sm overflow-hidden hover:shadow-md transition-shadow ${
                 atsConf === 'low' ? 'border-red-200' : prediction.sixtyPlusFactors && prediction.sixtyPlusFactors >= 2 ? 'border-green-300' : 'border-gray-200'
               }`}>
-                {/* 60%+ situation highlight */}
+                {/* Situation factors highlight */}
                 {situations.length > 0 && atsConf !== 'low' && (
                   <div className="bg-green-50 px-3 py-1.5 flex items-center gap-2">
-                    <span className="text-[10px] text-green-700 font-medium">60%+ ATS:</span>
+                    <span className="text-[9px] font-bold text-white bg-green-600 px-1.5 py-0.5 rounded">ATS 60%</span>
                     <div className="flex flex-wrap gap-1">
                       {situations.map(s => (
                         <span key={s} className="text-[9px] font-bold text-green-700 bg-green-100 px-1.5 py-0.5 rounded">
@@ -729,12 +729,17 @@ export default function Dashboard() {
                 <div className="grid grid-cols-3 divide-x divide-gray-100">
                   {/* Spread */}
                   <div className="p-3">
-                    <div className="text-[10px] font-bold text-gray-400 uppercase tracking-wider mb-2 text-center flex items-center justify-center gap-1">
+                    <div className="text-[10px] font-bold text-gray-400 uppercase tracking-wider mb-1 text-center flex items-center justify-center gap-1">
                       Spread
                       <span className={`w-1.5 h-1.5 rounded-full ${
                         atsConf === 'high' ? 'bg-green-500' : atsConf === 'medium' ? 'bg-yellow-500' : 'bg-red-400'
                       }`}></span>
                     </div>
+                    {hasVegas && (
+                      <div className={`text-[10px] text-center mb-1.5 font-medium ${Math.abs(spreadEdge) >= 2.5 ? 'text-green-600' : 'text-gray-400'}`}>
+                        {spreadEdge > 0 ? '+' : ''}{spreadEdge.toFixed(1)} pts edge
+                      </div>
+                    )}
                     <div className="flex flex-col gap-1.5">
                       <div
                         className={`flex items-center justify-between px-2 py-1.5 rounded-lg text-sm font-medium ${
@@ -771,11 +776,18 @@ export default function Dashboard() {
 
                   {/* Moneyline */}
                   <div className="p-3">
-                    <div className="text-[10px] font-bold text-gray-400 uppercase tracking-wider mb-2 text-center flex items-center justify-center gap-1">
+                    <div className="text-[10px] font-bold text-gray-400 uppercase tracking-wider mb-1 text-center flex items-center justify-center gap-1">
                       Moneyline
                       <span className={`w-1.5 h-1.5 rounded-full ${
                         mlConf === 'high' ? 'bg-green-500' : mlConf === 'medium' ? 'bg-yellow-500' : 'bg-red-400'
                       }`}></span>
+                    </div>
+                    <div className={`text-[10px] text-center mb-1.5 font-medium ${mlConf === 'high' ? 'text-green-600' : 'text-gray-400'}`}>
+                      {mlConf === 'high' ? (
+                        <span className="bg-green-100 text-green-700 px-1.5 py-0.5 rounded font-bold">77.9% hit rate</span>
+                      ) : (
+                        <span>{Math.round(Math.max(homeWinProb, 1 - homeWinProb) * 100)}% • {(prediction.mlEdge ?? 0).toFixed(0)}% edge</span>
+                      )}
                     </div>
                     <div className="flex flex-col gap-1.5">
                       <div
@@ -807,12 +819,21 @@ export default function Dashboard() {
 
                   {/* Over/Under */}
                   <div className="p-3">
-                    <div className="text-[10px] font-bold text-gray-400 uppercase tracking-wider mb-2 text-center flex items-center justify-center gap-1">
+                    <div className="text-[10px] font-bold text-gray-400 uppercase tracking-wider mb-1 text-center flex items-center justify-center gap-1">
                       Total
                       <span className={`w-1.5 h-1.5 rounded-full ${
                         ouConf === 'high' ? 'bg-green-500' : ouConf === 'medium' ? 'bg-yellow-500' : 'bg-red-400'
                       }`}></span>
                     </div>
+                    {hasVegas && (
+                      <div className={`text-[10px] text-center mb-1.5 font-medium ${ouConf === 'high' ? 'text-green-600' : 'text-gray-400'}`}>
+                        {ouConf === 'high' ? (
+                          <span className="bg-green-100 text-green-700 px-1.5 py-0.5 rounded font-bold">59.7% hit rate</span>
+                        ) : (
+                          <span>{totalEdge > 0 ? '+' : ''}{totalEdge.toFixed(1)} pts edge</span>
+                        )}
+                      </div>
+                    )}
                     <div className="flex flex-col gap-1.5">
                       <div
                         className={`px-2 py-1.5 rounded-lg text-sm font-medium text-center ${

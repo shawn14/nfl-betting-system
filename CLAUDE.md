@@ -42,6 +42,7 @@ See `ARCHITECTURE.md` for complete system documentation including:
 - `/api/admin/backfill-weather` - Historical weather via Open-Meteo
 - `/api/admin/optimize-weather` - Find optimal weather multiplier
 - `/api/admin/recalculate-backtest` - Recalculate with weather adjustments
+- `/api/admin/recalculate-with-cap` - Recalculate backtest with Elo cap
 - `/api/admin/optimize-params` - Grid search for model parameters
 
 ## Key Model Parameters
@@ -52,12 +53,14 @@ ELO_TO_POINTS = 0.11;          // 100 Elo = 11 point spread
 HOME_FIELD_ADVANTAGE = 3.25;   // Total home advantage
 SPREAD_REGRESSION = 0.45;      // Shrink spreads 45%
 ELO_HOME_ADVANTAGE = 48;       // Elo bonus for home team
+ELO_CAP = 16;                  // Max ±8 pts per team (prevents unrealistic 40-8 scores)
 ```
 
-## Current Performance (227 games)
+## Current Performance (169 games with Vegas lines)
 
-- **ATS**: 55.1%
-- **O/U with weather**: 56.3%
+- **ATS**: 55.1% (92-75-2)
+- **ML (15%+ edge)**: 77.9% (53-15)
+- **O/U (5+ pt edge)**: 57.4% (39-29)
 - **Best situations**: Late season (62.9%), Large spreads (61.7%), Divisional (61.5%)
 - **Avoid**: Medium spreads 3.5-6.5 (46.7%)
 

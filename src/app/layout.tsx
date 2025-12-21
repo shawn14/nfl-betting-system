@@ -61,14 +61,14 @@ export default function RootLayout({
               <div className="flex items-center gap-4">
                 <div className="hidden md:flex items-center gap-1 text-xs text-gray-500">
                   <span className="font-medium">ATS:</span>
-                  <span className="font-bold text-green-600">55.7%</span>
+                  <span className="font-bold text-green-600">55.1%</span>
                   <span className="text-gray-300 mx-1">|</span>
                   <span className="font-medium">ML:</span>
                   <span className="font-bold text-green-600">77.9%</span>
                   <span className="text-[10px] text-gray-400">w/edge</span>
                   <span className="text-gray-300 mx-1">|</span>
                   <span className="font-medium">O/U:</span>
-                  <span className="font-bold text-green-600">59.7%</span>
+                  <span className="font-bold text-green-600">57.4%</span>
                   <span className="text-[10px] text-gray-400">w/edge</span>
                 </div>
                 <div className="flex items-center gap-2">
@@ -90,7 +90,7 @@ export default function RootLayout({
             <div className="flex flex-col gap-4">
               <div className="flex items-center justify-between text-sm text-gray-500">
                 <span>Prediction Matrix - AI-Powered NFL Predictions</span>
-                <span>High Conf: ATS 55.7% | ML 77.9% | O/U 59.7%</span>
+                <span>High Conf: ATS 55.1% | ML 77.9% | O/U 57.4%</span>
               </div>
               <div className="flex items-center justify-between text-xs text-gray-400 border-t border-gray-100 pt-4">
                 <div className="flex items-center gap-4">

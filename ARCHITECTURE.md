@@ -231,7 +231,7 @@ ELO_TO_POINTS = 0.11;          // 100 Elo points = 11 point spread (was 0.0593)
 HOME_FIELD_ADVANTAGE = 3.25;   // Total home advantage in points (was 2.28)
 ELO_HOME_ADVANTAGE = 48;       // Elo bonus for home team
 SPREAD_REGRESSION = 0.45;      // Shrink spreads 45% toward zero (was 0.55)
-ELO_CAP = 0;                   // No cap on Elo adjustment (was 4)
+ELO_CAP = 16;                  // Max ±8 pts per team (prevents 40-8 scores)
 ```
 
 ### Step-by-Step Prediction Process
@@ -247,10 +247,12 @@ homeScore = (regressedHomePPG + regressedAwayPPGAllowed) / 2;
 awayScore = (regressedAwayPPG + regressedHomePPGAllowed) / 2;
 ```
 
-**3. Elo Adjustment**
+**3. Elo Adjustment** (with cap to prevent extreme scores)
 ```typescript
 eloDiff = homeElo - awayElo;
 eloAdjustment = (eloDiff * ELO_TO_POINTS) / 2;
+// Cap at ±8 points per team to prevent unrealistic 40-8 scores
+eloAdjustment = Math.max(-8, Math.min(8, eloAdjustment));
 homeScore += eloAdjustment;
 awayScore -= eloAdjustment;
 ```
@@ -482,9 +484,10 @@ interface BacktestResult {
 }
 ```
 
-**Current Performance** (after optimization):
-- ATS: 55.1% (was 53.3% before optimization)
-- O/U: 55.1% (was 52.7% before optimization)
+**Current Performance** (169 games with Vegas lines):
+- ATS: 55.1% (92-75-2)
+- ML (15%+ edge): 77.9% (53-15)
+- O/U (5+ pt edge): 57.4% (39-29)
 
 ---
 
@@ -544,6 +547,12 @@ interface BacktestResult {
 - Uses optimized multiplier (3) to adjust predictions
 - Updates O/U results based on weather-adjusted totals
 - Logs which picks were flipped due to weather
+
+#### `/api/admin/recalculate-with-cap`
+- Recalculates all backtest predictions with current Elo cap
+- Re-evaluates ATS, ML, and O/U results
+- Reports which games were affected by the cap
+- Updates blob with recalculated stats
 
 #### `/api/admin/backfill-injuries`
 - Fetch historical injury data
@@ -884,6 +893,7 @@ src/
 │   │       ├── optimize-params/route.ts
 │   │       ├── backfill-weather/route.ts
 │   │       ├── backfill-injuries/route.ts
+│   │       ├── recalculate-with-cap/route.ts
 │   │       └── ... (other admin tools)
 ├── services/
 │   ├── espn.ts           # ESPN API client

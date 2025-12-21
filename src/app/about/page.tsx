@@ -24,9 +24,9 @@ export default function AboutPage() {
             <div className="text-xs font-semibold text-gray-500 uppercase tracking-wide mb-2">All Picks</div>
             <div className="grid grid-cols-3 gap-4 text-center">
               <div className="bg-white rounded-xl p-4 border-2 border-green-500">
-                <div className="text-2xl font-bold text-green-600">55.7%</div>
+                <div className="text-2xl font-bold text-green-600">55.1%</div>
                 <div className="text-xs text-gray-500 mt-1">Against the Spread</div>
-                <div className="text-[10px] text-gray-400 mt-1">93-74-2</div>
+                <div className="text-[10px] text-gray-400 mt-1">92-75-2</div>
               </div>
               <div className="bg-white rounded-xl p-4 border-2 border-green-500">
                 <div className="text-2xl font-bold text-green-600">63.4%</div>
@@ -46,7 +46,7 @@ export default function AboutPage() {
             <div className="text-xs font-semibold text-amber-700 uppercase tracking-wide mb-2">High Confidence Picks Only</div>
             <div className="grid grid-cols-3 gap-4 text-center">
               <div className="bg-white rounded-xl p-3 border border-amber-200">
-                <div className="text-xl font-bold text-amber-600">55.7%</div>
+                <div className="text-xl font-bold text-amber-600">55.1%</div>
                 <div className="text-xs text-gray-500 mt-1">ATS</div>
                 <div className="text-[10px] text-gray-400">Edge doesn&apos;t improve</div>
               </div>
@@ -56,9 +56,9 @@ export default function AboutPage() {
                 <div className="text-[10px] text-gray-400">53-15 @ 15%+ edge</div>
               </div>
               <div className="bg-white rounded-xl p-3 border-2 border-green-500">
-                <div className="text-xl font-bold text-green-600">59.7%</div>
+                <div className="text-xl font-bold text-green-600">57.4%</div>
                 <div className="text-xs text-gray-500 mt-1">Over/Under</div>
-                <div className="text-[10px] text-gray-400">40-27 @ 5+ pt edge</div>
+                <div className="text-[10px] text-gray-400">39-29 @ 5+ pt edge</div>
               </div>
             </div>
             <p className="text-xs text-amber-700 mt-3 text-center">

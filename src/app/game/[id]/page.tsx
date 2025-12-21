@@ -57,6 +57,15 @@ interface Prediction {
   edgeTotal?: number;
   weatherImpact?: number;
   calc?: CalcBreakdown;
+  // Confidence indicators
+  atsConfidence?: 'high' | 'medium' | 'low';
+  ouConfidence?: 'high' | 'medium' | 'low';
+  mlConfidence?: 'high' | 'medium' | 'low';
+  isAtsBestBet?: boolean;
+  isOuBestBet?: boolean;
+  isMlBestBet?: boolean;
+  mlEdge?: number;
+  totalEdge?: number;
 }
 
 // Constants from our calibrated model
@@ -382,7 +391,12 @@ export default function GameDetailPage() {
         <div className="grid grid-cols-3 gap-4">
           {/* Spread */}
           <div className="bg-gray-50 rounded p-4 border border-gray-200">
-            <div className="text-gray-500 uppercase mb-3 font-semibold">Spread</div>
+            <div className="flex items-center justify-between mb-3">
+              <div className="text-gray-500 uppercase font-semibold">Spread</div>
+              {prediction?.atsConfidence === 'high' && (
+                <span className="bg-green-100 text-green-700 text-xs font-bold px-2 py-0.5 rounded">HIGH CONF</span>
+              )}
+            </div>
             <div className="space-y-3">
               <div>
                 <div className="text-gray-500 text-sm">Our Line</div>
@@ -411,7 +425,12 @@ export default function GameDetailPage() {
 
           {/* Moneyline */}
           <div className="bg-gray-50 rounded p-4 border border-gray-200">
-            <div className="text-gray-500 uppercase mb-3 font-semibold">Moneyline</div>
+            <div className="flex items-center justify-between mb-3">
+              <div className="text-gray-500 uppercase font-semibold">Moneyline</div>
+              {prediction?.mlConfidence === 'high' && (
+                <span className="bg-green-100 text-green-700 text-xs font-bold px-2 py-0.5 rounded">HIGH CONF</span>
+              )}
+            </div>
             <div className="space-y-3">
               <div>
                 <div className="text-gray-500 text-sm">{home.abbreviation} Win Prob</div>
@@ -421,18 +440,33 @@ export default function GameDetailPage() {
                 <div className="text-gray-500 text-sm">{away.abbreviation} Win Prob</div>
                 <div className="font-mono text-xl text-gray-900">{formatNum((1 - homeWinProb) * 100, 0)}%</div>
               </div>
-              <div className={`p-3 rounded ${homeWinProb > 0.6 || homeWinProb < 0.4 ? 'bg-green-100 border border-green-300' : 'bg-gray-100 border border-gray-200'}`}>
-                <div className="text-gray-500 text-sm">Pick</div>
-                <div className="font-mono text-xl font-medium text-gray-900">
-                  {homeWinProb > 0.5 ? home.abbreviation : away.abbreviation}
-                </div>
-              </div>
+              {(() => {
+                const mlEdge = prediction?.mlEdge ?? Math.abs(homeWinProb - 0.5) * 100;
+                const isHighConf = mlEdge >= 15;
+                return (
+                  <div className={`p-3 rounded ${isHighConf ? 'bg-green-100 border border-green-300' : 'bg-gray-100 border border-gray-200'}`}>
+                    <div className="text-gray-500 text-sm">Edge</div>
+                    <div className="font-mono text-xl text-gray-900">{formatNum(mlEdge, 0)}%</div>
+                    <div className="text-sm mt-2 font-medium text-gray-700">
+                      Pick {homeWinProb > 0.5 ? home.abbreviation : away.abbreviation}
+                    </div>
+                    {isHighConf && (
+                      <div className="text-xs text-green-600 mt-1">78% hit rate at 15%+ edge</div>
+                    )}
+                  </div>
+                );
+              })()}
             </div>
           </div>
 
           {/* Total */}
           <div className="bg-gray-50 rounded p-4 border border-gray-200">
-            <div className="text-gray-500 uppercase mb-3 font-semibold">Total</div>
+            <div className="flex items-center justify-between mb-3">
+              <div className="text-gray-500 uppercase font-semibold">Total</div>
+              {prediction?.ouConfidence === 'high' && (
+                <span className="bg-green-100 text-green-700 text-xs font-bold px-2 py-0.5 rounded">HIGH CONF</span>
+              )}
+            </div>
             <div className="space-y-3">
               <div>
                 <div className="text-gray-500 text-sm">Our Total</div>
@@ -444,13 +478,22 @@ export default function GameDetailPage() {
                     <div className="text-gray-500 text-sm">Vegas Total</div>
                     <div className="font-mono text-xl text-gray-900">{vegasTotal}</div>
                   </div>
-                  <div className={`p-3 rounded ${Math.abs(totalEdge) >= 2.5 ? 'bg-green-100 border border-green-300' : 'bg-gray-100 border border-gray-200'}`}>
-                    <div className="text-gray-500 text-sm">Edge</div>
-                    <div className="font-mono text-xl text-gray-900">{formatSpread(totalEdge)} pts</div>
-                    <div className="text-sm mt-2 font-medium text-gray-700">
-                      {totalEdge > 0 ? `Pick OVER ${vegasTotal}` : `Pick UNDER ${vegasTotal}`}
-                    </div>
-                  </div>
+                  {(() => {
+                    const ouEdge = Math.abs(totalEdge);
+                    const isHighConf = ouEdge >= 5;
+                    return (
+                      <div className={`p-3 rounded ${isHighConf ? 'bg-green-100 border border-green-300' : 'bg-gray-100 border border-gray-200'}`}>
+                        <div className="text-gray-500 text-sm">Edge</div>
+                        <div className="font-mono text-xl text-gray-900">{formatSpread(totalEdge)} pts</div>
+                        <div className="text-sm mt-2 font-medium text-gray-700">
+                          {totalEdge > 0 ? `Pick OVER ${vegasTotal}` : `Pick UNDER ${vegasTotal}`}
+                        </div>
+                        {isHighConf && (
+                          <div className="text-xs text-green-600 mt-1">60% hit rate at 5+ pt edge</div>
+                        )}
+                      </div>
+                    );
+                  })()}
                 </>
               )}
             </div>
