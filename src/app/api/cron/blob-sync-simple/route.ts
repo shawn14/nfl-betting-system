@@ -13,6 +13,58 @@ const ELO_HOME_ADVANTAGE = 48;
 const SPREAD_REGRESSION = 0.55;
 const ELO_CAP = 4;
 
+// Team name mapping for Odds API matching
+const TEAM_NAME_VARIANTS: Record<string, string[]> = {
+  'Arizona Cardinals': ['Cardinals', 'Arizona'],
+  'Atlanta Falcons': ['Falcons', 'Atlanta'],
+  'Baltimore Ravens': ['Ravens', 'Baltimore'],
+  'Buffalo Bills': ['Bills', 'Buffalo'],
+  'Carolina Panthers': ['Panthers', 'Carolina'],
+  'Chicago Bears': ['Bears', 'Chicago'],
+  'Cincinnati Bengals': ['Bengals', 'Cincinnati'],
+  'Cleveland Browns': ['Browns', 'Cleveland'],
+  'Dallas Cowboys': ['Cowboys', 'Dallas'],
+  'Denver Broncos': ['Broncos', 'Denver'],
+  'Detroit Lions': ['Lions', 'Detroit'],
+  'Green Bay Packers': ['Packers', 'Green Bay'],
+  'Houston Texans': ['Texans', 'Houston'],
+  'Indianapolis Colts': ['Colts', 'Indianapolis'],
+  'Jacksonville Jaguars': ['Jaguars', 'Jacksonville'],
+  'Kansas City Chiefs': ['Chiefs', 'Kansas City'],
+  'Las Vegas Raiders': ['Raiders', 'Las Vegas'],
+  'Los Angeles Chargers': ['Chargers', 'LA Chargers'],
+  'Los Angeles Rams': ['Rams', 'LA Rams'],
+  'Miami Dolphins': ['Dolphins', 'Miami'],
+  'Minnesota Vikings': ['Vikings', 'Minnesota'],
+  'New England Patriots': ['Patriots', 'New England'],
+  'New Orleans Saints': ['Saints', 'New Orleans'],
+  'New York Giants': ['Giants', 'NY Giants'],
+  'New York Jets': ['Jets', 'NY Jets'],
+  'Philadelphia Eagles': ['Eagles', 'Philadelphia'],
+  'Pittsburgh Steelers': ['Steelers', 'Pittsburgh'],
+  'San Francisco 49ers': ['49ers', 'San Francisco'],
+  'Seattle Seahawks': ['Seahawks', 'Seattle'],
+  'Tampa Bay Buccaneers': ['Buccaneers', 'Tampa Bay'],
+  'Tennessee Titans': ['Titans', 'Tennessee'],
+  'Washington Commanders': ['Commanders', 'Washington'],
+};
+
+function matchesTeamName(oddsTeamName: string, ourTeamName: string): boolean {
+  // Direct match
+  if (oddsTeamName === ourTeamName) return true;
+  if (oddsTeamName.includes(ourTeamName) || ourTeamName.includes(oddsTeamName)) return true;
+
+  // Check variants
+  for (const [fullName, variants] of Object.entries(TEAM_NAME_VARIANTS)) {
+    if (oddsTeamName.includes(fullName) || fullName === oddsTeamName) {
+      if (variants.some(v => ourTeamName.includes(v) || v.includes(ourTeamName))) {
+        return true;
+      }
+    }
+  }
+  return false;
+}
+
 interface TeamData {
   id: string;
   name: string;
@@ -292,7 +344,12 @@ export async function GET() {
       let vegasSpread: number | undefined;
       let vegasTotal: number | undefined;
       for (const [key, oddsArray] of oddsMap) {
-        if (key.includes(homeTeam.name) && key.includes(awayTeam.name)) {
+        // Key format: "homeTeam_awayTeam_timestamp"
+        const keyParts = key.split('_');
+        const oddsHomeTeam = keyParts[0] || '';
+        const oddsAwayTeam = keyParts[1] || '';
+
+        if (matchesTeamName(oddsHomeTeam, homeTeam.name) && matchesTeamName(oddsAwayTeam, awayTeam.name)) {
           const consensus = getConsensusOdds(oddsArray);
           if (consensus) {
             vegasSpread = consensus.homeSpread;
