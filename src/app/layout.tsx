@@ -92,8 +92,9 @@ export default function RootLayout({
               </div>
               <div className="flex items-center justify-between text-xs text-gray-400 border-t border-gray-100 pt-4">
                 <div className="flex items-center gap-4">
-                  <a href="/terms" className="hover:text-gray-600">Terms of Service</a>
-                  <a href="/privacy" className="hover:text-gray-600">Privacy Policy</a>
+                  <a href="/about" className="hover:text-gray-600">About</a>
+                  <a href="/terms" className="hover:text-gray-600">Terms</a>
+                  <a href="/privacy" className="hover:text-gray-600">Privacy</a>
                 </div>
                 <span>For entertainment purposes only. Must be 21+. Gambling problem? Call 1-800-522-4700</span>
               </div>
