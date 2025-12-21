@@ -310,8 +310,8 @@ export async function GET(request: Request) {
       if (!weather) continue;
       gamesWithWeatherAndOdds++;
 
-      // Adjusted prediction (multiplier 5 based on optimization)
-      const adjustedTotal = game.predictedTotal - (weather.impact * 5);
+      // Adjusted prediction (multiplier 3 based on optimization - best win rate)
+      const adjustedTotal = game.predictedTotal - (weather.impact * 3);
       const originalPick = game.predictedTotal > game.vegasTotal ? 'over' : 'under';
       const adjustedPick = adjustedTotal > game.vegasTotal ? 'over' : 'under';
 
