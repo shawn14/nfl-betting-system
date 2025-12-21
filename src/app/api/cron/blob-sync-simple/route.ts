@@ -499,7 +499,10 @@ export async function GET(request: Request) {
       ? (new Date().getTime() - new Date(currentWeekInjuriesCache.fetchedAt).getTime()) / (1000 * 60 * 60)
       : Infinity;
 
-    if (cacheIsCurrentWeek && currentWeekInjuriesCache && injuryCacheAge < INJURY_CACHE_HOURS) {
+    // Allow forcing injury refresh via query param
+    const forceInjuryRefresh = searchParams.get('forceInjuries') === 'true';
+
+    if (!forceInjuryRefresh && cacheIsCurrentWeek && currentWeekInjuriesCache && injuryCacheAge < INJURY_CACHE_HOURS) {
       injuryReport = currentWeekInjuriesCache.data;
       log(`Using cached Week ${currentWeek} injuries (${Math.round(injuryCacheAge * 10) / 10}h old)`);
     } else {
