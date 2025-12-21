@@ -30,6 +30,17 @@ function convertTimestamps<T>(data: Record<string, unknown>): T {
   return result as T;
 }
 
+// Helper to remove undefined values (Firestore doesn't accept undefined)
+function sanitizeForFirestore<T extends Record<string, unknown>>(obj: T): T {
+  const result: Record<string, unknown> = {};
+  for (const [key, value] of Object.entries(obj)) {
+    if (value !== undefined) {
+      result[key] = value;
+    }
+  }
+  return result as T;
+}
+
 // Teams
 export async function getTeam(teamId: string): Promise<Team | null> {
   const docRef = doc(teamsCollection, teamId);
@@ -61,7 +72,8 @@ export async function saveTeamsBatch(teams: Array<Partial<Team> & { id: string }
   const batch = writeBatch(db);
   for (const team of teams) {
     const docRef = doc(teamsCollection, team.id);
-    batch.set(docRef, { ...team, createdAt: new Date(), updatedAt: new Date() }, { merge: true });
+    const sanitized = sanitizeForFirestore({ ...team, createdAt: new Date(), updatedAt: new Date() });
+    batch.set(docRef, sanitized, { merge: true });
   }
   await batch.commit();
 }
@@ -106,7 +118,8 @@ export async function saveGamesBatch(games: Array<Partial<Game> & { id: string }
   const batch = writeBatch(db);
   for (const game of games) {
     const docRef = doc(gamesCollection, game.id);
-    batch.set(docRef, { ...game, updatedAt: new Date() }, { merge: true });
+    const sanitized = sanitizeForFirestore({ ...game, updatedAt: new Date() });
+    batch.set(docRef, sanitized, { merge: true });
   }
   await batch.commit();
 }
