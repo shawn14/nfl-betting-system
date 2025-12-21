@@ -66,11 +66,14 @@ function calculateSpread(homeScore: number, awayScore: number): number {
 }
 
 export async function GET(request: Request) {
-  // Verify cron secret for security
+  // Verify cron secret for automated cron calls
+  // Allow manual browser access (no auth header) for initial sync
   const authHeader = request.headers.get('authorization');
   const cronSecret = process.env.CRON_SECRET;
+  const isVercelCron = request.headers.get('x-vercel-cron') === '1';
 
-  if (cronSecret && authHeader !== `Bearer ${cronSecret}`) {
+  // Only require auth if it's a cron call with a secret configured
+  if (cronSecret && isVercelCron && authHeader !== `Bearer ${cronSecret}`) {
     return NextResponse.json({ error: 'Unauthorized' }, { status: 401 });
   }
 
