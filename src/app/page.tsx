@@ -58,6 +58,15 @@ interface Prediction {
   vegasSpread?: number;
   vegasTotal?: number;
   oddsLockedAt?: string;
+  lineMovement?: {
+    openingSpread?: number;
+    openingTotal?: number;
+    closingSpread?: number;
+    closingTotal?: number;
+    lastSeenSpread?: number;
+    lastSeenTotal?: number;
+    lastUpdatedAt?: string;
+  };
   spreadEdge?: number;
   totalEdge?: number;
   atsConfidence?: 'high' | 'medium' | 'low';
@@ -519,6 +528,22 @@ export default function Dashboard() {
             const displaySpread = prediction.vegasSpread ?? ourSpread;
             const displayTotal = prediction.vegasTotal ?? ourTotal;
             const hasVegas = prediction.vegasSpread !== undefined;
+            const lineInfo = prediction.lineMovement;
+            const lineOpeningSpread = lineInfo?.openingSpread;
+            const lineCurrentSpread = lineInfo?.closingSpread ?? lineInfo?.lastSeenSpread ?? prediction.vegasSpread;
+            const lineOpeningTotal = lineInfo?.openingTotal;
+            const lineCurrentTotal = lineInfo?.closingTotal ?? lineInfo?.lastSeenTotal ?? prediction.vegasTotal;
+            const spreadMove = lineOpeningSpread !== undefined && lineCurrentSpread !== undefined
+              ? Math.round((lineCurrentSpread - lineOpeningSpread) * 2) / 2
+              : undefined;
+            const totalMove = lineOpeningTotal !== undefined && lineCurrentTotal !== undefined
+              ? Math.round((lineCurrentTotal - lineOpeningTotal) * 2) / 2
+              : undefined;
+            const spreadMoveTeam = spreadMove === undefined || spreadMove === 0
+              ? null
+              : spreadMove > 0
+                ? away
+                : home;
 
             // Spread pick: pick home if we favor home more than Vegas
             const pickHomeSpread = ourSpread < displaySpread;
@@ -682,16 +707,44 @@ export default function Dashboard() {
                 {hasVegas && (
                   <div className="px-3 sm:px-4 py-1 sm:py-1.5 bg-gray-50 border-b border-gray-100 flex items-center justify-between text-[9px] sm:text-[10px]">
                     <span className="text-gray-500">Vegas</span>
-                    {prediction.oddsLockedAt ? (
-                      <span className="text-green-600 font-medium flex items-center gap-1">
-                        <svg className="w-2.5 h-2.5 sm:w-3 sm:h-3" fill="currentColor" viewBox="0 0 20 20">
-                          <path fillRule="evenodd" d="M5 9V7a5 5 0 0110 0v2a2 2 0 012 2v5a2 2 0 01-2 2H5a2 2 0 01-2-2v-5a2 2 0 012-2zm8-2v2H7V7a3 3 0 016 0z" clipRule="evenodd" />
-                        </svg>
-                        Locked
-                      </span>
-                    ) : (
-                      <span className="text-gray-400">Live</span>
-                    )}
+                    <div className="flex items-center gap-2">
+                      {lineOpeningSpread !== undefined && (
+                        <div className="relative group">
+                          <button
+                            type="button"
+                            className="w-4 h-4 rounded-full border border-gray-300 text-gray-500 flex items-center justify-center text-[9px] leading-none hover:border-gray-400"
+                            aria-label="Line movement details"
+                          >
+                            i
+                          </button>
+                          <div className="absolute right-0 mt-2 hidden w-52 rounded-md border border-gray-200 bg-white p-2 text-[10px] text-gray-600 shadow-lg group-hover:block">
+                            <div className="font-semibold text-gray-900 mb-1">Line Movement</div>
+                            <div>Spread: {lineOpeningSpread} → {lineCurrentSpread ?? '—'}</div>
+                            <div>Total: {lineOpeningTotal ?? '—'} → {lineCurrentTotal ?? '—'}</div>
+                            {spreadMove !== undefined && (
+                              <div className="mt-1">
+                                {spreadMove === 0
+                                  ? 'No spread movement.'
+                                  : `Moved ${Math.abs(spreadMove)} toward ${spreadMoveTeam}.`}
+                              </div>
+                            )}
+                            {totalMove !== undefined && totalMove !== 0 && (
+                              <div>Totals moved {Math.abs(totalMove)} {totalMove > 0 ? 'up' : 'down'}.</div>
+                            )}
+                          </div>
+                        </div>
+                      )}
+                      {prediction.oddsLockedAt ? (
+                        <span className="text-green-600 font-medium flex items-center gap-1">
+                          <svg className="w-2.5 h-2.5 sm:w-3 sm:h-3" fill="currentColor" viewBox="0 0 20 20">
+                            <path fillRule="evenodd" d="M5 9V7a5 5 0 0110 0v2a2 2 0 012 2v5a2 2 0 01-2 2H5a2 2 0 01-2-2v-5a2 2 0 012-2zm8-2v2H7V7a3 3 0 016 0z" clipRule="evenodd" />
+                          </svg>
+                          Locked
+                        </span>
+                      ) : (
+                        <span className="text-gray-400">Live</span>
+                      )}
+                    </div>
                   </div>
                 )}
 
