@@ -122,6 +122,7 @@ This is a Next.js-based NFL/NBA betting prediction system that uses Elo ratings,
 **Historical Odds Cache** (Locked 1 hour before game)
 - Vegas spreads/totals captured when games are upcoming
 - Stored in `historicalOdds` map by gameId
+- Tracks opening vs closing lines for line-movement analysis
 - **Locking mechanism**: Odds lock 1 hour before game time
   - Before lock: Updates on each sync to capture latest lines
   - After lock: `lockedAt` timestamp set, odds never change again

@@ -69,6 +69,13 @@ interface TeamData {
 }
 
 interface HistoricalOdds {
+  openingSpread?: number;
+  openingTotal?: number;
+  closingSpread?: number;
+  closingTotal?: number;
+  lastSeenSpread?: number;
+  lastSeenTotal?: number;
+  lastUpdatedAt?: string;
   vegasSpread: number;
   vegasTotal: number;
   capturedAt: string;
@@ -591,6 +598,8 @@ export async function GET(request: Request) {
       if (shouldLockNow) {
         // Lock the odds now - set lockedAt timestamp
         existingOdds.lockedAt = new Date().toISOString();
+        existingOdds.closingSpread = existingOdds.lastSeenSpread ?? existingOdds.vegasSpread;
+        existingOdds.closingTotal = existingOdds.lastSeenTotal ?? existingOdds.vegasTotal;
         vegasSpread = existingOdds.vegasSpread;
         vegasTotal = existingOdds.vegasTotal;
         log(`Locked odds for ${awayTeam.abbreviation}@${homeTeam.abbreviation}: spread ${vegasSpread}, total ${vegasTotal}`);
@@ -605,12 +614,31 @@ export async function GET(request: Request) {
           vegasSpread = espnOdds.homeSpread;
           vegasTotal = espnOdds.total;
           oddsFetched++;
+          const nowIso = new Date().toISOString();
           // Store in historical odds (will be locked once within 1 hour of game)
-          historicalOdds[game.id] = {
-            vegasSpread,
-            vegasTotal,
-            capturedAt: new Date().toISOString(),
-          };
+          const existing = historicalOdds[game.id];
+          if (existing) {
+            if (existing.openingSpread === undefined) {
+              existing.openingSpread = vegasSpread;
+              existing.openingTotal = vegasTotal;
+            }
+            existing.vegasSpread = vegasSpread;
+            existing.vegasTotal = vegasTotal;
+            existing.lastSeenSpread = vegasSpread;
+            existing.lastSeenTotal = vegasTotal;
+            existing.lastUpdatedAt = nowIso;
+          } else {
+            historicalOdds[game.id] = {
+              vegasSpread,
+              vegasTotal,
+              openingSpread: vegasSpread,
+              openingTotal: vegasTotal,
+              lastSeenSpread: vegasSpread,
+              lastSeenTotal: vegasTotal,
+              lastUpdatedAt: nowIso,
+              capturedAt: nowIso,
+            };
+          }
         }
       }
 
