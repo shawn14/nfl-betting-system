@@ -5,7 +5,7 @@ const nextConfig: NextConfig = {
     return [
       {
         source: '/prediction-data.json',
-        destination: 'https://heqfdmx3v2zyikwl.public.blob.vercel-storage.com/prediction-matrix-data.json',
+        destination: 'https://0luulmjdaimldet9.public.blob.vercel-storage.com/prediction-matrix-data.json',
       },
     ];
   },
