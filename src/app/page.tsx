@@ -720,32 +720,6 @@ export default function Dashboard() {
                       )}
                     </div>
                     <div className="flex items-center gap-2">
-                      {lineOpeningSpread !== undefined && (
-                        <div className="relative group">
-                          <button
-                            type="button"
-                            className="w-4 h-4 rounded-full border border-gray-300 text-gray-500 flex items-center justify-center text-[9px] leading-none hover:border-gray-400"
-                            aria-label="Line movement details"
-                          >
-                            i
-                          </button>
-                          <div className="absolute right-0 mt-2 hidden w-52 rounded-md border border-gray-200 bg-white p-2 text-[10px] text-gray-600 shadow-lg group-hover:block">
-                            <div className="font-semibold text-gray-900 mb-1">Line Movement</div>
-                            <div>Spread: {formatSpread(lineOpeningSpread)} → {lineCurrentSpread !== undefined ? formatSpread(lineCurrentSpread) : '—'}</div>
-                            <div>Total: {lineOpeningTotal ?? '—'} → {lineCurrentTotal ?? '—'}</div>
-                            {spreadMove !== undefined && (
-                              <div className="mt-1">
-                                {spreadMove === 0
-                                  ? 'No spread movement.'
-                                  : `Moved ${Math.abs(spreadMove)} toward ${spreadMoveTeam}.`}
-                              </div>
-                            )}
-                            {totalMove !== undefined && totalMove !== 0 && (
-                              <div>Totals moved {Math.abs(totalMove)} {totalMove > 0 ? 'up' : 'down'}.</div>
-                            )}
-                          </div>
-                        </div>
-                      )}
                       {prediction.oddsLockedAt ? (
                         <span className="text-green-600 font-medium flex items-center gap-1">
                           <svg className="w-2.5 h-2.5 sm:w-3 sm:h-3" fill="currentColor" viewBox="0 0 20 20">
@@ -758,6 +732,11 @@ export default function Dashboard() {
                       )}
                     </div>
                   </div>
+                  {spreadMove !== undefined && spreadMove !== 0 && (
+                    <div className="px-3 sm:px-4 pb-1 sm:pb-1.5 bg-gray-50 border-b border-gray-100 text-[9px] sm:text-[10px] text-gray-500">
+                      Line moved {Math.abs(spreadMove)} toward {spreadMoveTeam}.
+                    </div>
+                  )}
                 )}
 
                 {/* Picks grid - Clean color-coded picks */}
