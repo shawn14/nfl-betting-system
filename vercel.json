@@ -2,7 +2,11 @@
   "crons": [
     {
       "path": "/api/cron/blob-sync-simple",
-      "schedule": "0 */4 * * *"
+      "schedule": "0 */2 * * *"
+    },
+    {
+      "path": "/api/cron/nba-sync",
+      "schedule": "30 */2 * * *"
     }
   ]
 }
