@@ -194,19 +194,36 @@ export async function GET(request: Request) {
 
     // Fetch current week schedule early to detect season/week changes
     log('Fetching current week schedule...');
-    let currentWeekSchedule = await fetchNFLSchedule();
-    let currentWeek = currentWeekSchedule[0]?.week || rawState?.currentWeek || 1;
-    let currentSeason = currentWeekSchedule[0]?.season || rawState?.season || new Date().getFullYear();
+    const currentWeekSchedule = await fetchNFLSchedule();
+    const currentWeek = currentWeekSchedule[0]?.week || rawState?.currentWeek || 1;
+    const currentSeason = currentWeekSchedule[0]?.season || rawState?.season || new Date().getFullYear();
 
     const hasUpcomingGames = currentWeekSchedule.some(g => g.status !== 'final');
-    if (!hasUpcomingGames && currentWeekSchedule.length > 0) {
+    const now = new Date();
+    const easternParts = new Intl.DateTimeFormat('en-US', {
+      timeZone: 'America/New_York',
+      weekday: 'short',
+      hour: '2-digit',
+      hour12: false,
+    }).formatToParts(now);
+    const weekday = easternParts.find(p => p.type === 'weekday')?.value || '';
+    const hour = parseInt(easternParts.find(p => p.type === 'hour')?.value || '0', 10);
+    const shouldShowNextWeek = weekday === 'Mon' && hour >= 15;
+
+    let combinedSchedule = currentWeekSchedule;
+    if (shouldShowNextWeek || !hasUpcomingGames) {
       const nextWeek = currentWeek + 1;
       const nextWeekSchedule = await fetchNFLSchedule(nextWeek);
       if (nextWeekSchedule.length > 0) {
-        log(`Advancing to next week schedule (Week ${nextWeek})`);
-        currentWeekSchedule = nextWeekSchedule;
-        currentWeek = nextWeekSchedule[0]?.week || nextWeek;
-        currentSeason = nextWeekSchedule[0]?.season || currentSeason;
+        log(`Including next week schedule (Week ${nextWeek})`);
+        const combinedMap = new Map<string, typeof nextWeekSchedule[0]>();
+        for (const game of currentWeekSchedule) {
+          if (game.id) combinedMap.set(game.id, game);
+        }
+        for (const game of nextWeekSchedule) {
+          if (game.id) combinedMap.set(game.id, game);
+        }
+        combinedSchedule = Array.from(combinedMap.values());
       }
     }
 
@@ -521,10 +538,10 @@ export async function GET(request: Request) {
     });
 
     // 7. Fetch all current week games (already loaded)
-    const allWeekGames = currentWeekSchedule;
-    // Include all games (final, in-progress, and scheduled) for the current week
+    const allWeekGames = combinedSchedule;
+    // Include all games (final, in-progress, and scheduled) for the current + next week window
     const upcoming = allWeekGames;
-    log(`Found ${upcoming.length} games for current week`);
+    log(`Found ${upcoming.length} games for current/next week window`);
 
     // Track how many odds we fetch from ESPN FREE API
     let oddsFetched = 0;
@@ -678,7 +695,9 @@ export async function GET(request: Request) {
       const perTeamDelta = weatherDelta / 2;
 
       // Get injury data for this game
-      const gameInjuries = injuryReport ? getGameInjuryImpact(injuryReport, homeTeam.abbreviation, awayTeam.abbreviation) : null;
+      const gameInjuries = injuryReport && game.week === currentWeek
+        ? getGameInjuryImpact(injuryReport, homeTeam.abbreviation, awayTeam.abbreviation)
+        : null;
 
       // QB OUT adjustment: -3 points per team (industry standard value)
       // We don't have historical injury data to backtest, but this is well-established
