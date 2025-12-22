@@ -1,20 +1,30 @@
 import { cert, getApps, initializeApp } from 'firebase-admin/app';
 import { getFirestore } from 'firebase-admin/firestore';
 
-const rawCredentials = process.env.FIREBASE_ADMIN_CREDENTIALS;
+let cachedDb: ReturnType<typeof getFirestore> | null = null;
 
-if (!rawCredentials) {
-  throw new Error('FIREBASE_ADMIN_CREDENTIALS is not set.');
+function requireCredentials(): string {
+  const rawCredentials = process.env.FIREBASE_ADMIN_CREDENTIALS;
+  if (!rawCredentials) {
+    throw new Error('FIREBASE_ADMIN_CREDENTIALS is not set.');
+  }
+  return rawCredentials;
 }
 
-const credentialsJson = rawCredentials.trim().startsWith('{')
-  ? rawCredentials
-  : Buffer.from(rawCredentials, 'base64').toString('utf8');
+export function getAdminDb() {
+  if (cachedDb) return cachedDb;
 
-const serviceAccount = JSON.parse(credentialsJson);
+  const rawCredentials = requireCredentials();
+  const credentialsJson = rawCredentials.trim().startsWith('{')
+    ? rawCredentials
+    : Buffer.from(rawCredentials, 'base64').toString('utf8');
 
-const adminApp = getApps().length === 0
-  ? initializeApp({ credential: cert(serviceAccount) })
-  : getApps()[0];
+  const serviceAccount = JSON.parse(credentialsJson);
 
-export const adminDb = getFirestore(adminApp);
+  const adminApp = getApps().length === 0
+    ? initializeApp({ credential: cert(serviceAccount) })
+    : getApps()[0];
+
+  cachedDb = getFirestore(adminApp);
+  return cachedDb;
+}
