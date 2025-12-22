@@ -497,25 +497,6 @@ export default function Dashboard() {
         </div>
       </div>
 
-      <div className="bg-white border border-gray-200 rounded-lg p-4 text-sm text-gray-600">
-        <div className="flex flex-wrap items-center gap-3">
-          <span className="text-xs uppercase tracking-wide text-gray-400">Data Refresh</span>
-          {cronHealth?.error ? (
-            <span className="text-red-600">{cronHealth.error}</span>
-          ) : (
-            <>
-              <span className="font-medium text-gray-900">NFL</span>
-              <span>Last sync: {formatHealthTime(cronHealth?.nfl?.lastSyncAt)}</span>
-              <span>Blob: {formatHealthTime(cronHealth?.nfl?.lastBlobWriteAt)}</span>
-              <span>Week: {cronHealth?.nfl?.currentWeek ?? '—'}</span>
-              <span className="font-medium text-gray-900">NBA</span>
-              <span>Last sync: {formatHealthTime(cronHealth?.nba?.lastSyncAt)}</span>
-              <span>Blob: {formatHealthTime(cronHealth?.nba?.lastBlobWriteAt)}</span>
-            </>
-          )}
-        </div>
-      </div>
-
       {games.length === 0 ? (
         <div className="bg-white rounded-lg p-8 text-center text-gray-500 border border-gray-200">
           No upcoming games. Check back later.
@@ -1108,6 +1089,17 @@ export default function Dashboard() {
         )}
         </>
       )}
+
+      <div className="mt-8 text-xs text-gray-500">
+        {cronHealth?.error ? (
+          <span>Data status unavailable.</span>
+        ) : (
+          <span>
+            Data up-to-date as of {formatHealthTime(cronHealth?.nfl?.lastBlobWriteAt)} (NFL) and{' '}
+            {formatHealthTime(cronHealth?.nba?.lastBlobWriteAt)} (NBA).
+          </span>
+        )}
+      </div>
     </div>
   );
 }
