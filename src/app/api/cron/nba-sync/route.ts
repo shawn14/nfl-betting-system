@@ -666,6 +666,27 @@ export async function GET(request: Request) {
           homeTeam: { id: homeTeam.id, name: homeTeam.name, abbreviation: homeTeam.abbreviation },
           awayTeam: { id: awayTeam.id, name: awayTeam.name, abbreviation: awayTeam.abbreviation },
         },
+        let lineMovement = existingOdds ? {
+          openingSpread: existingOdds.openingSpread,
+          openingTotal: existingOdds.openingTotal,
+          closingSpread: existingOdds.closingSpread,
+          closingTotal: existingOdds.closingTotal,
+          lastSeenSpread: existingOdds.lastSeenSpread,
+          lastSeenTotal: existingOdds.lastSeenTotal,
+          lastUpdatedAt: existingOdds.lastUpdatedAt,
+        } : undefined;
+
+        if (lineMovement) {
+          for (const key of Object.keys(lineMovement)) {
+            if (lineMovement[key as keyof typeof lineMovement] === undefined) {
+              delete lineMovement[key as keyof typeof lineMovement];
+            }
+          }
+          if (Object.keys(lineMovement).length === 0) {
+            lineMovement = undefined;
+          }
+        }
+
         prediction: {
           gameId: game.id,
           predictedHomeScore: predHome,
@@ -677,15 +698,7 @@ export async function GET(request: Request) {
           vegasSpread,
           vegasTotal,
           oddsLockedAt: existingOdds?.lockedAt,
-          lineMovement: existingOdds ? {
-            openingSpread: existingOdds.openingSpread,
-            openingTotal: existingOdds.openingTotal,
-            closingSpread: existingOdds.closingSpread,
-            closingTotal: existingOdds.closingTotal,
-            lastSeenSpread: existingOdds.lastSeenSpread,
-            lastSeenTotal: existingOdds.lastSeenTotal,
-            lastUpdatedAt: existingOdds.lastUpdatedAt,
-          } : undefined,
+          lineMovement,
           spreadEdge: vegasSpread !== undefined ? Math.round((predictedSpread - vegasSpread) * 2) / 2 : undefined,
           totalEdge: vegasTotal !== undefined ? Math.round((predictedTotal - vegasTotal) * 2) / 2 : undefined,
           atsConfidence,
