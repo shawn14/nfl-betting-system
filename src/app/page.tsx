@@ -169,7 +169,7 @@ export default function Dashboard() {
   const fetchData = useCallback(async () => {
     try {
       // Fetch all data from pre-computed blob (instant!)
-      const response = await fetch('/prediction-data.json', { cache: 'no-cache' });
+      const response = await fetch(`/prediction-data.json?t=${Date.now()}`, { cache: 'no-cache' });
       const data = await response.json();
 
       if (data.error && !data.games?.length) {

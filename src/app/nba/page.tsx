@@ -122,7 +122,7 @@ export default function NBADashboard() {
 
   const fetchData = useCallback(async () => {
     try {
-      const response = await fetch('/nba-prediction-data.json', { cache: 'no-cache' });
+      const response = await fetch(`/nba-prediction-data.json?t=${Date.now()}`, { cache: 'no-cache' });
       const data = await response.json();
 
       if (data.error && !data.games?.length) {
