@@ -587,7 +587,7 @@ export async function GET(request: Request) {
       const hoursUntilGame = (gameTime.getTime() - now.getTime()) / (1000 * 60 * 60);
 
       // Check existing/locked odds
-      const existingOdds = historicalOdds[game.id];
+      let existingOdds = historicalOdds[game.id];
       const shouldLockNow = existingOdds && hoursUntilGame <= 1 && !existingOdds.lockedAt;
       const oddsAreLocked = existingOdds?.lockedAt !== undefined;
 
@@ -632,6 +632,7 @@ export async function GET(request: Request) {
               capturedAt: nowIso,
             };
           }
+          existingOdds = historicalOdds[game.id];
         }
       }
 
