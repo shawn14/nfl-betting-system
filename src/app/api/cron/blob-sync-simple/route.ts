@@ -229,7 +229,8 @@ export async function GET(request: Request) {
       : await getDocsMap<CachedInjuries>(sport, 'injuries');
 
     const isFirstRun = !existingState || !existingState.processedGameIds?.length;
-    log(isFirstRun ? 'First run - will process all games' : `Found ${existingState.processedGameIds.length} processed games`);
+    const processedCount = existingState?.processedGameIds?.length || 0;
+    log(isFirstRun ? 'First run - will process all games' : `Found ${processedCount} processed games`);
 
     // 2. Build team map from existing state or fresh from ESPN
     const teamsMap = new Map<string, TeamData>();
