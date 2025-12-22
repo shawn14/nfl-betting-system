@@ -505,14 +505,26 @@ export async function GET(request: Request) {
     const upcoming = allWeekGames;
     log(`Found ${upcoming.length} games for current week`);
 
-    // Fetch Vegas odds
-    log('Fetching Vegas odds...');
+    // Only fetch odds if there are games that need them (not yet stored or locked)
+    const gamesNeedingOdds = upcoming.filter(g => {
+      if (!g.id) return false;
+      const existing = historicalOdds[g.id];
+      // Don't need odds if already locked or if game is final
+      if (existing?.lockedAt || g.status === 'final') return false;
+      return true;
+    });
+
     let oddsMap = new Map<string, Partial<Odds>[]>();
-    try {
-      oddsMap = await fetchNFLOdds();
-      log(`Fetched odds for ${oddsMap.size} games`);
-    } catch (err) {
-      log(`Failed to fetch odds: ${err instanceof Error ? err.message : 'Unknown error'}`);
+    if (gamesNeedingOdds.length > 0) {
+      log(`Fetching Vegas odds for ${gamesNeedingOdds.length} games that need them...`);
+      try {
+        oddsMap = await fetchNFLOdds();
+        log(`Fetched odds for ${oddsMap.size} games`);
+      } catch (err) {
+        log(`Failed to fetch odds: ${err instanceof Error ? err.message : 'Unknown error'}`);
+      }
+    } else {
+      log('All games already have locked odds - skipping odds API call');
     }
 
     // Determine current week from upcoming games

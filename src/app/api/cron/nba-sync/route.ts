@@ -615,18 +615,30 @@ export async function GET(request: Request) {
       return true;
     });
 
-    // 7. Fetch Vegas odds for upcoming games
-    log('Fetching NBA Vegas odds...');
+    // 7. Fetch Vegas odds only for games that need them
+    const upcomingGames = allGames.filter(g => g.status !== 'final');
+    const gamesNeedingOdds = upcomingGames.filter(g => {
+      if (!g.id) return false;
+      const existing = historicalOdds[g.id];
+      // Don't need odds if already locked
+      if (existing?.lockedAt) return false;
+      return true;
+    });
+
     let oddsMap = new Map<string, any[]>();
-    try {
-      oddsMap = await fetchNBAOdds();
-      log(`Fetched odds for ${oddsMap.size} games`);
-    } catch (err) {
-      log(`Failed to fetch odds: ${err instanceof Error ? err.message : 'Unknown error'}`);
+    if (gamesNeedingOdds.length > 0) {
+      log(`Fetching NBA Vegas odds for ${gamesNeedingOdds.length} games that need them...`);
+      try {
+        oddsMap = await fetchNBAOdds();
+        log(`Fetched odds for ${oddsMap.size} games`);
+      } catch (err) {
+        log(`Failed to fetch odds: ${err instanceof Error ? err.message : 'Unknown error'}`);
+      }
+    } else {
+      log('All NBA games already have locked odds - skipping odds API call');
     }
 
     // 8. Generate predictions for all current games
-    const upcomingGames = allGames.filter(g => g.status !== 'final');
     const gamesWithPredictions = [];
 
     for (const game of allGames) {
