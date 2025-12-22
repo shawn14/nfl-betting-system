@@ -668,6 +668,22 @@ export async function GET(request: Request) {
       else if (spreadEdge >= 1) atsConfidence = 'medium';
       else atsConfidence = 'low';
 
+      const lineOpeningSpread = existingOdds?.openingSpread;
+      const lineCurrentSpread = existingOdds?.closingSpread ?? existingOdds?.lastSeenSpread ?? vegasSpread;
+      if (lineOpeningSpread !== undefined && lineCurrentSpread !== undefined) {
+        const lineMove = Math.round((lineCurrentSpread - lineOpeningSpread) * 2) / 2;
+        if (lineMove !== 0 && Math.abs(lineMove) >= 2) {
+          const moveTowardHome = lineMove < 0;
+          const pickHome = predictedSpread < (vegasSpread ?? predictedSpread);
+          const aligned = (moveTowardHome && pickHome) || (!moveTowardHome && !pickHome);
+          if (aligned) {
+            atsConfidence = atsConfidence === 'low' ? 'medium' : 'high';
+          } else {
+            atsConfidence = atsConfidence === 'high' ? 'medium' : 'low';
+          }
+        }
+      }
+
       const isAtsBestBet = spreadEdge >= 2;
       const isOuBestBet = totalEdge >= 5;
       const isMlBestBet = mlEdge >= 15;

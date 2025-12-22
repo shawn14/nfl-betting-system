@@ -768,6 +768,9 @@ export async function GET(request: Request) {
         isSmallSpread,
       ].filter(Boolean).length;
 
+      const lineOpeningSpread = existingOdds?.openingSpread;
+      const lineCurrentSpread = existingOdds?.closingSpread ?? existingOdds?.lastSeenSpread ?? vegasSpread;
+
       // Confidence based on 60%+ situations
       let atsConfidence: 'high' | 'medium' | 'low';
       if (isMediumSpread) {
@@ -778,6 +781,23 @@ export async function GET(request: Request) {
         atsConfidence = 'high'; // Single 60%+ factor still good
       } else {
         atsConfidence = 'medium';
+      }
+
+      // Line movement adjustment (>= 2 points)
+      if (lineOpeningSpread !== undefined && lineCurrentSpread !== undefined) {
+        const lineMove = Math.round((lineCurrentSpread - lineOpeningSpread) * 2) / 2;
+        if (lineMove !== 0) {
+          const moveTowardHome = lineMove < 0;
+          const pickHome = predictedSpread < (vegasSpread ?? predictedSpread);
+          const aligned = (moveTowardHome && pickHome) || (!moveTowardHome && !pickHome);
+          if (Math.abs(lineMove) >= 2) {
+            if (aligned) {
+              atsConfidence = atsConfidence === 'low' ? 'medium' : 'high';
+            } else {
+              atsConfidence = atsConfidence === 'high' ? 'medium' : 'low';
+            }
+          }
+        }
       }
 
       // O/U confidence - edge >= 5 points = 59.7% hit rate
