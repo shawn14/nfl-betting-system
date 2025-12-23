@@ -6,11 +6,10 @@ import { getAdminDb } from '@/lib/firebase-admin';
 export const runtime = 'nodejs';
 
 const stripeSecretKey = process.env.STRIPE_SECRET_KEY?.trim();
-const baseUrl = process.env.NEXT_PUBLIC_SITE_URL
-  || process.env.NEXT_PUBLIC_APP_URL
-  || 'http://localhost:3000';
-
 export async function POST(request: Request) {
+  const baseUrl = process.env.NEXT_PUBLIC_SITE_URL
+    || process.env.NEXT_PUBLIC_APP_URL
+    || new URL(request.url).origin;
   if (!stripeSecretKey) {
     return NextResponse.json(
       { error: 'Stripe is not configured.' },
