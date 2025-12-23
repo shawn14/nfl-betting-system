@@ -301,6 +301,25 @@ export default function NBADashboard() {
     .filter(game => new Date(game.gameTime) >= threeDaysAgo)
     .map(game => {
       const result = backtestMap.get(game.id);
+
+      // Calculate confidence values (same logic as nba-sync)
+      const predictedSpread = result?.predictedSpread || 0;
+      const predictedTotal = result?.predictedTotal || 0;
+      const homeWinProb = result?.homeWinProb || 0.5;
+      const vegasSpread = result?.vegasSpread;
+      const vegasTotal = result?.vegasTotal;
+
+      const spreadEdge = vegasSpread !== undefined ? Math.abs(predictedSpread - vegasSpread) : 0;
+      const totalEdge = vegasTotal !== undefined ? Math.abs(predictedTotal - vegasTotal) : 0;
+      const mlEdge = Math.abs(homeWinProb - 0.5) * 100;
+
+      const atsConfidence: 'high' | 'medium' | 'low' =
+        spreadEdge >= 2.5 ? 'high' : spreadEdge >= 1 ? 'medium' : 'low';
+      const ouConfidence: 'high' | 'medium' | 'low' =
+        totalEdge >= 5 ? 'high' : totalEdge >= 2 ? 'medium' : 'low';
+      const mlConfidence: 'high' | 'medium' | 'low' =
+        mlEdge >= 15 ? 'high' : mlEdge >= 7 ? 'medium' : 'low';
+
       return {
         game: {
           ...game,
@@ -312,12 +331,15 @@ export default function NBADashboard() {
           gameId: game.id,
           predictedHomeScore: result?.predictedHomeScore || 0,
           predictedAwayScore: result?.predictedAwayScore || 0,
-          predictedSpread: result?.predictedSpread || 0,
-          predictedTotal: result?.predictedTotal || 0,
-          homeWinProbability: result?.homeWinProb || 0.5,
+          predictedSpread,
+          predictedTotal,
+          homeWinProbability: homeWinProb,
           confidence: 0.5,
-          vegasSpread: result?.vegasSpread,
-          vegasTotal: result?.vegasTotal,
+          vegasSpread,
+          vegasTotal,
+          atsConfidence,
+          ouConfidence,
+          mlConfidence,
         },
       };
     });
