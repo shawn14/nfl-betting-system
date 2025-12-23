@@ -1,6 +1,11 @@
 'use client';
 
 import { useState, useEffect, useCallback, useRef } from 'react';
+import RequireAuth from '@/components/RequireAuth';
+import { useAuth } from '@/components/AuthProvider';
+
+const PRICE_MONTHLY = 'price_1ShIDiLrg7E2vwVZuULXQybz';
+const PRICE_ANNUAL = 'price_1ShIE2Lrg7E2vwVZfmUgjkb7';
 
 interface Team {
   id: string;
@@ -75,7 +80,9 @@ export default function NBADashboard() {
   const [liveGames, setLiveGames] = useState<LiveGame[]>([]);
   const [loading, setLoading] = useState(true);
   const [syncing, setSyncing] = useState(false);
+  const [checkoutError, setCheckoutError] = useState<string | null>(null);
   const scoreboardRef = useRef<HTMLDivElement>(null);
+  const { user, isPremium } = useAuth();
 
   const scrollScoreboard = (direction: 'left' | 'right') => {
     if (scoreboardRef.current) {
@@ -161,6 +168,35 @@ export default function NBADashboard() {
     }
   }, [fetchData]);
 
+  const startCheckout = async (priceId: string) => {
+    if (!user) return;
+    setCheckoutError(null);
+    try {
+      const token = await user.getIdToken();
+      const response = await fetch('/api/stripe/create-checkout-session', {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+          Authorization: `Bearer ${token}`,
+        },
+        body: JSON.stringify({ priceId }),
+      });
+      const data = await response.json().catch(() => ({}));
+      if (!response.ok) {
+        setCheckoutError(data?.error || 'Unable to start checkout.');
+        return;
+      }
+      if (data?.url) {
+        window.location.href = data.url;
+      } else {
+        setCheckoutError('Unable to start checkout.');
+      }
+    } catch (error) {
+      console.error('Checkout error:', error);
+      setCheckoutError('Unable to start checkout.');
+    }
+  };
+
   useEffect(() => {
     const init = async () => {
       const hasData = await fetchData();
@@ -241,7 +277,8 @@ export default function NBADashboard() {
   const displayGames = [...upcomingGames, ...recentFinalGames];
 
   return (
-    <div className="space-y-6">
+    <RequireAuth>
+      <div className="space-y-6">
       {/* Live Scoreboard */}
       {allTodayGames.length > 0 && (
         <div>
@@ -342,7 +379,7 @@ export default function NBADashboard() {
       )}
 
       {/* Picks Header */}
-      <div className="flex justify-between items-center border-b border-gray-200 pb-3">
+      <div className="flex flex-col gap-3 border-b border-gray-200 pb-3 sm:flex-row sm:items-center sm:justify-between">
         <h1 className="text-xl font-bold text-gray-900">NBA Picks</h1>
         <div className="flex items-center gap-3 text-xs text-gray-500">
           <span className="flex items-center gap-1"><span className="w-3 h-3 bg-green-600 rounded"></span> Strong</span>
@@ -350,6 +387,34 @@ export default function NBADashboard() {
           <span className="flex items-center gap-1"><span className="w-3 h-3 bg-gray-300 rounded"></span> Avoid</span>
         </div>
       </div>
+
+      {!isPremium && (
+        <div className="bg-gray-900 text-white rounded-xl px-4 py-4 flex flex-col gap-3 sm:flex-row sm:items-center sm:justify-between">
+          <div>
+            <div className="text-sm font-semibold">Unlock the full slate + confidence signals</div>
+            <div className="text-xs text-gray-300">Premium members see every game, best bets, and consensus adjustments.</div>
+          </div>
+          <div className="flex flex-col gap-2 sm:items-end">
+            <div className="flex flex-col sm:flex-row gap-2">
+              <button
+                onClick={() => startCheckout(PRICE_MONTHLY)}
+                className="px-4 py-2 text-sm font-semibold rounded-lg bg-white text-gray-900 hover:bg-gray-100"
+              >
+                $20 / month
+              </button>
+              <button
+                onClick={() => startCheckout(PRICE_ANNUAL)}
+                className="px-4 py-2 text-sm font-semibold rounded-lg border border-white/40 hover:border-white"
+              >
+                $200 / year
+              </button>
+            </div>
+            {checkoutError && (
+              <div className="text-xs text-red-200">{checkoutError}</div>
+            )}
+          </div>
+        </div>
+      )}
 
       {displayGames.length === 0 ? (
         <div className="bg-white rounded-lg p-8 text-center text-gray-500 border border-gray-200">
@@ -366,6 +431,7 @@ export default function NBADashboard() {
           {[...displayGames]
             .filter(({ game }) => game.status !== 'final')
             .sort((a, b) => new Date(a.game.gameTime).getTime() - new Date(b.game.gameTime).getTime())
+            .slice(0, isPremium ? undefined : 3)
             .map(({ game, prediction }) => {
               const away = game.awayTeam?.abbreviation || 'AWAY';
               const home = game.homeTeam?.abbreviation || 'HOME';
@@ -399,9 +465,9 @@ export default function NBADashboard() {
               const pickHomeML = homeWinProb > 0.5;
               const pickOver = hasVegas ? ourTotal > prediction.vegasTotal! : ourTotal > 224;
 
-              const atsConf = prediction.atsConfidence || 'medium';
-              const ouConf = prediction.ouConfidence || 'medium';
-              const mlConf = prediction.mlConfidence || 'medium';
+              const atsConf = isPremium ? (prediction.atsConfidence || 'medium') : 'low';
+              const ouConf = isPremium ? (prediction.ouConfidence || 'medium') : 'low';
+              const mlConf = isPremium ? (prediction.mlConfidence || 'medium') : 'low';
 
               const hasStrongPick = mlConf === 'high' || ouConf === 'high' || atsConf === 'high';
 
@@ -833,6 +899,7 @@ export default function NBADashboard() {
             })}
         </div>
       )}
-    </div>
+      </div>
+    </RequireAuth>
   );
 }
