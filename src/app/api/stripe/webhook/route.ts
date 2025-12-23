@@ -50,10 +50,15 @@ export async function POST(request: Request) {
     if (event.type === 'checkout.session.completed') {
       const session = event.data.object as Stripe.Checkout.Session;
       const uid = session.metadata?.uid || session.client_reference_id;
+      const initStart = Date.now();
       const adminDb = getAdminDb();
+      console.log('Firebase init ms:', Date.now() - initStart);
+
+      const lookupStart = Date.now();
       const userRef = uid
         ? adminDb.collection('users').doc(uid)
         : await resolveUserRefByCustomer(session.customer as string | null);
+      console.log('User lookup ms:', Date.now() - lookupStart);
 
       if (!userRef) {
         console.error(
@@ -65,6 +70,7 @@ export async function POST(request: Request) {
         return NextResponse.json({ received: true });
       }
 
+      const writeStart = Date.now();
       await userRef.set(
         {
           stripeCustomerId: session.customer || undefined,
@@ -73,6 +79,7 @@ export async function POST(request: Request) {
         },
         { merge: true }
       );
+      console.log('Firestore write ms:', Date.now() - writeStart);
 
       return NextResponse.json({ received: true, uid: userRef.id });
     }

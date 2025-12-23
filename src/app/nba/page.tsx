@@ -74,9 +74,31 @@ interface GameWithPrediction {
   prediction: Prediction;
 }
 
+interface BacktestResult {
+  gameId: string;
+  homeTeam: string;
+  awayTeam: string;
+  predictedHomeScore: number;
+  predictedAwayScore: number;
+  predictedSpread: number;
+  predictedTotal: number;
+  homeWinProb?: number;
+  actualHomeScore: number;
+  actualAwayScore: number;
+  vegasSpread?: number;
+  vegasTotal?: number;
+  spreadResult?: 'win' | 'loss' | 'push';
+  mlResult?: 'win' | 'loss';
+  ouResult?: 'win' | 'loss' | 'push';
+  atsResult?: 'win' | 'loss' | 'push';
+  ouVegasResult?: 'win' | 'loss' | 'push';
+  gameTime: string;
+}
+
 export default function NBADashboard() {
   const [games, setGames] = useState<GameWithPrediction[]>([]);
   const [recentGames, setRecentGames] = useState<Game[]>([]);
+  const [backtestResults, setBacktestResults] = useState<BacktestResult[]>([]);
   const [liveGames, setLiveGames] = useState<LiveGame[]>([]);
   const [loading, setLoading] = useState(true);
   const [syncing, setSyncing] = useState(false);
@@ -147,6 +169,7 @@ export default function NBADashboard() {
           index === self.findIndex((g) => g.id === game.id)
       );
       setRecentGames(uniqueRecentGames);
+      setBacktestResults(data.backtest?.results || []);
       return true;
     } catch (error) {
       console.error('Error fetching NBA data:', error);
@@ -271,10 +294,35 @@ export default function NBADashboard() {
   const upcomingGames = games.filter(({ game }) =>
     game.status !== 'final' // includes 'scheduled', 'in_progress', etc.
   );
-  const recentFinalGames = games.filter(({ game }) =>
-    game.status === 'final' && new Date(game.gameTime) >= threeDaysAgo
-  );
-  const displayGames = [...upcomingGames, ...recentFinalGames];
+
+  // Build recent completed games from backtest results
+  const backtestMap = new Map(backtestResults.map(r => [r.gameId, r]));
+  const recentCompletedGames: GameWithPrediction[] = recentGames
+    .filter(game => new Date(game.gameTime) >= threeDaysAgo)
+    .map(game => {
+      const result = backtestMap.get(game.id);
+      return {
+        game: {
+          ...game,
+          status: 'final',
+          homeScore: game.homeScore,
+          awayScore: game.awayScore,
+        },
+        prediction: {
+          gameId: game.id,
+          predictedHomeScore: result?.predictedHomeScore || 0,
+          predictedAwayScore: result?.predictedAwayScore || 0,
+          predictedSpread: result?.predictedSpread || 0,
+          predictedTotal: result?.predictedTotal || 0,
+          homeWinProbability: result?.homeWinProb || 0.5,
+          confidence: 0.5,
+          vegasSpread: result?.vegasSpread,
+          vegasTotal: result?.vegasTotal,
+        },
+      };
+    });
+
+  const displayGames = [...upcomingGames, ...recentCompletedGames];
 
   return (
     <RequireAuth>

@@ -7,7 +7,7 @@
     },
     {
       "path": "/api/cron/nba-sync",
-      "schedule": "30 */2 * * *"
+      "schedule": "*/30 * * * *"
     }
   ]
 }
