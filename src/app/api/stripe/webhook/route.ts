@@ -5,7 +5,7 @@ import { getAdminDb } from '@/lib/firebase-admin';
 export const runtime = 'nodejs';
 
 const stripeSecretKey = process.env.STRIPE_SECRET_KEY?.trim();
-const webhookSecret = process.env.STRIPE_WEBHOOK_SECRET;
+const webhookSecret = process.env.STRIPE_WEBHOOK_SECRET?.trim();
 
 async function resolveUserRefByCustomer(customerId?: string | null) {
   if (!customerId) return null;
@@ -45,6 +45,7 @@ export async function POST(request: Request) {
 
   try {
     const adminDb = getAdminDb();
+    console.log('Stripe webhook received:', event.type);
 
     switch (event.type) {
       case 'checkout.session.completed': {
