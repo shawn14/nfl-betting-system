@@ -79,6 +79,7 @@ export async function POST(request: Request) {
       customer: customerId,
       line_items: [{ price: priceId, quantity: 1 }],
       allow_promotion_codes: true,
+      subscription_data: { metadata: { uid: decodedToken.uid } },
       success_url: `${baseUrl}/dashboard?checkout=success`,
       cancel_url: `${baseUrl}/dashboard?checkout=cancelled`,
       client_reference_id: decodedToken.uid,
