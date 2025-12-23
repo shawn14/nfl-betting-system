@@ -77,6 +77,55 @@ const getLogoUrl = (abbr: string) => {
   return `https://a.espncdn.com/i/teamlogos/nba/500-dark/${abbr.toLowerCase()}.png`;
 };
 
+interface HighConvictionStats {
+  ats: { wins: number; losses: number; pushes: number; winPct: number; total: number };
+  ou: { wins: number; losses: number; pushes: number; winPct: number; total: number };
+  ml: { wins: number; losses: number; winPct: number; total: number };
+}
+
+function computeHighConvictionStats(results: BacktestResult[]): HighConvictionStats {
+  let atsW = 0, atsL = 0, atsP = 0;
+  let ouW = 0, ouL = 0, ouP = 0;
+  let mlW = 0, mlL = 0;
+
+  for (const r of results) {
+    // Calculate confidence based on edge (NBA thresholds)
+    const spreadEdge = r.vegasSpread !== undefined ? Math.abs(r.predictedSpread - r.vegasSpread) : 0;
+    const totalEdge = r.vegasTotal !== undefined ? Math.abs(r.predictedTotal - r.vegasTotal) : 0;
+    const mlEdge = Math.abs(r.homeWinProb - 0.5) * 100;
+
+    // High conviction ATS (edge >= 2.5 pts for NBA)
+    if (spreadEdge >= 2.5 && r.atsResult) {
+      if (r.atsResult === 'win') atsW++;
+      else if (r.atsResult === 'loss') atsL++;
+      else atsP++;
+    }
+
+    // High conviction O/U (edge >= 5 pts)
+    if (totalEdge >= 5 && r.ouVegasResult) {
+      if (r.ouVegasResult === 'win') ouW++;
+      else if (r.ouVegasResult === 'loss') ouL++;
+      else ouP++;
+    }
+
+    // High conviction ML (edge >= 15%)
+    if (mlEdge >= 15 && r.mlResult) {
+      if (r.mlResult === 'win') mlW++;
+      else mlL++;
+    }
+  }
+
+  const atsTotal = atsW + atsL;
+  const ouTotal = ouW + ouL;
+  const mlTotal = mlW + mlL;
+
+  return {
+    ats: { wins: atsW, losses: atsL, pushes: atsP, winPct: atsTotal > 0 ? Math.round((atsW / atsTotal) * 1000) / 10 : 0, total: atsW + atsL + atsP },
+    ou: { wins: ouW, losses: ouL, pushes: ouP, winPct: ouTotal > 0 ? Math.round((ouW / ouTotal) * 1000) / 10 : 0, total: ouW + ouL + ouP },
+    ml: { wins: mlW, losses: mlL, winPct: mlTotal > 0 ? Math.round((mlW / mlTotal) * 1000) / 10 : 0, total: mlTotal },
+  };
+}
+
 function computeVegasStats(results: BacktestResult[]): VegasStats {
   let atsWins = 0, atsLosses = 0, atsPushes = 0;
   let ouWins = 0, ouLosses = 0, ouPushes = 0;
@@ -264,6 +313,7 @@ export default function NBAResultsPage() {
   const [summary, setSummary] = useState<Summary | null>(null);
   const [analysis, setAnalysis] = useState<Analysis | null>(null);
   const [vegasStats, setVegasStats] = useState<VegasStats | null>(null);
+  const [highConvStats, setHighConvStats] = useState<HighConvictionStats | null>(null);
   const [loading, setLoading] = useState(true);
   const [showAnalysis, setShowAnalysis] = useState(false);
 
@@ -279,12 +329,15 @@ export default function NBAResultsPage() {
           seen.add(r.gameId);
           return true;
         });
+        // Sort by date descending (most recent first)
+        backtestResults.sort((a, b) => new Date(b.gameTime).getTime() - new Date(a.gameTime).getTime());
         setResults(backtestResults);
         setSummary(blobData.backtest?.summary || null);
 
         if (backtestResults.length > 0) {
           setAnalysis(computeAnalysis(backtestResults));
           setVegasStats(computeVegasStats(backtestResults));
+          setHighConvStats(computeHighConvictionStats(backtestResults));
         }
       } catch (error) {
         console.error('Error fetching backtest:', error);
@@ -377,6 +430,56 @@ export default function NBAResultsPage() {
                   </div>
                   <div className="text-[9px] sm:text-xs text-gray-500 mt-0.5 sm:mt-1">{vegasStats.ouVegas.gamesWithOdds} games</div>
                 </div>
+              </div>
+            </div>
+          )}
+
+          {/* High Conviction Only */}
+          {highConvStats && (highConvStats.ats.total > 0 || highConvStats.ml.total > 0 || highConvStats.ou.total > 0) && (
+            <div className="bg-gradient-to-r from-emerald-50 to-green-50 border border-green-300 rounded-xl p-3 sm:p-4">
+              <h2 className="text-green-800 font-bold text-xs sm:text-sm mb-2 sm:mb-3 flex items-center gap-2">
+                <span className="w-3 h-3 bg-green-600 rounded"></span>
+                High Conviction Only
+              </h2>
+              <div className="grid grid-cols-3 gap-2 sm:gap-4">
+                {highConvStats.ats.total > 0 && (
+                  <div className="bg-white rounded-lg p-2.5 sm:p-4 border border-green-200">
+                    <div className="text-gray-600 text-[10px] sm:text-sm font-medium mb-0.5 sm:mb-1">ATS</div>
+                    <div className="text-lg sm:text-2xl font-bold text-gray-900">
+                      {highConvStats.ats.wins}-{highConvStats.ats.losses}
+                      {highConvStats.ats.pushes > 0 && <span className="text-gray-400 text-base sm:text-2xl">-{highConvStats.ats.pushes}</span>}
+                    </div>
+                    <div className={`text-base sm:text-xl font-mono font-bold ${highConvStats.ats.winPct > 52.4 ? 'text-green-600' : highConvStats.ats.winPct < 47.6 ? 'text-red-500' : 'text-gray-500'}`}>
+                      {highConvStats.ats.winPct}%
+                    </div>
+                    <div className="text-[9px] sm:text-xs text-gray-500 mt-0.5 sm:mt-1">{highConvStats.ats.total} picks</div>
+                  </div>
+                )}
+                {highConvStats.ml.total > 0 && (
+                  <div className="bg-white rounded-lg p-2.5 sm:p-4 border border-green-200">
+                    <div className="text-gray-600 text-[10px] sm:text-sm font-medium mb-0.5 sm:mb-1">ML</div>
+                    <div className="text-lg sm:text-2xl font-bold text-gray-900">
+                      {highConvStats.ml.wins}-{highConvStats.ml.losses}
+                    </div>
+                    <div className={`text-base sm:text-xl font-mono font-bold ${highConvStats.ml.winPct > 52.4 ? 'text-green-600' : highConvStats.ml.winPct < 47.6 ? 'text-red-500' : 'text-gray-500'}`}>
+                      {highConvStats.ml.winPct}%
+                    </div>
+                    <div className="text-[9px] sm:text-xs text-gray-500 mt-0.5 sm:mt-1">{highConvStats.ml.total} picks</div>
+                  </div>
+                )}
+                {highConvStats.ou.total > 0 && (
+                  <div className="bg-white rounded-lg p-2.5 sm:p-4 border border-green-200">
+                    <div className="text-gray-600 text-[10px] sm:text-sm font-medium mb-0.5 sm:mb-1">O/U</div>
+                    <div className="text-lg sm:text-2xl font-bold text-gray-900">
+                      {highConvStats.ou.wins}-{highConvStats.ou.losses}
+                      {highConvStats.ou.pushes > 0 && <span className="text-gray-400 text-base sm:text-2xl">-{highConvStats.ou.pushes}</span>}
+                    </div>
+                    <div className={`text-base sm:text-xl font-mono font-bold ${highConvStats.ou.winPct > 52.4 ? 'text-green-600' : highConvStats.ou.winPct < 47.6 ? 'text-red-500' : 'text-gray-500'}`}>
+                      {highConvStats.ou.winPct}%
+                    </div>
+                    <div className="text-[9px] sm:text-xs text-gray-500 mt-0.5 sm:mt-1">{highConvStats.ou.total} picks</div>
+                  </div>
+                )}
               </div>
             </div>
           )}
