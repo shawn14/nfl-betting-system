@@ -143,14 +143,41 @@ export default function AboutPage() {
           </p>
         </div>
 
-        {/* Vegas Line Locking */}
+        {/* Vegas Line Locking & Movement */}
         <div className="bg-gray-50 rounded-xl p-6 border border-gray-200">
-          <h2 className="text-lg font-semibold text-gray-900 mb-4">Vegas Line Locking</h2>
-          <p className="text-sm">
-            Vegas lines are locked 1 hour before game time. This ensures we're comparing our predictions
-            against the lines that were actually available to bettors, not lines that moved after
-            late-breaking news. Once locked, lines don't change even if Vegas adjusts theirs.
-          </p>
+          <h2 className="text-lg font-semibold text-gray-900 mb-4">Vegas Lines & Line Movement</h2>
+          <div className="space-y-4 text-sm">
+            <div>
+              <strong className="text-gray-900">Line Locking</strong>
+              <p className="mt-1">
+                Vegas lines are locked 1 hour before game time. This ensures we're comparing our predictions
+                against the lines that were actually available to bettors, not lines that moved after
+                late-breaking news. Once locked, lines don't change even if Vegas adjusts theirs.
+              </p>
+            </div>
+            <div>
+              <strong className="text-gray-900">Line Movement Adjustment</strong>
+              <p className="mt-1">
+                We track how Vegas lines move from opening to closing. When the line moves significantly
+                (≥2 points), we adjust our confidence based on whether Vegas is moving toward or away
+                from our prediction:
+              </p>
+              <div className="mt-3 space-y-2 pl-4 border-l-2 border-green-400">
+                <div className="flex gap-2">
+                  <span className="text-green-600 font-bold">↑</span>
+                  <span><strong>Aligned movement:</strong> If Vegas moves toward the side we pick (e.g., we like Home -3 and Vegas moves from -1 to -3), confidence is boosted.</span>
+                </div>
+                <div className="flex gap-2">
+                  <span className="text-red-500 font-bold">↓</span>
+                  <span><strong>Opposed movement:</strong> If Vegas moves away from our pick (e.g., we like Home -3 but Vegas moves from -3 to -1), confidence is lowered.</span>
+                </div>
+              </div>
+              <p className="mt-3 text-gray-500 text-xs">
+                This respects the "wisdom of the market" - when sharp money moves a line in our direction,
+                it's a confirming signal. When it moves against us, it's a warning sign.
+              </p>
+            </div>
+          </div>
         </div>
 
         {/* Transparency */}

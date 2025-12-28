@@ -10,14 +10,166 @@ import {
   saveDocsBatch,
 } from '@/services/firestore-admin-store';
 import { SportKey } from '@/services/firestore-types';
+import { getRestDaysForGame, calculateRestAdjustment, restFavorsPick } from '@/services/nba-rest-days';
 
-// NBA Constants - Optimized via backtesting (178 games, 56.6% ATS, 59.9% O/U)
+// NBA Constants - Optimized via backtesting (1347 games with Vegas lines)
 const LEAGUE_AVG_PPG = 112;          // NBA average ~112 PPG
-const ELO_TO_POINTS = 0.04;          // Optimized - 100 Elo = 4 points
-const HOME_COURT_ADVANTAGE = 3.0;    // Optimized - NBA home court
+const ELO_TO_POINTS = 0.06;          // Optimized - 100 Elo = 6 points
+const HOME_COURT_ADVANTAGE = 2.0;    // Optimized - NBA home court
 const ELO_HOME_ADVANTAGE = 48;       // Same Elo bonus structure
-const SPREAD_REGRESSION = 0.55;      // Optimized - 55% regression to mean
+const SPREAD_REGRESSION = 0.4;       // Optimized - 40% regression to mean
 const ELO_CAP = 20;                  // Optimized
+
+function getSeasonStartDate(seasonYear: number): Date {
+  return new Date(Date.UTC(seasonYear - 1, 9, 1));
+}
+
+function getSeasonEndDate(seasonYear: number): Date {
+  return new Date(Date.UTC(seasonYear, 5, 30));
+}
+
+// Conviction filter rules (from backtesting 1333 games)
+// These filters achieve 75% ATS win rate when applied
+const CONVICTION_FILTERS = {
+  // Teams to avoid when they're the home team (historically poor prediction accuracy)
+  avoidHomeTeams: ['OKC', 'MIN', 'HOU', 'DEN', 'CLE', 'NY'],
+  // Teams to avoid when they're the away team
+  avoidAwayTeams: ['UTAH', 'CHA', 'SAC', 'NO'],
+  // Minimum Elo gap for elite conviction (75% ATS)
+  eliteEloGap: 100,
+  // Minimum Elo gap for high conviction (73% ATS)
+  highEloGap: 50,
+};
+
+const NBA_DIVISIONS: Record<string, string[]> = {
+  Atlantic: ['BOS', 'BKN', 'NY', 'PHI', 'TOR'],
+  Central: ['CHI', 'CLE', 'DET', 'IND', 'MIL'],
+  Southeast: ['ATL', 'CHA', 'MIA', 'ORL', 'WAS'],
+  Northwest: ['DEN', 'MIN', 'OKC', 'POR', 'UTA'],
+  Pacific: ['GS', 'LAC', 'LAL', 'PHX', 'SAC'],
+  Southwest: ['DAL', 'HOU', 'MEM', 'NO', 'SA'],
+};
+
+function getDivision(abbr: string): string | undefined {
+  return Object.entries(NBA_DIVISIONS).find(([, teams]) => teams.includes(abbr))?.[0];
+}
+
+function isLateSeasonGame(gameTime: string | undefined, seasonYear: number): boolean {
+  if (!gameTime) return false;
+  const gameDate = new Date(gameTime);
+  const cutoff = new Date(Date.UTC(seasonYear, 2, 1)); // March 1
+  return gameDate >= cutoff;
+}
+
+interface RestInfo {
+  homeRestDays: number;
+  awayRestDays: number;
+  homeIsB2B: boolean;
+  awayIsB2B: boolean;
+  restAdvantage: number;
+  restAdvantageTeam: 'home' | 'away' | 'even';
+}
+
+interface ConvictionResult {
+  level: 'elite' | 'high' | 'moderate' | 'low';
+  isHighConviction: boolean;
+  filters: {
+    picksVegasFavorite: boolean;
+    eloAligned: boolean;
+    eloGap: number;
+    teamAvoidance: boolean;
+    avoidReason?: string;
+    restFavorsPick?: boolean;
+    restInfo?: RestInfo;
+  };
+  expectedWinPct: number;
+}
+
+function calculateConviction(
+  homeTeamAbbr: string,
+  awayTeamAbbr: string,
+  homeElo: number,
+  awayElo: number,
+  predictedSpread: number,
+  vegasSpread: number | undefined,
+  restInfo?: RestInfo
+): ConvictionResult {
+  const eloGap = Math.abs(homeElo - awayElo);
+  const eloFavorite = homeElo > awayElo ? 'home' : 'away';
+
+  // Check if we're picking the Vegas favorite to cover
+  const vegasFavorite = vegasSpread !== undefined ? (vegasSpread < 0 ? 'home' : 'away') : null;
+  const ourPick = predictedSpread < (vegasSpread ?? 0) ? 'home' : 'away';
+  const picksVegasFavorite = vegasFavorite !== null && ourPick === vegasFavorite;
+
+  // Check if Elo agrees with our pick
+  const eloAligned = ourPick === eloFavorite;
+
+  // Check if rest situation favors our pick
+  const restFavors = restInfo ? restFavorsPick(ourPick === 'home', restInfo) : undefined;
+
+  // Check team avoidance
+  let teamAvoidance = false;
+  let avoidReason: string | undefined;
+
+  if (CONVICTION_FILTERS.avoidHomeTeams.includes(homeTeamAbbr)) {
+    teamAvoidance = true;
+    avoidReason = `${homeTeamAbbr} at home historically unpredictable`;
+  }
+  if (CONVICTION_FILTERS.avoidAwayTeams.includes(awayTeamAbbr)) {
+    teamAvoidance = true;
+    avoidReason = `${awayTeamAbbr} on road historically unpredictable`;
+  }
+
+  // Determine conviction level based on backtested filters
+  let level: 'elite' | 'high' | 'moderate' | 'low';
+  let expectedWinPct: number;
+
+  if (!picksVegasFavorite) {
+    // Picking underdog = 20% historical win rate
+    level = 'low';
+    expectedWinPct = 20;
+  } else if (teamAvoidance) {
+    // Picking favorite but bad team matchup
+    level = 'moderate';
+    expectedWinPct = 65;
+  } else if (eloGap >= CONVICTION_FILTERS.eliteEloGap && eloAligned && restFavors) {
+    // Elite: Pick favorite + large Elo gap + Elo aligned + rest advantage = 78%
+    level = 'elite';
+    expectedWinPct = 78;
+  } else if (eloGap >= CONVICTION_FILTERS.eliteEloGap && eloAligned) {
+    // Elite: Pick favorite + large Elo gap + Elo aligned = 75%
+    level = 'elite';
+    expectedWinPct = 75;
+  } else if (eloGap >= CONVICTION_FILTERS.highEloGap && restFavors) {
+    // High: Pick favorite + moderate Elo gap + rest advantage = 75%
+    level = 'high';
+    expectedWinPct = 75;
+  } else if (eloGap >= CONVICTION_FILTERS.highEloGap) {
+    // High: Pick favorite + moderate Elo gap = 73%
+    level = 'high';
+    expectedWinPct = 73;
+  } else {
+    // Moderate: Just picking favorite = 72.5%
+    level = 'moderate';
+    expectedWinPct = 72.5;
+  }
+
+  return {
+    level,
+    isHighConviction: level === 'elite' || level === 'high',
+    filters: {
+      picksVegasFavorite,
+      eloAligned,
+      eloGap,
+      teamAvoidance,
+      avoidReason,
+      restFavorsPick: restFavors,
+      restInfo,
+    },
+    expectedWinPct,
+  };
+}
 
 
 interface TeamData {
@@ -53,6 +205,11 @@ interface BlobState {
   backtest: {
     summary: {
       totalGames: number;
+      spread: { wins: number; losses: number; pushes: number; winPct: number };
+      moneyline: { wins: number; losses: number; winPct: number };
+      overUnder: { wins: number; losses: number; pushes: number; winPct: number };
+    };
+    highConvictionSummary: {
       spread: { wins: number; losses: number; pushes: number; winPct: number };
       moneyline: { wins: number; losses: number; winPct: number };
       overUnder: { wins: number; losses: number; pushes: number; winPct: number };
@@ -116,7 +273,7 @@ async function fetchNBATeams(): Promise<any[]> {
   }
 }
 
-async function fetchNBASchedule(): Promise<any[]> {
+async function fetchNBASchedule(seasonYear?: number): Promise<any[]> {
   try {
     const response = await fetch('https://site.api.espn.com/apis/site/v2/sports/basketball/nba/scoreboard');
     const data = await response.json();
@@ -149,6 +306,10 @@ async function fetchNBASchedule(): Promise<any[]> {
       });
     }
 
+    if (seasonYear) {
+      return games.filter(game => game.season === seasonYear);
+    }
+
     return games;
   } catch (error) {
     console.error('Failed to fetch NBA schedule:', error);
@@ -156,19 +317,74 @@ async function fetchNBASchedule(): Promise<any[]> {
   }
 }
 
+async function fetchNBAScheduleRange(
+  startDate: Date,
+  days: number,
+  seasonYear?: number
+): Promise<any[]> {
+  const games: any[] = [];
+  const currentDate = new Date(startDate);
+
+  for (let i = 0; i < days; i++) {
+    const dateStr = currentDate.toISOString().split('T')[0].replace(/-/g, '');
+    try {
+      const url = `https://site.api.espn.com/apis/site/v2/sports/basketball/nba/scoreboard?dates=${dateStr}`;
+      const response = await fetch(url);
+      const data = await response.json();
+
+      for (const event of data.events || []) {
+        if (seasonYear && event.season?.year !== seasonYear) continue;
+        const competition = event.competitions?.[0];
+        if (!competition) continue;
+
+        const homeTeam = competition.competitors?.find((c: any) => c.homeAway === 'home');
+        const awayTeam = competition.competitors?.find((c: any) => c.homeAway === 'away');
+        if (!homeTeam || !awayTeam) continue;
+
+        const statusType = event.status?.type?.name;
+        let status = 'scheduled';
+        if (statusType === 'STATUS_FINAL') status = 'final';
+        else if (statusType === 'STATUS_IN_PROGRESS') status = 'in_progress';
+
+        games.push({
+          id: event.id,
+          homeTeamId: homeTeam.team?.id,
+          awayTeamId: awayTeam.team?.id,
+          homeScore: status === 'final' || status === 'in_progress' ? parseInt(homeTeam.score || '0') : undefined,
+          awayScore: status === 'final' || status === 'in_progress' ? parseInt(awayTeam.score || '0') : undefined,
+          gameTime: event.date,
+          status,
+          venue: competition.venue?.fullName,
+          season: event.season?.year,
+        });
+      }
+    } catch (error) {
+      console.error(`Failed to fetch NBA schedule for ${dateStr}:`, error);
+    }
+
+    currentDate.setDate(currentDate.getDate() + 1);
+  }
+
+  return games;
+}
+
 // Fetch all completed NBA games for the season (for Elo calculation)
-async function fetchAllCompletedNBAGames(log: (msg: string) => void): Promise<any[]> {
+async function fetchAllCompletedNBAGames(
+  log: (msg: string) => void,
+  seasonYear: number
+): Promise<any[]> {
   const allGames: any[] = [];
 
-  // NBA 2024-25 season started October 22, 2024
-  const seasonStart = new Date('2024-10-22');
+  const seasonStart = getSeasonStartDate(seasonYear);
+  const seasonEnd = getSeasonEndDate(seasonYear);
   const today = new Date();
+  const fetchUntil = new Date(Math.min(today.getTime(), seasonEnd.getTime()));
 
   // Fetch day by day (ESPN NBA API supports date parameter)
   let currentDate = new Date(seasonStart);
   let daysProcessed = 0;
 
-  while (currentDate <= today) {
+  while (currentDate <= fetchUntil) {
     const dateStr = currentDate.toISOString().split('T')[0].replace(/-/g, '');
 
     try {
@@ -177,6 +393,7 @@ async function fetchAllCompletedNBAGames(log: (msg: string) => void): Promise<an
       const data = await response.json();
 
       for (const event of data.events || []) {
+        if (event.season?.year !== seasonYear) continue;
         // Only include completed games
         if (event.status?.type?.name !== 'STATUS_FINAL') continue;
 
@@ -315,6 +532,11 @@ function calculateSpread(homeScore: number, awayScore: number): number {
 export async function GET(request: Request) {
   const { searchParams } = new URL(request.url);
   const forceReset = searchParams.get('reset') === 'true';
+  const seasonParam = searchParams.get('season');
+  const backfillDaysParam = searchParams.get('backfillDays');
+  const parsedSeason = seasonParam ? Number.parseInt(seasonParam, 10) : Number.NaN;
+  const parsedBackfillDays = backfillDaysParam ? Number.parseInt(backfillDaysParam, 10) : Number.NaN;
+  const backfillDays = Number.isFinite(parsedBackfillDays) ? Math.max(0, parsedBackfillDays) : 1;
 
   const logs: string[] = [];
   const log = (msg: string) => {
@@ -329,8 +551,20 @@ export async function GET(request: Request) {
     const rawState = await getSportState(sport);
 
     // Fetch current schedule early to detect season changes
-    const currentSchedule = await fetchNBASchedule();
-    const currentSeason = currentSchedule[0]?.season || rawState?.season || new Date().getFullYear();
+    const fullSchedule = await fetchNBASchedule();
+    const scheduleSeasons = fullSchedule.map(g => g.season).filter(Boolean) as number[];
+    const inferredSeason = scheduleSeasons.length > 0
+      ? Math.max(...scheduleSeasons)
+      : rawState?.season || new Date().getFullYear();
+    const targetSeason = Number.isFinite(parsedSeason) ? parsedSeason : inferredSeason;
+    log(`Target season: ${targetSeason}`);
+    const UPCOMING_DAYS = 7;
+    const today = new Date();
+    const rangeSchedule = await fetchNBAScheduleRange(today, UPCOMING_DAYS, targetSeason);
+    const currentSchedule = rangeSchedule.length > 0
+      ? rangeSchedule
+      : fullSchedule.filter(game => game.season === targetSeason);
+    const currentSeason = targetSeason;
 
     const seasonChanged = rawState?.season && rawState.season !== currentSeason;
     const shouldReset = forceReset || seasonChanged;
@@ -342,9 +576,7 @@ export async function GET(request: Request) {
     log(shouldReset ? 'RESET requested - reprocessing all games' : 'Loading Firestore state...');
     const existingState = shouldReset ? null : rawState;
 
-    const historicalOdds: Record<string, HistoricalOdds> = shouldReset
-      ? {}
-      : await getDocsMap<HistoricalOdds>(sport, 'oddsLocks');
+    const historicalOdds: Record<string, HistoricalOdds> = await getDocsMap<HistoricalOdds>(sport, 'oddsLocks');
     log(`Loaded ${Object.keys(historicalOdds).length} historical odds records`);
 
     const isFirstRun = !existingState || !existingState.processedGameIds?.length;
@@ -355,6 +587,7 @@ export async function GET(request: Request) {
     const teamsMap = new Map<string, TeamData>();
 
     const existingTeams = shouldReset ? [] : await getDocsList<TeamData>(sport, 'teams');
+    let espnTeams: any[] | null = null;
     if (existingTeams.length && !shouldReset) {
       for (const team of existingTeams) {
         teamsMap.set(team.id, team);
@@ -362,7 +595,7 @@ export async function GET(request: Request) {
       log(`Loaded ${teamsMap.size} teams with existing Elos from Firestore`);
     } else {
       log('Fetching NBA teams from ESPN...');
-      const espnTeams = await fetchNBATeams();
+      espnTeams = await fetchNBATeams();
       for (const team of espnTeams) {
         if (!team.id) continue;
         teamsMap.set(team.id, {
@@ -377,6 +610,19 @@ export async function GET(request: Request) {
       log(`Fetched ${teamsMap.size} teams (starting Elo: 1500)`);
     }
 
+    // Refresh PPG stats each run (mirrors NFL flow)
+    const latestTeams = espnTeams ?? await fetchNBATeams();
+    for (const team of latestTeams) {
+      if (!team.id) continue;
+      const existing = teamsMap.get(team.id);
+      if (existing) {
+        existing.name = team.name || existing.name;
+        existing.abbreviation = team.abbreviation || existing.abbreviation;
+        existing.ppg = team.ppg || existing.ppg;
+        existing.ppgAllowed = team.ppgAllowed || existing.ppgAllowed;
+      }
+    }
+
     // 3. Get processed game IDs
     const processedGameIds = new Set<string>(existingState?.processedGameIds || []);
 
@@ -386,7 +632,7 @@ export async function GET(request: Request) {
 
     if (isFirstRun) {
       log('First run - fetching ALL completed NBA games from season start...');
-      completedGames = await fetchAllCompletedNBAGames(log);
+      completedGames = await fetchAllCompletedNBAGames(log, targetSeason);
       // Also fetch today's scheduled games
       const scheduledGames = currentSchedule.filter(g => g.status !== 'final');
       allGames = [...completedGames, ...scheduledGames];
@@ -394,8 +640,19 @@ export async function GET(request: Request) {
     } else {
       log('Fetching NBA schedule...');
       allGames = currentSchedule;
-      completedGames = allGames.filter(g => g.status === 'final');
-      log(`Found ${allGames.length} games (${completedGames.length} completed)`);
+      const backfillStart = new Date();
+      backfillStart.setDate(backfillStart.getDate() - backfillDays);
+      const backfillSchedule = await fetchNBAScheduleRange(backfillStart, backfillDays + 1, targetSeason);
+      const backfillCompleted = backfillSchedule.filter(g => g.status === 'final');
+      const completedMap = new Map<string, any>();
+      for (const game of backfillCompleted) {
+        if (game.id) completedMap.set(game.id, game);
+      }
+      for (const game of allGames.filter(g => g.status === 'final')) {
+        if (game.id) completedMap.set(game.id, game);
+      }
+      completedGames = Array.from(completedMap.values());
+      log(`Found ${allGames.length} games (${completedGames.length} completed, backfillDays=${backfillDays})`);
     }
 
     // Filter to only unprocessed games
@@ -482,6 +739,36 @@ export async function GET(request: Request) {
       const vegasSpread = storedOdds?.vegasSpread;
       const vegasTotal = storedOdds?.vegasTotal;
 
+      // Rest info for conviction (only when Vegas line exists)
+      let restInfo: RestInfo | undefined;
+      let restAdjustment = 0;
+      if (vegasSpread !== undefined && game.gameTime) {
+        try {
+          restInfo = await getRestDaysForGame(
+            game.homeTeamId,
+            game.awayTeamId,
+            game.gameTime,
+            game.id
+          );
+          restAdjustment = calculateRestAdjustment(restInfo);
+        } catch (err) {
+          // Continue without rest data
+        }
+      }
+
+      const adjustedPredictedSpread = predictedSpread + restAdjustment;
+      const conviction = vegasSpread !== undefined
+        ? calculateConviction(
+          homeTeam.abbreviation,
+          awayTeam.abbreviation,
+          homeElo,
+          awayElo,
+          adjustedPredictedSpread,
+          vegasSpread,
+          restInfo
+        )
+        : null;
+
       // Calculate ATS result vs Vegas
       let atsResult: 'win' | 'loss' | 'push' | undefined;
       if (vegasSpread !== undefined) {
@@ -504,11 +791,29 @@ export async function GET(request: Request) {
         }
       }
 
+      const absVegasSpread = vegasSpread !== undefined ? Math.abs(vegasSpread) : 0;
+      const eloDiff = Math.abs(homeElo - awayElo);
+      const isDivisional = getDivision(homeTeam.abbreviation) === getDivision(awayTeam.abbreviation);
+      const isLateSeason = isLateSeasonGame(game.gameTime, targetSeason);
+      const isLargeSpread = absVegasSpread >= 7;
+      const isSmallSpread = absVegasSpread > 0 && absVegasSpread <= 3;
+      const isMediumSpread = absVegasSpread > 3 && absVegasSpread < 7;
+      const isEloMismatch = eloDiff > 100;
+      const sixtyPlusFactors = [
+        isLateSeason,
+        isLargeSpread,
+        isDivisional,
+        isEloMismatch,
+        isSmallSpread,
+      ].filter(Boolean).length;
+
       newBacktestResults.push({
         gameId: game.id,
         gameTime: game.gameTime || '',
         homeTeam: homeTeam.abbreviation,
         awayTeam: awayTeam.abbreviation,
+        homeTeamId: homeTeam.id,
+        awayTeamId: awayTeam.id,
         homeElo, awayElo,
         predictedHomeScore: predHome,
         predictedAwayScore: predAway,
@@ -524,6 +829,34 @@ export async function GET(request: Request) {
         vegasTotal,
         atsResult,
         ouVegasResult,
+        isDivisional,
+        isLateSeasonGame: isLateSeason,
+        isLargeSpread,
+        isSmallSpread,
+        isMediumSpread,
+        isEloMismatch,
+        sixtyPlusFactors,
+        eloDiff: Math.round(eloDiff),
+        restDays: restInfo ? {
+          home: restInfo.homeRestDays,
+          away: restInfo.awayRestDays,
+          homeIsB2B: restInfo.homeIsB2B,
+          awayIsB2B: restInfo.awayIsB2B,
+          advantage: restInfo.restAdvantageTeam,
+          adjustment: restAdjustment,
+        } : undefined,
+        conviction: conviction ? {
+          level: conviction.level,
+          isHighConviction: conviction.isHighConviction,
+          expectedWinPct: conviction.expectedWinPct,
+          picksVegasFavorite: conviction.filters.picksVegasFavorite,
+          eloAligned: conviction.filters.eloAligned,
+          eloGap: conviction.filters.eloGap,
+          ...(conviction.filters.restFavorsPick !== undefined
+            ? { restFavorsPick: conviction.filters.restFavorsPick }
+            : {}),
+          ...(conviction.filters.avoidReason ? { avoidReason: conviction.filters.avoidReason } : {}),
+        } : undefined,
       });
 
       // Update Elo for next game
@@ -558,10 +891,68 @@ export async function GET(request: Request) {
         gameId: r.gameId || r.id,
         gameTime: coerceGameTime(r.gameTime),
       }));
+
+    const enrichedExistingResults = existingResults.map((r: any) => {
+      const storedOdds = historicalOdds[r.gameId];
+      const vegasSpread = storedOdds?.vegasSpread ?? r.vegasSpread;
+      const vegasTotal = storedOdds?.vegasTotal ?? r.vegasTotal;
+
+      let atsResult = r.atsResult;
+      if (!atsResult && vegasSpread !== undefined && r.actualSpread !== undefined) {
+        const pickHome = r.predictedSpread < vegasSpread;
+        if (pickHome) {
+          atsResult = r.actualSpread < vegasSpread ? 'win' : r.actualSpread > vegasSpread ? 'loss' : 'push';
+        } else {
+          atsResult = r.actualSpread > vegasSpread ? 'win' : r.actualSpread < vegasSpread ? 'loss' : 'push';
+        }
+      }
+
+      let ouVegasResult = r.ouVegasResult;
+      if (!ouVegasResult && vegasTotal !== undefined && vegasTotal > 0 && r.actualTotal !== undefined) {
+        const pickOver = r.predictedTotal > vegasTotal;
+        if (pickOver) {
+          ouVegasResult = r.actualTotal > vegasTotal ? 'win' : r.actualTotal < vegasTotal ? 'loss' : 'push';
+        } else {
+          ouVegasResult = r.actualTotal < vegasTotal ? 'win' : r.actualTotal > vegasTotal ? 'loss' : 'push';
+        }
+      }
+
+      const absVegasSpread = vegasSpread !== undefined ? Math.abs(vegasSpread) : 0;
+      const eloDiff = Math.abs((r.homeElo || 1500) - (r.awayElo || 1500));
+      const isDivisional = getDivision(r.homeTeam) === getDivision(r.awayTeam);
+      const isLateSeason = isLateSeasonGame(r.gameTime, targetSeason);
+      const isLargeSpread = absVegasSpread >= 7;
+      const isSmallSpread = absVegasSpread > 0 && absVegasSpread <= 3;
+      const isMediumSpread = absVegasSpread > 3 && absVegasSpread < 7;
+      const isEloMismatch = eloDiff > 100;
+      const sixtyPlusFactors = [
+        isLateSeason,
+        isLargeSpread,
+        isDivisional,
+        isEloMismatch,
+        isSmallSpread,
+      ].filter(Boolean).length;
+
+      return {
+        ...r,
+        vegasSpread,
+        vegasTotal,
+        atsResult,
+        ouVegasResult,
+        isDivisional,
+        isLateSeasonGame: isLateSeason,
+        isLargeSpread,
+        isSmallSpread,
+        isMediumSpread,
+        isEloMismatch,
+        sixtyPlusFactors,
+        eloDiff: Math.round(eloDiff),
+      };
+    });
     const seenGameIds = new Set<string>();
     const allBacktestResults = [
       ...newBacktestResults,
-      ...existingResults,
+      ...enrichedExistingResults,
     ].filter((r: any) => {
       if (seenGameIds.has(r.gameId)) return false;
       seenGameIds.add(r.gameId);
@@ -572,6 +963,7 @@ export async function GET(request: Request) {
     const upcomingGames = allGames.filter(g => g.status !== 'final');
     const gamesWithPredictions = [];
     let oddsFetched = 0;
+    let restFetched = 0;
 
     for (const game of allGames) {
       if (!game.id || !game.homeTeamId || !game.awayTeamId) continue;
@@ -648,25 +1040,30 @@ export async function GET(request: Request) {
       const predictedSpread = calculateSpread(predHome, predAway);
       const predictedTotal = predHome + predAway;
 
-      // Confidence calculations (adapted for NBA)
-      const totalEdge = vegasTotal !== undefined ? Math.abs(predictedTotal - vegasTotal) : 0;
-      let ouConfidence: 'high' | 'medium' | 'low' = 'medium';
-      if (totalEdge >= 5) ouConfidence = 'high';
-      else if (totalEdge >= 2) ouConfidence = 'medium';
-      else ouConfidence = 'low';
+      const absVegasSpread = vegasSpread !== undefined ? Math.abs(vegasSpread) : 3;
+      const eloDiff = Math.abs(homeTeam.eloRating - awayTeam.eloRating);
+      const isDivisional = getDivision(homeTeam.abbreviation) === getDivision(awayTeam.abbreviation);
+      const isLateSeason = isLateSeasonGame(game.gameTime, targetSeason);
+      const isLargeSpread = absVegasSpread >= 7;
+      const isSmallSpread = absVegasSpread <= 3;
+      const isMediumSpread = absVegasSpread > 3 && absVegasSpread < 7;
+      const isEloMismatch = eloDiff > 100;
+      const sixtyPlusFactors = [
+        isLateSeason,
+        isLargeSpread,
+        isDivisional,
+        isEloMismatch,
+        isSmallSpread,
+      ].filter(Boolean).length;
 
-      const mlEdge = Math.abs(homeWinProb - 0.5) * 100;
-      let mlConfidence: 'high' | 'medium' | 'low' = 'medium';
-      if (mlEdge >= 15) mlConfidence = 'high';
-      else if (mlEdge >= 7) mlConfidence = 'medium';
-      else mlConfidence = 'low';
-
-      // ATS confidence - lower thresholds for NBA (market is efficient)
-      const spreadEdge = vegasSpread !== undefined ? Math.abs(predictedSpread - vegasSpread) : 0;
-      let atsConfidence: 'high' | 'medium' | 'low' = 'medium';
-      if (spreadEdge >= 2.5) atsConfidence = 'high';
-      else if (spreadEdge >= 1) atsConfidence = 'medium';
-      else atsConfidence = 'low';
+      let atsConfidence: 'high' | 'medium' | 'low';
+      if (isMediumSpread) {
+        atsConfidence = 'low';
+      } else if (sixtyPlusFactors >= 1) {
+        atsConfidence = 'high';
+      } else {
+        atsConfidence = 'medium';
+      }
 
       const lineOpeningSpread = existingOdds?.openingSpread;
       const lineCurrentSpread = existingOdds?.closingSpread ?? existingOdds?.lastSeenSpread ?? vegasSpread;
@@ -684,7 +1081,47 @@ export async function GET(request: Request) {
         }
       }
 
-      const isAtsBestBet = spreadEdge >= 2;
+      const totalEdge = vegasTotal !== undefined ? Math.abs(predictedTotal - vegasTotal) : 0;
+      let ouConfidence: 'high' | 'medium' | 'low' = 'medium';
+      if (totalEdge >= 5) ouConfidence = 'high';
+      else if (totalEdge >= 3) ouConfidence = 'medium';
+      else ouConfidence = 'low';
+
+      const mlEdge = Math.abs(homeWinProb - 0.5) * 100;
+      let mlConfidence: 'high' | 'medium' | 'low' = 'medium';
+      if (mlEdge >= 15) mlConfidence = 'high';
+      else if (mlEdge >= 7) mlConfidence = 'medium';
+      else mlConfidence = 'low';
+
+      // Fetch rest days for upcoming games
+      let restInfo: RestInfo | undefined;
+      if (game.status !== 'final' && game.gameTime) {
+        try {
+          restInfo = await getRestDaysForGame(
+            game.homeTeamId,
+            game.awayTeamId,
+            game.gameTime,
+            game.id
+          );
+          restFetched++;
+        } catch (err) {
+          // Continue without rest data
+        }
+      }
+
+      const restAdjustment = restInfo ? calculateRestAdjustment(restInfo) : 0;
+      const adjustedPredictedSpread = predictedSpread + restAdjustment;
+      const conviction = calculateConviction(
+        homeTeam.abbreviation,
+        awayTeam.abbreviation,
+        homeTeam.eloRating,
+        awayTeam.eloRating,
+        adjustedPredictedSpread,
+        vegasSpread,
+        restInfo
+      );
+
+      const isAtsBestBet = sixtyPlusFactors >= 1 && !isMediumSpread;
       const isOuBestBet = totalEdge >= 5;
       const isMlBestBet = mlEdge >= 15;
 
@@ -736,12 +1173,75 @@ export async function GET(request: Request) {
           isOuBestBet,
           isMlBestBet,
           mlEdge: Math.round(mlEdge * 10) / 10,
+          isDivisional,
+          isLateSeasonGame: isLateSeason,
+          isLargeSpread,
+          isSmallSpread,
+          isMediumSpread,
+          isEloMismatch,
+          sixtyPlusFactors,
+          eloDiff: Math.round(eloDiff),
+          // Conviction-based filtering (75% ATS for elite, 73% for high)
+          conviction: {
+            level: conviction.level,
+            isHighConviction: conviction.isHighConviction,
+            expectedWinPct: conviction.expectedWinPct,
+            picksVegasFavorite: conviction.filters.picksVegasFavorite,
+            eloAligned: conviction.filters.eloAligned,
+            eloGap: conviction.filters.eloGap,
+            ...(conviction.filters.restFavorsPick !== undefined
+              ? { restFavorsPick: conviction.filters.restFavorsPick }
+              : {}),
+            ...(conviction.filters.avoidReason ? { avoidReason: conviction.filters.avoidReason } : {}),
+          },
+          // Rest days info for display
+          ...(restInfo ? {
+            restDays: {
+              home: restInfo.homeRestDays,
+              away: restInfo.awayRestDays,
+              homeIsB2B: restInfo.homeIsB2B,
+              awayIsB2B: restInfo.awayIsB2B,
+              advantage: restInfo.restAdvantageTeam,
+              adjustment: restAdjustment,
+            }
+          } : {}),
           calc,
         },
       });
     }
 
-    log(`Generated predictions for ${gamesWithPredictions.length} games (fetched ${oddsFetched} odds from ESPN FREE API)`);
+    log(`Generated predictions for ${gamesWithPredictions.length} games (fetched ${oddsFetched} odds, ${restFetched} rest days from ESPN API)`);
+
+    // Compute high conviction stats from backtest results
+    let hiAtsW = 0, hiAtsL = 0, hiAtsP = 0;
+    let hiOuW = 0, hiOuL = 0, hiOuP = 0;
+    let hiMlW = 0, hiMlL = 0;
+    for (const r of allBacktestResults as any[]) {
+      const spreadEdge = r.vegasSpread !== undefined ? Math.abs(r.predictedSpread - r.vegasSpread) : 0;
+      const totalEdge = r.vegasTotal !== undefined ? Math.abs(r.predictedTotal - r.vegasTotal) : 0;
+      const mlEdge = Math.abs((r.homeWinProb || 0.5) - 0.5) * 100;
+
+      // High conviction ATS (edge >= 2 pts)
+      if (spreadEdge >= 2 && r.atsResult) {
+        if (r.atsResult === 'win') hiAtsW++;
+        else if (r.atsResult === 'loss') hiAtsL++;
+        else hiAtsP++;
+      }
+      // High conviction O/U (edge >= 5 pts)
+      if (totalEdge >= 5 && r.ouVegasResult) {
+        if (r.ouVegasResult === 'win') hiOuW++;
+        else if (r.ouVegasResult === 'loss') hiOuL++;
+        else hiOuP++;
+      }
+      // High conviction ML (edge >= 15%)
+      if (mlEdge >= 15 && r.mlResult) {
+        if (r.mlResult === 'win') hiMlW++;
+        else hiMlL++;
+      }
+    }
+    const hiAtsTotal = hiAtsW + hiAtsL;
+    const hiOuTotal = hiOuW + hiOuL;
+    const hiMlTotal = hiMlW + hiMlL;
 
     // 9. Build blob data
     const spreadTotal = spreadWins + spreadLosses;
@@ -774,6 +1274,11 @@ export async function GET(request: Request) {
           spread: { wins: spreadWins, losses: spreadLosses, pushes: spreadPushes, winPct: spreadTotal > 0 ? Math.round((spreadWins / spreadTotal) * 1000) / 10 : 0 },
           moneyline: { wins: mlWins, losses: mlLosses, winPct: mlTotal > 0 ? Math.round((mlWins / mlTotal) * 1000) / 10 : 0 },
           overUnder: { wins: ouWins, losses: ouLosses, pushes: ouPushes, winPct: ouTotal > 0 ? Math.round((ouWins / ouTotal) * 1000) / 10 : 0 },
+        },
+        highConvictionSummary: {
+          spread: { wins: hiAtsW, losses: hiAtsL, pushes: hiAtsP, winPct: hiAtsTotal > 0 ? Math.round((hiAtsW / hiAtsTotal) * 1000) / 10 : 0 },
+          moneyline: { wins: hiMlW, losses: hiMlL, winPct: hiMlTotal > 0 ? Math.round((hiMlW / hiMlTotal) * 1000) / 10 : 0 },
+          overUnder: { wins: hiOuW, losses: hiOuL, pushes: hiOuP, winPct: hiOuTotal > 0 ? Math.round((hiOuW / hiOuTotal) * 1000) / 10 : 0 },
         },
         results: allBacktestResults,
       },

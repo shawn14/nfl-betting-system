@@ -117,6 +117,11 @@ interface BlobState {
       moneyline: { wins: number; losses: number; winPct: number };
       overUnder: { wins: number; losses: number; pushes: number; winPct: number };
     };
+    highConvictionSummary: {
+      spread: { wins: number; losses: number; pushes: number; winPct: number };
+      moneyline: { wins: number; losses: number; winPct: number };
+      overUnder: { wins: number; losses: number; pushes: number; winPct: number };
+    };
     results: unknown[];
   };
 }
@@ -238,9 +243,7 @@ export async function GET(request: Request) {
     const existingState = shouldReset ? null : rawState;
 
     // Load cached data from Firestore
-    const historicalOdds: Record<string, HistoricalOdds> = shouldReset
-      ? {}
-      : await getDocsMap<HistoricalOdds>(sport, 'oddsLocks');
+    const historicalOdds: Record<string, HistoricalOdds> = await getDocsMap<HistoricalOdds>(sport, 'oddsLocks');
     log(`Loaded ${Object.keys(historicalOdds).length} historical odds records`);
 
     const weatherCache: Record<string, CachedWeather> = shouldReset
@@ -911,6 +914,37 @@ export async function GET(request: Request) {
     const majorInjuryGames = gamesWithPredictions.filter((g: any) => g.prediction.injuries?.impactLevel === 'major').length;
     log(`Injury data: ${gamesWithInjuries}/${gamesWithPredictions.length} games (${majorInjuryGames} with QB out)`);
 
+    // Compute high conviction stats from backtest results
+    let hiAtsW = 0, hiAtsL = 0, hiAtsP = 0;
+    let hiOuW = 0, hiOuL = 0, hiOuP = 0;
+    let hiMlW = 0, hiMlL = 0;
+    for (const r of allBacktestResults as any[]) {
+      const spreadEdge = r.vegasSpread !== undefined ? Math.abs(r.predictedSpread - r.vegasSpread) : 0;
+      const totalEdge = r.vegasTotal !== undefined ? Math.abs(r.predictedTotal - r.vegasTotal) : 0;
+      const mlEdge = Math.abs((r.homeWinProb || 0.5) - 0.5) * 100;
+
+      // High conviction ATS (edge >= 2 pts)
+      if (spreadEdge >= 2 && r.atsResult) {
+        if (r.atsResult === 'win') hiAtsW++;
+        else if (r.atsResult === 'loss') hiAtsL++;
+        else hiAtsP++;
+      }
+      // High conviction O/U (edge >= 5 pts)
+      if (totalEdge >= 5 && r.ouVegasResult) {
+        if (r.ouVegasResult === 'win') hiOuW++;
+        else if (r.ouVegasResult === 'loss') hiOuL++;
+        else hiOuP++;
+      }
+      // High conviction ML (edge >= 15%)
+      if (mlEdge >= 15 && r.mlResult) {
+        if (r.mlResult === 'win') hiMlW++;
+        else hiMlL++;
+      }
+    }
+    const hiAtsTotal = hiAtsW + hiAtsL;
+    const hiOuTotal = hiOuW + hiOuL;
+    const hiMlTotal = hiMlW + hiMlL;
+
     // 8. Build blob data
     const spreadTotal = spreadWins + spreadLosses;
     const mlTotal = mlWins + mlLosses;
@@ -948,6 +982,11 @@ export async function GET(request: Request) {
           spread: { wins: spreadWins, losses: spreadLosses, pushes: spreadPushes, winPct: spreadTotal > 0 ? Math.round((spreadWins / spreadTotal) * 1000) / 10 : 0 },
           moneyline: { wins: mlWins, losses: mlLosses, winPct: mlTotal > 0 ? Math.round((mlWins / mlTotal) * 1000) / 10 : 0 },
           overUnder: { wins: ouWins, losses: ouLosses, pushes: ouPushes, winPct: ouTotal > 0 ? Math.round((ouWins / ouTotal) * 1000) / 10 : 0 },
+        },
+        highConvictionSummary: {
+          spread: { wins: hiAtsW, losses: hiAtsL, pushes: hiAtsP, winPct: hiAtsTotal > 0 ? Math.round((hiAtsW / hiAtsTotal) * 1000) / 10 : 0 },
+          moneyline: { wins: hiMlW, losses: hiMlL, winPct: hiMlTotal > 0 ? Math.round((hiMlW / hiMlTotal) * 1000) / 10 : 0 },
+          overUnder: { wins: hiOuW, losses: hiOuL, pushes: hiOuP, winPct: hiOuTotal > 0 ? Math.round((hiOuW / hiOuTotal) * 1000) / 10 : 0 },
         },
         results: allBacktestResults,
       },

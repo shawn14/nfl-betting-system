@@ -2,6 +2,7 @@ import type { Metadata } from "next";
 import { Inter, Roboto_Condensed } from "next/font/google";
 import "./globals.css";
 import NavBar from "@/components/NavBar";
+import FooterStats from "@/components/FooterStats";
 import { AuthProvider } from "@/components/AuthProvider";
 
 const inter = Inter({
@@ -67,7 +68,7 @@ export default function RootLayout({
               <div className="flex flex-col gap-3 sm:gap-4">
                 <div className="flex flex-col sm:flex-row sm:items-center sm:justify-between gap-1 text-xs sm:text-sm text-gray-500">
                   <span>Prediction Matrix</span>
-                  <span className="text-[10px] sm:text-sm">ATS 55.1% | ML 77.9% | O/U 57.4%</span>
+                  <FooterStats />
                 </div>
                 <div className="flex flex-col sm:flex-row sm:items-center sm:justify-between gap-2 text-[10px] sm:text-xs text-gray-400 border-t border-gray-100 pt-3 sm:pt-4">
                   <div className="flex items-center gap-4">
