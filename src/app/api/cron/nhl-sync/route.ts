@@ -660,20 +660,6 @@ export async function GET(request: Request) {
 
     log(`Backtest: ATS ${backtestSummary.spread.winPct}% (${spreadWins}-${spreadLosses}-${spreadPushes})`);
 
-    // Get recent completed games for display (match NBA format exactly)
-    const recentGames = [...allResults]
-      .sort((a: any, b: any) => new Date(b.gameTime).getTime() - new Date(a.gameTime).getTime())
-      .slice(0, 10)
-      .map((r: any) => ({
-        id: r.gameId,
-        homeTeam: { abbreviation: r.homeTeam },
-        awayTeam: { abbreviation: r.awayTeam },
-        homeScore: r.actualHomeScore,
-        awayScore: r.actualAwayScore,
-        gameTime: r.gameTime,
-        status: 'final',
-      }));
-
     // Save to Firestore
     log('Saving to Firestore...');
     const teamDocs = Array.from(teamsMap.values()).map(t => ({ id: t.id, data: t as unknown as Record<string, unknown> }));
@@ -695,6 +681,20 @@ export async function GET(request: Request) {
     // Get all backtest results
     const existingResults = await getDocsList<any>(sport, 'results');
     const allResults = [...existingResults, ...newBacktestResults];
+
+    // Get recent completed games for display (match NBA format exactly)
+    const recentGames = [...allResults]
+      .sort((a: any, b: any) => new Date(b.gameTime).getTime() - new Date(a.gameTime).getTime())
+      .slice(0, 10)
+      .map((r: any) => ({
+        id: r.gameId,
+        homeTeam: { abbreviation: r.homeTeam },
+        awayTeam: { abbreviation: r.awayTeam },
+        homeScore: r.actualHomeScore,
+        awayScore: r.actualAwayScore,
+        gameTime: r.gameTime,
+        status: 'final',
+      }));
 
     // Save new results
     if (newBacktestResults.length > 0) {
