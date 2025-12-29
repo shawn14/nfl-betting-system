@@ -678,8 +678,23 @@ export async function GET(request: Request) {
     // Build blob state
     const sortedTeams = Array.from(teamsMap.values()).sort((a, b) => b.eloRating - a.eloRating);
 
+    // Helper to convert Firestore timestamps to ISO strings (matching NBA sync)
+    const coerceGameTime = (value: any) => {
+      if (!value) return value;
+      if (typeof value === 'string') return value;
+      if (typeof value === 'number') return new Date(value).toISOString();
+      if (typeof value === 'object' && typeof value._seconds === 'number') {
+        return new Date(value._seconds * 1000).toISOString();
+      }
+      return value;
+    };
+
     // Get all backtest results
-    const existingResults = await getDocsList<any>(sport, 'results');
+    const existingResults = (await getDocsList<any>(sport, 'results')).map(r => ({
+      ...r,
+      gameId: r.gameId || r.id,
+      gameTime: coerceGameTime(r.gameTime),
+    }));
     const allResults = [...existingResults, ...newBacktestResults];
 
     // Get recent completed games for display (match NBA format exactly)
@@ -692,7 +707,7 @@ export async function GET(request: Request) {
         awayTeam: { abbreviation: r.awayTeam },
         homeScore: r.actualHomeScore,
         awayScore: r.actualAwayScore,
-        gameTime: r.gameTime,
+        gameTime: coerceGameTime(r.gameTime),
         status: 'final',
       }));
 
