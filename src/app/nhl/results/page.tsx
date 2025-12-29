@@ -73,9 +73,10 @@ function computeHighConvictionStats(results: BacktestResult[]): HighConvictionSt
     }
 
     // High conviction O/U (edge >= 1.5 goals)
-    if (totalEdge >= 1.5 && r.ouVegasResult) {
-      if (r.ouVegasResult === 'win') ouW++;
-      else if (r.ouVegasResult === 'loss') ouL++;
+    const ouResult = r.ouResult || r.ouVegasResult;
+    if (totalEdge >= 1.5 && ouResult) {
+      if (ouResult === 'win') ouW++;
+      else if (ouResult === 'loss') ouL++;
       else ouP++;
     }
 
@@ -153,7 +154,7 @@ function computeAnalysis(results: BacktestResult[]): Analysis {
   const biggestMisses: Analysis['biggestMisses'] = [];
 
   for (const r of results) {
-    const spreadResult = r.spreadResult;
+    const spreadResult = r.atsResult || r.spreadResult;
     const predictedMargin = Math.abs(r.predictedSpread);
     const actualMargin = Math.abs(r.actualSpread);
     const spreadError = Math.abs(r.predictedSpread - r.actualSpread);
@@ -605,7 +606,7 @@ export default function NHLResultsPage() {
                     <div className="font-mono font-bold text-gray-900 text-[11px] sm:text-sm">{game.actualAwayScore}-{game.actualHomeScore}</div>
                   </td>
                   <td className="px-2 sm:px-4 py-2 sm:py-3 text-center">
-                    <ResultBadge result={game.spreadResult} />
+                    <ResultBadge result={game.atsResult || game.spreadResult} />
                   </td>
                   <td className="px-2 sm:px-4 py-2 sm:py-3 text-center">
                     <ResultBadge result={game.mlResult} />
