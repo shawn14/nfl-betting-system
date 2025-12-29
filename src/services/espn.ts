@@ -2,6 +2,7 @@ import { Team, Game } from '@/types';
 
 const ESPN_BASE_URL = 'https://site.api.espn.com/apis/site/v2/sports';
 const ESPN_STANDINGS_URL = 'https://site.api.espn.com/apis/v2/sports/football/nfl/standings';
+const ESPN_NHL_STANDINGS_URL = 'https://site.api.espn.com/apis/v2/sports/hockey/nhl/standings';
 
 interface ESPNTeam {
   id: string;
@@ -255,4 +256,164 @@ export async function fetchAllCompletedGames(): Promise<Partial<Game>[]> {
   return allGames.sort((a, b) =>
     new Date(a.gameTime!).getTime() - new Date(b.gameTime!).getTime()
   );
+}
+
+// ============================================
+// NHL Functions
+// ============================================
+
+export async function fetchNHLTeams(): Promise<Partial<Team>[]> {
+  // Fetch teams
+  const response = await fetch(`${ESPN_BASE_URL}/hockey/nhl/teams`);
+  const data: ESPNResponse = await response.json();
+
+  // Fetch standings to get records and scoring stats
+  const standingsRes = await fetch(ESPN_NHL_STANDINGS_URL);
+  const standingsData = await standingsRes.json();
+
+  // Build map of team records and stats
+  const teamRecords = new Map<string, TeamStats & { otLosses: number }>();
+  for (const conf of standingsData.children || []) {
+    for (const entry of (conf.standings?.entries || []) as StandingsEntry[]) {
+      const teamId = entry.team.id;
+      const stats: Record<string, number> = {};
+      for (const s of entry.stats) {
+        if (s.value !== undefined) {
+          stats[s.name] = s.value;
+        }
+      }
+      const wins = stats.wins || 0;
+      const losses = stats.losses || 0;
+      const otLosses = stats.otLosses || 0;
+      const gamesPlayed = wins + losses + otLosses;
+      teamRecords.set(teamId, {
+        wins,
+        losses,
+        otLosses,
+        diff: stats.differential || stats.goalDifferential || 0,
+        pointsFor: stats.pointsFor || stats.goalsFor || 0,
+        pointsAgainst: stats.pointsAgainst || stats.goalsAgainst || 0,
+        gamesPlayed,
+      });
+    }
+  }
+
+  const teams: Partial<Team>[] = [];
+
+  if (data.sports?.[0]?.leagues?.[0]?.teams) {
+    for (const { team } of data.sports[0].leagues[0].teams) {
+      const record = teamRecords.get(team.id);
+      const eloRating = record
+        ? calculateInitialElo(record.wins, record.losses + record.otLosses, record.diff)
+        : 1500;
+
+      // Calculate goals per game stats
+      const gamesPlayed = record?.gamesPlayed || 0;
+      const ppg = gamesPlayed > 0 ? Math.round((record!.pointsFor / gamesPlayed) * 10) / 10 : 3.0;
+      const ppgAllowed = gamesPlayed > 0 ? Math.round((record!.pointsAgainst / gamesPlayed) * 10) / 10 : 3.0;
+
+      teams.push({
+        id: team.id,
+        sport: 'nhl',
+        name: team.displayName,
+        abbreviation: team.abbreviation,
+        eloRating,
+        pointsFor: record?.pointsFor || 0,
+        pointsAgainst: record?.pointsAgainst || 0,
+        gamesPlayed: gamesPlayed,
+        ppg,
+        ppgAllowed,
+      });
+    }
+  }
+
+  return teams;
+}
+
+export async function fetchNHLSchedule(dateStr?: string): Promise<Partial<Game>[]> {
+  // NHL uses date-based scoreboard, not week-based
+  const url = dateStr
+    ? `${ESPN_BASE_URL}/hockey/nhl/scoreboard?dates=${dateStr}`
+    : `${ESPN_BASE_URL}/hockey/nhl/scoreboard`;
+
+  const response = await fetch(url);
+  const data: ESPNResponse = await response.json();
+
+  const games: Partial<Game>[] = [];
+
+  for (const event of data.events || []) {
+    const competition = event.competitions[0];
+    if (!competition) continue;
+
+    const homeTeam = competition.competitors.find(c => c.homeAway === 'home');
+    const awayTeam = competition.competitors.find(c => c.homeAway === 'away');
+
+    if (!homeTeam || !awayTeam) continue;
+
+    let status: Game['status'] = 'scheduled';
+    if (event.status.type.state === 'in') status = 'in_progress';
+    if (event.status.type.state === 'post') status = 'final';
+
+    games.push({
+      id: event.id,
+      sport: 'nhl',
+      homeTeamId: homeTeam.team.id,
+      awayTeamId: awayTeam.team.id,
+      gameTime: new Date(event.date),
+      status,
+      homeScore: homeTeam.score ? parseInt(homeTeam.score) : undefined,
+      awayScore: awayTeam.score ? parseInt(awayTeam.score) : undefined,
+      venue: competition.venue?.fullName,
+      season: event.season?.year || new Date().getFullYear(),
+      createdAt: new Date(),
+      updatedAt: new Date(),
+    });
+  }
+
+  return games;
+}
+
+// Fetch NHL schedule for a date range (for backfill)
+export async function fetchNHLScheduleRange(startDate: Date, days: number): Promise<Partial<Game>[]> {
+  const allGames: Partial<Game>[] = [];
+
+  for (let i = 0; i < days; i++) {
+    const date = new Date(startDate);
+    date.setDate(date.getDate() + i);
+    const dateStr = date.toISOString().split('T')[0].replace(/-/g, '');
+
+    try {
+      const games = await fetchNHLSchedule(dateStr);
+      allGames.push(...games);
+      // Small delay to avoid rate limiting
+      await new Promise(resolve => setTimeout(resolve, 100));
+    } catch (error) {
+      console.error(`Error fetching NHL schedule for ${dateStr}:`, error);
+    }
+  }
+
+  return allGames;
+}
+
+// Fetch all completed NHL games for current season
+export async function fetchAllCompletedNHLGames(seasonYear?: number): Promise<Partial<Game>[]> {
+  // Default to current season if not specified
+  const year = seasonYear || (new Date().getMonth() < 9 ? new Date().getFullYear() : new Date().getFullYear() + 1);
+  // NHL season 2026 = Oct 2025 - Jun 2026, so season start year is (year - 1)
+  const seasonStartYear = year - 1;
+
+  // Season starts in October of previous year
+  const startDate = new Date(seasonStartYear, 9, 1); // October 1
+  const endDate = new Date();
+
+  const daysDiff = Math.ceil((endDate.getTime() - startDate.getTime()) / (1000 * 60 * 60 * 24));
+
+  console.log(`Fetching NHL games from ${startDate.toISOString().split('T')[0]} to ${endDate.toISOString().split('T')[0]} (${daysDiff} days)`);
+
+  const allGames = await fetchNHLScheduleRange(startDate, Math.min(daysDiff, 300));
+
+  // Filter to only completed games and sort chronologically
+  return allGames
+    .filter(g => g.status === 'final')
+    .sort((a, b) => new Date(a.gameTime!).getTime() - new Date(b.gameTime!).getTime());
 }

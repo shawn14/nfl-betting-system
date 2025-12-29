@@ -17,13 +17,15 @@ export default function NavBar() {
   const pathname = usePathname();
   const { user, loading } = useAuth();
   const isNBA = pathname?.startsWith('/nba');
+  const isNHL = pathname?.startsWith('/nhl');
   const [nbaStats, setNbaStats] = useState<SummaryStats | null>(null);
   const [nflStats, setNflStats] = useState<SummaryStats | null>(null);
+  const [nhlStats, setNhlStats] = useState<SummaryStats | null>(null);
 
   // Determine base paths based on current section
-  const rankingsPath = isNBA ? '/nba/rankings' : '/rankings';
-  const resultsPath = isNBA ? '/nba/results' : '/results';
-  const livePath = '/nba/live';
+  const rankingsPath = isNHL ? '/nhl/rankings' : isNBA ? '/nba/rankings' : '/rankings';
+  const resultsPath = isNHL ? '/nhl/results' : isNBA ? '/nba/results' : '/results';
+  const livePath = isNHL ? '/nhl/live' : '/nba/live';
   const nflHomePath = user ? '/dashboard' : '/';
 
   // Active link styling
@@ -32,29 +34,40 @@ export default function NavBar() {
     if (path === '/dashboard') return pathname === '/dashboard';
     if (path === '/nba') return pathname === '/nba';
     if (path === '/nba/live') return pathname === '/nba/live';
+    if (path === '/nhl') return pathname === '/nhl';
+    if (path === '/nhl/live') return pathname === '/nhl/live';
     return pathname?.startsWith(path);
   };
 
-  const getLinkClass = (path: string, sport: 'nfl' | 'nba' = 'nfl') => {
+  // Determine current sport for styling
+  const currentSport: 'nfl' | 'nba' | 'nhl' = isNHL ? 'nhl' : isNBA ? 'nba' : 'nfl';
+
+  const getLinkClass = (path: string, sport: 'nfl' | 'nba' | 'nhl' = 'nfl') => {
     const active = isActive(path);
     const baseClass = 'px-4 py-4 text-sm font-semibold transition-colors';
     if (sport === 'nba') {
       return `${baseClass} ${active ? 'text-orange-600 border-b-2 border-orange-500' : 'text-gray-700 hover:text-orange-600 hover:border-b-2 hover:border-orange-500'}`;
     }
+    if (sport === 'nhl') {
+      return `${baseClass} ${active ? 'text-blue-600 border-b-2 border-blue-500' : 'text-gray-700 hover:text-blue-600 hover:border-b-2 hover:border-blue-500'}`;
+    }
     return `${baseClass} ${active ? 'text-red-700 border-b-2 border-red-600' : 'text-gray-700 hover:text-red-700 hover:border-b-2 hover:border-red-600'}`;
   };
 
-  const getMobileLinkClass = (path: string, sport: 'nfl' | 'nba' = 'nfl') => {
+  const getMobileLinkClass = (path: string, sport: 'nfl' | 'nba' | 'nhl' = 'nfl') => {
     const active = isActive(path);
     const baseClass = 'flex-1 text-center py-2.5 text-xs font-semibold transition-colors';
     if (sport === 'nba') {
       return `${baseClass} ${active ? 'text-orange-600 bg-orange-50' : 'text-gray-700 hover:text-orange-600 hover:bg-gray-50'}`;
     }
+    if (sport === 'nhl') {
+      return `${baseClass} ${active ? 'text-blue-600 bg-blue-50' : 'text-gray-700 hover:text-blue-600 hover:bg-gray-50'}`;
+    }
     return `${baseClass} ${active ? 'text-red-700 bg-red-50' : 'text-gray-700 hover:text-red-700 hover:bg-gray-50'}`;
   };
 
-  const accentColor = isNBA ? 'bg-orange-500' : 'bg-red-600';
-  const logoColor = isNBA ? 'bg-orange-500' : 'bg-red-600';
+  const accentColor = isNHL ? 'bg-blue-600' : isNBA ? 'bg-orange-500' : 'bg-red-600';
+  const logoColor = isNHL ? 'bg-blue-600' : isNBA ? 'bg-orange-500' : 'bg-red-600';
 
   useEffect(() => {
     if (!user) return;
@@ -84,6 +97,7 @@ export default function NavBar() {
 
     loadStats('/nba-prediction-data.json', setNbaStats);
     loadStats('/prediction-data.json', setNflStats);
+    loadStats('/nhl-prediction-data.json', setNhlStats);
     return () => {
       cancelled = true;
     };
@@ -106,7 +120,7 @@ export default function NavBar() {
                 <div className="flex flex-col min-w-0">
                   <span className="text-base sm:text-lg font-bold text-gray-900 leading-tight truncate">Prediction Matrix</span>
                   <span className="text-[8px] sm:text-[10px] text-gray-500 uppercase tracking-wider leading-tight hidden xs:block">
-                    AI-Powered {isNBA ? 'NBA' : 'NFL'} Predictions
+                    AI-Powered {isNHL ? 'NHL' : isNBA ? 'NBA' : 'NFL'} Predictions
                   </span>
                 </div>
               </a>
@@ -118,15 +132,18 @@ export default function NavBar() {
                   <a href="/nba" className={getLinkClass('/nba', 'nba')}>
                     NBA
                   </a>
-                  {isNBA && (
-                    <a href={livePath} className={getLinkClass(livePath, 'nba')}>
+                  <a href="/nhl" className={getLinkClass('/nhl', 'nhl')}>
+                    NHL
+                  </a>
+                  {(isNBA || isNHL) && (
+                    <a href={livePath} className={getLinkClass(livePath, currentSport)}>
                       Live
                     </a>
                   )}
-                  <a href={rankingsPath} className={getLinkClass(rankingsPath, isNBA ? 'nba' : 'nfl')}>
+                  <a href={rankingsPath} className={getLinkClass(rankingsPath, currentSport)}>
                     Rankings
                   </a>
-                  <a href={resultsPath} className={getLinkClass(resultsPath, isNBA ? 'nba' : 'nfl')}>
+                  <a href={resultsPath} className={getLinkClass(resultsPath, currentSport)}>
                     Results
                   </a>
                 </div>
@@ -136,29 +153,22 @@ export default function NavBar() {
               {!loading && user && (
                 <div className="hidden lg:flex items-center gap-1 text-xs text-gray-500">
                   <span className="bg-green-100 text-green-700 px-1.5 py-0.5 rounded text-[10px] font-bold mr-1">HIGH CONV</span>
-                  {isNBA ? (
-                    <>
-                      <span className="font-medium">ATS:</span>
-                      <span className="font-bold text-green-600">{nbaStats ? `${nbaStats.ats}%` : '--'}</span>
-                      <span className="text-gray-300 mx-1">|</span>
-                      <span className="font-medium">ML:</span>
-                      <span className="font-bold text-green-600">{nbaStats ? `${nbaStats.ml}%` : '--'}</span>
-                      <span className="text-gray-300 mx-1">|</span>
-                      <span className="font-medium">O/U:</span>
-                      <span className="font-bold text-green-600">{nbaStats ? `${nbaStats.ou}%` : '--'}</span>
-                    </>
-                  ) : (
-                    <>
-                      <span className="font-medium">ATS:</span>
-                      <span className="font-bold text-green-600">{nflStats ? `${nflStats.ats}%` : '--'}</span>
-                      <span className="text-gray-300 mx-1">|</span>
-                      <span className="font-medium">ML:</span>
-                      <span className="font-bold text-green-600">{nflStats ? `${nflStats.ml}%` : '--'}</span>
-                      <span className="text-gray-300 mx-1">|</span>
-                      <span className="font-medium">O/U:</span>
-                      <span className="font-bold text-green-600">{nflStats ? `${nflStats.ou}%` : '--'}</span>
-                    </>
-                  )}
+                  {(() => {
+                    const stats = isNHL ? nhlStats : isNBA ? nbaStats : nflStats;
+                    const label = isNHL ? 'PL' : 'ATS'; // Puck Line for NHL
+                    return (
+                      <>
+                        <span className="font-medium">{label}:</span>
+                        <span className="font-bold text-green-600">{stats ? `${stats.ats}%` : '--'}</span>
+                        <span className="text-gray-300 mx-1">|</span>
+                        <span className="font-medium">ML:</span>
+                        <span className="font-bold text-green-600">{stats ? `${stats.ml}%` : '--'}</span>
+                        <span className="text-gray-300 mx-1">|</span>
+                        <span className="font-medium">O/U:</span>
+                        <span className="font-bold text-green-600">{stats ? `${stats.ou}%` : '--'}</span>
+                      </>
+                    );
+                  })()}
                 </div>
               )}
               {!loading && user ? (
@@ -182,15 +192,18 @@ export default function NavBar() {
               <a href="/nba" className={getMobileLinkClass('/nba', 'nba')}>
                 NBA
               </a>
-              {isNBA && (
-                <a href={livePath} className={getMobileLinkClass(livePath, 'nba')}>
+              <a href="/nhl" className={getMobileLinkClass('/nhl', 'nhl')}>
+                NHL
+              </a>
+              {(isNBA || isNHL) && (
+                <a href={livePath} className={getMobileLinkClass(livePath, currentSport)}>
                   Live
                 </a>
               )}
-              <a href={rankingsPath} className={getMobileLinkClass(rankingsPath, isNBA ? 'nba' : 'nfl')}>
+              <a href={rankingsPath} className={getMobileLinkClass(rankingsPath, currentSport)}>
                 Rankings
               </a>
-              <a href={resultsPath} className={getMobileLinkClass(resultsPath, isNBA ? 'nba' : 'nfl')}>
+              <a href={resultsPath} className={getMobileLinkClass(resultsPath, currentSport)}>
                 Results
               </a>
             </div>

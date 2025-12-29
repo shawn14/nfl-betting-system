@@ -14,6 +14,13 @@ const NBA_TEAMS = [
   'por', 'sac', 'sas', 'tor', 'uta', 'was',
 ];
 
+const NHL_TEAMS = [
+  'ana', 'ari', 'bos', 'buf', 'cgy', 'car', 'chi', 'col',
+  'cbj', 'dal', 'det', 'edm', 'fla', 'la', 'min', 'mtl',
+  'nsh', 'nj', 'nyi', 'nyr', 'ott', 'phi', 'pit', 'sj',
+  'sea', 'stl', 'tb', 'tor', 'van', 'vgk', 'wsh', 'wpg',
+];
+
 export default function sitemap(): MetadataRoute.Sitemap {
   const baseUrl = 'https://www.predictionmatrix.com';
 
@@ -67,6 +74,30 @@ export default function sitemap(): MetadataRoute.Sitemap {
       priority: 0.8,
     },
     {
+      url: `${baseUrl}/nhl`,
+      lastModified: new Date(),
+      changeFrequency: 'daily',
+      priority: 0.9,
+    },
+    {
+      url: `${baseUrl}/nhl/rankings`,
+      lastModified: new Date(),
+      changeFrequency: 'daily',
+      priority: 0.9,
+    },
+    {
+      url: `${baseUrl}/nhl/results`,
+      lastModified: new Date(),
+      changeFrequency: 'daily',
+      priority: 0.8,
+    },
+    {
+      url: `${baseUrl}/nhl/live`,
+      lastModified: new Date(),
+      changeFrequency: 'always',
+      priority: 0.8,
+    },
+    {
       url: `${baseUrl}/about`,
       lastModified: new Date(),
       changeFrequency: 'monthly',
@@ -88,5 +119,12 @@ export default function sitemap(): MetadataRoute.Sitemap {
     priority: 0.8,
   }));
 
-  return [...staticPages, ...nflTeamPages, ...nbaTeamPages];
+  const nhlTeamPages: MetadataRoute.Sitemap = NHL_TEAMS.map((abbr) => ({
+    url: `${baseUrl}/nhl/teams/${abbr}`,
+    lastModified: new Date(),
+    changeFrequency: 'daily' as const,
+    priority: 0.8,
+  }));
+
+  return [...staticPages, ...nflTeamPages, ...nbaTeamPages, ...nhlTeamPages];
 }

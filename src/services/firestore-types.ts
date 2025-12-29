@@ -1,4 +1,4 @@
-export type SportKey = 'nfl' | 'nba';
+export type SportKey = 'nfl' | 'nba' | 'nhl';
 
 export interface SportState {
   lastSyncAt?: string;
