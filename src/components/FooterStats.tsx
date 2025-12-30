@@ -12,11 +12,19 @@ type SummaryStats = {
 export default function FooterStats() {
   const pathname = usePathname();
   const isNBA = pathname?.startsWith('/nba');
+  const isNHL = pathname?.startsWith('/nhl');
   const [stats, setStats] = useState<SummaryStats | null>(null);
+
+  const sport = isNHL ? 'NHL' : isNBA ? 'NBA' : 'NFL';
+  const spreadLabel = isNHL ? 'PL' : 'ATS'; // Puck Line for NHL
 
   useEffect(() => {
     let cancelled = false;
-    const url = isNBA ? '/nba-prediction-data.json' : '/prediction-data.json';
+    const url = isNHL
+      ? '/nhl-prediction-data.json'
+      : isNBA
+        ? '/nba-prediction-data.json'
+        : '/prediction-data.json';
 
     const loadStats = async () => {
       try {
@@ -38,7 +46,7 @@ export default function FooterStats() {
 
     loadStats();
     return () => { cancelled = true; };
-  }, [isNBA]);
+  }, [isNBA, isNHL]);
 
   if (!stats) {
     return <span className="text-[10px] sm:text-sm">Loading stats...</span>;
@@ -47,7 +55,7 @@ export default function FooterStats() {
   return (
     <span className="text-[10px] sm:text-sm flex items-center gap-1.5">
       <span className="bg-green-100 text-green-700 px-1 py-0.5 rounded text-[9px] sm:text-[10px] font-bold">HIGH CONV</span>
-      <span>{isNBA ? 'NBA' : 'NFL'}: ATS {stats.ats}% | ML {stats.ml}% | O/U {stats.ou}%</span>
+      <span>{sport}: {spreadLabel} {stats.ats}% | ML {stats.ml}% | O/U {stats.ou}%</span>
     </span>
   );
 }

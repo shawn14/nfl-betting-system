@@ -72,8 +72,6 @@ interface HistoricalOdds {
 interface BlobState {
   generated: string;
   teams: TeamData[];
-  processedGameIds: string[];
-  historicalOdds: Record<string, HistoricalOdds>;
   games: unknown[];
   recentGames: unknown[];
   backtest: {
@@ -720,8 +718,6 @@ export async function GET(request: Request) {
     const blobState: BlobState = {
       generated: now.toISOString(),
       teams: sortedTeams,
-      processedGameIds: Array.from(processedGameIds),
-      historicalOdds,
       games: predictions,
       recentGames,
       backtest: {

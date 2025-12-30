@@ -198,8 +198,6 @@ interface HistoricalOdds {
 interface BlobState {
   generated: string;
   teams: TeamData[];
-  processedGameIds: string[];
-  historicalOdds: Record<string, HistoricalOdds>;
   games: unknown[];
   recentGames: unknown[];
   backtest: {
@@ -1251,8 +1249,6 @@ export async function GET(request: Request) {
     const blobData: BlobState = {
       generated: new Date().toISOString(),
       teams: Array.from(teamsMap.values()).sort((a, b) => b.eloRating - a.eloRating),
-      processedGameIds: Array.from(processedGameIds),
-      historicalOdds,
       games: gamesWithPredictions.sort((a, b) =>
         new Date(a.game.gameTime || 0).getTime() - new Date(b.game.gameTime || 0).getTime()
       ),
