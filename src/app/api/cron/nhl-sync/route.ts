@@ -222,9 +222,12 @@ export async function GET(request: Request) {
     const targetSeason = Number.isFinite(parsedSeason) ? parsedSeason : inferredSeason;
     log(`Target season: ${targetSeason}`);
 
-    const UPCOMING_DAYS = 7;
+    const UPCOMING_DAYS = 8; // Extra day to handle UTC/US timezone difference
     const today = new Date();
-    const rangeSchedule = await fetchNHLScheduleRange(today, UPCOMING_DAYS);
+    // Start from yesterday to capture today's games when cron runs after midnight UTC
+    const yesterday = new Date(today);
+    yesterday.setDate(yesterday.getDate() - 1);
+    const rangeSchedule = await fetchNHLScheduleRange(yesterday, UPCOMING_DAYS);
     const currentSchedule = rangeSchedule.length > 0
       ? rangeSchedule.filter(g => g.season === targetSeason)
       : fullSchedule.filter(game => game.season === targetSeason);

@@ -556,9 +556,12 @@ export async function GET(request: Request) {
       : rawState?.season || new Date().getFullYear();
     const targetSeason = Number.isFinite(parsedSeason) ? parsedSeason : inferredSeason;
     log(`Target season: ${targetSeason}`);
-    const UPCOMING_DAYS = 7;
+    const UPCOMING_DAYS = 8; // Extra day to handle UTC/US timezone difference
     const today = new Date();
-    const rangeSchedule = await fetchNBAScheduleRange(today, UPCOMING_DAYS, targetSeason);
+    // Start from yesterday to capture today's games when cron runs after midnight UTC
+    const yesterday = new Date(today);
+    yesterday.setDate(yesterday.getDate() - 1);
+    const rangeSchedule = await fetchNBAScheduleRange(yesterday, UPCOMING_DAYS, targetSeason);
     const currentSchedule = rangeSchedule.length > 0
       ? rangeSchedule
       : fullSchedule.filter(game => game.season === targetSeason);
