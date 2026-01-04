@@ -79,13 +79,12 @@ function computeHighConvictionStats(results: BacktestResult[]): HighConvictionSt
   let mlW = 0, mlL = 0;
 
   for (const r of results) {
-    // Calculate confidence based on edge (same thresholds as sync)
-    const spreadEdge = r.vegasSpread !== undefined ? Math.abs(r.predictedSpread - r.vegasSpread) : 0;
     const totalEdge = r.vegasTotal !== undefined ? Math.abs(r.predictedTotal - r.vegasTotal) : 0;
     const mlEdge = Math.abs(r.homeWinProb - 0.5) * 100;
 
-    // High conviction ATS (edge >= 2 pts)
-    if (spreadEdge >= 2 && r.atsResult) {
+    // High conviction ATS - use actual conviction flag from stored results
+    const isHighConviction = (r as any).conviction?.isHighConviction === true;
+    if (isHighConviction && r.atsResult) {
       if (r.atsResult === 'win') atsW++;
       else if (r.atsResult === 'loss') atsL++;
       else atsP++;
