@@ -29,7 +29,7 @@ export default function LandingPage() {
             Prediction Matrix
           </div>
           <h1 className="text-4xl sm:text-5xl font-bold text-gray-900 leading-tight">
-            AI-backed NFL & NBA predictions,
+            AI-backed NFL, NBA & NHL predictions,
             <span className="block text-red-600">built for speed and clarity.</span>
           </h1>
           <p className="text-base sm:text-lg text-gray-600 max-w-xl">
