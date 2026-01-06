@@ -2,7 +2,7 @@
 
 import { createContext, useContext, useEffect, useMemo, useState } from 'react';
 import { onAuthStateChanged, User } from 'firebase/auth';
-import { doc, onSnapshot } from 'firebase/firestore';
+import { doc, onSnapshot, setDoc, getDoc } from 'firebase/firestore';
 import { auth, db } from '@/lib/firebase';
 
 interface SubscriptionState {
@@ -46,6 +46,20 @@ export function AuthProvider({ children }: { children: React.ReactNode }) {
       return;
     }
     const userRef = doc(db, 'users', user.uid);
+
+    // Create user doc if it doesn't exist
+    const ensureUserDoc = async () => {
+      const snapshot = await getDoc(userRef);
+      if (!snapshot.exists()) {
+        await setDoc(userRef, {
+          email: user.email || null,
+          createdAt: new Date().toISOString(),
+          isPremium: false,
+        });
+      }
+    };
+    ensureUserDoc();
+
     const unsubscribe = onSnapshot(userRef, (snapshot) => {
       if (!snapshot.exists()) {
         setSubscription(null);
