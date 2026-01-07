@@ -48,6 +48,11 @@ interface BacktestResult {
   };
 }
 
+interface VegasStats {
+  ats: { wins: number; losses: number; pushes: number; winPct: number; gamesWithOdds: number };
+  ouVegas: { wins: number; losses: number; pushes: number; winPct: number; gamesWithOdds: number };
+}
+
 interface HighConvictionStats {
   ats: { wins: number; losses: number; pushes: number; winPct: number; total: number };
   ou: { wins: number; losses: number; pushes: number; winPct: number; total: number };
@@ -60,13 +65,15 @@ function computeHighConvictionStats(results: BacktestResult[]): HighConvictionSt
   let mlW = 0, mlL = 0;
 
   for (const r of results) {
-    // Calculate confidence based on edge (NHL-specific thresholds)
+    // Use conviction flag if available, otherwise fall back to edge calculation
+    const isHighConviction = r.conviction?.isHighConviction === true;
     const spreadEdge = r.vegasSpread !== undefined ? Math.abs(r.predictedSpread - r.vegasSpread) : 0;
     const totalEdge = r.vegasTotal !== undefined ? Math.abs(r.predictedTotal - r.vegasTotal) : 0;
     const mlEdge = Math.abs(r.homeWinProb - 0.5) * 100;
 
-    // High conviction Puck Line (edge >= 0.75 goals)
-    if (spreadEdge >= 0.75 && r.atsResult) {
+    // High conviction Puck Line (use flag or edge >= 0.75 goals)
+    const puckLineHighConv = isHighConviction || spreadEdge >= 0.75;
+    if (puckLineHighConv && r.atsResult) {
       if (r.atsResult === 'win') atsW++;
       else if (r.atsResult === 'loss') atsL++;
       else atsP++;
@@ -95,6 +102,52 @@ function computeHighConvictionStats(results: BacktestResult[]): HighConvictionSt
     ats: { wins: atsW, losses: atsL, pushes: atsP, winPct: atsTotal > 0 ? Math.round((atsW / atsTotal) * 1000) / 10 : 0, total: atsW + atsL + atsP },
     ou: { wins: ouW, losses: ouL, pushes: ouP, winPct: ouTotal > 0 ? Math.round((ouW / ouTotal) * 1000) / 10 : 0, total: ouW + ouL + ouP },
     ml: { wins: mlW, losses: mlL, winPct: mlTotal > 0 ? Math.round((mlW / mlTotal) * 1000) / 10 : 0, total: mlTotal },
+  };
+}
+
+function computeVegasStats(results: BacktestResult[]): VegasStats {
+  let atsWins = 0, atsLosses = 0, atsPushes = 0;
+  let ouWins = 0, ouLosses = 0, ouPushes = 0;
+  let gamesWithSpreadOdds = 0, gamesWithTotalOdds = 0;
+
+  for (const r of results) {
+    if (r.vegasSpread !== undefined && r.vegasSpread !== null) {
+      gamesWithSpreadOdds++;
+      const result = r.atsResult || r.spreadResult;
+      if (result === 'win') atsWins++;
+      else if (result === 'loss') atsLosses++;
+      else if (result === 'push') atsPushes++;
+    }
+
+    if (r.vegasTotal !== undefined && r.vegasTotal !== null && r.vegasTotal > 0) {
+      gamesWithTotalOdds++;
+      const ouResult = r.ouResult || r.ouVegasResult;
+      if (ouResult) {
+        if (ouResult === 'win') ouWins++;
+        else if (ouResult === 'loss') ouLosses++;
+        else ouPushes++;
+      }
+    }
+  }
+
+  const atsTotal = atsWins + atsLosses;
+  const ouTotal = ouWins + ouLosses;
+
+  return {
+    ats: {
+      wins: atsWins,
+      losses: atsLosses,
+      pushes: atsPushes,
+      winPct: atsTotal > 0 ? Math.round((atsWins / atsTotal) * 1000) / 10 : 0,
+      gamesWithOdds: gamesWithSpreadOdds,
+    },
+    ouVegas: {
+      wins: ouWins,
+      losses: ouLosses,
+      pushes: ouPushes,
+      winPct: ouTotal > 0 ? Math.round((ouWins / ouTotal) * 1000) / 10 : 0,
+      gamesWithOdds: gamesWithTotalOdds,
+    },
   };
 }
 
@@ -262,13 +315,41 @@ function computeAnalysis(results: BacktestResult[]): Analysis {
   };
 }
 
+// Generate a one-line recap from stats
+function generateRecap(highConv: HighConvictionStats, overall: VegasStats): string {
+  const parts: string[] = [];
+
+  if (highConv.ml.total > 0) {
+    if (highConv.ml.winPct >= 65) parts.push('ML is strong');
+    else if (highConv.ml.winPct >= 55) parts.push('ML is solid');
+    else if (highConv.ml.winPct < 50) parts.push('ML is struggling');
+  }
+
+  if (highConv.ats.total > 0) {
+    if (highConv.ats.winPct >= 58) parts.push('puck line is profitable');
+    else if (highConv.ats.winPct >= 52) parts.push('puck line is steady');
+    else if (highConv.ats.winPct < 50) parts.push('puck line is mixed');
+  }
+
+  if (highConv.ou.total > 0) {
+    if (highConv.ou.winPct >= 58) parts.push('totals hitting well');
+    else if (highConv.ou.winPct >= 52) parts.push('totals are steady');
+    else if (highConv.ou.winPct < 50) parts.push('totals need work');
+  }
+
+  if (parts.length === 0) return 'Building sample size for high conviction picks.';
+  return parts.join('; ') + '.';
+}
+
 export default function NHLResultsPage() {
   const [results, setResults] = useState<BacktestResult[]>([]);
   const [summary, setSummary] = useState<Summary | null>(null);
   const [analysis, setAnalysis] = useState<Analysis | null>(null);
+  const [vegasStats, setVegasStats] = useState<VegasStats | null>(null);
   const [highConvStats, setHighConvStats] = useState<HighConvictionStats | null>(null);
   const [loading, setLoading] = useState(true);
   const [showAnalysis, setShowAnalysis] = useState(false);
+  const [viewMode, setViewMode] = useState<'conviction' | 'overall'>('conviction');
 
   useEffect(() => {
     const fetchResults = async () => {
@@ -289,6 +370,7 @@ export default function NHLResultsPage() {
 
         if (backtestResults.length > 0) {
           setAnalysis(computeAnalysis(backtestResults));
+          setVegasStats(computeVegasStats(backtestResults));
           setHighConvStats(computeHighConvictionStats(backtestResults));
         }
       } catch (error) {
@@ -336,22 +418,7 @@ export default function NHLResultsPage() {
     return <span className={`font-mono font-bold ${color}`}>{pct}%</span>;
   };
 
-  // Calculate recent performance (last 7 days)
-  const recentResults = results.filter(r => {
-    const gameDate = new Date(r.gameTime);
-    const sevenDaysAgo = new Date();
-    sevenDaysAgo.setDate(sevenDaysAgo.getDate() - 7);
-    return gameDate >= sevenDaysAgo;
-  });
-
-  const recentATS = recentResults.reduce((acc, r) => {
-    const result = r.atsResult || r.spreadResult;
-    if (result === 'win') acc.wins++;
-    else if (result === 'loss') acc.losses++;
-    return acc;
-  }, { wins: 0, losses: 0 });
-
-  // Calculate trust score (rolling 20 game puck line performance)
+  // Calculate Current Form (rolling 20 game puck line performance)
   const last20 = results.slice(0, 20);
   const last20ATS = last20.reduce((acc, r) => {
     const result = r.atsResult || r.spreadResult;
@@ -359,193 +426,287 @@ export default function NHLResultsPage() {
     else if (result === 'loss') acc.losses++;
     return acc;
   }, { wins: 0, losses: 0 });
-  const trustScore = last20ATS.wins + last20ATS.losses > 0
+  const formScore = last20ATS.wins + last20ATS.losses > 0
     ? Math.round((last20ATS.wins / (last20ATS.wins + last20ATS.losses)) * 100)
     : 50;
 
+  // Calculate deltas between high conviction and overall
+  const getDelta = (highPct: number, overallPct: number) => {
+    const delta = Math.round((highPct - overallPct) * 10) / 10;
+    return delta;
+  };
+
+  // Get form status text
+  const getFormStatus = (score: number) => {
+    if (score >= 60) return { text: 'Hot streak', color: 'text-green-600' };
+    if (score >= 55) return { text: 'Running well', color: 'text-green-600' };
+    if (score >= 50) return { text: 'On track', color: 'text-blue-600' };
+    if (score >= 45) return { text: 'Cooling off', color: 'text-amber-600' };
+    return { text: 'Cold spell', color: 'text-red-600' };
+  };
+
+  const formStatus = getFormStatus(formScore);
+
   return (
     <div className="space-y-4 sm:space-y-6">
-      {/* Recap Banner */}
-      {recentResults.length > 0 && (
-        <div className="bg-gradient-to-r from-blue-500 to-blue-600 rounded-2xl p-4 sm:p-6 text-white">
-          <div className="flex flex-col sm:flex-row sm:items-center sm:justify-between gap-4">
-            <div>
-              <h2 className="text-lg sm:text-xl font-bold mb-1">Last 7 Days</h2>
-              <p className="text-blue-100 text-sm">{recentResults.length} games analyzed</p>
-            </div>
-            <div className="flex items-center gap-6">
-              <div className="text-center">
-                <div className="text-3xl sm:text-4xl font-bold font-mono">{recentATS.wins}-{recentATS.losses}</div>
-                <div className="text-blue-200 text-xs font-medium">PUCK LINE RECORD</div>
-              </div>
-              {recentATS.wins + recentATS.losses > 0 && (
-                <div className="text-center">
-                  <div className={`text-3xl sm:text-4xl font-bold font-mono ${
-                    (recentATS.wins / (recentATS.wins + recentATS.losses)) >= 0.55 ? 'text-green-300' :
-                    (recentATS.wins / (recentATS.wins + recentATS.losses)) < 0.45 ? 'text-red-300' : 'text-white'
-                  }`}>
-                    {Math.round((recentATS.wins / (recentATS.wins + recentATS.losses)) * 100)}%
-                  </div>
-                  <div className="text-blue-200 text-xs font-medium">WIN RATE</div>
-                </div>
-              )}
-            </div>
-          </div>
-        </div>
-      )}
-
-      {/* Trust Scoreboard */}
-      <div className="bg-white rounded-2xl border border-gray-200 p-4 sm:p-5">
-        <div className="flex items-center justify-between mb-3">
-          <h3 className="font-bold text-gray-900 text-sm sm:text-base">Model Trust Score</h3>
-          <span className="text-xs text-gray-500">Last 20 games</span>
-        </div>
-        <div className="flex items-center gap-4">
-          <div className="flex-1">
-            <div className="h-3 bg-gray-100 rounded-full overflow-hidden">
-              <div
-                className={`h-full rounded-full transition-all ${
-                  trustScore >= 55 ? 'bg-green-500' : trustScore >= 50 ? 'bg-blue-500' : 'bg-red-500'
-                }`}
-                style={{ width: `${trustScore}%` }}
-              />
-            </div>
-            <div className="flex justify-between mt-1 text-[10px] text-gray-400">
-              <span>0%</span>
-              <span>50%</span>
-              <span>100%</span>
-            </div>
-          </div>
-          <div className="text-center min-w-[60px]">
-            <div className={`text-2xl font-bold font-mono ${
-              trustScore >= 55 ? 'text-green-600' : trustScore >= 50 ? 'text-blue-600' : 'text-red-600'
-            }`}>
-              {trustScore}%
-            </div>
-            <div className={`text-[10px] font-bold ${
-              trustScore >= 55 ? 'text-green-600' : trustScore >= 50 ? 'text-blue-600' : 'text-red-600'
-            }`}>
-              {trustScore >= 60 ? 'HOT' : trustScore >= 55 ? 'WARM' : trustScore >= 50 ? 'NEUTRAL' : 'COLD'}
-            </div>
-          </div>
-        </div>
-        <div className="flex gap-1 mt-3">
-          {last20.slice(0, 20).reverse().map((r, i) => {
-            const result = r.atsResult || r.spreadResult;
-            return (
-              <div
-                key={i}
-                className={`flex-1 h-2 rounded-sm ${
-                  result === 'win' ? 'bg-green-500' :
-                  result === 'loss' ? 'bg-red-500' : 'bg-gray-300'
-                }`}
-                title={`${r.awayTeam} @ ${r.homeTeam}: ${result?.toUpperCase() || 'PUSH'}`}
-              />
-            );
-          })}
-        </div>
-        <div className="text-[10px] text-gray-400 mt-1 text-center">Recent → Older</div>
-      </div>
-
-      <div className="flex justify-between items-center border-b border-gray-200 pb-3 sm:pb-4">
+      {/* Header */}
+      <div className="flex flex-col sm:flex-row sm:items-center sm:justify-between gap-3 border-b border-gray-200 pb-4">
         <div className="flex items-center gap-3">
           <h1 className="text-xl sm:text-2xl font-bold text-gray-900">NHL Results</h1>
-          <span className="bg-blue-100 text-blue-700 text-xs font-bold px-2 py-1 rounded">NHL</span>
+          <span className="bg-green-100 text-green-700 text-[10px] sm:text-xs font-bold px-2 py-1 rounded">HIGH CONVICTION FOCUS</span>
         </div>
-        <button
-          onClick={() => setShowAnalysis(!showAnalysis)}
-          className="px-3 sm:px-4 py-1.5 sm:py-2 bg-blue-500 hover:bg-blue-600 text-white text-xs sm:text-sm font-medium rounded-lg transition-colors"
-        >
-          {showAnalysis ? 'Hide' : 'Analysis'}
-        </button>
+        <div className="flex items-center gap-2">
+          {/* View Toggle */}
+          <div className="flex bg-gray-100 rounded-lg p-1">
+            <button
+              onClick={() => setViewMode('conviction')}
+              className={`px-3 py-1.5 text-xs sm:text-sm font-medium rounded-md transition ${
+                viewMode === 'conviction' ? 'bg-white text-gray-900 shadow-sm' : 'text-gray-500 hover:text-gray-700'
+              }`}
+            >
+              High Conviction
+            </button>
+            <button
+              onClick={() => setViewMode('overall')}
+              className={`px-3 py-1.5 text-xs sm:text-sm font-medium rounded-md transition ${
+                viewMode === 'overall' ? 'bg-white text-gray-900 shadow-sm' : 'text-gray-500 hover:text-gray-700'
+              }`}
+            >
+              Overall
+            </button>
+          </div>
+          <button
+            onClick={() => setShowAnalysis(!showAnalysis)}
+            className="px-3 sm:px-4 py-1.5 sm:py-2 bg-blue-500 hover:bg-blue-600 text-white text-xs sm:text-sm font-medium rounded-lg transition-colors"
+          >
+            {showAnalysis ? 'Hide' : 'Analysis'}
+          </button>
+        </div>
       </div>
 
-      {/* Summary Cards */}
-      {summary && (
+      {/* Current Form - Compact */}
+      <div className="bg-white rounded-2xl border border-gray-200 p-4 shadow-sm">
+        <div className="flex items-center justify-between">
+          <div className="flex items-center gap-3">
+            <h3 className="font-bold text-gray-900 text-sm">Current Form</h3>
+            <span className="text-xs text-gray-400">Last 20 picks</span>
+          </div>
+          <div className="flex items-center gap-3">
+            <div className="flex gap-0.5">
+              {last20.slice(0, 20).reverse().map((r, i) => {
+                const result = r.atsResult || r.spreadResult;
+                return (
+                  <div
+                    key={i}
+                    className={`w-2.5 h-5 rounded-sm ${
+                      result === 'win' ? 'bg-green-500' :
+                      result === 'loss' ? 'bg-red-500' : 'bg-gray-300'
+                    }`}
+                    title={`${r.awayTeam} @ ${r.homeTeam}: ${result?.toUpperCase() || 'PUSH'}`}
+                  />
+                );
+              })}
+            </div>
+            <div className="text-right">
+              <div className={`text-lg font-bold font-mono ${formStatus.color}`}>
+                {last20ATS.wins}-{last20ATS.losses}
+              </div>
+              <div className={`text-[10px] font-medium ${formStatus.color}`}>{formStatus.text}</div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      {/* Main Performance Section */}
+      {highConvStats && vegasStats && (
         <div className="space-y-4">
-          {/* High Conviction Only */}
-          {highConvStats && (highConvStats.ats.total > 0 || highConvStats.ml.total > 0 || highConvStats.ou.total > 0) && (
-            <div className="bg-gradient-to-r from-emerald-50 to-green-50 border border-green-300 rounded-xl p-3 sm:p-4">
-              <h2 className="text-green-800 font-bold text-xs sm:text-sm mb-2 sm:mb-3 flex items-center gap-2">
-                <span className="w-3 h-3 bg-green-600 rounded"></span>
-                High Conviction Only
-              </h2>
-              <div className="grid grid-cols-3 gap-2 sm:gap-4">
-                {highConvStats.ats.total > 0 && (
-                  <div className="bg-white rounded-lg p-2.5 sm:p-4 border border-green-200">
-                    <div className="text-gray-600 text-[10px] sm:text-sm font-medium mb-0.5 sm:mb-1">Puck Line</div>
-                    <div className="text-lg sm:text-2xl font-bold text-gray-900">
-                      {highConvStats.ats.wins}-{highConvStats.ats.losses}
-                      {highConvStats.ats.pushes > 0 && <span className="text-gray-400 text-base sm:text-2xl">-{highConvStats.ats.pushes}</span>}
-                    </div>
-                    <div className={`text-base sm:text-xl font-mono font-bold ${highConvStats.ats.winPct > 52.4 ? 'text-green-600' : highConvStats.ats.winPct < 47.6 ? 'text-red-500' : 'text-gray-500'}`}>
-                      {highConvStats.ats.winPct}%
-                    </div>
-                    <div className="text-[9px] sm:text-xs text-gray-500 mt-0.5 sm:mt-1">{highConvStats.ats.total} picks</div>
+          {/* Primary Stats Card - High Conviction or Overall based on viewMode */}
+          <div className={`relative bg-white rounded-2xl border shadow-sm overflow-hidden ${
+            viewMode === 'conviction' ? 'border-green-200' : 'border-gray-200'
+          }`}>
+            {/* Left accent rail */}
+            <div className={`absolute left-0 top-0 h-full w-1 ${viewMode === 'conviction' ? 'bg-green-500' : 'bg-gray-300'}`} />
+
+            <div className="p-4 sm:p-5">
+              <div className="flex items-center justify-between mb-4">
+                <div className="flex items-center gap-2">
+                  <h2 className={`font-bold text-sm sm:text-base ${viewMode === 'conviction' ? 'text-green-800' : 'text-gray-700'}`}>
+                    {viewMode === 'conviction' ? 'High Conviction Performance' : 'Overall Performance'}
+                  </h2>
+                  {viewMode === 'conviction' && (
+                    <span className="text-[10px] text-green-600 bg-green-50 px-2 py-0.5 rounded">
+                      {(highConvStats.ats.total + highConvStats.ml.total + highConvStats.ou.total)} picks
+                    </span>
+                  )}
+                </div>
+                {highConvStats && vegasStats && (
+                  <div className="text-xs text-gray-500 max-w-[200px] sm:max-w-none truncate sm:whitespace-normal">
+                    {viewMode === 'conviction' && generateRecap(highConvStats, vegasStats)}
                   </div>
                 )}
-                {highConvStats.ml.total > 0 && (
-                  <div className="bg-white rounded-lg p-2.5 sm:p-4 border border-green-200">
-                    <div className="text-gray-600 text-[10px] sm:text-sm font-medium mb-0.5 sm:mb-1">ML</div>
-                    <div className="text-lg sm:text-2xl font-bold text-gray-900">
-                      {highConvStats.ml.wins}-{highConvStats.ml.losses}
+              </div>
+
+              <div className="grid grid-cols-3 gap-3 sm:gap-4">
+                {viewMode === 'conviction' ? (
+                  <>
+                    {/* High Conviction Puck Line */}
+                    <div className="bg-gray-50 rounded-xl p-3 sm:p-4">
+                      <div className="text-gray-500 text-[10px] sm:text-xs font-medium mb-1">Puck Line</div>
+                      <div className="text-lg sm:text-2xl font-bold text-gray-900">
+                        {highConvStats.ats.wins}-{highConvStats.ats.losses}
+                        {highConvStats.ats.pushes > 0 && <span className="text-gray-400 text-base sm:text-lg">-{highConvStats.ats.pushes}</span>}
+                      </div>
+                      <div className={`text-base sm:text-xl font-mono font-bold ${highConvStats.ats.winPct > 52.4 ? 'text-green-600' : highConvStats.ats.winPct < 47.6 ? 'text-red-500' : 'text-gray-500'}`}>
+                        {highConvStats.ats.winPct}%
+                      </div>
+                      <div className="text-[9px] sm:text-xs text-gray-400 mt-1">{highConvStats.ats.total} picks</div>
                     </div>
-                    <div className={`text-base sm:text-xl font-mono font-bold ${highConvStats.ml.winPct > 52.4 ? 'text-green-600' : highConvStats.ml.winPct < 47.6 ? 'text-red-500' : 'text-gray-500'}`}>
-                      {highConvStats.ml.winPct}%
+
+                    {/* High Conviction ML */}
+                    <div className="bg-gray-50 rounded-xl p-3 sm:p-4">
+                      <div className="text-gray-500 text-[10px] sm:text-xs font-medium mb-1">ML</div>
+                      <div className="text-lg sm:text-2xl font-bold text-gray-900">
+                        {highConvStats.ml.wins}-{highConvStats.ml.losses}
+                      </div>
+                      <div className={`text-base sm:text-xl font-mono font-bold ${highConvStats.ml.winPct > 52.4 ? 'text-green-600' : highConvStats.ml.winPct < 47.6 ? 'text-red-500' : 'text-gray-500'}`}>
+                        {highConvStats.ml.winPct}%
+                      </div>
+                      <div className="text-[9px] sm:text-xs text-gray-400 mt-1">{highConvStats.ml.total} picks</div>
                     </div>
-                    <div className="text-[9px] sm:text-xs text-gray-500 mt-0.5 sm:mt-1">{highConvStats.ml.total} picks</div>
-                  </div>
-                )}
-                {highConvStats.ou.total > 0 && (
-                  <div className="bg-white rounded-lg p-2.5 sm:p-4 border border-green-200">
-                    <div className="text-gray-600 text-[10px] sm:text-sm font-medium mb-0.5 sm:mb-1">O/U</div>
-                    <div className="text-lg sm:text-2xl font-bold text-gray-900">
-                      {highConvStats.ou.wins}-{highConvStats.ou.losses}
-                      {highConvStats.ou.pushes > 0 && <span className="text-gray-400 text-base sm:text-2xl">-{highConvStats.ou.pushes}</span>}
+
+                    {/* High Conviction O/U */}
+                    <div className="bg-gray-50 rounded-xl p-3 sm:p-4">
+                      <div className="text-gray-500 text-[10px] sm:text-xs font-medium mb-1">O/U</div>
+                      <div className="text-lg sm:text-2xl font-bold text-gray-900">
+                        {highConvStats.ou.wins}-{highConvStats.ou.losses}
+                        {highConvStats.ou.pushes > 0 && <span className="text-gray-400 text-base sm:text-lg">-{highConvStats.ou.pushes}</span>}
+                      </div>
+                      <div className={`text-base sm:text-xl font-mono font-bold ${highConvStats.ou.winPct > 52.4 ? 'text-green-600' : highConvStats.ou.winPct < 47.6 ? 'text-red-500' : 'text-gray-500'}`}>
+                        {highConvStats.ou.winPct}%
+                      </div>
+                      <div className="text-[9px] sm:text-xs text-gray-400 mt-1">{highConvStats.ou.total} picks</div>
                     </div>
-                    <div className={`text-base sm:text-xl font-mono font-bold ${highConvStats.ou.winPct > 52.4 ? 'text-green-600' : highConvStats.ou.winPct < 47.6 ? 'text-red-500' : 'text-gray-500'}`}>
-                      {highConvStats.ou.winPct}%
+                  </>
+                ) : (
+                  <>
+                    {/* Overall Puck Line */}
+                    <div className="bg-gray-50 rounded-xl p-3 sm:p-4">
+                      <div className="text-gray-500 text-[10px] sm:text-xs font-medium mb-1">Puck Line</div>
+                      <div className="text-lg sm:text-2xl font-bold text-gray-900">
+                        {vegasStats.ats.wins}-{vegasStats.ats.losses}
+                        {vegasStats.ats.pushes > 0 && <span className="text-gray-400 text-base sm:text-lg">-{vegasStats.ats.pushes}</span>}
+                      </div>
+                      <div className={`text-base sm:text-xl font-mono font-bold ${vegasStats.ats.winPct > 52.4 ? 'text-green-600' : vegasStats.ats.winPct < 47.6 ? 'text-red-500' : 'text-gray-500'}`}>
+                        {vegasStats.ats.winPct}%
+                      </div>
+                      <div className="text-[9px] sm:text-xs text-gray-400 mt-1">{vegasStats.ats.gamesWithOdds} games</div>
                     </div>
-                    <div className="text-[9px] sm:text-xs text-gray-500 mt-0.5 sm:mt-1">{highConvStats.ou.total} picks</div>
-                  </div>
+
+                    {/* Overall ML */}
+                    {summary && (
+                      <div className="bg-gray-50 rounded-xl p-3 sm:p-4">
+                        <div className="text-gray-500 text-[10px] sm:text-xs font-medium mb-1">ML</div>
+                        <div className="text-lg sm:text-2xl font-bold text-gray-900">
+                          {summary.moneyline.wins}-{summary.moneyline.losses}
+                        </div>
+                        <div className={`text-base sm:text-xl font-mono font-bold ${summary.moneyline.winPct > 50 ? 'text-green-600' : 'text-red-500'}`}>
+                          {summary.moneyline.winPct}%
+                        </div>
+                        <div className="text-[9px] sm:text-xs text-gray-400 mt-1">{summary.moneyline.wins + summary.moneyline.losses} games</div>
+                      </div>
+                    )}
+
+                    {/* Overall O/U */}
+                    <div className="bg-gray-50 rounded-xl p-3 sm:p-4">
+                      <div className="text-gray-500 text-[10px] sm:text-xs font-medium mb-1">O/U</div>
+                      <div className="text-lg sm:text-2xl font-bold text-gray-900">
+                        {vegasStats.ouVegas.wins}-{vegasStats.ouVegas.losses}
+                        {vegasStats.ouVegas.pushes > 0 && <span className="text-gray-400 text-base sm:text-lg">-{vegasStats.ouVegas.pushes}</span>}
+                      </div>
+                      <div className={`text-base sm:text-xl font-mono font-bold ${vegasStats.ouVegas.winPct > 52.4 ? 'text-green-600' : vegasStats.ouVegas.winPct < 47.6 ? 'text-red-500' : 'text-gray-500'}`}>
+                        {vegasStats.ouVegas.winPct}%
+                      </div>
+                      <div className="text-[9px] sm:text-xs text-gray-400 mt-1">{vegasStats.ouVegas.gamesWithOdds} games</div>
+                    </div>
+                  </>
                 )}
               </div>
             </div>
-          )}
+          </div>
 
-          {/* Directional Accuracy */}
-          <div className="bg-gray-50 border border-gray-200 rounded-xl p-3 sm:p-4">
-            <h2 className="text-gray-600 font-bold text-xs sm:text-sm mb-2 sm:mb-3">Directional Accuracy</h2>
-            <div className="grid grid-cols-3 gap-2 sm:gap-4">
-              <div className="bg-white rounded-lg p-2 sm:p-4 border border-gray-200">
-                <div className="text-gray-500 text-[9px] sm:text-xs font-medium mb-0.5 sm:mb-1">Puck Line</div>
-                <div className="text-sm sm:text-xl font-bold text-gray-900">
-                  {summary.spread.wins}-{summary.spread.losses}
-                  {summary.spread.pushes > 0 && <span className="text-gray-400 text-xs sm:text-lg">-{summary.spread.pushes}</span>}
-                </div>
-                <div className={`text-sm sm:text-lg font-mono font-bold ${summary.spread.winPct > 52.4 ? 'text-green-600' : summary.spread.winPct < 47.6 ? 'text-red-500' : 'text-gray-500'}`}>
-                  {summary.spread.winPct}%
+          {/* Comparison Row - Show opposite of current view */}
+          <div className="bg-gray-50 rounded-xl border border-gray-200 p-3 sm:p-4">
+            <div className="flex items-center justify-between mb-3">
+              <span className="text-xs font-medium text-gray-500">
+                {viewMode === 'conviction' ? 'Compared to Overall' : 'High Conviction Edge'}
+              </span>
+            </div>
+            <div className="grid grid-cols-3 gap-4">
+              {/* Puck Line Comparison */}
+              <div className="flex items-center justify-between">
+                <span className="text-xs text-gray-500">PL</span>
+                <div className="flex items-center gap-2">
+                  <span className="text-xs text-gray-400">
+                    {viewMode === 'conviction'
+                      ? `${vegasStats.ats.winPct}%`
+                      : `${highConvStats.ats.winPct}%`}
+                  </span>
+                  {(() => {
+                    const delta = viewMode === 'conviction'
+                      ? getDelta(highConvStats.ats.winPct, vegasStats.ats.winPct)
+                      : getDelta(highConvStats.ats.winPct, vegasStats.ats.winPct);
+                    return (
+                      <span className={`text-xs font-mono font-bold ${
+                        delta > 0 ? 'text-green-600' : delta < 0 ? 'text-red-500' : 'text-gray-400'
+                      }`}>
+                        {delta > 0 ? '+' : ''}{delta}
+                      </span>
+                    );
+                  })()}
                 </div>
               </div>
 
-              <div className="bg-white rounded-lg p-2 sm:p-4 border border-gray-200">
-                <div className="text-gray-500 text-[9px] sm:text-xs font-medium mb-0.5 sm:mb-1">ML</div>
-                <div className="text-sm sm:text-xl font-bold text-gray-900">
-                  {summary.moneyline.wins}-{summary.moneyline.losses}
-                </div>
-                <div className={`text-sm sm:text-lg font-mono font-bold ${summary.moneyline.winPct > 50 ? 'text-green-600' : 'text-red-500'}`}>
-                  {summary.moneyline.winPct}%
+              {/* ML Comparison */}
+              <div className="flex items-center justify-between">
+                <span className="text-xs text-gray-500">ML</span>
+                <div className="flex items-center gap-2">
+                  <span className="text-xs text-gray-400">
+                    {viewMode === 'conviction'
+                      ? `${summary?.moneyline.winPct || 0}%`
+                      : `${highConvStats.ml.winPct}%`}
+                  </span>
+                  {(() => {
+                    const delta = getDelta(highConvStats.ml.winPct, summary?.moneyline.winPct || 0);
+                    return (
+                      <span className={`text-xs font-mono font-bold ${
+                        delta > 0 ? 'text-green-600' : delta < 0 ? 'text-red-500' : 'text-gray-400'
+                      }`}>
+                        {delta > 0 ? '+' : ''}{delta}
+                      </span>
+                    );
+                  })()}
                 </div>
               </div>
 
-              <div className="bg-white rounded-lg p-2 sm:p-4 border border-gray-200">
-                <div className="text-gray-500 text-[9px] sm:text-xs font-medium mb-0.5 sm:mb-1">O/U</div>
-                <div className="text-sm sm:text-xl font-bold text-gray-900">
-                  {summary.overUnder.wins}-{summary.overUnder.losses}
-                  {summary.overUnder.pushes > 0 && <span className="text-gray-400 text-xs sm:text-lg">-{summary.overUnder.pushes}</span>}
-                </div>
-                <div className={`text-sm sm:text-lg font-mono font-bold ${summary.overUnder.winPct > 52.4 ? 'text-green-600' : summary.overUnder.winPct < 47.6 ? 'text-red-500' : 'text-gray-500'}`}>
-                  {summary.overUnder.winPct}%
+              {/* O/U Comparison */}
+              <div className="flex items-center justify-between">
+                <span className="text-xs text-gray-500">O/U</span>
+                <div className="flex items-center gap-2">
+                  <span className="text-xs text-gray-400">
+                    {viewMode === 'conviction'
+                      ? `${vegasStats.ouVegas.winPct}%`
+                      : `${highConvStats.ou.winPct}%`}
+                  </span>
+                  {(() => {
+                    const delta = getDelta(highConvStats.ou.winPct, vegasStats.ouVegas.winPct);
+                    return (
+                      <span className={`text-xs font-mono font-bold ${
+                        delta > 0 ? 'text-green-600' : delta < 0 ? 'text-red-500' : 'text-gray-400'
+                      }`}>
+                        {delta > 0 ? '+' : ''}{delta}
+                      </span>
+                    );
+                  })()}
                 </div>
               </div>
             </div>
@@ -561,7 +722,7 @@ export default function NHLResultsPage() {
               <h3 className="font-bold text-amber-800 mb-2">Key Insights</h3>
               <ul className="space-y-1 text-sm">
                 {analysis.insights.map((insight, i) => (
-                  <li key={i} className="text-amber-700">{insight}</li>
+                  <li key={i} className="text-amber-700">• {insight}</li>
                 ))}
               </ul>
             </div>
