@@ -1,7 +1,7 @@
-# NFL + NBA Betting System Architecture
+# NFL + NBA + NHL Betting System Architecture
 
 ## Overview
-This is a Next.js-based NFL/NBA betting prediction system that uses Elo ratings, team statistics, weather data, and injury reports to generate betting predictions. The system runs on Vercel with Firebase Firestore as the source of truth and Vercel Blob Storage as the fast read cache for the frontend.
+This is a Next.js-based NFL/NBA/NHL betting prediction system that uses Elo ratings, team statistics, weather data (NFL), and injury reports (NFL) to generate betting predictions. The system runs on Vercel with Firebase Firestore as the source of truth and Vercel Blob Storage as the fast read cache for the frontend.
 
 ## System Architecture
 
@@ -80,20 +80,75 @@ This is a Next.js-based NFL/NBA betting prediction system that uses Elo ratings,
 
 ## 2. Storage Architecture
 
-### Firebase Firestore (Primary - Active)
+### Firebase Firestore Collections
 
-**Documents:**
-- `sports/nfl` and `sports/nba` store last sync metadata and blob write info.
-- Subcollections (canonical): `teams`, `games`, `oddsLocks`, `predictions`, `results`
-- NFL-only caches: `weather`, `injuries`
+#### Active Collections (Used by Cron Jobs)
+
+**`sports/{sport}`** - Main sport documents (nfl, nba, nhl)
+```
+sports/
+├── nfl/                          # NFL sport state
+│   ├── (document fields)         # lastSyncAt, lastBlobWriteAt, season, currentWeek, etc.
+│   ├── teams/                    # Subcollection: team data + Elo
+│   ├── games/                    # Subcollection: game data
+│   ├── oddsLocks/                # Subcollection: locked Vegas odds
+│   ├── predictions/              # Subcollection: model predictions
+│   ├── results/                  # Subcollection: backtest results
+│   ├── weather/                  # Subcollection: weather cache (NFL only)
+│   └── injuries/                 # Subcollection: injury cache (NFL only)
+├── nba/                          # NBA sport state (same structure, no weather/injuries)
+└── nhl/                          # NHL sport state (same structure, no weather/injuries)
+```
+
+**`users`** - User accounts (Firebase Auth integration)
+```
+users/{uid}/
+├── email: string
+├── createdAt: string (ISO)
+├── isPremium: boolean
+├── stripeCustomerId?: string
+├── subscriptionStatus?: string   # 'active', 'trialing', 'canceled', etc.
+├── currentPeriodEnd?: string     # Subscription end date
+└── priceId?: string              # Stripe price ID
+```
+
+**`nbaConfig`** - NBA model configuration
+```
+nbaConfig/
+├── convictionStrategy/           # Conviction filter settings
+└── teamAdjustments/              # Team-specific adjustments
+```
+
+**`nbaStrategies`** - NBA optimization results
+```
+nbaStrategies/
+└── convictionFilters/            # Optimized filter parameters
+```
+
+#### Legacy Collections (May Be Unused)
+
+These v2 collections were used by older API routes but the main cron jobs now use `sports/{sport}/subcollection`:
+
+- `teams_v2` - Legacy team data
+- `games_v2` - Legacy game data
+- `odds_v2` - Legacy odds data
+- `predictions_v2` - Legacy predictions
+
+**Files still importing legacy collections:** `/api/predictions`, `/api/edges`, `/api/backtest/*`, `/api/games`, `/api/odds`, `/api/teams`, `/api/admin/calibrate`, `/api/admin/recalculate-elo`
+
+### Firebase Firestore (Summary)
 
 **Key Features:**
 - Durable source of truth for scoring and history
 - Supports incremental updates and backtests
+- User authentication and subscription management
 
 ### Vercel Blob Storage (Read Cache)
 
-**Files:** `prediction-matrix-data.json` (NFL), `nba-prediction-data.json` (NBA)
+**Files:**
+- `prediction-matrix-data.json` (NFL)
+- `nba-prediction-data.json` (NBA)
+- `nhl-prediction-data.json` (NHL)
 
 **Contains:**
 ```typescript
@@ -744,16 +799,17 @@ FIREBASE_ADMIN_CREDENTIALS=<service_account_json_or_base64>
 **Cron Configuration** (`vercel.json`):
 ```json
 {
-  "crons": [{
-    "path": "/api/cron/blob-sync-simple",
-    "schedule": "0 */2 * * *"
-  }, {
-    "path": "/api/cron/nba-sync",
-    "schedule": "30 */2 * * *"
-  }]
+  "crons": [
+    { "path": "/api/cron/blob-sync-simple", "schedule": "0 */2 * * *" },
+    { "path": "/api/cron/nba-sync", "schedule": "*/30 * * * *" },
+    { "path": "/api/cron/nhl-sync", "schedule": "*/30 * * * *" },
+    { "path": "/api/admin/backfill-nba-odds", "schedule": "0 8 * * *" }
+  ]
 }
 ```
-- Runs at: every 2 hours (NBA offset by 30 minutes)
+- NFL: Every 2 hours
+- NBA/NHL: Every 30 minutes (during season)
+- NBA odds backfill: Daily at 8am UTC
 
 ---
 
