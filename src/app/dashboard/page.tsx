@@ -831,11 +831,6 @@ export default function Dashboard() {
                           <span className="text-[11px] sm:text-sm">{pickHomeSpread ? home : away}</span>
                           <span className="font-mono text-[10px] sm:text-sm">{formatSpread(pickHomeSpread ? displaySpread : -displaySpread)}</span>
                         </div>
-                        {atsConf === 'high' && prediction.spreadEdge !== undefined && (
-                          <div className="text-[9px] sm:text-[10px] opacity-90 mt-0.5">
-                            {prediction.spreadEdge > 0 ? '+' : ''}{prediction.spreadEdge.toFixed(1)} pts edge
-                          </div>
-                        )}
                       </div>
                       {spreadResult && (
                         <div className={`absolute -top-1 -right-1 sm:-top-1.5 sm:-right-1.5 w-4 h-4 sm:w-5 sm:h-5 rounded-full flex items-center justify-center text-[10px] sm:text-xs text-white font-bold ${
@@ -866,11 +861,6 @@ export default function Dashboard() {
                           <img src={getLogoUrl(pickHomeML ? home : away)} alt="" className="w-4 h-4 sm:w-5 sm:h-5 object-contain" />
                           <span className="text-[11px] sm:text-sm">{pickHomeML ? home : away}</span>
                         </div>
-                        {mlConf === 'high' && prediction.mlEdge !== undefined && (
-                          <div className="text-[9px] sm:text-[10px] opacity-90 mt-0.5">
-                            {prediction.mlEdge.toFixed(0)}% edge
-                          </div>
-                        )}
                       </div>
                       {mlResult && (
                         <div className={`absolute -top-1 -right-1 sm:-top-1.5 sm:-right-1.5 w-4 h-4 sm:w-5 sm:h-5 rounded-full flex items-center justify-center text-[10px] sm:text-xs text-white font-bold ${
@@ -898,11 +888,6 @@ export default function Dashboard() {
                         }`}
                       >
                         <div>{pickOver ? 'O' : 'U'} {Math.round(displayTotal * 2) / 2}</div>
-                        {ouConf === 'high' && prediction.totalEdge !== undefined && (
-                          <div className="text-[9px] sm:text-[10px] opacity-90 mt-0.5">
-                            {prediction.totalEdge > 0 ? '+' : ''}{prediction.totalEdge.toFixed(1)} pts edge
-                          </div>
-                        )}
                       </div>
                       {ouResult && (
                         <div className={`absolute -top-1 -right-1 sm:-top-1.5 sm:-right-1.5 w-4 h-4 sm:w-5 sm:h-5 rounded-full flex items-center justify-center text-[10px] sm:text-xs text-white font-bold ${

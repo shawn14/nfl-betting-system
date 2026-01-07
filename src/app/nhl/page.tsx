@@ -627,7 +627,7 @@ export default function NHLDashboard() {
                       </div>
                       <div className="relative">
                         <div
-                          className={`flex flex-col items-center justify-center px-1.5 sm:px-2.5 py-1.5 sm:py-2 rounded-lg text-xs sm:text-sm font-bold ${
+                          className={`flex items-center justify-center gap-1 px-1.5 sm:px-2.5 py-1.5 sm:py-2 rounded-lg text-xs sm:text-sm font-bold ${
                             atsConf === 'low'
                               ? 'bg-gray-100 text-gray-400'
                               : atsConf === 'high'
@@ -635,16 +635,9 @@ export default function NHLDashboard() {
                                 : 'bg-blue-500 text-white'
                           }`}
                         >
-                          <div className="flex items-center gap-1">
-                            <img src={getLogoUrl(pickHomeSpread ? home : away)} alt="" className="w-4 h-4 sm:w-5 sm:h-5 object-contain" />
-                            <span className="text-[11px] sm:text-sm">{pickHomeSpread ? home : away}</span>
-                            <span className="font-mono text-[10px] sm:text-sm">{formatSpread(pickHomeSpread ? displaySpread : -displaySpread)}</span>
-                          </div>
-                          {atsConf === 'high' && prediction.spreadEdge !== undefined && (
-                            <div className="text-[9px] sm:text-[10px] opacity-90 mt-0.5">
-                              {prediction.spreadEdge > 0 ? '+' : ''}{prediction.spreadEdge.toFixed(1)} edge
-                            </div>
-                          )}
+                          <img src={getLogoUrl(pickHomeSpread ? home : away)} alt="" className="w-4 h-4 sm:w-5 sm:h-5 object-contain" />
+                          <span className="text-[11px] sm:text-sm">{pickHomeSpread ? home : away}</span>
+                          <span className="font-mono text-[10px] sm:text-sm">{formatSpread(pickHomeSpread ? displaySpread : -displaySpread)}</span>
                         </div>
                       </div>
                     </div>
@@ -656,7 +649,7 @@ export default function NHLDashboard() {
                       </div>
                       <div className="relative">
                         <div
-                          className={`flex flex-col items-center justify-center px-1.5 sm:px-2.5 py-1.5 sm:py-2 rounded-lg text-xs sm:text-sm font-bold ${
+                          className={`flex items-center justify-center gap-1 px-1.5 sm:px-2.5 py-1.5 sm:py-2 rounded-lg text-xs sm:text-sm font-bold ${
                             mlConf === 'high'
                               ? 'bg-green-600 text-white'
                               : mlConf === 'medium'
@@ -664,15 +657,8 @@ export default function NHLDashboard() {
                                 : 'bg-gray-100 text-gray-400'
                           }`}
                         >
-                          <div className="flex items-center gap-1">
-                            <img src={getLogoUrl(pickHomeML ? home : away)} alt="" className="w-4 h-4 sm:w-5 sm:h-5 object-contain" />
-                            <span className="text-[11px] sm:text-sm">{pickHomeML ? home : away}</span>
-                          </div>
-                          {mlConf === 'high' && prediction.mlEdge !== undefined && (
-                            <div className="text-[9px] sm:text-[10px] opacity-90 mt-0.5">
-                              {prediction.mlEdge.toFixed(0)}% edge
-                            </div>
-                          )}
+                          <img src={getLogoUrl(pickHomeML ? home : away)} alt="" className="w-4 h-4 sm:w-5 sm:h-5 object-contain" />
+                          <span className="text-[11px] sm:text-sm">{pickHomeML ? home : away}</span>
                         </div>
                       </div>
                     </div>
@@ -693,11 +679,6 @@ export default function NHLDashboard() {
                           }`}
                         >
                           <div>{pickOver ? 'O' : 'U'} {Math.round(displayTotal * 2) / 2}</div>
-                          {ouConf === 'high' && prediction.totalEdge !== undefined && (
-                            <div className="text-[9px] sm:text-[10px] opacity-90 mt-0.5">
-                              {prediction.totalEdge > 0 ? '+' : ''}{prediction.totalEdge.toFixed(1)} edge
-                            </div>
-                          )}
                         </div>
                       </div>
                     </div>
