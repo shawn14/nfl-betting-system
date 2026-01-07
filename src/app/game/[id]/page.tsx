@@ -211,31 +211,29 @@ export default function GameDetailPage() {
   const formatSpread = (s: number) => (s > 0 ? `+${formatNum(s)}` : formatNum(s));
 
   return (
-    <div className="space-y-6 max-w-4xl mx-auto">
-      {/* Header */}
-      <div className="bg-white rounded-lg p-8 border border-gray-200 shadow-sm">
-        <div className="flex items-center justify-center gap-12 mb-6">
+    <div className="space-y-4 max-w-4xl mx-auto">
+      {/* Header - Compact */}
+      <div className="bg-white rounded-lg p-4 border border-gray-200 shadow-sm">
+        <div className="flex items-center justify-center gap-8">
           <div className="text-center">
-            <img src={getLogoUrl(away.abbreviation)} alt={away.abbreviation} className="w-20 h-20 mx-auto mb-3" />
-            <div className="font-bold text-2xl text-gray-900">{away.abbreviation}</div>
-            <div className="text-gray-500">{away.name}</div>
+            <img src={getLogoUrl(away.abbreviation)} alt={away.abbreviation} className="w-12 h-12 mx-auto mb-1" />
+            <div className="font-bold text-lg text-gray-900">{away.abbreviation}</div>
           </div>
           <div className="text-center">
-            <div className="text-5xl font-mono font-bold text-gray-900">
+            <div className="text-3xl font-mono font-bold text-gray-900">
               {prediction ? `${Math.round(prediction.predictedAwayScore)}-${Math.round(prediction.predictedHomeScore)}` : '—'}
             </div>
-            <div className="text-gray-500 mt-2">Predicted Score</div>
+            <div className="text-gray-500 text-sm">Predicted</div>
           </div>
           <div className="text-center">
-            <img src={getLogoUrl(home.abbreviation)} alt={home.abbreviation} className="w-20 h-20 mx-auto mb-3" />
-            <div className="font-bold text-2xl text-gray-900">{home.abbreviation}</div>
-            <div className="text-gray-500">{home.name}</div>
+            <img src={getLogoUrl(home.abbreviation)} alt={home.abbreviation} className="w-12 h-12 mx-auto mb-1" />
+            <div className="font-bold text-lg text-gray-900">{home.abbreviation}</div>
           </div>
         </div>
-        <div className="text-center text-gray-500">
+        <div className="text-center text-gray-500 text-sm mt-2">
           {new Date(game.gameTime).toLocaleDateString('en-US', {
-            weekday: 'long',
-            month: 'long',
+            weekday: 'short',
+            month: 'short',
             day: 'numeric',
             hour: 'numeric',
             minute: '2-digit',
@@ -244,178 +242,33 @@ export default function GameDetailPage() {
         </div>
       </div>
 
-      {/* Team Stats */}
-      <div className="bg-white rounded-lg p-6 border border-gray-200 shadow-sm">
-        <h2 className="text-xl font-bold mb-4 text-gray-900">Team Stats</h2>
-        <table className="w-full">
-          <thead className="text-gray-500 border-b border-gray-200">
-            <tr>
-              <th className="py-3 text-left text-base">Stat</th>
-              <th className="py-3 text-center text-base">{away.abbreviation}</th>
-              <th className="py-3 text-center text-base">{home.abbreviation}</th>
-            </tr>
-          </thead>
-          <tbody className="divide-y divide-gray-100">
-            <tr>
-              <td className="py-3 text-gray-600">Elo Rating</td>
-              <td className="py-3 text-center font-mono text-lg text-gray-900">{awayElo}</td>
-              <td className="py-3 text-center font-mono text-lg text-gray-900">{homeElo}</td>
-            </tr>
-            <tr>
-              <td className="py-3 text-gray-600">Points Per Game</td>
-              <td className="py-3 text-center font-mono text-lg text-gray-900">{formatNum(awayPPG)}</td>
-              <td className="py-3 text-center font-mono text-lg text-gray-900">{formatNum(homePPG)}</td>
-            </tr>
-            <tr>
-              <td className="py-3 text-gray-600">Points Allowed</td>
-              <td className="py-3 text-center font-mono text-lg text-gray-900">{formatNum(awayPPGAllowed)}</td>
-              <td className="py-3 text-center font-mono text-lg text-gray-900">{formatNum(homePPGAllowed)}</td>
-            </tr>
-            <tr>
-              <td className="py-3 text-gray-600">Games Played</td>
-              <td className="py-3 text-center font-mono text-lg text-gray-900">{away.gamesPlayed || '—'}</td>
-              <td className="py-3 text-center font-mono text-lg text-gray-900">{home.gamesPlayed || '—'}</td>
-            </tr>
-          </tbody>
-        </table>
-      </div>
-
-      {/* Score Calculation - explains how we get to the predicted score */}
-      <div className="bg-white rounded-lg p-6 border border-gray-200 shadow-sm">
-        <h2 className="text-xl font-bold mb-4 text-gray-900">Score Calculation</h2>
-
-        <div className="space-y-4">
-          {/* Step 1: Regression */}
-          <div className="bg-gray-50 rounded p-4 border border-gray-200">
-            <div className="text-red-600 font-semibold text-lg mb-2">Step 1: Regress Stats to League Average (30%)</div>
-            <div className="text-gray-600 mb-3">
-              We regress each team's stats 30% toward league average ({LEAGUE_AVG_PPG} PPG) to account for small sample sizes.
-            </div>
-            <div className="grid grid-cols-2 gap-4 font-mono">
-              <div className="space-y-1">
-                <div className="text-gray-600">{away.abbreviation} PPG: {formatNum(awayPPG)} → <span className="text-gray-900 font-semibold">{formatNum(regAwayPPG)}</span></div>
-                <div className="text-gray-600">{away.abbreviation} Allowed: {formatNum(awayPPGAllowed)} → <span className="text-gray-900 font-semibold">{formatNum(regAwayPPGAllowed)}</span></div>
-              </div>
-              <div className="space-y-1">
-                <div className="text-gray-600">{home.abbreviation} PPG: {formatNum(homePPG)} → <span className="text-gray-900 font-semibold">{formatNum(regHomePPG)}</span></div>
-                <div className="text-gray-600">{home.abbreviation} Allowed: {formatNum(homePPGAllowed)} → <span className="text-gray-900 font-semibold">{formatNum(regHomePPGAllowed)}</span></div>
-              </div>
-            </div>
-          </div>
-
-          {/* Step 2: Base Scores */}
-          <div className="bg-gray-50 rounded p-4 border border-gray-200">
-            <div className="text-red-600 font-semibold text-lg mb-2">Step 2: Calculate Base Scores from Matchup</div>
-            <div className="text-gray-600 mb-3">
-              Each team's score = average of their offense vs opponent's defense.
-            </div>
-            <div className="font-mono space-y-2">
-              <div className="text-gray-600">
-                {home.abbreviation} Base = ({formatNum(regHomePPG)} + {formatNum(regAwayPPGAllowed)}) / 2 = <span className="text-gray-900 text-xl font-semibold">{formatNum(baseHomeScore)}</span>
-              </div>
-              <div className="text-gray-600">
-                {away.abbreviation} Base = ({formatNum(regAwayPPG)} + {formatNum(regHomePPGAllowed)}) / 2 = <span className="text-gray-900 text-xl font-semibold">{formatNum(baseAwayScore)}</span>
-              </div>
-            </div>
-          </div>
-
-          {/* Step 3: Elo Adjustment */}
-          <div className="bg-gray-50 rounded p-4 border border-gray-200">
-            <div className="text-red-600 font-semibold text-lg mb-2">Step 3: Elo Adjustment</div>
-            <div className="text-gray-600 mb-3">
-              Based on calibration: 100 Elo difference = {formatNum(ELO_TO_POINTS * 100)} points. Split between teams.
-            </div>
-            <div className="font-mono space-y-2">
-              <div className="text-gray-600">
-                Elo Diff = {homeElo} - {awayElo} = <span className="text-gray-900 text-xl font-semibold">{eloDiff}</span>
-              </div>
-              <div className="text-gray-600">
-                Adjustment = {eloDiff} × {ELO_TO_POINTS} / 2 = <span className="text-gray-900 text-xl font-semibold">{formatSpread(eloAdj)}</span> per team
-              </div>
-            </div>
-          </div>
-
-          {/* Step 4: Home Field */}
-          <div className="bg-gray-50 rounded p-4 border border-gray-200">
-            <div className="text-red-600 font-semibold text-lg mb-2">Step 4: Home Field Advantage</div>
-            <div className="text-gray-600 mb-3">
-              Based on calibration: home teams score {formatNum(HOME_FIELD_ADVANTAGE)} more points on average.
-            </div>
-            <div className="font-mono">
-              <div className="text-gray-600">
-                Split: <span className="text-gray-900 font-semibold">+{formatNum(HOME_FIELD_ADVANTAGE / 2)}</span> to home, <span className="text-gray-900 font-semibold">-{formatNum(HOME_FIELD_ADVANTAGE / 2)}</span> to away
-              </div>
-            </div>
-          </div>
-
-          {/* Step 5: Weather (if applicable) */}
-          {weatherDelta > 0 && (
-            <div className="bg-blue-50 border border-blue-200 rounded p-4">
-              <div className="text-blue-600 font-semibold text-lg mb-2">Step 5: Weather Adjustment</div>
-              <div className="text-gray-600 mb-3">
-                Weather conditions reduce expected scoring. Impact is split evenly between teams.
-              </div>
-              <div className="font-mono space-y-2">
-                <div className="text-gray-600">
-                  Weather Delta = <span className="text-gray-900 font-semibold">{formatNum(weatherDelta)}</span> points off total
-                </div>
-                <div className="text-gray-600">
-                  Per Team = <span className="text-gray-900 font-semibold">{formatNum(perTeamDelta)}</span> points off each score
-                </div>
-              </div>
-            </div>
-          )}
-
-          {/* Final Scores */}
-          <div className="bg-red-50 border border-red-200 rounded p-4">
-            <div className="text-red-600 font-semibold text-lg mb-3">Final Predicted Scores</div>
-            <div className="font-mono space-y-2">
-              <div className="text-gray-600 text-lg">
-                {home.abbreviation} = {formatNum(baseHomeScore)} + {formatSpread(eloAdj)} + {formatNum(HOME_FIELD_ADVANTAGE / 2)}{perTeamDelta > 0 ? ` - ${formatNum(perTeamDelta)}` : ''} = <span className="text-gray-900 text-2xl font-bold">{formatNum(finalHomeScore)}</span>
-              </div>
-              <div className="text-gray-600 text-lg">
-                {away.abbreviation} = {formatNum(baseAwayScore)} - {formatNum(Math.abs(eloAdj))} + {formatNum(HOME_FIELD_ADVANTAGE / 2)}{perTeamDelta > 0 ? ` - ${formatNum(perTeamDelta)}` : ''} = <span className="text-gray-900 text-2xl font-bold">{formatNum(finalAwayScore)}</span>
-              </div>
-              <div className="text-gray-600 text-lg mt-2">
-                Total = {formatNum(finalHomeScore)} + {formatNum(finalAwayScore)} = <span className="text-gray-900 font-bold">{formatNum(predictedTotal)}</span>
-              </div>
-            </div>
-          </div>
-        </div>
-      </div>
-
-      {/* Betting Analysis */}
-      <div className="bg-white rounded-lg p-6 border border-gray-200 shadow-sm">
-        <h2 className="text-xl font-bold mb-4 text-gray-900">Betting Analysis</h2>
-
-        <div className="grid grid-cols-3 gap-4">
+      {/* Betting Analysis - NOW AT TOP */}
+      <div className="bg-white rounded-lg p-4 border border-gray-200 shadow-sm">
+        <h2 className="text-lg font-bold mb-3 text-gray-900">Betting Analysis</h2>
+        <div className="grid grid-cols-3 gap-3">
           {/* Spread */}
-          <div className="bg-gray-50 rounded p-4 border border-gray-200">
-            <div className="flex items-center justify-between mb-3">
-              <div className="text-gray-500 uppercase font-semibold">Spread</div>
+          <div className="bg-gray-50 rounded p-3 border border-gray-200">
+            <div className="flex items-center justify-between mb-2">
+              <div className="text-gray-500 uppercase text-xs font-semibold">Spread</div>
               {prediction?.atsConfidence === 'high' && (
-                <span className="bg-green-100 text-green-700 text-xs font-bold px-2 py-0.5 rounded">HIGH CONF</span>
+                <span className="bg-green-100 text-green-700 text-[10px] font-bold px-1.5 py-0.5 rounded">HIGH</span>
               )}
             </div>
-            <div className="space-y-3">
-              <div>
-                <div className="text-gray-500 text-sm">Our Line</div>
-                <div className="font-mono text-xl text-gray-900">{home.abbreviation} {formatSpread(actualSpread)}</div>
+            <div className="space-y-1">
+              <div className="flex justify-between text-sm">
+                <span className="text-gray-500">Our Line</span>
+                <span className="font-mono text-gray-900">{home.abbreviation} {formatSpread(actualSpread)}</span>
               </div>
               {vegasSpread !== undefined && (
                 <>
-                  <div>
-                    <div className="text-gray-500 text-sm">Vegas Line</div>
-                    <div className="font-mono text-xl text-gray-900">{home.abbreviation} {formatSpread(vegasSpread)}</div>
+                  <div className="flex justify-between text-sm">
+                    <span className="text-gray-500">Vegas</span>
+                    <span className="font-mono text-gray-900">{home.abbreviation} {formatSpread(vegasSpread)}</span>
                   </div>
-                  <div className={`p-3 rounded ${Math.abs(spreadEdge) >= 2.5 ? 'bg-green-100 border border-green-300' : 'bg-gray-100 border border-gray-200'}`}>
-                    <div className="text-gray-500 text-sm">Edge</div>
-                    <div className="font-mono text-xl text-gray-900">{formatSpread(spreadEdge)} pts</div>
-                    <div className="text-sm mt-2 font-medium text-gray-700">
-                      {spreadEdge > 0
-                        ? `Pick ${home.abbreviation} ${formatSpread(vegasSpread)}`
-                        : `Pick ${away.abbreviation} ${formatSpread(-vegasSpread)}`
-                      }
+                  <div className={`mt-2 p-2 rounded text-center ${Math.abs(spreadEdge) >= 2.5 ? 'bg-green-100 border border-green-300' : 'bg-gray-100 border border-gray-200'}`}>
+                    <div className="font-mono text-lg text-gray-900">{formatSpread(spreadEdge)} pts</div>
+                    <div className="text-xs font-medium text-gray-700">
+                      {spreadEdge > 0 ? `Pick ${home.abbreviation}` : `Pick ${away.abbreviation}`}
                     </div>
                   </div>
                 </>
@@ -424,35 +277,31 @@ export default function GameDetailPage() {
           </div>
 
           {/* Moneyline */}
-          <div className="bg-gray-50 rounded p-4 border border-gray-200">
-            <div className="flex items-center justify-between mb-3">
-              <div className="text-gray-500 uppercase font-semibold">Moneyline</div>
+          <div className="bg-gray-50 rounded p-3 border border-gray-200">
+            <div className="flex items-center justify-between mb-2">
+              <div className="text-gray-500 uppercase text-xs font-semibold">Moneyline</div>
               {prediction?.mlConfidence === 'high' && (
-                <span className="bg-green-100 text-green-700 text-xs font-bold px-2 py-0.5 rounded">HIGH CONF</span>
+                <span className="bg-green-100 text-green-700 text-[10px] font-bold px-1.5 py-0.5 rounded">HIGH</span>
               )}
             </div>
-            <div className="space-y-3">
-              <div>
-                <div className="text-gray-500 text-sm">{home.abbreviation} Win Prob</div>
-                <div className="font-mono text-xl text-gray-900">{formatNum(homeWinProb * 100, 0)}%</div>
+            <div className="space-y-1">
+              <div className="flex justify-between text-sm">
+                <span className="text-gray-500">{away.abbreviation}</span>
+                <span className="font-mono text-gray-900">{formatNum((1 - homeWinProb) * 100, 0)}%</span>
               </div>
-              <div>
-                <div className="text-gray-500 text-sm">{away.abbreviation} Win Prob</div>
-                <div className="font-mono text-xl text-gray-900">{formatNum((1 - homeWinProb) * 100, 0)}%</div>
+              <div className="flex justify-between text-sm">
+                <span className="text-gray-500">{home.abbreviation}</span>
+                <span className="font-mono text-gray-900">{formatNum(homeWinProb * 100, 0)}%</span>
               </div>
               {(() => {
                 const mlEdge = prediction?.mlEdge ?? Math.abs(homeWinProb - 0.5) * 100;
                 const isHighConf = mlEdge >= 15;
                 return (
-                  <div className={`p-3 rounded ${isHighConf ? 'bg-green-100 border border-green-300' : 'bg-gray-100 border border-gray-200'}`}>
-                    <div className="text-gray-500 text-sm">Edge</div>
-                    <div className="font-mono text-xl text-gray-900">{formatNum(mlEdge, 0)}%</div>
-                    <div className="text-sm mt-2 font-medium text-gray-700">
+                  <div className={`mt-2 p-2 rounded text-center ${isHighConf ? 'bg-green-100 border border-green-300' : 'bg-gray-100 border border-gray-200'}`}>
+                    <div className="font-mono text-lg text-gray-900">{formatNum(mlEdge, 0)}% edge</div>
+                    <div className="text-xs font-medium text-gray-700">
                       Pick {homeWinProb > 0.5 ? home.abbreviation : away.abbreviation}
                     </div>
-                    {isHighConf && (
-                      <div className="text-xs text-green-600 mt-1">78% hit rate at 15%+ edge</div>
-                    )}
                   </div>
                 );
               })()}
@@ -460,40 +309,30 @@ export default function GameDetailPage() {
           </div>
 
           {/* Total */}
-          <div className="bg-gray-50 rounded p-4 border border-gray-200">
-            <div className="flex items-center justify-between mb-3">
-              <div className="text-gray-500 uppercase font-semibold">Total</div>
+          <div className="bg-gray-50 rounded p-3 border border-gray-200">
+            <div className="flex items-center justify-between mb-2">
+              <div className="text-gray-500 uppercase text-xs font-semibold">Total</div>
               {prediction?.ouConfidence === 'high' && (
-                <span className="bg-green-100 text-green-700 text-xs font-bold px-2 py-0.5 rounded">HIGH CONF</span>
+                <span className="bg-green-100 text-green-700 text-[10px] font-bold px-1.5 py-0.5 rounded">HIGH</span>
               )}
             </div>
-            <div className="space-y-3">
-              <div>
-                <div className="text-gray-500 text-sm">Our Total</div>
-                <div className="font-mono text-xl text-gray-900">{formatNum(actualTotal)}</div>
+            <div className="space-y-1">
+              <div className="flex justify-between text-sm">
+                <span className="text-gray-500">Our Total</span>
+                <span className="font-mono text-gray-900">{formatNum(actualTotal)}</span>
               </div>
               {vegasTotal !== undefined && (
                 <>
-                  <div>
-                    <div className="text-gray-500 text-sm">Vegas Total</div>
-                    <div className="font-mono text-xl text-gray-900">{vegasTotal}</div>
+                  <div className="flex justify-between text-sm">
+                    <span className="text-gray-500">Vegas</span>
+                    <span className="font-mono text-gray-900">{vegasTotal}</span>
                   </div>
-                  {(() => {
-                    const ouEdge = Math.abs(totalEdge);
-                    const isHighConf = ouEdge >= 5;
-                    return (
-                      <div className={`p-3 rounded ${isHighConf ? 'bg-green-100 border border-green-300' : 'bg-gray-100 border border-gray-200'}`}>
-                        <div className="text-gray-500 text-sm">Edge</div>
-                        <div className="font-mono text-xl text-gray-900">{formatSpread(totalEdge)} pts</div>
-                        <div className="text-sm mt-2 font-medium text-gray-700">
-                          {totalEdge > 0 ? `Pick OVER ${vegasTotal}` : `Pick UNDER ${vegasTotal}`}
-                        </div>
-                        {isHighConf && (
-                          <div className="text-xs text-green-600 mt-1">60% hit rate at 5+ pt edge</div>
-                        )}
-                      </div>
-                    );
-                  })()}
+                  <div className={`mt-2 p-2 rounded text-center ${Math.abs(totalEdge) >= 5 ? 'bg-green-100 border border-green-300' : 'bg-gray-100 border border-gray-200'}`}>
+                    <div className="font-mono text-lg text-gray-900">{formatSpread(totalEdge)} pts</div>
+                    <div className="text-xs font-medium text-gray-700">
+                      {totalEdge > 0 ? `Pick OVER ${vegasTotal}` : `Pick UNDER ${vegasTotal}`}
+                    </div>
+                  </div>
                 </>
               )}
             </div>
@@ -501,29 +340,87 @@ export default function GameDetailPage() {
         </div>
       </div>
 
-      {/* Win Probability Calculation */}
-      <div className="bg-white rounded-lg p-6 border border-gray-200 shadow-sm">
-        <h2 className="text-xl font-bold mb-4 text-gray-900">Win Probability Formula</h2>
-        <div className="bg-gray-50 rounded p-4 font-mono border border-gray-200">
-          <div className="text-gray-600 mb-3">Using Elo expected score formula:</div>
-          <div className="text-gray-700 text-lg">
-            P(home wins) = 1 / (1 + 10^((awayElo - homeElo - {ELO_HOME_ADVANTAGE}) / 400))
+      {/* Team Stats - Compact inline */}
+      <div className="bg-white rounded-lg p-4 border border-gray-200 shadow-sm">
+        <h2 className="text-lg font-bold mb-2 text-gray-900">Team Stats</h2>
+        <div className="grid grid-cols-4 gap-2 text-sm">
+          <div className="text-gray-500">Team</div>
+          <div className="text-center text-gray-500">Elo</div>
+          <div className="text-center text-gray-500">PPG</div>
+          <div className="text-center text-gray-500">Allowed</div>
+
+          <div className="font-semibold text-gray-900">{away.abbreviation}</div>
+          <div className="text-center font-mono text-gray-900">{awayElo}</div>
+          <div className="text-center font-mono text-gray-900">{formatNum(awayPPG)}</div>
+          <div className="text-center font-mono text-gray-900">{formatNum(awayPPGAllowed)}</div>
+
+          <div className="font-semibold text-gray-900">{home.abbreviation}</div>
+          <div className="text-center font-mono text-gray-900">{homeElo}</div>
+          <div className="text-center font-mono text-gray-900">{formatNum(homePPG)}</div>
+          <div className="text-center font-mono text-gray-900">{formatNum(homePPGAllowed)}</div>
+        </div>
+      </div>
+
+      {/* Score Calculation - Condensed */}
+      <div className="bg-white rounded-lg p-4 border border-gray-200 shadow-sm">
+        <h2 className="text-lg font-bold mb-3 text-gray-900">Score Calculation</h2>
+        <div className="space-y-2 text-sm">
+          {/* Step 1: Regression */}
+          <div className="bg-gray-50 rounded p-3 border border-gray-200">
+            <div className="text-red-600 font-semibold mb-1">1. Regress to League Average (30%)</div>
+            <div className="grid grid-cols-2 gap-2 font-mono text-gray-600">
+              <div>{away.abbreviation}: {formatNum(awayPPG)} → <span className="text-gray-900">{formatNum(regAwayPPG)}</span></div>
+              <div>{home.abbreviation}: {formatNum(homePPG)} → <span className="text-gray-900">{formatNum(regHomePPG)}</span></div>
+            </div>
           </div>
-          <div className="text-gray-700 text-lg mt-3">
-            = 1 / (1 + 10^(({awayElo} - {homeElo} - {ELO_HOME_ADVANTAGE}) / 400))
+
+          {/* Step 2: Base Scores */}
+          <div className="bg-gray-50 rounded p-3 border border-gray-200">
+            <div className="text-red-600 font-semibold mb-1">2. Base Scores (Offense vs Defense)</div>
+            <div className="font-mono text-gray-600">
+              {away.abbreviation}: <span className="text-gray-900">{formatNum(baseAwayScore)}</span> | {home.abbreviation}: <span className="text-gray-900">{formatNum(baseHomeScore)}</span>
+            </div>
           </div>
-          <div className="text-gray-700 text-lg mt-3">
-            = 1 / (1 + 10^({awayElo - homeElo - ELO_HOME_ADVANTAGE} / 400))
+
+          {/* Step 3: Elo Adjustment */}
+          <div className="bg-gray-50 rounded p-3 border border-gray-200">
+            <div className="text-red-600 font-semibold mb-1">3. Elo Adjustment</div>
+            <div className="font-mono text-gray-600">
+              Diff: {eloDiff} → <span className="text-gray-900">{formatSpread(eloAdj)}</span> pts/team
+            </div>
           </div>
-          <div className="text-gray-900 text-2xl mt-3 font-bold">
-            = {formatNum(homeWinProb * 100, 1)}%
+
+          {/* Step 4: Home Field */}
+          <div className="bg-gray-50 rounded p-3 border border-gray-200">
+            <div className="text-red-600 font-semibold mb-1">4. Home Field Advantage</div>
+            <div className="font-mono text-gray-600">
+              +{formatNum(HOME_FIELD_ADVANTAGE / 2)} to {home.abbreviation}, -{formatNum(HOME_FIELD_ADVANTAGE / 2)} to {away.abbreviation}
+            </div>
+          </div>
+
+          {/* Weather (if applicable) */}
+          {weatherDelta > 0 && (
+            <div className="bg-blue-50 border border-blue-200 rounded p-3">
+              <div className="text-blue-600 font-semibold mb-1">5. Weather Impact</div>
+              <div className="font-mono text-gray-600">
+                -{formatNum(perTeamDelta)} pts each team
+              </div>
+            </div>
+          )}
+
+          {/* Final Scores */}
+          <div className="bg-red-50 border border-red-200 rounded p-3">
+            <div className="text-red-600 font-semibold mb-1">Final Predicted Scores</div>
+            <div className="font-mono text-gray-900 text-lg">
+              {away.abbreviation}: <span className="font-bold">{formatNum(finalAwayScore)}</span> | {home.abbreviation}: <span className="font-bold">{formatNum(finalHomeScore)}</span> | Total: <span className="font-bold">{formatNum(predictedTotal)}</span>
+            </div>
           </div>
         </div>
       </div>
 
       {/* Back link */}
-      <div className="text-center py-4">
-        <a href="/" className="text-red-600 hover:text-red-700 text-lg">
+      <div className="text-center py-2">
+        <a href="/" className="text-red-600 hover:text-red-700">
           ← Back to Picks
         </a>
       </div>
