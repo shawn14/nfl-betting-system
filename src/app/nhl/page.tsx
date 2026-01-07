@@ -554,7 +554,7 @@ export default function NHLDashboard() {
               const hasStrongPick = mlConf === 'high' || ouConf === 'high' || atsConf === 'high';
 
               return (
-                <div key={game.id} className={`bg-white rounded-xl border shadow-sm overflow-hidden hover:shadow-md transition-shadow ${
+                <a key={game.id} href={`/nhl/game/${game.id}`} className={`block bg-white rounded-xl border shadow-sm overflow-hidden hover:shadow-md transition-shadow cursor-pointer ${
                   hasStrongPick ? 'border-green-300' : 'border-gray-200'
                 }`}>
                   {/* Game header */}
@@ -683,7 +683,7 @@ export default function NHLDashboard() {
                       </div>
                     </div>
                   </div>
-                </div>
+                </a>
               );
             })}
         </div>
@@ -868,7 +868,7 @@ export default function NHLDashboard() {
                 (pickOver ? actualTotal > vegasTotal : actualTotal < vegasTotal) ? 'win' : 'loss';
 
               return (
-                <div key={game.id} className="bg-white rounded-xl border border-gray-200 shadow-sm overflow-hidden opacity-90">
+                <a key={game.id} href={`/nhl/game/${game.id}`} className="block bg-white rounded-xl border border-gray-200 shadow-sm overflow-hidden opacity-90 hover:shadow-md transition-shadow cursor-pointer">
                   {/* Game header */}
                   <div className="p-4 border-b border-gray-100">
                     <div className="flex justify-between items-center">
@@ -978,7 +978,7 @@ export default function NHLDashboard() {
                       </div>
                     </div>
                   </div>
-                </div>
+                </a>
               );
             })}
         </div>
