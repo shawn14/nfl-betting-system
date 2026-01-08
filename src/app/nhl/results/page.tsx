@@ -418,8 +418,15 @@ export default function NHLResultsPage() {
     return <span className={`font-mono font-bold ${color}`}>{pct}%</span>;
   };
 
-  // Calculate Current Form (rolling 20 game puck line performance)
-  const last20 = results.slice(0, 20);
+  // Calculate Current Form (rolling 20 HIGH CONVICTION puck line picks only)
+  const highConvictionResults = results.filter(r => {
+    const result = r.atsResult || r.spreadResult;
+    if (!result) return false;
+    const isHighConviction = r.conviction?.isHighConviction === true;
+    const spreadEdge = r.vegasSpread !== undefined ? Math.abs(r.predictedSpread - r.vegasSpread) : 0;
+    return isHighConviction || spreadEdge >= 0.75; // High conviction threshold for NHL
+  });
+  const last20 = highConvictionResults.slice(0, 20);
   const last20ATS = last20.reduce((acc, r) => {
     const result = r.atsResult || r.spreadResult;
     if (result === 'win') acc.wins++;

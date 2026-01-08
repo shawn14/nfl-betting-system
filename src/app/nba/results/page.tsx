@@ -430,8 +430,12 @@ export default function NBAResultsPage() {
     return <span className={`font-mono font-bold ${color}`}>{pct}%</span>;
   };
 
-  // Calculate Current Form (rolling 20 game ATS performance)
-  const last20 = results.slice(0, 20);
+  // Calculate Current Form (rolling 20 HIGH CONVICTION ATS picks only)
+  const highConvictionResults = results.filter(r => {
+    if (!r.atsResult) return false;
+    return (r as any).conviction?.isHighConviction === true;
+  });
+  const last20 = highConvictionResults.slice(0, 20);
   const last20ATS = last20.reduce((acc, r) => {
     if (r.atsResult === 'win') acc.wins++;
     else if (r.atsResult === 'loss') acc.losses++;

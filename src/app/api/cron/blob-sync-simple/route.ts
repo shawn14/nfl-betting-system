@@ -20,7 +20,7 @@ import { SportKey } from '@/services/firestore-types';
 // Optimized: ATS 55.1%, O/U 55.1%
 const LEAGUE_AVG_PPG = 22;
 const ELO_TO_POINTS = 0.11;        // Was 0.0593 - weight Elo differences more heavily
-const HOME_FIELD_ADVANTAGE = 3.25; // Was 2.28 - increase home field impact on totals
+const HOME_FIELD_ADVANTAGE = 4.5; // Increased from 3.25 to fix away team bias (was picking away 80%)
 const ELO_HOME_ADVANTAGE = 48;
 const SPREAD_REGRESSION = 0.45;    // Was 0.55 - less regression toward 0
 const ELO_CAP = 16;                // Max ±8 pts per team to prevent unrealistic scores
