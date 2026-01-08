@@ -15,7 +15,7 @@ import { getRestDaysForGame, calculateRestAdjustment, restFavorsPick } from '@/s
 // NBA Constants - Optimized via backtesting (1347 games with Vegas lines)
 const LEAGUE_AVG_PPG = 112;          // NBA average ~112 PPG
 const ELO_TO_POINTS = 0.06;          // Optimized - 100 Elo = 6 points
-const HOME_COURT_ADVANTAGE = 2.0;    // Optimized - NBA home court
+const HOME_COURT_ADVANTAGE = 4.5;    // Adjusted Jan 2026 - cold streak analysis showed 2.0 was too low
 const ELO_HOME_ADVANTAGE = 48;       // Same Elo bonus structure
 const SPREAD_REGRESSION = 0.4;       // Optimized - 40% regression to mean
 const ELO_CAP = 20;                  // Optimized
