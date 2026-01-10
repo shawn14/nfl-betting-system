@@ -168,26 +168,35 @@ function predictScore(
   awayPPG: number,
   awayPPGAllowed: number
 ): { homeScore: number; awayScore: number; calc: { rawHomeElo: number; rawAwayElo: number; homeOff: number; awayOff: number } } {
-  const cappedEloHome = Math.max(homeElo - ELO_CAP, Math.min(homeElo + ELO_CAP, homeElo));
-  const cappedEloAway = Math.max(awayElo - ELO_CAP, Math.min(awayElo + ELO_CAP, awayElo));
+  // Regress stats toward league average (NBA pattern)
+  const regress = (stat: number) => stat * 0.7 + LEAGUE_AVG_PPG * 0.3;
 
-  const homeEloPts = cappedEloHome * ELO_TO_POINTS;
-  const awayEloPts = cappedEloAway * ELO_TO_POINTS;
+  const regHomePPG = regress(homePPG);
+  const regHomePPGAllowed = regress(homePPGAllowed);
+  const regAwayPPG = regress(awayPPG);
+  const regAwayPPGAllowed = regress(awayPPGAllowed);
 
-  const homeOff = (homePPG + awayPPGAllowed) / 2;
-  const homeOffWithElo = homeOff + homeEloPts + HOME_COURT_ADVANTAGE;
+  const baseHomeScore = (regHomePPG + regAwayPPGAllowed) / 2;
+  const baseAwayScore = (regAwayPPG + regHomePPGAllowed) / 2;
 
-  const awayOff = (awayPPG + homePPGAllowed) / 2;
-  const awayOffWithElo = awayOff + awayEloPts;
+  // Use Elo DIFFERENCE, not absolute values (critical fix!)
+  const eloDiff = homeElo - awayElo;
+  let eloAdj = (eloDiff * ELO_TO_POINTS) / 2;
+  if (ELO_CAP > 0) {
+    eloAdj = Math.max(-ELO_CAP / 2, Math.min(ELO_CAP / 2, eloAdj));
+  }
+
+  const homeScore = baseHomeScore + eloAdj + HOME_COURT_ADVANTAGE / 2;
+  const awayScore = baseAwayScore - eloAdj + HOME_COURT_ADVANTAGE / 2;
 
   return {
-    homeScore: Math.round(homeOffWithElo),
-    awayScore: Math.round(awayOffWithElo),
+    homeScore: Math.round(homeScore * 2) / 2,
+    awayScore: Math.round(awayScore * 2) / 2,
     calc: {
       rawHomeElo: homeElo,
       rawAwayElo: awayElo,
-      homeOff: homeOffWithElo,
-      awayOff: awayOffWithElo,
+      homeOff: homeScore,
+      awayOff: awayScore,
     },
   };
 }
