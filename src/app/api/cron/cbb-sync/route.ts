@@ -514,7 +514,7 @@ export async function GET(request: Request) {
         : null;
 
       // Calculate ouConfidence and mlConfidence for backtest
-      const totalEdge = Math.abs(predictedTotal - vegasTotal);
+      const totalEdge = vegasTotal !== undefined ? Math.abs(predictedTotal - vegasTotal) : 0;
       let ouConf: 'high' | 'medium' | 'low' = 'medium';
       if (totalEdge >= 5) ouConf = 'high';
       else if (totalEdge >= 3) ouConf = 'medium';
