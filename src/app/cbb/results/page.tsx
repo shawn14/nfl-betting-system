@@ -68,29 +68,31 @@ function computeHighConvictionStats(results: BacktestResult[]): HighConvictionSt
   let mlW = 0, mlL = 0;
 
   for (const r of results) {
-    // High conviction = same criteria for ALL bet types (ATS conviction flag)
-    const isHighConviction = (r as any).conviction?.isHighConviction === true;
+    const atsConfidence = (r as any).atsConfidence;
+    const mlConfidence = (r as any).mlConfidence;
+    const ouConfidence = (r as any).ouConfidence;
 
-    if (isHighConviction) {
-      // ATS result
-      if (r.atsResult) {
-        if (r.atsResult === 'win') atsW++;
-        else if (r.atsResult === 'loss') atsL++;
-        else atsP++;
-      }
+    // High conviction ATS (elite or high)
+    const isHighConvictionATS = atsConfidence === 'elite' || atsConfidence === 'high';
+    if (isHighConvictionATS && r.atsResult) {
+      if (r.atsResult === 'win') atsW++;
+      else if (r.atsResult === 'loss') atsL++;
+      else atsP++;
+    }
 
-      // O/U result (same high conviction games)
-      if (r.ouVegasResult) {
-        if (r.ouVegasResult === 'win') ouW++;
-        else if (r.ouVegasResult === 'loss') ouL++;
-        else ouP++;
-      }
+    // High conviction ML
+    const isHighConvictionML = mlConfidence === 'high';
+    if (isHighConvictionML && r.mlResult) {
+      if (r.mlResult === 'win') mlW++;
+      else mlL++;
+    }
 
-      // ML result (same high conviction games)
-      if (r.mlResult) {
-        if (r.mlResult === 'win') mlW++;
-        else mlL++;
-      }
+    // High conviction O/U
+    const isHighConvictionOU = ouConfidence === 'high';
+    if (isHighConvictionOU && r.ouVegasResult) {
+      if (r.ouVegasResult === 'win') ouW++;
+      else if (r.ouVegasResult === 'loss') ouL++;
+      else ouP++;
     }
   }
 
@@ -437,7 +439,8 @@ export default function CBBResultsPage() {
   // Calculate Current Form (rolling 20 HIGH CONVICTION ATS picks only)
   const highConvictionResults = results.filter(r => {
     if (!r.atsResult) return false;
-    return (r as any).conviction?.isHighConviction === true;
+    const atsConfidence = (r as any).atsConfidence;
+    return atsConfidence === 'elite' || atsConfidence === 'high';
   });
   const last20 = highConvictionResults.slice(0, 20);
   const last20ATS = last20.reduce((acc, r) => {

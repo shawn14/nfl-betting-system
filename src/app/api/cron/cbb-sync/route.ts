@@ -509,9 +509,9 @@ export async function GET(request: Request) {
       const isLargeSpread = absVegasSpread >= 10;
       const isSmallSpread = absVegasSpread > 0 && absVegasSpread <= 3;
 
-      const conviction = vegasSpread !== undefined
-        ? calculateConviction(homeTeam.abbreviation, awayTeam.abbreviation, homeElo, awayElo, predictedSpread, vegasSpread)
-        : null;
+      // Calculate conviction for ALL games (not just those with Vegas spreads)
+      // The conviction logic is primarily based on Elo gaps and pick direction
+      const conviction = calculateConviction(homeTeam.abbreviation, awayTeam.abbreviation, homeElo, awayElo, predictedSpread, vegasSpread);
 
       // Calculate ouConfidence and mlConfidence for backtest
       const totalEdge = vegasTotal !== undefined ? Math.abs(predictedTotal - vegasTotal) : 0;
@@ -559,14 +559,14 @@ export async function GET(request: Request) {
         isLargeSpread,
         isSmallSpread,
         eloDiff: Math.round(eloDiff),
-        atsConfidence: conviction ? conviction.level : 'medium',
+        atsConfidence: conviction.level,
         mlConfidence: mlConf,
         ouConfidence: ouConf,
-        conviction: conviction ? {
+        conviction: {
           level: conviction.level,
           isHighConviction: conviction.isHighConviction,
           expectedWinPct: conviction.expectedWinPct,
-        } : undefined,
+        },
       });
 
       // STEP 3: NOW update Elo for next game
