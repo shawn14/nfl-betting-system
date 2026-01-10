@@ -355,7 +355,10 @@ export default function CBBDashboard() {
       };
     });
 
-  const displayGames = [...upcomingGames, ...recentCompletedGames];
+  // Deduplicate by game ID (prefer upcoming games over recent completed)
+  const displayGames = [...upcomingGames, ...recentCompletedGames].filter(
+    (item, index, self) => index === self.findIndex((g) => g.game.id === item.game.id)
+  );
 
   return (
     <RequireAuth>
