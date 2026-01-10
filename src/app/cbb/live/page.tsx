@@ -47,8 +47,8 @@ interface BlobPrediction {
   vegasSpread?: number;
 }
 
-const REG_MINUTES = 48;
-const QUARTER_MINUTES = 12;
+const REG_MINUTES = 40; // CBB: 2 halves × 20 minutes
+const HALF_MINUTES = 20;
 const OT_MINUTES = 5;
 
 function parseClock(clock: string): { minutes: number; seconds: number } | null {
@@ -78,11 +78,13 @@ function getMinutesElapsed(period: number, clock: string): number | null {
   const parsed = parseClock(clock);
   if (!parsed || period < 1) return null;
   const timeRemaining = parsed.minutes + parsed.seconds / 60;
-  if (period <= 4) {
-    const elapsedInPeriod = Math.max(0, QUARTER_MINUTES - timeRemaining);
-    return (period - 1) * QUARTER_MINUTES + elapsedInPeriod;
+  // CBB: periods 1-2 are halves (20 min each), 3+ are OT (5 min each)
+  if (period <= 2) {
+    const elapsedInPeriod = Math.max(0, HALF_MINUTES - timeRemaining);
+    return (period - 1) * HALF_MINUTES + elapsedInPeriod;
   }
-  const otIndex = period - 4;
+  // Overtime periods
+  const otIndex = period - 2;
   const elapsedInOt = Math.max(0, OT_MINUTES - timeRemaining);
   return REG_MINUTES + (otIndex - 1) * OT_MINUTES + elapsedInOt;
 }
@@ -186,10 +188,10 @@ export default function CBBLiveTrackerPage() {
     const secondsSinceSnapshot = (now - game.snapshotTime) / 1000;
     const minutesSinceSnapshot = secondsSinceSnapshot / 60;
     // Add elapsed real time to the snapshot elapsed time
-    // Cap at 48 minutes for regulation (don't extrapolate past end of game)
+    // Cap at 40 minutes for regulation (don't extrapolate past end of game)
     const interpolated = game.snapshotElapsed + minutesSinceSnapshot;
-    // For OT, extend the cap
-    const maxMinutes = game.period > 4 ? REG_MINUTES + (game.period - 4) * OT_MINUTES : REG_MINUTES;
+    // For OT, extend the cap (period 3+ is OT in CBB)
+    const maxMinutes = game.period > 2 ? REG_MINUTES + (game.period - 2) * OT_MINUTES : REG_MINUTES;
     return Math.min(interpolated, maxMinutes);
   }, []);
 
@@ -367,10 +369,11 @@ export default function CBBLiveTrackerPage() {
 
             // Calculate interpolated time remaining for calibration
             const interpolatedTimeRemaining = minutesElapsed !== null
-              ? (game.period <= 4 ? REG_MINUTES - minutesElapsed : 0)
+              ? (game.period <= 2 ? REG_MINUTES - minutesElapsed : 0)
               : null;
 
-            if (calibration && minutesElapsed !== null && game.period <= 4 && interpolatedTimeRemaining !== null && interpolatedTimeRemaining > 0) {
+            // Note: Calibration data is NBA-specific (4 quarters), skip for CBB
+            if (false && calibration && minutesElapsed !== null && game.period <= 2 && interpolatedTimeRemaining !== null && interpolatedTimeRemaining > 0) {
               const homeAvg = calibration.teamAvgQuarter[game.home];
               const awayAvg = calibration.teamAvgQuarter[game.away];
               if (homeAvg && awayAvg) {
@@ -480,7 +483,7 @@ export default function CBBLiveTrackerPage() {
                   </div>
                   <div className="flex items-center gap-2">
                     <div className="text-xs text-gray-500">
-                      Q{game.period} {game.clock}
+                      {game.period === 1 ? '1st' : game.period === 2 ? '2nd' : `OT${game.period - 2}`} {game.clock}
                     </div>
                     <div className="text-[10px] text-gray-400 bg-gray-100 px-1.5 py-0.5 rounded">
                       {gameSinceUpdate}s ago

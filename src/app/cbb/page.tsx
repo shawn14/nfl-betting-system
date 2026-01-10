@@ -288,12 +288,11 @@ export default function CBBDashboard() {
     return d.toLocaleTimeString('en-US', { hour: 'numeric', minute: '2-digit' });
   };
 
-  const getQuarterText = (quarter: number) => {
-    if (quarter === 1) return '1st';
-    if (quarter === 2) return '2nd';
-    if (quarter === 3) return '3rd';
-    if (quarter === 4) return '4th';
-    if (quarter >= 5) return 'OT';
+  const getQuarterText = (period: number) => {
+    // CBB has 2 halves, then OT periods
+    if (period === 1) return '1st';
+    if (period === 2) return '2nd';
+    if (period >= 3) return `OT${period - 2}`;
     return '';
   };
 
