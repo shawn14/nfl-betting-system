@@ -882,26 +882,25 @@ export async function GET(request: Request) {
     let hiMlW = 0, hiMlL = 0;
 
     for (const r of allBacktestResults as any[]) {
-      const totalEdge = r.vegasTotal !== undefined ? Math.abs(r.predictedTotal - r.vegasTotal) : 0;
-      const mlEdge = Math.abs((r.homeWinProb || 0.5) - 0.5) * 100;
-
-      // High conviction ATS - use conviction flag
-      const isHighConviction = r.conviction?.isHighConviction === true;
-      if (isHighConviction && r.atsResult) {
+      // High conviction ATS - use atsConfidence field (elite or high)
+      const isHighConvictionATS = r.atsConfidence === 'elite' || r.atsConfidence === 'high';
+      if (isHighConvictionATS && r.atsResult) {
         if (r.atsResult === 'win') hiAtsW++;
         else if (r.atsResult === 'loss') hiAtsL++;
         else hiAtsP++;
       }
 
-      // High conviction O/U (edge >= 5 pts)
-      if (totalEdge >= 5 && r.ouVegasResult) {
+      // High conviction O/U - use ouConfidence field
+      const isHighConvictionOU = r.ouConfidence === 'high';
+      if (isHighConvictionOU && r.ouVegasResult) {
         if (r.ouVegasResult === 'win') hiOuW++;
         else if (r.ouVegasResult === 'loss') hiOuL++;
         else hiOuP++;
       }
 
-      // High conviction ML (edge >= 15%)
-      if (mlEdge >= 15 && r.mlResult) {
+      // High conviction ML - use mlConfidence field
+      const isHighConvictionML = r.mlConfidence === 'high';
+      if (isHighConvictionML && r.mlResult) {
         if (r.mlResult === 'win') hiMlW++;
         else hiMlL++;
       }
