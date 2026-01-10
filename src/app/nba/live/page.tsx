@@ -414,90 +414,189 @@ export default function NBALiveTrackerPage() {
             return (
               <div
                 key={game.id}
-                className="border border-gray-200 rounded-lg p-2 bg-white"
+                className={`border rounded-xl p-3 sm:p-4 bg-white ${
+                  'border-gray-200'
+                }`}
               >
-                {/* Header Row: Teams, Score, Time, Inputs */}
-                <div className="flex items-center gap-2 flex-wrap">
-                  {/* Teams & Score */}
-                  <div className="flex items-center gap-2 min-w-0">
-                    <span className="font-semibold text-gray-900 text-sm whitespace-nowrap">
+                <div className="flex items-center justify-between gap-2">
+                  <div>
+                    <div className="font-semibold text-gray-900 text-sm sm:text-base">
                       {game.away} @ {game.home}
-                    </span>
-                    <span className="font-bold text-gray-900 tabular-nums">
-                      {game.awayScore}-{game.homeScore}
-                    </span>
-                    <span className="text-xs text-gray-500 tabular-nums">
-                      Q{game.period} {game.clock}
-                    </span>
-                    <span className="w-1.5 h-1.5 rounded-full bg-green-500 animate-pulse" />
+                    </div>
+                    <div className="text-xs text-gray-500 mt-0.5 flex flex-wrap gap-x-3">
+                      {pregameTotal !== undefined && (
+                        <span>
+                          O/U: <span className="font-medium text-gray-600">{pregameTotal}</span>
+                        </span>
+                      )}
+                      {pregameSpread !== undefined && (
+                        <span>
+                          Sprd: <span className="font-medium text-gray-600">{pregameSpread > 0 ? '+' : ''}{pregameSpread}</span>
+                        </span>
+                      )}
+                      {projectedSpread !== null && (
+                        <span>
+                          Proj: <span className="font-medium text-gray-600">{projectedSpread > 0 ? '+' : ''}{projectedSpread.toFixed(1)}</span>
+                        </span>
+                      )}
+                    </div>
                   </div>
+                  <div className="flex items-center gap-2">
+                    <div className="text-xs text-gray-500">
+                      Q{game.period} {game.clock}
+                    </div>
+                    <div className="text-[10px] text-gray-400 bg-gray-100 px-1.5 py-0.5 rounded">
+                      {gameSinceUpdate}s ago
+                    </div>
+                  </div>
+                </div>
 
+                {/* Live O/U and Spread Inputs */}
+                <div className="mt-2 grid grid-cols-1 sm:grid-cols-2 gap-2">
                   {/* Live O/U Input */}
-                  <div className="flex items-center gap-1 ml-auto">
-                    <span className="text-[10px] text-gray-400">O/U:</span>
+                  <div className="flex items-center gap-2 p-2 bg-gray-50 rounded-lg">
+                    <label className="text-xs text-gray-500 whitespace-nowrap">Live O/U:</label>
                     <input
                       type="number"
                       step="0.5"
-                      placeholder="219"
+                      placeholder="219.5"
                       value={liveOddsInput[game.id] || ''}
                       onChange={(e) => setLiveOddsInput(prev => ({ ...prev, [game.id]: e.target.value }))}
-                      className="w-14 px-1 py-0.5 text-xs border border-gray-300 rounded tabular-nums"
+                      className="w-20 px-2 py-1 text-sm border border-gray-300 rounded focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent tabular-nums"
                     />
                     {hasLiveOdds && liveEdge !== null && (
-                      <span className={`px-1 py-0.5 rounded text-[10px] font-bold tabular-nums ${
-                        Math.abs(liveEdge) >= 5 ? liveEdge > 0 ? 'bg-green-100 text-green-700' : 'bg-red-100 text-red-700'
-                        : Math.abs(liveEdge) >= 3 ? liveEdge > 0 ? 'bg-green-50 text-green-600' : 'bg-red-50 text-red-600'
-                        : 'text-gray-500'
+                      <div className={`flex items-center gap-1 px-2 py-1 rounded font-bold text-xs ${
+                        Math.abs(liveEdge) >= 5
+                          ? liveEdge > 0 ? 'bg-green-100 text-green-700' : 'bg-red-100 text-red-700'
+                          : Math.abs(liveEdge) >= 3
+                          ? liveEdge > 0 ? 'bg-green-50 text-green-600' : 'bg-red-50 text-red-600'
+                          : 'bg-gray-100 text-gray-600'
                       }`}>
-                        {liveEdge > 0 ? 'O' : 'U'}{Math.abs(liveEdge).toFixed(1)}{Math.abs(liveEdge) >= 5 && '🔥'}
-                      </span>
+                        <span className="tabular-nums">
+                          {liveEdge > 0 ? 'O' : 'U'} {Math.abs(liveEdge).toFixed(1)}
+                        </span>
+                        {Math.abs(liveEdge) >= 5 && <span className="animate-pulse">🔥</span>}
+                      </div>
+                    )}
+                    {projectionRange?.maxOuEdge !== null && projectionRange?.maxOuEdge !== undefined && (
+                      <div className="text-[10px] text-gray-400 whitespace-nowrap">
+                        Max: <span className={`font-medium ${projectionRange.maxOuEdge > 0 ? 'text-green-600' : 'text-red-600'}`}>
+                          {projectionRange.maxOuEdge > 0 ? '+' : ''}{projectionRange.maxOuEdge.toFixed(1)}
+                        </span>
+                      </div>
                     )}
                   </div>
 
                   {/* Live Spread Input */}
-                  <div className="flex items-center gap-1">
-                    <span className="text-[10px] text-gray-400">Sprd:</span>
+                  <div className="flex items-center gap-2 p-2 bg-gray-50 rounded-lg">
+                    <label className="text-xs text-gray-500 whitespace-nowrap">Live Sprd:</label>
                     <input
                       type="number"
                       step="0.5"
-                      placeholder="-3"
+                      placeholder="-3.5"
                       value={liveSpreadInput[game.id] || ''}
                       onChange={(e) => setLiveSpreadInput(prev => ({ ...prev, [game.id]: e.target.value }))}
-                      className="w-14 px-1 py-0.5 text-xs border border-gray-300 rounded tabular-nums"
+                      className="w-20 px-2 py-1 text-sm border border-gray-300 rounded focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent tabular-nums"
                     />
                     {hasLiveSpread && liveSpreadEdge !== null && (
-                      <span className={`px-1 py-0.5 rounded text-[10px] font-bold tabular-nums ${
-                        Math.abs(liveSpreadEdge) >= 3 ? liveSpreadEdge > 0 ? 'bg-green-100 text-green-700' : 'bg-red-100 text-red-700'
-                        : Math.abs(liveSpreadEdge) >= 1.5 ? liveSpreadEdge > 0 ? 'bg-green-50 text-green-600' : 'bg-red-50 text-red-600'
-                        : 'text-gray-500'
+                      <div className={`flex items-center gap-1 px-2 py-1 rounded font-bold text-xs ${
+                        Math.abs(liveSpreadEdge) >= 3
+                          ? liveSpreadEdge > 0 ? 'bg-green-100 text-green-700' : 'bg-red-100 text-red-700'
+                          : Math.abs(liveSpreadEdge) >= 1.5
+                          ? liveSpreadEdge > 0 ? 'bg-green-50 text-green-600' : 'bg-red-50 text-red-600'
+                          : 'bg-gray-100 text-gray-600'
                       }`}>
-                        {liveSpreadEdge > 0 ? 'H' : 'A'}{Math.abs(liveSpreadEdge).toFixed(1)}{Math.abs(liveSpreadEdge) >= 3 && '🔥'}
-                      </span>
+                        <span className="tabular-nums">
+                          {liveSpreadEdge > 0 ? 'HOME' : 'AWAY'} {Math.abs(liveSpreadEdge).toFixed(1)}
+                        </span>
+                        {Math.abs(liveSpreadEdge) >= 3 && <span className="animate-pulse">🔥</span>}
+                      </div>
+                    )}
+                    {projectionRange?.maxSpreadEdge !== null && projectionRange?.maxSpreadEdge !== undefined && (
+                      <div className="text-[10px] text-gray-400 whitespace-nowrap">
+                        Max: <span className={`font-medium ${projectionRange.maxSpreadEdge > 0 ? 'text-green-600' : 'text-red-600'}`}>
+                          {projectionRange.maxSpreadEdge > 0 ? '+' : ''}{projectionRange.maxSpreadEdge.toFixed(1)}
+                        </span>
+                      </div>
                     )}
                   </div>
                 </div>
 
-                {/* Stats Row */}
-                <div className="flex items-center gap-3 mt-1.5 text-xs text-gray-600 flex-wrap">
-                  <span><span className="text-gray-400">Elapsed:</span> <span className="font-medium text-green-600 tabular-nums">{minutesElapsed !== null ? minutesElapsed.toFixed(1) : '--'}m</span></span>
-                  <span><span className="text-gray-400">Rate:</span> <span className="font-medium tabular-nums">{runRate !== null ? runRate.toFixed(2) : '--'}</span></span>
-                  <span><span className="text-gray-400">Proj:</span> <span className="font-bold text-green-600 tabular-nums">{rawProjectedTotal !== null ? rawProjectedTotal.toFixed(1) : '--'}</span></span>
-                  <span><span className="text-gray-400">Final:</span> <span className="font-medium tabular-nums">{projectedHome !== null && projectedAway !== null
-                    ? `${projectedAway.toFixed(0)}-${projectedHome.toFixed(0)}`
-                    : calibratedProjectedTotal !== null && totalPoints > 0
-                    ? `${(calibratedProjectedTotal * (game.awayScore / totalPoints)).toFixed(0)}-${(calibratedProjectedTotal * (game.homeScore / totalPoints)).toFixed(0)}`
-                    : '--'}</span></span>
-                  {projectionRange && (
-                    <>
-                      <span className="text-gray-300">|</span>
-                      <span><span className="text-gray-400">Lo:</span> <span className="font-medium text-red-600 tabular-nums">{projectionRange.low.toFixed(1)}</span></span>
-                      <span><span className="text-gray-400">Hi:</span> <span className="font-medium text-blue-600 tabular-nums">{projectionRange.high.toFixed(1)}</span></span>
-                      {projectionRange.maxOuEdge !== null && (
-                        <span><span className="text-gray-400">MaxEdge:</span> <span className={`font-medium tabular-nums ${projectionRange.maxOuEdge > 0 ? 'text-green-600' : 'text-red-600'}`}>{projectionRange.maxOuEdge > 0 ? '+' : ''}{projectionRange.maxOuEdge.toFixed(1)}</span></span>
-                      )}
-                    </>
-                  )}
+                <div className="grid grid-cols-2 sm:grid-cols-6 gap-2 sm:gap-3 mt-3">
+                  <div className="bg-gray-50 rounded-lg p-2 text-center">
+                    <div className="text-[10px] uppercase text-gray-400">Score</div>
+                    <div className="text-sm sm:text-base font-bold text-gray-900">
+                      {game.awayScore}-{game.homeScore}
+                    </div>
+                  </div>
+                  <div className="bg-gray-50 rounded-lg p-2 text-center relative">
+                    <div className="text-[10px] uppercase text-gray-400">Elapsed</div>
+                    <div className="text-sm sm:text-base font-bold text-green-600 tabular-nums">
+                      {minutesElapsed !== null ? minutesElapsed.toFixed(2) : '--'}m
+                    </div>
+                    <div className="absolute top-0.5 right-1 w-1.5 h-1.5 rounded-full bg-green-500 animate-pulse" />
+                  </div>
+                  <div className="bg-gray-50 rounded-lg p-2 text-center">
+                    <div className="text-[10px] uppercase text-gray-400">Run Rate</div>
+                    <div className="text-sm sm:text-base font-bold text-green-600 tabular-nums">
+                      {runRate !== null ? runRate.toFixed(3) : '--'}
+                    </div>
+                  </div>
+                  <div className="bg-gray-50 rounded-lg p-2 text-center">
+                    <div className="text-[10px] uppercase text-gray-400">Proj Total</div>
+                    <div className="text-sm sm:text-base font-bold text-green-600 tabular-nums">
+                      {rawProjectedTotal !== null ? rawProjectedTotal.toFixed(1) : '--'}
+                    </div>
+                  </div>
+                  <div className="bg-gray-50 rounded-lg p-2 text-center">
+                    <div className="text-[10px] uppercase text-gray-400">Calibrated</div>
+                    <div className="text-sm sm:text-base font-bold text-green-600 tabular-nums">
+                      {calibratedProjectedTotal !== null ? calibratedProjectedTotal.toFixed(1) : '--'}
+                    </div>
+                  </div>
+                  <div className="bg-gray-50 rounded-lg p-2 text-center">
+                    <div className="text-[10px] uppercase text-gray-400">Proj Final</div>
+                    <div className="text-sm sm:text-base font-bold text-green-600 tabular-nums">
+                      {projectedHome !== null && projectedAway !== null
+                        ? `${projectedAway.toFixed(0)}-${projectedHome.toFixed(0)}`
+                        : calibratedProjectedTotal !== null && totalPoints > 0
+                        ? `${(calibratedProjectedTotal * (game.awayScore / totalPoints)).toFixed(0)}-${(calibratedProjectedTotal * (game.homeScore / totalPoints)).toFixed(0)}`
+                        : '--'}
+                    </div>
+                    <div className="text-[9px] text-gray-400">Pace projection</div>
+                  </div>
                 </div>
+
+                {/* High/Low Projection Range */}
+                {projectionRange && (
+                  <div className="mt-2 pt-2 border-t border-gray-100">
+                    <div className="flex items-center justify-between gap-4">
+                      <div className="flex items-center gap-3">
+                        <div className="flex items-center gap-1.5">
+                          <span className="text-[10px] uppercase text-gray-400">Session Low:</span>
+                          <span className="text-sm font-bold text-red-600 tabular-nums">
+                            {projectionRange.low.toFixed(1)}
+                          </span>
+                          <span className="text-[9px] text-gray-400">
+                            ({Math.floor((Date.now() - projectionRange.lowTime) / 1000)}s ago)
+                          </span>
+                        </div>
+                        <div className="flex items-center gap-1.5">
+                          <span className="text-[10px] uppercase text-gray-400">Session High:</span>
+                          <span className="text-sm font-bold text-blue-600 tabular-nums">
+                            {projectionRange.high.toFixed(1)}
+                          </span>
+                          <span className="text-[9px] text-gray-400">
+                            ({Math.floor((Date.now() - projectionRange.highTime) / 1000)}s ago)
+                          </span>
+                        </div>
+                      </div>
+                      <div className="text-[10px] text-gray-400">
+                        Range: <span className="font-medium text-gray-600">{(projectionRange.high - projectionRange.low).toFixed(1)}</span>
+                      </div>
+                    </div>
+                  </div>
+                )}
               </div>
             );
           })}
