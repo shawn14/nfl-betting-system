@@ -513,6 +513,19 @@ export async function GET(request: Request) {
         ? calculateConviction(homeTeam.abbreviation, awayTeam.abbreviation, homeElo, awayElo, predictedSpread, vegasSpread)
         : null;
 
+      // Calculate ouConfidence and mlConfidence for backtest
+      const totalEdge = Math.abs(predictedTotal - vegasTotal);
+      let ouConf: 'high' | 'medium' | 'low' = 'medium';
+      if (totalEdge >= 5) ouConf = 'high';
+      else if (totalEdge >= 3) ouConf = 'medium';
+      else ouConf = 'low';
+
+      const mlEdge = Math.abs(homeWinProb - 0.5) * 100;
+      let mlConf: 'high' | 'medium' | 'low' = 'medium';
+      if (mlEdge >= 15) mlConf = 'high';
+      else if (mlEdge >= 7) mlConf = 'medium';
+      else mlConf = 'low';
+
       // Build backtest result object
       newBacktestResults.push({
         gameId: game.id,
@@ -546,6 +559,9 @@ export async function GET(request: Request) {
         isLargeSpread,
         isSmallSpread,
         eloDiff: Math.round(eloDiff),
+        atsConfidence: conviction ? conviction.level : 'medium',
+        mlConfidence: mlConf,
+        ouConfidence: ouConf,
         conviction: conviction ? {
           level: conviction.level,
           isHighConviction: conviction.isHighConviction,
@@ -835,13 +851,14 @@ export async function GET(request: Request) {
           spreadEdge: predictedSpread - vegasSpread,
           totalEdge: predictedTotal - vegasTotal,
           homeWinProbability: Math.round(homeWinProb * 100),
-          confidence: {
-            spread: conviction.level,
-            moneyline: mlConfidence,
-            overUnder: ouConfidence,
+          atsConfidence: conviction.level,
+          mlConfidence,
+          ouConfidence,
+          conviction: {
+            level: conviction.level,
+            isHighConviction: conviction.isHighConviction,
+            expectedWinPct: conviction.expectedWinPct,
           },
-          highConviction: conviction.isHighConviction,
-          expectedWinPct: conviction.expectedWinPct,
           elo: {
             home: homeTeam.eloRating,
             away: awayTeam.eloRating,
