@@ -13,12 +13,12 @@ const firebaseConfig = {
   appId: cleanEnv(process.env.NEXT_PUBLIC_FIREBASE_APP_ID),
 };
 
-// Only initialize Firebase if we have a valid API key (i.e., in browser/runtime, not during build)
-let app: FirebaseApp | undefined;
-let db: Firestore | undefined;
-let auth: Auth | undefined;
+// Only initialize Firebase in the browser (not during SSR/build)
+let app: FirebaseApp | null = null;
+let db: Firestore | null = null;
+let auth: Auth | null = null;
 
-if (typeof window !== 'undefined' || firebaseConfig.apiKey) {
+if (typeof window !== 'undefined') {
   app = getApps().length === 0 ? initializeApp(firebaseConfig) : getApps()[0];
   db = getFirestore(app);
   auth = getAuth(app);

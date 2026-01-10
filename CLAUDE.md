@@ -4,7 +4,7 @@ This file provides context for Claude when working on this codebase.
 
 ## Project Overview
 
-NFL betting prediction system built with Next.js, deployed on Vercel. Uses Elo ratings, team stats, weather data, and injury reports to generate betting predictions.
+Multi-sport betting prediction system (NFL, NBA, NHL) built with Next.js, deployed on Vercel. Uses Elo ratings, team stats, weather data, and injury reports to generate betting predictions.
 
 **Live Site:** https://www.predictionmatrix.com
 
@@ -46,13 +46,19 @@ See `ARCHITECTURE.md` for complete system documentation including:
 
 ## Key Model Parameters
 
+### NFL (`blob-sync-simple/route.ts`)
 ```typescript
 WEATHER_MULTIPLIER = 3;        // Optimal from simulation (55.7% win rate)
 ELO_TO_POINTS = 0.11;          // 100 Elo = 11 point spread
-HOME_FIELD_ADVANTAGE = 3.25;   // Total home advantage
+HOME_FIELD_ADVANTAGE = 4.5;    // Increased from 3.25 to fix away team bias
 SPREAD_REGRESSION = 0.45;      // Shrink spreads 45%
 ELO_HOME_ADVANTAGE = 48;       // Elo bonus for home team
 ELO_CAP = 16;                  // Max ±8 pts per team (prevents unrealistic 40-8 scores)
+```
+
+### NBA (`nba-sync/route.ts`)
+```typescript
+HOME_COURT_ADVANTAGE = 4.5;    // Increased from 2.0 to fix away team bias
 ```
 
 ## Current Performance (169 games with Vegas lines)
@@ -113,6 +119,27 @@ curl https://www.predictionmatrix.com/api/admin/recalculate-backtest
 - Vegas odds: Lock 1 hour before game (never update after)
 - Weather: 6-hour cache
 - Injuries: 6-hour cache for current week
+
+## Critical: Firebase Configuration
+
+**DO NOT modify `src/lib/firebase.ts` without understanding this:**
+
+Firebase must only initialize in the browser, not during SSR/build:
+```typescript
+if (typeof window !== 'undefined') {
+  app = getApps().length === 0 ? initializeApp(firebaseConfig) : getApps()[0];
+  db = getFirestore(app);
+  auth = getAuth(app);
+}
+```
+
+**Why:** Vercel's build process pre-renders static pages. During build, Firebase env vars aren't available, causing `auth/invalid-api-key` errors.
+
+**Consumers must handle null:** All files using `auth` or `db` must check for null:
+- `AuthProvider.tsx`: `if (!auth)` early return
+- `AccountMenu.tsx`: `auth && signOut(auth)`
+- `NavBar.tsx`: `auth && signInWithPopup(auth, ...)`
+- `firestore-store.ts`: `getDb()` helper that throws if null
 
 ## Notes for Development
 

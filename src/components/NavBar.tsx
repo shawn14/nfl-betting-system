@@ -175,7 +175,7 @@ export default function NavBar() {
                 <AccountMenu />
               ) : (
                 <button
-                  onClick={() => signInWithPopup(auth, new GoogleAuthProvider())}
+                  onClick={() => auth && signInWithPopup(auth, new GoogleAuthProvider())}
                   className="text-xs sm:text-sm font-semibold text-gray-600 hover:text-gray-900"
                 >
                   Sign in

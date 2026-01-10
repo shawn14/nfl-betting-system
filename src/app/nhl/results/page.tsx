@@ -68,29 +68,31 @@ function computeHighConvictionStats(results: BacktestResult[]): HighConvictionSt
     // Use conviction flag if available, otherwise fall back to edge calculation
     const isHighConviction = r.conviction?.isHighConviction === true;
     const spreadEdge = r.vegasSpread !== undefined ? Math.abs(r.predictedSpread - r.vegasSpread) : 0;
-    const totalEdge = r.vegasTotal !== undefined ? Math.abs(r.predictedTotal - r.vegasTotal) : 0;
-    const mlEdge = Math.abs(r.homeWinProb - 0.5) * 100;
 
-    // High conviction Puck Line (use flag or edge >= 0.75 goals)
-    const puckLineHighConv = isHighConviction || spreadEdge >= 0.75;
-    if (puckLineHighConv && r.atsResult) {
-      if (r.atsResult === 'win') atsW++;
-      else if (r.atsResult === 'loss') atsL++;
-      else atsP++;
-    }
+    // High conviction = same criteria for ALL bet types (puck line edge based)
+    const highConv = isHighConviction || spreadEdge >= 0.75;
 
-    // High conviction O/U (edge >= 1.5 goals)
-    const ouResult = r.ouResult || r.ouVegasResult;
-    if (totalEdge >= 1.5 && ouResult) {
-      if (ouResult === 'win') ouW++;
-      else if (ouResult === 'loss') ouL++;
-      else ouP++;
-    }
+    if (highConv) {
+      // Puck Line result
+      if (r.atsResult) {
+        if (r.atsResult === 'win') atsW++;
+        else if (r.atsResult === 'loss') atsL++;
+        else atsP++;
+      }
 
-    // High conviction ML (edge >= 15%)
-    if (mlEdge >= 15 && r.mlResult) {
-      if (r.mlResult === 'win') mlW++;
-      else mlL++;
+      // O/U result (same high conviction games)
+      const ouResult = r.ouResult || r.ouVegasResult;
+      if (ouResult) {
+        if (ouResult === 'win') ouW++;
+        else if (ouResult === 'loss') ouL++;
+        else ouP++;
+      }
+
+      // ML result (same high conviction games)
+      if (r.mlResult) {
+        if (r.mlResult === 'win') mlW++;
+        else mlL++;
+      }
     }
   }
 
@@ -418,8 +420,15 @@ export default function NHLResultsPage() {
     return <span className={`font-mono font-bold ${color}`}>{pct}%</span>;
   };
 
-  // Calculate Current Form (rolling 20 game puck line performance)
-  const last20 = results.slice(0, 20);
+  // Calculate Current Form (rolling 20 HIGH CONVICTION puck line picks only)
+  const highConvictionResults = results.filter(r => {
+    const result = r.atsResult || r.spreadResult;
+    if (!result) return false;
+    const isHighConviction = r.conviction?.isHighConviction === true;
+    const spreadEdge = r.vegasSpread !== undefined ? Math.abs(r.predictedSpread - r.vegasSpread) : 0;
+    return isHighConviction || spreadEdge >= 0.75; // High conviction threshold for NHL
+  });
+  const last20 = highConvictionResults.slice(0, 20);
   const last20ATS = last20.reduce((acc, r) => {
     const result = r.atsResult || r.spreadResult;
     if (result === 'win') acc.wins++;
