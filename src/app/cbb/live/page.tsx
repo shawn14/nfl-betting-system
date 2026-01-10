@@ -367,42 +367,7 @@ export default function CBBLiveTrackerPage() {
               ? calibratedProjectedTotal - liveTotal
               : null;
 
-            // Calculate interpolated time remaining for calibration
-            const interpolatedTimeRemaining = minutesElapsed !== null
-              ? (game.period <= 2 ? REG_MINUTES - minutesElapsed : 0)
-              : null;
-
-            // Note: Calibration data is NBA-specific (4 quarters), skip for CBB
-            if (false && calibration && minutesElapsed !== null && game.period <= 2 && interpolatedTimeRemaining !== null && interpolatedTimeRemaining > 0) {
-              const homeAvg = calibration.teamAvgQuarter[game.home];
-              const awayAvg = calibration.teamAvgQuarter[game.away];
-              if (homeAvg && awayAvg) {
-                // Calculate which quarter we're in based on interpolated time
-                const currentQuarter = Math.min(4, Math.floor(minutesElapsed / QUARTER_MINUTES) + 1);
-                const minutesIntoQuarter = minutesElapsed % QUARTER_MINUTES;
-                const quarterIndex = currentQuarter - 1;
-                const quarterTimeRemaining = QUARTER_MINUTES - minutesIntoQuarter;
-
-                const homeRemaining = homeAvg
-                  .slice(quarterIndex + 1)
-                  .reduce((sum, val) => sum + val, 0) + homeAvg[quarterIndex] * (quarterTimeRemaining / QUARTER_MINUTES);
-                const awayRemaining = awayAvg
-                  .slice(quarterIndex + 1)
-                  .reduce((sum, val) => sum + val, 0) + awayAvg[quarterIndex] * (quarterTimeRemaining / QUARTER_MINUTES);
-                const expectedRemaining = homeRemaining + awayRemaining;
-
-                const gap = Math.abs(game.homeScore - game.awayScore);
-                const gapKey = gap <= 4 ? 'close' : gap <= 9 ? 'small' : gap <= 14 ? 'medium' : 'large';
-                const checkpoint = currentQuarter <= 1 ? 'Q1' : currentQuarter <= 2 ? 'HALF' : 'Q3';
-                const multiplier = calibration.gapMultipliers?.[checkpoint]?.[gapKey]?.avg ?? 1;
-
-                if (expectedRemaining > 0) {
-                  calibratedProjectedTotal = totalPoints + expectedRemaining * multiplier;
-                  projectedHome = game.homeScore + homeRemaining * multiplier;
-                  projectedAway = game.awayScore + awayRemaining * multiplier;
-                }
-              }
-            }
+            // Note: NBA-specific calibration not applicable to CBB (different game structure)
 
             // Calculate per-game seconds since snapshot
             const gameSinceUpdate = Math.floor((Date.now() - game.snapshotTime) / 1000);
