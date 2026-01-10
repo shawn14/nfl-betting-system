@@ -320,19 +320,17 @@ export async function GET(request: Request) {
       espnTeams = await fetchCollegeBasketballTeams();
       for (const team of espnTeams) {
         if (!team.id) continue;
-        const tier = getConferenceTier(team.conference);
-        const initialElo = INITIAL_ELO_BY_TIER[tier];
         teamsMap.set(team.id, {
           id: team.id,
           name: team.name || '',
           abbreviation: team.abbreviation || '',
-          eloRating: initialElo,
+          eloRating: 1500,  // ALL teams start at 1500 like NBA
           ppg: team.ppg,
           ppgAllowed: team.ppgAllowed,
           conference: team.conference,
         });
       }
-      log(`Fetched ${teamsMap.size} teams with conference-based Elos`);
+      log(`Fetched ${teamsMap.size} teams with Elo 1500`);
     }
 
     // Refresh PPG stats each run
@@ -377,31 +375,245 @@ export async function GET(request: Request) {
       log(`Found ${allGames.filter(g => g.status !== 'final').length} upcoming + ${completedGames.length} completed`);
     }
 
-    // Process completed games for Elo updates
+    // Process completed games: Predict FIRST, then update Elo (NBA pattern)
     const sortedCompleted = completedGames
       .filter(g => !processedGameIds.has(g.id))
       .sort((a, b) => new Date(a.gameTime).getTime() - new Date(b.gameTime).getTime());
 
-    log(`Processing ${sortedCompleted.length} new completed games for Elo updates...`);
+    log(`Processing ${sortedCompleted.length} new completed games for backtest and Elo...`);
+
+    // Backtest accumulators (carry forward from previous runs)
+    let spreadWins = existingState?.backtestSummary?.spread?.wins || 0;
+    let spreadLosses = existingState?.backtestSummary?.spread?.losses || 0;
+    let spreadPushes = existingState?.backtestSummary?.spread?.pushes || 0;
+    let mlWins = existingState?.backtestSummary?.moneyline?.wins || 0;
+    let mlLosses = existingState?.backtestSummary?.moneyline?.losses || 0;
+    let ouWins = existingState?.backtestSummary?.overUnder?.wins || 0;
+    let ouLosses = existingState?.backtestSummary?.overUnder?.losses || 0;
+    let ouPushes = existingState?.backtestSummary?.overUnder?.pushes || 0;
+
+    const newBacktestResults: unknown[] = [];
+
     for (const game of sortedCompleted) {
-      if (!game.homeTeamId || !game.awayTeamId) continue;
+      if (game.homeScore === undefined || game.awayScore === undefined) continue;
+      if (!game.id || !game.homeTeamId || !game.awayTeamId) continue;
+
       const homeTeam = teamsMap.get(game.homeTeamId);
       const awayTeam = teamsMap.get(game.awayTeamId);
       if (!homeTeam || !awayTeam) continue;
 
-      const { homeNewElo, awayNewElo } = updateEloAfterGame(
-        { id: game.homeTeamId, eloRating: homeTeam.eloRating } as Team,
-        { id: game.awayTeamId, eloRating: awayTeam.eloRating } as Team,
-        game.homeScore,
-        game.awayScore
+      const homeElo = homeTeam.eloRating;
+      const awayElo = awayTeam.eloRating;
+
+      // STEP 1: Make prediction BEFORE updating Elo
+      const { homeScore: predHome, awayScore: predAway } = predictScore(
+        homeElo, awayElo,
+        homeTeam.ppg || LEAGUE_AVG_PPG, homeTeam.ppgAllowed || LEAGUE_AVG_PPG,
+        awayTeam.ppg || LEAGUE_AVG_PPG, awayTeam.ppgAllowed || LEAGUE_AVG_PPG
       );
 
+      const predictedSpread = calculateSpread(predHome, predAway);
+      const predictedTotal = predHome + predAway;
+      const adjustedHomeElo = homeElo + ELO_HOME_ADVANTAGE;
+      const homeWinProb = 1 / (1 + Math.pow(10, (awayElo - adjustedHomeElo) / 400));
+
+      // STEP 2: Compare prediction to actual outcome
+      const actualHomeScore = game.homeScore;
+      const actualAwayScore = game.awayScore;
+      const actualSpread = actualAwayScore - actualHomeScore;
+      const actualTotal = actualHomeScore + actualAwayScore;
+      const homeWon = actualHomeScore > actualAwayScore;
+
+      // Internal spread prediction results
+      const spreadPick = predictedSpread < 0 ? 'home' : 'away';
+      const mlPick = homeWinProb > 0.5 ? 'home' : 'away';
+
+      let spreadResult: 'win' | 'loss' | 'push';
+      if (spreadPick === 'home') {
+        spreadResult = actualSpread < predictedSpread ? 'win' : actualSpread > predictedSpread ? 'loss' : 'push';
+      } else {
+        spreadResult = actualSpread > predictedSpread ? 'win' : actualSpread < predictedSpread ? 'loss' : 'push';
+      }
+
+      const mlResult = (mlPick === 'home' && homeWon) || (mlPick === 'away' && !homeWon) ? 'win' : 'loss';
+
+      // O/U pick based on CBB average total (~144)
+      const ouPickActual: 'over' | 'under' = predictedTotal > 144 ? 'over' : 'under';
+      let ouResult: 'win' | 'loss' | 'push';
+      if (ouPickActual === 'over') {
+        ouResult = actualTotal > 144 ? 'win' : actualTotal < 144 ? 'loss' : 'push';
+      } else {
+        ouResult = actualTotal < 144 ? 'win' : actualTotal > 144 ? 'loss' : 'push';
+      }
+
+      // Update counters
+      if (spreadResult === 'win') spreadWins++;
+      else if (spreadResult === 'loss') spreadLosses++;
+      else spreadPushes++;
+      if (mlResult === 'win') mlWins++;
+      else mlLosses++;
+      if (ouResult === 'win') ouWins++;
+      else if (ouResult === 'loss') ouLosses++;
+      else ouPushes++;
+
+      // Get Vegas odds from historical storage
+      const storedOdds = historicalOdds[game.id];
+      const vegasSpread = storedOdds?.vegasSpread;
+      const vegasTotal = storedOdds?.vegasTotal;
+
+      // Calculate ATS result vs Vegas (if available)
+      let atsResult: 'win' | 'loss' | 'push' | undefined;
+      if (vegasSpread !== undefined) {
+        const pickHome = predictedSpread < vegasSpread;
+        if (pickHome) {
+          atsResult = actualSpread < vegasSpread ? 'win' : actualSpread > vegasSpread ? 'loss' : 'push';
+        } else {
+          atsResult = actualSpread > vegasSpread ? 'win' : actualSpread < vegasSpread ? 'loss' : 'push';
+        }
+      }
+
+      // Calculate O/U result vs Vegas (if available)
+      let ouVegasResult: 'win' | 'loss' | 'push' | undefined;
+      if (vegasTotal !== undefined && vegasTotal > 0) {
+        const pickOver = predictedTotal > vegasTotal;
+        if (pickOver) {
+          ouVegasResult = actualTotal > vegasTotal ? 'win' : actualTotal < vegasTotal ? 'loss' : 'push';
+        } else {
+          ouVegasResult = actualTotal < vegasTotal ? 'win' : actualTotal > vegasTotal ? 'loss' : 'push';
+        }
+      }
+
+      const absVegasSpread = vegasSpread !== undefined ? Math.abs(vegasSpread) : 0;
+      const eloDiff = Math.abs(homeElo - awayElo);
+      const isLargeSpread = absVegasSpread >= 10;
+      const isSmallSpread = absVegasSpread > 0 && absVegasSpread <= 3;
+
+      const conviction = vegasSpread !== undefined
+        ? calculateConviction(homeTeam.abbreviation, awayTeam.abbreviation, homeElo, awayElo, predictedSpread, vegasSpread)
+        : null;
+
+      // Build backtest result object
+      newBacktestResults.push({
+        gameId: game.id,
+        gameTime: game.gameTime || '',
+        homeTeam: homeTeam.abbreviation,
+        awayTeam: awayTeam.abbreviation,
+        homeTeamId: homeTeam.id,
+        awayTeamId: awayTeam.id,
+        homeElo,
+        awayElo,
+        predictedHomeScore: predHome,
+        predictedAwayScore: predAway,
+        predictedSpread: Math.round(predictedSpread * 2) / 2,
+        predictedTotal: Math.round(predictedTotal * 2) / 2,
+        homeWinProb: Math.round(homeWinProb * 100) / 100,
+        actualHomeScore,
+        actualAwayScore,
+        actualSpread,
+        actualTotal,
+        homeWon,
+        spreadPick,
+        spreadResult,
+        mlPick,
+        mlResult,
+        ouPick: ouPickActual,
+        ouResult,
+        vegasSpread,
+        vegasTotal,
+        atsResult,
+        ouVegasResult,
+        isLargeSpread,
+        isSmallSpread,
+        eloDiff: Math.round(eloDiff),
+        conviction: conviction ? {
+          level: conviction.level,
+          isHighConviction: conviction.isHighConviction,
+          expectedWinPct: conviction.expectedWinPct,
+        } : undefined,
+      });
+
+      // STEP 3: NOW update Elo for next game
+      const { homeNewElo, awayNewElo } = updateEloAfterGame(
+        { id: game.homeTeamId, eloRating: homeElo } as Team,
+        { id: game.awayTeamId, eloRating: awayElo } as Team,
+        actualHomeScore,
+        actualAwayScore
+      );
       homeTeam.eloRating = homeNewElo;
       awayTeam.eloRating = awayNewElo;
+
       processedGameIds.add(game.id);
     }
 
-    log(`Elo updates complete. Now generating predictions...`);
+    log(`Processed ${sortedCompleted.length} new games. Spread: ${spreadWins}-${spreadLosses}`);
+
+    // Merge with existing backtest results
+    const coerceGameTime = (value: any) => {
+      if (!value) return value;
+      if (typeof value === 'string') return value;
+      if (typeof value === 'number') return new Date(value).toISOString();
+      if (typeof value === 'object' && typeof value._seconds === 'number') {
+        return new Date(value._seconds * 1000).toISOString();
+      }
+      return value;
+    };
+
+    const existingResults = shouldReset
+      ? []
+      : (await getDocsList<any>(sport, 'results')).map(r => ({
+        ...r,
+        gameId: r.gameId || r.id,
+        gameTime: coerceGameTime(r.gameTime),
+      }));
+
+    // Enrich existing results with latest Vegas odds
+    const enrichedExistingResults = existingResults.map((r: any) => {
+      const storedOdds = historicalOdds[r.gameId];
+      const vegasSpread = storedOdds?.vegasSpread ?? r.vegasSpread;
+      const vegasTotal = storedOdds?.vegasTotal ?? r.vegasTotal;
+
+      // Recalculate ATS result if needed
+      let atsResult: 'win' | 'loss' | 'push' | undefined = r.atsResult;
+      if (!atsResult && vegasSpread !== undefined && r.actualSpread !== undefined && r.predictedSpread !== undefined) {
+        const pickHome = r.predictedSpread < vegasSpread;
+        if (pickHome) {
+          atsResult = r.actualSpread < vegasSpread ? 'win' : r.actualSpread > vegasSpread ? 'loss' : 'push';
+        } else {
+          atsResult = r.actualSpread > vegasSpread ? 'win' : r.actualSpread < vegasSpread ? 'loss' : 'push';
+        }
+      }
+
+      let ouVegasResult = r.ouVegasResult;
+      if (!ouVegasResult && vegasTotal !== undefined && vegasTotal > 0 && r.actualTotal !== undefined && r.predictedTotal !== undefined) {
+        const pickOver = r.predictedTotal > vegasTotal;
+        if (pickOver) {
+          ouVegasResult = r.actualTotal > vegasTotal ? 'win' : r.actualTotal < vegasTotal ? 'loss' : 'push';
+        } else {
+          ouVegasResult = r.actualTotal < vegasTotal ? 'win' : r.actualTotal > vegasTotal ? 'loss' : 'push';
+        }
+      }
+
+      return {
+        ...r,
+        vegasSpread,
+        vegasTotal,
+        atsResult,
+        ouVegasResult,
+      };
+    });
+
+    // Deduplicate by gameId
+    const seenGameIds = new Set<string>();
+    const allBacktestResults = [
+      ...newBacktestResults,
+      ...enrichedExistingResults,
+    ].filter((r: any) => {
+      if (seenGameIds.has(r.gameId)) return false;
+      seenGameIds.add(r.gameId);
+      return true;
+    });
+
+    log(`Total backtest results: ${allBacktestResults.length} games`);
 
     // Fetch live odds from The Odds API (for live page display only)
     let oddsApiData: Map<string, Partial<import('@/types').Odds>[]> | null = null;
@@ -620,116 +832,116 @@ export async function GET(request: Request) {
 
     log(`Generated ${gamesWithPredictions.length} predictions (fetched ${oddsFetched} ESPN odds)`);
 
-    // Calculate backtest
-    const finalGames = allGames.filter(g => g.status === 'final');
-    const backtestResults = [];
-    let atsWins = 0, atsLosses = 0, atsPushes = 0;
-    let mlWins = 0, mlLosses = 0;
-    let ouWins = 0, ouLosses = 0, ouPushes = 0;
-
-    for (const gameWithPred of gamesWithPredictions) {
-      const { game, prediction } = gameWithPred;
-      if (game.status !== 'final') continue;
-
-      const actualSpread = game.awayScore - game.homeScore;
-      const actualTotal = game.homeScore + game.awayScore;
-      const homeWon = game.homeScore > game.awayScore;
-
-      const predictedHomeWin = prediction.homeWinProbability > 50;
-      const mlResult = predictedHomeWin === homeWon ? 'win' : 'loss';
-      if (mlResult === 'win') mlWins++;
-      else mlLosses++;
-
-      if (prediction.vegasSpread !== undefined) {
-        const vegasPredictedSpread = actualSpread - prediction.vegasSpread;
-        const ourPredictedSpread = actualSpread - prediction.predictedSpread;
-        if (Math.abs(vegasPredictedSpread) < 0.5) {
-          atsPushes++;
-        } else if ((vegasPredictedSpread > 0 && ourPredictedSpread > 0) || (vegasPredictedSpread < 0 && ourPredictedSpread < 0)) {
-          atsWins++;
-        } else {
-          atsLosses++;
-        }
-      }
-
-      if (prediction.vegasTotal !== undefined) {
-        const vegasPredictedTotal = actualTotal - prediction.vegasTotal;
-        const ourPredictedTotal = actualTotal - prediction.predictedTotal;
-        if (Math.abs(vegasPredictedTotal) < 0.5) {
-          ouPushes++;
-        } else if ((vegasPredictedTotal > 0 && ourPredictedTotal > 0) || (vegasPredictedTotal < 0 && ourPredictedTotal < 0)) {
-          ouWins++;
-        } else {
-          ouLosses++;
-        }
-      }
-
-      backtestResults.push({
-        gameId: game.id,
-        home: game.home,
-        away: game.away,
-        homeScore: game.homeScore,
-        awayScore: game.awayScore,
-        predictedSpread: prediction.predictedSpread,
-        vegasSpread: prediction.vegasSpread,
-        predictedTotal: prediction.predictedTotal,
-        vegasTotal: prediction.vegasTotal,
-        atsResult: Math.abs(actualSpread - prediction.vegasSpread!) < 0.5 ? 'push' :
-                   ((actualSpread - prediction.vegasSpread!) * (actualSpread - prediction.predictedSpread) > 0 ? 'win' : 'loss'),
-        mlResult,
-        ouResult: Math.abs(actualTotal - prediction.vegasTotal!) < 0.5 ? 'push' :
-                  ((actualTotal - prediction.vegasTotal!) * (actualTotal - prediction.predictedTotal) > 0 ? 'win' : 'loss'),
-      });
-    }
-
-    const atsTotal = atsWins + atsLosses;
+    // Calculate high conviction stats from backtest results
+    const spreadTotal = spreadWins + spreadLosses;
     const mlTotal = mlWins + mlLosses;
     const ouTotal = ouWins + ouLosses;
 
-    const backtest = {
-      summary: {
-        totalGames: finalGames.length,
-        spread: {
-          wins: atsWins,
-          losses: atsLosses,
-          pushes: atsPushes,
-          winPct: atsTotal > 0 ? Math.round((atsWins / atsTotal) * 100) : 0,
-        },
-        moneyline: {
-          wins: mlWins,
-          losses: mlLosses,
-          winPct: mlTotal > 0 ? Math.round((mlWins / mlTotal) * 100) : 0,
-        },
-        overUnder: {
-          wins: ouWins,
-          losses: ouLosses,
-          pushes: ouPushes,
-          winPct: ouTotal > 0 ? Math.round((ouWins / ouTotal) * 100) : 0,
-        },
-      },
-      results: backtestResults,
-    };
+    let hiAtsW = 0, hiAtsL = 0, hiAtsP = 0;
+    let hiOuW = 0, hiOuL = 0, hiOuP = 0;
+    let hiMlW = 0, hiMlL = 0;
 
-    log(`Backtest: ATS ${atsWins}-${atsLosses}-${atsPushes} (${backtest.summary.spread.winPct}%), ML ${mlWins}-${mlLosses} (${backtest.summary.moneyline.winPct}%), O/U ${ouWins}-${ouLosses}-${ouPushes} (${backtest.summary.overUnder.winPct}%)`);
+    for (const r of allBacktestResults as any[]) {
+      const totalEdge = r.vegasTotal !== undefined ? Math.abs(r.predictedTotal - r.vegasTotal) : 0;
+      const mlEdge = Math.abs((r.homeWinProb || 0.5) - 0.5) * 100;
+
+      // High conviction ATS - use conviction flag
+      const isHighConviction = r.conviction?.isHighConviction === true;
+      if (isHighConviction && r.atsResult) {
+        if (r.atsResult === 'win') hiAtsW++;
+        else if (r.atsResult === 'loss') hiAtsL++;
+        else hiAtsP++;
+      }
+
+      // High conviction O/U (edge >= 5 pts)
+      if (totalEdge >= 5 && r.ouVegasResult) {
+        if (r.ouVegasResult === 'win') hiOuW++;
+        else if (r.ouVegasResult === 'loss') hiOuL++;
+        else hiOuP++;
+      }
+
+      // High conviction ML (edge >= 15%)
+      if (mlEdge >= 15 && r.mlResult) {
+        if (r.mlResult === 'win') hiMlW++;
+        else hiMlL++;
+      }
+    }
+
+    const hiAtsTotal = hiAtsW + hiAtsL;
+    const hiOuTotal = hiOuW + hiOuL;
+    const hiMlTotal = hiMlW + hiMlL;
+
+    log(`Backtest: ATS ${spreadWins}-${spreadLosses}-${spreadPushes} (${spreadTotal > 0 ? Math.round((spreadWins / spreadTotal) * 1000) / 10 : 0}%), ML ${mlWins}-${mlLosses} (${mlTotal > 0 ? Math.round((mlWins / mlTotal) * 1000) / 10 : 0}%), O/U ${ouWins}-${ouLosses}-${ouPushes} (${ouTotal > 0 ? Math.round((ouWins / ouTotal) * 1000) / 10 : 0}%)`);
 
     // Save to Vercel Blob
-    const teams = Array.from(teamsMap.values()).map(t => ({
-      id: t.id,
-      name: t.name,
-      abbreviation: t.abbreviation,
-      eloRating: Math.round(t.eloRating),
-      ppg: t.ppg,
-      ppgAllowed: t.ppgAllowed,
-      conference: t.conference,
-    }));
+    const teams = Array.from(teamsMap.values())
+      .sort((a, b) => b.eloRating - a.eloRating)
+      .map(t => ({
+        id: t.id,
+        name: t.name,
+        abbreviation: t.abbreviation,
+        eloRating: Math.round(t.eloRating),
+        ppg: t.ppg,
+        ppgAllowed: t.ppgAllowed,
+        conference: t.conference,
+      }));
 
     const blobData = {
       generated: new Date().toISOString(),
-      season: currentSeason,
-      games: gamesWithPredictions,
       teams,
-      backtest,
-      historicalOdds,
+      games: gamesWithPredictions.sort((a, b) =>
+        new Date(a.game.gameTime || 0).getTime() - new Date(b.game.gameTime || 0).getTime()
+      ),
+      recentGames: [...allBacktestResults]
+        .sort((a: any, b: any) => new Date(b.gameTime).getTime() - new Date(a.gameTime).getTime())
+        .slice(0, 10),
+      backtest: {
+        summary: {
+          totalGames: processedGameIds.size,
+          spread: {
+            wins: spreadWins,
+            losses: spreadLosses,
+            pushes: spreadPushes,
+            winPct: spreadTotal > 0 ? Math.round((spreadWins / spreadTotal) * 1000) / 10 : 0,
+          },
+          moneyline: {
+            wins: mlWins,
+            losses: mlLosses,
+            winPct: mlTotal > 0 ? Math.round((mlWins / mlTotal) * 1000) / 10 : 0,
+          },
+          overUnder: {
+            wins: ouWins,
+            losses: ouLosses,
+            pushes: ouPushes,
+            winPct: ouTotal > 0 ? Math.round((ouWins / ouTotal) * 1000) / 10 : 0,
+          },
+        },
+        highConvictionSummary: {
+          spread: {
+            wins: hiAtsW,
+            losses: hiAtsL,
+            pushes: hiAtsP,
+            winPct: hiAtsTotal > 0 ? Math.round((hiAtsW / hiAtsTotal) * 1000) / 10 : 0,
+          },
+          moneyline: {
+            wins: hiMlW,
+            losses: hiMlL,
+            winPct: hiMlTotal > 0 ? Math.round((hiMlW / hiMlTotal) * 1000) / 10 : 0,
+          },
+          overUnder: {
+            wins: hiOuW,
+            losses: hiOuL,
+            pushes: hiOuP,
+            winPct: hiOuTotal > 0 ? Math.round((hiOuW / hiOuTotal) * 1000) / 10 : 0,
+          },
+        },
+        results: allBacktestResults.filter((r: any) => {
+          // Only include current season games
+          const gameDate = new Date(r.gameTime);
+          const seasonStart = new Date(currentSeason - 1, 10, 1); // November 1
+          return gameDate >= seasonStart;
+        }),
+      },
     };
 
     const blob = await put('cbb-prediction-data.json', JSON.stringify(blobData), {
@@ -741,17 +953,41 @@ export async function GET(request: Request) {
 
     // Save to Firestore
     const syncTimestamp = new Date().toISOString();
-
-    await setSportState(sport, {
-      season: currentSeason,
-      processedGameIds: Array.from(processedGameIds),
-      lastSyncAt: syncTimestamp,
-    });
+    const blobSizeKb = Math.round(JSON.stringify(blobData).length / 1024);
 
     const teamDocs = teams.map(team => ({
       id: team.id,
       data: {
         ...team,
+        sport,
+        updatedAt: syncTimestamp,
+      },
+    }));
+
+    const gameDocs = allGames.map(game => ({
+      id: game.id,
+      data: {
+        ...game,
+        sport,
+        gameTime: game.gameTime ? new Date(game.gameTime).toISOString() : undefined,
+        updatedAt: syncTimestamp,
+      },
+    }));
+
+    const predictionDocs = gamesWithPredictions.map((entry: any) => ({
+      id: entry.game.id,
+      data: {
+        ...entry.prediction,
+        sport,
+        gameId: entry.game.id,
+        updatedAt: syncTimestamp,
+      },
+    }));
+
+    const resultDocs = allBacktestResults.map((result: any) => ({
+      id: result.gameId,
+      data: {
+        ...result,
         sport,
         updatedAt: syncTimestamp,
       },
@@ -767,7 +1003,20 @@ export async function GET(request: Request) {
       },
     }));
 
+    await setSportState(sport, {
+      lastSyncAt: syncTimestamp,
+      lastBlobWriteAt: new Date().toISOString(),
+      lastBlobUrl: blob.url,
+      lastBlobSizeKb: blobSizeKb,
+      season: currentSeason,
+      processedGameIds: Array.from(processedGameIds),
+      backtestSummary: blobData.backtest.summary,
+    });
+
     await saveDocsBatch(sport, 'teams', teamDocs);
+    await saveDocsBatch(sport, 'games', gameDocs);
+    await saveDocsBatch(sport, 'predictions', predictionDocs);
+    await saveDocsBatch(sport, 'results', resultDocs);
     await saveDocsBatch(sport, 'oddsLocks', oddsDocs);
 
     log('=== CBB Sync Complete ===');
@@ -778,7 +1027,7 @@ export async function GET(request: Request) {
       stats: {
         teams: teams.length,
         games: gamesWithPredictions.length,
-        backtest: backtest.summary,
+        backtest: blobData.backtest.summary,
         blobUrl: blob.url,
       },
     });
