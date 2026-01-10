@@ -120,7 +120,7 @@ export default function CBBDashboard() {
 
   const fetchLiveScores = useCallback(async (): Promise<LiveGame[]> => {
     try {
-      const response = await fetch('https://site.api.espn.com/apis/site/v2/sports/basketball/nba/scoreboard');
+      const response = await fetch('https://site.api.espn.com/apis/site/v2/sports/basketball/mens-college-basketball/scoreboard');
       const data = await response.json();
 
       const games: LiveGame[] = data.events?.map((event: any) => {
