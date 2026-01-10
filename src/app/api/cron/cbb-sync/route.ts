@@ -740,14 +740,35 @@ export async function GET(request: Request) {
     log(`Saved to Vercel Blob: ${blob.url}`);
 
     // Save to Firestore
+    const syncTimestamp = new Date().toISOString();
+
     await setSportState(sport, {
       season: currentSeason,
       processedGameIds: Array.from(processedGameIds),
-      lastSyncAt: new Date().toISOString(),
+      lastSyncAt: syncTimestamp,
     });
 
-    await saveDocsBatch(sport, 'teams', teams);
-    await saveDocsBatch(sport, 'oddsLocks', Object.entries(historicalOdds).map(([k, v]) => ({ id: k, ...v })));
+    const teamDocs = teams.map(team => ({
+      id: team.id,
+      data: {
+        ...team,
+        sport,
+        updatedAt: syncTimestamp,
+      },
+    }));
+
+    const oddsDocs = Object.entries(historicalOdds).map(([gameId, odds]) => ({
+      id: gameId,
+      data: {
+        ...odds,
+        gameId,
+        sport,
+        updatedAt: syncTimestamp,
+      },
+    }));
+
+    await saveDocsBatch(sport, 'teams', teamDocs);
+    await saveDocsBatch(sport, 'oddsLocks', oddsDocs);
 
     log('=== CBB Sync Complete ===');
 
