@@ -355,9 +355,7 @@ export default function CBBLiveTrackerPage() {
             const minutesElapsed = getInterpolatedElapsed(game);
             const runRate = minutesElapsed && minutesElapsed > 0 ? totalPoints / minutesElapsed : null;
             const rawProjectedTotal = runRate ? runRate * REG_MINUTES : null;
-            let calibratedProjectedTotal = rawProjectedTotal;
-            let projectedHome: number | null = null;
-            let projectedAway: number | null = null;
+            const calibratedProjectedTotal = rawProjectedTotal;
 
             // Get live odds for this game
             const gamePrediction = predictions.get(game.id);
@@ -387,14 +385,13 @@ export default function CBBLiveTrackerPage() {
             const liveSpread = liveSpreadValue ? parseFloat(liveSpreadValue) : null;
             const hasLiveSpread = liveSpread !== null && !isNaN(liveSpread);
 
-            // Calculate projected spread (home margin)
-            // Using calibrated projection if available, otherwise raw
-            const projectedHomeScore = projectedHome ?? (calibratedProjectedTotal !== null && totalPoints > 0
+            // Calculate projected spread (home margin) based on current scoring pace
+            const projectedHomeScore = calibratedProjectedTotal !== null && totalPoints > 0
               ? calibratedProjectedTotal * (game.homeScore / totalPoints)
-              : null);
-            const projectedAwayScore = projectedAway ?? (calibratedProjectedTotal !== null && totalPoints > 0
+              : null;
+            const projectedAwayScore = calibratedProjectedTotal !== null && totalPoints > 0
               ? calibratedProjectedTotal * (game.awayScore / totalPoints)
-              : null);
+              : null;
             const projectedSpread = projectedHomeScore !== null && projectedAwayScore !== null
               ? projectedAwayScore - projectedHomeScore // negative = home favored
               : null;
@@ -608,10 +605,8 @@ export default function CBBLiveTrackerPage() {
                   <div className="bg-gray-50 rounded-lg p-2 text-center">
                     <div className="text-[10px] uppercase text-gray-400">Proj Final</div>
                     <div className="text-sm sm:text-base font-bold text-green-600 tabular-nums">
-                      {projectedHome !== null && projectedAway !== null
-                        ? `${projectedAway.toFixed(0)}-${projectedHome.toFixed(0)}`
-                        : calibratedProjectedTotal !== null && totalPoints > 0
-                        ? `${(calibratedProjectedTotal * (game.awayScore / totalPoints)).toFixed(0)}-${(calibratedProjectedTotal * (game.homeScore / totalPoints)).toFixed(0)}`
+                      {projectedHomeScore !== null && projectedAwayScore !== null
+                        ? `${projectedAwayScore.toFixed(0)}-${projectedHomeScore.toFixed(0)}`
                         : '--'}
                     </div>
                     <div className="text-[9px] text-gray-400">Pace projection</div>
