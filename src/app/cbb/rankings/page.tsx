@@ -12,8 +12,11 @@ interface Team {
   ppgAllowed?: number;
 }
 
-const getLogoUrl = (abbr: string) => {
-  return `https://a.espncdn.com/i/teamlogos/ncaa/500/${abbr.toLowerCase()}.png`;
+const getLogoUrl = (teamId: string | undefined) => {
+  if (!teamId) {
+    return `https://a.espncdn.com/i/teamlogos/ncaa/500/default.png`;
+  }
+  return `https://a.espncdn.com/i/teamlogos/ncaa/500/${teamId}.png`;
 };
 
 export default function CBBRankingsPage() {
@@ -111,7 +114,7 @@ export default function CBBRankingsPage() {
                         </td>
                         <td className="px-4 py-3">
                           <Link href={`/nba/teams/${team.abbreviation.toLowerCase()}`} className="flex items-center gap-3">
-                            <img src={getLogoUrl(team.abbreviation)} alt="" className="w-8 h-8 object-contain" />
+                            <img src={getLogoUrl(team.id)} alt="" className="w-8 h-8 object-contain" />
                             <div>
                               <span className="font-bold text-gray-900 hover:text-purple-500">{team.abbreviation}</span>
                               <span className="text-gray-500 ml-2 hidden sm:inline">{team.name}</span>
