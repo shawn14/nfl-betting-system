@@ -1,8 +1,7 @@
 'use client';
 
-import { useEffect, useMemo, useState } from 'react';
+import { useCallback, useEffect, useMemo, useRef, useState } from 'react';
 import RequireAuth from '@/components/RequireAuth';
-import { useAuth } from '@/components/AuthProvider';
 
 interface LiveGame {
   id: string;
@@ -16,11 +15,22 @@ interface LiveGame {
   gameTime?: string;
 }
 
+interface LiveGameWithSnapshot extends LiveGame {
+  snapshotTime: number; // timestamp when this data was received
+  snapshotElapsed: number | null; // minutes elapsed at snapshot time
+}
+
 interface CalibrationData {
   seasonYear: number;
   leagueAvgQuarter: number[];
   teamAvgQuarter: Record<string, number[]>;
   gapMultipliers: Record<string, Record<string, { avg: number; samples: number }>>;
+}
+
+interface BlobPrediction {
+  id: string;
+  vegasTotal?: number;
+  vegasSpread?: number;
 }
 
 const REG_MINUTES = 48;
@@ -63,21 +73,99 @@ function getMinutesElapsed(period: number, clock: string): number | null {
   return REG_MINUTES + (otIndex - 1) * OT_MINUTES + elapsedInOt;
 }
 
+// Track high/low projections for each game
+interface ProjectionRange {
+  high: number;
+  low: number;
+  highTime: number; // timestamp when high was recorded
+  lowTime: number;  // timestamp when low was recorded
+}
+
 export default function NBALiveTrackerPage() {
-  const { user } = useAuth();
-  const [liveGames, setLiveGames] = useState<LiveGame[]>([]);
+  const [liveGames, setLiveGames] = useState<LiveGameWithSnapshot[]>([]);
   const [loading, setLoading] = useState(true);
   const [calibration, setCalibration] = useState<CalibrationData | null>(null);
+  const [lastFetchTime, setLastFetchTime] = useState<number | null>(null);
+  const [tick, setTick] = useState(0); // Force re-renders for live updates
+  const [vegasOdds, setVegasOdds] = useState<Record<string, { total?: number; spread?: number }>>({});
+  const [liveOddsInput, setLiveOddsInput] = useState<Record<string, string>>({});
+
+  // Track high/low projections per game (persists across renders)
+  const projectionRangesRef = useRef<Record<string, ProjectionRange>>({});
+
+  // Ref to track if we're currently fetching (to avoid showing stale "seconds ago")
+  const isFetchingRef = useRef(false);
+
+  // Helper to update projection range for a game
+  const updateProjectionRange = useCallback((gameId: string, projectedTotal: number) => {
+    const now = Date.now();
+    const existing = projectionRangesRef.current[gameId];
+
+    if (!existing) {
+      // First projection for this game
+      projectionRangesRef.current[gameId] = {
+        high: projectedTotal,
+        low: projectedTotal,
+        highTime: now,
+        lowTime: now,
+      };
+    } else {
+      // Update high/low if needed
+      if (projectedTotal > existing.high) {
+        projectionRangesRef.current[gameId] = {
+          ...existing,
+          high: projectedTotal,
+          highTime: now,
+        };
+      }
+      if (projectedTotal < existing.low) {
+        projectionRangesRef.current[gameId] = {
+          ...existing,
+          low: projectedTotal,
+          lowTime: now,
+        };
+      }
+    }
+  }, []);
+
+  // Get projection range for a game
+  const getProjectionRange = useCallback((gameId: string): ProjectionRange | null => {
+    return projectionRangesRef.current[gameId] || null;
+  }, []);
+
+  // Fast tick interval for live updates (every 100ms for smooth counting)
+  useEffect(() => {
+    const tickInterval = setInterval(() => {
+      setTick(t => t + 1);
+    }, 100);
+    return () => clearInterval(tickInterval);
+  }, []);
+
+  // Calculate interpolated elapsed time for a game
+  const getInterpolatedElapsed = useCallback((game: LiveGameWithSnapshot): number | null => {
+    if (game.snapshotElapsed === null) return null;
+    const now = Date.now();
+    const secondsSinceSnapshot = (now - game.snapshotTime) / 1000;
+    const minutesSinceSnapshot = secondsSinceSnapshot / 60;
+    // Add elapsed real time to the snapshot elapsed time
+    // Cap at 48 minutes for regulation (don't extrapolate past end of game)
+    const interpolated = game.snapshotElapsed + minutesSinceSnapshot;
+    // For OT, extend the cap
+    const maxMinutes = game.period > 4 ? REG_MINUTES + (game.period - 4) * OT_MINUTES : REG_MINUTES;
+    return Math.min(interpolated, maxMinutes);
+  }, []);
 
   useEffect(() => {
     let intervalId: NodeJS.Timeout | null = null;
 
     const fetchLiveScores = async () => {
+      isFetchingRef.current = true;
       try {
+        const fetchTime = Date.now();
         const response = await fetch('https://site.api.espn.com/apis/site/v2/sports/basketball/nba/scoreboard');
         const data = await response.json();
 
-        const games: LiveGame[] = data.events?.map((event: any) => {
+        const games: LiveGameWithSnapshot[] = data.events?.map((event: any) => {
           const competition = event.competitions?.[0];
           const homeTeam = competition?.competitors?.find((c: any) => c.homeAway === 'home');
           const awayTeam = competition?.competitors?.find((c: any) => c.homeAway === 'away');
@@ -86,26 +174,34 @@ export default function NBALiveTrackerPage() {
           if (event.status?.type?.state === 'in') status = 'live';
           else if (event.status?.type?.state === 'post') status = 'final';
 
+          const period = event.status?.period || 0;
+          const clock = event.status?.displayClock || '';
+          const snapshotElapsed = getMinutesElapsed(period, clock);
+
           return {
             id: event.id,
             away: awayTeam?.team?.abbreviation || 'AWAY',
             home: homeTeam?.team?.abbreviation || 'HOME',
             awayScore: Number.parseInt(awayTeam?.score || '0', 10),
             homeScore: Number.parseInt(homeTeam?.score || '0', 10),
-            period: event.status?.period || 0,
-            clock: event.status?.displayClock || '',
+            period,
+            clock,
             status,
             gameTime: event.date,
+            snapshotTime: fetchTime,
+            snapshotElapsed,
           };
         }) || [];
 
         const liveOnly = games.filter(game => game.status === 'live');
         setLiveGames(liveOnly);
+        setLastFetchTime(fetchTime);
 
       } catch (error) {
         console.error('Error fetching live scores:', error);
       } finally {
         setLoading(false);
+        isFetchingRef.current = false;
       }
     };
 
@@ -133,9 +229,41 @@ export default function NBALiveTrackerPage() {
     loadCalibration();
   }, []);
 
+  // Fetch Vegas odds from our blob storage
+  useEffect(() => {
+    const loadVegasOdds = async () => {
+      try {
+        const response = await fetch('/nba-prediction-data.json');
+        const data = await response.json();
+        if (data?.predictions) {
+          const oddsMap: Record<string, { total?: number; spread?: number }> = {};
+          for (const pred of data.predictions) {
+            if (pred.id) {
+              oddsMap[pred.id] = {
+                total: pred.vegasTotal,
+                spread: pred.vegasSpread,
+              };
+            }
+          }
+          setVegasOdds(oddsMap);
+        }
+      } catch (error) {
+        console.error('Error fetching Vegas odds:', error);
+      }
+    };
+
+    loadVegasOdds();
+    // Refresh every 5 minutes (odds don't change during game anyway)
+    const interval = setInterval(loadVegasOdds, 5 * 60 * 1000);
+    return () => clearInterval(interval);
+  }, []);
+
   const sortedGames = useMemo(() => {
     return [...liveGames].sort((a, b) => a.home.localeCompare(b.home));
   }, [liveGames]);
+
+  // Calculate seconds since last fetch for display
+  const secondsSinceUpdate = lastFetchTime ? Math.floor((Date.now() - lastFetchTime) / 1000) : null;
 
   return (
     <RequireAuth>
@@ -147,8 +275,16 @@ export default function NBALiveTrackerPage() {
               Live run rate vs Vegas total (48-minute projection).
             </p>
           </div>
-          <div className="text-xs text-gray-400">
-            {loading ? 'Loading…' : `${sortedGames.length} live games`}
+          <div className="text-right">
+            <div className="text-xs text-gray-400">
+              {loading ? 'Loading…' : `${sortedGames.length} live games`}
+            </div>
+            {secondsSinceUpdate !== null && (
+              <div className="text-xs text-gray-500 flex items-center justify-end gap-1 mt-0.5">
+                <span className={`inline-block w-2 h-2 rounded-full ${secondsSinceUpdate < 5 ? 'bg-green-500 animate-pulse' : 'bg-gray-400'}`} />
+                Updated {secondsSinceUpdate}s ago
+              </div>
+            )}
           </div>
         </div>
 
@@ -161,31 +297,40 @@ export default function NBALiveTrackerPage() {
         <div className="grid gap-3 sm:gap-4">
           {sortedGames.map(game => {
             const totalPoints = game.homeScore + game.awayScore;
-            const minutesElapsed = getMinutesElapsed(game.period, game.clock);
-            const runRate = minutesElapsed ? totalPoints / minutesElapsed : null;
+            // Use interpolated elapsed time for live updates
+            const minutesElapsed = getInterpolatedElapsed(game);
+            const runRate = minutesElapsed && minutesElapsed > 0 ? totalPoints / minutesElapsed : null;
             const rawProjectedTotal = runRate ? runRate * REG_MINUTES : null;
             let calibratedProjectedTotal = rawProjectedTotal;
             let projectedHome: number | null = null;
             let projectedAway: number | null = null;
 
-            if (calibration && minutesElapsed !== null && game.period <= 4) {
+            // Calculate interpolated time remaining for calibration
+            const interpolatedTimeRemaining = minutesElapsed !== null
+              ? (game.period <= 4 ? REG_MINUTES - minutesElapsed : 0)
+              : null;
+
+            if (calibration && minutesElapsed !== null && game.period <= 4 && interpolatedTimeRemaining !== null && interpolatedTimeRemaining > 0) {
               const homeAvg = calibration.teamAvgQuarter[game.home];
               const awayAvg = calibration.teamAvgQuarter[game.away];
-              const clockParts = parseClock(game.clock);
-              if (homeAvg && awayAvg && clockParts) {
-                const timeRemaining = clockParts.minutes + clockParts.seconds / 60;
-                const quarterIndex = Math.max(0, game.period - 1);
+              if (homeAvg && awayAvg) {
+                // Calculate which quarter we're in based on interpolated time
+                const currentQuarter = Math.min(4, Math.floor(minutesElapsed / QUARTER_MINUTES) + 1);
+                const minutesIntoQuarter = minutesElapsed % QUARTER_MINUTES;
+                const quarterIndex = currentQuarter - 1;
+                const quarterTimeRemaining = QUARTER_MINUTES - minutesIntoQuarter;
+
                 const homeRemaining = homeAvg
                   .slice(quarterIndex + 1)
-                  .reduce((sum, val) => sum + val, 0) + homeAvg[quarterIndex] * (timeRemaining / QUARTER_MINUTES);
+                  .reduce((sum, val) => sum + val, 0) + homeAvg[quarterIndex] * (quarterTimeRemaining / QUARTER_MINUTES);
                 const awayRemaining = awayAvg
                   .slice(quarterIndex + 1)
-                  .reduce((sum, val) => sum + val, 0) + awayAvg[quarterIndex] * (timeRemaining / QUARTER_MINUTES);
+                  .reduce((sum, val) => sum + val, 0) + awayAvg[quarterIndex] * (quarterTimeRemaining / QUARTER_MINUTES);
                 const expectedRemaining = homeRemaining + awayRemaining;
 
                 const gap = Math.abs(game.homeScore - game.awayScore);
                 const gapKey = gap <= 4 ? 'close' : gap <= 9 ? 'small' : gap <= 14 ? 'medium' : 'large';
-                const checkpoint = game.period <= 1 ? 'Q1' : game.period <= 2 ? 'HALF' : 'Q3';
+                const checkpoint = currentQuarter <= 1 ? 'Q1' : currentQuarter <= 2 ? 'HALF' : 'Q3';
                 const multiplier = calibration.gapMultipliers?.[checkpoint]?.[gapKey]?.avg ?? 1;
 
                 if (expectedRemaining > 0) {
@@ -196,6 +341,32 @@ export default function NBALiveTrackerPage() {
               }
             }
 
+            // Calculate per-game seconds since snapshot
+            const gameSinceUpdate = Math.floor((Date.now() - game.snapshotTime) / 1000);
+
+            // Update high/low tracking for this game's projection
+            if (rawProjectedTotal !== null) {
+              updateProjectionRange(game.id, rawProjectedTotal);
+            }
+            const projectionRange = getProjectionRange(game.id);
+
+            // Get Vegas O/U from our blob storage (pre-game line)
+            const gameVegas = vegasOdds[game.id];
+            const pregameTotal = gameVegas?.total;
+
+            // Get user-entered live O/U
+            const liveOddsValue = liveOddsInput[game.id];
+            const liveTotal = liveOddsValue ? parseFloat(liveOddsValue) : null;
+            const hasLiveOdds = liveTotal !== null && !isNaN(liveTotal);
+
+            // Calculate edges
+            const pregameEdge = pregameTotal !== undefined && rawProjectedTotal !== null
+              ? rawProjectedTotal - pregameTotal
+              : null;
+            const liveEdge = hasLiveOdds && rawProjectedTotal !== null
+              ? rawProjectedTotal - liveTotal
+              : null;
+
             return (
               <div
                 key={game.id}
@@ -204,12 +375,62 @@ export default function NBALiveTrackerPage() {
                 }`}
               >
                 <div className="flex items-center justify-between gap-2">
-                  <div className="font-semibold text-gray-900 text-sm sm:text-base">
-                    {game.away} @ {game.home}
+                  <div>
+                    <div className="font-semibold text-gray-900 text-sm sm:text-base">
+                      {game.away} @ {game.home}
+                    </div>
+                    <div className="text-xs text-gray-500 mt-0.5">
+                      {pregameTotal !== undefined && (
+                        <span>
+                          Open: <span className="font-medium text-gray-600">{pregameTotal}</span>
+                          {pregameEdge !== null && (
+                            <span className={`ml-1 ${pregameEdge > 0 ? 'text-green-600' : pregameEdge < 0 ? 'text-red-600' : 'text-gray-500'}`}>
+                              ({pregameEdge > 0 ? '+' : ''}{pregameEdge.toFixed(1)})
+                            </span>
+                          )}
+                        </span>
+                      )}
+                    </div>
                   </div>
-                  <div className="text-xs text-gray-500">
-                    Q{game.period} {game.clock}
+                  <div className="flex items-center gap-2">
+                    <div className="text-xs text-gray-500">
+                      Q{game.period} {game.clock}
+                    </div>
+                    <div className="text-[10px] text-gray-400 bg-gray-100 px-1.5 py-0.5 rounded">
+                      {gameSinceUpdate}s ago
+                    </div>
                   </div>
+                </div>
+
+                {/* Live O/U Input */}
+                <div className="mt-2 flex items-center gap-3 p-2 bg-gray-50 rounded-lg">
+                  <label className="text-xs text-gray-500 whitespace-nowrap">Live O/U:</label>
+                  <input
+                    type="number"
+                    step="0.5"
+                    placeholder="e.g. 219.5"
+                    value={liveOddsInput[game.id] || ''}
+                    onChange={(e) => setLiveOddsInput(prev => ({ ...prev, [game.id]: e.target.value }))}
+                    className="w-24 px-2 py-1 text-sm border border-gray-300 rounded focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent tabular-nums"
+                  />
+                  {hasLiveOdds && liveEdge !== null && (
+                    <div className={`flex items-center gap-2 px-3 py-1 rounded-lg font-bold ${
+                      Math.abs(liveEdge) >= 5
+                        ? liveEdge > 0 ? 'bg-green-100 text-green-700' : 'bg-red-100 text-red-700'
+                        : Math.abs(liveEdge) >= 3
+                        ? liveEdge > 0 ? 'bg-green-50 text-green-600' : 'bg-red-50 text-red-600'
+                        : 'bg-gray-100 text-gray-600'
+                    }`}>
+                      <span className="text-sm tabular-nums">
+                        {liveEdge > 0 ? 'OVER' : 'UNDER'} {Math.abs(liveEdge).toFixed(1)}
+                      </span>
+                      {Math.abs(liveEdge) >= 5 && (
+                        <span className="text-xs font-medium animate-pulse">
+                          🔥 BIG EDGE
+                        </span>
+                      )}
+                    </div>
+                  )}
                 </div>
 
                 <div className="grid grid-cols-2 sm:grid-cols-6 gap-2 sm:gap-3 mt-3">
@@ -219,33 +440,34 @@ export default function NBALiveTrackerPage() {
                       {game.awayScore}-{game.homeScore}
                     </div>
                   </div>
-                  <div className="bg-gray-50 rounded-lg p-2 text-center">
+                  <div className="bg-gray-50 rounded-lg p-2 text-center relative">
                     <div className="text-[10px] uppercase text-gray-400">Elapsed</div>
-                    <div className="text-sm sm:text-base font-bold text-gray-900">
-                      {minutesElapsed !== null ? minutesElapsed.toFixed(1) : '--'}m
+                    <div className="text-sm sm:text-base font-bold text-green-600 tabular-nums">
+                      {minutesElapsed !== null ? minutesElapsed.toFixed(2) : '--'}m
                     </div>
+                    <div className="absolute top-0.5 right-1 w-1.5 h-1.5 rounded-full bg-green-500 animate-pulse" />
                   </div>
                   <div className="bg-gray-50 rounded-lg p-2 text-center">
                     <div className="text-[10px] uppercase text-gray-400">Run Rate</div>
-                    <div className="text-sm sm:text-base font-bold text-gray-900">
-                      {runRate !== null ? runRate.toFixed(2) : '--'}
+                    <div className="text-sm sm:text-base font-bold text-green-600 tabular-nums">
+                      {runRate !== null ? runRate.toFixed(3) : '--'}
                     </div>
                   </div>
                   <div className="bg-gray-50 rounded-lg p-2 text-center">
                     <div className="text-[10px] uppercase text-gray-400">Proj Total</div>
-                    <div className="text-sm sm:text-base font-bold text-gray-900">
+                    <div className="text-sm sm:text-base font-bold text-green-600 tabular-nums">
                       {rawProjectedTotal !== null ? rawProjectedTotal.toFixed(1) : '--'}
                     </div>
                   </div>
                   <div className="bg-gray-50 rounded-lg p-2 text-center">
                     <div className="text-[10px] uppercase text-gray-400">Calibrated</div>
-                    <div className="text-sm sm:text-base font-bold text-gray-900">
+                    <div className="text-sm sm:text-base font-bold text-green-600 tabular-nums">
                       {calibratedProjectedTotal !== null ? calibratedProjectedTotal.toFixed(1) : '--'}
                     </div>
                   </div>
                   <div className="bg-gray-50 rounded-lg p-2 text-center">
                     <div className="text-[10px] uppercase text-gray-400">Proj Final</div>
-                    <div className="text-sm sm:text-base font-bold text-gray-900">
+                    <div className="text-sm sm:text-base font-bold text-green-600 tabular-nums">
                       {projectedHome !== null && projectedAway !== null
                         ? `${projectedAway.toFixed(0)}-${projectedHome.toFixed(0)}`
                         : calibratedProjectedTotal !== null && totalPoints > 0
@@ -255,6 +477,37 @@ export default function NBALiveTrackerPage() {
                     <div className="text-[9px] text-gray-400">Pace projection</div>
                   </div>
                 </div>
+
+                {/* High/Low Projection Range */}
+                {projectionRange && (
+                  <div className="mt-2 pt-2 border-t border-gray-100">
+                    <div className="flex items-center justify-between gap-4">
+                      <div className="flex items-center gap-3">
+                        <div className="flex items-center gap-1.5">
+                          <span className="text-[10px] uppercase text-gray-400">Session Low:</span>
+                          <span className="text-sm font-bold text-red-600 tabular-nums">
+                            {projectionRange.low.toFixed(1)}
+                          </span>
+                          <span className="text-[9px] text-gray-400">
+                            ({Math.floor((Date.now() - projectionRange.lowTime) / 1000)}s ago)
+                          </span>
+                        </div>
+                        <div className="flex items-center gap-1.5">
+                          <span className="text-[10px] uppercase text-gray-400">Session High:</span>
+                          <span className="text-sm font-bold text-blue-600 tabular-nums">
+                            {projectionRange.high.toFixed(1)}
+                          </span>
+                          <span className="text-[9px] text-gray-400">
+                            ({Math.floor((Date.now() - projectionRange.highTime) / 1000)}s ago)
+                          </span>
+                        </div>
+                      </div>
+                      <div className="text-[10px] text-gray-400">
+                        Range: <span className="font-medium text-gray-600">{(projectionRange.high - projectionRange.low).toFixed(1)}</span>
+                      </div>
+                    </div>
+                  </div>
+                )}
               </div>
             );
           })}
