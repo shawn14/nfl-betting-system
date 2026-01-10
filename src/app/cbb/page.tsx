@@ -930,8 +930,9 @@ export default function CBBDashboard() {
       {displayGames.some(({ game }) => game.status === 'final') && (
         <div className="grid gap-4 md:grid-cols-2">
           {[...displayGames]
-            .filter(({ game }) => game.status === 'final')
+            .filter(({ game }) => game.status === 'final' && game.id)
             .sort((a, b) => new Date(b.game.gameTime).getTime() - new Date(a.game.gameTime).getTime())
+            .filter((item, index, self) => index === self.findIndex((g) => g.game.id === item.game.id))
             .map(({ game, prediction }) => {
               const away = game.awayAbbr || 'AWAY';
               const home = game.homeAbbr || 'HOME';
