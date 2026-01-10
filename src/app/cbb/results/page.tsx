@@ -143,7 +143,7 @@ interface Analysis {
 }
 
 const getLogoUrl = (abbr: string) => {
-  return `https://a.espncdn.com/i/teamlogos/nba/500-dark/${abbr.toLowerCase()}.png`;
+  return `https://a.espncdn.com/i/teamlogos/ncaa/500/${abbr.toLowerCase()}.png`;
 };
 
 function computeVegasStats(results: BacktestResult[]): VegasStats {
