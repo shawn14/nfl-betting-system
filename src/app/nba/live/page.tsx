@@ -411,8 +411,8 @@ export default function NBALiveTrackerPage() {
 
             // Get user-entered live O/U
             const liveOddsValue = liveOddsInput[game.id];
-            const liveTotal = liveOddsValue ? parseFloat(liveOddsValue) : null;
-            const hasLiveOdds = liveTotal !== null && !isNaN(liveTotal);
+            const userLiveTotal = liveOddsValue ? parseFloat(liveOddsValue) : null;
+            const hasLiveOdds = userLiveTotal !== null && !isNaN(userLiveTotal);
 
             // Get user-entered live spread (positive = home favored)
             const liveSpreadValue = liveSpreadInput[game.id];
@@ -436,7 +436,7 @@ export default function NBALiveTrackerPage() {
               ? rawProjectedTotal - pregameTotal
               : null;
             const liveEdge = hasLiveOdds && rawProjectedTotal !== null
-              ? rawProjectedTotal - liveTotal
+              ? rawProjectedTotal - userLiveTotal
               : null;
             const liveSpreadEdge = hasLiveSpread && projectedSpread !== null
               ? liveSpread - projectedSpread
