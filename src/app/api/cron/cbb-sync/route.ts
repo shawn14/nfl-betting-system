@@ -884,24 +884,20 @@ export async function GET(request: Request) {
     let hiMlW = 0, hiMlL = 0;
 
     for (const r of allBacktestResults as any[]) {
-      // High conviction ATS - use atsConfidence field (elite or high)
-      // Use atsResult (vs Vegas) if available, otherwise use spreadResult (model accuracy)
+      // High conviction ATS - ONLY count games with actual Vegas spreads
       const isHighConvictionATS = r.atsConfidence === 'elite' || r.atsConfidence === 'high';
-      if (isHighConvictionATS) {
-        const result = r.atsResult || r.spreadResult;
-        if (result === 'win') hiAtsW++;
-        else if (result === 'loss') hiAtsL++;
-        else if (result === 'push') hiAtsP++;
+      if (isHighConvictionATS && r.atsResult) {
+        if (r.atsResult === 'win') hiAtsW++;
+        else if (r.atsResult === 'loss') hiAtsL++;
+        else if (r.atsResult === 'push') hiAtsP++;
       }
 
-      // High conviction O/U - use ouConfidence field
-      // Use ouVegasResult if available, otherwise use ouResult
+      // High conviction O/U - ONLY count games with actual Vegas totals
       const isHighConvictionOU = r.ouConfidence === 'high';
-      if (isHighConvictionOU) {
-        const result = r.ouVegasResult || r.ouResult;
-        if (result === 'win') hiOuW++;
-        else if (result === 'loss') hiOuL++;
-        else if (result === 'push') hiOuP++;
+      if (isHighConvictionOU && r.ouVegasResult) {
+        if (r.ouVegasResult === 'win') hiOuW++;
+        else if (r.ouVegasResult === 'loss') hiOuL++;
+        else if (r.ouVegasResult === 'push') hiOuP++;
       }
 
       // High conviction ML - use mlConfidence field
