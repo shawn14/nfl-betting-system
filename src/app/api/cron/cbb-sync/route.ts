@@ -947,6 +947,8 @@ export async function GET(request: Request) {
     const blob = await put('cbb-prediction-data.json', JSON.stringify(blobData), {
       access: 'public',
       contentType: 'application/json',
+      addRandomSuffix: false,
+      allowOverwrite: true,
     });
 
     log(`Saved to Vercel Blob: ${blob.url}`);
