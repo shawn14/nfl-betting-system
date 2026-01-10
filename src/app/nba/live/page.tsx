@@ -192,7 +192,6 @@ export default function NBALiveTrackerPage() {
     const maxMinutes = game.period > 4 ? REG_MINUTES + (game.period - 4) * OT_MINUTES : REG_MINUTES;
     return Math.min(interpolated, maxMinutes);
   }, []);
->>>>>>> 91a76398c1986b63639c6d430ea42230825f1554
 
   useEffect(() => {
     let intervalId: NodeJS.Timeout | null = null;
