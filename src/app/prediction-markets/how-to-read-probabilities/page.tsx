@@ -286,15 +286,15 @@ export default function HowToReadProbabilitiesPage() {
 
         <hr className="my-8" />
 
-        <div className="bg-gradient-to-r from-blue-50 to-indigo-50 p-6 rounded-lg my-8 not-prose">
+        <div className="bg-gray-50 p-6 rounded-lg border border-gray-200 my-8 not-prose">
           <h2 className="text-xl font-bold text-gray-900 mb-3">
             Where Prediction Matrix Fits In
           </h2>
           <p className="text-gray-600 mb-4">Prediction Matrix is building tools to:</p>
-          <ul className="text-gray-600 space-y-1 mb-4">
-            <li>• Track probabilities over time</li>
-            <li>• Compare platforms side-by-side</li>
-            <li>• Highlight belief shifts early</li>
+          <ul className="text-gray-600 space-y-2 mb-4 list-disc list-inside">
+            <li>Track probabilities over time</li>
+            <li>Compare platforms side-by-side</li>
+            <li>Highlight belief shifts early</li>
           </ul>
           <p className="text-gray-700 font-medium">
             Not opinions. Not noise. Just probabilities.

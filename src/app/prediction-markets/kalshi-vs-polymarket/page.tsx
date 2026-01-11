@@ -261,15 +261,15 @@ export default function KalshiVsPolymarketPage() {
 
         <hr className="my-8" />
 
-        <div className="bg-gradient-to-r from-blue-50 to-indigo-50 p-6 rounded-lg my-8 not-prose">
+        <div className="bg-gray-50 p-6 rounded-lg border border-gray-200 my-8 not-prose">
           <h2 className="text-xl font-bold text-gray-900 mb-3">
             Coming Soon in Prediction Matrix
           </h2>
           <p className="text-gray-600 mb-4">Prediction Matrix plans to support:</p>
-          <ul className="text-gray-600 space-y-1 mb-4">
-            <li>• Kalshi market monitoring</li>
-            <li>• Polymarket probability tracking</li>
-            <li>• Cross-market comparison tools</li>
+          <ul className="text-gray-600 space-y-2 mb-4 list-disc list-inside">
+            <li>Kalshi market monitoring</li>
+            <li>Polymarket probability tracking</li>
+            <li>Cross-market comparison tools</li>
           </ul>
           <p className="text-gray-700 font-medium">
             One screen. Multiple beliefs. Clearer insight.

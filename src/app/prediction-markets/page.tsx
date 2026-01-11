@@ -290,20 +290,20 @@ export default function PredictionMarketsPage() {
         <p>They look similar. They are not the same thing.</p>
 
         <div className="grid md:grid-cols-2 gap-6 my-6 not-prose">
-          <div className="bg-gray-50 p-4 rounded-lg">
+          <div className="bg-gray-50 p-5 rounded-lg border border-gray-200">
             <h4 className="font-bold text-gray-900 mb-3">Sports Betting</h4>
-            <ul className="text-sm text-gray-600 space-y-1">
-              <li>• Odds set by a bookmaker</li>
-              <li>• House controls pricing</li>
-              <li>• Focused on entertainment</li>
+            <ul className="text-sm text-gray-600 space-y-2 list-disc list-inside">
+              <li>Odds set by a bookmaker</li>
+              <li>House controls pricing</li>
+              <li>Focused on entertainment</li>
             </ul>
           </div>
-          <div className="bg-blue-50 p-4 rounded-lg">
+          <div className="bg-gray-50 p-5 rounded-lg border border-gray-200">
             <h4 className="font-bold text-gray-900 mb-3">Prediction Markets</h4>
-            <ul className="text-sm text-gray-600 space-y-1">
-              <li>• Prices set by the market</li>
-              <li>• No "house opinion"</li>
-              <li>• Focused on accuracy and forecasting</li>
+            <ul className="text-sm text-gray-600 space-y-2 list-disc list-inside">
+              <li>Prices set by the market</li>
+              <li>No "house opinion"</li>
+              <li>Focused on accuracy and forecasting</li>
             </ul>
           </div>
         </div>
@@ -362,7 +362,7 @@ export default function PredictionMarketsPage() {
 
         <hr className="my-8" />
 
-        <div className="bg-gradient-to-r from-blue-50 to-indigo-50 p-6 rounded-lg my-8 not-prose">
+        <div className="bg-gray-50 p-6 rounded-lg border border-gray-200 my-8 not-prose">
           <h2 className="text-xl font-bold text-gray-900 mb-3">
             Coming Soon: Prediction Market Coverage
           </h2>
@@ -370,11 +370,11 @@ export default function PredictionMarketsPage() {
             Prediction Matrix is expanding beyond traditional sports betting into probability-based forecasting.
           </p>
           <p className="text-gray-600 mb-4">Planned coverage includes:</p>
-          <ul className="text-gray-600 space-y-1 mb-4">
-            <li>• Kalshi market tracking</li>
-            <li>• Polymarket odds monitoring</li>
-            <li>• Cross-market probability comparisons</li>
-            <li>• Historical accuracy analysis</li>
+          <ul className="text-gray-600 space-y-2 mb-4 list-disc list-inside">
+            <li>Kalshi market tracking</li>
+            <li>Polymarket odds monitoring</li>
+            <li>Cross-market probability comparisons</li>
+            <li>Historical accuracy analysis</li>
           </ul>
           <p className="text-gray-700 font-medium">
             The goal is simple: Help you see what the market believes—before it becomes obvious.
@@ -391,6 +391,26 @@ export default function PredictionMarketsPage() {
               <p className="text-gray-600">{faq.a}</p>
             </div>
           ))}
+        </div>
+
+        <hr className="my-8" />
+
+        <div className="not-prose">
+          <p className="text-sm text-gray-500 mb-4">Continue reading:</p>
+          <div className="flex flex-wrap gap-4">
+            <a
+              href="/prediction-markets/kalshi-vs-polymarket"
+              className="text-blue-600 hover:text-blue-800 font-medium"
+            >
+              Kalshi vs Polymarket →
+            </a>
+            <a
+              href="/prediction-markets/how-to-read-probabilities"
+              className="text-blue-600 hover:text-blue-800 font-medium"
+            >
+              How to Read Probabilities →
+            </a>
+          </div>
         </div>
       </article>
     </>
