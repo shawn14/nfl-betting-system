@@ -98,6 +98,20 @@ const jsonLd = {
         'query-input': 'required name=search_term_string',
       },
     },
+    {
+      '@type': 'FAQPage',
+      '@id': 'https://www.predictionmatrix.com/#faq',
+      mainEntity: [
+        {
+          '@type': 'Question',
+          name: 'How is Prediction Matrix different from other sports betting sites?',
+          acceptedAnswer: {
+            '@type': 'Answer',
+            text: 'Unlike sites that rely on expert opinions, we use a purely mathematical Elo-based model that updates automatically after every game. Our predictions are 100% transparent - we show our model spread vs Vegas spread and track every pick publicly so you can verify our accuracy.',
+          },
+        },
+      ],
+    },
   ],
 };
 
@@ -136,6 +150,7 @@ export default function RootLayout({
                 <div className="flex flex-col sm:flex-row sm:items-center sm:justify-between gap-2 text-[10px] sm:text-xs text-gray-400 border-t border-gray-100 pt-3 sm:pt-4">
                   <div className="flex items-center gap-4">
                     <a href="/about" className="hover:text-gray-600">About</a>
+                    <a href="/faq" className="hover:text-gray-600">FAQ</a>
                     <a href="/terms" className="hover:text-gray-600">Terms</a>
                     <a href="/privacy" className="hover:text-gray-600">Privacy</a>
                   </div>

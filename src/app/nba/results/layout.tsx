@@ -58,6 +58,14 @@ const faqJsonLd = {
         text: 'NBA spreads are typically larger than NFL spreads because basketball is a higher-scoring game. Point differentials of 10+ points are common in NBA, while NFL games rarely have spreads above 14 points.',
       },
     },
+    {
+      '@type': 'Question',
+      name: 'What win rate do you need to be profitable betting against the spread?',
+      acceptedAnswer: {
+        '@type': 'Answer',
+        text: 'You need approximately 52.4% ATS accuracy to break even when paying standard -110 juice. Anything above 55% is considered excellent and generates consistent profit over time. Our model targets edges where we have the highest historical accuracy.',
+      },
+    },
   ],
 };
 

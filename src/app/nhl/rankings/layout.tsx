@@ -58,6 +58,14 @@ const faqJsonLd = {
         text: 'The puckline is hockey\'s version of the point spread, typically set at 1.5 goals. Betting the favorite at -1.5 means they must win by 2+ goals. The underdog at +1.5 covers if they win or lose by just 1 goal.',
       },
     },
+    {
+      '@type': 'Question',
+      name: 'What is a good Elo rating in NHL?',
+      acceptedAnswer: {
+        '@type': 'Answer',
+        text: 'An Elo rating above 1550 indicates an above-average NHL team, while ratings above 1600 suggest a playoff-caliber team. Elite teams typically range from 1650-1750. The league average is always 1500, so any rating above that means the team is performing better than average.',
+      },
+    },
   ],
 };
 

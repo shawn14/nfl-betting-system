@@ -58,6 +58,14 @@ const faqJsonLd = {
         text: 'A push occurs when the final margin exactly matches the spread. For example, if Team A is -7 and wins by exactly 7 points, the bet is a push and your stake is returned. Pushes are tracked separately in our ATS records.',
       },
     },
+    {
+      '@type': 'Question',
+      name: 'What win rate do you need to be profitable betting against the spread?',
+      acceptedAnswer: {
+        '@type': 'Answer',
+        text: 'You need approximately 52.4% ATS accuracy to break even when paying standard -110 juice. Anything above 55% is considered excellent and generates consistent profit over time. Our model targets edges where we have the highest historical accuracy.',
+      },
+    },
   ],
 };
 

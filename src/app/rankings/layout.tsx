@@ -58,6 +58,14 @@ const faqJsonLd = {
         text: 'Our predictions use Elo ratings to calculate expected point spreads, incorporating home field advantage, weather conditions, and injury reports. We compare our model spread to Vegas lines to identify betting value.',
       },
     },
+    {
+      '@type': 'Question',
+      name: 'What is a good Elo rating in NFL?',
+      acceptedAnswer: {
+        '@type': 'Answer',
+        text: 'An Elo rating above 1550 indicates an above-average NFL team, while ratings above 1600 suggest a playoff-caliber team. Elite teams typically range from 1650-1750. The league average is always 1500, so any rating above that means the team is performing better than average.',
+      },
+    },
   ],
 };
 

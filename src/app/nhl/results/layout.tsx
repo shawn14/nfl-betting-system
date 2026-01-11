@@ -58,6 +58,14 @@ const faqJsonLd = {
         text: 'Yes, overtime and shootout results count for puckline bets. A game that goes to overtime means the underdog at +1.5 automatically covers since OT/SO games end with a 1-goal difference.',
       },
     },
+    {
+      '@type': 'Question',
+      name: 'What win rate do you need to be profitable betting the puckline?',
+      acceptedAnswer: {
+        '@type': 'Answer',
+        text: 'You need approximately 52.4% accuracy to break even when paying standard -110 juice. Anything above 55% is considered excellent and generates consistent profit over time. Our model targets edges where we have the highest historical accuracy.',
+      },
+    },
   ],
 };
 
