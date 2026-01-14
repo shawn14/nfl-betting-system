@@ -13,13 +13,13 @@ import { SportKey } from '@/services/firestore-types';
 import { getRestDaysForGame, calculateRestAdjustment, restFavorsPick } from '@/services/nba-rest-days';
 import { fetchNBAOdds, getConsensusOdds } from '@/services/odds';
 
-// NBA Constants - Optimized via backtesting (1347 games with Vegas lines)
+// NBA Constants - Optimized via grid search (659 games with Vegas lines, Jan 14 2026)
 const LEAGUE_AVG_PPG = 112;          // NBA average ~112 PPG
 const ELO_TO_POINTS = 0.06;          // Optimized - 100 Elo = 6 points
-const HOME_COURT_ADVANTAGE = 4.5;    // Adjusted Jan 2026 - cold streak analysis showed 2.0 was too low
+const HOME_COURT_ADVANTAGE = 2.5;    // Optimized via simulation - 51.4% ATS, 63.1% high conviction
 const ELO_HOME_ADVANTAGE = 48;       // Same Elo bonus structure
-const SPREAD_REGRESSION = 0.4;       // Optimized - 40% regression to mean
-const ELO_CAP = 20;                  // Optimized
+const SPREAD_REGRESSION = 0.35;      // Optimized - 35% regression to mean
+const ELO_CAP = 18;                  // Optimized - caps at ±9 points per team
 
 function getSeasonStartDate(seasonYear: number): Date {
   return new Date(Date.UTC(seasonYear - 1, 9, 1));

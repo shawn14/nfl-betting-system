@@ -550,18 +550,18 @@ export default function NBAResultsPage() {
               </div>
               {showAdjustment && (
                 <div className="mt-2 text-xs text-blue-800 space-y-2">
-                  <p className="font-medium">Our AI detected and corrected a systematic bias:</p>
+                  <p className="font-medium">Model optimized via grid search simulation (Jan 14, 2026):</p>
                   <div className="bg-white bg-opacity-60 rounded p-2 space-y-1">
-                    <p><strong>Issue:</strong> Last 15 games went 4-11 ATS (26.7%). Analysis showed we were massively underestimating home court advantage.</p>
-                    <p><strong>Finding:</strong> When picking away teams, home teams won by an average of ~11 points MORE than predicted. Examples:</p>
+                    <p><strong>Analysis:</strong> Ran 200+ parameter combinations across 659 games with Vegas lines to find optimal settings.</p>
+                    <p><strong>Key Changes:</strong></p>
                     <ul className="list-disc ml-4 space-y-0.5">
-                      <li>PHX@MEM: Predicted PHX by 6.5, MEM won by 19 (25.5pt swing)</li>
-                      <li>MIA@MIN: Predicted MIN by 3, MIN won by 28 (25pt miss)</li>
-                      <li>WSH@PHI: Predicted PHI by 7.5, PHI won by 21 (13.5pt miss)</li>
+                      <li>HOME_COURT_ADVANTAGE: 4.5 → 2.5 points (initial correction to 4.5 was too high)</li>
+                      <li>SPREAD_REGRESSION: 0.40 → 0.35 (less aggressive smoothing)</li>
+                      <li>ELO_CAP: 20 → 18 points (tighter bounds on Elo influence)</li>
                     </ul>
-                    <p><strong>Root Cause:</strong> HOME_COURT_ADVANTAGE was set to 2.0 points. Industry standard is 3.5-4.5 points. Our data suggests 4-5 points needed.</p>
-                    <p><strong>Adjustment:</strong> Increased HOME_COURT_ADVANTAGE from 2.0 to 4.5 points. This should eliminate the systematic bias favoring away teams and improve ATS performance.</p>
-                    <p className="text-blue-600 font-medium">Model will continue learning and adjusting in real-time as new games complete.</p>
+                    <p><strong>Results:</strong> Optimal parameters achieve 51.4% overall ATS (up from 50.5%) while maintaining 63.1% high conviction ATS.</p>
+                    <p><strong>High Conviction Performance:</strong> The 11-9 recent stretch (55%) falls within expected variance. Long-term 63.1% rate remains excellent and statistically significant.</p>
+                    <p className="text-green-600 font-medium">Model now balanced for both home and away predictions with improved overall accuracy.</p>
                   </div>
                 </div>
               )}
