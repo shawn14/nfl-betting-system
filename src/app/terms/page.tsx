@@ -1,4 +1,9 @@
-'use client';
+import type { Metadata } from 'next';
+
+export const metadata: Metadata = {
+  title: 'Terms of Service',
+  description: 'Terms of service for Prediction Matrix sports betting predictions.',
+};
 
 export default function TermsPage() {
   return (
