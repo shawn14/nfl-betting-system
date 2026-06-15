@@ -976,7 +976,10 @@ export async function GET(request: Request) {
     const majorInjuryGames = gamesWithPredictions.filter((g: any) => g.prediction.injuries?.impactLevel === 'major').length;
     log(`Injury data: ${gamesWithInjuries}/${gamesWithPredictions.length} games (${majorInjuryGames} with QB out)`);
 
-    // Compute high conviction stats from backtest results
+    // Compute overall + high conviction stats from backtest results vs Vegas lines
+    let atsWins = 0, atsLosses = 0, atsPushes = 0;
+    let ouVegasWins = 0, ouVegasLosses = 0, ouVegasPushes = 0;
+    let mlWinsTotal = 0, mlLossesTotal = 0;
     let hiAtsW = 0, hiAtsL = 0, hiAtsP = 0;
     let hiOuW = 0, hiOuL = 0, hiOuP = 0;
     let hiMlW = 0, hiMlL = 0;
@@ -984,6 +987,22 @@ export async function GET(request: Request) {
       const spreadEdge = r.vegasSpread !== undefined ? Math.abs(r.predictedSpread - r.vegasSpread) : 0;
       const totalEdge = r.vegasTotal !== undefined ? Math.abs(r.predictedTotal - r.vegasTotal) : 0;
       const mlEdge = Math.abs((r.homeWinProb || 0.5) - 0.5) * 100;
+
+      // Overall ATS / O-U / ML vs Vegas (only games with a stored line contribute)
+      if (r.atsResult) {
+        if (r.atsResult === 'win') atsWins++;
+        else if (r.atsResult === 'loss') atsLosses++;
+        else atsPushes++;
+      }
+      if (r.ouVegasResult) {
+        if (r.ouVegasResult === 'win') ouVegasWins++;
+        else if (r.ouVegasResult === 'loss') ouVegasLosses++;
+        else ouVegasPushes++;
+      }
+      if (r.mlResult) {
+        if (r.mlResult === 'win') mlWinsTotal++;
+        else mlLossesTotal++;
+      }
 
       // High conviction ATS (edge >= 2 pts)
       if (spreadEdge >= 2 && r.atsResult) {
@@ -1007,10 +1026,13 @@ export async function GET(request: Request) {
     const hiOuTotal = hiOuW + hiOuL;
     const hiMlTotal = hiMlW + hiMlL;
 
-    // 8. Build blob data
+    // 8. Build blob data — headline summary uses Vegas-based results (ATS/O-U/ML vs the line).
+    // Model totals (spreadTotal/ouTotal) are retained only for the internal spreadRecord log.
     const spreadTotal = spreadWins + spreadLosses;
-    const mlTotal = mlWins + mlLosses;
     const ouTotal = ouWins + ouLosses;
+    const atsTotal = atsWins + atsLosses;
+    const mlTotal = mlWinsTotal + mlLossesTotal;
+    const ouVegasTotal = ouVegasWins + ouVegasLosses;
 
     log(`Storing ${Object.keys(historicalOdds).length} historical odds, ${Object.keys(weatherCache).length} weather records`);
 
@@ -1041,9 +1063,9 @@ export async function GET(request: Request) {
       backtest: {
         summary: {
           totalGames: processedGameIds.size,
-          spread: { wins: spreadWins, losses: spreadLosses, pushes: spreadPushes, winPct: spreadTotal > 0 ? Math.round((spreadWins / spreadTotal) * 1000) / 10 : 0 },
-          moneyline: { wins: mlWins, losses: mlLosses, winPct: mlTotal > 0 ? Math.round((mlWins / mlTotal) * 1000) / 10 : 0 },
-          overUnder: { wins: ouWins, losses: ouLosses, pushes: ouPushes, winPct: ouTotal > 0 ? Math.round((ouWins / ouTotal) * 1000) / 10 : 0 },
+          spread: { wins: atsWins, losses: atsLosses, pushes: atsPushes, winPct: atsTotal > 0 ? Math.round((atsWins / atsTotal) * 1000) / 10 : 0 },
+          moneyline: { wins: mlWinsTotal, losses: mlLossesTotal, winPct: mlTotal > 0 ? Math.round((mlWinsTotal / mlTotal) * 1000) / 10 : 0 },
+          overUnder: { wins: ouVegasWins, losses: ouVegasLosses, pushes: ouVegasPushes, winPct: ouVegasTotal > 0 ? Math.round((ouVegasWins / ouVegasTotal) * 1000) / 10 : 0 },
         },
         highConvictionSummary: {
           spread: { wins: hiAtsW, losses: hiAtsL, pushes: hiAtsP, winPct: hiAtsTotal > 0 ? Math.round((hiAtsW / hiAtsTotal) * 1000) / 10 : 0 },
