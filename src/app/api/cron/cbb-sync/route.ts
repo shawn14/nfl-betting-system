@@ -881,11 +881,30 @@ export async function GET(request: Request) {
     const mlTotal = mlWins + mlLosses;
     const ouTotal = ouWins + ouLosses;
 
+    let atsWins = 0, atsLosses = 0, atsPushes = 0;
+    let ouVegasWins = 0, ouVegasLosses = 0, ouVegasPushes = 0;
+    let mlWinsTotal = 0, mlLossesTotal = 0;
     let hiAtsW = 0, hiAtsL = 0, hiAtsP = 0;
     let hiOuW = 0, hiOuL = 0, hiOuP = 0;
     let hiMlW = 0, hiMlL = 0;
 
     for (const r of allBacktestResults as any[]) {
+      // Overall ATS / O-U / ML vs Vegas (only games with a stored line contribute)
+      if (r.atsResult) {
+        if (r.atsResult === 'win') atsWins++;
+        else if (r.atsResult === 'loss') atsLosses++;
+        else atsPushes++;
+      }
+      if (r.ouVegasResult) {
+        if (r.ouVegasResult === 'win') ouVegasWins++;
+        else if (r.ouVegasResult === 'loss') ouVegasLosses++;
+        else ouVegasPushes++;
+      }
+      if (r.mlResult) {
+        if (r.mlResult === 'win') mlWinsTotal++;
+        else mlLossesTotal++;
+      }
+
       // High conviction ATS - ONLY count games with actual Vegas spreads
       const isHighConvictionATS = r.atsConfidence === 'elite' || r.atsConfidence === 'high';
       if (isHighConvictionATS && r.atsResult) {
@@ -910,6 +929,9 @@ export async function GET(request: Request) {
       }
     }
 
+    const atsTotal = atsWins + atsLosses;
+    const ouVegasTotal = ouVegasWins + ouVegasLosses;
+    const mlVegasTotal = mlWinsTotal + mlLossesTotal;
     const hiAtsTotal = hiAtsW + hiAtsL;
     const hiOuTotal = hiOuW + hiOuL;
     const hiMlTotal = hiMlW + hiMlL;
@@ -942,21 +964,21 @@ export async function GET(request: Request) {
         summary: {
           totalGames: processedGameIds.size,
           spread: {
-            wins: spreadWins,
-            losses: spreadLosses,
-            pushes: spreadPushes,
-            winPct: spreadTotal > 0 ? Math.round((spreadWins / spreadTotal) * 1000) / 10 : 0,
+            wins: atsWins,
+            losses: atsLosses,
+            pushes: atsPushes,
+            winPct: atsTotal > 0 ? Math.round((atsWins / atsTotal) * 1000) / 10 : 0,
           },
           moneyline: {
-            wins: mlWins,
-            losses: mlLosses,
-            winPct: mlTotal > 0 ? Math.round((mlWins / mlTotal) * 1000) / 10 : 0,
+            wins: mlWinsTotal,
+            losses: mlLossesTotal,
+            winPct: mlVegasTotal > 0 ? Math.round((mlWinsTotal / mlVegasTotal) * 1000) / 10 : 0,
           },
           overUnder: {
-            wins: ouWins,
-            losses: ouLosses,
-            pushes: ouPushes,
-            winPct: ouTotal > 0 ? Math.round((ouWins / ouTotal) * 1000) / 10 : 0,
+            wins: ouVegasWins,
+            losses: ouVegasLosses,
+            pushes: ouVegasPushes,
+            winPct: ouVegasTotal > 0 ? Math.round((ouVegasWins / ouVegasTotal) * 1000) / 10 : 0,
           },
         },
         highConvictionSummary: {
