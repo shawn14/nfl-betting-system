@@ -13,6 +13,7 @@ import { SportKey } from '@/services/firestore-types';
 import { fetchCollegeBasketballOdds, getConsensusOdds } from '@/services/odds';
 import { fetchCollegeBasketballTeams, fetchESPNCollegeBasketballOdds } from '@/services/espn';
 import { CBB_LEAGUE_AVG_PPG, INITIAL_ELO_BY_TIER, getConferenceTier } from '@/types/cbb';
+import { newClvAccumulator, addClv, finalizeClv } from '@/lib/clv';
 
 // CBB Constants (optimized via /api/admin/cbb-optimize-params)
 const LEAGUE_AVG_PPG = CBB_LEAGUE_AVG_PPG;
@@ -893,8 +894,10 @@ export async function GET(request: Request) {
     let hiAtsW = 0, hiAtsL = 0, hiAtsP = 0;
     let hiOuW = 0, hiOuL = 0, hiOuP = 0;
     let hiMlW = 0, hiMlL = 0;
+    const clvAcc = newClvAccumulator();
 
     for (const r of allBacktestResults as any[]) {
+      addClv(clvAcc, r, historicalOdds[r.gameId]);
       // Overall ATS / O-U / ML vs Vegas (only games with a stored line contribute)
       if (r.atsResult) {
         if (r.atsResult === 'win') atsWins++;
@@ -1006,6 +1009,7 @@ export async function GET(request: Request) {
             winPct: hiOuTotal > 0 ? Math.round((hiOuW / hiOuTotal) * 1000) / 10 : 0,
           },
         },
+        clvSummary: finalizeClv(clvAcc),
         results: allBacktestResults.filter((r: any) => {
           // Only include current season games
           const gameDate = new Date(r.gameTime);
