@@ -18,7 +18,13 @@ import { CBB_LEAGUE_AVG_PPG, INITIAL_ELO_BY_TIER, getConferenceTier } from '@/ty
 const LEAGUE_AVG_PPG = CBB_LEAGUE_AVG_PPG;
 const ELO_TO_POINTS = 0.08;  // Optimized from 0.06 → 54.4% ATS (was 52.7%)
 const HOME_COURT_ADVANTAGE = 4.5;
-const ELO_HOME_ADVANTAGE = 48;
+// Win-probability calibration. CBB Elo is compressed (362 teams, short season), so the
+// raw curve was badly underconfident on home favorites (+15.8pt reliability gap). These
+// values recalibrate it; walk-forward validated on 2025-26 (held-out TEST Brier 0.157 ->
+// 0.144, gap +11.7 -> ~-3). See scripts/walk-forward.mjs. NOTE: only affects win prob /
+// ML / conviction selection — the spread does not use this term.
+const ELO_HOME_ADVANTAGE = 160; // was 48
+const WIN_PROB_ELO_DIVISOR = 350; // logistic scale; was 400
 const SPREAD_REGRESSION = 0.4;
 const ELO_CAP = 20;
 
@@ -438,7 +444,7 @@ export async function GET(request: Request) {
       const predictedSpread = calculateSpread(predHome, predAway);
       const predictedTotal = predHome + predAway;
       const adjustedHomeElo = homeElo + ELO_HOME_ADVANTAGE;
-      const homeWinProb = 1 / (1 + Math.pow(10, (awayElo - adjustedHomeElo) / 400));
+      const homeWinProb = 1 / (1 + Math.pow(10, (awayElo - adjustedHomeElo) / WIN_PROB_ELO_DIVISOR));
 
       // STEP 2: Compare prediction to actual outcome
       const actualHomeScore = game.homeScore;
@@ -752,7 +758,7 @@ export async function GET(request: Request) {
       );
 
       const adjustedHomeElo = homeTeam.eloRating + ELO_HOME_ADVANTAGE;
-      const homeWinProb = 1 / (1 + Math.pow(10, (awayTeam.eloRating - adjustedHomeElo) / 400));
+      const homeWinProb = 1 / (1 + Math.pow(10, (awayTeam.eloRating - adjustedHomeElo) / WIN_PROB_ELO_DIVISOR));
 
       const predictedSpread = calculateSpread(predHome, predAway);
       const predictedTotal = predHome + predAway;
