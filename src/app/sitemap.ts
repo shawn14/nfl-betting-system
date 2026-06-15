@@ -21,6 +21,11 @@ const NHL_TEAMS = [
   'sea', 'stl', 'tb', 'tor', 'van', 'vgk', 'wsh', 'wpg',
 ];
 
+const WNBA_TEAMS = [
+  'atl', 'chi', 'con', 'dal', 'gs', 'ind', 'lv', 'la',
+  'min', 'ny', 'phx', 'por', 'sea', 'tor', 'wsh',
+];
+
 export default function sitemap(): MetadataRoute.Sitemap {
   const baseUrl = 'https://www.predictionmatrix.com';
 
@@ -147,6 +152,31 @@ export default function sitemap(): MetadataRoute.Sitemap {
       changeFrequency: 'daily',
       priority: 0.8,
     },
+    // WNBA pages
+    {
+      url: `${baseUrl}/wnba`,
+      lastModified: new Date(),
+      changeFrequency: 'daily',
+      priority: 0.9,
+    },
+    {
+      url: `${baseUrl}/wnba/rankings`,
+      lastModified: new Date(),
+      changeFrequency: 'daily',
+      priority: 0.9,
+    },
+    {
+      url: `${baseUrl}/wnba/results`,
+      lastModified: new Date(),
+      changeFrequency: 'daily',
+      priority: 0.8,
+    },
+    {
+      url: `${baseUrl}/wnba/live`,
+      lastModified: new Date(),
+      changeFrequency: 'always',
+      priority: 0.8,
+    },
   ];
 
   const nflTeamPages: MetadataRoute.Sitemap = NFL_TEAMS.map((abbr) => ({
@@ -170,5 +200,12 @@ export default function sitemap(): MetadataRoute.Sitemap {
     priority: 0.8,
   }));
 
-  return [...staticPages, ...nflTeamPages, ...nbaTeamPages, ...nhlTeamPages];
+  const wnbaTeamPages: MetadataRoute.Sitemap = WNBA_TEAMS.map((abbr) => ({
+    url: `${baseUrl}/wnba/teams/${abbr}`,
+    lastModified: new Date(),
+    changeFrequency: 'daily' as const,
+    priority: 0.8,
+  }));
+
+  return [...staticPages, ...nflTeamPages, ...nbaTeamPages, ...nhlTeamPages, ...wnbaTeamPages];
 }

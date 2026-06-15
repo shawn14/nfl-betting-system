@@ -276,7 +276,9 @@ export async function GET(request: Request) {
   const parsedSeason = parseInt(searchParams.get('season') || '', 10);
   const backfillDays = parseInt(searchParams.get('backfill') || '7', 10);
 
-  if (secret !== process.env.CRON_SECRET) {
+  // Vercel Cron triggers this without a secret, matching the other sport syncs
+  // (nfl/nba/nhl are open endpoints). Only the destructive reset path requires the secret.
+  if (forceReset && secret !== process.env.CRON_SECRET) {
     return NextResponse.json({ error: 'Unauthorized' }, { status: 401 });
   }
 

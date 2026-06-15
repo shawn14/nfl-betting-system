@@ -1,12 +1,43 @@
-# Claude Code Configuration
+# CLAUDE.md
 
-This file provides context for Claude when working on this codebase.
+This file provides guidance to Claude Code (claude.ai/code) when working with code in this repository.
 
 ## Project Overview
 
-Multi-sport betting prediction system (NFL, NBA, NHL) built with Next.js, deployed on Vercel. Uses Elo ratings, team stats, weather data, and injury reports to generate betting predictions.
+Multi-sport betting prediction system (NFL, NBA, NHL, CBB, WNBA) built with Next.js 16 (App Router) + React 19, deployed on Vercel. Uses Elo ratings, team stats, weather data, and injury reports to generate betting predictions.
 
 **Live Site:** https://www.predictionmatrix.com
+
+## Commands
+
+```bash
+npm run dev      # Local dev server at http://localhost:3000
+npm run build    # Production build (Vercel runs this; run before pushing to catch SSR/type errors)
+npm run start    # Serve the production build locally
+npm run lint     # ESLint (next/core-web-vitals + TypeScript rules)
+npm run line-move-backtest   # Run scripts/line-move-backtest.mjs simulation
+vercel --prod    # Deploy to production
+```
+
+There is no test suite. Verification = `npm run build` (catches the Firebase/SSR class of errors) plus hitting cron/admin endpoints and checking results pages.
+
+## Multi-Sport Architecture
+
+Each sport is an independent vertical: its own cron sync route, its own Vercel Blob file, and its own page tree under `src/app/<sport>/`. They share `src/services` (ESPN, Elo, odds) but have separate model parameters and separate stored data. Changing one sport's parameters or reset logic does not affect the others.
+
+| Sport | Cron route | Schedule (`vercel.json`) | Blob file |
+|-------|-----------|--------------------------|-----------|
+| NFL | `cron/blob-sync-simple/route.ts` | `0 */2 * * *` (every 2h) | `prediction-matrix-data.json` |
+| NBA | `cron/nba-sync/route.ts` | `*/30 * * * *` (every 30m) | `nba-prediction-data.json` |
+| NHL | `cron/nhl-sync/route.ts` | `*/30 * * * *` (every 30m) | `nhl-prediction-data.json` |
+| CBB | `cron/cbb-sync/route.ts` | `0 * * * *` (hourly) | `cbb-prediction-data.json` |
+| WNBA | `cron/wnba-sync/route.ts` | `*/30 * * * *` (every 30m) | `wnba-prediction-data.json` |
+
+Also: `cron/health` (heartbeat for all sports), and daily odds backfills `admin/backfill-nba-odds` (`0 8`) and `admin/backfill-wnba-odds` (`0 9`). Each blob file contains that sport's predictions, teams, backtest, and historical odds. **Historical odds must never be cleared on reset** for any sport (see Notes 8–10) — backtests compare predictions against stored odds.
+
+Each sport page tree (`src/app/<sport>/`) reads its blob through a same-name proxy route (`src/app/<sport>-prediction-data.json/route.ts`). Sport keys live in `SportKey` (`src/services/firestore-types.ts`). The sport sync endpoints (`nfl`/`nba`/`nhl`/`wnba`) are open (no auth); `cbb-sync` requires `?secret=$CRON_SECRET` only for the destructive `?reset=true` path.
+
+**WNBA** was cloned from the NBA vertical (May 2026). It runs in-season May–Oct and uses lower scoring constants (`LEAGUE_AVG_PPG = 84`, O/U pivot ~165) and conference (not division) grouping. Its model parameters (`HOME_COURT_ADVANTAGE`, Elo constants, conviction avoid-lists) are NBA defaults pending grid-search tuning once historical WNBA odds are backfilled via `admin/backfill-wnba-odds`. ESPN league slug is `basketball/wnba`; The Odds API key is `basketball_wnba` (`fetchWNBAOdds` in `src/services/odds.ts`).
 
 ## Architecture Reference
 
@@ -18,9 +49,9 @@ See `ARCHITECTURE.md` for complete system documentation including:
 
 ## Key Files
 
-### Primary Cron Job
+### Primary Cron Job (NFL)
 `src/app/api/cron/blob-sync-simple/route.ts`
-- Runs every 4 hours via Vercel Cron
+- Runs every 2 hours via Vercel Cron (NBA/NHL sync every 30 min)
 - Fetches data from ESPN (teams, games, odds), OpenWeather, NFL.com (injuries)
 - Generates predictions and updates Vercel Blob storage
 - **Vegas Line Locking**: Odds lock 1 hour before game time
@@ -31,18 +62,19 @@ See `ARCHITECTURE.md` for complete system documentation including:
 - Fetches data from Vercel Blob storage
 - Shows locked Vegas lines with timestamp indicator
 
-### Services
-- `src/services/injuries.ts` - NFL.com injury scraping (ESPN was corrupted)
-- `src/services/weather.ts` - OpenWeather API with stadium coordinates
-- `src/services/elo.ts` - Elo rating calculations
-- `src/services/espn.ts` - ESPN API for teams, games, scores, odds
+### Services (`src/services/`)
+- `injuries.ts` - NFL.com injury scraping (ESPN data was corrupted)
+- `weather.ts` - OpenWeather API with stadium coordinates
+- `elo.ts` - Elo rating calculations
+- `espn.ts` - ESPN API for teams, games, scores, odds
+- `odds.ts` - odds parsing/normalization; `nba-rest-days.ts` - NBA fatigue
+- `firestore-{store,admin-store,types}.ts` - user/premium data
 
 ### Admin Endpoints
-- `/api/admin/backfill-weather` - Historical weather via Open-Meteo
-- `/api/admin/optimize-weather` - Find optimal weather multiplier
-- `/api/admin/recalculate-backtest` - Recalculate with weather adjustments
-- `/api/admin/recalculate-with-cap` - Recalculate backtest with Elo cap
-- `/api/admin/optimize-params` - Grid search for model parameters
+Under `/api/admin/`. Roughly two families — patterns repeat per sport (look for `nba-*`, `nhl-*`, `cbb-*` prefixes):
+- **Backfill** (populate historical odds/weather/stats): `backfill-weather`, `backfill-nba-odds`, `backfill-nhl-odds`, `backfill-nhl-season`, `backfill-injuries`, `fetch-historical-odds`, `nba-fetch-advanced-stats`
+- **Optimize / backtest** (grid-search params, recalculate): `optimize-params`, `optimize-weather`, `recalculate-backtest`, `recalculate-with-cap`, `nba-optimize-params`, `nba-full-optimize`, `nhl-optimize-thresholds`, `cbb-optimize-params`, `situational`, `simulate`
+- `mark-premium` - grant premium access to a user (Firestore)
 
 ## Key Model Parameters
 
@@ -111,9 +143,9 @@ curl https://www.predictionmatrix.com/api/admin/recalculate-backtest
 
 ## Data Storage
 
-**Vercel Blob** (Primary)
-- File: `prediction-matrix-data.json`
-- Contains: predictions, teams, backtest, weather cache, injury cache, historical odds
+**Vercel Blob** (Primary) — one file per sport (see Multi-Sport Architecture table)
+- NFL `prediction-matrix-data.json`, NBA `nba-prediction-data.json`, NHL `nhl-prediction-data.json`, CBB `cbb-prediction-data.json`
+- Each contains: predictions, teams, backtest, weather/injury cache (NFL), historical odds
 
 **Key Caching:**
 - Vegas odds: Lock 1 hour before game (never update after)

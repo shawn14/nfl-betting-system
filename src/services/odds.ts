@@ -164,6 +164,68 @@ export async function fetchNBAOdds(): Promise<Map<string, Partial<Odds>[]>> {
   return oddsMap;
 }
 
+export async function fetchWNBAOdds(): Promise<Map<string, Partial<Odds>[]>> {
+  const apiKey = process.env.NEXT_PUBLIC_ODDS_API_KEY;
+  if (!apiKey) throw new Error('Odds API key not configured');
+
+  // Add timestamp to bust any caching
+  const timestamp = Date.now();
+  const url = `${ODDS_API_BASE}/sports/basketball_wnba/odds/?apiKey=${apiKey}&regions=us&markets=spreads,totals,h2h&oddsFormat=american&_t=${timestamp}`;
+
+  const response = await fetch(url, {
+    cache: 'no-store',
+    headers: { 'Cache-Control': 'no-cache' }
+  });
+  if (!response.ok) {
+    throw new Error(`Odds API error: ${response.statusText}`);
+  }
+
+  const data: OddsAPIEvent[] = await response.json();
+  const oddsMap = new Map<string, Partial<Odds>[]>();
+
+  for (const event of data) {
+    const gameKey = `${event.home_team}_${event.away_team}_${event.commence_time}`;
+    const oddsForGame: Partial<Odds>[] = [];
+
+    for (const bookmaker of event.bookmakers) {
+      const spreads = bookmaker.markets.find(m => m.key === 'spreads');
+      const totals = bookmaker.markets.find(m => m.key === 'totals');
+      const moneyline = bookmaker.markets.find(m => m.key === 'h2h');
+
+      if (!spreads && !totals && !moneyline) continue;
+
+      const homeSpreadOutcome = spreads?.outcomes.find(o => o.name === event.home_team);
+      const awaySpreadOutcome = spreads?.outcomes.find(o => o.name === event.away_team);
+      const overOutcome = totals?.outcomes.find(o => o.name === 'Over');
+      const underOutcome = totals?.outcomes.find(o => o.name === 'Under');
+      const homeMLOutcome = moneyline?.outcomes.find(o => o.name === event.home_team);
+      const awayMLOutcome = moneyline?.outcomes.find(o => o.name === event.away_team);
+
+      const totalValue = overOutcome?.point || 0;
+
+      oddsForGame.push({
+        bookmaker: bookmaker.title,
+        homeSpread: homeSpreadOutcome?.point || 0,
+        awaySpread: awaySpreadOutcome?.point || 0,
+        homeSpreadOdds: homeSpreadOutcome?.price || -110,
+        awaySpreadOdds: awaySpreadOutcome?.price || -110,
+        total: totalValue,
+        overOdds: overOutcome?.price || -110,
+        underOdds: underOutcome?.price || -110,
+        homeMoneyline: homeMLOutcome?.price || 0,
+        awayMoneyline: awayMLOutcome?.price || 0,
+        timestamp: new Date(),
+      });
+    }
+
+    if (oddsForGame.length > 0) {
+      oddsMap.set(gameKey, oddsForGame);
+    }
+  }
+
+  return oddsMap;
+}
+
 export async function fetchNHLOdds(): Promise<Map<string, Partial<Odds>[]>> {
   const apiKey = process.env.NEXT_PUBLIC_ODDS_API_KEY;
   if (!apiKey) throw new Error('Odds API key not configured');

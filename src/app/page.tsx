@@ -70,10 +70,11 @@ export default function LandingPage() {
   useEffect(() => {
     async function fetchStats() {
       try {
-        const [nflRes, nbaRes, nhlRes] = await Promise.all([
+        const [nflRes, nbaRes, nhlRes, wnbaRes] = await Promise.all([
           fetch('/prediction-data.json').then(r => r.json()).catch(() => null),
           fetch('/nba-prediction-data.json').then(r => r.json()).catch(() => null),
           fetch('/nhl-prediction-data.json').then(r => r.json()).catch(() => null),
+          fetch('/wnba-prediction-data.json').then(r => r.json()).catch(() => null),
         ]);
 
         // Combine all backtest results
@@ -81,6 +82,7 @@ export default function LandingPage() {
           ...(nflRes?.backtest?.results || nflRes?.backtest || []),
           ...(nbaRes?.backtest?.results || nbaRes?.backtest || []),
           ...(nhlRes?.backtest?.results || nhlRes?.backtest || []),
+          ...(wnbaRes?.backtest?.results || wnbaRes?.backtest || []),
         ];
 
         if (allResults.length > 0) {
