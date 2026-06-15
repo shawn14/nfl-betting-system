@@ -15,7 +15,7 @@
     },
     {
       "path": "/api/cron/cbb-sync",
-      "schedule": "0 * * * *"
+      "schedule": "*/30 * * * *"
     },
     {
       "path": "/api/cron/wnba-sync",

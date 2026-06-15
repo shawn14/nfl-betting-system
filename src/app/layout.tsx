@@ -22,14 +22,14 @@ export const metadata: Metadata = {
     default: "Prediction Matrix - AI Sports Betting Predictions",
     template: "%s | Prediction Matrix",
   },
-  description: "AI-powered NFL, NBA & NHL betting predictions. Get daily picks, Elo rankings, ATS results, and expert analysis for smarter sports betting.",
-  keywords: ["sports betting", "NFL picks", "NBA picks", "NHL picks", "betting predictions", "Elo ratings", "ATS", "spread predictions", "sports analytics"],
+  description: "AI-powered NFL, NBA, NHL & College Basketball betting predictions. Get daily picks, Elo rankings, ATS results, and expert analysis for smarter sports betting.",
+  keywords: ["sports betting", "NFL picks", "NBA picks", "NHL picks", "college basketball picks", "CBB picks", "betting predictions", "Elo ratings", "ATS", "spread predictions", "sports analytics"],
   alternates: {
     canonical: 'https://www.predictionmatrix.com',
   },
   openGraph: {
     title: "Prediction Matrix - AI Sports Betting Predictions",
-    description: "AI-powered NFL, NBA & NHL betting predictions. Daily picks, Elo rankings, and ATS results.",
+    description: "AI-powered NFL, NBA, NHL & CBB betting predictions. Daily picks, Elo rankings, and ATS results.",
     url: "https://www.predictionmatrix.com",
     siteName: "Prediction Matrix",
     images: [
@@ -46,7 +46,7 @@ export const metadata: Metadata = {
   twitter: {
     card: "summary_large_image",
     title: "Prediction Matrix - AI Sports Betting Predictions",
-    description: "AI-powered NFL, NBA & NHL betting predictions. Daily picks, Elo rankings, and ATS results.",
+    description: "AI-powered NFL, NBA, NHL & CBB betting predictions. Daily picks, Elo rankings, and ATS results.",
     images: ["https://www.predictionmatrix.com/api/og"],
   },
   robots: {
@@ -77,7 +77,7 @@ const jsonLd = {
         width: 1200,
         height: 630,
       },
-      description: 'AI-powered sports betting predictions for NFL, NBA, NHL, and College Basketball.',
+      description: 'AI-powered sports betting predictions for NFL, NBA, NHL & College Basketball.',
       sameAs: [],
     },
     {
@@ -85,7 +85,7 @@ const jsonLd = {
       '@id': 'https://www.predictionmatrix.com/#website',
       url: 'https://www.predictionmatrix.com',
       name: 'Prediction Matrix',
-      description: 'AI-powered NFL, NBA & NHL betting predictions with Elo ratings and ATS results.',
+      description: 'AI-powered NFL, NBA, NHL & CBB betting predictions with Elo ratings and ATS results.',
       publisher: {
         '@id': 'https://www.predictionmatrix.com/#organization',
       },

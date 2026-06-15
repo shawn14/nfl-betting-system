@@ -30,7 +30,7 @@ Each sport is an independent vertical: its own cron sync route, its own Vercel B
 | NFL | `cron/blob-sync-simple/route.ts` | `0 */2 * * *` (every 2h) | `prediction-matrix-data.json` |
 | NBA | `cron/nba-sync/route.ts` | `*/30 * * * *` (every 30m) | `nba-prediction-data.json` |
 | NHL | `cron/nhl-sync/route.ts` | `*/30 * * * *` (every 30m) | `nhl-prediction-data.json` |
-| CBB | `cron/cbb-sync/route.ts` | `0 * * * *` (hourly) | `cbb-prediction-data.json` |
+| CBB | `cron/cbb-sync/route.ts` | `*/30 * * * *` (every 30m) | `cbb-prediction-data.json` |
 | WNBA | `cron/wnba-sync/route.ts` | `*/30 * * * *` (every 30m) | `wnba-prediction-data.json` |
 
 Also: `cron/health` (heartbeat for all sports), and daily odds backfills `admin/backfill-nba-odds` (`0 8`) and `admin/backfill-wnba-odds` (`0 9`). Each blob file contains that sport's predictions, teams, backtest, and historical odds. **Historical odds must never be cleared on reset** for any sport (see Notes 8–10) — backtests compare predictions against stored odds.

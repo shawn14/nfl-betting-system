@@ -1280,13 +1280,41 @@ export async function GET(request: Request) {
 
     log(`Generated predictions for ${gamesWithPredictions.length} games (fetched ${oddsFetched} odds, ${restFetched} rest days from ESPN API)`);
 
-    // Compute high conviction stats from backtest results using actual conviction data
+    // Filter to current season for stats (season starts in October of previous year)
+    const seasonStart = new Date(currentSeason - 1, 9, 1); // October 1 of previous year
+    const currentSeasonResults = (allBacktestResults as any[]).filter((r: any) => {
+      const gameDate = new Date(r.gameTime);
+      return gameDate >= seasonStart;
+    });
+
+    // Compute all stats from current season backtest results
+    let atsWins = 0, atsLosses = 0, atsPushes = 0;
+    let ouVegasWins = 0, ouVegasLosses = 0, ouVegasPushes = 0;
+    let mlWinsTotal = 0, mlLossesTotal = 0;
     let hiAtsW = 0, hiAtsL = 0, hiAtsP = 0;
     let hiOuW = 0, hiOuL = 0, hiOuP = 0;
     let hiMlW = 0, hiMlL = 0;
-    for (const r of allBacktestResults as any[]) {
+    for (const r of currentSeasonResults) {
       const totalEdge = r.vegasTotal !== undefined ? Math.abs(r.predictedTotal - r.vegasTotal) : 0;
       const mlEdge = Math.abs((r.homeWinProb || 0.5) - 0.5) * 100;
+
+      // Overall ATS vs Vegas
+      if (r.atsResult) {
+        if (r.atsResult === 'win') atsWins++;
+        else if (r.atsResult === 'loss') atsLosses++;
+        else atsPushes++;
+      }
+      // Overall O/U vs Vegas
+      if (r.ouVegasResult) {
+        if (r.ouVegasResult === 'win') ouVegasWins++;
+        else if (r.ouVegasResult === 'loss') ouVegasLosses++;
+        else ouVegasPushes++;
+      }
+      // Overall ML
+      if (r.mlResult) {
+        if (r.mlResult === 'win') mlWinsTotal++;
+        else mlLossesTotal++;
+      }
 
       // High conviction ATS - use actual conviction flag from stored results
       const isHighConviction = r.conviction?.isHighConviction === true;
@@ -1307,14 +1335,16 @@ export async function GET(request: Request) {
         else hiMlL++;
       }
     }
+    const atsTotal = atsWins + atsLosses;
+    const ouVegasTotal = ouVegasWins + ouVegasLosses;
     const hiAtsTotal = hiAtsW + hiAtsL;
     const hiOuTotal = hiOuW + hiOuL;
     const hiMlTotal = hiMlW + hiMlL;
 
+    log(`Backtest: ATS ${atsTotal > 0 ? Math.round((atsWins / atsTotal) * 1000) / 10 : 0}% (${atsWins}-${atsLosses})`);
+
     // 9. Build blob data
-    const spreadTotal = spreadWins + spreadLosses;
-    const mlTotal = mlWins + mlLosses;
-    const ouTotal = ouWins + ouLosses;
+    const mlTotal = mlWinsTotal + mlLossesTotal;
 
     const blobData: BlobState = {
       generated: new Date().toISOString(),
@@ -1337,21 +1367,16 @@ export async function GET(request: Request) {
       backtest: {
         summary: {
           totalGames: processedGameIds.size,
-          spread: { wins: spreadWins, losses: spreadLosses, pushes: spreadPushes, winPct: spreadTotal > 0 ? Math.round((spreadWins / spreadTotal) * 1000) / 10 : 0 },
-          moneyline: { wins: mlWins, losses: mlLosses, winPct: mlTotal > 0 ? Math.round((mlWins / mlTotal) * 1000) / 10 : 0 },
-          overUnder: { wins: ouWins, losses: ouLosses, pushes: ouPushes, winPct: ouTotal > 0 ? Math.round((ouWins / ouTotal) * 1000) / 10 : 0 },
+          spread: { wins: atsWins, losses: atsLosses, pushes: atsPushes, winPct: atsTotal > 0 ? Math.round((atsWins / atsTotal) * 1000) / 10 : 0 },
+          moneyline: { wins: mlWinsTotal, losses: mlLossesTotal, winPct: mlTotal > 0 ? Math.round((mlWinsTotal / mlTotal) * 1000) / 10 : 0 },
+          overUnder: { wins: ouVegasWins, losses: ouVegasLosses, pushes: ouVegasPushes, winPct: ouVegasTotal > 0 ? Math.round((ouVegasWins / ouVegasTotal) * 1000) / 10 : 0 },
         },
         highConvictionSummary: {
           spread: { wins: hiAtsW, losses: hiAtsL, pushes: hiAtsP, winPct: hiAtsTotal > 0 ? Math.round((hiAtsW / hiAtsTotal) * 1000) / 10 : 0 },
           moneyline: { wins: hiMlW, losses: hiMlL, winPct: hiMlTotal > 0 ? Math.round((hiMlW / hiMlTotal) * 1000) / 10 : 0 },
           overUnder: { wins: hiOuW, losses: hiOuL, pushes: hiOuP, winPct: hiOuTotal > 0 ? Math.round((hiOuW / hiOuTotal) * 1000) / 10 : 0 },
         },
-        results: allBacktestResults.filter((r: any) => {
-          // Only include current season games (season starts in October of previous year)
-          const gameDate = new Date(r.gameTime);
-          const seasonStart = new Date(currentSeason - 1, 9, 1); // October 1 of previous year
-          return gameDate >= seasonStart;
-        }),
+        results: currentSeasonResults,
       },
     };
 
@@ -1460,7 +1485,7 @@ export async function GET(request: Request) {
         newGamesProcessed: newGames.length,
         totalGamesProcessed: processedGameIds.size,
         upcomingGames: upcomingGames.length,
-        spreadRecord: `${spreadWins}-${spreadLosses} (${spreadTotal > 0 ? Math.round((spreadWins / spreadTotal) * 1000) / 10 : 0}%)`,
+        atsRecord: `${atsWins}-${atsLosses} (${atsTotal > 0 ? Math.round((atsWins / atsTotal) * 1000) / 10 : 0}%)`,
       },
       logs,
     });

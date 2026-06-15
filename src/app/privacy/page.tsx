@@ -1,4 +1,9 @@
-'use client';
+import type { Metadata } from 'next';
+
+export const metadata: Metadata = {
+  title: 'Privacy Policy',
+  description: 'Privacy policy for Prediction Matrix. Learn how we handle your data.',
+};
 
 export default function PrivacyPage() {
   return (
