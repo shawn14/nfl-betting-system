@@ -14,12 +14,20 @@
       "schedule": "*/30 * * * *"
     },
     {
+      "path": "/api/cron/cbb-sync",
+      "schedule": "*/30 * * * *"
+    },
+    {
+      "path": "/api/cron/wnba-sync",
+      "schedule": "*/30 * * * *"
+    },
+    {
       "path": "/api/admin/backfill-nba-odds",
       "schedule": "0 8 * * *"
     },
     {
-      "path": "/api/cron/cbb-sync",
-      "schedule": "*/30 * * * *"
+      "path": "/api/admin/backfill-wnba-odds",
+      "schedule": "0 9 * * *"
     }
   ]
 }

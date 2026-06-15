@@ -61,12 +61,13 @@ function computeHighConvictionStats(results: BacktestResult[]) {
 }
 
 export default async function LandingPage() {
-  const { nfl, nba, nhl } = await fetchAllSportsData();
+  const { nfl, nba, nhl, wnba } = await fetchAllSportsData();
 
   const allResults: BacktestResult[] = [
     ...getBacktestResults(nfl),
     ...getBacktestResults(nba),
     ...getBacktestResults(nhl),
+    ...getBacktestResults(wnba),
   ];
 
   const stats =

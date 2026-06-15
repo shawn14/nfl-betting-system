@@ -24,14 +24,20 @@ function summarize(state: any): HealthSummary | null {
 
 export async function GET() {
   try {
-    const [nflState, nbaState] = await Promise.all([
+    const [nflState, nbaState, nhlState, cbbState, wnbaState] = await Promise.all([
       getSportState('nfl'),
       getSportState('nba'),
+      getSportState('nhl'),
+      getSportState('cbb'),
+      getSportState('wnba'),
     ]);
 
     return NextResponse.json({
       nfl: summarize(nflState),
       nba: summarize(nbaState),
+      nhl: summarize(nhlState),
+      cbb: summarize(cbbState),
+      wnba: summarize(wnbaState),
     });
   } catch (error) {
     return NextResponse.json({

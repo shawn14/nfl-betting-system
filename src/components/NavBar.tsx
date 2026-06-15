@@ -16,6 +16,7 @@ type SummaryStats = {
 export default function NavBar() {
   const pathname = usePathname();
   const { user, loading } = useAuth();
+  const isWNBA = pathname?.startsWith('/wnba');
   const isNBA = pathname?.startsWith('/nba');
   const isNHL = pathname?.startsWith('/nhl');
   const isCBB = pathname?.startsWith('/cbb');
@@ -23,11 +24,12 @@ export default function NavBar() {
   const [nflStats, setNflStats] = useState<SummaryStats | null>(null);
   const [nhlStats, setNhlStats] = useState<SummaryStats | null>(null);
   const [cbbStats, setCbbStats] = useState<SummaryStats | null>(null);
+  const [wnbaStats, setWnbaStats] = useState<SummaryStats | null>(null);
 
   // Determine base paths based on current section
-  const rankingsPath = isCBB ? '/cbb/rankings' : isNHL ? '/nhl/rankings' : isNBA ? '/nba/rankings' : '/rankings';
-  const resultsPath = isCBB ? '/cbb/results' : isNHL ? '/nhl/results' : isNBA ? '/nba/results' : '/results';
-  const livePath = isCBB ? '/cbb/live' : isNHL ? '/nhl/live' : isNBA ? '/nba/live' : '/nfl/live';
+  const rankingsPath = isWNBA ? '/wnba/rankings' : isCBB ? '/cbb/rankings' : isNHL ? '/nhl/rankings' : isNBA ? '/nba/rankings' : '/rankings';
+  const resultsPath = isWNBA ? '/wnba/results' : isCBB ? '/cbb/results' : isNHL ? '/nhl/results' : isNBA ? '/nba/results' : '/results';
+  const livePath = isWNBA ? '/wnba/live' : isCBB ? '/cbb/live' : isNHL ? '/nhl/live' : isNBA ? '/nba/live' : '/nfl/live';
   const nflHomePath = user ? '/dashboard' : '/';
 
   // Active link styling
@@ -41,17 +43,22 @@ export default function NavBar() {
     if (path === '/nfl/live') return pathname === '/nfl/live';
     if (path === '/cbb') return pathname === '/cbb';
     if (path === '/cbb/live') return pathname === '/cbb/live';
+    if (path === '/wnba') return pathname === '/wnba';
+    if (path === '/wnba/live') return pathname === '/wnba/live';
     return pathname?.startsWith(path);
   };
 
   // Determine current sport for styling
-  const currentSport: 'nfl' | 'nba' | 'nhl' | 'cbb' = isCBB ? 'cbb' : isNHL ? 'nhl' : isNBA ? 'nba' : 'nfl';
+  const currentSport: 'nfl' | 'nba' | 'nhl' | 'cbb' | 'wnba' = isWNBA ? 'wnba' : isCBB ? 'cbb' : isNHL ? 'nhl' : isNBA ? 'nba' : 'nfl';
 
-  const getLinkClass = (path: string, sport: 'nfl' | 'nba' | 'nhl' | 'cbb' = 'nfl') => {
+  const getLinkClass = (path: string, sport: 'nfl' | 'nba' | 'nhl' | 'cbb' | 'wnba' = 'nfl') => {
     const active = isActive(path);
     const baseClass = 'px-4 py-4 text-sm font-semibold transition-colors';
     if (sport === 'nba') {
       return `${baseClass} ${active ? 'text-orange-600 border-b-2 border-orange-500' : 'text-gray-700 hover:text-orange-600 hover:border-b-2 hover:border-orange-500'}`;
+    }
+    if (sport === 'wnba') {
+      return `${baseClass} ${active ? 'text-pink-600 border-b-2 border-pink-500' : 'text-gray-700 hover:text-pink-600 hover:border-b-2 hover:border-pink-500'}`;
     }
     if (sport === 'nhl') {
       return `${baseClass} ${active ? 'text-blue-600 border-b-2 border-blue-500' : 'text-gray-700 hover:text-blue-600 hover:border-b-2 hover:border-blue-500'}`;
@@ -62,11 +69,14 @@ export default function NavBar() {
     return `${baseClass} ${active ? 'text-red-700 border-b-2 border-red-600' : 'text-gray-700 hover:text-red-700 hover:border-b-2 hover:border-red-600'}`;
   };
 
-  const getMobileLinkClass = (path: string, sport: 'nfl' | 'nba' | 'nhl' | 'cbb' = 'nfl') => {
+  const getMobileLinkClass = (path: string, sport: 'nfl' | 'nba' | 'nhl' | 'cbb' | 'wnba' = 'nfl') => {
     const active = isActive(path);
     const baseClass = 'flex-1 text-center py-2.5 text-xs font-semibold transition-colors';
     if (sport === 'nba') {
       return `${baseClass} ${active ? 'text-orange-600 bg-orange-50' : 'text-gray-700 hover:text-orange-600 hover:bg-gray-50'}`;
+    }
+    if (sport === 'wnba') {
+      return `${baseClass} ${active ? 'text-pink-600 bg-pink-50' : 'text-gray-700 hover:text-pink-600 hover:bg-gray-50'}`;
     }
     if (sport === 'nhl') {
       return `${baseClass} ${active ? 'text-blue-600 bg-blue-50' : 'text-gray-700 hover:text-blue-600 hover:bg-gray-50'}`;
@@ -77,8 +87,8 @@ export default function NavBar() {
     return `${baseClass} ${active ? 'text-red-700 bg-red-50' : 'text-gray-700 hover:text-red-700 hover:bg-gray-50'}`;
   };
 
-  const accentColor = isCBB ? 'bg-purple-600' : isNHL ? 'bg-blue-600' : isNBA ? 'bg-orange-500' : 'bg-red-600';
-  const logoColor = isCBB ? 'bg-purple-600' : isNHL ? 'bg-blue-600' : isNBA ? 'bg-orange-500' : 'bg-red-600';
+  const accentColor = isWNBA ? 'bg-pink-600' : isCBB ? 'bg-purple-600' : isNHL ? 'bg-blue-600' : isNBA ? 'bg-orange-500' : 'bg-red-600';
+  const logoColor = isWNBA ? 'bg-pink-600' : isCBB ? 'bg-purple-600' : isNHL ? 'bg-blue-600' : isNBA ? 'bg-orange-500' : 'bg-red-600';
 
   useEffect(() => {
     if (!user) return;
@@ -111,6 +121,7 @@ export default function NavBar() {
     loadStats('/prediction-data.json', setNflStats);
     loadStats('/nhl-prediction-data.json', setNhlStats);
     loadStats('/cbb-prediction-data.json', setCbbStats);
+    loadStats('/wnba-prediction-data.json', setWnbaStats);
     return () => {
       cancelled = true;
     };
@@ -133,7 +144,7 @@ export default function NavBar() {
                 <div className="flex flex-col min-w-0">
                   <span className="text-base sm:text-lg font-bold text-gray-900 leading-tight truncate">Prediction Matrix</span>
                   <span className="text-[8px] sm:text-[10px] text-gray-500 uppercase tracking-wider leading-tight hidden xs:block">
-                    AI-Powered {isCBB ? 'College Basketball' : isNHL ? 'NHL' : isNBA ? 'NBA' : 'NFL'} Predictions
+                    AI-Powered {isWNBA ? 'WNBA' : isCBB ? 'College Basketball' : isNHL ? 'NHL' : isNBA ? 'NBA' : 'NFL'} Predictions
                   </span>
                 </div>
               </a>
@@ -150,6 +161,9 @@ export default function NavBar() {
                   </a>
                   <a href="/cbb" className={getLinkClass('/cbb', 'cbb')}>
                     CBB
+                  </a>
+                  <a href="/wnba" className={getLinkClass('/wnba', 'wnba')}>
+                    WNBA
                   </a>
                   <a href={livePath} className={getLinkClass(livePath, currentSport)}>
                     Live
@@ -168,7 +182,7 @@ export default function NavBar() {
                 <div className="hidden lg:flex items-center gap-1 text-xs text-gray-500">
                   <span className="bg-green-100 text-green-700 px-1.5 py-0.5 rounded text-[10px] font-bold mr-1">HIGH CONV</span>
                   {(() => {
-                    const stats = isCBB ? cbbStats : isNHL ? nhlStats : isNBA ? nbaStats : nflStats;
+                    const stats = isWNBA ? wnbaStats : isCBB ? cbbStats : isNHL ? nhlStats : isNBA ? nbaStats : nflStats;
                     const label = isNHL ? 'PL' : 'ATS'; // Puck Line for NHL, ATS for others
                     return (
                       <>
@@ -211,6 +225,9 @@ export default function NavBar() {
               </a>
               <a href="/cbb" className={getMobileLinkClass('/cbb', 'cbb')}>
                 CBB
+              </a>
+              <a href="/wnba" className={getMobileLinkClass('/wnba', 'wnba')}>
+                WNBA
               </a>
               <a href={livePath} className={getMobileLinkClass(livePath, currentSport)}>
                 Live

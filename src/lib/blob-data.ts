@@ -27,13 +27,14 @@ export async function fetchBlobData<T = Record<string, unknown>>(
 
 /** Fetch all sport data in parallel */
 export async function fetchAllSportsData() {
-  const [nfl, nba, nhl, cbb] = await Promise.all([
+  const [nfl, nba, nhl, cbb, wnba] = await Promise.all([
     fetchBlobData<NFLData>('prediction-matrix-data.json'),
     fetchBlobData<NBAData>('nba-prediction-data.json'),
     fetchBlobData<NHLData>('nhl-prediction-data.json'),
     fetchBlobData<CBBData>('cbb-prediction-data.json'),
+    fetchBlobData<WNBAData>('wnba-prediction-data.json'),
   ]);
-  return { nfl, nba, nhl, cbb };
+  return { nfl, nba, nhl, cbb, wnba };
 }
 
 // ── Shared types for prediction data ──────────────────────────────────
@@ -154,6 +155,7 @@ export type NFLData = BaseSportData;
 export type NBAData = BaseSportData;
 export type NHLData = BaseSportData;
 export type CBBData = BaseSportData;
+export type WNBAData = BaseSportData;
 
 /** Extract backtest results array from either format */
 export function getBacktestResults(
