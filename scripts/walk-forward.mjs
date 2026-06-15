@@ -91,6 +91,15 @@ async function run(sport, bumpArg, divArg) {
     console.log(`    candidate  ${bump}/${div}:  TEST Brier ${cTest.brier.toFixed(4)}  gap ${cTest.gap >= 0 ? '+' : ''}${cTest.gap.toFixed(1)}`);
   }
 
+  // 1b. Closing Line Value (from the synced blob — the honest forward edge metric)
+  const clv = data.backtest?.clvSummary;
+  if (clv) {
+    const fmt = (c) => `avg ${c.avgClv >= 0 ? '+' : ''}${c.avgClv} pts, beat close ${c.pctBeatClose}% (n=${c.n})`;
+    console.log(`\n  Closing Line Value (open→lock vs our pick; >0 = market moved our way):`);
+    console.log(`    spread: ${fmt(clv.spread)}`);
+    console.log(`    total : ${fmt(clv.total)}`);
+  }
+
   // 2. ATS-vs-market edge diagnostic (does disagreement predict wins?)
   console.log(`\n  ATS by model-vs-Vegas spread edge (TEST set, breakeven ${BREAKEVEN}%):`);
   const withOdds = test.filter((r) => r.vegasSpread != null);

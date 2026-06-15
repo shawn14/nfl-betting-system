@@ -10,6 +10,7 @@ import {
   saveDocsBatch,
 } from '@/services/firestore-admin-store';
 import { SportKey } from '@/services/firestore-types';
+import { newClvAccumulator, addClv, finalizeClv, type ClvSummary } from '@/lib/clv';
 import { getRestDaysForGame, calculateRestAdjustment, restFavorsPick } from '@/services/nba-rest-days';
 import { fetchNBAOdds, getConsensusOdds } from '@/services/odds';
 
@@ -214,6 +215,7 @@ interface BlobState {
       moneyline: { wins: number; losses: number; winPct: number };
       overUnder: { wins: number; losses: number; pushes: number; winPct: number };
     };
+    clvSummary?: ClvSummary;
     results: unknown[];
   };
 }
@@ -1294,9 +1296,12 @@ export async function GET(request: Request) {
     let hiAtsW = 0, hiAtsL = 0, hiAtsP = 0;
     let hiOuW = 0, hiOuL = 0, hiOuP = 0;
     let hiMlW = 0, hiMlL = 0;
+    const clvAcc = newClvAccumulator();
     for (const r of currentSeasonResults) {
       const totalEdge = r.vegasTotal !== undefined ? Math.abs(r.predictedTotal - r.vegasTotal) : 0;
       const mlEdge = Math.abs((r.homeWinProb || 0.5) - 0.5) * 100;
+
+      addClv(clvAcc, r, historicalOdds[r.gameId]);
 
       // Overall ATS vs Vegas
       if (r.atsResult) {
@@ -1376,6 +1381,7 @@ export async function GET(request: Request) {
           moneyline: { wins: hiMlW, losses: hiMlL, winPct: hiMlTotal > 0 ? Math.round((hiMlW / hiMlTotal) * 1000) / 10 : 0 },
           overUnder: { wins: hiOuW, losses: hiOuL, pushes: hiOuP, winPct: hiOuTotal > 0 ? Math.round((hiOuW / hiOuTotal) * 1000) / 10 : 0 },
         },
+        clvSummary: finalizeClv(clvAcc),
         results: currentSeasonResults,
       },
     };
