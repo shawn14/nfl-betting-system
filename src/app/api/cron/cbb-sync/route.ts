@@ -524,7 +524,7 @@ export async function GET(request: Request) {
       // Calculate ouConfidence and mlConfidence for backtest
       const totalEdge = vegasTotal !== undefined ? Math.abs(predictedTotal - vegasTotal) : 0;
       let ouConf: 'high' | 'medium' | 'low' = 'medium';
-      if (totalEdge >= 5) ouConf = 'high';
+      if (totalEdge >= 7) ouConf = 'high'; // raised 5->7: CBB totals edge validated OOS at >=7 (68.6%, z=2.7)
       else if (totalEdge >= 3) ouConf = 'medium';
       else ouConf = 'low';
 
@@ -779,7 +779,7 @@ export async function GET(request: Request) {
 
       const totalEdge = Math.abs(predictedTotal - vegasTotal);
       let ouConfidence: 'high' | 'medium' | 'low' = 'medium';
-      if (totalEdge >= 5) ouConfidence = 'high';
+      if (totalEdge >= 7) ouConfidence = 'high'; // raised 5->7 (validated OOS)
       else if (totalEdge >= 3) ouConfidence = 'medium';
       else ouConfidence = 'low';
 
