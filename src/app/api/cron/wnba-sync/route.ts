@@ -1122,7 +1122,7 @@ export async function GET(request: Request) {
 
       const totalEdge = vegasTotal !== undefined ? Math.abs(predictedTotal - vegasTotal) : 0;
       let ouConfidence: 'high' | 'medium' | 'low' = 'medium';
-      if (totalEdge >= 5) ouConfidence = 'high';
+      if (totalEdge >= 7) ouConfidence = 'high'; // raised 5->7 (matches validated CBB/NFL totals edge)
       else if (totalEdge >= 3) ouConfidence = 'medium';
       else ouConfidence = 'low';
 
@@ -1161,7 +1161,7 @@ export async function GET(request: Request) {
       );
 
       const isAtsBestBet = sixtyPlusFactors >= 1 && !isMediumSpread;
-      const isOuBestBet = totalEdge >= 5;
+      const isOuBestBet = totalEdge >= 7;
       const isMlBestBet = mlEdge >= 15;
 
       let lineMovement = existingOdds ? {
@@ -1317,7 +1317,7 @@ export async function GET(request: Request) {
         else hiAtsP++;
       }
       // High conviction O/U (edge >= 5 pts)
-      if (totalEdge >= 5 && r.ouVegasResult) {
+      if (totalEdge >= 7 && r.ouVegasResult) {
         if (r.ouVegasResult === 'win') hiOuW++;
         else if (r.ouVegasResult === 'loss') hiOuL++;
         else hiOuP++;
