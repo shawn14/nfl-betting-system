@@ -207,6 +207,16 @@ Sport pages render `NoGamesNotice` (why there are no games, next scheduled game,
 blob has nothing to pick. They only trigger their sync route from the browser when the blob is missing
 or older than 2 hours — fresh-but-empty data means off-season, not a broken cron.
 
+## Edge ledger (does the model beat the price?)
+
+`docs/reports/2026-09-11-edge-ledger.html` (+ `.png`, `.json`) is a full-history read of every graded pick from the
+Firestore `results` collections, per sport × bet type × all/high-conviction × live/backfilled, with 95% intervals
+against the −110 break-even (52.4%). Findings as of 2026-09-11: no bet type shows a demonstrated edge in games
+predicted live; NFL high-conviction totals and college totals are the only candidates worth tracking forward; NHL
+"ATS" is the ±1.5 puck line (74% of picks are the +1.5 side) and cannot be judged without prices; moneyline "edge"
+is model confidence, not a price comparison. Preseason games (49 NFL, 65 NBA, 28 NHL, 5 WNBA) are graded into the
+site's records and Elo — the ledger excludes them; the crons should skip ESPN `season.type !== 2`.
+
 ## Gotchas verified live (2026-09-11 audit)
 
 - **Deploys**: pushing `main` auto-deploys production through the Vercel GitHub integration (every deployment carries the commit sha). The build gate is a branch push → Vercel preview build; then fast-forward `main`.
