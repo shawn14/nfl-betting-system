@@ -226,6 +226,22 @@ Mechanical fixes shipped with the freeze (not tuning — they correct bugs the l
   by 35 points on average (HOU −88, CIN +87); ratings were repaired to pre-preseason values with the two week-1
   games replayed.
 
+## Props watch (Kalshi NFL prop ladders vs sportsbook lines) — recorder lives here, analysis in kalshi-mm-v14
+
+Two crons record the raw material for the Kalshi prop strategy; nothing here trades.
+- `api/cron/kalshi-props-record` (every 5 min): every open market in the 10 NFL prop series + game/spread/total →
+  `kalshi-props/snap/<day>/<HHMM>.json.gz` (compact rows, `cols` header inside), `kalshi-props/latest.json.gz`,
+  `kalshi-props/index.json` (rebuilt from the Blob listing each run). Public Kalshi API, no key; prices are the
+  `*_dollars` / `*_fp` fields (legacy cent fields are null on the public endpoint).
+- `api/cron/odds-props-record` (every 15 min): per upcoming NFL event, fetches 15 player-prop markets (11 two-sided
+  mains + 4 one-sided alternate ladders that land on Kalshi's N+ rungs) from The Odds API and stores the raw
+  response at `odds-props/snap/<day>/<HHMM>-<eventId>.json.gz`; `odds-props/state.json` holds last-fetch per event
+  and credits spent today. Cadence: 8h when >24h out, 3h when 6-24h, 30 min when 1.5-6h, every run inside 90 min.
+  Budget: 1 credit per market per event (15/fetch); daily cap 8,000, monthly floor 20,000 remaining. Key =
+  `NEXT_PUBLIC_ODDS_API_KEY` (trim it — the stored value has whitespace).
+- Readers: `~/projects/kalshi-mm-v14/tools/props_watch/` (fair value from de-vigged books, rung matching, fee-adjusted
+  edge, convergence report, paper sheet). Frozen paper rule lives there, not here.
+
 ## Edge ledger (does the model beat the price?)
 
 `docs/reports/2026-09-11-edge-ledger.html` (+ `.png`, `.json`) is a full-history read of every graded pick from the

@@ -28,6 +28,14 @@
     {
       "path": "/api/admin/backfill-wnba-odds",
       "schedule": "0 9 * * *"
+    },
+    {
+      "path": "/api/cron/kalshi-props-record",
+      "schedule": "*/5 * * * *"
+    },
+    {
+      "path": "/api/cron/odds-props-record",
+      "schedule": "*/15 * * * *"
     }
   ]
 }
