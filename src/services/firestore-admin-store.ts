@@ -68,3 +68,19 @@ export async function saveDocsBatch<T extends Record<string, unknown>>(
     await batch.commit();
   }
 }
+
+export async function deleteDocsBatch(
+  sport: SportKey,
+  subcollection: string,
+  ids: string[]
+): Promise<void> {
+  if (ids.length === 0) return;
+  const adminDb = getAdminDb();
+  for (let i = 0; i < ids.length; i += MAX_BATCH_SIZE) {
+    const batch = adminDb.batch();
+    for (const id of ids.slice(i, i + MAX_BATCH_SIZE)) {
+      batch.delete(adminDb.collection('sports').doc(sport).collection(subcollection).doc(id));
+    }
+    await batch.commit();
+  }
+}

@@ -12,6 +12,7 @@ import {
   getDocsList,
   getDocsMap,
   saveDocsBatch,
+  deleteDocsBatch,
 } from '@/services/firestore-admin-store';
 import { SportKey } from '@/services/firestore-types';
 import { newClvAccumulator, addClv, finalizeClv, type ClvSummary } from '@/lib/clv';
@@ -258,14 +259,22 @@ export async function GET(request: Request) {
       ? {}
       : await getDocsMap<CachedInjuries>(sport, 'injuries');
     // Purge poisoned cache entries. From 2025-12-21 to 2026-09-11 a dead NFL.com scraper stored a
-    // hardcoded 13-player list under future week numbers (source undefined). Anything at or beyond
-    // the current week that did not come from the real feed must never be reused as a "cache".
-    // Past weeks are left as-is (history; the fake 2025 weeks 16-18 are documented in CLAUDE.md).
+    // hardcoded 13-player list under week numbers 2-5 and 16-18 (source undefined). Anything at or
+    // beyond the current week that did not come from the real feed must never be reused as a
+    // "cache". Week keys carry no season, so last season's late weeks are numerically "ahead" too
+    // and get purged as well — fine, they held the same fake list. Purged docs are deleted from
+    // Firestore so the purge does not repeat on every run.
+    const purgedWeeks: string[] = [];
     for (const [weekKey, entry] of Object.entries(injuriesByWeek)) {
       if (Number(weekKey) >= currentWeek && entry?.data?.source !== 'espn') {
         delete injuriesByWeek[weekKey];
+        purgedWeeks.push(weekKey);
         log(`Purged non-feed injury cache for week ${weekKey} (source=${entry?.data?.source ?? 'none'}, fetchedAt=${entry?.fetchedAt})`);
       }
+    }
+    if (purgedWeeks.length > 0 && !shouldReset) {
+      await deleteDocsBatch(sport, 'injuries', purgedWeeks);
+      log(`Deleted ${purgedWeeks.length} purged injury cache docs from Firestore`);
     }
 
     const isFirstRun = !existingState || !existingState.processedGameIds?.length;
