@@ -755,7 +755,8 @@ export async function GET(request: Request) {
             game.homeTeamId,
             game.awayTeamId,
             game.gameTime,
-            game.id
+            game.id,
+            'wnba'
           );
           restAdjustment = calculateRestAdjustment(restInfo);
         } catch (err) {
@@ -1142,7 +1143,8 @@ export async function GET(request: Request) {
             game.homeTeamId,
             game.awayTeamId,
             game.gameTime,
-            game.id
+            game.id,
+            'wnba'
           );
           restFetched++;
         } catch (err) {

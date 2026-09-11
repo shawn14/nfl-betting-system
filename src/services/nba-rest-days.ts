@@ -26,22 +26,28 @@ interface RestDaysInfo {
 const scheduleCache = new Map<string, { games: TeamScheduleGame[]; fetchedAt: number }>();
 const CACHE_TTL = 1000 * 60 * 60; // 1 hour cache
 
+export type RestDaysLeague = 'nba' | 'wnba';
+
 /**
- * Fetch a team's schedule from ESPN API
+ * Fetch a team's schedule from ESPN API.
+ * `league` selects the ESPN league path. The WNBA sync reused this module for months while it
+ * hardcoded basketball/nba — WNBA team ids were looked up against NBA schedules (wrong team or
+ * 400 for expansion ids like Portland 132052), so every WNBA game read as 3 rest days each side.
  */
-async function fetchTeamSchedule(teamId: string): Promise<TeamScheduleGame[]> {
-  // Check cache
-  const cached = scheduleCache.get(teamId);
+async function fetchTeamSchedule(teamId: string, league: RestDaysLeague = 'nba'): Promise<TeamScheduleGame[]> {
+  // Check cache (keyed by league so NBA/WNBA ids that collide never share an entry)
+  const cacheKey = `${league}:${teamId}`;
+  const cached = scheduleCache.get(cacheKey);
   if (cached && Date.now() - cached.fetchedAt < CACHE_TTL) {
     return cached.games;
   }
 
   try {
-    const url = `https://site.api.espn.com/apis/site/v2/sports/basketball/nba/teams/${teamId}/schedule`;
+    const url = `https://site.api.espn.com/apis/site/v2/sports/basketball/${league}/teams/${teamId}/schedule`;
     const response = await fetch(url);
 
     if (!response.ok) {
-      console.error(`Failed to fetch schedule for team ${teamId}: ${response.status}`);
+      console.error(`Failed to fetch ${league} schedule for team ${teamId}: ${response.status}`);
       return [];
     }
 
@@ -67,11 +73,11 @@ async function fetchTeamSchedule(teamId: string): Promise<TeamScheduleGame[]> {
     games.sort((a, b) => new Date(a.date).getTime() - new Date(b.date).getTime());
 
     // Cache the result
-    scheduleCache.set(teamId, { games, fetchedAt: Date.now() });
+    scheduleCache.set(cacheKey, { games, fetchedAt: Date.now() });
 
     return games;
   } catch (error) {
-    console.error(`Error fetching schedule for team ${teamId}:`, error);
+    console.error(`Error fetching ${league} schedule for team ${teamId}:`, error);
     return [];
   }
 }
@@ -120,14 +126,15 @@ export async function getRestDaysForGame(
   homeTeamId: string,
   awayTeamId: string,
   gameDate: Date | string,
-  gameId: string
+  gameId: string,
+  league: RestDaysLeague = 'nba'
 ): Promise<RestDaysInfo> {
   const gameDateObj = typeof gameDate === 'string' ? new Date(gameDate) : gameDate;
 
   // Fetch schedules in parallel
   const [homeSchedule, awaySchedule] = await Promise.all([
-    fetchTeamSchedule(homeTeamId),
-    fetchTeamSchedule(awayTeamId),
+    fetchTeamSchedule(homeTeamId, league),
+    fetchTeamSchedule(awayTeamId, league),
   ]);
 
   const homeRestDays = calculateRestDays(homeSchedule, gameDateObj, gameId);
