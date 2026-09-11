@@ -607,6 +607,11 @@ export async function GET(request: Request) {
             week: currentWeek,
           };
           injuriesByWeek[String(currentWeek)] = currentWeekInjuriesCache;
+        } else if (cacheIsCurrentWeek && currentWeekInjuriesCache) {
+          injuryReport = currentWeekInjuriesCache.data;
+          log(`⚠️ Injuries feed unavailable — using stale Week ${currentWeek} cache (${Math.round(injuryCacheAge * 10) / 10}h old)`);
+        } else {
+          log('⚠️ INJURIES UNAVAILABLE this run — predictions carry no injury signal (summaries read "Unavailable")');
         }
       } catch (err) {
         log(`Failed to fetch injuries: ${err instanceof Error ? err.message : 'Unknown error'}`);

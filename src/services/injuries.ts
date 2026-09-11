@@ -1,85 +1,53 @@
-// NFL.com Injuries scraper
-// ESPN API was returning corrupted data, so we scrape NFL.com instead
+// NFL injuries — sourced from ESPN's public injuries feed.
+//
+// History (do not repeat): from 2025-12-21 to 2026-09-11 this module scraped NFL.com.
+// NFL.com's markup never matched the parser (0 rows), so fetchInjuries() silently returned
+// a HARDCODED list of 13 players and stamped it with a fresh timestamp — for nine months the
+// site showed December-2025 injuries as "live" and flagged "QB Out" on healthy starters.
+//
+// This module now fails CLOSED. If the feed cannot be fetched or parsed, fetchInjuries()
+// returns null and the caller must surface "injuries unavailable", never "Healthy".
+//
+// Feed: https://site.api.espn.com/apis/site/v2/sports/football/nfl/injuries
+// Shape (verified against the live feed 2026-09-11, 32 teams / 800 rows):
+//   { injuries: [{ id, displayName, injuries: [{ status, date,
+//       athlete: { displayName, position: { abbreviation }, team: { abbreviation } },
+//       details?: { type, returnDate } }] }] }
+// Statuses observed: Active, Questionable, Doubtful, Out, Injured Reserve, Suspension.
+// Do NOT send a browser User-Agent: ESPN's edge returns 403 to spoofed UAs; the default
+// Node fetch UA is what the production crons use successfully.
 
-const NFL_INJURIES_URL = 'https://www.nfl.com/injuries/';
+const ESPN_INJURIES_URL = 'https://site.api.espn.com/apis/site/v2/sports/football/nfl/injuries';
 
-// Team abbreviation mapping
-const TEAM_ABBREV_MAP: Record<string, string> = {
-  'Arizona Cardinals': 'ARI',
-  'Atlanta Falcons': 'ATL',
-  'Baltimore Ravens': 'BAL',
-  'Buffalo Bills': 'BUF',
-  'Carolina Panthers': 'CAR',
-  'Chicago Bears': 'CHI',
-  'Cincinnati Bengals': 'CIN',
-  'Cleveland Browns': 'CLE',
-  'Dallas Cowboys': 'DAL',
-  'Denver Broncos': 'DEN',
-  'Detroit Lions': 'DET',
-  'Green Bay Packers': 'GB',
-  'Houston Texans': 'HOU',
-  'Indianapolis Colts': 'IND',
-  'Jacksonville Jaguars': 'JAX',
-  'Kansas City Chiefs': 'KC',
-  'Las Vegas Raiders': 'LV',
-  'Los Angeles Chargers': 'LAC',
-  'Los Angeles Rams': 'LAR',
-  'Miami Dolphins': 'MIA',
-  'Minnesota Vikings': 'MIN',
-  'New England Patriots': 'NE',
-  'New Orleans Saints': 'NO',
-  'New York Giants': 'NYG',
-  'New York Jets': 'NYJ',
-  'Philadelphia Eagles': 'PHI',
-  'Pittsburgh Steelers': 'PIT',
-  'San Francisco 49ers': 'SF',
-  'Seattle Seahawks': 'SEA',
-  'Tampa Bay Buccaneers': 'TB',
-  'Tennessee Titans': 'TEN',
-  'Washington Commanders': 'WAS',
-  'Cardinals': 'ARI',
-  'Falcons': 'ATL',
-  'Ravens': 'BAL',
-  'Bills': 'BUF',
-  'Panthers': 'CAR',
-  'Bears': 'CHI',
-  'Bengals': 'CIN',
-  'Browns': 'CLE',
-  'Cowboys': 'DAL',
-  'Broncos': 'DEN',
-  'Lions': 'DET',
-  'Packers': 'GB',
-  'Texans': 'HOU',
-  'Colts': 'IND',
-  'Jaguars': 'JAX',
-  'Chiefs': 'KC',
-  'Raiders': 'LV',
-  'Chargers': 'LAC',
-  'Rams': 'LAR',
-  'Dolphins': 'MIA',
-  'Vikings': 'MIN',
-  'Patriots': 'NE',
-  'Saints': 'NO',
-  'Giants': 'NYG',
-  'Jets': 'NYJ',
-  'Eagles': 'PHI',
-  'Steelers': 'PIT',
-  '49ers': 'SF',
-  'Seahawks': 'SEA',
-  'Buccaneers': 'TB',
-  'Titans': 'TEN',
-  'Commanders': 'WAS',
-};
+// 32 NFL teams. A parse that yields fewer than this is treated as a broken feed, not a quiet week.
+const MIN_TEAMS_FOR_VALID_REPORT = 28;
 
 // Key positions for betting impact
-const KEY_POSITIONS = ['QB', 'RB', 'WR', 'TE', 'LT', 'RT', 'CB', 'EDGE', 'DE', 'DT', 'LB', 'S', 'G', 'C', 'T'];
+const KEY_POSITIONS = ['QB', 'RB', 'WR', 'TE', 'LT', 'RT', 'CB', 'EDGE', 'DE', 'DT', 'LB', 'S', 'G', 'C', 'T', 'OT', 'OG'];
+
+// Fallback only: rows normally carry athlete.team.abbreviation. Keys are ESPN's abbreviations
+// (note WSH, not WAS — the app's teams/games use ESPN abbreviations everywhere).
+const TEAM_ABBREV_BY_NAME: Record<string, string> = {
+  'Arizona Cardinals': 'ARI', 'Atlanta Falcons': 'ATL', 'Baltimore Ravens': 'BAL', 'Buffalo Bills': 'BUF',
+  'Carolina Panthers': 'CAR', 'Chicago Bears': 'CHI', 'Cincinnati Bengals': 'CIN', 'Cleveland Browns': 'CLE',
+  'Dallas Cowboys': 'DAL', 'Denver Broncos': 'DEN', 'Detroit Lions': 'DET', 'Green Bay Packers': 'GB',
+  'Houston Texans': 'HOU', 'Indianapolis Colts': 'IND', 'Jacksonville Jaguars': 'JAX', 'Kansas City Chiefs': 'KC',
+  'Las Vegas Raiders': 'LV', 'Los Angeles Chargers': 'LAC', 'Los Angeles Rams': 'LAR', 'Miami Dolphins': 'MIA',
+  'Minnesota Vikings': 'MIN', 'New England Patriots': 'NE', 'New Orleans Saints': 'NO', 'New York Giants': 'NYG',
+  'New York Jets': 'NYJ', 'Philadelphia Eagles': 'PHI', 'Pittsburgh Steelers': 'PIT', 'San Francisco 49ers': 'SF',
+  'Seattle Seahawks': 'SEA', 'Tampa Bay Buccaneers': 'TB', 'Tennessee Titans': 'TEN', 'Washington Commanders': 'WSH',
+};
+
+export type InjuryStatusClass = 'out' | 'questionable' | 'long_term' | 'active';
 
 export interface PlayerInjury {
   name: string;
   position: string;
-  status: string;
-  injury: string;
+  status: string; // raw feed status: "Out", "Doubtful", "Questionable", "Injured Reserve", "Suspension", ...
+  injury: string; // injury type: "Achilles", "Knee", ...
   isKeyPlayer: boolean;
+  returnDate?: string;
+  reportedAt?: string;
 }
 
 export interface TeamInjuries {
@@ -92,193 +60,108 @@ export interface TeamInjuries {
 export interface InjuryReport {
   teams: Record<string, TeamInjuries>;
   fetchedAt: string;
+  source?: string;
 }
 
-// Parse injury data from NFL.com HTML
-function parseNFLInjuryHTML(html: string): InjuryReport {
+interface EspnInjuryRow {
+  status?: string;
+  date?: string;
+  athlete?: {
+    displayName?: string;
+    position?: { abbreviation?: string };
+    team?: { abbreviation?: string };
+  };
+  details?: { type?: string; returnDate?: string };
+}
+
+interface EspnInjuriesResponse {
+  injuries?: Array<{ id?: string; displayName?: string; injuries?: EspnInjuryRow[] }>;
+}
+
+export function classifyInjuryStatus(status: string): InjuryStatusClass {
+  const s = (status || '').toLowerCase().trim();
+  if (!s || s === 'active' || s === 'probable') return 'active';
+  if (
+    s.includes('injured reserve') || s === 'ir' || s.includes('suspension') || s.includes('suspended') ||
+    s.includes('physically unable') || s === 'pup' || s.includes('non-football') || s.includes('nfi')
+  ) {
+    return 'long_term';
+  }
+  if (s === 'out' || s.startsWith('out ') || s.includes('doubtful')) return 'out';
+  if (s.includes('questionable') || s.includes('day-to-day') || s.includes('day to day')) return 'questionable';
+  return 'active';
+}
+
+// Does this row count as a key absence for the game-week signal? Only the weekly game status
+// (Out / Doubtful) counts — the same semantic as the NFL.com weekly report the model was built
+// on. IR / PUP / suspension rows are listed for display but not counted: Elo has already
+// absorbed a months-long absence, and ESPN's row `date` is the last news update, not the
+// placement date, so it cannot tell a fresh IR stint from an old one.
+function countsAsOut(status: string): boolean {
+  return classifyInjuryStatus(status) === 'out';
+}
+
+// Pure parser — testable against a saved copy of the feed.
+export function parseEspnInjuries(data: EspnInjuriesResponse, now: Date = new Date()): InjuryReport {
   const teams: Record<string, TeamInjuries> = {};
 
-  // Find all team sections - NFL.com uses specific patterns
-  // Look for team names followed by injury tables
-  const teamPattern = /<h2[^>]*class="[^"]*d3-o-section-title[^"]*"[^>]*>([^<]+)<\/h2>/gi;
-  const playerPattern = /<tr[^>]*class="[^"]*d3-o-table__row[^"]*"[^>]*>[\s\S]*?<\/tr>/gi;
+  for (const teamBlock of data.injuries || []) {
+    const rows = teamBlock.injuries || [];
+    // Resolve the team abbreviation from any row; fall back to the block's display name.
+    const abbrev =
+      rows.find(r => r.athlete?.team?.abbreviation)?.athlete?.team?.abbreviation ||
+      TEAM_ABBREV_BY_NAME[teamBlock.displayName || ''];
+    if (!abbrev) continue;
 
-  // Alternative: Look for structured data in the page
-  // NFL.com often embeds JSON data
-  const jsonMatch = html.match(/__NEXT_DATA__[^>]*>([^<]+)</);
-  if (jsonMatch) {
-    try {
-      const data = JSON.parse(jsonMatch[1]);
-      // Parse Next.js data structure if available
-      console.log('Found Next.js data');
-    } catch (e) {
-      // Continue with HTML parsing
+    const team: TeamInjuries = teams[abbrev] || { teamAbbrev: abbrev, injuries: [], keyPlayersOut: 0, hasQBOut: false };
+    teams[abbrev] = team;
+
+    for (const row of rows) {
+      const status = (row.status || '').trim();
+      if (classifyInjuryStatus(status) === 'active') continue; // healthy / cleared — not an injury
+
+      const position = (row.athlete?.position?.abbreviation || '').toUpperCase();
+      const isKeyPlayer = KEY_POSITIONS.includes(position);
+      const out = countsAsOut(status);
+
+      team.injuries.push({
+        name: (row.athlete?.displayName || 'Unknown').trim(),
+        position,
+        status,
+        injury: (row.details?.type || '').trim(),
+        isKeyPlayer,
+        returnDate: row.details?.returnDate,
+        reportedAt: row.date,
+      });
+
+      if (out && isKeyPlayer) team.keyPlayersOut++;
+      if (out && position === 'QB') team.hasQBOut = true;
     }
   }
 
-  // Simple regex-based extraction for injury rows
-  // Pattern: team name, player name, position, injury, status
-  const injuryRowPattern = /data-team="([^"]+)"[^>]*>[\s\S]*?<td[^>]*>([^<]+)<\/td>[\s\S]*?<td[^>]*>([^<]+)<\/td>[\s\S]*?<td[^>]*>([^<]+)<\/td>[\s\S]*?<td[^>]*>([^<]+)<\/td>/gi;
-
-  let match;
-  while ((match = injuryRowPattern.exec(html)) !== null) {
-    const [, teamName, playerName, position, injury, status] = match;
-    const abbrev = TEAM_ABBREV_MAP[teamName.trim()] || teamName.trim();
-
-    if (!teams[abbrev]) {
-      teams[abbrev] = {
-        teamAbbrev: abbrev,
-        injuries: [],
-        keyPlayersOut: 0,
-        hasQBOut: false,
-      };
-    }
-
-    const isOut = status.toLowerCase().includes('out') || status.toLowerCase().includes('ir');
-    const isQB = position.toUpperCase() === 'QB';
-    const isKeyPlayer = KEY_POSITIONS.includes(position.toUpperCase());
-
-    teams[abbrev].injuries.push({
-      name: playerName.trim(),
-      position: position.trim().toUpperCase(),
-      status: status.trim(),
-      injury: injury.trim(),
-      isKeyPlayer,
-    });
-
-    if (isOut && isKeyPlayer) {
-      teams[abbrev].keyPlayersOut++;
-    }
-    if (isOut && isQB) {
-      teams[abbrev].hasQBOut = true;
-    }
-  }
-
-  return {
-    teams,
-    fetchedAt: new Date().toISOString(),
-  };
-}
-
-// Hardcoded current injuries as fallback (Week 16, 2024)
-// Updated manually based on NFL.com data
-function getHardcodedInjuries(): InjuryReport {
-  const teams: Record<string, TeamInjuries> = {
-    'WAS': {
-      teamAbbrev: 'WAS',
-      injuries: [{ name: 'Jayden Daniels', position: 'QB', status: 'Out', injury: 'Elbow', isKeyPlayer: true }],
-      keyPlayersOut: 1,
-      hasQBOut: true,
-    },
-    'IND': {
-      teamAbbrev: 'IND',
-      injuries: [{ name: 'Anthony Richardson', position: 'QB', status: 'Out', injury: 'Eye', isKeyPlayer: true }],
-      keyPlayersOut: 1,
-      hasQBOut: true,
-    },
-    'CLE': {
-      teamAbbrev: 'CLE',
-      injuries: [{ name: 'Deshaun Watson', position: 'QB', status: 'Out', injury: 'Achilles', isKeyPlayer: true }],
-      keyPlayersOut: 1,
-      hasQBOut: true,
-    },
-    'SF': {
-      teamAbbrev: 'SF',
-      injuries: [{ name: 'Kurtis Rourke', position: 'QB', status: 'Out', injury: 'Knee', isKeyPlayer: true }],
-      keyPlayersOut: 1,
-      hasQBOut: false, // Backup QB, Purdy is starter
-    },
-    'GB': {
-      teamAbbrev: 'GB',
-      injuries: [{ name: 'Jordan Love', position: 'QB', status: 'Questionable', injury: 'Concussion', isKeyPlayer: true }],
-      keyPlayersOut: 0,
-      hasQBOut: false,
-    },
-    'PHI': {
-      teamAbbrev: 'PHI',
-      injuries: [
-        { name: 'Lane Johnson', position: 'T', status: 'Out', injury: 'Foot', isKeyPlayer: true },
-        { name: 'Jalen Carter', position: 'DT', status: 'Out', injury: 'Shoulder', isKeyPlayer: true },
-      ],
-      keyPlayersOut: 2,
-      hasQBOut: false,
-    },
-    'KC': {
-      teamAbbrev: 'KC',
-      injuries: [
-        { name: 'Rashee Rice', position: 'WR', status: 'Out', injury: 'Knee', isKeyPlayer: true },
-      ],
-      keyPlayersOut: 1,
-      hasQBOut: false,
-    },
-    'DET': {
-      teamAbbrev: 'DET',
-      injuries: [
-        { name: 'Kerby Joseph', position: 'S', status: 'Out', injury: 'Knee', isKeyPlayer: true },
-      ],
-      keyPlayersOut: 1,
-      hasQBOut: false,
-    },
-    'NO': {
-      teamAbbrev: 'NO',
-      injuries: [
-        { name: 'Alvin Kamara', position: 'RB', status: 'Out', injury: 'Knee/Ankle', isKeyPlayer: true },
-      ],
-      keyPlayersOut: 1,
-      hasQBOut: false,
-    },
-    'PIT': {
-      teamAbbrev: 'PIT',
-      injuries: [
-        { name: 'T.J. Watt', position: 'LB', status: 'Out', injury: 'Lung', isKeyPlayer: true },
-      ],
-      keyPlayersOut: 1,
-      hasQBOut: false,
-    },
-    'CHI': {
-      teamAbbrev: 'CHI',
-      injuries: [
-        { name: 'Rome Odunze', position: 'WR', status: 'Out', injury: 'Foot', isKeyPlayer: true },
-      ],
-      keyPlayersOut: 1,
-      hasQBOut: false,
-    },
-  };
-
-  return {
-    teams,
-    fetchedAt: new Date().toISOString(),
-  };
+  return { teams, fetchedAt: now.toISOString(), source: 'espn' };
 }
 
 export async function fetchInjuries(): Promise<InjuryReport | null> {
   try {
-    // Try to fetch from NFL.com
-    const response = await fetch(NFL_INJURIES_URL, {
-      headers: {
-        'User-Agent': 'Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/537.36',
-        'Accept': 'text/html,application/xhtml+xml',
-      },
-    });
-
-    if (!response.ok) {
-      console.error('NFL.com injuries fetch failed:', response.status);
-      return getHardcodedInjuries();
+    const response = await fetch(ESPN_INJURIES_URL, { headers: { Accept: 'application/json' } });
+    const contentType = response.headers.get('content-type') || '';
+    if (!response.ok || !contentType.includes('json')) {
+      console.error(`Injuries feed unavailable (injuries OFF): HTTP ${response.status} ${contentType}`);
+      return null;
     }
 
-    const html = await response.text();
-    const parsed = parseNFLInjuryHTML(html);
-
-    // If parsing didn't find much data, use hardcoded fallback
-    if (Object.keys(parsed.teams).length < 5) {
-      console.log('NFL.com parsing returned sparse data, using hardcoded injuries');
-      return getHardcodedInjuries();
+    const data = (await response.json()) as EspnInjuriesResponse;
+    const report = parseEspnInjuries(data);
+    const teamCount = Object.keys(report.teams).length;
+    if (teamCount < MIN_TEAMS_FOR_VALID_REPORT) {
+      console.error(`Injuries feed parsed only ${teamCount} teams; treating feed as broken (injuries OFF)`);
+      return null;
     }
-
-    return parsed;
+    return report;
   } catch (error) {
-    console.error('Error fetching injuries:', error);
-    return getHardcodedInjuries();
+    console.error('Injuries feed error (injuries OFF):', error);
+    return null;
   }
 }
 
@@ -294,20 +177,16 @@ export function getTeamInjurySummary(injuries: InjuryReport | null, teamAbbrev: 
   const teamInjuries = injuries.teams[teamAbbrev];
   if (!teamInjuries) return empty;
 
-  const hasQBOut = teamInjuries.hasQBOut;
-
-  const keyPlayersOut = teamInjuries.injuries.filter(
-    i => i.isKeyPlayer && (i.status.toLowerCase().includes('out') || i.status.toLowerCase().includes('ir'))
-  );
-
+  const keyPlayersOut = teamInjuries.injuries.filter(i => i.isKeyPlayer && countsAsOut(i.status));
   const questionablePlayers = teamInjuries.injuries.filter(
-    i => i.isKeyPlayer && (i.status.toLowerCase().includes('questionable') || i.status.toLowerCase().includes('doubtful'))
+    i => i.isKeyPlayer && classifyInjuryStatus(i.status) === 'questionable'
   );
 
-  return { hasQBOut, keyPlayersOut, questionablePlayers };
+  return { hasQBOut: teamInjuries.hasQBOut, keyPlayersOut, questionablePlayers };
 }
 
-// Get game-level injury impact
+// Get game-level injury impact. When the report is null the feed was unavailable: say so
+// ("Unavailable"), never "Healthy".
 export function getGameInjuryImpact(
   injuries: InjuryReport | null,
   homeTeam: string,
@@ -317,6 +196,11 @@ export function getGameInjuryImpact(
   awayInjuries: { hasQBOut: boolean; keyOut: number; summary: string };
   impactLevel: 'none' | 'minor' | 'significant' | 'major';
 } {
+  if (!injuries) {
+    const unavailable = { hasQBOut: false, keyOut: 0, summary: 'Unavailable' };
+    return { homeInjuries: unavailable, awayInjuries: unavailable, impactLevel: 'none' };
+  }
+
   const homeSummary = getTeamInjurySummary(injuries, homeTeam);
   const awaySummary = getTeamInjurySummary(injuries, awayTeam);
 
@@ -346,16 +230,8 @@ export function getGameInjuryImpact(
   }
 
   return {
-    homeInjuries: {
-      hasQBOut: homeSummary.hasQBOut,
-      keyOut: homeKeyOut,
-      summary: formatSummary(homeSummary),
-    },
-    awayInjuries: {
-      hasQBOut: awaySummary.hasQBOut,
-      keyOut: awayKeyOut,
-      summary: formatSummary(awaySummary),
-    },
+    homeInjuries: { hasQBOut: homeSummary.hasQBOut, keyOut: homeKeyOut, summary: formatSummary(homeSummary) },
+    awayInjuries: { hasQBOut: awaySummary.hasQBOut, keyOut: awayKeyOut, summary: formatSummary(awaySummary) },
     impactLevel,
   };
 }
