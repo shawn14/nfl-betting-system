@@ -2,6 +2,7 @@
 
 import { useState, useEffect, useCallback, useRef } from 'react';
 import RequireAuth from '@/components/RequireAuth';
+import NoGamesNotice from '@/components/NoGamesNotice';
 import { useAuth } from '@/components/AuthProvider';
 
 const PRICE_MONTHLY = 'price_1ShIDiLrg7E2vwVZuULXQybz';
@@ -108,6 +109,7 @@ export default function CBBDashboard() {
   const [liveGames, setLiveGames] = useState<LiveGame[]>([]);
   const [loading, setLoading] = useState(true);
   const [syncing, setSyncing] = useState(false);
+  const [dataUpdatedAt, setDataUpdatedAt] = useState<string | null>(null);
   const [checkoutError, setCheckoutError] = useState<string | null>(null);
   const [showHighConvictionOnly, setShowHighConvictionOnly] = useState(false);
   const [sortBy, setSortBy] = useState<'time' | 'conviction'>('time');
@@ -169,7 +171,7 @@ export default function CBBDashboard() {
 
       if (data.error && !data.games?.length) {
         console.log('CBB blob not synced yet');
-        return { hasData: false, hasTodayGames: false, totalGames: 0 };
+        return { hasData: false, hasTodayGames: false, totalGames: 0, generatedAt: null };
       }
 
       const uniqueGames = (data.games || []).filter(
@@ -187,10 +189,11 @@ export default function CBBDashboard() {
       );
       setRecentGames(uniqueRecentGames);
       setBacktestResults(data.backtest?.results || []);
-      return { hasData: uniqueGames.length > 0, hasTodayGames, totalGames: uniqueGames.length };
+      setDataUpdatedAt(typeof data.generated === 'string' ? data.generated : null);
+      return { hasData: uniqueGames.length > 0, hasTodayGames, totalGames: uniqueGames.length, generatedAt: typeof data.generated === 'string' ? data.generated : null };
     } catch (error) {
       console.error('Error fetching CBB data:', error);
-      return { hasData: false, hasTodayGames: false, totalGames: 0 };
+      return { hasData: false, hasTodayGames: false, totalGames: 0, generatedAt: null };
     } finally {
       setLoading(false);
     }
@@ -241,7 +244,11 @@ export default function CBBDashboard() {
     const init = async () => {
       // Load blob data first (fast, cached at edge)
       const result = await fetchData();
-      if (!result.hasData) {
+      // Only trigger a sync when the stored data is missing or stale (>2h). "No games" in fresh data
+      // means off-season or a schedule gap — syncing again on every visit just re-ran a full cron.
+      const STALE_MS = 2 * 60 * 60 * 1000;
+      const stale = !result.generatedAt || Date.now() - new Date(result.generatedAt).getTime() > STALE_MS;
+      if (!result.hasData && stale) {
         await syncAll();
       }
       // Fetch live scores in parallel (non-blocking)
@@ -548,15 +555,13 @@ export default function CBBDashboard() {
       )}
 
       {displayGames.length === 0 ? (
-        <div className="bg-white rounded-lg p-8 text-center text-gray-500 border border-gray-200">
-          <p>No CBB games available yet.</p>
-          <button
-            onClick={syncAll}
-            className="mt-4 px-4 py-2 bg-purple-600 text-white rounded-lg hover:bg-purple-700 transition-colors"
-          >
-            Sync CBB Data
-          </button>
-        </div>
+        <NoGamesNotice
+          sport="college basketball"
+          seasonNote="The college basketball season runs November through early April."
+          nextGameTime={[...games].map(g => g.game.gameTime).filter(t => t && new Date(t).getTime() > Date.now()).sort()[0] ?? null}
+          lastResultTime={[...recentGames].map(g => g.gameTime).filter(Boolean).sort().slice(-1)[0] ?? null}
+          dataUpdatedAt={dataUpdatedAt}
+        />
       ) : (
         <div className="grid gap-4 md:grid-cols-2">
           {[...displayGames]

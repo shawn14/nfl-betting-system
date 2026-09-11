@@ -4,9 +4,11 @@ import RequireAuth from '@/components/RequireAuth';
 import { useAuth } from '@/components/AuthProvider';
 
 export default function AccountPage() {
-  const { user, subscription } = useAuth();
+  const { user, subscription, freeAccess } = useAuth();
 
-  const status = subscription?.subscriptionStatus || (subscription?.isPremium ? 'active' : 'free');
+  const status = freeAccess
+    ? 'free access — all features unlocked'
+    : subscription?.subscriptionStatus || (subscription?.isPremium ? 'active' : 'free');
   const periodEnd = subscription?.currentPeriodEnd
     ? new Date(subscription.currentPeriodEnd).toLocaleDateString('en-US')
     : null;
@@ -38,7 +40,9 @@ export default function AccountPage() {
             </div>
           )}
           <div className="text-xs text-gray-500">
-            Need to update your plan? Use the checkout buttons on the dashboard.
+            {freeAccess
+              ? 'Paid plans are switched off right now. Everything is unlocked for signed-in members.'
+              : 'Need to update your plan? Use the checkout buttons on the dashboard.'}
           </div>
         </div>
       </div>

@@ -4,6 +4,7 @@ import { createContext, useContext, useEffect, useMemo, useState } from 'react';
 import { onAuthStateChanged, User } from 'firebase/auth';
 import { doc, onSnapshot, setDoc, getDoc } from 'firebase/firestore';
 import { auth, db } from '@/lib/firebase';
+import { FREE_ACCESS_MODE } from '@/lib/access';
 
 interface SubscriptionState {
   stripeCustomerId?: string;
@@ -18,6 +19,7 @@ interface AuthContextValue {
   loading: boolean;
   subscription: SubscriptionState | null;
   isPremium: boolean;
+  freeAccess: boolean; // FREE_ACCESS_MODE is on: isPremium is true for everyone signed in
 }
 
 const AuthContext = createContext<AuthContextValue>({
@@ -25,6 +27,7 @@ const AuthContext = createContext<AuthContextValue>({
   loading: true,
   subscription: null,
   isPremium: false,
+  freeAccess: FREE_ACCESS_MODE,
 });
 
 export function AuthProvider({ children }: { children: React.ReactNode }) {
@@ -74,12 +77,13 @@ export function AuthProvider({ children }: { children: React.ReactNode }) {
     return () => unsubscribe();
   }, [user]);
 
-  const isPremium = subscription?.isPremium === true
+  const isPremium = FREE_ACCESS_MODE
+    || subscription?.isPremium === true
     || subscription?.subscriptionStatus === 'active'
     || subscription?.subscriptionStatus === 'trialing';
 
   const value = useMemo(
-    () => ({ user, loading, subscription, isPremium }),
+    () => ({ user, loading, subscription, isPremium, freeAccess: FREE_ACCESS_MODE }),
     [user, loading, subscription, isPremium]
   );
 

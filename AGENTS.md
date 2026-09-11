@@ -194,6 +194,19 @@ if (typeof window !== 'undefined') {
 9. **Do not clear historical odds on reset** - NFL reset must preserve `historicalOdds` (same behavior as NBA) so backfilled odds are not wiped
 10. **NBA resets also preserve historical odds** - never clear `oddsLocks` on NBA reset to keep backtests stable while optimizing
 
+## Access mode (paid vs free)
+
+`src/lib/access.ts` → `FREE_ACCESS_MODE`. **true** (current, since 2026-09-11): every signed-in user is
+premium — no paywall banners, no 3-game limit; Stripe checkout and webhook stay wired but unused.
+**false**: premium comes from the user's Firestore doc (Stripe subscription or `/api/admin/mark-premium`).
+Flip the one line and push `main`. Sign-in (Google) is still required either way.
+
+## No-games behaviour
+
+Sport pages render `NoGamesNotice` (why there are no games, next scheduled game, last result) when the
+blob has nothing to pick. They only trigger their sync route from the browser when the blob is missing
+or older than 2 hours — fresh-but-empty data means off-season, not a broken cron.
+
 ## Gotchas verified live (2026-09-11 audit)
 
 - **Deploys**: pushing `main` auto-deploys production through the Vercel GitHub integration (every deployment carries the commit sha). The build gate is a branch push → Vercel preview build; then fast-forward `main`.
