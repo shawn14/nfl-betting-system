@@ -44,6 +44,33 @@ interface ESPNResponse {
   }>;
 }
 
+/**
+ * Fetch JSON from ESPN with retry. ESPN's edge intermittently answers with an HTML block page
+ * (text/html, "<HTML><HEAD>...") instead of JSON; a bare response.json() then throws
+ * "Unexpected token '<'" and kills the whole sync (seen on every sport Aug 30 – Sep 8 2026).
+ * Retries twice with backoff and surfaces a clear error naming the status and content type.
+ * Never add a spoofed browser User-Agent here: ESPN's edge 403s those; the default works.
+ */
+export async function fetchEspnJson<T = any>(url: string, retries = 2): Promise<T> {
+  let lastError: unknown;
+  for (let attempt = 0; attempt <= retries; attempt++) {
+    try {
+      const response = await fetch(url);
+      const contentType = response.headers.get('content-type') || '';
+      if (!response.ok || !contentType.includes('json')) {
+        throw new Error(`ESPN ${response.status} ${contentType.split(';')[0] || 'no content-type'}: ${url}`);
+      }
+      return (await response.json()) as T;
+    } catch (error) {
+      lastError = error;
+      if (attempt < retries) {
+        await new Promise(resolve => setTimeout(resolve, 500 * 2 ** attempt));
+      }
+    }
+  }
+  throw lastError instanceof Error ? lastError : new Error(String(lastError));
+}
+
 // Calculate Elo from win percentage and point differential
 function calculateInitialElo(wins: number, losses: number, pointDiff: number): number {
   const games = wins + losses;
@@ -77,12 +104,10 @@ interface TeamStats {
 
 export async function fetchNFLTeams(): Promise<Partial<Team>[]> {
   // Fetch teams
-  const response = await fetch(`${ESPN_BASE_URL}/football/nfl/teams`);
-  const data: ESPNResponse = await response.json();
+  const data = await fetchEspnJson<ESPNResponse>(`${ESPN_BASE_URL}/football/nfl/teams`);
 
   // Fetch standings to get records and scoring stats
-  const standingsRes = await fetch(ESPN_STANDINGS_URL);
-  const standingsData = await standingsRes.json();
+  const standingsData = await fetchEspnJson(ESPN_STANDINGS_URL);
 
   // Build map of team records and stats
   const teamRecords = new Map<string, TeamStats>();
@@ -146,8 +171,7 @@ export async function fetchNFLSchedule(week?: number): Promise<Partial<Game>[]> 
     ? `${ESPN_BASE_URL}/football/nfl/scoreboard?week=${week}`
     : `${ESPN_BASE_URL}/football/nfl/scoreboard`;
 
-  const response = await fetch(url);
-  const data: ESPNResponse = await response.json();
+  const data = await fetchEspnJson<ESPNResponse>(url);
 
   const games: Partial<Game>[] = [];
 
@@ -185,8 +209,7 @@ export async function fetchNFLSchedule(week?: number): Promise<Partial<Game>[]> 
 }
 
 export async function fetchGameDetails(gameId: string): Promise<Partial<Game> | null> {
-  const response = await fetch(`${ESPN_BASE_URL}/football/nfl/summary?event=${gameId}`);
-  const data = await response.json();
+  const data = await fetchEspnJson(`${ESPN_BASE_URL}/football/nfl/summary?event=${gameId}`);
 
   if (!data.header) return null;
 
@@ -215,8 +238,7 @@ export async function fetchAllCompletedGames(): Promise<Partial<Game>[]> {
   for (let week = 1; week <= 18; week++) {
     try {
       const url = `${ESPN_BASE_URL}/football/nfl/scoreboard?week=${week}`;
-      const response = await fetch(url);
-      const data: ESPNResponse = await response.json();
+      const data = await fetchEspnJson<ESPNResponse>(url);
 
       for (const event of data.events || []) {
         // Only include completed games
@@ -264,12 +286,10 @@ export async function fetchAllCompletedGames(): Promise<Partial<Game>[]> {
 
 export async function fetchNHLTeams(): Promise<Partial<Team>[]> {
   // Fetch teams
-  const response = await fetch(`${ESPN_BASE_URL}/hockey/nhl/teams`);
-  const data: ESPNResponse = await response.json();
+  const data = await fetchEspnJson<ESPNResponse>(`${ESPN_BASE_URL}/hockey/nhl/teams`);
 
   // Fetch standings to get records and scoring stats
-  const standingsRes = await fetch(ESPN_NHL_STANDINGS_URL);
-  const standingsData = await standingsRes.json();
+  const standingsData = await fetchEspnJson(ESPN_NHL_STANDINGS_URL);
 
   // Build map of team records and stats
   const teamRecords = new Map<string, TeamStats & { otLosses: number }>();
@@ -336,8 +356,7 @@ export async function fetchNHLSchedule(dateStr?: string): Promise<Partial<Game>[
     ? `${ESPN_BASE_URL}/hockey/nhl/scoreboard?dates=${dateStr}`
     : `${ESPN_BASE_URL}/hockey/nhl/scoreboard`;
 
-  const response = await fetch(url);
-  const data: ESPNResponse = await response.json();
+  const data = await fetchEspnJson<ESPNResponse>(url);
 
   const games: Partial<Game>[] = [];
 
@@ -426,12 +445,10 @@ const COLLEGE_LEAGUE_AVG_PPG = 72; // NCAA average ~72 PPG
 
 export async function fetchCollegeBasketballTeams(): Promise<any[]> {
   try {
-    const response = await fetch(`${ESPN_CBB_URL}/teams?limit=400`);
-    const data = await response.json();
+    const data = await fetchEspnJson(`${ESPN_CBB_URL}/teams?limit=400`);
 
     // Also fetch standings for PPG stats
-    const standingsRes = await fetch(ESPN_CBB_STANDINGS_URL);
-    const standingsData = await standingsRes.json();
+    const standingsData = await fetchEspnJson(ESPN_CBB_STANDINGS_URL);
 
     // Build map of team stats from standings
     const teamStats = new Map<string, { ppg: number; ppgAllowed: number; conference?: string }>();
@@ -484,10 +501,7 @@ export async function fetchCollegeBasketballTeams(): Promise<any[]> {
 export async function fetchESPNCollegeBasketballOdds(eventId: string): Promise<{ homeSpread?: number; total?: number } | null> {
   try {
     const url = `https://sports.core.api.espn.com/v2/sports/basketball/leagues/mens-college-basketball/events/${eventId}/competitions/${eventId}/odds`;
-    const response = await fetch(url);
-    if (!response.ok) return null;
-
-    const data = await response.json();
+    const data = await fetchEspnJson(url, 1);
     const oddsItem = data.items?.[0];
     if (!oddsItem) return null;
 
