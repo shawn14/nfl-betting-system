@@ -257,6 +257,16 @@ export async function GET(request: Request) {
     const injuriesByWeek: Record<string, CachedInjuries> = shouldReset
       ? {}
       : await getDocsMap<CachedInjuries>(sport, 'injuries');
+    // Purge poisoned cache entries. From 2025-12-21 to 2026-09-11 a dead NFL.com scraper stored a
+    // hardcoded 13-player list under future week numbers (source undefined). Anything at or beyond
+    // the current week that did not come from the real feed must never be reused as a "cache".
+    // Past weeks are left as-is (history; the fake 2025 weeks 16-18 are documented in CLAUDE.md).
+    for (const [weekKey, entry] of Object.entries(injuriesByWeek)) {
+      if (Number(weekKey) >= currentWeek && entry?.data?.source !== 'espn') {
+        delete injuriesByWeek[weekKey];
+        log(`Purged non-feed injury cache for week ${weekKey} (source=${entry?.data?.source ?? 'none'}, fetchedAt=${entry?.fetchedAt})`);
+      }
+    }
 
     const isFirstRun = !existingState || !existingState.processedGameIds?.length;
     const processedCount = existingState?.processedGameIds?.length || 0;
@@ -607,7 +617,7 @@ export async function GET(request: Request) {
             week: currentWeek,
           };
           injuriesByWeek[String(currentWeek)] = currentWeekInjuriesCache;
-        } else if (cacheIsCurrentWeek && currentWeekInjuriesCache) {
+        } else if (cacheIsCurrentWeek && currentWeekInjuriesCache && currentWeekInjuriesCache.data?.source === 'espn') {
           injuryReport = currentWeekInjuriesCache.data;
           log(`⚠️ Injuries feed unavailable — using stale Week ${currentWeek} cache (${Math.round(injuryCacheAge * 10) / 10}h old)`);
         } else {
