@@ -36,6 +36,21 @@ const NFL_STADIUMS: Record<string, { lat: number; lon: number; indoor: boolean }
   'U.S. Bank Stadium': { lat: 44.9736, lon: -93.2575, indoor: true },
   'Allegiant Stadium': { lat: 36.0909, lon: -115.1833, indoor: true },
   'NRG Stadium': { lat: 29.6847, lon: -95.4107, indoor: true },
+  // --- Names ESPN actually sends (verified against the 2026 scoreboard, weeks 1-18, on 2026-09-11).
+  // A venue missing here logs "Stadium not found" and the game silently gets no weather.
+  // Before each season, diff the scoreboard venues against this map (command in CLAUDE.md).
+  'EverBank Stadium': { lat: 30.3239, lon: -81.6373, indoor: false },   // Jacksonville (renamed from TIAA Bank Field)
+  'Reliant Stadium': { lat: 29.6847, lon: -95.4107, indoor: true },     // ESPN's name for NRG Stadium, Houston
+  'Northwest Stadium': { lat: 38.9076, lon: -76.8645, indoor: false },  // Landover (renamed from FedExField)
+  // International games — city-level coordinates are enough for game-time weather.
+  'Tottenham Hotspur Stadium': { lat: 51.6042, lon: -0.0662, indoor: false },  // London
+  'Wembley Stadium': { lat: 51.5560, lon: -0.2795, indoor: false },            // London
+  'Melbourne Cricket Ground': { lat: -37.8200, lon: 144.9834, indoor: false },
+  'Maracanã Stadium': { lat: -22.9122, lon: -43.2302, indoor: false },         // Rio de Janeiro
+  'Estadio Banorte': { lat: 19.3029, lon: -99.1505, indoor: false },           // Mexico City (Estadio Azteca)
+  'FC Bayern Munich Stadium': { lat: 48.2188, lon: 11.6247, indoor: false },   // Munich (Allianz Arena)
+  'Santiago Bernabéu': { lat: 40.4531, lon: -3.6883, indoor: true },           // Madrid (retractable roof; ESPN flags indoor)
+  'Stade de France': { lat: 48.9245, lon: 2.3602, indoor: false },             // Saint-Denis
 };
 
 export async function fetchWeatherForVenue(venueName: string, gameTime: Date): Promise<WeatherData | null> {
