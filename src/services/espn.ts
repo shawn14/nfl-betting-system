@@ -32,7 +32,7 @@ interface ESPNEvent {
     competitors: ESPNCompetitor[];
   }>;
   week?: { number: number };
-  season?: { year: number };
+  season?: { year: number; type?: number }; // type: 1 preseason, 2 regular, 3 postseason
 }
 
 interface ESPNResponse {
@@ -176,6 +176,8 @@ export async function fetchNFLSchedule(week?: number): Promise<Partial<Game>[]> 
   const games: Partial<Game>[] = [];
 
   for (const event of data.events || []) {
+
+    if (event.season?.type === 1) continue; // skip preseason — 49 NFL and 28 NHL preseason games were graded into Elo before 2026-09-11
     const competition = event.competitions[0];
     if (!competition) continue;
 
@@ -241,6 +243,8 @@ export async function fetchAllCompletedGames(): Promise<Partial<Game>[]> {
       const data = await fetchEspnJson<ESPNResponse>(url);
 
       for (const event of data.events || []) {
+
+        if (event.season?.type === 1) continue; // skip preseason — 49 NFL and 28 NHL preseason games were graded into Elo before 2026-09-11
         // Only include completed games
         if (event.status.type.state !== 'post') continue;
 
@@ -361,6 +365,8 @@ export async function fetchNHLSchedule(dateStr?: string): Promise<Partial<Game>[
   const games: Partial<Game>[] = [];
 
   for (const event of data.events || []) {
+
+    if (event.season?.type === 1) continue; // skip preseason — 49 NFL and 28 NHL preseason games were graded into Elo before 2026-09-11
     const competition = event.competitions[0];
     if (!competition) continue;
 

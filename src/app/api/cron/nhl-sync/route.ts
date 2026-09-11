@@ -10,6 +10,7 @@ import {
   saveDocsBatch,
 } from '@/services/firestore-admin-store';
 import { SportKey } from '@/services/firestore-types';
+import { MODEL_VERSION } from '@/lib/model-version';
 import { fetchNHLTeams, fetchNHLSchedule, fetchNHLScheduleRange, fetchAllCompletedNHLGames } from '@/services/espn';
 import { fetchNHLOdds, getConsensusOdds } from '@/services/odds';
 
@@ -463,6 +464,7 @@ export async function GET(request: Request) {
         actualTotal,
         homeWinProb: Math.round(homeWinProb * 1000) / 10,
         atsResult,
+        modelVersion: MODEL_VERSION,
         mlResult: vegasSpread !== undefined ? mlResult : undefined,
         ouResult: ouVegasResult,
         isHighConviction,

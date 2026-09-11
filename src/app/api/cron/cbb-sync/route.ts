@@ -10,6 +10,7 @@ import {
   saveDocsBatch,
 } from '@/services/firestore-admin-store';
 import { SportKey } from '@/services/firestore-types';
+import { MODEL_VERSION } from '@/lib/model-version';
 import { fetchCollegeBasketballOdds, getConsensusOdds } from '@/services/odds';
 import { fetchCollegeBasketballTeams, fetchESPNCollegeBasketballOdds } from '@/services/espn';
 import { CBB_LEAGUE_AVG_PPG, INITIAL_ELO_BY_TIER, getConferenceTier } from '@/types/cbb';
@@ -70,6 +71,7 @@ async function fetchCollegeBasketballSchedule(seasonYear?: number): Promise<any[
 
     const games: any[] = [];
     for (const event of data.events || []) {
+      if ((event as any)?.season?.type === 1) continue; // skip preseason (ESPN season.type 1) — added 2026-09-11
       const competition = event.competitions?.[0];
       if (!competition) continue;
 
@@ -117,6 +119,8 @@ async function fetchCollegeBasketballScheduleRange(startDate: Date, days: number
       const data = await response.json();
 
       for (const event of data.events || []) {
+
+        if ((event as any)?.season?.type === 1) continue; // skip preseason (ESPN season.type 1) — added 2026-09-11
         if (seenIds.has(event.id)) continue;
         seenIds.add(event.id);
 
@@ -194,7 +198,8 @@ function predictScore(
   }
 
   const homeScore = baseHomeScore + eloAdj + HOME_COURT_ADVANTAGE / 2;
-  const awayScore = baseAwayScore - eloAdj + HOME_COURT_ADVANTAGE / 2;
+  // Subtracted from the away score (was added until 2026-09-11, which put HOME_COURT_ADVANTAGE on every total and 0 on the spread).
+  const awayScore = baseAwayScore - eloAdj - HOME_COURT_ADVANTAGE / 2;
 
   return {
     homeScore: Math.round(homeScore * 2) / 2,
@@ -564,6 +569,7 @@ export async function GET(request: Request) {
         vegasSpread,
         vegasTotal,
         atsResult,
+        modelVersion: MODEL_VERSION,
         ouVegasResult,
         isLargeSpread,
         isSmallSpread,
@@ -644,6 +650,7 @@ export async function GET(request: Request) {
         vegasSpread,
         vegasTotal,
         atsResult,
+        modelVersion: MODEL_VERSION,
         ouVegasResult,
       };
     });

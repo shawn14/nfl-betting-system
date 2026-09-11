@@ -84,7 +84,7 @@ Under `/api/admin/`. Roughly two families — patterns repeat per sport (look fo
 ```typescript
 WEATHER_MULTIPLIER = 3;        // Optimal from simulation (55.7% win rate)
 ELO_TO_POINTS = 0.11;          // 100 Elo = 11 point spread
-HOME_FIELD_ADVANTAGE = 4.5;    // Increased from 3.25 to fix away team bias
+HOME_FIELD_ADVANTAGE = 3.0;    // Frozen 2026-09-11; enters the spread only
 SPREAD_REGRESSION = 0.45;      // Shrink spreads 45%
 ELO_HOME_ADVANTAGE = 48;       // Elo bonus for home team
 ELO_CAP = 16;                  // Max ±8 pts per team (prevents unrealistic 40-8 scores)
@@ -206,6 +206,25 @@ Flip the one line and push `main`. Sign-in (Google) is still required either way
 Sport pages render `NoGamesNotice` (why there are no games, next scheduled game, last result) when the
 blob has nothing to pick. They only trigger their sync route from the browser when the blob is missing
 or older than 2 hours — fresh-but-empty data means off-season, not a broken cron.
+
+## Model freeze — 2026-09-11 (`src/lib/model-version.ts` = `2026-09-11-freeze`)
+
+Every stored result row now carries `modelVersion`. **Rules and thresholds are frozen**: high-conviction
+definitions, the 7-point totals edge, the 2-point NFL spread edge, the NBA/WNBA/CBB conviction ladders, the NHL
+1.5-goal rule — all unchanged from before the freeze. Judge the model only on rows with this stamp (the edge
+ledger's live view). Do not grid-search or re-tune on stored history; that is how every flattering number before
+2026-09-11 was produced. If a rule must change, bump `MODEL_VERSION`, record why here, and start the clock again.
+
+Mechanical fixes shipped with the freeze (not tuning — they correct bugs the ledger exposed):
+- Home advantage was ADDED to both predicted scores in NFL/NBA/WNBA/CBB, so it inflated every total (NFL +4.5 pts,
+  matching the observed +5.2 bias; NFL picked the over in 94% of games) and cancelled out of the spread entirely.
+  Now subtracted from the away score: it moves the spread, not the total. NHL already had this right.
+- NFL `HOME_FIELD_ADVANTAGE` 4.5 → 3.0, chosen on a 60/40 chronological split of the 282 stored games (held-out ATS
+  62.5% vs 55.4% at 0; home/away pick mix goes from 31/69 to ~50/50).
+- NFL conviction count (`sixtyPlusFactors`) drops large-spread (47.4% in the data) and Elo-mismatch (44.7%).
+- Preseason is skipped everywhere (ESPN `season.type === 1`). 49 NFL preseason games had moved the 2026 Elo ratings
+  by 35 points on average (HOU −88, CIN +87); ratings were repaired to pre-preseason values with the two week-1
+  games replayed.
 
 ## Edge ledger (does the model beat the price?)
 

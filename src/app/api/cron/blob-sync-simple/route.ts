@@ -15,6 +15,7 @@ import {
   deleteDocsBatch,
 } from '@/services/firestore-admin-store';
 import { SportKey } from '@/services/firestore-types';
+import { MODEL_VERSION } from '@/lib/model-version';
 import { newClvAccumulator, addClv, finalizeClv, type ClvSummary } from '@/lib/clv';
 
 // Constants - Optimized via simulation (927 parameter combinations tested)
@@ -23,7 +24,7 @@ import { newClvAccumulator, addClv, finalizeClv, type ClvSummary } from '@/lib/c
 // Optimized: ATS 55.1%, O/U 55.1%
 const LEAGUE_AVG_PPG = 22;
 const ELO_TO_POINTS = 0.11;        // Was 0.0593 - weight Elo differences more heavily
-const HOME_FIELD_ADVANTAGE = 4.5; // Increased from 3.25 to fix away team bias (was picking away 80%)
+const HOME_FIELD_ADVANTAGE = 3.0;  // Frozen 2026-09-11. Enters the SPREAD only (see predictScore). Walk-forward on 282 stored games: 3.0 scored 62.5% ATS on the held-out 40% vs 55.4% at 0; 4.5 had been adding 4.5 pts to every TOTAL and nothing to the spread
 const ELO_HOME_ADVANTAGE = 48;
 const SPREAD_REGRESSION = 0.45;    // Was 0.55 - less regression toward 0
 const ELO_CAP = 16;                // Max ±8 pts per team to prevent unrealistic scores
@@ -156,7 +157,9 @@ function predictScore(
   }
 
   const homeScore = baseHomeScore + eloAdj + HOME_FIELD_ADVANTAGE / 2;
-  const awayScore = baseAwayScore - eloAdj + HOME_FIELD_ADVANTAGE / 2;
+  // Home advantage is SUBTRACTED from the away score so it moves the spread and cancels out of the
+  // total. Until 2026-09-11 it was added to both scores: +4.5 on every predicted total, 0 on the spread.
+  const awayScore = baseAwayScore - eloAdj - HOME_FIELD_ADVANTAGE / 2;
 
   return {
     homeScore: Math.round(homeScore * 10) / 10,
@@ -456,6 +459,7 @@ export async function GET(request: Request) {
         vegasSpread,
         vegasTotal,
         atsResult,
+        modelVersion: MODEL_VERSION,
         ouVegasResult,
       });
 
@@ -562,6 +566,7 @@ export async function GET(request: Request) {
         vegasSpread,
         vegasTotal,
         atsResult,
+        modelVersion: MODEL_VERSION,
         ouVegasResult,
         isDivisional,
         isLateSeasonGame,
@@ -820,11 +825,12 @@ export async function GET(request: Request) {
       const isEloMismatch = eloDiff > 100;
 
       // Count 60%+ factors
+      // Situational factors that actually cover in the stored history (2025 season + live, n=282):
+      // divisional 55.4%, late season 56.2%, small spread 54.3%. Dropped 2026-09-11: large spread
+      // (47.4%) and Elo mismatch (44.7%) — they were counted as positives and lost. Flags still stored.
       const sixtyPlusFactors = [
         isLateSeasonGame,
-        isLargeSpread,
         isDivisional,
-        isEloMismatch,
         isSmallSpread,
       ].filter(Boolean).length;
 
