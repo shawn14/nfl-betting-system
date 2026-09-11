@@ -16,6 +16,7 @@ npm run build    # Production build (Vercel runs this; run before pushing to cat
 npm run start    # Serve the production build locally
 npm run lint     # ESLint (next/core-web-vitals + TypeScript rules)
 npm run line-move-backtest   # Run scripts/line-move-backtest.mjs simulation
+npm run injuries-smoke       # Prove the NFL injury feed is live: real ESPN fetch, real parser, 32 teams (Node 22.18+)
 vercel --prod    # Deploy to production
 ```
 
@@ -63,11 +64,12 @@ See `ARCHITECTURE.md` for complete system documentation including:
 - Shows locked Vegas lines with timestamp indicator
 
 ### Services (`src/services/`)
-- `injuries.ts` - NFL.com injury scraping (ESPN data was corrupted)
+- `injuries.ts` - NFL injuries from ESPN's injuries feed; FAILS CLOSED (null → "Unavailable"). Never add a hardcoded fallback: from 2025-12-21 to 2026-09-11 a dead NFL.com scraper fell back to a baked-in 13-player list that shipped as live data
+- `espn.ts` - all ESPN calls go through `fetchEspnJson()` (retry + JSON check; ESPN's edge intermittently returns an HTML block page, and 403s spoofed browser User-Agents)
 - `weather.ts` - OpenWeather API with stadium coordinates
 - `elo.ts` - Elo rating calculations
 - `espn.ts` - ESPN API for teams, games, scores, odds
-- `odds.ts` - odds parsing/normalization; `nba-rest-days.ts` - NBA fatigue
+- `odds.ts` - odds parsing/normalization; `nba-rest-days.ts` - NBA/WNBA fatigue (pass `'wnba'` as the league arg from the WNBA sync — it hardcoded the NBA path until 2026-09-11 and every WNBA game read as 3 rest days each side)
 - `firestore-{store,admin-store,types}.ts` - user/premium data
 
 ### Admin Endpoints
@@ -104,10 +106,16 @@ HOME_COURT_ADVANTAGE = 4.5;    // Increased from 2.0 to fix away team bias
 ## Environment Variables
 
 ```bash
-NEXT_PUBLIC_WEATHER_API_KEY # OpenWeather API (only external API key needed)
+NEXT_PUBLIC_WEATHER_API_KEY # OpenWeather API
+NEXT_PUBLIC_ODDS_API_KEY    # The Odds API (multi-book consensus lines, all 5 sports)
 CRON_SECRET                 # Vercel Cron auth
 BLOB_READ_WRITE_TOKEN       # Vercel Blob storage
+FIREBASE_ADMIN_CREDENTIALS  # Firestore admin (crons, Stripe webhook)
+NEXT_PUBLIC_FIREBASE_*      # Client Firebase config (auth)
+STRIPE_SECRET_KEY / STRIPE_WEBHOOK_SECRET  # Shared StockAlarm Stripe account — see gotchas
 ```
+These live only in Vercel's project env (not in `.env.local` on Shawn's Mac, which holds just the Blob token).
+Do not spoof a browser User-Agent on ESPN or NFL.com calls: ESPN's edge answers 403 to those.
 
 ## Common Tasks
 
@@ -178,10 +186,27 @@ if (typeof window !== 'undefined') {
 1. **Always use ESPN for all data** - teams, schedules, scores, and odds all come from ESPN's free API (no paid API keys needed)
 2. **Vegas lines lock 1 hour before game** - stored `lockedAt` timestamp
 3. **Weather multiplier is 3** - optimized from historical simulation
-4. **NFL.com for injuries** - ESPN API was returning corrupted data
+4. **ESPN injuries feed for injuries** (`site.api.espn.com/apis/site/v2/sports/football/nfl/injuries`, 32 teams / ~800 rows). Only the weekly game status Out/Doubtful counts as a key absence (same semantic as the old NFL.com weekly report); IR/PUP/suspension rows are listed but not counted because Elo has already absorbed them and ESPN's row date is the last news update, not the placement date. When the feed fails the game summary reads "Unavailable" and the cron logs ⚠️ — never "Healthy"
 5. **Avoid medium spreads (3.5-6.5)** - historically only 46.7% ATS
 6. **Indoor stadiums** - no weather impact applied
 7. **Live scoreboard** - polls ESPN every 60 seconds during games
 8. **Always persist historical Vegas odds for every sport** - results/backtests compare predictions vs. stored odds and should never run without full historical odds coverage
 9. **Do not clear historical odds on reset** - NFL reset must preserve `historicalOdds` (same behavior as NBA) so backfilled odds are not wiped
 10. **NBA resets also preserve historical odds** - never clear `oddsLocks` on NBA reset to keep backtests stable while optimizing
+
+## Gotchas verified live (2026-09-11 audit)
+
+- **Deploys**: pushing `main` auto-deploys production through the Vercel GitHub integration (every deployment carries the commit sha). The build gate is a branch push → Vercel preview build; then fast-forward `main`.
+- **Weather venue names must match what ESPN sends.** `NFL_STADIUMS` in `weather.ts` is keyed by ESPN's `venue.fullName`; a miss logs `Stadium not found` and the game silently gets no weather (JAX and HOU home games had none all of 2025-26: ESPN says "EverBank Stadium" and "Reliant Stadium"). Before each season, diff every week's scoreboard venues against the map:
+  `for w in $(seq 1 18); do curl -s "https://site.api.espn.com/apis/site/v2/sports/football/nfl/scoreboard?week=$w&seasontype=2" | jq -r '.events[].competitions[0].venue.fullName'; done | sort -u`
+- **Stripe webhook shares StockAlarm's Stripe account.** `https://www.predictionmatrix.com/api/stripe/webhook` is a registered endpoint on the same account as pro.stockalarm.io, so every StockAlarm checkout/renewal hits it. Events with no `uid` metadata and no matching `stripeCustomerId` are logged at info and ignored — they are not PredictionMatrix customers and not errors.
+- **Sport pages (NBA/NHL/CBB/WNBA) call their own sync route from the browser** when the blob has no upcoming games (`syncAll()`), which means every offseason visitor triggers a full cron. Keep each page pointed at its own route (the CBB page called `nba-sync` until 2026-09-11).
+- **No local build on Shawn's Mac** (no `node_modules`, disk near full). Local proof that does work: `npm run injuries-smoke` (Node type-strips the .ts directly).
+- **Health endpoint**: `nhl-sync` never records `lastBlobWriteAt`, so NHL shows only `lastSyncAt` in `/api/cron/health`.
+- **Offseason artifacts, not bugs**: NBA results show 0% until October (season filter rolled to 2027); NHL preseason predictions are identical until Elo diverges; CBB summary `totalGames` reads 0 while win counts are populated.
+
+## Conventions
+
+- TypeScript + React, strict types, 2-space indent, single quotes. Domain-named modules in `src/services`, shared utilities in `src/lib`, shared types in `src/types`.
+- Commit messages: short imperative summaries ("Add…", "Fix…"). PRs note any change to cron behavior, prediction logic, or required env vars.
+- Secrets live in Vercel env / `.env.local` (never committed). Cron routes: confirm `CRON_SECRET` usage and the `vercel.json` schedule when touching them.
