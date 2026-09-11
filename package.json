@@ -9,7 +9,7 @@
     "lint": "eslint",
     "line-move-backtest": "node scripts/line-move-backtest.mjs",
     "walk-forward": "node scripts/walk-forward.mjs",
-    "injuries-smoke": "node scripts/injuries-smoke.mts"
+    "injuries-smoke": "node scripts/injuries-smoke.mjs"
   },
   "dependencies": {
     "@vercel/blob": "^2.0.0",

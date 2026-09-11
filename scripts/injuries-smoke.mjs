@@ -1,6 +1,6 @@
 // Proof that the NFL injury feed is live and the parser yields all 32 teams.
 // Runs the REAL fetchInjuries() against ESPN (no mocks). Exit 1 = injuries would be OFF.
-//   node scripts/injuries-smoke.mts       (Node 22.18+ strips types natively)
+//   npm run injuries-smoke   (Node 22.18+ type-strips the imported .ts service natively)
 import { fetchInjuries } from '../src/services/injuries.ts';
 
 const report = await fetchInjuries();
