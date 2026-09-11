@@ -239,6 +239,9 @@ Two crons record the raw material for the Kalshi prop strategy; nothing here tra
   and credits spent today. Cadence: 8h when >24h out, 3h when 6-24h, 30 min when 1.5-6h, every run inside 90 min.
   Budget: 1 credit per market per event (15/fetch); daily cap 8,000, monthly floor 20,000 remaining. Key =
   `NEXT_PUBLIC_ODDS_API_KEY` (trim it — the stored value has whitespace).
+- **Page:** `/props` (public, server-rendered, revalidates every 5 min) — `src/lib/props-fair.ts` is a TypeScript port of the
+  Python matcher/edge (same rules, same fixtures); `src/lib/props-data.ts` loads `kalshi-props/latest.json.gz` and the latest
+  `odds-props` snapshot per event from Blob and builds the per-series summary + top-40 rungs.
 - Readers: `~/projects/kalshi-mm-v14/tools/props_watch/` (fair value from de-vigged books, rung matching, fee-adjusted
   edge, convergence report, paper sheet). Frozen paper rule lives there, not here.
 
