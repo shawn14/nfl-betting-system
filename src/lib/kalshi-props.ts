@@ -3,6 +3,8 @@
 // Design note: prices come from the *_dollars / *_fp fields — the legacy cent fields are null on the
 // public endpoint. Never send a spoofed browser User-Agent (Kalshi/ESPN edges 403 those).
 
+import { list, put } from '@vercel/blob';
+
 const KALSHI_BASE = 'https://api.elections.kalshi.com/trade-api/v2';
 
 // Player-prop ladders (one market per player per threshold) plus the three game markets as reference.
@@ -88,4 +90,25 @@ export async function snapshotNflLadders(): Promise<{ rows: SnapshotRow[]; count
 export function stampParts(d = new Date()): { day: string; hhmm: string; iso: string } {
   const iso = d.toISOString();
   return { day: iso.slice(0, 10), hhmm: iso.slice(11, 13) + iso.slice(14, 16), iso };
+}
+
+/**
+ * Rebuild `<prefix>/index.json` from the Blob listing of `<prefix>/snap/`. The listing is authoritative;
+ * the index lets offline readers (kalshi-mm-v14 tools/props_watch/fetch.py) enumerate snapshots without
+ * a Blob token. Returns the number of snapshot files indexed.
+ */
+export async function rebuildBlobIndex(prefix: string): Promise<number> {
+  const entries: Array<{ path: string; size: number; uploadedAt: string }> = [];
+  let cursor: string | undefined;
+  for (let page = 0; page < 60; page++) {
+    const res = await list({ prefix: `${prefix}/snap/`, limit: 1000, cursor });
+    for (const b of res.blobs) entries.push({ path: b.pathname, size: b.size, uploadedAt: b.uploadedAt.toISOString() });
+    if (!res.hasMore || !res.cursor) break;
+    cursor = res.cursor;
+  }
+  entries.sort((a, b) => a.path.localeCompare(b.path));
+  await put(`${prefix}/index.json`, JSON.stringify({ updated: new Date().toISOString(), count: entries.length, snapshots: entries }), {
+    access: 'public', contentType: 'application/json', addRandomSuffix: false, allowOverwrite: true, cacheControlMaxAge: 60,
+  });
+  return entries.length;
 }

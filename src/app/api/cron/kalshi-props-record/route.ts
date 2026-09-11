@@ -1,7 +1,7 @@
 import { NextResponse } from 'next/server';
-import { put, list } from '@vercel/blob';
+import { put } from '@vercel/blob';
 import { gzipSync } from 'zlib';
-import { snapshotNflLadders, stampParts, SNAPSHOT_COLS } from '@/lib/kalshi-props';
+import { snapshotNflLadders, stampParts, SNAPSHOT_COLS, rebuildBlobIndex } from '@/lib/kalshi-props';
 
 // Props watch, Kalshi side. Every 5 minutes: snapshot every open NFL prop ladder (plus game/spread/
 // total for reference) into one gzipped JSON under kalshi-props/snap/<day>/<HHMM>.json.gz, refresh
@@ -12,22 +12,6 @@ export const dynamic = 'force-dynamic';
 export const maxDuration = 120;
 
 const PREFIX = 'kalshi-props';
-
-async function rebuildIndex(): Promise<number> {
-  const entries: Array<{ path: string; size: number; uploadedAt: string }> = [];
-  let cursor: string | undefined;
-  for (let page = 0; page < 40; page++) {
-    const res = await list({ prefix: `${PREFIX}/snap/`, limit: 1000, cursor });
-    for (const b of res.blobs) entries.push({ path: b.pathname, size: b.size, uploadedAt: b.uploadedAt.toISOString() });
-    if (!res.hasMore || !res.cursor) break;
-    cursor = res.cursor;
-  }
-  entries.sort((a, b) => a.path.localeCompare(b.path));
-  await put(`${PREFIX}/index.json`, JSON.stringify({ updated: new Date().toISOString(), count: entries.length, snapshots: entries }), {
-    access: 'public', contentType: 'application/json', addRandomSuffix: false, allowOverwrite: true, cacheControlMaxAge: 60,
-  });
-  return entries.length;
-}
 
 export async function GET() {
   const started = Date.now();
@@ -43,7 +27,7 @@ export async function GET() {
     const opts = { access: 'public' as const, contentType: 'application/gzip', addRandomSuffix: false, allowOverwrite: true, cacheControlMaxAge: 60 };
     const blob = await put(path, gz, opts);
     await put(`${PREFIX}/latest.json.gz`, gz, opts);
-    const indexed = await rebuildIndex();
+    const indexed = await rebuildBlobIndex(PREFIX);
     return NextResponse.json({ ok: true, path, url: blob.url, rows: rows.length, bytes: gz.length, counts, failed, indexed, ms: Date.now() - started });
   } catch (error) {
     console.error('kalshi-props-record failed:', error);

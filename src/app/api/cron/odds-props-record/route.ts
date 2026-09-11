@@ -1,7 +1,7 @@
 import { NextResponse } from 'next/server';
 import { put, list } from '@vercel/blob';
 import { gzipSync } from 'zlib';
-import { stampParts } from '@/lib/kalshi-props';
+import { stampParts, rebuildBlobIndex } from '@/lib/kalshi-props';
 
 // Props watch, sportsbook side. Runs every 15 minutes; for each upcoming NFL event decides whether
 // it is due (cadence tightens toward kickoff) and, if so, fetches the player-prop markets that map
@@ -90,7 +90,8 @@ export async function GET() {
     for (const id of Object.keys(state.lastFetch)) if (!upcoming.some(e => e.id === id)) delete state.lastFetch[id];
     state.lastRemaining = remaining; state.updated = iso;
     await put(`${PREFIX}/state.json`, JSON.stringify(state), { ...putOpts, contentType: 'application/json' });
-    return NextResponse.json({ ok: true, upcoming: upcoming.length, fetched, skipped, creditsSpent: spent, creditsToday: state.creditsToday, remaining, log, ms: Date.now() - started });
+    const indexed = fetched > 0 ? await rebuildBlobIndex(PREFIX) : undefined;
+    return NextResponse.json({ ok: true, upcoming: upcoming.length, fetched, skipped, creditsSpent: spent, creditsToday: state.creditsToday, remaining, indexed, log, ms: Date.now() - started });
   } catch (error) {
     console.error('odds-props-record failed:', error);
     return NextResponse.json({ ok: false, error: error instanceof Error ? error.message : String(error), log }, { status: 500 });
