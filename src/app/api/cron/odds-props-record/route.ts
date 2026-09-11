@@ -90,7 +90,7 @@ export async function GET() {
     for (const id of Object.keys(state.lastFetch)) if (!upcoming.some(e => e.id === id)) delete state.lastFetch[id];
     state.lastRemaining = remaining; state.updated = iso;
     await put(`${PREFIX}/state.json`, JSON.stringify(state), { ...putOpts, contentType: 'application/json' });
-    const indexed = fetched > 0 ? await rebuildBlobIndex(PREFIX) : undefined;
+    const indexed = await rebuildBlobIndex(PREFIX); // always: readers enumerate snapshots from this file
     return NextResponse.json({ ok: true, upcoming: upcoming.length, fetched, skipped, creditsSpent: spent, creditsToday: state.creditsToday, remaining, indexed, log, ms: Date.now() - started });
   } catch (error) {
     console.error('odds-props-record failed:', error);
