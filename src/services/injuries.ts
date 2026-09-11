@@ -25,6 +25,11 @@ const MIN_TEAMS_FOR_VALID_REPORT = 28;
 // Key positions for betting impact
 const KEY_POSITIONS = ['QB', 'RB', 'WR', 'TE', 'LT', 'RT', 'CB', 'EDGE', 'DE', 'DT', 'LB', 'S', 'G', 'C', 'T', 'OT', 'OG'];
 
+// Designations that are NOT injuries. ESPN lists healthy inactives as status "Out" with one of
+// these as the injury type (e.g. a third-string QB "Out — Coach's Decision" every week). Counting
+// them flagged "QB Out" on LAR, NE, SF and SEA in week 1 2026 and moved each spread by 3 points.
+const NON_INJURY_DESIGNATIONS = /coach'?s decision|not injury related|load management|\brest\b|personal/i;
+
 // Fallback only: rows normally carry athlete.team.abbreviation. Keys are ESPN's abbreviations
 // (note WSH, not WAS — the app's teams/games use ESPN abbreviations everywhere).
 const TEAM_ABBREV_BY_NAME: Record<string, string> = {
@@ -119,6 +124,8 @@ export function parseEspnInjuries(data: EspnInjuriesResponse, now: Date = new Da
     for (const row of rows) {
       const status = (row.status || '').trim();
       if (classifyInjuryStatus(status) === 'active') continue; // healthy / cleared — not an injury
+      const injuryType = (row.details?.type || '').trim();
+      if (NON_INJURY_DESIGNATIONS.test(injuryType)) continue; // healthy scratch — not an injury
 
       const position = (row.athlete?.position?.abbreviation || '').toUpperCase();
       const isKeyPlayer = KEY_POSITIONS.includes(position);
@@ -128,7 +135,7 @@ export function parseEspnInjuries(data: EspnInjuriesResponse, now: Date = new Da
         name: (row.athlete?.displayName || 'Unknown').trim(),
         position,
         status,
-        injury: (row.details?.type || '').trim(),
+        injury: injuryType,
         isKeyPlayer,
         returnDate: row.details?.returnDate,
         reportedAt: row.date,

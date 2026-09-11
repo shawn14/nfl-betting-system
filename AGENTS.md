@@ -186,7 +186,7 @@ if (typeof window !== 'undefined') {
 1. **Always use ESPN for all data** - teams, schedules, scores, and odds all come from ESPN's free API (no paid API keys needed)
 2. **Vegas lines lock 1 hour before game** - stored `lockedAt` timestamp
 3. **Weather multiplier is 3** - optimized from historical simulation
-4. **ESPN injuries feed for injuries** (`site.api.espn.com/apis/site/v2/sports/football/nfl/injuries`, 32 teams / ~800 rows). Only the weekly game status Out/Doubtful counts as a key absence (same semantic as the old NFL.com weekly report); IR/PUP/suspension rows are listed but not counted because Elo has already absorbed them and ESPN's row date is the last news update, not the placement date. When the feed fails the game summary reads "Unavailable" and the cron logs ⚠️ — never "Healthy"
+4. **ESPN injuries feed for injuries** (`site.api.espn.com/apis/site/v2/sports/football/nfl/injuries`, 32 teams / ~800 rows). Only the weekly game status Out/Doubtful counts as a key absence (same semantic as the old NFL.com weekly report); IR/PUP/suspension rows are listed but not counted because Elo has already absorbed them and ESPN's row date is the last news update, not the placement date. Rows whose injury type is "Coach's Decision" / "Not Injury Related" / rest / personal are healthy scratches (ESPN lists backup QBs that way every week) and are dropped entirely — they are not injuries. Known limit: with no depth chart, a genuinely injured backup QB still flags hasQBOut. When the feed fails the game summary reads "Unavailable" and the cron logs ⚠️ — never "Healthy"
 5. **Avoid medium spreads (3.5-6.5)** - historically only 46.7% ATS
 6. **Indoor stadiums** - no weather impact applied
 7. **Live scoreboard** - polls ESPN every 60 seconds during games
