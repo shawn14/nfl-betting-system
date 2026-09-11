@@ -61,8 +61,11 @@ export async function POST(request: Request) {
       console.log('User lookup ms:', Date.now() - lookupStart);
 
       if (!userRef) {
-        console.error(
-          'checkout.session.completed: No user found for session',
+        // This endpoint is registered on the Stripe account PredictionMatrix shares with
+        // StockAlarm, so every StockAlarm checkout/renewal arrives here too. No uid metadata and
+        // no matching stripeCustomerId means "not our customer" — expected, not an error.
+        console.log(
+          'checkout.session.completed: not a PredictionMatrix customer (shared Stripe account), ignoring',
           session.id,
           'customer:',
           session.customer
@@ -96,7 +99,7 @@ export async function POST(request: Request) {
           ? adminDb.collection('users').doc(uid)
           : await resolveUserRefByCustomer(subscription.customer as string);
         if (!userRef) {
-          console.error(`${event.type}: No user found for subscription`, subscription.id, 'customer:', subscription.customer);
+          console.log(`${event.type}: not a PredictionMatrix customer (shared Stripe account), ignoring`, subscription.id, 'customer:', subscription.customer);
           break;
         }
         console.log(`${event.type}: Updating user`, userRef.id, 'status:', subscription.status);
