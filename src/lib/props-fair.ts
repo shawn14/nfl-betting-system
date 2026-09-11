@@ -10,17 +10,20 @@ export const SERIES_MARKETS: Record<string, { main: string; alt: string | null }
   KXNFLRECYDS: { main: 'player_reception_yds', alt: 'player_reception_yds_alternate' },
   KXNFLREC: { main: 'player_receptions', alt: 'player_receptions_alternate' },
   KXNFLPASSYDS: { main: 'player_pass_yds', alt: 'player_pass_yds_alternate' },
-  KXNFLPASSTDS: { main: 'player_pass_tds', alt: null },
-  KXNFLRSHATT: { main: 'player_rush_attempts', alt: null },
-  KXNFLPASSATT: { main: 'player_pass_attempts', alt: null },
-  KXNFLPASSCOMP: { main: 'player_pass_completions', alt: null },
+  KXNFLPASSTDS: { main: 'player_pass_tds', alt: 'player_pass_tds_alternate' },
+  KXNFLRSHATT: { main: 'player_rush_attempts', alt: 'player_rush_attempts_alternate' },
+  KXNFLPASSATT: { main: 'player_pass_attempts', alt: 'player_pass_attempts_alternate' },
+  KXNFLPASSCOMP: { main: 'player_pass_completions', alt: 'player_pass_completions_alternate' },
   KXNFLPASSINT: { main: 'player_pass_interceptions', alt: null },
   KXNFLTD: { main: 'player_anytime_td', alt: null },
+  KXNFLRRYDS: { main: 'player_rush_reception_yds', alt: null },
+  KXNFLFIRSTTD: { main: 'player_1st_td', alt: null }, // one-of-many: normalized per book, Kalshi rung = 0.5
 };
+const ONE_OF_MANY = new Set(['player_1st_td']);
 export const SERIES_LABEL: Record<string, string> = {
   KXNFLRSHYDS: 'Rushing yards', KXNFLRECYDS: 'Receiving yards', KXNFLREC: 'Receptions', KXNFLPASSYDS: 'Passing yards',
   KXNFLPASSTDS: 'Passing TDs', KXNFLRSHATT: 'Rush attempts', KXNFLPASSATT: 'Pass attempts', KXNFLPASSCOMP: 'Completions',
-  KXNFLPASSINT: 'Interceptions', KXNFLTD: 'Touchdowns',
+  KXNFLPASSINT: 'Interceptions', KXNFLTD: 'Touchdowns', KXNFLRRYDS: 'Rush + rec yards', KXNFLFIRSTTD: 'First TD scorer',
 };
 export const RULE = { minBooks: 3, haircut: 0.02, tdHaircut: 0.04, minNetEdgeC: 4, investigateGapC: 15 } as const;
 
@@ -55,12 +58,14 @@ export function extractLines(payload: OddsPayload): Map<string, BookLine[]> {
   const mains = new Map<string, { over?: number; under?: number }>();
   const alts = new Map<string, number>();
   const tds = new Map<string, number>();
+  const firsts = new Map<string, Map<string, number>>();
   for (const b of data.bookmakers || []) {
     for (const m of b.markets || []) {
       for (const o of m.outcomes || []) {
         const player = normName(o.description || '');
         if (!player) continue;
         if (m.key === 'player_anytime_td') { if (o.name === 'Yes') tds.set(`${b.key}|${player}`, americanToProb(o.price)); continue; }
+        if (ONE_OF_MANY.has(m.key)) { if (o.name === 'Yes') { const f = firsts.get(`${b.key}|${m.key}`) || new Map<string, number>(); f.set(player, americanToProb(o.price)); firsts.set(`${b.key}|${m.key}`, f); } continue; }
         if (o.point === undefined || o.point === null) continue;
         const point = Number(o.point);
         if (m.key.endsWith('_alternate')) { if (o.name === 'Over') alts.set(`${b.key}|${m.key}|${player}|${point}`, americanToProb(o.price)); }
@@ -89,6 +94,12 @@ export function extractLines(payload: OddsPayload): Map<string, BookLine[]> {
     push(`${base}|${player}|${point}`, { book, point, pOver: Math.min(0.999, raw / vig), rawOver: raw, kind: 'alternate', vigSource: src });
   }
   for (const [k, raw] of tds) { const [book, player] = k.split('|'); push(`player_anytime_td|${player}|0.5`, { book, point: 0.5, pOver: Math.max(0.001, raw - RULE.tdHaircut), rawOver: raw, kind: 'anytime_td', vigSource: 'haircut' }); }
+  // one-of-many (first TD scorer): a book's listed players are mutually exclusive -> normalize its raw implied to sum to 1
+  for (const [k, players] of firsts) {
+    const [book, market] = k.split('|'); let total = 0; for (const v of players.values()) total += v;
+    if (total <= 0) continue;
+    for (const [player, raw] of players) push(`${market}|${player}|0.5`, { book, point: 0.5, pOver: raw / total, rawOver: raw, kind: 'main', vigSource: 'normalized' });
+  }
   return out;
 }
 
@@ -113,7 +124,12 @@ export function rowsFromSnapshot(snapshot: { cols: string[]; rows: unknown[][] }
 }
 
 export function kalshiPlayerAndThreshold(row: KalshiRow): { player: string | null; threshold: number | null } {
-  const sub = row.subtitle || ''; if (!sub.includes(':')) return { player: null, threshold: null };
+  const sub = row.subtitle || '';
+  if (!sub.includes(':')) {
+    // one-of-many market (first touchdown scorer): subtitle is the player, rung is "yes" = 0.5
+    const sm = SERIES_MARKETS[row.series];
+    return sub && sm && ONE_OF_MANY.has(sm.main) ? { player: normName(sub), threshold: 0.5 } : { player: null, threshold: null };
+  }
   return { player: normName(sub.split(':')[0]), threshold: row.strike === null || row.strike === undefined ? null : Number(row.strike) };
 }
 

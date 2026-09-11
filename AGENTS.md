@@ -229,15 +229,16 @@ Mechanical fixes shipped with the freeze (not tuning — they correct bugs the l
 ## Props watch (Kalshi NFL prop ladders vs sportsbook lines) — recorder lives here, analysis in kalshi-mm-v14
 
 Two crons record the raw material for the Kalshi prop strategy; nothing here trades.
-- `api/cron/kalshi-props-record` (every 5 min): every open market in the 10 NFL prop series + game/spread/total →
+- `api/cron/kalshi-props-record` (every 5 min): every open market in the 12 NFL prop series (incl. first-TD scorer, rush+rec yards) + game/spread/total →
   `kalshi-props/snap/<day>/<HHMM>.json.gz` (compact rows, `cols` header inside), `kalshi-props/latest.json.gz`,
   `kalshi-props/index.json` (rebuilt from the Blob listing each run). Public Kalshi API, no key; prices are the
   `*_dollars` / `*_fp` fields (legacy cent fields are null on the public endpoint).
-- `api/cron/odds-props-record` (every 15 min): per upcoming NFL event, fetches 15 player-prop markets (11 two-sided
-  mains + 4 one-sided alternate ladders that land on Kalshi's N+ rungs) from The Odds API and stores the raw
+- `api/cron/odds-props-record` (every 15 min): per upcoming NFL event, fetches 20 player-prop markets (11 two-sided
+  mains + 8 one-sided alternate ladders that land on Kalshi's N+ rungs + first-TD scorer) from The Odds API and stores the raw
   response at `odds-props/snap/<day>/<HHMM>-<eventId>.json.gz`; `odds-props/state.json` holds last-fetch per event
   and credits spent today. Cadence: 8h when >24h out, 3h when 6-24h, 30 min when 1.5-6h, every run inside 90 min.
-  Budget: 1 credit per market per event (15/fetch); daily cap 8,000, monthly floor 20,000 remaining. Key =
+  Budget: 1 credit per market per event (20/fetch, ~320 per full sweep); daily cap 8,000, monthly floor 20,000 remaining.
+  `?force=1` fetches every upcoming event regardless of cadence (one full sweep, for verification). Key =
   `NEXT_PUBLIC_ODDS_API_KEY` (trim it — the stored value has whitespace).
 - **Page:** `/props` (public, server-rendered, revalidates every 5 min) — `src/lib/props-fair.ts` is a TypeScript port of the
   Python matcher/edge (same rules, same fixtures); `src/lib/props-data.ts` loads `kalshi-props/latest.json.gz` and the latest

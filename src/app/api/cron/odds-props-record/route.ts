@@ -9,8 +9,8 @@ import { stampParts, rebuildBlobIndex } from '@/lib/kalshi-props';
 // odds-props/snap/<day>/<HHMM>-<eventId>.json.gz. Credit budget is enforced from the response
 // headers: a fixed per-day cap and a hard floor on monthly credits remaining.
 //
-// Cost model (verified 2026-09-11): 1 credit per market per event per region. 15 markets → 15 credits
-// per event fetch, ~240 for a 16-game sweep.
+// Cost model (verified 2026-09-11): 1 credit per market per event per region. 20 markets → 20 credits
+// per event fetch, ~320 for a 16-game sweep. `?force=1` fetches every upcoming event regardless of cadence.
 
 export const dynamic = 'force-dynamic';
 export const maxDuration = 300;
@@ -23,6 +23,9 @@ const MARKETS = [
   'player_rush_yds', 'player_rush_attempts', 'player_receptions', 'player_reception_yds', 'player_anytime_td', 'player_rush_reception_yds',
   // one-sided alternate ladders — land exactly on Kalshi's N+ rungs
   'player_rush_yds_alternate', 'player_reception_yds_alternate', 'player_receptions_alternate', 'player_pass_yds_alternate',
+  'player_pass_attempts_alternate', 'player_pass_completions_alternate', 'player_pass_tds_alternate', 'player_rush_attempts_alternate',
+  // one-of-many: first touchdown scorer (Kalshi KXNFLFIRSTTD)
+  'player_1st_td',
 ];
 const DAILY_CREDIT_CAP = 8000;          // hard stop per UTC day
 const MIN_MONTHLY_REMAINING = 20000;    // never spend the last 20k of the month's quota
@@ -51,8 +54,9 @@ async function loadState(): Promise<State> {
 
 const putOpts = { access: 'public' as const, addRandomSuffix: false, allowOverwrite: true, cacheControlMaxAge: 60 };
 
-export async function GET() {
+export async function GET(request: Request) {
   const started = Date.now();
+  const force = new URL(request.url).searchParams.get('force') === '1';
   const key = (process.env.NEXT_PUBLIC_ODDS_API_KEY || '').trim();
   if (!key) return NextResponse.json({ ok: false, error: 'NEXT_PUBLIC_ODDS_API_KEY not set' }, { status: 500 });
   const now = new Date(); const { day, hhmm, iso } = stampParts(now);
@@ -73,7 +77,7 @@ export async function GET() {
       const hoursToKick = (new Date(e.commence_time).getTime() - now.getTime()) / 3.6e6;
       const due = cadenceMinutes(hoursToKick);
       const last = state.lastFetch[e.id] ? (now.getTime() - new Date(state.lastFetch[e.id]).getTime()) / 6e4 : Infinity;
-      if (last < due) { skipped++; continue; }
+      if (!force && last < due) { skipped++; continue; }
       if (state.creditsToday + MARKETS.length > DAILY_CREDIT_CAP) { log.push('daily credit cap reached'); break; }
       if (remaining && remaining - MARKETS.length < MIN_MONTHLY_REMAINING) { log.push(`monthly floor reached (remaining ${remaining})`); break; }
       const url = `https://api.the-odds-api.com/v4/sports/${SPORT}/events/${e.id}/odds?apiKey=${key}&regions=us&markets=${MARKETS.join(',')}&oddsFormat=american`;
