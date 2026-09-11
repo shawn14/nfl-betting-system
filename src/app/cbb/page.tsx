@@ -199,7 +199,7 @@ export default function CBBDashboard() {
   const syncAll = useCallback(async () => {
     setSyncing(true);
     try {
-      await fetch('/api/cron/nba-sync');
+      await fetch('/api/cron/cbb-sync');
       await fetchData();
     } catch (err) {
       console.error('Sync failed:', err);
