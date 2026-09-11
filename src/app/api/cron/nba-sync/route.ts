@@ -965,7 +965,6 @@ export async function GET(request: Request) {
         vegasSpread,
         vegasTotal,
         atsResult,
-        modelVersion: MODEL_VERSION,
         ouVegasResult,
         isDivisional,
         isLateSeasonGame: isLateSeason,
