@@ -168,6 +168,9 @@ export default function NavBar() {
                   <a href="/props" className={getLinkClass('/props', 'nfl')}>
                     Props
                   </a>
+                  <a href="/ev" className={getLinkClass('/ev', 'nfl')}>
+                    EV
+                  </a>
                   <a href={livePath} className={getLinkClass(livePath, currentSport)}>
                     Live
                   </a>
@@ -234,6 +237,9 @@ export default function NavBar() {
               </a>
               <a href="/props" className={getMobileLinkClass('/props', 'nfl')}>
                 Props
+              </a>
+              <a href="/ev" className={getMobileLinkClass('/ev', 'nfl')}>
+                EV
               </a>
               <a href={livePath} className={getMobileLinkClass(livePath, currentSport)}>
                 Live

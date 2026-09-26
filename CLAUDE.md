@@ -17,6 +17,8 @@ npm run start    # Serve the production build locally
 npm run lint     # ESLint (next/core-web-vitals + TypeScript rules)
 npm run line-move-backtest   # Run scripts/line-move-backtest.mjs simulation
 npm run injuries-smoke       # Prove the NFL injury feed is live: real ESPN fetch, real parser, 32 teams (Node 22.18+)
+npm run ev-ledger            # Re-grade NFL/WNBA picks at real prices + walk-forward gate for EV weights
+npm run ev-board             # Local proof of the live EV rule on real upcoming games and prices
 vercel --prod    # Deploy to production
 ```
 
@@ -245,6 +247,35 @@ Two crons record the raw material for the Kalshi prop strategy; nothing here tra
   `odds-props` snapshot per event from Blob and builds the per-series summary + top-40 rungs.
 - Readers: `~/projects/kalshi-mm-v14/tools/props_watch/` (fair value from de-vigged books, rung matching, fee-adjusted
   edge, convergence report, paper sheet). Frozen paper rule lives there, not here.
+
+## EV layer (fair value + expected value at the real price) — added 2026-09-26
+
+The model's picks are frozen; the EV layer sits on top and asks: at the price on offer, is either side worth a bet?
+- `src/lib/fair-value.ts` — pure math: American/decimal/implied, two-way de-vig (power for ML, multiplicative for
+  spreads/totals), P(cover)/P(over) via N(pred, sigma), log-odds blend with the market, EV, Kelly, CLV in probability,
+  `shiftProb` (move a fair prob to another line). `RESULT_SIGMA` = SD of (result − closing line), MEASURED by the ledger
+  (NFL 12.5 margin / 13.4 total; WNBA 12.7 / 18.6); NBA/CBB/NHL are still textbook placeholders.
+- `src/lib/espn-prices.ts` — ESPN core odds `items[0]` keeps `open`, `close`, `current` PRICES (ML, spread juice, total
+  juice), all as strings. This is how history gets real prices for free: the crons stored lines but never prices.
+- `src/lib/ev-model.ts` — `EV_RULE_VERSION = 2026-09-26-ev1`, `MODEL_WEIGHT` per sport × market, `MIN_EV` 2%,
+  `MAX_EDGE` 10 pts from market, stake = quarter Kelly capped at 2%. Only NFL totals have weight (0.45); every other
+  market defers to the price and is never flagged. Change weights only by bumping `EV_RULE_VERSION` after a ledger run.
+- `/ev` page (`src/app/ev/page.tsx`, `src/lib/ev-board.ts`): live board (one ESPN call per upcoming game, 10-min cache),
+  record at real prices, gate table. Reads the last ledger run from `src/data/ev-ledger.json` (bundled at build).
+- `npm run ev-ledger` — pulls graded rows from the NFL/WNBA blobs, backfills open/close prices into
+  `data/price-history/<sport>.json` (append-only cache, commit it), writes `docs/reports/<date>-ev-ledger.json` and
+  `src/data/ev-ledger.json`. Gate declared before the run: a market gets weight only if the model's signal beyond a
+  constant lean has train z ≥ 1.5 AND lowers held-out log loss (60/40 chronological). Re-run weekly in season.
+- `npm run ev-board` — local proof: real upcoming games, real prices, the real `evaluateGame()`; prints every market.
+
+Findings (2026-09-26, `docs/reports/2026-09-26-ev-ledger.{html,png,json}`):
+- Moneyline "edge" was an artifact of grading at a flat −110: NFL ML ROI +21.5% at −110 is −0.5% at the real price
+  (63.7% winners, needed 64.7%). WNBA +26.9% → −3.9%. `mlEdge = |p − 0.5|` on the sport pages is confidence, not edge.
+- NFL totals are the one market with signal: z 2.4 train, z 2.9 on live-predicted games only (not backfill leakage),
+  held-out log loss 0.692 → 0.662. Pre-freeze rows carry a +5 pt over-lean (93% over picks); the signal survives an
+  intercept that absorbs it. NFL spread is on the watch list (train z 0.4 fails the gate, live-only z 2.1).
+- Graded rows for NBA/NHL/CBB live only in Firestore; reading them needs the admin credential (not run yet).
+- ESPN's close line can differ from our lock (GB–ATL 2026-09-25: we locked −5.5, ESPN close −4.5): lock is ≤1h+cron gap.
 
 ## Edge ledger (does the model beat the price?)
 
