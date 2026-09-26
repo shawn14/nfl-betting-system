@@ -13,7 +13,8 @@
     "ev-ledger": "node --no-warnings scripts/ev-ledger.mjs",
     "ev-board": "node --no-warnings scripts/ev-board.mjs",
     "market-history": "node --no-warnings scripts/market-history.mjs",
-    "market-lab": "node --no-warnings scripts/market-lab.mjs"
+    "market-lab": "node --no-warnings scripts/market-lab.mjs",
+    "market-lab-report": "node --no-warnings scripts/market-lab-report.mjs"
   },
   "dependencies": {
     "@vercel/blob": "^2.0.0",

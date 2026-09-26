@@ -287,6 +287,8 @@ season (NBA/NHL/CBB/WNBA) and the 2024 NFL season (earlier events have no open/c
 - `npm run market-history [sport…]` — crawls ESPN scoreboards day by day + one core-odds call per final game into
   `data/market-history/<sport>.json` (compact arrays, header comment in the script; commit it). Incremental: scanned days
   and fetched prices are cached, failed fetches retry next run. CBB needs `groups=50&limit=500` on the scoreboard.
+- `npm run market-lab-report` renders the latest lab JSON to `docs/reports/<date>-market-lab.html`; PNG via
+  `render-html-graphic --width 1300 <html> <png>`.
 - `npm run market-lab [sport…]` — writes `docs/reports/<date>-market-lab.json` (full) and `src/data/market-lab.json`
   (compact, bundled into `/ev` → "What beats the closing line?"). Tests, all pre-declared in the script header:
   noise (SD vs close, by line size), de-vig method by log loss, open vs close sharpness, calibration by price bucket,
@@ -299,7 +301,7 @@ season (NBA/NHL/CBB/WNBA) and the 2024 NFL season (earlier events have no open/c
   as no open. DraftKings/ESPN BET move NHL totals a FULL goal (6.5 → 5.5, they don't hang 6), so line moves are valued
   with the EMPIRICAL residual distribution (`empShift`), not the normal — the normal overstates a 1-goal move.
 
-Findings (2026-09-26, 26,524 usable games):
+Findings (2026-09-26, 26,524 usable games, `docs/reports/2026-09-26-market-lab.{html,png,json}`):
 - Nothing beats the close. 0 of 71 feature × market tests pass in any sport — Elo, rolling ratings, rest,
   back-to-back, pace, line movement, home dogs, big lines. This is why NBA/CBB/NHL `MODEL_WEIGHT` stays 0.
 - The market learns between open and close in every sport (NBA log loss 0.596 → 0.583). Public features DO predict the

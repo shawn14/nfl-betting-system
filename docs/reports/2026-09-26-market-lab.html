@@ -1,0 +1,122 @@
+<!doctype html><html lang=en><head><meta charset=utf-8><meta name=viewport content="width=device-width,initial-scale=1">
+<title>Prediction Matrix Market Lab</title>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Archivo:wdth,wght@87.5,600;87.5,700&family=Source+Sans+3:wght@400;600&display=swap">
+<style>
+:root{--bg:#F4F5F7;--ink:#171B22;--muted:#5B6470;--faint:#8A93A0;--line:#D9DDE4;--good:#1C7C54;--bad:#B93A2E}
+@media (prefers-color-scheme:dark){:root:not([data-theme="light"]){--bg:#12151A;--ink:#E8EBF0;--muted:#A3ACB8;--faint:#7C8592;--line:#2C323C;--good:#5CC894;--bad:#EE7C6E}}
+:root[data-theme="dark"]{--bg:#12151A;--ink:#E8EBF0;--muted:#A3ACB8;--faint:#7C8592;--line:#2C323C;--good:#5CC894;--bad:#EE7C6E}
+*{box-sizing:border-box}body{margin:0;background:var(--bg);color:var(--ink);font:15px/1.45 "Source Sans 3",system-ui,sans-serif;padding:28px clamp(16px,3vw,40px) 56px;font-variant-numeric:tabular-nums}
+h1,h2{font-family:Archivo,system-ui,sans-serif;font-stretch:87.5%;margin:0}h1{font-size:clamp(28px,4vw,38px)}h2{font-size:19px;margin:34px 0 6px}
+.sub{color:var(--muted);max-width:90ch;margin-top:6px}.muted{color:var(--faint)}.good{color:var(--good);font-weight:600}.bad{color:var(--bad)}
+.find{display:grid;grid-template-columns:repeat(auto-fit,minmax(260px,1fr));gap:18px 32px;margin-top:22px}.find b{display:block;font-family:Archivo,sans-serif;font-stretch:87.5%;font-size:26px}.find span{color:var(--muted);font-size:14px}
+.wrap{overflow-x:auto}table{border-collapse:collapse;width:100%;font-size:13.5px}th,td{padding:7px 10px;text-align:right;border-bottom:1px solid var(--line);white-space:nowrap}th:first-child,td:first-child{text-align:left}td:nth-child(2){text-align:left}
+thead th{font-size:11px;text-transform:uppercase;letter-spacing:.06em;color:var(--faint)}tr.grp th{text-align:left;padding-top:18px;font-family:Archivo,sans-serif;font-stretch:87.5%;font-size:14px;color:var(--ink)}.strike{text-decoration:line-through;color:var(--faint)}tr:has(.strike) td{color:var(--faint)!important;font-weight:400}
+#rec td:nth-child(2){text-align:right}
+</style></head><body>
+<h1>What beats the closing line?</h1>
+<p class="sub">26,524 final games with sportsbook open and close prices, every priced game ESPN keeps across NFL, NBA, NHL, college basketball and WNBA.
+Each ingredient our models use is tested against the de-vigged close on the first 60% of games and confirmed on the last 40%. Generated 2026-09-26 03:29 UTC by <code>npm run market-lab</code>.</p>
+<div class="find">
+<div><b>0 of 71</b><span>feature × market tests add information to the closing price (gate: train z ≥ 2, same sign held out, lower held-out log loss)</span></div>
+<div><b>Close &gt; open</b><span>in every sport the close is sharper than the open (NBA log loss 0.596 → 0.583): the market learns late</span></div>
+<div><b>Moves, not edges</b><span>public features predict where the line goes, but the move is smaller than the vig at the open: bet-at-open CLV is negative almost everywhere</span></div>
+<div><b>One watch item</b><span>NHL totals by scoring pace: +1.7% CLV held out, all from DraftKings 2025-26; negative at Bet365 2023-24 and ESPN BET 2024-25</span></div>
+</div>
+<h2>By sport</h2>
+<p class="sub">Noise is the SD of (result − closing line), the number the EV board uses to turn a predicted spread or total into a probability. NHL margin noise is measured against the ±1.5 puck line.</p>
+<div class="wrap"><table><thead><tr><th>Sport</th><th>Games</th><th>Span</th><th>Noise margin / total</th><th>Home covers / over</th><th>Open → close log loss</th><th>Best de-vig</th><th>Beat the close</th><th>Predict the move</th></tr></thead>
+<tbody><tr><td><b>NFL</b></td><td>576</td><td>2024-09-08 → 2026-09-25</td>
+<td>12.6 / 13.1</td><td>50.5% / 53.1%</td>
+<td>0.61 → 0.599</td><td>power</td>
+<td class="muted">0 of 11</td><td>2 of 5</td></tr>
+<tr><td><b>NBA</b></td><td>3,953</td><td>2023-10-24 → 2026-06-14</td>
+<td>13.9 / 17.8</td><td>50.2% / 50.5%</td>
+<td>0.596 → 0.583</td><td>power</td>
+<td class="muted">0 of 15</td><td>8 of 9</td></tr>
+<tr><td><b>NHL</b></td><td>4,190</td><td>2023-10-12 → 2026-06-15</td>
+<td>2.7 / 2.3</td><td>47.5% / 49.4%</td>
+<td>0.672 → 0.669</td><td>power</td>
+<td class="muted">0 of 15</td><td>6 of 9</td></tr>
+<tr><td><b>CBB</b></td><td>16,899</td><td>2023-11-06 → 2026-04-07</td>
+<td>11.2 / 16.5</td><td>49.8% / 50.0%</td>
+<td>0.534 → 0.531</td><td>power</td>
+<td class="muted">0 of 15</td><td>9 of 9</td></tr>
+<tr><td><b>WNBA</b></td><td>906</td><td>2024-05-14 → 2026-09-25</td>
+<td>12.4 / 17</td><td>49.1% / 50.2%</td>
+<td>0.595 → 0.589</td><td>multiplicative</td>
+<td class="muted">0 of 15</td><td>8 of 9</td></tr></tbody></table></div>
+<h2>Betting at the open: closing line value, held-out games</h2>
+<p class="sub">For each feature, measured against the opening line: bet the side it points to when it is in the top quartile of disagreement, at the opening price. CLV = the close's fair probability (moved to the opening line with the empirical score distribution) minus the price paid. Bars are ±2 standard errors; green clears zero, red is clearly below.</p>
+<div class="wrap"><svg viewBox="0 0 760 596" width="100%" role="img" aria-label="Bet-at-open closing line value by sport and feature" style="max-width:760px;font:12px 'Source Sans 3',sans-serif">
+<line x1="230" x2="230" y1="20" y2="572" stroke="var(--line)" /><text x="230" y="588" text-anchor="middle" fill="var(--faint)">-6%</text><line x1="332" x2="332" y1="20" y2="572" stroke="var(--line)" /><text x="332" y="588" text-anchor="middle" fill="var(--faint)">-4%</text><line x1="433.99999999999994" x2="433.99999999999994" y1="20" y2="572" stroke="var(--line)" /><text x="433.99999999999994" y="588" text-anchor="middle" fill="var(--faint)">-2%</text><line x1="536" x2="536" y1="20" y2="572" stroke="var(--line)" stroke-width="1.5" stroke="var(--muted)"/><text x="536" y="588" text-anchor="middle" fill="var(--faint)">0%</text><line x1="638" x2="638" y1="20" y2="572" stroke="var(--line)" /><text x="638" y="588" text-anchor="middle" fill="var(--faint)">+2%</text><line x1="740" x2="740" y1="20" y2="572" stroke="var(--line)" /><text x="740" y="588" text-anchor="middle" fill="var(--faint)">+4%</text>
+<text x="540" y="14" fill="var(--muted)">CLV ≥ 0 means the bet beat the close</text>
+<text x="222" y="36" text-anchor="end" fill="var(--ink)">NBA · Elo · ml <tspan fill="var(--faint)">(279)</tspan></text>
+<line x1="408.5" x2="490.09999999999997" y1="32" y2="32" stroke="var(--bad)" stroke-width="2"/><circle cx="449.29999999999995" cy="32" r="4" fill="var(--bad)"/>
+<text x="222" y="54" text-anchor="end" fill="var(--ink)">NBA · rolling rating · ml <tspan fill="var(--faint)">(199)</tspan></text>
+<line x1="408.5" x2="510.49999999999994" y1="50" y2="50" stroke="var(--bad)" stroke-width="2"/><circle cx="459.5" cy="50" r="4" fill="var(--bad)"/>
+<text x="222" y="72" text-anchor="end" fill="var(--ink)">NBA · rest · ml <tspan fill="var(--faint)">(413)</tspan></text>
+<line x1="428.9" x2="490.09999999999997" y1="68" y2="68" stroke="var(--bad)" stroke-width="2"/><circle cx="459.5" cy="68" r="4" fill="var(--bad)"/>
+<text x="222" y="90" text-anchor="end" fill="var(--ink)">NBA · Elo · spread <tspan fill="var(--faint)">(245)</tspan></text>
+<line x1="352.4" x2="433.99999999999994" y1="86" y2="86" stroke="var(--bad)" stroke-width="2"/><circle cx="393.20000000000005" cy="86" r="4" fill="var(--bad)"/>
+<text x="222" y="108" text-anchor="end" fill="var(--ink)">NBA · rolling rating · spread <tspan fill="var(--faint)">(225)</tspan></text>
+<line x1="403.4" x2="505.4" y1="104" y2="104" stroke="var(--bad)" stroke-width="2"/><circle cx="454.4" cy="104" r="4" fill="var(--bad)"/>
+<text x="222" y="126" text-anchor="end" fill="var(--ink)">NBA · rest · spread <tspan fill="var(--faint)">(412)</tspan></text>
+<line x1="423.79999999999995" x2="485" y1="122" y2="122" stroke="var(--bad)" stroke-width="2"/><circle cx="454.4" cy="122" r="4" fill="var(--bad)"/>
+<text x="222" y="144" text-anchor="end" fill="var(--ink)">NBA · back-to-back · spread <tspan fill="var(--faint)">(294)</tspan></text>
+<line x1="428.9" x2="510.49999999999994" y1="140" y2="140" stroke="var(--bad)" stroke-width="2"/><circle cx="469.7" cy="140" r="4" fill="var(--bad)"/>
+<text x="222" y="162" text-anchor="end" fill="var(--ink)">NBA · scoring pace · total <tspan fill="var(--faint)">(288)</tspan></text>
+<line x1="469.7" x2="551.3" y1="158" y2="158" stroke="var(--muted)" stroke-width="2"/><circle cx="510.49999999999994" cy="158" r="4" fill="var(--muted)"/>
+<text x="222" y="180" text-anchor="end" fill="var(--ink)">NHL · Elo · ml <tspan fill="var(--faint)">(94)</tspan></text>
+<line x1="372.79999999999995" x2="454.4" y1="176" y2="176" stroke="var(--bad)" stroke-width="2"/><circle cx="413.59999999999997" cy="176" r="4" fill="var(--bad)"/>
+<text x="222" y="198" text-anchor="end" fill="var(--ink)">NHL · rolling rating · ml <tspan fill="var(--faint)">(103)</tspan></text>
+<line x1="459.5" x2="520.7" y1="194" y2="194" stroke="var(--bad)" stroke-width="2"/><circle cx="490.09999999999997" cy="194" r="4" fill="var(--bad)"/>
+<text x="222" y="216" text-anchor="end" fill="var(--ink)">NHL · rest · ml <tspan fill="var(--faint)">(342)</tspan></text>
+<line x1="393.20000000000005" x2="433.99999999999994" y1="212" y2="212" stroke="var(--bad)" stroke-width="2"/><circle cx="413.59999999999997" cy="212" r="4" fill="var(--bad)"/>
+<text x="222" y="234" text-anchor="end" fill="var(--ink)">NHL · Elo · spread <tspan fill="var(--faint)">(213)</tspan></text>
+<line x1="316.7" x2="357.5" y1="230" y2="230" stroke="var(--bad)" stroke-width="2"/><circle cx="337.09999999999997" cy="230" r="4" fill="var(--bad)"/>
+<text x="222" y="252" text-anchor="end" fill="var(--ink)">NHL · rolling rating · spread <tspan fill="var(--faint)">(157)</tspan></text>
+<line x1="337.09999999999997" x2="398.29999999999995" y1="248" y2="248" stroke="var(--bad)" stroke-width="2"/><circle cx="367.7" cy="248" r="4" fill="var(--bad)"/>
+<text x="222" y="270" text-anchor="end" fill="var(--ink)">NHL · rest · spread <tspan fill="var(--faint)">(482)</tspan></text>
+<line x1="408.5" x2="428.9" y1="266" y2="266" stroke="var(--bad)" stroke-width="2"/><circle cx="418.69999999999993" cy="266" r="4" fill="var(--bad)"/>
+<text x="222" y="288" text-anchor="end" fill="var(--ink)">NHL · back-to-back · spread <tspan fill="var(--faint)">(324)</tspan></text>
+<line x1="413.59999999999997" x2="454.4" y1="284" y2="284" stroke="var(--bad)" stroke-width="2"/><circle cx="433.99999999999994" cy="284" r="4" fill="var(--bad)"/>
+<text x="222" y="306" text-anchor="end" fill="var(--ink)">NHL · scoring pace · total <tspan fill="var(--faint)">(280)</tspan></text>
+<line x1="592.0999999999999" x2="653.3" y1="302" y2="302" stroke="var(--good)" stroke-width="2"/><circle cx="622.6999999999999" cy="302" r="4" fill="var(--good)"/>
+<text x="222" y="324" text-anchor="end" fill="var(--ink)">CBB · Elo · ml <tspan fill="var(--faint)">(231)</tspan></text>
+<line x1="403.4" x2="464.6" y1="320" y2="320" stroke="var(--bad)" stroke-width="2"/><circle cx="433.99999999999994" cy="320" r="4" fill="var(--bad)"/>
+<text x="222" y="342" text-anchor="end" fill="var(--ink)">CBB · rolling rating · ml <tspan fill="var(--faint)">(562)</tspan></text>
+<line x1="474.79999999999995" x2="515.5999999999999" y1="338" y2="338" stroke="var(--bad)" stroke-width="2"/><circle cx="495.19999999999993" cy="338" r="4" fill="var(--bad)"/>
+<text x="222" y="360" text-anchor="end" fill="var(--ink)">CBB · rest · ml <tspan fill="var(--faint)">(1258)</tspan></text>
+<line x1="479.9" x2="500.29999999999995" y1="356" y2="356" stroke="var(--bad)" stroke-width="2"/><circle cx="490.09999999999997" cy="356" r="4" fill="var(--bad)"/>
+<text x="222" y="378" text-anchor="end" fill="var(--ink)">CBB · Elo · spread <tspan fill="var(--faint)">(945)</tspan></text>
+<line x1="321.8" x2="362.59999999999997" y1="374" y2="374" stroke="var(--bad)" stroke-width="2"/><circle cx="342.2" cy="374" r="4" fill="var(--bad)"/>
+<text x="222" y="396" text-anchor="end" fill="var(--ink)">CBB · rolling rating · spread <tspan fill="var(--faint)">(610)</tspan></text>
+<line x1="433.99999999999994" x2="474.79999999999995" y1="392" y2="392" stroke="var(--bad)" stroke-width="2"/><circle cx="454.4" cy="392" r="4" fill="var(--bad)"/>
+<text x="222" y="414" text-anchor="end" fill="var(--ink)">CBB · rest · spread <tspan fill="var(--faint)">(1327)</tspan></text>
+<line x1="449.29999999999995" x2="490.09999999999997" y1="410" y2="410" stroke="var(--bad)" stroke-width="2"/><circle cx="469.7" cy="410" r="4" fill="var(--bad)"/>
+<text x="222" y="432" text-anchor="end" fill="var(--ink)">CBB · back-to-back · spread <tspan fill="var(--faint)">(404)</tspan></text>
+<line x1="469.7" x2="530.9" y1="428" y2="428" stroke="var(--bad)" stroke-width="2"/><circle cx="500.29999999999995" cy="428" r="4" fill="var(--bad)"/>
+<text x="222" y="450" text-anchor="end" fill="var(--ink)">CBB · scoring pace · total <tspan fill="var(--faint)">(1400)</tspan></text>
+<line x1="439.09999999999997" x2="479.9" y1="446" y2="446" stroke="var(--bad)" stroke-width="2"/><circle cx="459.5" cy="446" r="4" fill="var(--bad)"/>
+<text x="222" y="468" text-anchor="end" fill="var(--ink)">WNBA · Elo · ml <tspan fill="var(--faint)">(35)</tspan></text>
+<line x1="372.79999999999995" x2="617.5999999999999" y1="464" y2="464" stroke="var(--muted)" stroke-width="2"/><circle cx="495.19999999999993" cy="464" r="4" fill="var(--muted)"/>
+<text x="222" y="486" text-anchor="end" fill="var(--ink)">WNBA · rest · ml <tspan fill="var(--faint)">(121)</tspan></text>
+<line x1="418.69999999999993" x2="541.0999999999999" y1="482" y2="482" stroke="var(--muted)" stroke-width="2"/><circle cx="479.9" cy="482" r="4" fill="var(--muted)"/>
+<text x="222" y="504" text-anchor="end" fill="var(--ink)">WNBA · rest · spread <tspan fill="var(--faint)">(119)</tspan></text>
+<line x1="423.79999999999995" x2="546.2" y1="500" y2="500" stroke="var(--muted)" stroke-width="2"/><circle cx="485" cy="500" r="4" fill="var(--muted)"/>
+<text x="222" y="522" text-anchor="end" fill="var(--ink)">WNBA · back-to-back · spread <tspan fill="var(--faint)">(53)</tspan></text>
+<line x1="398.3" x2="622.6999999999999" y1="518" y2="518" stroke="var(--muted)" stroke-width="2"/><circle cx="510.49999999999994" cy="518" r="4" fill="var(--muted)"/>
+<text x="222" y="540" text-anchor="end" fill="var(--ink)">WNBA · scoring pace · total <tspan fill="var(--faint)">(64)</tspan></text>
+<line x1="464.6" x2="668.5999999999999" y1="536" y2="536" stroke="var(--muted)" stroke-width="2"/><circle cx="566.6" cy="536" r="4" fill="var(--muted)"/>
+<text x="222" y="558" text-anchor="end" fill="var(--ink)">WNBA · fatigue · total <tspan fill="var(--faint)">(137)</tspan></text>
+<line x1="357.5" x2="479.9" y1="554" y2="554" stroke="var(--bad)" stroke-width="2"/><circle cx="418.69999999999993" cy="554" r="4" fill="var(--bad)"/>
+</svg></div>
+<h2>Is the closing moneyline calibrated?</h2>
+<p class="sub">De-vigged close probability bucket → how often that side actually won (count of sides). Buckets: under 20%, 20–35, 35–50, 50–65, 65–80, 80%+.</p>
+<div class="wrap"><table><tbody><tr><td><b>NFL</b></td><td>14% → 14% <span class="muted">(76)</span></td><td>28% → 28% <span class="muted">(232)</span></td><td>42% → 40% <span class="muted">(253)</span></td><td>58% → 60% <span class="muted">(253)</span></td><td>72% → 72% <span class="muted">(232)</span></td><td>86% → 86% <span class="muted">(76)</span></td></tr>
+<tr><td><b>NBA</b></td><td>13% → 14% <span class="muted">(964)</span></td><td>28% → 29% <span class="muted">(1393)</span></td><td>42% → 44% <span class="muted">(1526)</span></td><td>57% → 56% <span class="muted">(1662)</span></td><td>72% → 71% <span class="muted">(1393)</span></td><td>87% → 86% <span class="muted">(964)</span></td></tr>
+<tr><td><b>NHL</b></td><td>19% → 25% <span class="muted">(12)</span></td><td>30% → 31% <span class="muted">(544)</span></td><td>43% → 44% <span class="muted">(2308)</span></td><td>57% → 56% <span class="muted">(2310)</span></td><td>70% → 69% <span class="muted">(544)</span></td><td>81% → 75% <span class="muted">(12)</span></td></tr>
+<tr><td><b>CBB</b></td><td>10% → 10% <span class="muted">(5383)</span></td><td>28% → 28% <span class="muted">(4785)</span></td><td>43% → 43% <span class="muted">(5562)</span></td><td>57% → 57% <span class="muted">(5654)</span></td><td>72% → 72% <span class="muted">(4780)</span></td><td>90% → 90% <span class="muted">(5388)</span></td></tr>
+<tr><td><b>WNBA</b></td><td>13% → 16% <span class="muted">(263)</span></td><td>28% → 30% <span class="muted">(320)</span></td><td>42% → 41% <span class="muted">(323)</span></td><td>58% → 59% <span class="muted">(323)</span></td><td>72% → 70% <span class="muted">(320)</span></td><td>87% → 84% <span class="muted">(263)</span></td></tr></tbody></table></div>
+<p class="muted" style="margin-top:28px;max-width:90ch">Data filters: Bet365 2023-24 NHL moneylines (60-minute three-way prices, 1,325 rows) and markets with overround outside 0.995–1.12 are dropped; totals outside 0.6–1.4× the sport median are another market; an open identical to the close counts as no open. Source: ESPN core odds API (DraftKings, ESPN BET, Bet365, Betfair, Caesars by season). Not advice.</p>
+</body></html>
