@@ -11,8 +11,8 @@ import type { Board, BoardEvent, Ledger, LedgerEntry } from '@/lib/odds-board';
 //
 // Cost model: one /odds call per sport returns the whole slate; cost = markets (3) x ceil(books/10)
 // = 3 credits. /events (used to decide whether a sport is due) is free. Cadence per sport: every
-// 30 min when a game starts within 6h, every 2h when the next game is 6-36h out, nothing otherwise.
-// Worst case ~3 sports x 48 runs x 3 = 432 credits/day. Caps: DAILY_CREDIT_CAP and the same monthly
+// 30 min when a game starts within 6h, every 2h when the next game is 6-72h out, nothing otherwise.
+// Worst case ~3 sports x 48 runs x 3 = 432 credits/day (typical: 12 runs/day per sport far from games). Caps: DAILY_CREDIT_CAP and the same monthly
 // floor as the props recorder (read from response headers).
 //
 // Also writes:
@@ -31,7 +31,7 @@ const SPORTS: Record<string, string> = {
 // <= 10 books keeps the cost at one region-equivalent. Pinnacle is the sharp reference.
 const BOOKS = ['pinnacle', 'draftkings', 'fanduel', 'betmgm', 'williamhill_us', 'betrivers', 'fanatics', 'bovada', 'betonlineag', 'lowvig'];
 const MARKETS = ['h2h', 'spreads', 'totals'];
-const HORIZON_H = 36;
+const HORIZON_H = 72;               // a Sunday slate is on the board by Friday, when early prices are softest
 const DAILY_CREDIT_CAP = 1500;
 const MIN_MONTHLY_REMAINING = 20000;
 const LEDGER_KEEP_DAYS = 180;

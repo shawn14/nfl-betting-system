@@ -290,7 +290,7 @@ The market is the forecaster; the edge is a book whose price is out of line with
   arbitrage = best prices on both sides imply < 100%. Stake quarter Kelly, cap 2%. Adapters: `gameMarkets` (h2h/spreads/
   totals) and `propMarkets` (Over/Under props) for The Odds API shape (`bookmakers[].markets[].outcomes[]{name,price,point}`).
 - `api/cron/odds-board-record` (cron `7,37 * * * *`) — single writer. Per sport: free `/events` call decides if due (30 min
-  when a game starts < 6h, 2h when < 36h, nothing otherwise); one `/odds` call per sport with 10 named books
+  when a game starts < 6h, 2h when < 72h, nothing otherwise); one `/odds` call per sport with 10 named books
   (Pinnacle, DK, FD, MGM, Caesars, BetRivers, Fanatics, Bovada, BetOnline, LowVig) × 3 markets = 3 credits. Caps: 1,500/day
   and the shared 20k monthly floor. Writes `odds-board/latest.json` (board), `odds-board/ledger.json` (every flag with the
   price shown + the sharp fair of the same side/line on the last run before the game = closing line value),
