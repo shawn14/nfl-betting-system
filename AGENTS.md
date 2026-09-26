@@ -19,6 +19,8 @@ npm run line-move-backtest   # Run scripts/line-move-backtest.mjs simulation
 npm run injuries-smoke       # Prove the NFL injury feed is live: real ESPN fetch, real parser, 32 teams (Node 22.18+)
 npm run ev-ledger            # Re-grade NFL/WNBA picks at real prices + walk-forward gate for EV weights
 npm run ev-board             # Local proof of the live EV rule on real upcoming games and prices
+npm run market-history       # Crawl every priced final game from ESPN (all sports, since 2023) into data/market-history
+npm run market-lab           # What beats the close? noise, de-vig, sharpness, feature + bet-at-open tests
 vercel --prod    # Deploy to production
 ```
 
@@ -253,11 +255,12 @@ Two crons record the raw material for the Kalshi prop strategy; nothing here tra
 The model's picks are frozen; the EV layer sits on top and asks: at the price on offer, is either side worth a bet?
 - `src/lib/fair-value.ts` — pure math: American/decimal/implied, two-way de-vig (power for ML, multiplicative for
   spreads/totals), P(cover)/P(over) via N(pred, sigma), log-odds blend with the market, EV, Kelly, CLV in probability,
-  `shiftProb` (move a fair prob to another line). `RESULT_SIGMA` = SD of (result − closing line), MEASURED by the ledger
-  (NFL 12.5 margin / 13.4 total; WNBA 12.7 / 18.6); NBA/CBB/NHL are still textbook placeholders.
+  `shiftProb` (move a fair prob to another line). `RESULT_SIGMA` = SD of (result − closing line), MEASURED by the
+  market lab over every priced game (NFL 12.6/13.1, NBA 13.9/17.8, WNBA 12.4/17.0, CBB 11.2/16.5; NHL margin = raw SD 2.6
+  because its "spread" is always the ±1.5 puck line, total 2.3).
 - `src/lib/espn-prices.ts` — ESPN core odds `items[0]` keeps `open`, `close`, `current` PRICES (ML, spread juice, total
   juice), all as strings. This is how history gets real prices for free: the crons stored lines but never prices.
-- `src/lib/ev-model.ts` — `EV_RULE_VERSION = 2026-09-26-ev1`, `MODEL_WEIGHT` per sport × market, `MIN_EV` 2%,
+- `src/lib/ev-model.ts` — `EV_RULE_VERSION = 2026-09-26-ev2` (ev2 = market-lab sigmas; ev1 = first ledger run), `MODEL_WEIGHT` per sport × market, `MIN_EV` 2%,
   `MAX_EDGE` 10 pts from market, stake = quarter Kelly capped at 2%. Only NFL totals have weight (0.45); every other
   market defers to the price and is never flagged. Change weights only by bumping `EV_RULE_VERSION` after a ledger run.
 - `/ev` page (`src/app/ev/page.tsx`, `src/lib/ev-board.ts`): live board (one ESPN call per upcoming game, 10-min cache),
@@ -276,6 +279,38 @@ Findings (2026-09-26, `docs/reports/2026-09-26-ev-ledger.{html,png,json}`):
   intercept that absorbs it. NFL spread is on the watch list (train z 0.4 fails the gate, live-only z 2.1).
 - Graded rows for NBA/NHL/CBB live only in Firestore; reading them needs the admin credential (not run yet).
 - ESPN's close line can differ from our lock (GB–ATL 2026-09-25: we locked −5.5, ESPN close −4.5): lock is ≤1h+cron gap.
+
+## Market lab (what beats the closing line?) — added 2026-09-26
+
+Our own graded rows are a few hundred per sport. ESPN keeps book open/close prices for every game since the 2023-24
+season (NBA/NHL/CBB/WNBA) and the 2024 NFL season (earlier events have no open/close blocks): ~27k games, free.
+- `npm run market-history [sport…]` — crawls ESPN scoreboards day by day + one core-odds call per final game into
+  `data/market-history/<sport>.json` (compact arrays, header comment in the script; commit it). Incremental: scanned days
+  and fetched prices are cached, failed fetches retry next run. CBB needs `groups=50&limit=500` on the scoreboard.
+- `npm run market-lab [sport…]` — writes `docs/reports/<date>-market-lab.json` (full) and `src/data/market-lab.json`
+  (compact, bundled into `/ev` → "What beats the closing line?"). Tests, all pre-declared in the script header:
+  noise (SD vs close, by line size), de-vig method by log loss, open vs close sharpness, calibration by price bucket,
+  **beat-the-close** (offset logistic, close as offset, gate train |z| ≥ 2 + same sign on test + lower held-out log loss)
+  and **predict-the-move / bet-at-open** (OLS of the open→close move on feature-minus-open; CLV of betting the top
+  quartile at the open, split by season × book). Feature models (online Elo, EWMA ratings, rest, pace) are fixed-form.
+- Data gotchas the lab filters: Bet365 2023-24 NHL "moneylines" are 60-minute 3-way prices with the draw removed (both
+  sides plus money, e.g. +115/+175): 1,325 rows, rejected by overround < 0.995. ESPN BET has stray NHL totals of 11.5
+  (another market): lines outside 0.6–1.4× the sport median are dropped. Some 2024 books record open == close: treated
+  as no open. DraftKings/ESPN BET move NHL totals a FULL goal (6.5 → 5.5, they don't hang 6), so line moves are valued
+  with the EMPIRICAL residual distribution (`empShift`), not the normal — the normal overstates a 1-goal move.
+
+Findings (2026-09-26, 26,524 usable games):
+- Nothing beats the close. 0 of 71 feature × market tests pass in any sport — Elo, rolling ratings, rest,
+  back-to-back, pace, line movement, home dogs, big lines. This is why NBA/CBB/NHL `MODEL_WEIGHT` stays 0.
+- The market learns between open and close in every sport (NBA log loss 0.596 → 0.583). Public features DO predict the
+  move (NBA spread Elo z 15 train), i.e. books price public information late — but the predictable move is smaller than
+  the vig at the open: bet-at-open CLV is −1% to −4% for almost every feature.
+- One watch item: NHL totals by scoring pace, bet at the open, CLV +1.7% ± 0.3% on 280 held-out bets — but it is all
+  DraftKings 2025-26 (+2.2%); Bet365 2023-24 −1.2%, ESPN BET 2024-25 −0.4%, ESPN BET 2025-26 +0.1%. A soft opener at one
+  book, not a rule. Re-check when 2026-27 data lands.
+- De-vig: power ≈ additive ≥ multiplicative on closing moneylines everywhere (differences ≤ 0.002 log loss) — keep power.
+- Next lever is not a better model, it's price: ESPN returns ONE book per game (`count: 1`), so line shopping across
+  books needs The Odds API game markets (paid credits, production cron) — Shawn's call.
 
 ## Edge ledger (does the model beat the price?)
 

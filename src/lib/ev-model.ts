@@ -22,7 +22,10 @@ import {
 } from './fair-value.ts';
 import type { PriceSnapshot } from './espn-prices.ts';
 
-export const EV_RULE_VERSION = '2026-09-26-ev1';
+// ev2 (2026-09-26): RESULT_SIGMA re-measured on every priced game ESPN keeps (market lab, 26k games)
+// instead of the ledger's ~300 per sport and textbook placeholders; NBA margin moved 12.0 -> 13.9.
+// Weights unchanged. ev1 = the first ledger run.
+export const EV_RULE_VERSION = '2026-09-26-ev2';
 export const MIN_EV = 0.02;   // flag a side at >= 2% expected return per unit
 /**
  * Extrapolation guard: the blended probability may not sit more than this far from the market's
@@ -41,7 +44,10 @@ export const MODEL_WEIGHT: Record<string, Record<MarketKey, number>> = {
   nfl: { ml: 0, spread: 0, total: 0.45 },
   // WNBA: no market passed (ML z 0.6, spread z 1.0, total z 1.4).
   wnba: { ml: 0, spread: 0, total: 0 },
-  // Not yet run through the ledger (graded rows are in Firestore): defer to the market.
+  // NBA / CBB / NHL: the site's own graded rows live in Firestore and have not been through the
+  // ledger. The market lab (docs/reports/2026-09-26-market-lab.json) tested the ingredients these
+  // models are built from — online Elo, rolling ratings, rest/back-to-back, pace — against the
+  // CLOSE on 3,930 NBA, 16,659 CBB and 4,184 NHL games: none passed. Defer to the market.
   nba: { ml: 0, spread: 0, total: 0 },
   cbb: { ml: 0, spread: 0, total: 0 },
   nhl: { ml: 0, spread: 0, total: 0 },

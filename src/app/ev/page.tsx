@@ -1,7 +1,9 @@
 import type { Metadata } from 'next';
 import { buildEvBoard, type BoardRow } from '@/lib/ev-board';
 import { EV_RULE_VERSION, MIN_EV, MAX_EDGE, MODEL_WEIGHT } from '@/lib/ev-model';
+import { RESULT_SIGMA } from '@/lib/fair-value';
 import ledger from '@/data/ev-ledger.json';
+import marketLab from '@/data/market-lab.json';
 
 export const metadata: Metadata = {
   title: 'EV Board - fair odds and expected value at the real price',
@@ -26,6 +28,16 @@ type SportLedger = {
   markets: Record<'ml' | 'spread' | 'total', MarketLedger>;
 };
 const L = ledger as unknown as { generated: string; minEv: number; sports: Record<string, SportLedger> };
+
+type LabSport = {
+  games: number; from: string; to: string; devig: string;
+  sigma: { margin: number; total: number; homeCoverRate: number; overRate: number };
+  sharpness: { open: number; close: number; n: number } | null;
+  beatClose: { tested: number; passed: string[] };
+  predictsMove: { tested: number; passed: string[] };
+  bestAtOpen: { name: string; n: number; clv: number; se: number; roi: number; stable: boolean; edge: boolean } | null;
+};
+const LAB = marketLab as unknown as { generated: string; gateZ: number; sports: Record<string, LabSport> };
 
 const pct = (x: number, d = 1) => `${(x * 100).toFixed(d)}%`;
 const spct = (x: number, d = 1) => `${x > 0 ? '+' : ''}${(x * 100).toFixed(d)}%`;
@@ -190,6 +202,65 @@ function Gate() {
   );
 }
 
+const FEATURE_LABEL: Record<string, string> = {
+  'ml.elo': 'Elo, moneyline', 'ml.ewmaRating': 'rolling rating, moneyline', 'ml.restDiff': 'rest, moneyline',
+  'spread.elo': 'Elo, spread', 'spread.ewmaRating': 'rolling rating, spread', 'spread.restDiff': 'rest, spread',
+  'spread.backToBack': 'back-to-back, spread', 'total.ewmaPace': 'scoring pace, total', 'total.fatigue': 'fatigue, total',
+};
+
+function MarketLab() {
+  const sports = Object.entries(LAB.sports);
+  const total = sports.reduce((s, [, v]) => s + v.games, 0);
+  return (
+    <section className="space-y-3">
+      <div>
+        <h2 className="text-base font-semibold text-gray-900">What beats the closing line? ({total.toLocaleString()} games)</h2>
+        <p className="text-xs text-gray-500 max-w-4xl">
+          Every priced game ESPN keeps, all five sports, since 2023. Each ingredient our models are built from (Elo, rolling team ratings, rest and back-to-backs,
+          scoring pace, line movement, home dogs, big lines) is tested against the de-vigged closing price on the first 60% of games and confirmed on the last 40%
+          (z &ge; {LAB.gateZ} on train, same sign and lower log loss on test). Then the harder question: measured against the <em>opening</em> line, does it predict
+          where the line goes, and is that move big enough to beat the vig if you bet early?
+        </p>
+      </div>
+      <div className="overflow-x-auto">
+        <table className="w-full text-sm">
+          <thead className="text-[10px] uppercase tracking-wider text-gray-500 border-b border-gray-200">
+            <tr>
+              <th className="text-left px-2 py-2">Sport</th><th className="text-right px-2 py-2">Games</th>
+              <th className="text-right px-2 py-2">Noise (margin / total)</th><th className="text-right px-2 py-2">Open → close log loss</th>
+              <th className="text-right px-2 py-2">Beat the close</th><th className="text-right px-2 py-2">Predict the move</th>
+              <th className="text-left px-2 py-2">Best bet-at-open (held out)</th>
+            </tr>
+          </thead>
+          <tbody>
+            {sports.map(([sport, v]) => (
+              <tr key={sport} className="border-t border-gray-100">
+                <td className="px-2 py-2 font-medium text-gray-900">{sport.toUpperCase()}</td>
+                <td className="px-2 py-2 text-right tabular-nums text-gray-500">{v.games.toLocaleString()}</td>
+                <td className="px-2 py-2 text-right tabular-nums">{RESULT_SIGMA[sport]?.margin ?? v.sigma.margin} / {v.sigma.total}</td>
+                <td className="px-2 py-2 text-right tabular-nums text-gray-500">{v.sharpness ? `${v.sharpness.open.toFixed(3)} → ${v.sharpness.close.toFixed(3)}` : '—'}</td>
+                <td className={`px-2 py-2 text-right tabular-nums ${v.beatClose.passed.length ? 'text-green-700 font-semibold' : 'text-gray-400'}`}>{v.beatClose.passed.length} of {v.beatClose.tested}</td>
+                <td className="px-2 py-2 text-right tabular-nums">{v.predictsMove.passed.length} of {v.predictsMove.tested}</td>
+                <td className="px-2 py-2 text-gray-700">
+                  {v.bestAtOpen
+                    ? <>{FEATURE_LABEL[v.bestAtOpen.name] ?? v.bestAtOpen.name}: CLV <span className={v.bestAtOpen.edge ? 'text-green-700 font-semibold' : ''}>{spct(v.bestAtOpen.clv)}</span> ± {pct(v.bestAtOpen.se)} on {v.bestAtOpen.n} bets{v.bestAtOpen.edge ? ' · edge' : v.bestAtOpen.clv > 2 * v.bestAtOpen.se ? ' · one book-season only' : ''}</>
+                    : <span className="text-gray-400">too few bets</span>}
+                </td>
+              </tr>
+            ))}
+          </tbody>
+        </table>
+      </div>
+      <p className="text-xs text-gray-500 max-w-4xl">
+        Reading it: no ingredient adds information to the closing price in any sport. Most of them <em>do</em> predict where the line moves from the open, so the market prices
+        this public information late, but the move is smaller than the sportsbook&apos;s margin at the open. NHL totals by scoring pace earned real CLV at DraftKings in
+        2025-26 and nowhere else (Bet365 2023-24 and ESPN BET 2024-25 were negative), so it is a watch item, not a rule. The noise column is what the board uses to turn a
+        predicted spread or total into a probability.
+      </p>
+    </section>
+  );
+}
+
 export default async function EvPage() {
   const { rows, builtAt } = await buildEvBoard();
   return (
@@ -207,9 +278,10 @@ export default async function EvPage() {
       <Board rows={rows} />
       <Scoreboard />
       <Gate />
+      <MarketLab />
       <p className="text-xs text-gray-400 max-w-4xl">
         Market fair = the sportsbook&apos;s two prices with the margin removed (power method on moneylines, proportional on spreads and totals). Model spread and total probabilities assume the result lands
-        around our number with each sport&apos;s measured noise (NFL: 12.5 pts margin, 13.4 pts total, from the closing lines of {L.sports.nfl?.pricedGames ?? 0} games). Blend = model shrunk toward the market by the live weight.
+        around our number with each sport&apos;s measured noise (NFL: {RESULT_SIGMA.nfl.margin} pts margin, {RESULT_SIGMA.nfl.total} pts total, from the closing lines of {LAB.sports.nfl?.games ?? 0} games). Blend = model shrunk toward the market by the live weight.
         Historical prices are DraftKings / ESPN BET open and close from ESPN. Rows before each sport&apos;s live date were backfilled, not predicted in real time. Nothing here is advice; the NFL totals weight is on probation and is re-tested every week against new games.
       </p>
     </div>

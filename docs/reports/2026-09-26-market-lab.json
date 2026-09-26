@@ -1,0 +1,4892 @@
+{
+ "generated": "2026-09-26T03:29:32.597Z",
+ "trainFrac": 0.6,
+ "gateZ": 2,
+ "sports": {
+  "nfl": {
+   "sport": "nfl",
+   "rawGames": 605,
+   "usable": 576,
+   "dropped": {
+    "preseason": 0,
+    "noPrice": 29
+   },
+   "seasons": {
+    "2024": 258,
+    "2025": 285,
+    "2026": 33
+   },
+   "from": "2024-09-08",
+   "to": "2026-09-25",
+   "providers": {
+    "ESPN BET": 435,
+    "DraftKings": 141
+   },
+   "rows": {
+    "ml": 561,
+    "spread": 572,
+    "total": 574,
+    "withRealOpen": 575
+   },
+   "sigma": {
+    "margin": 12.6,
+    "total": 13.1,
+    "marginBias": 0.4,
+    "totalBias": 1.3,
+    "nMargin": 572,
+    "nTotal": 574,
+    "homeCoverRate": 0.505,
+    "overRate": 0.531,
+    "marginSdRaw": 14.4
+   },
+   "sigmaBySpread": [
+    {
+     "lo": 0,
+     "hi": 2.5,
+     "n": 61,
+     "sigma": 11.7
+    },
+    {
+     "lo": 2.5,
+     "hi": 4.5,
+     "n": 218,
+     "sigma": 12.7
+    },
+    {
+     "lo": 4.5,
+     "hi": 7,
+     "n": 146,
+     "sigma": 11.7
+    },
+    {
+     "lo": 7,
+     "hi": null,
+     "n": 147,
+     "sigma": 13.1
+    }
+   ],
+   "sigmaByTotal": [
+    {
+     "lo": 0,
+     "hi": 41.5,
+     "n": 95,
+     "sigma": 12.4,
+     "overRate": 0.547
+    },
+    {
+     "lo": 41.5,
+     "hi": 44.5,
+     "n": 153,
+     "sigma": 12.1,
+     "overRate": 0.516
+    },
+    {
+     "lo": 44.5,
+     "hi": 47.5,
+     "n": 158,
+     "sigma": 13.7,
+     "overRate": 0.538
+    },
+    {
+     "lo": 47.5,
+     "hi": null,
+     "n": 168,
+     "sigma": 13.9,
+     "overRate": 0.53
+    }
+   ],
+   "devig": {
+    "n": 561,
+    "power": 0.599,
+    "multiplicative": 0.6,
+    "additive": 0.599,
+    "best": "power"
+   },
+   "sharpness": {
+    "n": 523,
+    "openLogLoss": 0.61,
+    "closeLogLoss": 0.599,
+    "avgAbsMoveProb": 0.047
+   },
+   "calibration": [
+    {
+     "lo": 0,
+     "hi": 0.2,
+     "n": 76,
+     "fair": 0.139,
+     "actual": 0.145,
+     "roi": -0.287
+    },
+    {
+     "lo": 0.2,
+     "hi": 0.35,
+     "n": 232,
+     "fair": 0.284,
+     "actual": 0.284,
+     "roi": -0.062
+    },
+    {
+     "lo": 0.35,
+     "hi": 0.5,
+     "n": 253,
+     "fair": 0.421,
+     "actual": 0.403,
+     "roi": -0.101
+    },
+    {
+     "lo": 0.5,
+     "hi": 0.65,
+     "n": 253,
+     "fair": 0.579,
+     "actual": 0.597,
+     "roi": -0.006
+    },
+    {
+     "lo": 0.65,
+     "hi": 0.8,
+     "n": 232,
+     "fair": 0.716,
+     "actual": 0.716,
+     "roi": -0.02
+    },
+    {
+     "lo": 0.8,
+     "hi": 1,
+     "n": 76,
+     "fair": 0.861,
+     "actual": 0.855,
+     "roi": -0.028
+    }
+   ],
+   "standalone": {
+    "eloMlLogLoss": 0.635,
+    "closeMlLogLoss": 0.599,
+    "eloMarginMae": 10.4,
+    "closeMarginMae": 9.8,
+    "ewmaTotalMae": 11.2,
+    "closeTotalMae": 10
+   },
+   "tests": {
+    "ml": {
+     "elo": {
+      "n": 561,
+      "trainN": 336,
+      "testN": 225,
+      "testFrom": "2025-10-12",
+      "train": {
+       "b": -0.275,
+       "se": 0.397,
+       "z": -0.7,
+       "lean": -0.015
+      },
+      "test": {
+       "b": -0.114,
+       "se": 0.519,
+       "z": -0.2
+      },
+      "testLogLoss": {
+       "close": 0.601,
+       "fitted": 0.601,
+       "signalOnly": 0.601,
+       "gainBp": 4
+      },
+      "xSd": 0.324,
+      "passes": false
+     },
+     "ewmaRating": {
+      "n": 426,
+      "trainN": 255,
+      "testN": 171,
+      "testFrom": "2025-10-19",
+      "train": {
+       "b": -0.083,
+       "se": 0.295,
+       "z": -0.3,
+       "lean": -0.008
+      },
+      "test": {
+       "b": 1.028,
+       "se": 0.415,
+       "z": 2.5
+      },
+      "testLogLoss": {
+       "close": 0.6,
+       "fitted": 0.602,
+       "signalOnly": 0.602,
+       "gainBp": -27
+      },
+      "xSd": 0.45,
+      "passes": false
+     },
+     "restDiff": {
+      "n": 561,
+      "note": "feature has no variance"
+     },
+     "lineMove": {
+      "n": 561,
+      "trainN": 336,
+      "testN": 225,
+      "testFrom": "2025-10-12",
+      "train": {
+       "b": 0.028,
+       "se": 0.78,
+       "z": 0,
+       "lean": -0.028
+      },
+      "test": {
+       "b": 0.231,
+       "se": 0.807,
+       "z": 0.3
+      },
+      "testLogLoss": {
+       "close": 0.601,
+       "fitted": 0.601,
+       "signalOnly": 0.601,
+       "gainBp": 7
+      },
+      "xSd": 0.176,
+      "passes": false
+     }
+    },
+    "spread": {
+     "elo": {
+      "n": 572,
+      "trainN": 343,
+      "testN": 229,
+      "testFrom": "2025-10-12",
+      "train": {
+       "b": 0.016,
+       "se": 0.386,
+       "z": 0,
+       "lean": 0.026
+      },
+      "test": {
+       "b": -0.439,
+       "se": 0.518,
+       "z": -0.8
+      },
+      "testLogLoss": {
+       "close": 0.693,
+       "fitted": 0.693,
+       "signalOnly": 0.693,
+       "gainBp": 0
+      },
+      "xSd": 0.272,
+      "passes": false
+     },
+     "ewmaRating": {
+      "n": 438,
+      "trainN": 262,
+      "testN": 176,
+      "testFrom": "2025-10-20",
+      "train": {
+       "b": 0.089,
+       "se": 0.251,
+       "z": 0.4,
+       "lean": 0.071
+      },
+      "test": {
+       "b": 0.516,
+       "se": 0.377,
+       "z": 1.4
+      },
+      "testLogLoss": {
+       "close": 0.691,
+       "fitted": 0.69,
+       "signalOnly": 0.689,
+       "gainBp": 17
+      },
+      "xSd": 0.46,
+      "passes": false
+     },
+     "restDiff": {
+      "n": 572,
+      "note": "feature has no variance"
+     },
+     "backToBack": {
+      "n": 572,
+      "note": "feature has no variance"
+     },
+     "lineMove": {
+      "n": 517,
+      "trainN": 310,
+      "testN": 207,
+      "testFrom": "2025-10-10",
+      "train": {
+       "b": -1.53,
+       "se": 1.171,
+       "z": -1.3,
+       "lean": -0.008
+      },
+      "test": {
+       "b": 1.835,
+       "se": 1.449,
+       "z": 1.3
+      },
+      "testLogLoss": {
+       "close": 0.694,
+       "fitted": 0.703,
+       "signalOnly": 0.703,
+       "gainBp": -92
+      },
+      "xSd": 0.098,
+      "passes": false
+     },
+     "homeDog": {
+      "n": 572,
+      "trainN": 343,
+      "testN": 229,
+      "testFrom": "2025-10-12",
+      "train": {
+       "b": -0.236,
+       "se": 0.221,
+       "z": -1.1,
+       "lean": 0.12
+      },
+      "test": {
+       "b": 0.185,
+       "se": 0.272,
+       "z": 0.7
+      },
+      "testLogLoss": {
+       "close": 0.693,
+       "fitted": 0.697,
+       "signalOnly": 0.699,
+       "gainBp": -41
+      },
+      "xSd": 0.489,
+      "passes": false
+     },
+     "bigLine": {
+      "n": 572,
+      "trainN": 343,
+      "testN": 229,
+      "testFrom": "2025-10-12",
+      "train": {
+       "b": 0.126,
+       "se": 0.243,
+       "z": 0.5,
+       "lean": 0.011
+      },
+      "test": {
+       "b": -0.025,
+       "se": 0.264,
+       "z": -0.1
+      },
+      "testLogLoss": {
+       "close": 0.693,
+       "fitted": 0.693,
+       "signalOnly": 0.693,
+       "gainBp": -6
+      },
+      "xSd": 0.468,
+      "passes": false
+     }
+    },
+    "total": {
+     "ewmaPace": {
+      "n": 439,
+      "trainN": 263,
+      "testN": 176,
+      "testFrom": "2025-10-21",
+      "train": {
+       "b": -0.032,
+       "se": 0.248,
+       "z": -0.1,
+       "lean": 0.304
+      },
+      "test": {
+       "b": 0.025,
+       "se": 0.408,
+       "z": 0.1
+      },
+      "testLogLoss": {
+       "close": 0.691,
+       "fitted": 0.695,
+       "signalOnly": 0.691,
+       "gainBp": -1
+      },
+      "xSd": 0.455,
+      "passes": false
+     },
+     "lineMove": {
+      "n": 568,
+      "trainN": 340,
+      "testN": 228,
+      "testFrom": "2025-10-12",
+      "train": {
+       "b": -1.842,
+       "se": 0.926,
+       "z": -2,
+       "lean": 0.14
+      },
+      "test": {
+       "b": -0.159,
+       "se": 0.937,
+       "z": -0.2
+      },
+      "testLogLoss": {
+       "close": 0.691,
+       "fitted": 0.7,
+       "signalOnly": 0.698,
+       "gainBp": -66
+      },
+      "xSd": 0.13,
+      "passes": false
+     },
+     "fatigue": {
+      "n": 574,
+      "note": "feature has no variance"
+     },
+     "lineLevel": {
+      "n": 574,
+      "trainN": 344,
+      "testN": 230,
+      "testFrom": "2025-10-12",
+      "train": {
+       "b": -0.27,
+       "se": 0.367,
+       "z": -0.7,
+       "lean": 0.15
+      },
+      "test": {
+       "b": 0.488,
+       "se": 0.396,
+       "z": 1.2
+      },
+      "testLogLoss": {
+       "close": 0.691,
+       "fitted": 0.695,
+       "signalOnly": 0.696,
+       "gainBp": -42
+      },
+      "xSd": 0.313,
+      "passes": false
+     }
+    }
+   },
+   "moves": {
+    "ml": {
+     "elo": {
+      "n": 561,
+      "testFrom": "2025-10-12",
+      "train": {
+       "b": 0.058,
+       "se": 0.027,
+       "z": 2.2
+      },
+      "test": {
+       "b": 0.055,
+       "se": 0.053,
+       "z": 1
+      },
+      "passes": true,
+      "betAtOpen": {
+       "n": 20,
+       "threshold": 0.352,
+       "avgClv": -0.03,
+       "clvSe": 0.017,
+       "pctPositive": 0.35,
+       "result": {
+        "n": 20,
+        "winPct": 0.2,
+        "breakEven": 0.387,
+        "roi": -0.547,
+        "roiLo": -0.97,
+        "roiHi": -0.123
+       },
+       "byGroup": {
+        "2024 ESPN BET": {
+         "n": 43,
+         "avgClv": -0.01,
+         "clvSe": 0.007
+        },
+        "2025 DraftKings": {
+         "n": 5,
+         "avgClv": -0.074,
+         "clvSe": 0.054
+        },
+        "2025 ESPN BET": {
+         "n": 18,
+         "avgClv": -0.013,
+         "clvSe": 0.014
+        },
+        "2026 DraftKings": {
+         "n": 2,
+         "avgClv": 0.034,
+         "clvSe": 0.032
+        }
+       }
+      }
+     },
+     "ewmaRating": {
+      "n": 426,
+      "testFrom": "2025-10-19",
+      "train": {
+       "b": 0.035,
+       "se": 0.022,
+       "z": 1.6
+      },
+      "test": {
+       "b": 0.083,
+       "se": 0.042,
+       "z": 2
+      },
+      "passes": false,
+      "betAtOpen": {
+       "n": 20,
+       "threshold": 0.542,
+       "avgClv": 0.002,
+       "clvSe": 0.019,
+       "pctPositive": 0.5,
+       "result": {
+        "n": 20,
+        "winPct": 0.65,
+        "breakEven": 0.617,
+        "roi": -0.018,
+        "roiLo": -0.381,
+        "roiHi": 0.346
+       },
+       "byGroup": {
+        "2024 ESPN BET": {
+         "n": 28,
+         "avgClv": -0.006,
+         "clvSe": 0.007
+        },
+        "2025 DraftKings": {
+         "n": 12,
+         "avgClv": 0.022,
+         "clvSe": 0.03
+        },
+        "2025 ESPN BET": {
+         "n": 14,
+         "avgClv": -0.003,
+         "clvSe": 0.013
+        }
+       }
+      }
+     },
+     "restDiff": {
+      "n": 561,
+      "note": "feature has no variance"
+     }
+    },
+    "spread": {
+     "elo": {
+      "n": 517,
+      "testFrom": "2025-10-10",
+      "train": {
+       "b": 0.041,
+       "se": 0.021,
+       "z": 2
+      },
+      "test": {
+       "b": 0.076,
+       "se": 0.032,
+       "z": 2.3
+      },
+      "passes": false,
+      "betAtOpen": {
+       "n": 16,
+       "threshold": 0.306,
+       "avgClv": -0.021,
+       "clvSe": 0.012,
+       "pctPositive": 0.313,
+       "result": {
+        "n": 16,
+        "winPct": 0.375,
+        "breakEven": 0.53,
+        "roi": -0.29,
+        "roiLo": -0.754,
+        "roiHi": 0.175
+       },
+       "byGroup": {
+        "2024 ESPN BET": {
+         "n": 43,
+         "avgClv": -0.012,
+         "clvSe": 0.008
+        },
+        "2025 DraftKings": {
+         "n": 5,
+         "avgClv": -0.024,
+         "clvSe": 0.023
+        },
+        "2025 ESPN BET": {
+         "n": 15,
+         "avgClv": -0.023,
+         "clvSe": 0.01
+        },
+        "2026 DraftKings": {
+         "n": 1,
+         "avgClv": 0.093,
+         "clvSe": 0
+        }
+       }
+      }
+     },
+     "ewmaRating": {
+      "n": 392,
+      "testFrom": "2025-10-19",
+      "train": {
+       "b": 0.03,
+       "se": 0.013,
+       "z": 2.3
+      },
+      "test": {
+       "b": 0.025,
+       "se": 0.018,
+       "z": 1.4
+      },
+      "passes": true,
+      "betAtOpen": {
+       "n": 17,
+       "threshold": 0.591,
+       "avgClv": -0.02,
+       "clvSe": 0.01,
+       "pctPositive": 0.353,
+       "result": {
+        "n": 17,
+        "winPct": 0.471,
+        "breakEven": 0.525,
+        "roi": -0.1,
+        "roiLo": -0.568,
+        "roiHi": 0.368
+       },
+       "byGroup": {
+        "2024 ESPN BET": {
+         "n": 25,
+         "avgClv": -0.011,
+         "clvSe": 0.007
+        },
+        "2025 DraftKings": {
+         "n": 9,
+         "avgClv": -0.013,
+         "clvSe": 0.018
+        },
+        "2025 ESPN BET": {
+         "n": 15,
+         "avgClv": -0.011,
+         "clvSe": 0.01
+        }
+       }
+      }
+     },
+     "restDiff": {
+      "n": 517,
+      "note": "feature has no variance"
+     },
+     "backToBack": {
+      "n": 517,
+      "note": "feature has no variance"
+     }
+    },
+    "total": {
+     "ewmaPace": {
+      "n": 434,
+      "testFrom": "2025-10-20",
+      "train": {
+       "b": 0.024,
+       "se": 0.016,
+       "z": 1.5
+      },
+      "test": {
+       "b": 0.064,
+       "se": 0.029,
+       "z": 2.2
+      },
+      "passes": false,
+      "betAtOpen": {
+       "n": 15,
+       "threshold": 0.565,
+       "avgClv": -0.005,
+       "clvSe": 0.023,
+       "pctPositive": 0.467,
+       "result": {
+        "n": 15,
+        "winPct": 0.4,
+        "breakEven": 0.524,
+        "roi": -0.242,
+        "roiLo": -0.728,
+        "roiHi": 0.245
+       },
+       "byGroup": {
+        "2024 ESPN BET": {
+         "n": 29,
+         "avgClv": -0.027,
+         "clvSe": 0.014
+        },
+        "2025 DraftKings": {
+         "n": 10,
+         "avgClv": 0.013,
+         "clvSe": 0.025
+        },
+        "2025 ESPN BET": {
+         "n": 14,
+         "avgClv": -0.03,
+         "clvSe": 0.021
+        }
+       }
+      }
+     },
+     "fatigue": {
+      "n": 568,
+      "note": "feature has no variance"
+     }
+    }
+   },
+   "shiftCheck": {
+    "spreadOnePoint": {
+     "normal": 0.032,
+     "empirical": 0.037
+    },
+    "totalOneUnit": {
+     "normal": 0.03,
+     "empirical": 0.023
+    }
+   }
+  },
+  "nba": {
+   "sport": "nba",
+   "rawGames": 4187,
+   "usable": 3953,
+   "dropped": {
+    "preseason": 217,
+    "noPrice": 17
+   },
+   "seasons": {
+    "2023": 1319,
+    "2024": 1323,
+    "2025": 1311
+   },
+   "from": "2023-10-24",
+   "to": "2026-06-14",
+   "providers": {
+    "BetfairSportsbook": 1255,
+    "ESPN BET": 1635,
+    "Caesars Sportsbook (Colorado)": 1,
+    "DraftKings": 1062
+   },
+   "rows": {
+    "ml": 3951,
+    "spread": 3930,
+    "total": 3940,
+    "withRealOpen": 3944
+   },
+   "sigma": {
+    "margin": 13.9,
+    "total": 17.8,
+    "marginBias": -0.1,
+    "totalBias": 0.5,
+    "nMargin": 3930,
+    "nTotal": 3940,
+    "homeCoverRate": 0.502,
+    "overRate": 0.505,
+    "marginSdRaw": 16.1
+   },
+   "sigmaBySpread": [
+    {
+     "lo": 0,
+     "hi": 3.5,
+     "n": 860,
+     "sigma": 15.3
+    },
+    {
+     "lo": 3.5,
+     "hi": 6,
+     "n": 1073,
+     "sigma": 13.6
+    },
+    {
+     "lo": 6,
+     "hi": 9.5,
+     "n": 902,
+     "sigma": 13.4
+    },
+    {
+     "lo": 9.5,
+     "hi": null,
+     "n": 1095,
+     "sigma": 13.5
+    }
+   ],
+   "sigmaByTotal": [
+    {
+     "lo": 0,
+     "hi": 221.5,
+     "n": 978,
+     "sigma": 17.4,
+     "overRate": 0.51
+    },
+    {
+     "lo": 221.5,
+     "hi": 227.5,
+     "n": 873,
+     "sigma": 17.1,
+     "overRate": 0.502
+    },
+    {
+     "lo": 227.5,
+     "hi": 234.5,
+     "n": 1068,
+     "sigma": 18.1,
+     "overRate": 0.506
+    },
+    {
+     "lo": 234.5,
+     "hi": null,
+     "n": 1021,
+     "sigma": 18.6,
+     "overRate": 0.503
+    }
+   ],
+   "devig": {
+    "n": 3951,
+    "power": 0.581,
+    "multiplicative": 0.582,
+    "additive": 0.581,
+    "best": "power"
+   },
+   "sharpness": {
+    "n": 3557,
+    "openLogLoss": 0.596,
+    "closeLogLoss": 0.583,
+    "avgAbsMoveProb": 0.048
+   },
+   "calibration": [
+    {
+     "lo": 0,
+     "hi": 0.2,
+     "n": 964,
+     "fair": 0.13,
+     "actual": 0.139,
+     "roi": -0.209
+    },
+    {
+     "lo": 0.2,
+     "hi": 0.35,
+     "n": 1393,
+     "fair": 0.28,
+     "actual": 0.289,
+     "roi": -0.065
+    },
+    {
+     "lo": 0.35,
+     "hi": 0.5,
+     "n": 1526,
+     "fair": 0.419,
+     "actual": 0.44,
+     "roi": -0.013
+    },
+    {
+     "lo": 0.5,
+     "hi": 0.65,
+     "n": 1662,
+     "fair": 0.574,
+     "actual": 0.555,
+     "roi": -0.07
+    },
+    {
+     "lo": 0.65,
+     "hi": 0.8,
+     "n": 1393,
+     "fair": 0.72,
+     "actual": 0.711,
+     "roi": -0.036
+    },
+    {
+     "lo": 0.8,
+     "hi": 1,
+     "n": 964,
+     "fair": 0.87,
+     "actual": 0.861,
+     "roi": -0.026
+    }
+   ],
+   "standalone": {
+    "eloMlLogLoss": 0.62,
+    "closeMlLogLoss": 0.581,
+    "eloMarginMae": 11.3,
+    "closeMarginMae": 10.8,
+    "ewmaTotalMae": 15.3,
+    "closeTotalMae": 14.3
+   },
+   "tests": {
+    "ml": {
+     "elo": {
+      "n": 3951,
+      "trainN": 2370,
+      "testN": 1581,
+      "testFrom": "2025-03-22",
+      "train": {
+       "b": -0.149,
+       "se": 0.138,
+       "z": -1.1,
+       "lean": -0.045
+      },
+      "test": {
+       "b": 0.004,
+       "se": 0.163,
+       "z": 0
+      },
+      "testLogLoss": {
+       "close": 0.571,
+       "fitted": 0.571,
+       "signalOnly": 0.571,
+       "gainBp": -1
+      },
+      "xSd": 0.346,
+      "passes": false
+     },
+     "ewmaRating": {
+      "n": 3574,
+      "trainN": 2144,
+      "testN": 1430,
+      "testFrom": "2025-03-25",
+      "train": {
+       "b": 0.045,
+       "se": 0.137,
+       "z": 0.3,
+       "lean": -0.075
+      },
+      "test": {
+       "b": 0.179,
+       "se": 0.159,
+       "z": 1.1
+      },
+      "testLogLoss": {
+       "close": 0.567,
+       "fitted": 0.566,
+       "signalOnly": 0.566,
+       "gainBp": 7
+      },
+      "xSd": 0.374,
+      "passes": false
+     },
+     "restDiff": {
+      "n": 3951,
+      "trainN": 2370,
+      "testN": 1581,
+      "testFrom": "2025-03-22",
+      "train": {
+       "b": 0.049,
+       "se": 0.047,
+       "z": 1,
+       "lean": -0.06
+      },
+      "test": {
+       "b": -0.019,
+       "se": 0.06,
+       "z": -0.3
+      },
+      "testLogLoss": {
+       "close": 0.571,
+       "fitted": 0.571,
+       "signalOnly": 0.571,
+       "gainBp": -2
+      },
+      "xSd": 0.974,
+      "passes": false
+     },
+     "lineMove": {
+      "n": 3922,
+      "trainN": 2353,
+      "testN": 1569,
+      "testFrom": "2025-03-23",
+      "train": {
+       "b": -0.005,
+       "se": 0.243,
+       "z": 0,
+       "lean": -0.052
+      },
+      "test": {
+       "b": 0.292,
+       "se": 0.334,
+       "z": 0.9
+      },
+      "testLogLoss": {
+       "close": 0.57,
+       "fitted": 0.57,
+       "signalOnly": 0.57,
+       "gainBp": 2
+      },
+      "xSd": 0.188,
+      "passes": false
+     }
+    },
+    "spread": {
+     "elo": {
+      "n": 3930,
+      "trainN": 2358,
+      "testN": 1572,
+      "testFrom": "2025-03-23",
+      "train": {
+       "b": -0.065,
+       "se": 0.152,
+       "z": -0.4,
+       "lean": 0
+      },
+      "test": {
+       "b": -0.208,
+       "se": 0.171,
+       "z": -1.2
+      },
+      "testLogLoss": {
+       "close": 0.693,
+       "fitted": 0.693,
+       "signalOnly": 0.693,
+       "gainBp": 2
+      },
+      "xSd": 0.282,
+      "passes": false
+     },
+     "ewmaRating": {
+      "n": 3559,
+      "trainN": 2135,
+      "testN": 1424,
+      "testFrom": "2025-03-26",
+      "train": {
+       "b": 0.044,
+       "se": 0.128,
+       "z": 0.3,
+       "lean": -0.02
+      },
+      "test": {
+       "b": -0.031,
+       "se": 0.143,
+       "z": -0.2
+      },
+      "testLogLoss": {
+       "close": 0.693,
+       "fitted": 0.693,
+       "signalOnly": 0.693,
+       "gainBp": -1
+      },
+      "xSd": 0.352,
+      "passes": false
+     },
+     "restDiff": {
+      "n": 3930,
+      "trainN": 2358,
+      "testN": 1572,
+      "testFrom": "2025-03-23",
+      "train": {
+       "b": 0.07,
+       "se": 0.042,
+       "z": 1.7,
+       "lean": -0.01
+      },
+      "test": {
+       "b": 0.029,
+       "se": 0.053,
+       "z": 0.5
+      },
+      "testLogLoss": {
+       "close": 0.693,
+       "fitted": 0.693,
+       "signalOnly": 0.693,
+       "gainBp": -1
+      },
+      "xSd": 0.973,
+      "passes": false
+     },
+     "backToBack": {
+      "n": 3930,
+      "trainN": 2358,
+      "testN": 1572,
+      "testFrom": "2025-03-23",
+      "train": {
+       "b": 0.174,
+       "se": 0.069,
+       "z": 2.5,
+       "lean": -0.012
+      },
+      "test": {
+       "b": 0.073,
+       "se": 0.086,
+       "z": 0.9
+      },
+      "testLogLoss": {
+       "close": 0.693,
+       "fitted": 0.693,
+       "signalOnly": 0.693,
+       "gainBp": -2
+      },
+      "xSd": 0.593,
+      "passes": false
+     },
+     "lineMove": {
+      "n": 3896,
+      "trainN": 2337,
+      "testN": 1559,
+      "testFrom": "2025-03-24",
+      "train": {
+       "b": 0.035,
+       "se": 0.227,
+       "z": 0.2,
+       "lean": -0.001
+      },
+      "test": {
+       "b": 0.81,
+       "se": 0.336,
+       "z": 2.4
+      },
+      "testLogLoss": {
+       "close": 0.693,
+       "fitted": 0.693,
+       "signalOnly": 0.693,
+       "gainBp": 2
+      },
+      "xSd": 0.171,
+      "passes": false
+     },
+     "homeDog": {
+      "n": 3930,
+      "trainN": 2358,
+      "testN": 1572,
+      "testFrom": "2025-03-23",
+      "train": {
+       "b": 0.036,
+       "se": 0.085,
+       "z": 0.4,
+       "lean": -0.016
+      },
+      "test": {
+       "b": -0.015,
+       "se": 0.103,
+       "z": -0.1
+      },
+      "testLogLoss": {
+       "close": 0.693,
+       "fitted": 0.693,
+       "signalOnly": 0.693,
+       "gainBp": 0
+      },
+      "xSd": 0.487,
+      "passes": false
+     },
+     "bigLine": {
+      "n": 3930,
+      "trainN": 2358,
+      "testN": 1572,
+      "testFrom": "2025-03-23",
+      "train": {
+       "b": -0.009,
+       "se": 0.077,
+       "z": -0.1,
+       "lean": -0.001
+      },
+      "test": {
+       "b": 0.118,
+       "se": 0.085,
+       "z": 1.4
+      },
+      "testLogLoss": {
+       "close": 0.693,
+       "fitted": 0.693,
+       "signalOnly": 0.693,
+       "gainBp": -1
+      },
+      "xSd": 0.559,
+      "passes": false
+     }
+    },
+    "total": {
+     "ewmaPace": {
+      "n": 3566,
+      "trainN": 2139,
+      "testN": 1427,
+      "testFrom": "2025-03-26",
+      "train": {
+       "b": -0.089,
+       "se": 0.118,
+       "z": -0.8,
+       "lean": 0.013
+      },
+      "test": {
+       "b": -0.038,
+       "se": 0.146,
+       "z": -0.3
+      },
+      "testLogLoss": {
+       "close": 0.693,
+       "fitted": 0.693,
+       "signalOnly": 0.693,
+       "gainBp": 0
+      },
+      "xSd": 0.368,
+      "passes": false
+     },
+     "lineMove": {
+      "n": 3929,
+      "trainN": 2357,
+      "testN": 1572,
+      "testFrom": "2025-03-23",
+      "train": {
+       "b": 0.305,
+       "se": 0.175,
+       "z": 1.7,
+       "lean": 0.031
+      },
+      "test": {
+       "b": -0.041,
+       "se": 0.272,
+       "z": -0.2
+      },
+      "testLogLoss": {
+       "close": 0.693,
+       "fitted": 0.693,
+       "signalOnly": 0.693,
+       "gainBp": -5
+      },
+      "xSd": 0.217,
+      "passes": false
+     },
+     "fatigue": {
+      "n": 3940,
+      "trainN": 2364,
+      "testN": 1576,
+      "testFrom": "2025-03-23",
+      "train": {
+       "b": -0.037,
+       "se": 0.053,
+       "z": -0.7,
+       "lean": 0.058
+      },
+      "test": {
+       "b": 0.017,
+       "se": 0.064,
+       "z": 0.3
+      },
+      "testLogLoss": {
+       "close": 0.693,
+       "fitted": 0.693,
+       "signalOnly": 0.693,
+       "gainBp": -2
+      },
+      "xSd": 0.784,
+      "passes": false
+     },
+     "lineLevel": {
+      "n": 3940,
+      "trainN": 2364,
+      "testN": 1576,
+      "testFrom": "2025-03-23",
+      "train": {
+       "b": -0.033,
+       "se": 0.074,
+       "z": -0.5,
+       "lean": 0.027
+      },
+      "test": {
+       "b": -0.092,
+       "se": 0.1,
+       "z": -0.9
+      },
+      "testLogLoss": {
+       "close": 0.693,
+       "fitted": 0.693,
+       "signalOnly": 0.693,
+       "gainBp": 2
+      },
+      "xSd": 0.538,
+      "passes": false
+     }
+    }
+   },
+   "moves": {
+    "ml": {
+     "elo": {
+      "n": 3922,
+      "testFrom": "2025-03-23",
+      "train": {
+       "b": 0.113,
+       "se": 0.012,
+       "z": 9.1
+      },
+      "test": {
+       "b": 0.044,
+       "se": 0.014,
+       "z": 3.2
+      },
+      "passes": true,
+      "betAtOpen": {
+       "n": 279,
+       "threshold": 0.352,
+       "avgClv": -0.017,
+       "clvSe": 0.004,
+       "pctPositive": 0.358,
+       "result": {
+        "n": 279,
+        "winPct": 0.495,
+        "breakEven": 0.55,
+        "roi": -0.111,
+        "roiLo": -0.234,
+        "roiHi": 0.011
+       },
+       "byGroup": {
+        "2023 BetfairSportsbook": {
+         "n": 163,
+         "avgClv": -0.018,
+         "clvSe": 0.006
+        },
+        "2023 ESPN BET": {
+         "n": 3,
+         "avgClv": 0.002,
+         "clvSe": 0.029
+        },
+        "2024 ESPN BET": {
+         "n": 240,
+         "avgClv": -0.013,
+         "clvSe": 0.004
+        },
+        "2025 DraftKings": {
+         "n": 181,
+         "avgClv": -0.016,
+         "clvSe": 0.006
+        },
+        "2025 ESPN BET": {
+         "n": 48,
+         "avgClv": -0.023,
+         "clvSe": 0.007
+        }
+       }
+      }
+     },
+     "ewmaRating": {
+      "n": 3560,
+      "testFrom": "2025-03-26",
+      "train": {
+       "b": 0.112,
+       "se": 0.012,
+       "z": 9.3
+      },
+      "test": {
+       "b": 0.032,
+       "se": 0.013,
+       "z": 2.5
+      },
+      "passes": true,
+      "betAtOpen": {
+       "n": 199,
+       "threshold": 0.391,
+       "avgClv": -0.015,
+       "clvSe": 0.005,
+       "pctPositive": 0.342,
+       "result": {
+        "n": 199,
+        "winPct": 0.472,
+        "breakEven": 0.478,
+        "roi": -0.107,
+        "roiLo": -0.264,
+        "roiHi": 0.049
+       },
+       "byGroup": {
+        "2023 BetfairSportsbook": {
+         "n": 119,
+         "avgClv": -0.012,
+         "clvSe": 0.008
+        },
+        "2023 ESPN BET": {
+         "n": 8,
+         "avgClv": -0.004,
+         "clvSe": 0.018
+        },
+        "2024 ESPN BET": {
+         "n": 155,
+         "avgClv": -0.013,
+         "clvSe": 0.006
+        },
+        "2025 DraftKings": {
+         "n": 139,
+         "avgClv": -0.015,
+         "clvSe": 0.007
+        },
+        "2025 ESPN BET": {
+         "n": 23,
+         "avgClv": -0.016,
+         "clvSe": 0.008
+        }
+       }
+      }
+     },
+     "restDiff": {
+      "n": 3922,
+      "testFrom": "2025-03-23",
+      "train": {
+       "b": 0.022,
+       "se": 0.004,
+       "z": 5.5
+      },
+      "test": {
+       "b": 0.018,
+       "se": 0.005,
+       "z": 3.8
+      },
+      "passes": true,
+      "betAtOpen": {
+       "n": 413,
+       "threshold": 1,
+       "avgClv": -0.015,
+       "clvSe": 0.003,
+       "pctPositive": 0.346,
+       "result": {
+        "n": 413,
+        "winPct": 0.552,
+        "breakEven": 0.585,
+        "roi": -0.078,
+        "roiLo": -0.174,
+        "roiHi": 0.018
+       },
+       "byGroup": {
+        "2023 BetfairSportsbook": {
+         "n": 368,
+         "avgClv": -0.022,
+         "clvSe": 0.004
+        },
+        "2023 ESPN BET": {
+         "n": 2,
+         "avgClv": 0.004,
+         "clvSe": 0.033
+        },
+        "2024 ESPN BET": {
+         "n": 372,
+         "avgClv": -0.015,
+         "clvSe": 0.003
+        },
+        "2025 DraftKings": {
+         "n": 290,
+         "avgClv": -0.013,
+         "clvSe": 0.003
+        },
+        "2025 ESPN BET": {
+         "n": 70,
+         "avgClv": -0.026,
+         "clvSe": 0.007
+        }
+       }
+      }
+     }
+    },
+    "spread": {
+     "elo": {
+      "n": 3896,
+      "testFrom": "2025-03-24",
+      "train": {
+       "b": 0.207,
+       "se": 0.014,
+       "z": 15.2
+      },
+      "test": {
+       "b": 0.023,
+       "se": 0.015,
+       "z": 1.5
+      },
+      "passes": true,
+      "betAtOpen": {
+       "n": 245,
+       "threshold": 0.282,
+       "avgClv": -0.028,
+       "clvSe": 0.004,
+       "pctPositive": 0.278,
+       "result": {
+        "n": 245,
+        "winPct": 0.449,
+        "breakEven": 0.525,
+        "roi": -0.143,
+        "roiLo": -0.262,
+        "roiHi": -0.024
+       },
+       "byGroup": {
+        "2023 BetfairSportsbook": {
+         "n": 145,
+         "avgClv": -0.028,
+         "clvSe": 0.007
+        },
+        "2023 ESPN BET": {
+         "n": 4,
+         "avgClv": -0.008,
+         "clvSe": 0.033
+        },
+        "2024 ESPN BET": {
+         "n": 221,
+         "avgClv": -0.026,
+         "clvSe": 0.005
+        },
+        "2025 DraftKings": {
+         "n": 162,
+         "avgClv": -0.025,
+         "clvSe": 0.006
+        },
+        "2025 ESPN BET": {
+         "n": 43,
+         "avgClv": -0.032,
+         "clvSe": 0.007
+        }
+       }
+      }
+     },
+     "ewmaRating": {
+      "n": 3539,
+      "testFrom": "2025-03-27",
+      "train": {
+       "b": 0.145,
+       "se": 0.011,
+       "z": 13.4
+      },
+      "test": {
+       "b": 0.033,
+       "se": 0.012,
+       "z": 2.9
+      },
+      "passes": true,
+      "betAtOpen": {
+       "n": 225,
+       "threshold": 0.386,
+       "avgClv": -0.016,
+       "clvSe": 0.005,
+       "pctPositive": 0.36,
+       "result": {
+        "n": 225,
+        "winPct": 0.489,
+        "breakEven": 0.525,
+        "roi": -0.068,
+        "roiLo": -0.193,
+        "roiHi": 0.057
+       },
+       "byGroup": {
+        "2023 BetfairSportsbook": {
+         "n": 131,
+         "avgClv": -0.011,
+         "clvSe": 0.007
+        },
+        "2023 ESPN BET": {
+         "n": 8,
+         "avgClv": -0.026,
+         "clvSe": 0.007
+        },
+        "2024 ESPN BET": {
+         "n": 191,
+         "avgClv": -0.015,
+         "clvSe": 0.005
+        },
+        "2025 DraftKings": {
+         "n": 154,
+         "avgClv": -0.017,
+         "clvSe": 0.006
+        },
+        "2025 ESPN BET": {
+         "n": 30,
+         "avgClv": -0.025,
+         "clvSe": 0.007
+        }
+       }
+      }
+     },
+     "restDiff": {
+      "n": 3896,
+      "testFrom": "2025-03-24",
+      "train": {
+       "b": 0.015,
+       "se": 0.004,
+       "z": 3.9
+      },
+      "test": {
+       "b": 0.019,
+       "se": 0.004,
+       "z": 4.7
+      },
+      "passes": true,
+      "betAtOpen": {
+       "n": 412,
+       "threshold": 1,
+       "avgClv": -0.016,
+       "clvSe": 0.003,
+       "pctPositive": 0.352,
+       "result": {
+        "n": 412,
+        "winPct": 0.517,
+        "breakEven": 0.524,
+        "roi": -0.014,
+        "roiLo": -0.106,
+        "roiHi": 0.078
+       },
+       "byGroup": {
+        "2023 BetfairSportsbook": {
+         "n": 364,
+         "avgClv": -0.023,
+         "clvSe": 0.004
+        },
+        "2023 ESPN BET": {
+         "n": 2,
+         "avgClv": -0.025,
+         "clvSe": 0.024
+        },
+        "2024 ESPN BET": {
+         "n": 370,
+         "avgClv": -0.018,
+         "clvSe": 0.003
+        },
+        "2025 DraftKings": {
+         "n": 291,
+         "avgClv": -0.014,
+         "clvSe": 0.004
+        },
+        "2025 ESPN BET": {
+         "n": 70,
+         "avgClv": -0.03,
+         "clvSe": 0.008
+        }
+       }
+      }
+     },
+     "backToBack": {
+      "n": 3896,
+      "testFrom": "2025-03-24",
+      "train": {
+       "b": 0.024,
+       "se": 0.006,
+       "z": 3.8
+      },
+      "test": {
+       "b": 0.029,
+       "se": 0.007,
+       "z": 4.4
+      },
+      "passes": true,
+      "betAtOpen": {
+       "n": 294,
+       "threshold": 1,
+       "avgClv": -0.013,
+       "clvSe": 0.004,
+       "pctPositive": 0.371,
+       "result": {
+        "n": 294,
+        "winPct": 0.548,
+        "breakEven": 0.525,
+        "roi": 0.044,
+        "roiLo": -0.065,
+        "roiHi": 0.152
+       },
+       "byGroup": {
+        "2023 BetfairSportsbook": {
+         "n": 276,
+         "avgClv": -0.022,
+         "clvSe": 0.004
+        },
+        "2024 ESPN BET": {
+         "n": 253,
+         "avgClv": -0.013,
+         "clvSe": 0.004
+        },
+        "2025 DraftKings": {
+         "n": 205,
+         "avgClv": -0.009,
+         "clvSe": 0.005
+        },
+        "2025 ESPN BET": {
+         "n": 54,
+         "avgClv": -0.031,
+         "clvSe": 0.01
+        }
+       }
+      }
+     }
+    },
+    "total": {
+     "ewmaPace": {
+      "n": 3558,
+      "testFrom": "2025-03-26",
+      "train": {
+       "b": 0.187,
+       "se": 0.013,
+       "z": 14.8
+      },
+      "test": {
+       "b": 0.084,
+       "se": 0.014,
+       "z": 5.8
+      },
+      "passes": true,
+      "betAtOpen": {
+       "n": 288,
+       "threshold": 0.396,
+       "avgClv": -0.005,
+       "clvSe": 0.004,
+       "pctPositive": 0.441,
+       "result": {
+        "n": 288,
+        "winPct": 0.51,
+        "breakEven": 0.524,
+        "roi": -0.026,
+        "roiLo": -0.136,
+        "roiHi": 0.085
+       },
+       "byGroup": {
+        "2023 BetfairSportsbook": {
+         "n": 195,
+         "avgClv": -0.004,
+         "clvSe": 0.006
+        },
+        "2023 ESPN BET": {
+         "n": 39,
+         "avgClv": -0.02,
+         "clvSe": 0.008
+        },
+        "2024 ESPN BET": {
+         "n": 195,
+         "avgClv": 0.001,
+         "clvSe": 0.005
+        },
+        "2025 DraftKings": {
+         "n": 173,
+         "avgClv": 0,
+         "clvSe": 0.006
+        },
+        "2025 ESPN BET": {
+         "n": 16,
+         "avgClv": 0.003,
+         "clvSe": 0.016
+        }
+       }
+      }
+     },
+     "fatigue": {
+      "n": 3929,
+      "testFrom": "2025-03-23",
+      "train": {
+       "b": -0.008,
+       "se": 0.006,
+       "z": -1.4
+      },
+      "test": {
+       "b": -0.015,
+       "se": 0.006,
+       "z": -2.5
+      },
+      "passes": false,
+      "betAtOpen": {
+       "n": 0,
+       "threshold": 1,
+       "avgClv": 0,
+       "clvSe": 0,
+       "pctPositive": 0,
+       "result": {
+        "n": 0
+       },
+       "byGroup": {}
+      }
+     }
+    }
+   },
+   "shiftCheck": {
+    "spreadOnePoint": {
+     "normal": 0.029,
+     "empirical": 0.03
+    },
+    "totalOneUnit": {
+     "normal": 0.022,
+     "empirical": 0.019
+    }
+   }
+  },
+  "nhl": {
+   "sport": "nhl",
+   "rawGames": 4312,
+   "usable": 4190,
+   "dropped": {
+    "preseason": 110,
+    "noPrice": 12
+   },
+   "seasons": {
+    "2023": 1391,
+    "2024": 1405,
+    "2025": 1394
+   },
+   "from": "2023-10-12",
+   "to": "2026-06-15",
+   "providers": {
+    "Bet365": 1325,
+    "ESPN BET": 1847,
+    "DraftKings": 1018
+   },
+   "rows": {
+    "ml": 2865,
+    "spread": 4184,
+    "total": 4118,
+    "withRealOpen": 4102
+   },
+   "sigma": {
+    "margin": 2.7,
+    "total": 2.3,
+    "marginBias": -0.2,
+    "totalBias": 0.1,
+    "nMargin": 4184,
+    "nTotal": 4118,
+    "homeCoverRate": 0.475,
+    "overRate": 0.494,
+    "marginSdRaw": 2.6
+   },
+   "sigmaBySpread": [
+    {
+     "lo": 1.5,
+     "hi": null,
+     "n": 4184,
+     "sigma": 2.7
+    }
+   ],
+   "sigmaByTotal": [
+    {
+     "lo": 5.5,
+     "hi": 6.5,
+     "n": 2048,
+     "sigma": 2.3,
+     "overRate": 0.515
+    },
+    {
+     "lo": 6.5,
+     "hi": null,
+     "n": 2070,
+     "sigma": 2.3,
+     "overRate": 0.473
+    }
+   ],
+   "devig": {
+    "n": 2865,
+    "power": 0.669,
+    "multiplicative": 0.669,
+    "additive": 0.669,
+    "best": "power"
+   },
+   "sharpness": {
+    "n": 2530,
+    "openLogLoss": 0.672,
+    "closeLogLoss": 0.669,
+    "avgAbsMoveProb": 0.029
+   },
+   "calibration": [
+    {
+     "lo": 0,
+     "hi": 0.2,
+     "n": 12,
+     "fair": 0.187,
+     "actual": 0.25,
+     "roi": 0.133
+    },
+    {
+     "lo": 0.2,
+     "hi": 0.35,
+     "n": 544,
+     "fair": 0.302,
+     "actual": 0.309,
+     "roi": -0.068
+    },
+    {
+     "lo": 0.35,
+     "hi": 0.5,
+     "n": 2308,
+     "fair": 0.431,
+     "actual": 0.444,
+     "roi": -0.02
+    },
+    {
+     "lo": 0.5,
+     "hi": 0.65,
+     "n": 2310,
+     "fair": 0.569,
+     "actual": 0.556,
+     "roi": -0.055
+    },
+    {
+     "lo": 0.65,
+     "hi": 0.8,
+     "n": 544,
+     "fair": 0.698,
+     "actual": 0.691,
+     "roi": -0.035
+    },
+    {
+     "lo": 0.8,
+     "hi": 1,
+     "n": 12,
+     "fair": 0.813,
+     "actual": 0.75,
+     "roi": -0.096
+    }
+   ],
+   "standalone": {
+    "eloMlLogLoss": 0.679,
+    "closeMlLogLoss": 0.669,
+    "eloMarginMae": 2.2,
+    "closeMarginMae": 2.2,
+    "ewmaTotalMae": 1.9,
+    "closeTotalMae": 1.9
+   },
+   "tests": {
+    "ml": {
+     "elo": {
+      "n": 2865,
+      "trainN": 1719,
+      "testN": 1146,
+      "testFrom": "2025-11-10",
+      "train": {
+       "b": -0.435,
+       "se": 0.329,
+       "z": -1.3,
+       "lean": 0.087
+      },
+      "test": {
+       "b": -0.172,
+       "se": 0.433,
+       "z": -0.4
+      },
+      "testLogLoss": {
+       "close": 0.679,
+       "fitted": 0.682,
+       "signalOnly": 0.679,
+       "gainBp": 2
+      },
+      "xSd": 0.152,
+      "passes": false
+     },
+     "ewmaRating": {
+      "n": 2589,
+      "trainN": 1553,
+      "testN": 1036,
+      "testFrom": "2025-11-25",
+      "train": {
+       "b": -0.406,
+       "se": 0.203,
+       "z": -2,
+       "lean": 0.097
+      },
+      "test": {
+       "b": 0.188,
+       "se": 0.295,
+       "z": 0.6
+      },
+      "testLogLoss": {
+       "close": 0.681,
+       "fitted": 0.686,
+       "signalOnly": 0.682,
+       "gainBp": -17
+      },
+      "xSd": 0.245,
+      "passes": false
+     },
+     "restDiff": {
+      "n": 2865,
+      "trainN": 1719,
+      "testN": 1146,
+      "testFrom": "2025-11-10",
+      "train": {
+       "b": 0.087,
+       "se": 0.049,
+       "z": 1.8,
+       "lean": 0.057
+      },
+      "test": {
+       "b": 0.012,
+       "se": 0.062,
+       "z": 0.2
+      },
+      "testLogLoss": {
+       "close": 0.679,
+       "fitted": 0.682,
+       "signalOnly": 0.68,
+       "gainBp": -10
+      },
+      "xSd": 1.013,
+      "passes": false
+     },
+     "lineMove": {
+      "n": 2848,
+      "trainN": 1708,
+      "testN": 1140,
+      "testFrom": "2025-11-10",
+      "train": {
+       "b": 0.548,
+       "se": 0.601,
+       "z": 0.9,
+       "lean": 0.077
+      },
+      "test": {
+       "b": -0.02,
+       "se": 0.702,
+       "z": 0
+      },
+      "testLogLoss": {
+       "close": 0.68,
+       "fitted": 0.682,
+       "signalOnly": 0.68,
+       "gainBp": -1
+      },
+      "xSd": 0.085,
+      "passes": false
+     }
+    },
+    "spread": {
+     "elo": {
+      "n": 4184,
+      "trainN": 2510,
+      "testN": 1674,
+      "testFrom": "2025-03-23",
+      "train": {
+       "b": -0.057,
+       "se": 0.09,
+       "z": -0.6,
+       "lean": 0.018
+      },
+      "test": {
+       "b": 0.283,
+       "se": 0.12,
+       "z": 2.4
+      },
+      "testLogLoss": {
+       "close": 0.631,
+       "fitted": 0.632,
+       "signalOnly": 0.631,
+       "gainBp": -8
+      },
+      "xSd": 0.455,
+      "passes": false
+     },
+     "ewmaRating": {
+      "n": 3773,
+      "trainN": 2263,
+      "testN": 1510,
+      "testFrom": "2025-03-28",
+      "train": {
+       "b": -0.135,
+       "se": 0.1,
+       "z": -1.4,
+       "lean": 0.056
+      },
+      "test": {
+       "b": 0.271,
+       "se": 0.125,
+       "z": 2.2
+      },
+      "testLogLoss": {
+       "close": 0.632,
+       "fitted": 0.636,
+       "signalOnly": 0.634,
+       "gainBp": -22
+      },
+      "xSd": 0.442,
+      "passes": false
+     },
+     "restDiff": {
+      "n": 4184,
+      "trainN": 2510,
+      "testN": 1674,
+      "testFrom": "2025-03-23",
+      "train": {
+       "b": 0.074,
+       "se": 0.038,
+       "z": 2,
+       "lean": 0.005
+      },
+      "test": {
+       "b": 0.014,
+       "se": 0.053,
+       "z": 0.3
+      },
+      "testLogLoss": {
+       "close": 0.631,
+       "fitted": 0.631,
+       "signalOnly": 0.631,
+       "gainBp": -6
+      },
+      "xSd": 1.044,
+      "passes": false
+     },
+     "backToBack": {
+      "n": 4184,
+      "trainN": 2510,
+      "testN": 1674,
+      "testFrom": "2025-03-23",
+      "train": {
+       "b": 0.115,
+       "se": 0.076,
+       "z": 1.5,
+       "lean": 0.008
+      },
+      "test": {
+       "b": 0.033,
+       "se": 0.096,
+       "z": 0.3
+      },
+      "testLogLoss": {
+       "close": 0.631,
+       "fitted": 0.631,
+       "signalOnly": 0.631,
+       "gainBp": -4
+      },
+      "xSd": 0.539,
+      "passes": false
+     },
+     "lineMove": {
+      "n": 4094,
+      "trainN": 2456,
+      "testN": 1638,
+      "testFrom": "2025-03-27",
+      "train": {
+       "b": 0.151,
+       "se": 0.157,
+       "z": 1,
+       "lean": 0.015
+      },
+      "test": {
+       "b": -0.143,
+       "se": 0.17,
+       "z": -0.8
+      },
+      "testLogLoss": {
+       "close": 0.629,
+       "fitted": 0.63,
+       "signalOnly": 0.63,
+       "gainBp": -6
+      },
+      "xSd": 0.291,
+      "passes": false
+     },
+     "homeDog": {
+      "n": 4184,
+      "trainN": 2510,
+      "testN": 1674,
+      "testFrom": "2025-03-23",
+      "train": {
+       "b": -0.02,
+       "se": 0.085,
+       "z": -0.2,
+       "lean": 0.028
+      },
+      "test": {
+       "b": 0.258,
+       "se": 0.11,
+       "z": 2.3
+      },
+      "testLogLoss": {
+       "close": 0.631,
+       "fitted": 0.631,
+       "signalOnly": 0.631,
+       "gainBp": -2
+      },
+      "xSd": 0.482,
+      "passes": false
+     },
+     "bigLine": {
+      "n": 4184,
+      "trainN": 2510,
+      "testN": 1674,
+      "testFrom": "2025-03-23",
+      "train": {
+       "b": 0.017,
+       "se": 0.076,
+       "z": 0.2,
+       "lean": 0.018
+      },
+      "test": {
+       "b": -0.239,
+       "se": 0.099,
+       "z": -2.4
+      },
+      "testLogLoss": {
+       "close": 0.631,
+       "fitted": 0.631,
+       "signalOnly": 0.631,
+       "gainBp": -3
+      },
+      "xSd": 0.538,
+      "passes": false
+     }
+    },
+    "total": {
+     "ewmaPace": {
+      "n": 3715,
+      "trainN": 2229,
+      "testN": 1486,
+      "testFrom": "2025-03-30",
+      "train": {
+       "b": 0.048,
+       "se": 0.159,
+       "z": 0.3,
+       "lean": -0.078
+      },
+      "test": {
+       "b": -0.293,
+       "se": 0.202,
+       "z": -1.4
+      },
+      "testLogLoss": {
+       "close": 0.691,
+       "fitted": 0.692,
+       "signalOnly": 0.691,
+       "gainBp": -2
+      },
+      "xSd": 0.264,
+      "passes": false
+     },
+     "lineMove": {
+      "n": 4030,
+      "trainN": 2418,
+      "testN": 1612,
+      "testFrom": "2025-03-30",
+      "train": {
+       "b": 0.199,
+       "se": 0.273,
+       "z": 0.7,
+       "lean": -0.069
+      },
+      "test": {
+       "b": 0.465,
+       "se": 0.231,
+       "z": 2
+      },
+      "testLogLoss": {
+       "close": 0.691,
+       "fitted": 0.692,
+       "signalOnly": 0.691,
+       "gainBp": 9
+      },
+      "xSd": 0.179,
+      "passes": false
+     },
+     "fatigue": {
+      "n": 4118,
+      "trainN": 2470,
+      "testN": 1648,
+      "testFrom": "2025-03-27",
+      "train": {
+       "b": -0.034,
+       "se": 0.053,
+       "z": -0.7,
+       "lean": -0.059
+      },
+      "test": {
+       "b": -0.105,
+       "se": 0.062,
+       "z": -1.7
+      },
+      "testLogLoss": {
+       "close": 0.691,
+       "fitted": 0.692,
+       "signalOnly": 0.691,
+       "gainBp": 2
+      },
+      "xSd": 0.78,
+      "passes": false
+     },
+     "lineLevel": {
+      "n": 4118,
+      "trainN": 2470,
+      "testN": 1648,
+      "testFrom": "2025-03-27",
+      "train": {
+       "b": -0.294,
+       "se": 0.205,
+       "z": -1.4,
+       "lean": -0.079
+      },
+      "test": {
+       "b": 0.077,
+       "se": 0.226,
+       "z": 0.3
+      },
+      "testLogLoss": {
+       "close": 0.691,
+       "fitted": 0.693,
+       "signalOnly": 0.692,
+       "gainBp": -8
+      },
+      "xSd": 0.206,
+      "passes": false
+     }
+    }
+   },
+   "moves": {
+    "ml": {
+     "elo": {
+      "n": 2848,
+      "testFrom": "2025-11-10",
+      "train": {
+       "b": -0.108,
+       "se": 0.017,
+       "z": -6.5
+      },
+      "test": {
+       "b": -0.032,
+       "se": 0.024,
+       "z": -1.4
+      },
+      "passes": true,
+      "betAtOpen": {
+       "n": 94,
+       "threshold": 0.137,
+       "avgClv": -0.024,
+       "clvSe": 0.004,
+       "pctPositive": 0.223,
+       "result": {
+        "n": 94,
+        "winPct": 0.351,
+        "breakEven": 0.393,
+        "roi": -0.097,
+        "roiLo": -0.354,
+        "roiHi": 0.16
+       },
+       "byGroup": {
+        "2023 ESPN BET": {
+         "n": 5,
+         "avgClv": -0.008,
+         "clvSe": 0.006
+        },
+        "2024 ESPN BET": {
+         "n": 128,
+         "avgClv": -0.032,
+         "clvSe": 0.003
+        },
+        "2025 DraftKings": {
+         "n": 86,
+         "avgClv": -0.025,
+         "clvSe": 0.004
+        },
+        "2025 ESPN BET": {
+         "n": 30,
+         "avgClv": -0.016,
+         "clvSe": 0.005
+        }
+       }
+      }
+     },
+     "ewmaRating": {
+      "n": 2573,
+      "testFrom": "2025-11-25",
+      "train": {
+       "b": 0.021,
+       "se": 0.009,
+       "z": 2.4
+      },
+      "test": {
+       "b": 0.114,
+       "se": 0.011,
+       "z": 10
+      },
+      "passes": true,
+      "betAtOpen": {
+       "n": 103,
+       "threshold": 0.283,
+       "avgClv": -0.009,
+       "clvSe": 0.003,
+       "pctPositive": 0.369,
+       "result": {
+        "n": 103,
+        "winPct": 0.563,
+        "breakEven": 0.558,
+        "roi": 0.016,
+        "roiLo": -0.164,
+        "roiHi": 0.196
+       },
+       "byGroup": {
+        "2024 ESPN BET": {
+         "n": 131,
+         "avgClv": -0.02,
+         "clvSe": 0.003
+        },
+        "2025 DraftKings": {
+         "n": 101,
+         "avgClv": -0.009,
+         "clvSe": 0.003
+        },
+        "2025 ESPN BET": {
+         "n": 38,
+         "avgClv": -0.016,
+         "clvSe": 0.006
+        }
+       }
+      }
+     },
+     "restDiff": {
+      "n": 2848,
+      "testFrom": "2025-11-10",
+      "train": {
+       "b": 0.013,
+       "se": 0.002,
+       "z": 6.5
+      },
+      "test": {
+       "b": 0.01,
+       "se": 0.003,
+       "z": 3.9
+      },
+      "passes": true,
+      "betAtOpen": {
+       "n": 342,
+       "threshold": 1,
+       "avgClv": -0.024,
+       "clvSe": 0.002,
+       "pctPositive": 0.234,
+       "result": {
+        "n": 342,
+        "winPct": 0.544,
+        "breakEven": 0.58,
+        "roi": -0.057,
+        "roiLo": -0.152,
+        "roiHi": 0.037
+       },
+       "byGroup": {
+        "2023 ESPN BET": {
+         "n": 2,
+         "avgClv": -0.019,
+         "clvSe": 0.001
+        },
+        "2024 ESPN BET": {
+         "n": 449,
+         "avgClv": -0.017,
+         "clvSe": 0.002
+        },
+        "2025 DraftKings": {
+         "n": 296,
+         "avgClv": -0.022,
+         "clvSe": 0.002
+        },
+        "2025 ESPN BET": {
+         "n": 118,
+         "avgClv": -0.025,
+         "clvSe": 0.003
+        }
+       }
+      }
+     }
+    },
+    "spread": {
+     "elo": {
+      "n": 4094,
+      "testFrom": "2025-03-27",
+      "train": {
+       "b": 0.158,
+       "se": 0.012,
+       "z": 13.7
+      },
+      "test": {
+       "b": 0.248,
+       "se": 0.018,
+       "z": 14.1
+      },
+      "passes": true,
+      "betAtOpen": {
+       "n": 213,
+       "threshold": 0.523,
+       "avgClv": -0.039,
+       "clvSe": 0.002,
+       "pctPositive": 0.033,
+       "result": {
+        "n": 213,
+        "winPct": 0.709,
+        "breakEven": 0.708,
+        "roi": 0.007,
+        "roiLo": -0.081,
+        "roiHi": 0.094
+       },
+       "byGroup": {
+        "2023 Bet365": {
+         "n": 314,
+         "avgClv": -0.029,
+         "clvSe": 0.001
+        },
+        "2023 ESPN BET": {
+         "n": 15,
+         "avgClv": -0.044,
+         "clvSe": 0.008
+        },
+        "2024 ESPN BET": {
+         "n": 202,
+         "avgClv": -0.051,
+         "clvSe": 0.002
+        },
+        "2025 DraftKings": {
+         "n": 134,
+         "avgClv": -0.037,
+         "clvSe": 0.003
+        },
+        "2025 ESPN BET": {
+         "n": 54,
+         "avgClv": -0.037,
+         "clvSe": 0.003
+        }
+       }
+      }
+     },
+     "ewmaRating": {
+      "n": 3712,
+      "testFrom": "2025-03-29",
+      "train": {
+       "b": 0.188,
+       "se": 0.013,
+       "z": 14.6
+      },
+      "test": {
+       "b": 0.261,
+       "se": 0.018,
+       "z": 14.9
+      },
+      "passes": true,
+      "betAtOpen": {
+       "n": 157,
+       "threshold": 0.528,
+       "avgClv": -0.033,
+       "clvSe": 0.003,
+       "pctPositive": 0.057,
+       "result": {
+        "n": 157,
+        "winPct": 0.732,
+        "breakEven": 0.697,
+        "roi": 0.05,
+        "roiLo": -0.05,
+        "roiHi": 0.151
+       },
+       "byGroup": {
+        "2023 Bet365": {
+         "n": 111,
+         "avgClv": -0.027,
+         "clvSe": 0.003
+        },
+        "2023 ESPN BET": {
+         "n": 3,
+         "avgClv": -0.063,
+         "clvSe": 0.021
+        },
+        "2024 ESPN BET": {
+         "n": 126,
+         "avgClv": -0.047,
+         "clvSe": 0.002
+        },
+        "2025 DraftKings": {
+         "n": 106,
+         "avgClv": -0.029,
+         "clvSe": 0.004
+        },
+        "2025 ESPN BET": {
+         "n": 36,
+         "avgClv": -0.032,
+         "clvSe": 0.004
+        }
+       }
+      }
+     },
+     "restDiff": {
+      "n": 4094,
+      "testFrom": "2025-03-27",
+      "train": {
+       "b": 0.005,
+       "se": 0.005,
+       "z": 1
+      },
+      "test": {
+       "b": 0.011,
+       "se": 0.008,
+       "z": 1.3
+      },
+      "passes": false,
+      "betAtOpen": {
+       "n": 482,
+       "threshold": 1,
+       "avgClv": -0.023,
+       "clvSe": 0.001,
+       "pctPositive": 0.21,
+       "result": {
+        "n": 482,
+        "winPct": 0.446,
+        "breakEven": 0.475,
+        "roi": -0.072,
+        "roiLo": -0.171,
+        "roiHi": 0.027
+       },
+       "byGroup": {
+        "2023 Bet365": {
+         "n": 427,
+         "avgClv": -0.017,
+         "clvSe": 0.001
+        },
+        "2023 ESPN BET": {
+         "n": 2,
+         "avgClv": -0.021,
+         "clvSe": 0.007
+        },
+        "2024 ESPN BET": {
+         "n": 449,
+         "avgClv": -0.024,
+         "clvSe": 0.001
+        },
+        "2025 DraftKings": {
+         "n": 296,
+         "avgClv": -0.02,
+         "clvSe": 0.002
+        },
+        "2025 ESPN BET": {
+         "n": 118,
+         "avgClv": -0.029,
+         "clvSe": 0.003
+        }
+       }
+      }
+     },
+     "backToBack": {
+      "n": 4094,
+      "testFrom": "2025-03-27",
+      "train": {
+       "b": 0.012,
+       "se": 0.01,
+       "z": 1.2
+      },
+      "test": {
+       "b": 0.036,
+       "se": 0.015,
+       "z": 2.4
+      },
+      "passes": false,
+      "betAtOpen": {
+       "n": 324,
+       "threshold": 1,
+       "avgClv": -0.02,
+       "clvSe": 0.002,
+       "pctPositive": 0.235,
+       "result": {
+        "n": 324,
+        "winPct": 0.457,
+        "breakEven": 0.476,
+        "roi": -0.042,
+        "roiLo": -0.163,
+        "roiHi": 0.079
+       },
+       "byGroup": {
+        "2023 Bet365": {
+         "n": 268,
+         "avgClv": -0.016,
+         "clvSe": 0.001
+        },
+        "2024 ESPN BET": {
+         "n": 298,
+         "avgClv": -0.022,
+         "clvSe": 0.002
+        },
+        "2025 DraftKings": {
+         "n": 200,
+         "avgClv": -0.018,
+         "clvSe": 0.002
+        },
+        "2025 ESPN BET": {
+         "n": 72,
+         "avgClv": -0.028,
+         "clvSe": 0.003
+        }
+       }
+      }
+     }
+    },
+    "total": {
+     "ewmaPace": {
+      "n": 3654,
+      "testFrom": "2025-04-02",
+      "train": {
+       "b": 0.178,
+       "se": 0.011,
+       "z": 16.4
+      },
+      "test": {
+       "b": 0.366,
+       "se": 0.017,
+       "z": 21.3
+      },
+      "passes": true,
+      "betAtOpen": {
+       "n": 280,
+       "threshold": 0.325,
+       "avgClv": 0.017,
+       "clvSe": 0.003,
+       "pctPositive": 0.582,
+       "result": {
+        "n": 280,
+        "winPct": 0.589,
+        "breakEven": 0.55,
+        "roi": 0.065,
+        "roiLo": -0.04,
+        "roiHi": 0.17
+       },
+       "byGroup": {
+        "2023 Bet365": {
+         "n": 124,
+         "avgClv": -0.012,
+         "clvSe": 0.003
+        },
+        "2023 ESPN BET": {
+         "n": 2,
+         "avgClv": -0.018,
+         "clvSe": 0.005
+        },
+        "2024 ESPN BET": {
+         "n": 257,
+         "avgClv": -0.004,
+         "clvSe": 0.003
+        },
+        "2025 DraftKings": {
+         "n": 187,
+         "avgClv": 0.022,
+         "clvSe": 0.003
+        },
+        "2025 ESPN BET": {
+         "n": 63,
+         "avgClv": 0.001,
+         "clvSe": 0.008
+        }
+       }
+      }
+     },
+     "fatigue": {
+      "n": 4030,
+      "testFrom": "2025-03-30",
+      "train": {
+       "b": -0.003,
+       "se": 0.004,
+       "z": -0.7
+      },
+      "test": {
+       "b": 0.004,
+       "se": 0.007,
+       "z": 0.5
+      },
+      "passes": false,
+      "betAtOpen": {
+       "n": 0,
+       "threshold": 1,
+       "avgClv": 0,
+       "clvSe": 0,
+       "pctPositive": 0,
+       "result": {
+        "n": 0
+       },
+       "byGroup": {}
+      }
+     }
+    }
+   },
+   "shiftCheck": {
+    "spreadOnePoint": {
+     "normal": 0.144,
+     "empirical": 0.184
+    },
+    "totalOneUnit": {
+     "normal": 0.168,
+     "empirical": 0.162
+    }
+   }
+  },
+  "cbb": {
+   "sport": "cbb",
+   "rawGames": 18835,
+   "usable": 16899,
+   "dropped": {
+    "preseason": 0,
+    "noPrice": 1936
+   },
+   "seasons": {
+    "2023": 5444,
+    "2024": 5763,
+    "2025": 5692
+   },
+   "from": "2023-11-06",
+   "to": "2026-04-07",
+   "providers": {
+    "ESPN BET": 6734,
+    "Caesars Sportsbook (Colorado)": 1144,
+    "BetfairSportsbook": 4238,
+    "accuscore": 2,
+    "DraftKings": 4777,
+    "Unibet": 2,
+    "SugarHouse": 1,
+    "DraftKings - Live Odds": 1
+   },
+   "rows": {
+    "ml": 15776,
+    "spread": 16837,
+    "total": 16870,
+    "withRealOpen": 16721
+   },
+   "sigma": {
+    "margin": 11.2,
+    "total": 16.5,
+    "marginBias": 0,
+    "totalBias": 0.7,
+    "nMargin": 16837,
+    "nTotal": 16870,
+    "homeCoverRate": 0.498,
+    "overRate": 0.5,
+    "marginSdRaw": 14.7
+   },
+   "sigmaBySpread": [
+    {
+     "lo": 0,
+     "hi": 3.5,
+     "n": 3865,
+     "sigma": 10.9
+    },
+    {
+     "lo": 3.5,
+     "hi": 6.5,
+     "n": 4303,
+     "sigma": 11.2
+    },
+    {
+     "lo": 6.5,
+     "hi": 10.5,
+     "n": 3910,
+     "sigma": 11.2
+    },
+    {
+     "lo": 10.5,
+     "hi": null,
+     "n": 4759,
+     "sigma": 11.5
+    }
+   ],
+   "sigmaByTotal": [
+    {
+     "lo": 0,
+     "hi": 139.5,
+     "n": 3892,
+     "sigma": 15.7,
+     "overRate": 0.506
+    },
+    {
+     "lo": 139.5,
+     "hi": 145.5,
+     "n": 4058,
+     "sigma": 16.5,
+     "overRate": 0.497
+    },
+    {
+     "lo": 145.5,
+     "hi": 152.5,
+     "n": 4636,
+     "sigma": 16.6,
+     "overRate": 0.5
+    },
+    {
+     "lo": 152.5,
+     "hi": null,
+     "n": 4284,
+     "sigma": 17.2,
+     "overRate": 0.5
+    }
+   ],
+   "devig": {
+    "n": 15776,
+    "power": 0.523,
+    "multiplicative": 0.525,
+    "additive": 0.523,
+    "best": "power"
+   },
+   "sharpness": {
+    "n": 13523,
+    "openLogLoss": 0.534,
+    "closeLogLoss": 0.531,
+    "avgAbsMoveProb": 0.032
+   },
+   "calibration": [
+    {
+     "lo": 0,
+     "hi": 0.2,
+     "n": 5383,
+     "fair": 0.097,
+     "actual": 0.099,
+     "roi": -0.294
+    },
+    {
+     "lo": 0.2,
+     "hi": 0.35,
+     "n": 4785,
+     "fair": 0.278,
+     "actual": 0.275,
+     "roi": -0.091
+    },
+    {
+     "lo": 0.35,
+     "hi": 0.5,
+     "n": 5562,
+     "fair": 0.425,
+     "actual": 0.431,
+     "roi": -0.037
+    },
+    {
+     "lo": 0.5,
+     "hi": 0.65,
+     "n": 5654,
+     "fair": 0.574,
+     "actual": 0.568,
+     "roi": -0.043
+    },
+    {
+     "lo": 0.65,
+     "hi": 0.8,
+     "n": 4780,
+     "fair": 0.722,
+     "actual": 0.724,
+     "roi": -0.019
+    },
+    {
+     "lo": 0.8,
+     "hi": 1,
+     "n": 5388,
+     "fair": 0.903,
+     "actual": 0.901,
+     "roi": -0.014
+    }
+   ],
+   "standalone": {
+    "eloMlLogLoss": 0.566,
+    "closeMlLogLoss": 0.523,
+    "eloMarginMae": 9.9,
+    "closeMarginMae": 8.9,
+    "ewmaTotalMae": 14,
+    "closeTotalMae": 13
+   },
+   "tests": {
+    "ml": {
+     "elo": {
+      "n": 15776,
+      "trainN": 9465,
+      "testN": 6311,
+      "testFrom": "2025-02-28",
+      "train": {
+       "b": 0.105,
+       "se": 0.067,
+       "z": 1.6,
+       "lean": 0.01
+      },
+      "test": {
+       "b": -0.066,
+       "se": 0.095,
+       "z": -0.7
+      },
+      "testLogLoss": {
+       "close": 0.527,
+       "fitted": 0.527,
+       "signalOnly": 0.527,
+       "gainBp": -2
+      },
+      "xSd": 0.48,
+      "passes": false
+     },
+     "ewmaRating": {
+      "n": 12619,
+      "trainN": 7571,
+      "testN": 5048,
+      "testFrom": "2025-03-02",
+      "train": {
+       "b": -0.041,
+       "se": 0.075,
+       "z": -0.6,
+       "lean": 0.006
+      },
+      "test": {
+       "b": -0.005,
+       "se": 0.091,
+       "z": -0.1
+      },
+      "testLogLoss": {
+       "close": 0.549,
+       "fitted": 0.549,
+       "signalOnly": 0.549,
+       "gainBp": 0
+      },
+      "xSd": 0.388,
+      "passes": false
+     },
+     "restDiff": {
+      "n": 15776,
+      "trainN": 9465,
+      "testN": 6311,
+      "testFrom": "2025-02-28",
+      "train": {
+       "b": -0.025,
+       "se": 0.027,
+       "z": -0.9,
+       "lean": 0.008
+      },
+      "test": {
+       "b": 0.043,
+       "se": 0.03,
+       "z": 1.4
+      },
+      "testLogLoss": {
+       "close": 0.527,
+       "fitted": 0.527,
+       "signalOnly": 0.527,
+       "gainBp": -2
+      },
+      "xSd": 0.958,
+      "passes": false
+     },
+     "lineMove": {
+      "n": 15434,
+      "trainN": 9260,
+      "testN": 6174,
+      "testFrom": "2025-03-01",
+      "train": {
+       "b": -0.496,
+       "se": 0.205,
+       "z": -2.4,
+       "lean": 0.013
+      },
+      "test": {
+       "b": -0.09,
+       "se": 0.228,
+       "z": -0.4
+      },
+      "testLogLoss": {
+       "close": 0.527,
+       "fitted": 0.527,
+       "signalOnly": 0.527,
+       "gainBp": -2
+      },
+      "xSd": 0.138,
+      "passes": false
+     }
+    },
+    "spread": {
+     "elo": {
+      "n": 16837,
+      "trainN": 10102,
+      "testN": 6735,
+      "testFrom": "2025-02-22",
+      "train": {
+       "b": -0.042,
+       "se": 0.037,
+       "z": -1.1,
+       "lean": -0.019
+      },
+      "test": {
+       "b": 0.004,
+       "se": 0.052,
+       "z": 0.1
+      },
+      "testLogLoss": {
+       "close": 0.693,
+       "fitted": 0.693,
+       "signalOnly": 0.693,
+       "gainBp": 0
+      },
+      "xSd": 0.51,
+      "passes": false
+     },
+     "ewmaRating": {
+      "n": 13308,
+      "trainN": 7984,
+      "testN": 5324,
+      "testFrom": "2025-02-28",
+      "train": {
+       "b": -0.085,
+       "se": 0.058,
+       "z": -1.5,
+       "lean": -0.028
+      },
+      "test": {
+       "b": -0.01,
+       "se": 0.068,
+       "z": -0.1
+      },
+      "testLogLoss": {
+       "close": 0.693,
+       "fitted": 0.693,
+       "signalOnly": 0.693,
+       "gainBp": -1
+      },
+      "xSd": 0.391,
+      "passes": false
+     },
+     "restDiff": {
+      "n": 16837,
+      "trainN": 10102,
+      "testN": 6735,
+      "testFrom": "2025-02-22",
+      "train": {
+       "b": 0.022,
+       "se": 0.021,
+       "z": 1,
+       "lean": -0.013
+      },
+      "test": {
+       "b": 0.026,
+       "se": 0.024,
+       "z": 1.1
+      },
+      "testLogLoss": {
+       "close": 0.693,
+       "fitted": 0.693,
+       "signalOnly": 0.693,
+       "gainBp": 1
+      },
+      "xSd": 0.957,
+      "passes": false
+     },
+     "backToBack": {
+      "n": 16837,
+      "trainN": 10102,
+      "testN": 6735,
+      "testFrom": "2025-02-22",
+      "train": {
+       "b": -0.047,
+       "se": 0.082,
+       "z": -0.6,
+       "lean": -0.012
+      },
+      "test": {
+       "b": 0.128,
+       "se": 0.087,
+       "z": 1.5
+      },
+      "testLogLoss": {
+       "close": 0.693,
+       "fitted": 0.693,
+       "signalOnly": 0.693,
+       "gainBp": -1
+      },
+      "xSd": 0.259,
+      "passes": false
+     },
+     "lineMove": {
+      "n": 16582,
+      "trainN": 9949,
+      "testN": 6633,
+      "testFrom": "2025-02-23",
+      "train": {
+       "b": -0.207,
+       "se": 0.153,
+       "z": -1.3,
+       "lean": -0.011
+      },
+      "test": {
+       "b": -0.069,
+       "se": 0.175,
+       "z": -0.4
+      },
+      "testLogLoss": {
+       "close": 0.693,
+       "fitted": 0.693,
+       "signalOnly": 0.693,
+       "gainBp": 0
+      },
+      "xSd": 0.135,
+      "passes": false
+     },
+     "homeDog": {
+      "n": 16837,
+      "trainN": 10102,
+      "testN": 6735,
+      "testFrom": "2025-02-22",
+      "train": {
+       "b": -0.021,
+       "se": 0.047,
+       "z": -0.4,
+       "lean": -0.008
+      },
+      "test": {
+       "b": 0.068,
+       "se": 0.057,
+       "z": 1.2
+      },
+      "testLogLoss": {
+       "close": 0.693,
+       "fitted": 0.693,
+       "signalOnly": 0.693,
+       "gainBp": -1
+      },
+      "xSd": 0.425,
+      "passes": false
+     },
+     "bigLine": {
+      "n": 16837,
+      "trainN": 10102,
+      "testN": 6735,
+      "testFrom": "2025-02-22",
+      "train": {
+       "b": -0.012,
+       "se": 0.024,
+       "z": -0.5,
+       "lean": -0.007
+      },
+      "test": {
+       "b": -0.047,
+       "se": 0.029,
+       "z": -1.6
+      },
+      "testLogLoss": {
+       "close": 0.693,
+       "fitted": 0.693,
+       "signalOnly": 0.693,
+       "gainBp": 1
+      },
+      "xSd": 0.827,
+      "passes": false
+     }
+    },
+    "total": {
+     "ewmaPace": {
+      "n": 13323,
+      "trainN": 7993,
+      "testN": 5330,
+      "testFrom": "2025-02-28",
+      "train": {
+       "b": -0.034,
+       "se": 0.062,
+       "z": -0.6,
+       "lean": 0.022
+      },
+      "test": {
+       "b": 0.019,
+       "se": 0.066,
+       "z": 0.3
+      },
+      "testLogLoss": {
+       "close": 0.693,
+       "fitted": 0.693,
+       "signalOnly": 0.693,
+       "gainBp": 0
+      },
+      "xSd": 0.386,
+      "passes": false
+     },
+     "lineMove": {
+      "n": 16693,
+      "trainN": 10015,
+      "testN": 6678,
+      "testFrom": "2025-02-23",
+      "train": {
+       "b": -0.014,
+       "se": 0.148,
+       "z": -0.1,
+       "lean": 0.022
+      },
+      "test": {
+       "b": 0.33,
+       "se": 0.151,
+       "z": 2.2
+      },
+      "testLogLoss": {
+       "close": 0.693,
+       "fitted": 0.693,
+       "signalOnly": 0.693,
+       "gainBp": 0
+      },
+      "xSd": 0.147,
+      "passes": false
+     },
+     "fatigue": {
+      "n": 16870,
+      "trainN": 10122,
+      "testN": 6748,
+      "testFrom": "2025-02-22",
+      "train": {
+       "b": 0.019,
+       "se": 0.031,
+       "z": 0.6,
+       "lean": 0.019
+      },
+      "test": {
+       "b": -0.046,
+       "se": 0.039,
+       "z": -1.2
+      },
+      "testLogLoss": {
+       "close": 0.693,
+       "fitted": 0.693,
+       "signalOnly": 0.693,
+       "gainBp": -2
+      },
+      "xSd": 0.631,
+      "passes": false
+     },
+     "lineLevel": {
+      "n": 16870,
+      "trainN": 10122,
+      "testN": 6748,
+      "testFrom": "2025-02-22",
+      "train": {
+       "b": -0.023,
+       "se": 0.037,
+       "z": -0.6,
+       "lean": 0.022
+      },
+      "test": {
+       "b": 0.015,
+       "se": 0.041,
+       "z": 0.4
+      },
+      "testLogLoss": {
+       "close": 0.693,
+       "fitted": 0.693,
+       "signalOnly": 0.693,
+       "gainBp": 0
+      },
+      "xSd": 0.565,
+      "passes": false
+     }
+    }
+   },
+   "moves": {
+    "ml": {
+     "elo": {
+      "n": 15434,
+      "testFrom": "2025-03-01",
+      "train": {
+       "b": 0.017,
+       "se": 0.003,
+       "z": 6.2
+      },
+      "test": {
+       "b": 0.029,
+       "se": 0.004,
+       "z": 6.7
+      },
+      "passes": true,
+      "betAtOpen": {
+       "n": 231,
+       "threshold": 0.476,
+       "avgClv": -0.02,
+       "clvSe": 0.003,
+       "pctPositive": 0.255,
+       "result": {
+        "n": 231,
+        "winPct": 0.333,
+        "breakEven": 0.344,
+        "roi": -0.213,
+        "roiLo": -0.381,
+        "roiHi": -0.046
+       },
+       "byGroup": {
+        "2023 BetfairSportsbook": {
+         "n": 183,
+         "avgClv": -0.029,
+         "clvSe": 0.003
+        },
+        "2023 Caesars Sportsbook (Colorado)": {
+         "n": 91,
+         "avgClv": -0.026,
+         "clvSe": 0.003
+        },
+        "2023 DraftKings": {
+         "n": 1,
+         "avgClv": -0.053,
+         "clvSe": 0
+        },
+        "2023 ESPN BET": {
+         "n": 4,
+         "avgClv": -0.029,
+         "clvSe": 0.015
+        },
+        "2024 ESPN BET": {
+         "n": 229,
+         "avgClv": -0.024,
+         "clvSe": 0.003
+        },
+        "2025 DraftKings": {
+         "n": 167,
+         "avgClv": -0.021,
+         "clvSe": 0.003
+        },
+        "2025 ESPN BET": {
+         "n": 53,
+         "avgClv": -0.018,
+         "clvSe": 0.009
+        }
+       }
+      }
+     },
+     "ewmaRating": {
+      "n": 12388,
+      "testFrom": "2025-03-06",
+      "train": {
+       "b": 0.029,
+       "se": 0.004,
+       "z": 7.5
+      },
+      "test": {
+       "b": 0.044,
+       "se": 0.005,
+       "z": 9.3
+      },
+      "passes": true,
+      "betAtOpen": {
+       "n": 562,
+       "threshold": 0.385,
+       "avgClv": -0.008,
+       "clvSe": 0.002,
+       "pctPositive": 0.391,
+       "result": {
+        "n": 562,
+        "winPct": 0.66,
+        "breakEven": 0.679,
+        "roi": -0.042,
+        "roiLo": -0.108,
+        "roiHi": 0.025
+       },
+       "byGroup": {
+        "2023 BetfairSportsbook": {
+         "n": 244,
+         "avgClv": -0.01,
+         "clvSe": 0.003
+        },
+        "2023 Caesars Sportsbook (Colorado)": {
+         "n": 129,
+         "avgClv": -0.019,
+         "clvSe": 0.003
+        },
+        "2023 DraftKings": {
+         "n": 1,
+         "avgClv": -0.119,
+         "clvSe": 0
+        },
+        "2023 ESPN BET": {
+         "n": 4,
+         "avgClv": 0.011,
+         "clvSe": 0.006
+        },
+        "2023 SugarHouse": {
+         "n": 1,
+         "avgClv": -0.003,
+         "clvSe": 0
+        },
+        "2024 ESPN BET": {
+         "n": 463,
+         "avgClv": -0.006,
+         "clvSe": 0.002
+        },
+        "2025 DraftKings": {
+         "n": 520,
+         "avgClv": -0.01,
+         "clvSe": 0.002
+        },
+        "2025 ESPN BET": {
+         "n": 1,
+         "avgClv": 0.032,
+         "clvSe": 0
+        }
+       }
+      }
+     },
+     "restDiff": {
+      "n": 15434,
+      "testFrom": "2025-03-01",
+      "train": {
+       "b": 0.005,
+       "se": 0.002,
+       "z": 3.2
+      },
+      "test": {
+       "b": 0.01,
+       "se": 0.002,
+       "z": 5.4
+      },
+      "passes": true,
+      "betAtOpen": {
+       "n": 1258,
+       "threshold": 1,
+       "avgClv": -0.009,
+       "clvSe": 0.001,
+       "pctPositive": 0.374,
+       "result": {
+        "n": 1258,
+        "winPct": 0.658,
+        "breakEven": 0.669,
+        "roi": -0.031,
+        "roiLo": -0.082,
+        "roiHi": 0.019
+       },
+       "byGroup": {
+        "2023 BetfairSportsbook": {
+         "n": 632,
+         "avgClv": -0.012,
+         "clvSe": 0.002
+        },
+        "2023 Caesars Sportsbook (Colorado)": {
+         "n": 233,
+         "avgClv": -0.016,
+         "clvSe": 0.002
+        },
+        "2023 ESPN BET": {
+         "n": 6,
+         "avgClv": -0.003,
+         "clvSe": 0.015
+        },
+        "2024 ESPN BET": {
+         "n": 1072,
+         "avgClv": -0.009,
+         "clvSe": 0.001
+        },
+        "2025 DraftKings": {
+         "n": 830,
+         "avgClv": -0.013,
+         "clvSe": 0.002
+        },
+        "2025 ESPN BET": {
+         "n": 217,
+         "avgClv": -0.003,
+         "clvSe": 0.003
+        }
+       }
+      }
+     }
+    },
+    "spread": {
+     "elo": {
+      "n": 16582,
+      "testFrom": "2025-02-23",
+      "train": {
+       "b": -0.019,
+       "se": 0.003,
+       "z": -7.1
+      },
+      "test": {
+       "b": -0.01,
+       "se": 0.004,
+       "z": -2.5
+      },
+      "passes": true,
+      "betAtOpen": {
+       "n": 945,
+       "threshold": 0.444,
+       "avgClv": -0.038,
+       "clvSe": 0.002,
+       "pctPositive": 0.283,
+       "result": {
+        "n": 945,
+        "winPct": 0.493,
+        "breakEven": 0.525,
+        "roi": -0.062,
+        "roiLo": -0.122,
+        "roiHi": -0.001
+       },
+       "byGroup": {
+        "2023 BetfairSportsbook": {
+         "n": 571,
+         "avgClv": -0.05,
+         "clvSe": 0.003
+        },
+        "2023 Caesars Sportsbook (Colorado)": {
+         "n": 402,
+         "avgClv": -0.043,
+         "clvSe": 0.003
+        },
+        "2023 ESPN BET": {
+         "n": 9,
+         "avgClv": -0.02,
+         "clvSe": 0.011
+        },
+        "2024 ESPN BET": {
+         "n": 910,
+         "avgClv": -0.042,
+         "clvSe": 0.002
+        },
+        "2025 DraftKings": {
+         "n": 480,
+         "avgClv": -0.03,
+         "clvSe": 0.003
+        },
+        "2025 ESPN BET": {
+         "n": 423,
+         "avgClv": -0.051,
+         "clvSe": 0.003
+        }
+       }
+      }
+     },
+     "ewmaRating": {
+      "n": 13170,
+      "testFrom": "2025-03-01",
+      "train": {
+       "b": 0.019,
+       "se": 0.004,
+       "z": 5.1
+      },
+      "test": {
+       "b": 0.019,
+       "se": 0.005,
+       "z": 4
+      },
+      "passes": true,
+      "betAtOpen": {
+       "n": 610,
+       "threshold": 0.389,
+       "avgClv": -0.016,
+       "clvSe": 0.002,
+       "pctPositive": 0.331,
+       "result": {
+        "n": 610,
+        "winPct": 0.505,
+        "breakEven": 0.525,
+        "roi": -0.038,
+        "roiLo": -0.114,
+        "roiHi": 0.037
+       },
+       "byGroup": {
+        "2023 BetfairSportsbook": {
+         "n": 360,
+         "avgClv": -0.04,
+         "clvSe": 0.003
+        },
+        "2023 Caesars Sportsbook (Colorado)": {
+         "n": 115,
+         "avgClv": -0.024,
+         "clvSe": 0.006
+        },
+        "2023 ESPN BET": {
+         "n": 2,
+         "avgClv": 0.004,
+         "clvSe": 0
+        },
+        "2024 ESPN BET": {
+         "n": 518,
+         "avgClv": -0.016,
+         "clvSe": 0.002
+        },
+        "2025 DraftKings": {
+         "n": 551,
+         "avgClv": -0.017,
+         "clvSe": 0.002
+        },
+        "2025 ESPN BET": {
+         "n": 2,
+         "avgClv": 0.027,
+         "clvSe": 0.013
+        }
+       }
+      }
+     },
+     "restDiff": {
+      "n": 16582,
+      "testFrom": "2025-02-23",
+      "train": {
+       "b": 0.005,
+       "se": 0.001,
+       "z": 3.8
+      },
+      "test": {
+       "b": 0.008,
+       "se": 0.002,
+       "z": 4.6
+      },
+      "passes": true,
+      "betAtOpen": {
+       "n": 1327,
+       "threshold": 1,
+       "avgClv": -0.013,
+       "clvSe": 0.002,
+       "pctPositive": 0.381,
+       "result": {
+        "n": 1327,
+        "winPct": 0.504,
+        "breakEven": 0.523,
+        "roi": -0.035,
+        "roiLo": -0.087,
+        "roiHi": 0.016
+       },
+       "byGroup": {
+        "2023 BetfairSportsbook": {
+         "n": 748,
+         "avgClv": -0.033,
+         "clvSe": 0.002
+        },
+        "2023 Caesars Sportsbook (Colorado)": {
+         "n": 244,
+         "avgClv": -0.005,
+         "clvSe": 0.003
+        },
+        "2023 ESPN BET": {
+         "n": 6,
+         "avgClv": -0.009,
+         "clvSe": 0.015
+        },
+        "2024 ESPN BET": {
+         "n": 1096,
+         "avgClv": -0.012,
+         "clvSe": 0.002
+        },
+        "2025 DraftKings": {
+         "n": 851,
+         "avgClv": -0.017,
+         "clvSe": 0.002
+        },
+        "2025 ESPN BET": {
+         "n": 226,
+         "avgClv": -0.003,
+         "clvSe": 0.004
+        }
+       }
+      }
+     },
+     "backToBack": {
+      "n": 16582,
+      "testFrom": "2025-02-23",
+      "train": {
+       "b": 0.021,
+       "se": 0.005,
+       "z": 4
+      },
+      "test": {
+       "b": 0.027,
+       "se": 0.006,
+       "z": 4.3
+      },
+      "passes": true,
+      "betAtOpen": {
+       "n": 404,
+       "threshold": 0,
+       "avgClv": -0.007,
+       "clvSe": 0.003,
+       "pctPositive": 0.455,
+       "result": {
+        "n": 404,
+        "winPct": 0.557,
+        "breakEven": 0.523,
+        "roi": 0.067,
+        "roiLo": -0.026,
+        "roiHi": 0.16
+       },
+       "byGroup": {
+        "2023 BetfairSportsbook": {
+         "n": 202,
+         "avgClv": -0.028,
+         "clvSe": 0.003
+        },
+        "2023 Caesars Sportsbook (Colorado)": {
+         "n": 37,
+         "avgClv": 0.01,
+         "clvSe": 0.008
+        },
+        "2023 ESPN BET": {
+         "n": 1,
+         "avgClv": 0.004,
+         "clvSe": 0
+        },
+        "2024 ESPN BET": {
+         "n": 268,
+         "avgClv": -0.001,
+         "clvSe": 0.003
+        },
+        "2025 DraftKings": {
+         "n": 230,
+         "avgClv": -0.013,
+         "clvSe": 0.004
+        },
+        "2025 ESPN BET": {
+         "n": 44,
+         "avgClv": -0.004,
+         "clvSe": 0.011
+        }
+       }
+      }
+     }
+    },
+    "total": {
+     "ewmaPace": {
+      "n": 13228,
+      "testFrom": "2025-03-01",
+      "train": {
+       "b": 0.009,
+       "se": 0.004,
+       "z": 2.3
+      },
+      "test": {
+       "b": 0.021,
+       "se": 0.005,
+       "z": 3.9
+      },
+      "passes": true,
+      "betAtOpen": {
+       "n": 1400,
+       "threshold": 0.402,
+       "avgClv": -0.015,
+       "clvSe": 0.002,
+       "pctPositive": 0.379,
+       "result": {
+        "n": 1400,
+        "winPct": 0.508,
+        "breakEven": 0.525,
+        "roi": -0.032,
+        "roiLo": -0.082,
+        "roiHi": 0.018
+       },
+       "byGroup": {
+        "2023 BetfairSportsbook": {
+         "n": 617,
+         "avgClv": -0.039,
+         "clvSe": 0.002
+        },
+        "2023 Caesars Sportsbook (Colorado)": {
+         "n": 114,
+         "avgClv": -0.026,
+         "clvSe": 0.006
+        },
+        "2023 SugarHouse": {
+         "n": 1,
+         "avgClv": -0.071,
+         "clvSe": 0
+        },
+        "2024 ESPN BET": {
+         "n": 878,
+         "avgClv": -0.012,
+         "clvSe": 0.002
+        },
+        "2025 DraftKings": {
+         "n": 1217,
+         "avgClv": -0.017,
+         "clvSe": 0.002
+        },
+        "2025 ESPN BET": {
+         "n": 1,
+         "avgClv": -0.046,
+         "clvSe": 0
+        }
+       }
+      }
+     },
+     "fatigue": {
+      "n": 16693,
+      "testFrom": "2025-02-23",
+      "train": {
+       "b": -0.012,
+       "se": 0.002,
+       "z": -5.6
+      },
+      "test": {
+       "b": -0.012,
+       "se": 0.003,
+       "z": -3.8
+      },
+      "passes": true,
+      "betAtOpen": {
+       "n": 0,
+       "threshold": 0,
+       "avgClv": 0,
+       "clvSe": 0,
+       "pctPositive": 0,
+       "result": {
+        "n": 0
+       },
+       "byGroup": {}
+      }
+     }
+    }
+   },
+   "shiftCheck": {
+    "spreadOnePoint": {
+     "normal": 0.036,
+     "empirical": 0.038
+    },
+    "totalOneUnit": {
+     "normal": 0.024,
+     "empirical": 0.025
+    }
+   }
+  },
+  "wnba": {
+   "sport": "wnba",
+   "rawGames": 940,
+   "usable": 906,
+   "dropped": {
+    "preseason": 32,
+    "noPrice": 2
+   },
+   "seasons": {
+    "2024": 262,
+    "2025": 312,
+    "2026": 332
+   },
+   "from": "2024-05-14",
+   "to": "2026-09-25",
+   "providers": {
+    "Bet365": 6,
+    "BetfairSportsbook": 1,
+    "ESPN BET": 566,
+    "DraftKings": 333
+   },
+   "rows": {
+    "ml": 906,
+    "spread": 905,
+    "total": 894,
+    "withRealOpen": 900
+   },
+   "sigma": {
+    "margin": 12.4,
+    "total": 17,
+    "marginBias": 0.1,
+    "totalBias": 0.5,
+    "nMargin": 905,
+    "nTotal": 894,
+    "homeCoverRate": 0.491,
+    "overRate": 0.502,
+    "marginSdRaw": 14.2
+   },
+   "sigmaBySpread": [
+    {
+     "lo": 0,
+     "hi": 3.5,
+     "n": 167,
+     "sigma": 11.5
+    },
+    {
+     "lo": 3.5,
+     "hi": 6.5,
+     "n": 270,
+     "sigma": 12.9
+    },
+    {
+     "lo": 6.5,
+     "hi": 9.5,
+     "n": 204,
+     "sigma": 12.7
+    },
+    {
+     "lo": 9.5,
+     "hi": null,
+     "n": 264,
+     "sigma": 12.1
+    }
+   ],
+   "sigmaByTotal": [
+    {
+     "lo": 0,
+     "hi": 160.5,
+     "n": 196,
+     "sigma": 17.1,
+     "overRate": 0.48
+    },
+    {
+     "lo": 160.5,
+     "hi": 165.5,
+     "n": 214,
+     "sigma": 14.7,
+     "overRate": 0.509
+    },
+    {
+     "lo": 165.5,
+     "hi": 172.5,
+     "n": 251,
+     "sigma": 18.5,
+     "overRate": 0.494
+    },
+    {
+     "lo": 172.5,
+     "hi": null,
+     "n": 233,
+     "sigma": 17.3,
+     "overRate": 0.524
+    }
+   ],
+   "devig": {
+    "n": 906,
+    "power": 0.586,
+    "multiplicative": 0.584,
+    "additive": 0.585,
+    "best": "multiplicative"
+   },
+   "sharpness": {
+    "n": 868,
+    "openLogLoss": 0.595,
+    "closeLogLoss": 0.589,
+    "avgAbsMoveProb": 0.055
+   },
+   "calibration": [
+    {
+     "lo": 0,
+     "hi": 0.2,
+     "n": 263,
+     "fair": 0.126,
+     "actual": 0.16,
+     "roi": -0.005
+    },
+    {
+     "lo": 0.2,
+     "hi": 0.35,
+     "n": 320,
+     "fair": 0.279,
+     "actual": 0.303,
+     "roi": -0.012
+    },
+    {
+     "lo": 0.35,
+     "hi": 0.5,
+     "n": 323,
+     "fair": 0.419,
+     "actual": 0.406,
+     "roi": -0.07
+    },
+    {
+     "lo": 0.5,
+     "hi": 0.65,
+     "n": 323,
+     "fair": 0.581,
+     "actual": 0.594,
+     "roi": -0.002
+    },
+    {
+     "lo": 0.65,
+     "hi": 0.8,
+     "n": 320,
+     "fair": 0.721,
+     "actual": 0.697,
+     "roi": -0.057
+    },
+    {
+     "lo": 0.8,
+     "hi": 1,
+     "n": 263,
+     "fair": 0.874,
+     "actual": 0.84,
+     "roi": -0.052
+    }
+   ],
+   "standalone": {
+    "eloMlLogLoss": 0.608,
+    "closeMlLogLoss": 0.586,
+    "eloMarginMae": 10,
+    "closeMarginMae": 9.6,
+    "ewmaTotalMae": 13.9,
+    "closeTotalMae": 13.4
+   },
+   "tests": {
+    "ml": {
+     "elo": {
+      "n": 906,
+      "trainN": 543,
+      "testN": 363,
+      "testFrom": "2025-09-10",
+      "train": {
+       "b": 0.592,
+       "se": 0.234,
+       "z": 2.5,
+       "lean": -0.077
+      },
+      "test": {
+       "b": 0.103,
+       "se": 0.353,
+       "z": 0.3
+      },
+      "testLogLoss": {
+       "close": 0.581,
+       "fitted": 0.583,
+       "signalOnly": 0.584,
+       "gainBp": -25
+      },
+      "xSd": 0.397,
+      "passes": false
+     },
+     "ewmaRating": {
+      "n": 773,
+      "trainN": 463,
+      "testN": 310,
+      "testFrom": "2025-09-12",
+      "train": {
+       "b": 0.361,
+       "se": 0.271,
+       "z": 1.3,
+       "lean": -0.018
+      },
+      "test": {
+       "b": 0.013,
+       "se": 0.463,
+       "z": 0
+      },
+      "testLogLoss": {
+       "close": 0.559,
+       "fitted": 0.56,
+       "signalOnly": 0.559,
+       "gainBp": -8
+      },
+      "xSd": 0.354,
+      "passes": false
+     },
+     "restDiff": {
+      "n": 906,
+      "trainN": 543,
+      "testN": 363,
+      "testFrom": "2025-09-10",
+      "train": {
+       "b": -0.024,
+       "se": 0.083,
+       "z": -0.3,
+       "lean": -0.037
+      },
+      "test": {
+       "b": 0.085,
+       "se": 0.095,
+       "z": 0.9
+      },
+      "testLogLoss": {
+       "close": 0.581,
+       "fitted": 0.582,
+       "signalOnly": 0.582,
+       "gainBp": -6
+      },
+      "xSd": 1.212,
+      "passes": false
+     },
+     "lineMove": {
+      "n": 896,
+      "trainN": 537,
+      "testN": 359,
+      "testFrom": "2025-09-12",
+      "train": {
+       "b": -0.553,
+       "se": 0.413,
+       "z": -1.3,
+       "lean": -0.058
+      },
+      "test": {
+       "b": -0.375,
+       "se": 0.634,
+       "z": -0.6
+      },
+      "testLogLoss": {
+       "close": 0.582,
+       "fitted": 0.582,
+       "signalOnly": 0.582,
+       "gainBp": 4
+      },
+      "xSd": 0.228,
+      "passes": false
+     }
+    },
+    "spread": {
+     "elo": {
+      "n": 905,
+      "trainN": 543,
+      "testN": 362,
+      "testFrom": "2025-09-10",
+      "train": {
+       "b": 0.329,
+       "se": 0.226,
+       "z": 1.5,
+       "lean": -0.155
+      },
+      "test": {
+       "b": 0.259,
+       "se": 0.349,
+       "z": 0.7
+      },
+      "testLogLoss": {
+       "close": 0.694,
+       "fitted": 0.7,
+       "signalOnly": 0.693,
+       "gainBp": 10
+      },
+      "xSd": 0.354,
+      "passes": false
+     },
+     "ewmaRating": {
+      "n": 772,
+      "trainN": 463,
+      "testN": 309,
+      "testFrom": "2025-09-12",
+      "train": {
+       "b": -0.017,
+       "se": 0.245,
+       "z": -0.1,
+       "lean": -0.089
+      },
+      "test": {
+       "b": 0.212,
+       "se": 0.408,
+       "z": 0.5
+      },
+      "testLogLoss": {
+       "close": 0.692,
+       "fitted": 0.699,
+       "signalOnly": 0.693,
+       "gainBp": -1
+      },
+      "xSd": 0.345,
+      "passes": false
+     },
+     "restDiff": {
+      "n": 905,
+      "trainN": 543,
+      "testN": 362,
+      "testFrom": "2025-09-10",
+      "train": {
+       "b": -0.02,
+       "se": 0.072,
+       "z": -0.3,
+       "lean": -0.14
+      },
+      "test": {
+       "b": 0.123,
+       "se": 0.087,
+       "z": 1.4
+      },
+      "testLogLoss": {
+       "close": 0.694,
+       "fitted": 0.701,
+       "signalOnly": 0.695,
+       "gainBp": -11
+      },
+      "xSd": 1.212,
+      "passes": false
+     },
+     "backToBack": {
+      "n": 905,
+      "trainN": 543,
+      "testN": 362,
+      "testFrom": "2025-09-10",
+      "train": {
+       "b": -0.08,
+       "se": 0.167,
+       "z": -0.5,
+       "lean": -0.138
+      },
+      "test": {
+       "b": 0.551,
+       "se": 0.216,
+       "z": 2.6
+      },
+      "testLogLoss": {
+       "close": 0.694,
+       "fitted": 0.703,
+       "signalOnly": 0.697,
+       "gainBp": -31
+      },
+      "xSd": 0.514,
+      "passes": false
+     },
+     "lineMove": {
+      "n": 891,
+      "trainN": 534,
+      "testN": 357,
+      "testFrom": "2025-09-12",
+      "train": {
+       "b": 0.163,
+       "se": 0.484,
+       "z": 0.3,
+       "lean": -0.133
+      },
+      "test": {
+       "b": -0.194,
+       "se": 0.592,
+       "z": -0.3
+      },
+      "testLogLoss": {
+       "close": 0.693,
+       "fitted": 0.7,
+       "signalOnly": 0.694,
+       "gainBp": -3
+      },
+      "xSd": 0.18,
+      "passes": false
+     },
+     "homeDog": {
+      "n": 905,
+      "trainN": 543,
+      "testN": 362,
+      "testFrom": "2025-09-10",
+      "train": {
+       "b": 0.041,
+       "se": 0.176,
+       "z": 0.2,
+       "lean": -0.16
+      },
+      "test": {
+       "b": 0.172,
+       "se": 0.214,
+       "z": 0.8
+      },
+      "testLogLoss": {
+       "close": 0.694,
+       "fitted": 0.7,
+       "signalOnly": 0.693,
+       "gainBp": 9
+      },
+      "xSd": 0.492,
+      "passes": false
+     },
+     "bigLine": {
+      "n": 905,
+      "trainN": 543,
+      "testN": 362,
+      "testFrom": "2025-09-10",
+      "train": {
+       "b": -0.144,
+       "se": 0.132,
+       "z": -1.1,
+       "lean": -0.121
+      },
+      "test": {
+       "b": -0.189,
+       "se": 0.171,
+       "z": -1.1
+      },
+      "testLogLoss": {
+       "close": 0.694,
+       "fitted": 0.699,
+       "signalOnly": 0.693,
+       "gainBp": 10
+      },
+      "xSd": 0.641,
+      "passes": false
+     }
+    },
+    "total": {
+     "ewmaPace": {
+      "n": 771,
+      "trainN": 462,
+      "testN": 309,
+      "testFrom": "2025-09-12",
+      "train": {
+       "b": -0.216,
+       "se": 0.436,
+       "z": -0.5,
+       "lean": -0.069
+      },
+      "test": {
+       "b": 0.084,
+       "se": 0.372,
+       "z": 0.2
+      },
+      "testLogLoss": {
+       "close": 0.692,
+       "fitted": 0.696,
+       "signalOnly": 0.693,
+       "gainBp": -13
+      },
+      "xSd": 0.262,
+      "passes": false
+     },
+     "lineMove": {
+      "n": 894,
+      "trainN": 536,
+      "testN": 358,
+      "testFrom": "2025-09-12",
+      "train": {
+       "b": 0.35,
+       "se": 0.385,
+       "z": 0.9,
+       "lean": -0.049
+      },
+      "test": {
+       "b": 0.622,
+       "se": 0.62,
+       "z": 1
+      },
+      "testLogLoss": {
+       "close": 0.692,
+       "fitted": 0.692,
+       "signalOnly": 0.691,
+       "gainBp": 13
+      },
+      "xSd": 0.206,
+      "passes": false
+     },
+     "fatigue": {
+      "n": 894,
+      "trainN": 536,
+      "testN": 358,
+      "testFrom": "2025-09-12",
+      "train": {
+       "b": 0.061,
+       "se": 0.116,
+       "z": 0.5,
+       "lean": -0.078
+      },
+      "test": {
+       "b": 0.078,
+       "se": 0.151,
+       "z": 0.5
+      },
+      "testLogLoss": {
+       "close": 0.692,
+       "fitted": 0.693,
+       "signalOnly": 0.691,
+       "gainBp": 9
+      },
+      "xSd": 0.732,
+      "passes": false
+     },
+     "lineLevel": {
+      "n": 894,
+      "trainN": 536,
+      "testN": 358,
+      "testFrom": "2025-09-12",
+      "train": {
+       "b": 0.178,
+       "se": 0.227,
+       "z": 0.8,
+       "lean": -0.008
+      },
+      "test": {
+       "b": -0.087,
+       "se": 0.21,
+       "z": -0.4
+      },
+      "testLogLoss": {
+       "close": 0.692,
+       "fitted": 0.693,
+       "signalOnly": 0.693,
+       "gainBp": -11
+      },
+      "xSd": 0.494,
+      "passes": false
+     }
+    }
+   },
+   "moves": {
+    "ml": {
+     "elo": {
+      "n": 896,
+      "testFrom": "2025-09-12",
+      "train": {
+       "b": 0.158,
+       "se": 0.025,
+       "z": 6.4
+      },
+      "test": {
+       "b": 0.139,
+       "se": 0.032,
+       "z": 4.3
+      },
+      "passes": true,
+      "betAtOpen": {
+       "n": 35,
+       "threshold": 0.417,
+       "avgClv": -0.008,
+       "clvSe": 0.012,
+       "pctPositive": 0.371,
+       "result": {
+        "n": 35,
+        "winPct": 0.4,
+        "breakEven": 0.503,
+        "roi": -0.098,
+        "roiLo": -0.577,
+        "roiHi": 0.38
+       },
+       "byGroup": {
+        "2024 BetfairSportsbook": {
+         "n": 1,
+         "avgClv": -0.052,
+         "clvSe": 0
+        },
+        "2024 ESPN BET": {
+         "n": 28,
+         "avgClv": -0.011,
+         "clvSe": 0.02
+        },
+        "2025 ESPN BET": {
+         "n": 47,
+         "avgClv": -0.008,
+         "clvSe": 0.013
+        },
+        "2026 DraftKings": {
+         "n": 33,
+         "avgClv": -0.005,
+         "clvSe": 0.012
+        }
+       }
+      }
+     },
+     "ewmaRating": {
+      "n": 769,
+      "testFrom": "2025-09-12",
+      "train": {
+       "b": 0.175,
+       "se": 0.03,
+       "z": 5.8
+      },
+      "test": {
+       "b": 0.26,
+       "se": 0.036,
+       "z": 7.2
+      },
+      "passes": true,
+      "betAtOpen": {
+       "n": 23,
+       "threshold": 0.422,
+       "avgClv": 0.017,
+       "clvSe": 0.015,
+       "pctPositive": 0.739,
+       "result": {
+        "n": 23,
+        "winPct": 0.609,
+        "breakEven": 0.549,
+        "roi": 0.002,
+        "roiLo": -0.361,
+        "roiHi": 0.364
+       },
+       "byGroup": {
+        "2024 ESPN BET": {
+         "n": 22,
+         "avgClv": -0.012,
+         "clvSe": 0.024
+        },
+        "2025 ESPN BET": {
+         "n": 32,
+         "avgClv": 0.016,
+         "clvSe": 0.017
+        },
+        "2026 DraftKings": {
+         "n": 23,
+         "avgClv": 0.017,
+         "clvSe": 0.015
+        }
+       }
+      }
+     },
+     "restDiff": {
+      "n": 896,
+      "testFrom": "2025-09-12",
+      "train": {
+       "b": 0.019,
+       "se": 0.009,
+       "z": 2.2
+      },
+      "test": {
+       "b": 0.018,
+       "se": 0.008,
+       "z": 2.2
+      },
+      "passes": true,
+      "betAtOpen": {
+       "n": 121,
+       "threshold": 1,
+       "avgClv": -0.011,
+       "clvSe": 0.006,
+       "pctPositive": 0.355,
+       "result": {
+        "n": 121,
+        "winPct": 0.587,
+        "breakEven": 0.566,
+        "roi": 0.048,
+        "roiLo": -0.155,
+        "roiHi": 0.251
+       },
+       "byGroup": {
+        "2024 ESPN BET": {
+         "n": 74,
+         "avgClv": -0.02,
+         "clvSe": 0.009
+        },
+        "2025 ESPN BET": {
+         "n": 100,
+         "avgClv": -0.01,
+         "clvSe": 0.007
+        },
+        "2026 DraftKings": {
+         "n": 118,
+         "avgClv": -0.011,
+         "clvSe": 0.006
+        }
+       }
+      }
+     }
+    },
+    "spread": {
+     "elo": {
+      "n": 891,
+      "testFrom": "2025-09-12",
+      "train": {
+       "b": 0.089,
+       "se": 0.021,
+       "z": 4.2
+      },
+      "test": {
+       "b": 0.125,
+       "se": 0.034,
+       "z": 3.7
+      },
+      "passes": true,
+      "betAtOpen": {
+       "n": 28,
+       "threshold": 0.398,
+       "avgClv": -0.005,
+       "clvSe": 0.014,
+       "pctPositive": 0.429,
+       "result": {
+        "n": 28,
+        "winPct": 0.429,
+        "breakEven": 0.525,
+        "roi": -0.19,
+        "roiLo": -0.543,
+        "roiHi": 0.162
+       },
+       "byGroup": {
+        "2024 BetfairSportsbook": {
+         "n": 1,
+         "avgClv": -0.147,
+         "clvSe": 0
+        },
+        "2024 ESPN BET": {
+         "n": 37,
+         "avgClv": -0.031,
+         "clvSe": 0.011
+        },
+        "2025 ESPN BET": {
+         "n": 37,
+         "avgClv": -0.019,
+         "clvSe": 0.013
+        },
+        "2026 DraftKings": {
+         "n": 28,
+         "avgClv": -0.005,
+         "clvSe": 0.014
+        }
+       }
+      }
+     },
+     "ewmaRating": {
+      "n": 764,
+      "testFrom": "2025-09-12",
+      "train": {
+       "b": 0.114,
+       "se": 0.021,
+       "z": 5.4
+      },
+      "test": {
+       "b": 0.247,
+       "se": 0.033,
+       "z": 7.6
+      },
+      "passes": true,
+      "betAtOpen": {
+       "n": 25,
+       "threshold": 0.441,
+       "avgClv": 0.045,
+       "clvSe": 0.018,
+       "pctPositive": 0.68,
+       "result": {
+        "n": 25,
+        "winPct": 0.72,
+        "breakEven": 0.525,
+        "roi": 0.37,
+        "roiLo": 0.028,
+        "roiHi": 0.712
+       },
+       "byGroup": {
+        "2024 ESPN BET": {
+         "n": 27,
+         "avgClv": -0.047,
+         "clvSe": 0.01
+        },
+        "2025 ESPN BET": {
+         "n": 38,
+         "avgClv": 0.028,
+         "clvSe": 0.016
+        },
+        "2026 DraftKings": {
+         "n": 24,
+         "avgClv": 0.047,
+         "clvSe": 0.018
+        }
+       }
+      }
+     },
+     "restDiff": {
+      "n": 891,
+      "testFrom": "2025-09-12",
+      "train": {
+       "b": 0.014,
+       "se": 0.006,
+       "z": 2.2
+      },
+      "test": {
+       "b": 0.014,
+       "se": 0.008,
+       "z": 1.8
+      },
+      "passes": true,
+      "betAtOpen": {
+       "n": 119,
+       "threshold": 1,
+       "avgClv": -0.01,
+       "clvSe": 0.006,
+       "pctPositive": 0.353,
+       "result": {
+        "n": 119,
+        "winPct": 0.588,
+        "breakEven": 0.524,
+        "roi": 0.12,
+        "roiLo": -0.049,
+        "roiHi": 0.289
+       },
+       "byGroup": {
+        "2024 ESPN BET": {
+         "n": 73,
+         "avgClv": -0.012,
+         "clvSe": 0.008
+        },
+        "2025 ESPN BET": {
+         "n": 100,
+         "avgClv": -0.005,
+         "clvSe": 0.008
+        },
+        "2026 DraftKings": {
+         "n": 117,
+         "avgClv": -0.01,
+         "clvSe": 0.007
+        }
+       }
+      }
+     },
+     "backToBack": {
+      "n": 891,
+      "testFrom": "2025-09-12",
+      "train": {
+       "b": 0.037,
+       "se": 0.015,
+       "z": 2.5
+      },
+      "test": {
+       "b": 0.025,
+       "se": 0.019,
+       "z": 1.3
+      },
+      "passes": true,
+      "betAtOpen": {
+       "n": 53,
+       "threshold": 1,
+       "avgClv": -0.005,
+       "clvSe": 0.011,
+       "pctPositive": 0.434,
+       "result": {
+        "n": 53,
+        "winPct": 0.642,
+        "breakEven": 0.524,
+        "roi": 0.226,
+        "roiLo": -0.023,
+        "roiHi": 0.475
+       },
+       "byGroup": {
+        "2024 ESPN BET": {
+         "n": 45,
+         "avgClv": -0.002,
+         "clvSe": 0.01
+        },
+        "2025 ESPN BET": {
+         "n": 52,
+         "avgClv": -0.01,
+         "clvSe": 0.012
+        },
+        "2026 DraftKings": {
+         "n": 51,
+         "avgClv": -0.004,
+         "clvSe": 0.011
+        }
+       }
+      }
+     }
+    },
+    "total": {
+     "ewmaPace": {
+      "n": 771,
+      "testFrom": "2025-09-12",
+      "train": {
+       "b": 0.487,
+       "se": 0.026,
+       "z": 18.7
+      },
+      "test": {
+       "b": 0.131,
+       "se": 0.032,
+       "z": 4.1
+      },
+      "passes": true,
+      "betAtOpen": {
+       "n": 64,
+       "threshold": 0.3,
+       "avgClv": 0.006,
+       "clvSe": 0.01,
+       "pctPositive": 0.547,
+       "result": {
+        "n": 64,
+        "winPct": 0.531,
+        "breakEven": 0.524,
+        "roi": 0.014,
+        "roiLo": -0.221,
+        "roiHi": 0.249
+       },
+       "byGroup": {
+        "2024 ESPN BET": {
+         "n": 19,
+         "avgClv": 0.025,
+         "clvSe": 0.012
+        },
+        "2025 ESPN BET": {
+         "n": 38,
+         "avgClv": 0.025,
+         "clvSe": 0.012
+        },
+        "2026 DraftKings": {
+         "n": 55,
+         "avgClv": 0.004,
+         "clvSe": 0.012
+        }
+       }
+      }
+     },
+     "fatigue": {
+      "n": 894,
+      "testFrom": "2025-09-12",
+      "train": {
+       "b": 0.008,
+       "se": 0.013,
+       "z": 0.6
+      },
+      "test": {
+       "b": -0.003,
+       "se": 0.013,
+       "z": -0.2
+      },
+      "passes": false,
+      "betAtOpen": {
+       "n": 137,
+       "threshold": 1,
+       "avgClv": -0.023,
+       "clvSe": 0.006,
+       "pctPositive": 0.401,
+       "result": {
+        "n": 137,
+        "winPct": 0.474,
+        "breakEven": 0.524,
+        "roi": -0.095,
+        "roiLo": -0.255,
+        "roiHi": 0.065
+       },
+       "byGroup": {
+        "2024 ESPN BET": {
+         "n": 107,
+         "avgClv": -0.023,
+         "clvSe": 0.005
+        },
+        "2025 ESPN BET": {
+         "n": 133,
+         "avgClv": -0.018,
+         "clvSe": 0.007
+        },
+        "2026 DraftKings": {
+         "n": 130,
+         "avgClv": -0.023,
+         "clvSe": 0.007
+        }
+       }
+      }
+     }
+    }
+   },
+   "shiftCheck": {
+    "spreadOnePoint": {
+     "normal": 0.032,
+     "empirical": 0.038
+    },
+    "totalOneUnit": {
+     "normal": 0.023,
+     "empirical": 0.027
+    }
+   }
+  }
+ }
+}

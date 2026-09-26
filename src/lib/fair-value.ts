@@ -113,17 +113,18 @@ export function probOver(predictedTotal: number, line: number, sigma: number): n
 
 /**
  * Result spread (actual minus market) standard deviations per sport. These are the NOISE of each
- * sport, not model parameters: measured as the SD of (actual result - closing line) over each
- * sport's stored history by `scripts/ev-ledger.mjs` (section "sigma"). Re-measure each season;
- * never pick them to make a backtest look good.
+ * sport, not model parameters: the SD of (actual result - ESPN closing line) over every priced game
+ * ESPN keeps, measured by `npm run market-lab` (docs/reports/2026-09-26-market-lab.json, "sigma").
+ * Re-measure each season; never pick them to make a backtest look good.
  */
 export const RESULT_SIGMA: Record<string, { margin: number; total: number }> = {
-  nfl: { margin: 12.5, total: 13.4 },   // measured 2026-09-25, 318 games vs DraftKings/ESPN BET close
-  wnba: { margin: 12.7, total: 18.6 },  // measured 2026-09-25, 331 games vs DraftKings close
-  // Not yet measured (graded rows live in Firestore only); textbook values until the ledger runs.
-  nba: { margin: 12.0, total: 18.0 },
-  cbb: { margin: 11.0, total: 15.5 },
-  nhl: { margin: 2.3, total: 2.3 },
+  nfl: { margin: 12.6, total: 13.1 },   // 572 / 574 games, 2024-09 .. 2026-09
+  nba: { margin: 13.9, total: 17.8 },   // 3,930 / 3,940 games, 2023-10 .. 2026-06
+  wnba: { margin: 12.4, total: 17.0 },  // 905 / 894 games, 2024-05 .. 2026-09
+  cbb: { margin: 11.2, total: 16.5 },   // 16,659 / 16,692 games, 2023-11 .. 2026-04
+  // NHL "spreads" are always the +-1.5 puck line, so SD(margin + line) is not the margin's noise:
+  // margin uses the raw SD of final margins (the market explains little of it). 4,118 totals.
+  nhl: { margin: 2.6, total: 2.3 },
 };
 
 // ---------------------------------------------------------------- blending with the market
