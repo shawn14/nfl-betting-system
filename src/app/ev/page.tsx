@@ -244,7 +244,7 @@ function LineShop({ board, ledger }: { board: ShopBoard | null; ledger: Ledger |
               <tr>
                 <th className="text-left px-2 py-2">Game</th><th className="text-left px-2 py-2">Bet</th><th className="text-left px-2 py-2">Book</th>
                 <th className="text-right px-2 py-2">Price</th><th className="text-right px-2 py-2">Fair</th><th className="text-right px-2 py-2">EV now</th>
-                <th className="text-right px-2 py-2">Held at close</th><th className="text-right px-2 py-2">Stake</th>
+                <th className="text-right px-2 py-2" title="Average closing line value of flags in this EV tier, from the replay on stored prices. Not a result for this bet.">Typical CLV (tier)</th><th className="text-right px-2 py-2">Stake</th>
               </tr>
             </thead>
             <tbody>
@@ -275,7 +275,7 @@ function LineShop({ board, ledger }: { board: ShopBoard | null; ledger: Ledger |
         <span className="font-medium text-gray-700">What a flag has been worth.</span>{' '}
         &quot;EV now&quot; overstates it: prices partly converge before kickoff. Replayed on {P.events} NFL games of stored multi-book prices, {P.graded} flags beat the closing line
         by {spct(P.clv, 2)} ± {pct(P.clvSe, 2)} on average ({pct(P.pctPositive, 0)} of them positive) against a claimed {spct(P.claimedEv)}: {spct(P.tiers[0].clv, 2)} for flags at
-        {' '}{pct(P.tiers[0].lo)}–3% and {spct(P.tiers[1].clv, 2)} at 3% and up. That is the &quot;Held at close&quot; column.
+        {' '}{pct(P.tiers[0].lo)}–3% and {spct(P.tiers[1].clv, 2)} at 3% and up. That tier average is the &quot;Typical CLV&quot; column; each flag is graded individually in the live record below once its game starts.
         {track.graded > 0
           ? <> Live record since launch: {track.graded} flags graded at the close, CLV {spct(track.clv, 2)} ± {pct(track.se, 2)}, {pct(track.pctPositive, 0)} positive.</>
           : <> Live record: {track.flagged} flags logged; each is graded against the closing line once its game starts.</>}
