@@ -21,6 +21,7 @@ npm run ev-ledger            # Re-grade NFL/WNBA picks at real prices + walk-for
 npm run ev-board             # Local proof of the live EV rule on real upcoming games and prices
 npm run market-history       # Crawl every priced final game from ESPN (all sports, since 2023) into data/market-history
 npm run market-lab           # What beats the close? noise, de-vig, sharpness, feature + bet-at-open tests
+npm run line-shop-proof      # Replay the line-shop rule on stored multi-book snapshots, graded by CLV
 vercel --prod    # Deploy to production
 ```
 
@@ -279,6 +280,29 @@ Findings (2026-09-26, `docs/reports/2026-09-26-ev-ledger.{html,png,json}`):
   intercept that absorbs it. NFL spread is on the watch list (train z 0.4 fails the gate, live-only z 2.1).
 - Graded rows for NBA/NHL/CBB live only in Firestore; reading them needs the admin credential (not run yet).
 - ESPN's close line can differ from our lock (GB–ATL 2026-09-25: we locked −5.5, ESPN close −4.5): lock is ≤1h+cron gap.
+
+## Line shop (best price vs the sharp line) — added 2026-09-26
+
+The market is the forecaster; the edge is a book whose price is out of line with it. No model involved.
+- `src/lib/line-shop.ts` (`LINE_SHOP_VERSION = 2026-09-26-shop1`) — pure: fair = Pinnacle de-vigged when it posts the
+  exact market, else the MEDIAN de-vigged prob of the OTHER books at the same line (leave-one-out, ≥ 4 books). Exact
+  lines only (no shifting across key numbers). Flag = EV ≥ `MIN_SHOP_EV` 1.5% at a book that is not the fair source;
+  arbitrage = best prices on both sides imply < 100%. Stake quarter Kelly, cap 2%. Adapters: `gameMarkets` (h2h/spreads/
+  totals) and `propMarkets` (Over/Under props) for The Odds API shape (`bookmakers[].markets[].outcomes[]{name,price,point}`).
+- `api/cron/odds-board-record` (cron `7,37 * * * *`) — single writer. Per sport: free `/events` call decides if due (30 min
+  when a game starts < 6h, 2h when < 36h, nothing otherwise); one `/odds` call per sport with 10 named books
+  (Pinnacle, DK, FD, MGM, Caesars, BetRivers, Fanatics, Bovada, BetOnline, LowVig) × 3 markets = 3 credits. Caps: 1,500/day
+  and the shared 20k monthly floor. Writes `odds-board/latest.json` (board), `odds-board/ledger.json` (every flag with the
+  price shown + the sharp fair of the same side/line on the last run before the game = closing line value),
+  `odds-board/state.json`, raw `odds-board/snap/<day>/<HHMM>-<sport>.json.gz`. `?force=1` needs `CRON_SECRET`.
+- `/ev` shows it first ("Best prices vs the sharp line"), read via `src/lib/odds-board.ts` (5-min data cache).
+- The Odds API key is Production-only in Vercel: previews cannot run the cron; proof of the live feed is the first prod run.
+- `npm run line-shop-proof` — replays the rule on the props recorder's stored multi-book snapshots (real data, no credits)
+  and grades every flag by CLV at the last pre-kickoff snapshot; writes `src/data/line-shop-proof.json` for the page.
+
+Findings (2026-09-26 proof, 47 NFL games, US books, consensus fair): 863 flags graded, CLV +0.60% ± 0.05%, 68% positive —
+the method works — but the EV claimed at flag time (2.9%) overstates it ~5×: prices partly converge before kickoff.
+CLV by tier: EV 1.5–3% → +0.38%, 3%+ → +0.95%. The page shows the tier's measured CLV next to every flag.
 
 ## Market lab (what beats the closing line?) — added 2026-09-26
 

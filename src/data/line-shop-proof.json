@@ -1,0 +1,1 @@
+{"generated":"2026-09-26T03:45:22.954Z","version":"2026-09-26-shop1","source":"odds-props snapshots (US books, NFL player props)","events":47,"markets":103144,"flags":925,"graded":863,"arbs":108,"clv":0.006,"clvSe":0.0005,"pctPositive":0.681,"claimedEv":0.029,"tiers":[{"lo":0.015,"hi":0.03,"n":529,"clv":0.0038,"se":0.0007},{"lo":0.03,"hi":9,"n":334,"clv":0.0095,"se":0.0009}]}

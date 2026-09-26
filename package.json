@@ -14,7 +14,8 @@
     "ev-board": "node --no-warnings scripts/ev-board.mjs",
     "market-history": "node --no-warnings scripts/market-history.mjs",
     "market-lab": "node --no-warnings scripts/market-lab.mjs",
-    "market-lab-report": "node --no-warnings scripts/market-lab-report.mjs"
+    "market-lab-report": "node --no-warnings scripts/market-lab-report.mjs",
+    "line-shop-proof": "node --no-warnings scripts/line-shop-proof.mjs"
   },
   "dependencies": {
     "@vercel/blob": "^2.0.0",

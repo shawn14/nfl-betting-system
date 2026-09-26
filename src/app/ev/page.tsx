@@ -1,7 +1,10 @@
 import type { Metadata } from 'next';
 import { buildEvBoard, type BoardRow } from '@/lib/ev-board';
 import { EV_RULE_VERSION, MIN_EV, MAX_EDGE, MODEL_WEIGHT } from '@/lib/ev-model';
-import { RESULT_SIGMA } from '@/lib/fair-value';
+import { RESULT_SIGMA, fairAmerican } from '@/lib/fair-value';
+import { loadBoard, loadLedger, ledgerClv, type Board as ShopBoard, type Ledger } from '@/lib/odds-board';
+import { MIN_SHOP_EV, LINE_SHOP_VERSION, type SideShop } from '@/lib/line-shop';
+import shopProof from '@/data/line-shop-proof.json';
 import ledger from '@/data/ev-ledger.json';
 import marketLab from '@/data/market-lab.json';
 
@@ -202,6 +205,85 @@ function Gate() {
   );
 }
 
+const BOOK: Record<string, string> = {
+  pinnacle: 'Pinnacle', draftkings: 'DraftKings', fanduel: 'FanDuel', betmgm: 'BetMGM', williamhill_us: 'Caesars', betrivers: 'BetRivers',
+  fanatics: 'Fanatics', bovada: 'Bovada', betonlineag: 'BetOnline', lowvig: 'LowVig',
+};
+const P = shopProof as { events: number; graded: number; clv: number; clvSe: number; pctPositive: number; claimedEv: number; tiers: { lo: number; n: number; clv: number; se: number }[] };
+const tierOf = (ev: number) => (ev >= 0.03 ? P.tiers[1] : P.tiers[0]);
+
+function LineShop({ board, ledger }: { board: ShopBoard | null; ledger: Ledger | null }) {
+  const now = Date.now();
+  const rows = Object.values(board?.sports ?? {}).flatMap(s => s.events)
+    .filter(e => Date.parse(e.commence) > now)
+    .flatMap(e => e.markets.flatMap(m => m.flags.map((f: SideShop) => ({ e, m, f }))))
+    .sort((a, b) => b.f.ev - a.f.ev);
+  const arbs = Object.values(board?.sports ?? {}).flatMap(s => s.events).filter(e => Date.parse(e.commence) > now)
+    .flatMap(e => e.markets.filter(m => m.arb != null && m.arb > 0.002).map(m => ({ e, m })));
+  const games = Object.values(board?.sports ?? {}).reduce((n, s) => n + s.events.filter(e => Date.parse(e.commence) > now).length, 0);
+  const track = ledgerClv(ledger, now);
+  return (
+    <section className="space-y-3">
+      <div className="flex flex-wrap items-end justify-between gap-3">
+        <div>
+          <h2 className="text-base font-semibold text-gray-900">Best prices vs the sharp line{rows.length ? ` · ${rows.length} +EV` : ''}</h2>
+          <p className="text-xs text-gray-500 max-w-4xl">
+            Up to ten sportsbooks per game. Fair value is Pinnacle&apos;s price with its margin removed, or the median of the other books at the same line when Pinnacle has none.
+            A price is flagged when it beats that fair value by {pct(MIN_SHOP_EV)} or more. No model involved: this is the method with the longest record of beating closing lines.
+          </p>
+        </div>
+        <div className="text-xs text-gray-500 text-right">
+          {board ? <>Updated {new Date(board.updated).toLocaleString('en-US', { hour: 'numeric', minute: '2-digit', timeZoneName: 'short', timeZone: 'America/New_York' })} · {games} games</> : 'Waiting for the first odds run'}
+          <div>Rule {LINE_SHOP_VERSION}</div>
+        </div>
+      </div>
+      {rows.length ? (
+        <div className="overflow-x-auto">
+          <table className="w-full text-sm">
+            <thead className="text-[10px] uppercase tracking-wider text-gray-500 border-b border-gray-200">
+              <tr>
+                <th className="text-left px-2 py-2">Game</th><th className="text-left px-2 py-2">Bet</th><th className="text-left px-2 py-2">Book</th>
+                <th className="text-right px-2 py-2">Price</th><th className="text-right px-2 py-2">Fair</th><th className="text-right px-2 py-2">EV now</th>
+                <th className="text-right px-2 py-2">Held at close</th><th className="text-right px-2 py-2">Stake</th>
+              </tr>
+            </thead>
+            <tbody>
+              {rows.slice(0, 40).map(({ e, m, f }) => (
+                <tr key={`${m.id}|${f.label}|${f.book}`} className="border-t border-gray-100">
+                  <td className="px-2 py-2 text-gray-700 whitespace-nowrap"><span className="text-[10px] uppercase text-gray-400 mr-1">{e.sport}</span>{e.away} @ {e.home}<div className="text-xs text-gray-400">{when(e.commence)}</div></td>
+                  <td className="px-2 py-2 font-medium text-gray-900 whitespace-nowrap">{f.label}</td>
+                  <td className="px-2 py-2 text-gray-700">{BOOK[f.book] ?? f.book}</td>
+                  <td className="px-2 py-2 text-right tabular-nums font-semibold text-gray-900">{am(f.price)}</td>
+                  <td className="px-2 py-2 text-right tabular-nums text-gray-500">{am(fairAmerican(f.fairProb))}<div className="text-[10px] text-gray-400">{m.fairSource === 'pinnacle' ? 'Pinnacle' : `${m.books - 1} books`}</div></td>
+                  <td className={`px-2 py-2 text-right tabular-nums ${f.ev >= 0.03 ? 'text-green-700 font-semibold' : 'text-gray-900'}`}>{spct(f.ev)}</td>
+                  <td className="px-2 py-2 text-right tabular-nums text-gray-500">{spct(tierOf(f.ev).clv, 2)}</td>
+                  <td className="px-2 py-2 text-right tabular-nums text-gray-500">{pct(f.stake)}</td>
+                </tr>
+              ))}
+            </tbody>
+          </table>
+        </div>
+      ) : (
+        <p className="text-sm text-gray-500">{board ? 'No price beats the sharp line right now. Books are in agreement; check back closer to game time, when prices move fastest.' : 'The multi-book odds feed has not run yet. It refreshes every 30 minutes before games and every 2 hours otherwise.'}</p>
+      )}
+      {arbs.length > 0 && (
+        <p className="text-sm text-gray-700">
+          Arbitrage: {arbs.map(({ e, m }) => `${e.away} @ ${e.home} ${m.market}${m.line != null ? ` ${m.line}` : ''} (${BOOK[m.bestA!.book] ?? m.bestA!.book} ${am(m.bestA!.price)} / ${BOOK[m.bestB!.book] ?? m.bestB!.book} ${am(m.bestB!.price)}, ${spct(m.arb!, 2)})`).join(' · ')}
+        </p>
+      )}
+      <p className="text-xs text-gray-500 max-w-4xl">
+        <span className="font-medium text-gray-700">What a flag has been worth.</span>{' '}
+        &quot;EV now&quot; overstates it: prices partly converge before kickoff. Replayed on {P.events} NFL games of stored multi-book prices, {P.graded} flags beat the closing line
+        by {spct(P.clv, 2)} ± {pct(P.clvSe, 2)} on average ({pct(P.pctPositive, 0)} of them positive) against a claimed {spct(P.claimedEv)}: {spct(P.tiers[0].clv, 2)} for flags at
+        {' '}{pct(P.tiers[0].lo)}–3% and {spct(P.tiers[1].clv, 2)} at 3% and up. That is the &quot;Held at close&quot; column.
+        {track.graded > 0
+          ? <> Live record since launch: {track.graded} flags graded at the close, CLV {spct(track.clv, 2)} ± {pct(track.se, 2)}, {pct(track.pctPositive, 0)} positive.</>
+          : <> Live record: {track.flagged} flags logged; each is graded against the closing line once its game starts.</>}
+      </p>
+    </section>
+  );
+}
+
 const FEATURE_LABEL: Record<string, string> = {
   'ml.elo': 'Elo, moneyline', 'ml.ewmaRating': 'rolling rating, moneyline', 'ml.restDiff': 'rest, moneyline',
   'spread.elo': 'Elo, spread', 'spread.ewmaRating': 'rolling rating, spread', 'spread.restDiff': 'rest, spread',
@@ -262,7 +344,7 @@ function MarketLab() {
 }
 
 export default async function EvPage() {
-  const { rows, builtAt } = await buildEvBoard();
+  const [{ rows, builtAt }, shopBoard, shopLedger] = await Promise.all([buildEvBoard(), loadBoard(), loadLedger()]);
   return (
     <div className="space-y-8">
       <div className="flex flex-wrap items-end justify-between gap-3">
@@ -275,6 +357,7 @@ export default async function EvPage() {
           <div>Rule {EV_RULE_VERSION} · min EV {pct(MIN_EV, 0)} · max edge vs market {pct(MAX_EDGE, 0)} · stake = quarter Kelly, cap 2%</div>
         </div>
       </div>
+      <LineShop board={shopBoard} ledger={shopLedger} />
       <Board rows={rows} />
       <Scoreboard />
       <Gate />
