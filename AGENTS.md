@@ -22,6 +22,7 @@ npm run ev-board             # Local proof of the live EV rule on real upcoming 
 npm run market-history       # Crawl every priced final game from ESPN (all sports, since 2023) into data/market-history
 npm run market-lab           # What beats the close? noise, de-vig, sharpness, feature + bet-at-open tests
 npm run line-shop-proof      # Replay the line-shop rule on stored multi-book snapshots, graded by CLV
+npm run line-shop-backfill-proof  # Grade the 2025 NFL game-line backfill (Pinnacle fair) by CLV
 vercel --prod    # Deploy to production
 ```
 
@@ -299,6 +300,17 @@ The market is the forecaster; the edge is a book whose price is out of line with
 - The Odds API key is Production-only in Vercel: previews cannot run the cron; proof of the live feed is the first prod run.
 - `npm run line-shop-proof` — replays the rule on the props recorder's stored multi-book snapshots (real data, no credits)
   and grades every flag by CLV at the last pre-kickoff snapshot; writes `src/data/line-shop-proof.json` for the page.
+
+- `api/admin/line-shop-backfill?confirm=nfl-2025` — ONE-TIME (done 2026-09-26, 3,390 credits, capped): 2025 NFL historical
+  snapshots (Wednesday early + 5 min before each kickoff), weeks 1–14, raw in `line-shop-backfill/nfl-2025/`.
+  `npm run line-shop-backfill-proof` grades them locally → `src/data/line-shop-proof.json` "gameLines".
+- NFL player props on `/ev` come from the props recorder's latest snapshot per game (`loadPropFlags` in
+  `src/lib/odds-board.ts`): no extra credits; graded historically by re-running `npm run line-shop-proof`.
+
+Game-line finding (2025 NFL, 194 games, 1,081 markets, Pinnacle fair): four days out, US books almost never beat
+Pinnacle — 15 flags at EV ≥ 1.5%, CLV +0.13% ± 0.69% (n 11). CLV rises with the price's EV vs Pinnacle (−1.2% for
+prices 1%+ worse than fair → +0.4–0.5% for prices 1%+ better), so the ranking is right, but NFL sides/totals leave
+little to take. Props are where books disagree (+0.60% CLV, z ~12): that is where the board points.
 
 Findings (2026-09-26 proof, 47 NFL games, US books, consensus fair): 863 flags graded, CLV +0.60% ± 0.05%, 68% positive —
 the method works — but the EV claimed at flag time (2.9%) overstates it ~5×: prices partly converge before kickoff.

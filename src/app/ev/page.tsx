@@ -2,7 +2,7 @@ import type { Metadata } from 'next';
 import { buildEvBoard, type BoardRow } from '@/lib/ev-board';
 import { EV_RULE_VERSION, MIN_EV, MAX_EDGE, MODEL_WEIGHT } from '@/lib/ev-model';
 import { RESULT_SIGMA, fairAmerican } from '@/lib/fair-value';
-import { loadBoard, loadLedger, ledgerClv, type Board as ShopBoard, type Ledger } from '@/lib/odds-board';
+import { loadBoard, loadLedger, ledgerClv, loadPropFlags, type Board as ShopBoard, type Ledger, type PropFlag } from '@/lib/odds-board';
 import { MIN_SHOP_EV, LINE_SHOP_VERSION, type SideShop } from '@/lib/line-shop';
 import shopProof from '@/data/line-shop-proof.json';
 import ledger from '@/data/ev-ledger.json';
@@ -209,6 +209,7 @@ const BOOK: Record<string, string> = {
   pinnacle: 'Pinnacle', draftkings: 'DraftKings', fanduel: 'FanDuel', betmgm: 'BetMGM', williamhill_us: 'Caesars', betrivers: 'BetRivers',
   fanatics: 'Fanatics', bovada: 'Bovada', betonlineag: 'BetOnline', lowvig: 'LowVig',
 };
+const G = (shopProof as { gameLines?: { games: number; n: number; clv: number; se: number } }).gameLines;
 const P = shopProof as { events: number; graded: number; clv: number; clvSe: number; pctPositive: number; claimedEv: number; tiers: { lo: number; n: number; clv: number; se: number }[] };
 const tierOf = (ev: number) => (ev >= 0.03 ? P.tiers[1] : P.tiers[0]);
 
@@ -284,6 +285,57 @@ function LineShop({ board, ledger }: { board: ShopBoard | null; ledger: Ledger |
   );
 }
 
+const PROP_LABEL: Record<string, string> = {
+  player_pass_yds: 'pass yds', player_pass_tds: 'pass TDs', player_pass_attempts: 'pass att', player_pass_completions: 'completions',
+  player_pass_interceptions: 'INTs', player_rush_yds: 'rush yds', player_rush_attempts: 'rush att', player_receptions: 'receptions',
+  player_reception_yds: 'rec yds', player_rush_reception_yds: 'rush+rec yds',
+};
+const propLabel = (l: string) => {
+  const m = l.match(/^(.*) ([ou])([\d.]+) (\w+)$/);
+  return m ? `${m[1]} ${m[2] === 'o' ? 'over' : 'under'} ${m[3]} ${PROP_LABEL[m[4]] ?? m[4]}` : l;
+};
+
+function PropShop({ flags, games, updated }: { flags: PropFlag[]; games: number; updated: string | null }) {
+  return (
+    <section className="space-y-3">
+      <div className="flex flex-wrap items-end justify-between gap-3">
+        <div>
+          <h2 className="text-base font-semibold text-gray-900">NFL player props vs the other books{flags.length ? ` · ${flags.length} +EV` : ''}</h2>
+          <p className="text-xs text-gray-500 max-w-4xl">
+            Props are where sportsbooks disagree most, and where this method has worked: replayed on {P.events} games of stored prices, flagged props beat the closing line by {spct(P.clv, 2)}
+            {' '}({pct(P.pctPositive, 0)} positive). Game lines are tighter{G ? `: on ${G.games} games of the 2025 NFL season, prices four days out beat Pinnacle by 1.5% only ${G.n} times, with no measurable closing line value (${spct(G.clv, 2)} ± ${pct(G.se, 2)})` : ''}.
+            Fair value here is the median of the other books at the same line.
+          </p>
+        </div>
+        <div className="text-xs text-gray-500 text-right">{updated ? <>Prices as of {new Date(updated).toLocaleString('en-US', { hour: 'numeric', minute: '2-digit', timeZoneName: 'short', timeZone: 'America/New_York' })} · {games} games</> : 'No upcoming NFL props recorded'}</div>
+      </div>
+      {flags.length ? (
+        <div className="overflow-x-auto">
+          <table className="w-full text-sm">
+            <thead className="text-[10px] uppercase tracking-wider text-gray-500 border-b border-gray-200">
+              <tr><th className="text-left px-2 py-2">Game</th><th className="text-left px-2 py-2">Bet</th><th className="text-left px-2 py-2">Book</th><th className="text-right px-2 py-2">Price</th><th className="text-right px-2 py-2">Fair</th><th className="text-right px-2 py-2">EV now</th><th className="text-right px-2 py-2" title="Average closing line value of prop flags in this EV tier, from the replay. Not a result for this bet.">Typical CLV (tier)</th><th className="text-right px-2 py-2">Stake</th></tr>
+            </thead>
+            <tbody>
+              {flags.slice(0, 30).map(({ eventId, matchup, commence, books, flag: f }) => (
+                <tr key={`${eventId}|${f.label}|${f.book}`} className="border-t border-gray-100">
+                  <td className="px-2 py-2 text-gray-700 whitespace-nowrap">{matchup}<div className="text-xs text-gray-400">{when(commence)}</div></td>
+                  <td className="px-2 py-2 font-medium text-gray-900">{propLabel(f.label)}</td>
+                  <td className="px-2 py-2 text-gray-700">{BOOK[f.book] ?? f.book}</td>
+                  <td className="px-2 py-2 text-right tabular-nums font-semibold text-gray-900">{am(f.price)}</td>
+                  <td className="px-2 py-2 text-right tabular-nums text-gray-500">{am(fairAmerican(f.fairProb))}<div className="text-[10px] text-gray-400">{books - 1} books</div></td>
+                  <td className={`px-2 py-2 text-right tabular-nums ${f.ev >= 0.03 ? 'text-green-700 font-semibold' : 'text-gray-900'}`}>{spct(f.ev)}</td>
+                  <td className="px-2 py-2 text-right tabular-nums text-gray-500">{spct(tierOf(f.ev).clv, 2)}</td>
+                  <td className="px-2 py-2 text-right tabular-nums text-gray-500">{pct(f.stake)}</td>
+                </tr>
+              ))}
+            </tbody>
+          </table>
+        </div>
+      ) : <p className="text-sm text-gray-500">No prop price beats the other books by {pct(MIN_SHOP_EV)} right now.</p>}
+    </section>
+  );
+}
+
 const FEATURE_LABEL: Record<string, string> = {
   'ml.elo': 'Elo, moneyline', 'ml.ewmaRating': 'rolling rating, moneyline', 'ml.restDiff': 'rest, moneyline',
   'spread.elo': 'Elo, spread', 'spread.ewmaRating': 'rolling rating, spread', 'spread.restDiff': 'rest, spread',
@@ -344,7 +396,7 @@ function MarketLab() {
 }
 
 export default async function EvPage() {
-  const [{ rows, builtAt }, shopBoard, shopLedger] = await Promise.all([buildEvBoard(), loadBoard(), loadLedger()]);
+  const [{ rows, builtAt }, shopBoard, shopLedger, props] = await Promise.all([buildEvBoard(), loadBoard(), loadLedger(), loadPropFlags()]);
   return (
     <div className="space-y-8">
       <div className="flex flex-wrap items-end justify-between gap-3">
@@ -358,6 +410,7 @@ export default async function EvPage() {
         </div>
       </div>
       <LineShop board={shopBoard} ledger={shopLedger} />
+      <PropShop {...props} />
       <Board rows={rows} />
       <Scoreboard />
       <Gate />
