@@ -1,5 +1,9 @@
 # Prediction Matrix status
 
+## 2026-10-16 — main deployment approved
+
+Shawn explicitly requested “push to main.” PR6 was merged as `69240a9bb7b036e7ccc5b70a2550413c500085c5`, preserving the verified `3e3ab94` review history. The actual production domain served that exact READY SHA at 05:04 UTC. All 79 exports, 144 exact quote sides, five result routes, three unsigned collector gates and desktop/390px browser controls passed. [Release evidence](docs/production/README.md). An independent review is recorded alongside the release proof. The final evidence/runbook commit changes no application source and its deployed SHA must also be checked. This supersedes prior publication/deployment holds below; collection activation was not included and the flag remains absent. No model tuning or paid test calls.
+
 ## 2026-10-16 — approved review publication and reserved proof
 
 Shawn approved publishing `codex/prediction-terminal` for a Vercel preview plus one reserved provenance test. [Draft PR6](https://github.com/shawn14/nfl-betting-system/pull/6) is open. The test passed at04:27UTC: exact unknown provenance survived immutability/second-reader/report checks; zero settlements and cleanup confirmed independently. [Evidence](docs/measurement/provenance/approved-proof-review.md). Prior authorization-block notes below are superseded for these two approved steps only.

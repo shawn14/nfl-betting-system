@@ -3,7 +3,7 @@ repository: https://github.com/shawn14/nfl-betting-system
 production_url: https://www.predictionmatrix.com
 research_surface:
   path: /terminal
-  state: verified_review_preview_production_unchanged
+  state: verified_production_collection_disabled
 data_sources:
   - Existing public prediction and odds-board Vercel Blob snapshots
   - ESPN scheduled and final game records

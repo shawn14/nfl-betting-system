@@ -1,0 +1,28 @@
+{
+  "checkedAt": "2026-10-16T05:04:12Z",
+  "productionUrl": "https://www.predictionmatrix.com",
+  "mainAndServingSha": "69240a9bb7b036e7ccc5b70a2550413c500085c5",
+  "deployment": "dpl_8WFLpDzPsvoAENdEsmMUN2yjQ8oM",
+  "state": "READY",
+  "reviewHeadAncestor": "3e3ab94be47c7e1cf93f567ef977d37430c48297",
+  "previousLiveAncestor": "6af083c277aa64fd13ec9269591fc57bdd611f68",
+  "measurementState": "disabled",
+  "flagConfigured": false,
+  "http200": [
+    "/results",
+    "/nba/results",
+    "/nhl/results",
+    "/cbb/results",
+    "/wnba/results",
+    "/faq",
+    "/about",
+    "/ev"
+  ],
+  "unsigned401": [
+    "/api/cron/measurement",
+    "/api/cron/odds-board-record",
+    "/api/cron/odds-props-record"
+  ],
+  "paidTestCalls": 0,
+  "productionDataRepairs": 0
+}

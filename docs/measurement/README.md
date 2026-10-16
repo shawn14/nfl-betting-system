@@ -1,6 +1,6 @@
 # Prospective measurement — release candidate, 2026-10-16
 
-**Published for preview review; production and collection remain unchanged. No demonstrated edge.** Model parameters, `MODEL_VERSION`, probability transforms, blending weights and shopping thresholds are unchanged. The historical results were generated after games and cannot establish forward performance. The [audit](../reports/2026-10-15-edge-audit/edge-audit.html) explains the contamination.
+**PR6 is deployed and production checks passed; collection remains off. No demonstrated edge.** [Release evidence](../production/README.md). Model parameters, `MODEL_VERSION`, probability transforms, blending weights and shopping thresholds are unchanged. The historical results were generated after games and cannot establish forward performance. The [audit](../reports/2026-10-15-edge-audit/edge-audit.html) explains the contamination.
 
 ## Frozen measurement contract
 
@@ -47,9 +47,9 @@ Observed proof on October 16 UTC:
 
 **SDK gotcha:** with firebase-admin 12.7 / `preferRest`, `doc.create()` on an existing document retried ALREADY_EXISTS for 600 seconds. Do not restore that path. Read-before-set transactions with three attempts passed concurrent and repeated real-service proofs.
 
-## Release procedure — preview approved, production pending
+## Release procedure — main deployment approved, activation pending
 
-Canonical pipeline is a pushed branch → Vercel preview → merge into clean current main → automatic production deploy. Do not run `vercel --prod` from a local checkout. Shawn approved the review branch, Vercel preview and one reserved provenance test on October15CT. [PR6](https://github.com/shawn14/nfl-betting-system/pull/6) is a draft. Main merge, production deployment and activation still require separate approval under global rule7. [Preview proof/runbook](../preview/README.md).
+Canonical pipeline is a pushed branch → Vercel preview → merge into clean current main → automatic production deploy. Do not run `vercel --prod` from a local checkout. Shawn approved the review branch, Vercel preview and one reserved provenance test on October15CT. Shawn subsequently requested “push to main” on October 16; [PR6](https://github.com/shawn14/nfl-betting-system/pull/6) merged as `69240a9`. Activation still requires separate approval under global rule 7. [Preview proof/runbook](../preview/README.md).
 
 1. Run `node scripts/measurement/release-check.mjs`. It reads the serving domain mapping and deployment SHA, freshly reads GitHub main, checks required environment names, and inspects the public measurement endpoint. Stop on drift or missing credentials. At 02:34 UTC main and the READY production alias both equaled `6af083c277aa64fd13ec9269591fc57bdd611f68`; the feature flag did not exist.
 2. After approval, push the integrated `codex/prediction-terminal` branch, open a PR, and require its Vercel preview build and real page/auth checks to pass. Keep collection disabled on preview; do not attach paid cron triggers to a preview. Stop on the first infrastructure failure or code mismatch.
@@ -58,3 +58,10 @@ Canonical pipeline is a pushed branch → Vercel preview → merge into clean cu
 5. After the first captured game finishes, compare its immutable capture, actual final ESPN result, settlement and public table. Use a fresh refuter. This is the remaining real postgame proof; a replay cannot replace it. Keep “no demonstrated edge” until sufficient independent prospective games support a justified claim.
 
 Rollback: set the flag to `0` and redeploy the **same GitHub main SHA** through the existing Vercel integration, then verify the serving SHA and disabled endpoint. Preserve evidence. Do not restore the misleading historical performance pages. No model tuning belongs in this release.
+
+Read-only production checks reuse the existing suites with an explicit full deployed SHA. The guard requires the canonical domain/project, READY state, exact GitHub main/source match, and disabled measurement before making unsigned HTTP requests.
+
+```sh
+PM_HTTP_BASE=https://www.predictionmatrix.com PM_EXPECT_LIVE_SHA=<full-current-main-sha> node scripts/terminal/prove-http.mjs
+PM_HTTP_BASE=https://www.predictionmatrix.com PM_EXPECT_LIVE_SHA=<full-current-main-sha> node scripts/measurement/prove-http.mjs
+```

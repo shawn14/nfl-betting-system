@@ -24,3 +24,7 @@ All five results pages plus FAQ/About/EV passed; three unauthenticated collector
 The [independent review](independent-review.md) checked the actual preview, every export, every forecast source and all 144 quote sides. During that later check the public odds board advanced beyond the cached version. It verified pinned export identity/quote consistency and explicitly did not claim the later whole-board hash matched. Do not erase this distinction or equate a cached observation with executable live odds.
 
 Production/main stayed `6af083c277aa64fd13ec9269591fc57bdd611f68`, an ancestor of the candidate. No main merge or measurement activation occurred. Authenticated sports-page rendering, attributed producer capture, scheduled second-run behavior and real final settlement remain unproven. Current forecasts remain experimental; no predictive edge established.
+
+## Subsequent production approval
+
+Shawn requested “push to main” on October 16. PR6 is merged and production verification is recorded in [the release evidence](../production/README.md). The earlier production hold above is historical; collection activation remains unapproved and disabled.

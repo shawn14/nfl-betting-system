@@ -1,0 +1,17 @@
+{
+  "checkedAt": "2026-10-16T05:04:10.422Z",
+  "base": "https://www.predictionmatrix.com",
+  "games": 79,
+  "exactBoardQuoteSides": 144,
+  "exports": 79,
+  "unidentifiedTotalQuotes": 0,
+  "passed": [
+    "every real API row renders",
+    "every research export retains exact raw forecast and board entry",
+    "source hashes match real public blobs",
+    "source version mismatch rejects export",
+    "invalid identities rejected",
+    "legacy unidentified prices excluded",
+    "measurement remains disabled"
+  ]
+}
