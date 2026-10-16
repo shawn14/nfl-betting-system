@@ -1,0 +1,42 @@
+{
+  "checkedAt": "2026-10-16T04:11:05.982Z",
+  "realPublishedEntries": 82,
+  "inventory": [
+    {
+      "sport": "nfl",
+      "games": 14,
+      "publishedProducers": 0
+    },
+    {
+      "sport": "nba",
+      "games": 16,
+      "publishedProducers": 0
+    },
+    {
+      "sport": "nhl",
+      "games": 49,
+      "publishedProducers": 0
+    },
+    {
+      "sport": "cbb",
+      "games": 0,
+      "publishedProducers": 0
+    },
+    {
+      "sport": "wnba",
+      "games": 3,
+      "publishedProducers": 0
+    }
+  ],
+  "redObserved": "Actual unstamped WNBA forecast was assigned collector version 2026-09-11-freeze; expected null",
+  "realRecordProof": "Original archived forecast is captured without invented producer attribution; legacy labels cannot establish attribution",
+  "diagnosticChecks": [
+    "five metadata cohorts stay separate across all three markets",
+    "same version/different source commit separates",
+    "different version/same source commit separates",
+    "missing producer/source remains explicit",
+    "grades remain in original cohort",
+    "invalid committed time excluded"
+  ],
+  "limits": "Metadata/score mutations are diagnostics only. No prospective results, deployed writer provenance or better prediction performance proven."
+}

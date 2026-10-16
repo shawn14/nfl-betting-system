@@ -1,0 +1,4861 @@
+{
+  "url": "https://0luulmjdaimldet9.public.blob.vercel-storage.com/nhl-prediction-data.json",
+  "fetchedAt": "2026-10-16T03:14:42.093Z",
+  "data": {
+    "generated": "2026-10-16T03:00:14.063Z",
+    "games": [
+      {
+        "game": {
+          "id": "401892515",
+          "homeTeamId": "6",
+          "awayTeamId": "129764",
+          "gameTime": "2026-10-16T01:00:00.000Z",
+          "status": "scheduled",
+          "venue": "Rogers Place",
+          "season": 2027,
+          "homeTeam": {
+            "id": "6",
+            "name": "Edmonton Oilers",
+            "abbreviation": "EDM"
+          },
+          "awayTeam": {
+            "id": "129764",
+            "name": "Utah Mammoth",
+            "abbreviation": "UTAH"
+          }
+        },
+        "prediction": {
+          "gameId": "401892515",
+          "predictedHomeScore": 4,
+          "predictedAwayScore": 2.9,
+          "predictedSpread": -1,
+          "predictedTotal": 6.9,
+          "homeWinProbability": 0.6172250309049463,
+          "confidence": 0.5,
+          "vegasSpread": 1.5,
+          "vegasTotal": 6.5,
+          "lineMovement": {
+            "openingSpread": -1.5,
+            "openingTotal": 6.5,
+            "lastSeenSpread": 1.5,
+            "lastSeenTotal": 6.5,
+            "lastUpdatedAt": "2026-10-15T23:30:13.539Z"
+          },
+          "spreadEdge": 2.5,
+          "totalEdge": 0.4,
+          "atsConfidence": "high",
+          "ouConfidence": "medium",
+          "mlConfidence": "medium",
+          "isAtsBestBet": true,
+          "isOuBestBet": false,
+          "isMlBestBet": false,
+          "mlEdge": 11.7,
+          "eloGap": 35,
+          "isHighConviction": true,
+          "homeElo": 1583,
+          "awayElo": 1548,
+          "liveOdds": {
+            "consensusTotal": 7,
+            "consensusOverOdds": 65,
+            "consensusUnderOdds": -163,
+            "bookmakers": [
+              {
+                "name": "DraftKings",
+                "total": 7.5,
+                "overOdds": 140,
+                "underOdds": -180
+              },
+              {
+                "name": "Fanatics",
+                "total": 7.5,
+                "overOdds": 140,
+                "underOdds": -190
+              },
+              {
+                "name": "Caesars",
+                "total": 6.5,
+                "overOdds": -118,
+                "underOdds": -107
+              },
+              {
+                "name": "FanDuel",
+                "total": 7.5,
+                "overOdds": 138,
+                "underOdds": -182
+              },
+              {
+                "name": "BetMGM",
+                "total": 7.5,
+                "overOdds": 140,
+                "underOdds": -190
+              },
+              {
+                "name": "Bovada",
+                "total": 7.5,
+                "overOdds": 145,
+                "underOdds": -190
+              },
+              {
+                "name": "MyBookie.ag",
+                "total": 6.5,
+                "overOdds": -133,
+                "underOdds": -105
+              }
+            ],
+            "lastUpdated": "2026-10-16T03:00:14.621Z"
+          },
+          "calc": {
+            "homeGPG": 4.8,
+            "homeGPGAllowed": 3,
+            "awayGPG": 3.9,
+            "awayGPGAllowed": 2.7,
+            "regHomeGPG": 4.3,
+            "regHomeGPGAllowed": 3,
+            "regAwayGPG": 3.7,
+            "regAwayGPGAllowed": 2.8,
+            "baseHomeScore": 3.6,
+            "baseAwayScore": 3.3,
+            "homeElo": 1583,
+            "awayElo": 1548,
+            "eloDiff": 35,
+            "eloAdj": 0.32,
+            "homeIceAdv": 0.25
+          }
+        }
+      },
+      {
+        "game": {
+          "id": "401892516",
+          "homeTeamId": "37",
+          "awayTeamId": "3",
+          "gameTime": "2026-10-16T02:00:00.000Z",
+          "status": "scheduled",
+          "venue": "T-Mobile Arena",
+          "season": 2027,
+          "homeTeam": {
+            "id": "37",
+            "name": "Vegas Golden Knights",
+            "abbreviation": "VGK"
+          },
+          "awayTeam": {
+            "id": "3",
+            "name": "Calgary Flames",
+            "abbreviation": "CGY"
+          }
+        },
+        "prediction": {
+          "gameId": "401892516",
+          "predictedHomeScore": 5,
+          "predictedAwayScore": 1.4,
+          "predictedSpread": -3,
+          "predictedTotal": 6.4,
+          "homeWinProbability": 0.7105400123698378,
+          "confidence": 0.5,
+          "vegasSpread": -1.5,
+          "vegasTotal": 6.5,
+          "lineMovement": {
+            "openingSpread": -1.5,
+            "openingTotal": 5.5,
+            "lastSeenSpread": -1.5,
+            "lastSeenTotal": 6.5,
+            "lastUpdatedAt": "2026-10-16T00:30:14.033Z"
+          },
+          "spreadEdge": 1.5,
+          "totalEdge": -0.1,
+          "atsConfidence": "high",
+          "ouConfidence": "low",
+          "mlConfidence": "high",
+          "isAtsBestBet": true,
+          "isOuBestBet": false,
+          "isMlBestBet": true,
+          "mlEdge": 21.1,
+          "eloGap": 108,
+          "isHighConviction": false,
+          "homeElo": 1546,
+          "awayElo": 1438,
+          "liveOdds": {
+            "consensusTotal": 6.5,
+            "consensusOverOdds": 79,
+            "consensusUnderOdds": -140,
+            "bookmakers": [
+              {
+                "name": "DraftKings",
+                "total": 6.5,
+                "overOdds": 110,
+                "underOdds": -140
+              },
+              {
+                "name": "Fanatics",
+                "total": 6.5,
+                "overOdds": 110,
+                "underOdds": -145
+              },
+              {
+                "name": "Caesars",
+                "total": 6.5,
+                "overOdds": 112,
+                "underOdds": -139
+              },
+              {
+                "name": "FanDuel",
+                "total": 6.5,
+                "overOdds": 114,
+                "underOdds": -148
+              },
+              {
+                "name": "BetMGM",
+                "total": 6.5,
+                "overOdds": 105,
+                "underOdds": -140
+              },
+              {
+                "name": "Bovada",
+                "total": 6.5,
+                "overOdds": 105,
+                "underOdds": -135
+              },
+              {
+                "name": "MyBookie.ag",
+                "total": 6.5,
+                "overOdds": -105,
+                "underOdds": -133
+              }
+            ],
+            "lastUpdated": "2026-10-16T03:00:14.621Z"
+          },
+          "calc": {
+            "homeGPG": 3.8,
+            "homeGPGAllowed": 2.5,
+            "awayGPG": 2,
+            "awayGPGAllowed": 4.8,
+            "regHomeGPG": 3.6,
+            "regHomeGPGAllowed": 2.7,
+            "regAwayGPG": 2.3,
+            "regAwayGPGAllowed": 4.3,
+            "baseHomeScore": 3.9,
+            "baseAwayScore": 2.5,
+            "homeElo": 1546,
+            "awayElo": 1438,
+            "eloDiff": 108,
+            "eloAdj": 0.97,
+            "homeIceAdv": 0.25
+          }
+        }
+      },
+      {
+        "game": {
+          "id": "401892517",
+          "homeTeamId": "17",
+          "awayTeamId": "16",
+          "gameTime": "2026-10-17T01:00:00.000Z",
+          "status": "scheduled",
+          "venue": "Ball Arena",
+          "season": 2027,
+          "homeTeam": {
+            "id": "17",
+            "name": "Colorado Avalanche",
+            "abbreviation": "COL"
+          },
+          "awayTeam": {
+            "id": "16",
+            "name": "Pittsburgh Penguins",
+            "abbreviation": "PIT"
+          }
+        },
+        "prediction": {
+          "gameId": "401892517",
+          "predictedHomeScore": 4,
+          "predictedAwayScore": 2.9,
+          "predictedSpread": -1,
+          "predictedTotal": 6.9,
+          "homeWinProbability": 0.6145013610085578,
+          "confidence": 0.5,
+          "vegasSpread": -1.5,
+          "vegasTotal": 6.5,
+          "lineMovement": {
+            "openingSpread": -1.5,
+            "openingTotal": 6.5,
+            "lastSeenSpread": -1.5,
+            "lastSeenTotal": 6.5,
+            "lastUpdatedAt": "2026-10-16T03:00:14.063Z"
+          },
+          "spreadEdge": -0.5,
+          "totalEdge": 0.4,
+          "atsConfidence": "high",
+          "ouConfidence": "medium",
+          "mlConfidence": "medium",
+          "isAtsBestBet": true,
+          "isOuBestBet": false,
+          "isMlBestBet": false,
+          "mlEdge": 11.5,
+          "eloGap": 33,
+          "isHighConviction": false,
+          "homeElo": 1503,
+          "awayElo": 1470,
+          "liveOdds": {
+            "consensusTotal": 6.5,
+            "consensusOverOdds": -122,
+            "consensusUnderOdds": 11,
+            "bookmakers": [
+              {
+                "name": "DraftKings",
+                "total": 6.5,
+                "overOdds": -118,
+                "underOdds": -102
+              },
+              {
+                "name": "Fanatics",
+                "total": 6.5,
+                "overOdds": -120,
+                "underOdds": 100
+              },
+              {
+                "name": "BetOnline.ag",
+                "total": 6.5,
+                "overOdds": -125,
+                "underOdds": 109
+              },
+              {
+                "name": "LowVig.ag",
+                "total": 6.5,
+                "overOdds": -125,
+                "underOdds": 109
+              },
+              {
+                "name": "Caesars",
+                "total": 6.5,
+                "overOdds": -120,
+                "underOdds": -103
+              },
+              {
+                "name": "BetMGM",
+                "total": 6.5,
+                "overOdds": -120,
+                "underOdds": 100
+              },
+              {
+                "name": "FanDuel",
+                "total": 6.5,
+                "overOdds": -120,
+                "underOdds": -102
+              },
+              {
+                "name": "BetRivers",
+                "total": 6.5,
+                "overOdds": -122,
+                "underOdds": -103
+              },
+              {
+                "name": "BetUS",
+                "total": 6.5,
+                "overOdds": -125,
+                "underOdds": 105
+              },
+              {
+                "name": "Bovada",
+                "total": 6.5,
+                "overOdds": -125,
+                "underOdds": 105
+              },
+              {
+                "name": "MyBookie.ag",
+                "total": 6.5,
+                "overOdds": -121,
+                "underOdds": -101
+              }
+            ],
+            "lastUpdated": "2026-10-16T03:00:14.621Z"
+          },
+          "calc": {
+            "homeGPG": 4.4,
+            "homeGPGAllowed": 3.1,
+            "awayGPG": 3.6,
+            "awayGPGAllowed": 3.1,
+            "regHomeGPG": 4,
+            "regHomeGPGAllowed": 3.1,
+            "regAwayGPG": 3.5,
+            "regAwayGPGAllowed": 3.1,
+            "baseHomeScore": 3.6,
+            "baseAwayScore": 3.3,
+            "homeElo": 1503,
+            "awayElo": 1470,
+            "eloDiff": 33,
+            "eloAdj": 0.3,
+            "homeIceAdv": 0.25
+          }
+        }
+      },
+      {
+        "game": {
+          "id": "401892518",
+          "homeTeamId": "25",
+          "awayTeamId": "1",
+          "gameTime": "2026-10-17T02:00:00.000Z",
+          "status": "scheduled",
+          "venue": "Honda Center",
+          "season": 2027,
+          "homeTeam": {
+            "id": "25",
+            "name": "Anaheim Ducks",
+            "abbreviation": "ANA"
+          },
+          "awayTeam": {
+            "id": "1",
+            "name": "Boston Bruins",
+            "abbreviation": "BOS"
+          }
+        },
+        "prediction": {
+          "gameId": "401892518",
+          "predictedHomeScore": 2.9,
+          "predictedAwayScore": 3.2,
+          "predictedSpread": 0.5,
+          "predictedTotal": 6.1,
+          "homeWinProbability": 0.544494573083008,
+          "confidence": 0.5,
+          "vegasSpread": 1.5,
+          "vegasTotal": 6.5,
+          "lineMovement": {
+            "openingSpread": 1.5,
+            "openingTotal": 6.5,
+            "lastSeenSpread": 1.5,
+            "lastSeenTotal": 6.5,
+            "lastUpdatedAt": "2026-10-16T03:00:14.063Z"
+          },
+          "spreadEdge": 1,
+          "totalEdge": -0.4,
+          "atsConfidence": "high",
+          "ouConfidence": "medium",
+          "mlConfidence": "low",
+          "isAtsBestBet": true,
+          "isOuBestBet": false,
+          "isMlBestBet": false,
+          "mlEdge": 4.4,
+          "eloGap": 17,
+          "isHighConviction": false,
+          "homeElo": 1518,
+          "awayElo": 1535,
+          "liveOdds": {
+            "consensusTotal": 6,
+            "consensusOverOdds": -39,
+            "consensusUnderOdds": 0,
+            "bookmakers": [
+              {
+                "name": "DraftKings",
+                "total": 6.5,
+                "overOdds": 105,
+                "underOdds": -125
+              },
+              {
+                "name": "Fanatics",
+                "total": 6.5,
+                "overOdds": 105,
+                "underOdds": -125
+              },
+              {
+                "name": "BetOnline.ag",
+                "total": 6,
+                "overOdds": -120,
+                "underOdds": 104
+              },
+              {
+                "name": "LowVig.ag",
+                "total": 6,
+                "overOdds": -120,
+                "underOdds": 104
+              },
+              {
+                "name": "Caesars",
+                "total": 6,
+                "overOdds": -124,
+                "underOdds": 101
+              },
+              {
+                "name": "BetMGM",
+                "total": 6,
+                "overOdds": -125,
+                "underOdds": 105
+              },
+              {
+                "name": "FanDuel",
+                "total": 6.5,
+                "overOdds": 100,
+                "underOdds": -122
+              },
+              {
+                "name": "BetRivers",
+                "total": 6.5,
+                "overOdds": -108,
+                "underOdds": -115
+              },
+              {
+                "name": "BetUS",
+                "total": 6,
+                "overOdds": -120,
+                "underOdds": 100
+              },
+              {
+                "name": "Bovada",
+                "total": 6,
+                "overOdds": -120,
+                "underOdds": 100
+              },
+              {
+                "name": "MyBookie.ag",
+                "total": 6.5,
+                "overOdds": 102,
+                "underOdds": -124
+              }
+            ],
+            "lastUpdated": "2026-10-16T03:00:14.621Z"
+          },
+          "calc": {
+            "homeGPG": 3.3,
+            "homeGPGAllowed": 2.8,
+            "awayGPG": 3.7,
+            "awayGPGAllowed": 2.3,
+            "regHomeGPG": 3.2,
+            "regHomeGPGAllowed": 2.9,
+            "regAwayGPG": 3.5,
+            "regAwayGPGAllowed": 2.5,
+            "baseHomeScore": 2.9,
+            "baseAwayScore": 3.2,
+            "homeElo": 1518,
+            "awayElo": 1535,
+            "eloDiff": -17,
+            "eloAdj": -0.15,
+            "homeIceAdv": 0.25
+          }
+        }
+      },
+      {
+        "game": {
+          "id": "401892519",
+          "homeTeamId": "23",
+          "awayTeamId": "11",
+          "gameTime": "2026-10-17T17:00:00.000Z",
+          "status": "scheduled",
+          "venue": "Capital One Arena",
+          "season": 2027,
+          "homeTeam": {
+            "id": "23",
+            "name": "Washington Capitals",
+            "abbreviation": "WSH"
+          },
+          "awayTeam": {
+            "id": "11",
+            "name": "New Jersey Devils",
+            "abbreviation": "NJ"
+          }
+        },
+        "prediction": {
+          "gameId": "401892519",
+          "predictedHomeScore": 3.5,
+          "predictedAwayScore": 3,
+          "predictedSpread": -0.5,
+          "predictedTotal": 6.5,
+          "homeWinProbability": 0.5798997603578815,
+          "confidence": 0.5,
+          "spreadEdge": 0,
+          "totalEdge": 0,
+          "atsConfidence": "low",
+          "ouConfidence": "low",
+          "mlConfidence": "medium",
+          "isAtsBestBet": false,
+          "isOuBestBet": false,
+          "isMlBestBet": false,
+          "mlEdge": 8,
+          "eloGap": 8,
+          "isHighConviction": false,
+          "homeElo": 1519,
+          "awayElo": 1511,
+          "calc": {
+            "homeGPG": 3.4,
+            "homeGPGAllowed": 3.1,
+            "awayGPG": 3.3,
+            "awayGPGAllowed": 3.3,
+            "regHomeGPG": 3.3,
+            "regHomeGPGAllowed": 3.1,
+            "regAwayGPG": 3.2,
+            "regAwayGPGAllowed": 3.2,
+            "baseHomeScore": 3.3,
+            "baseAwayScore": 3.2,
+            "homeElo": 1519,
+            "awayElo": 1511,
+            "eloDiff": 8,
+            "eloAdj": 0.07,
+            "homeIceAdv": 0.25
+          }
+        }
+      },
+      {
+        "game": {
+          "id": "401892520",
+          "homeTeamId": "28",
+          "awayTeamId": "7",
+          "gameTime": "2026-10-17T19:30:00.000Z",
+          "status": "scheduled",
+          "venue": "Canada Life Centre",
+          "season": 2027,
+          "homeTeam": {
+            "id": "28",
+            "name": "Winnipeg Jets",
+            "abbreviation": "WPG"
+          },
+          "awayTeam": {
+            "id": "7",
+            "name": "Carolina Hurricanes",
+            "abbreviation": "CAR"
+          }
+        },
+        "prediction": {
+          "gameId": "401892520",
+          "predictedHomeScore": 2.4,
+          "predictedAwayScore": 3.8,
+          "predictedSpread": 1,
+          "predictedTotal": 6.199999999999999,
+          "homeWinProbability": 0.47842666694885455,
+          "confidence": 0.5,
+          "spreadEdge": 0,
+          "totalEdge": 0,
+          "atsConfidence": "high",
+          "ouConfidence": "low",
+          "mlConfidence": "low",
+          "isAtsBestBet": true,
+          "isOuBestBet": false,
+          "isMlBestBet": false,
+          "mlEdge": 2.2,
+          "eloGap": 63,
+          "isHighConviction": false,
+          "homeElo": 1507,
+          "awayElo": 1570,
+          "calc": {
+            "homeGPG": 3,
+            "homeGPGAllowed": 3,
+            "awayGPG": 3.9,
+            "awayGPGAllowed": 2.4,
+            "regHomeGPG": 3,
+            "regHomeGPGAllowed": 3,
+            "regAwayGPG": 3.7,
+            "regAwayGPGAllowed": 2.6,
+            "baseHomeScore": 2.8,
+            "baseAwayScore": 3.3,
+            "homeElo": 1507,
+            "awayElo": 1570,
+            "eloDiff": -63,
+            "eloAdj": -0.57,
+            "homeIceAdv": 0.25
+          }
+        }
+      },
+      {
+        "game": {
+          "id": "401892521",
+          "homeTeamId": "20",
+          "awayTeamId": "22",
+          "gameTime": "2026-10-17T20:00:00.000Z",
+          "status": "scheduled",
+          "venue": "Benchmark International Arena",
+          "season": 2027,
+          "homeTeam": {
+            "id": "20",
+            "name": "Tampa Bay Lightning",
+            "abbreviation": "TB"
+          },
+          "awayTeam": {
+            "id": "22",
+            "name": "Vancouver Canucks",
+            "abbreviation": "VAN"
+          }
+        },
+        "prediction": {
+          "gameId": "401892521",
+          "predictedHomeScore": 4.8,
+          "predictedAwayScore": 1.8,
+          "predictedSpread": -2.5,
+          "predictedTotal": 6.6,
+          "homeWinProbability": 0.7222345336491706,
+          "confidence": 0.5,
+          "spreadEdge": 0,
+          "totalEdge": 0,
+          "atsConfidence": "high",
+          "ouConfidence": "medium",
+          "mlConfidence": "high",
+          "isAtsBestBet": true,
+          "isOuBestBet": false,
+          "isMlBestBet": true,
+          "mlEdge": 22.2,
+          "eloGap": 118,
+          "isHighConviction": false,
+          "homeElo": 1539,
+          "awayElo": 1421,
+          "calc": {
+            "homeGPG": 3,
+            "homeGPGAllowed": 2.7,
+            "awayGPG": 3.1,
+            "awayGPGAllowed": 4.6,
+            "regHomeGPG": 3,
+            "regHomeGPGAllowed": 2.8,
+            "regAwayGPG": 3.1,
+            "regAwayGPGAllowed": 4.1,
+            "baseHomeScore": 3.6,
+            "baseAwayScore": 3,
+            "homeElo": 1539,
+            "awayElo": 1421,
+            "eloDiff": 118,
+            "eloAdj": 1.06,
+            "homeIceAdv": 0.25
+          }
+        }
+      },
+      {
+        "game": {
+          "id": "401892522",
+          "homeTeamId": "26",
+          "awayTeamId": "124292",
+          "gameTime": "2026-10-17T22:00:00.000Z",
+          "status": "scheduled",
+          "venue": "Amerant Bank Arena",
+          "season": 2027,
+          "homeTeam": {
+            "id": "26",
+            "name": "Florida Panthers",
+            "abbreviation": "FLA"
+          },
+          "awayTeam": {
+            "id": "124292",
+            "name": "Seattle Kraken",
+            "abbreviation": "SEA"
+          }
+        },
+        "prediction": {
+          "gameId": "401892522",
+          "predictedHomeScore": 2.7,
+          "predictedAwayScore": 3.6,
+          "predictedSpread": 1,
+          "predictedTotal": 6.300000000000001,
+          "homeWinProbability": 0.5086338358210827,
+          "confidence": 0.5,
+          "spreadEdge": 0,
+          "totalEdge": 0,
+          "atsConfidence": "medium",
+          "ouConfidence": "low",
+          "mlConfidence": "low",
+          "isAtsBestBet": false,
+          "isOuBestBet": false,
+          "isMlBestBet": false,
+          "mlEdge": 0.9,
+          "eloGap": 42,
+          "isHighConviction": false,
+          "homeElo": 1494,
+          "awayElo": 1536,
+          "calc": {
+            "homeGPG": 2.8,
+            "homeGPGAllowed": 2.8,
+            "awayGPG": 4,
+            "awayGPGAllowed": 2.9,
+            "regHomeGPG": 2.9,
+            "regHomeGPGAllowed": 2.9,
+            "regAwayGPG": 3.7,
+            "regAwayGPGAllowed": 3,
+            "baseHomeScore": 2.9,
+            "baseAwayScore": 3.3,
+            "homeElo": 1494,
+            "awayElo": 1536,
+            "eloDiff": -42,
+            "eloAdj": -0.38,
+            "homeIceAdv": 0.25
+          }
+        }
+      },
+      {
+        "game": {
+          "id": "401892523",
+          "homeTeamId": "21",
+          "awayTeamId": "12",
+          "gameTime": "2026-10-17T23:00:00.000Z",
+          "status": "scheduled",
+          "venue": "Scotiabank Arena",
+          "season": 2027,
+          "homeTeam": {
+            "id": "21",
+            "name": "Toronto Maple Leafs",
+            "abbreviation": "TOR"
+          },
+          "awayTeam": {
+            "id": "12",
+            "name": "New York Islanders",
+            "abbreviation": "NYI"
+          }
+        },
+        "prediction": {
+          "gameId": "401892523",
+          "predictedHomeScore": 3,
+          "predictedAwayScore": 3.2,
+          "predictedSpread": 0,
+          "predictedTotal": 6.2,
+          "homeWinProbability": 0.5430664920222119,
+          "confidence": 0.5,
+          "spreadEdge": 0,
+          "totalEdge": 0,
+          "atsConfidence": "low",
+          "ouConfidence": "low",
+          "mlConfidence": "low",
+          "isAtsBestBet": false,
+          "isOuBestBet": false,
+          "isMlBestBet": false,
+          "mlEdge": 4.3,
+          "eloGap": 18,
+          "isHighConviction": false,
+          "homeElo": 1482,
+          "awayElo": 1500,
+          "calc": {
+            "homeGPG": 3.5,
+            "homeGPGAllowed": 3.5,
+            "awayGPG": 2.9,
+            "awayGPGAllowed": 2.4,
+            "regHomeGPG": 3.4,
+            "regHomeGPGAllowed": 3.4,
+            "regAwayGPG": 3,
+            "regAwayGPGAllowed": 2.6,
+            "baseHomeScore": 3,
+            "baseAwayScore": 3.2,
+            "homeElo": 1482,
+            "awayElo": 1500,
+            "eloDiff": -18,
+            "eloAdj": -0.16,
+            "homeIceAdv": 0.25
+          }
+        }
+      },
+      {
+        "game": {
+          "id": "401892524",
+          "homeTeamId": "10",
+          "awayTeamId": "2",
+          "gameTime": "2026-10-17T23:00:00.000Z",
+          "status": "scheduled",
+          "venue": "Bell Centre",
+          "season": 2027,
+          "homeTeam": {
+            "id": "10",
+            "name": "Montreal Canadiens",
+            "abbreviation": "MTL"
+          },
+          "awayTeam": {
+            "id": "2",
+            "name": "Buffalo Sabres",
+            "abbreviation": "BUF"
+          }
+        },
+        "prediction": {
+          "gameId": "401892524",
+          "predictedHomeScore": 3.3,
+          "predictedAwayScore": 3.4,
+          "predictedSpread": 0,
+          "predictedTotal": 6.699999999999999,
+          "homeWinProbability": 0.5373473171664928,
+          "confidence": 0.5,
+          "spreadEdge": 0,
+          "totalEdge": 0,
+          "atsConfidence": "low",
+          "ouConfidence": "medium",
+          "mlConfidence": "low",
+          "isAtsBestBet": false,
+          "isOuBestBet": false,
+          "isMlBestBet": false,
+          "mlEdge": 3.7,
+          "eloGap": 22,
+          "isHighConviction": false,
+          "homeElo": 1463,
+          "awayElo": 1485,
+          "calc": {
+            "homeGPG": 3.3,
+            "homeGPGAllowed": 3.9,
+            "awayGPG": 3,
+            "awayGPGAllowed": 3.8,
+            "regHomeGPG": 3.2,
+            "regHomeGPGAllowed": 3.7,
+            "regAwayGPG": 3,
+            "regAwayGPGAllowed": 3.6,
+            "baseHomeScore": 3.4,
+            "baseAwayScore": 3.3,
+            "homeElo": 1463,
+            "awayElo": 1485,
+            "eloDiff": -22,
+            "eloAdj": -0.2,
+            "homeIceAdv": 0.25
+          }
+        }
+      },
+      {
+        "game": {
+          "id": "401892525",
+          "homeTeamId": "5",
+          "awayTeamId": "18",
+          "gameTime": "2026-10-17T23:00:00.000Z",
+          "status": "scheduled",
+          "venue": "Little Caesars Arena",
+          "season": 2027,
+          "homeTeam": {
+            "id": "5",
+            "name": "Detroit Red Wings",
+            "abbreviation": "DET"
+          },
+          "awayTeam": {
+            "id": "18",
+            "name": "San Jose Sharks",
+            "abbreviation": "SJ"
+          }
+        },
+        "prediction": {
+          "gameId": "401892525",
+          "predictedHomeScore": 2.7,
+          "predictedAwayScore": 3.2,
+          "predictedSpread": 0.5,
+          "predictedTotal": 5.9,
+          "homeWinProbability": 0.5057562084111449,
+          "confidence": 0.5,
+          "spreadEdge": 0,
+          "totalEdge": 0,
+          "atsConfidence": "medium",
+          "ouConfidence": "low",
+          "mlConfidence": "low",
+          "isAtsBestBet": false,
+          "isOuBestBet": false,
+          "isMlBestBet": false,
+          "mlEdge": 0.6,
+          "eloGap": 44,
+          "isHighConviction": false,
+          "homeElo": 1450,
+          "awayElo": 1494,
+          "liveOdds": {
+            "consensusTotal": 0,
+            "consensusOverOdds": -110,
+            "consensusUnderOdds": -110,
+            "bookmakers": [
+              {
+                "name": "DraftKings",
+                "total": 0,
+                "overOdds": -110,
+                "underOdds": -110
+              },
+              {
+                "name": "Fanatics",
+                "total": 0,
+                "overOdds": -110,
+                "underOdds": -110
+              },
+              {
+                "name": "Caesars",
+                "total": 0,
+                "overOdds": -110,
+                "underOdds": -110
+              },
+              {
+                "name": "FanDuel",
+                "total": 0,
+                "overOdds": -110,
+                "underOdds": -110
+              },
+              {
+                "name": "BetMGM",
+                "total": 0,
+                "overOdds": -110,
+                "underOdds": -110
+              },
+              {
+                "name": "MyBookie.ag",
+                "total": 0,
+                "overOdds": -110,
+                "underOdds": -110
+              }
+            ],
+            "lastUpdated": "2026-10-16T03:00:14.621Z"
+          },
+          "calc": {
+            "homeGPG": 2.3,
+            "homeGPGAllowed": 3,
+            "awayGPG": 2.7,
+            "awayGPGAllowed": 3.6,
+            "regHomeGPG": 2.5,
+            "regHomeGPGAllowed": 3,
+            "regAwayGPG": 2.8,
+            "regAwayGPGAllowed": 3.5,
+            "baseHomeScore": 3,
+            "baseAwayScore": 2.9,
+            "homeElo": 1450,
+            "awayElo": 1494,
+            "eloDiff": -44,
+            "eloAdj": -0.4,
+            "homeIceAdv": 0.25
+          }
+        }
+      },
+      {
+        "game": {
+          "id": "401892526",
+          "homeTeamId": "15",
+          "awayTeamId": "14",
+          "gameTime": "2026-10-17T23:00:00.000Z",
+          "status": "scheduled",
+          "venue": "Xfinity Mobile Arena",
+          "season": 2027,
+          "homeTeam": {
+            "id": "15",
+            "name": "Philadelphia Flyers",
+            "abbreviation": "PHI"
+          },
+          "awayTeam": {
+            "id": "14",
+            "name": "Ottawa Senators",
+            "abbreviation": "OTT"
+          }
+        },
+        "prediction": {
+          "gameId": "401892526",
+          "predictedHomeScore": 1.1,
+          "predictedAwayScore": 4.3,
+          "predictedSpread": 2.5,
+          "predictedTotal": 5.4,
+          "homeWinProbability": 0.3773498042127379,
+          "confidence": 0.5,
+          "spreadEdge": 0,
+          "totalEdge": 0,
+          "atsConfidence": "high",
+          "ouConfidence": "high",
+          "mlConfidence": "high",
+          "isAtsBestBet": true,
+          "isOuBestBet": true,
+          "isMlBestBet": true,
+          "mlEdge": 12.3,
+          "eloGap": 135,
+          "isHighConviction": false,
+          "homeElo": 1402,
+          "awayElo": 1537,
+          "calc": {
+            "homeGPG": 1.2,
+            "homeGPGAllowed": 3.7,
+            "awayGPG": 2.9,
+            "awayGPGAllowed": 2.5,
+            "regHomeGPG": 1.8,
+            "regHomeGPGAllowed": 3.5,
+            "regAwayGPG": 3,
+            "regAwayGPGAllowed": 2.7,
+            "baseHomeScore": 2.2,
+            "baseAwayScore": 3.2,
+            "homeElo": 1402,
+            "awayElo": 1537,
+            "eloDiff": -135,
+            "eloAdj": -1.21,
+            "homeIceAdv": 0.25
+          }
+        }
+      },
+      {
+        "game": {
+          "id": "401892527",
+          "homeTeamId": "29",
+          "awayTeamId": "13",
+          "gameTime": "2026-10-17T23:00:00.000Z",
+          "status": "scheduled",
+          "venue": "Nationwide Arena",
+          "season": 2027,
+          "homeTeam": {
+            "id": "29",
+            "name": "Columbus Blue Jackets",
+            "abbreviation": "CBJ"
+          },
+          "awayTeam": {
+            "id": "13",
+            "name": "New York Rangers",
+            "abbreviation": "NYR"
+          }
+        },
+        "prediction": {
+          "gameId": "401892527",
+          "predictedHomeScore": 2.3,
+          "predictedAwayScore": 4.1,
+          "predictedSpread": 1.5,
+          "predictedTotal": 6.3999999999999995,
+          "homeWinProbability": 0.45265148195413535,
+          "confidence": 0.5,
+          "spreadEdge": 0,
+          "totalEdge": 0,
+          "atsConfidence": "high",
+          "ouConfidence": "low",
+          "mlConfidence": "low",
+          "isAtsBestBet": true,
+          "isOuBestBet": false,
+          "isMlBestBet": false,
+          "mlEdge": 4.7,
+          "eloGap": 81,
+          "isHighConviction": false,
+          "homeElo": 1467,
+          "awayElo": 1548,
+          "calc": {
+            "homeGPG": 3.2,
+            "homeGPGAllowed": 4.2,
+            "awayGPG": 3.1,
+            "awayGPGAllowed": 2.3,
+            "regHomeGPG": 3.2,
+            "regHomeGPGAllowed": 3.9,
+            "regAwayGPG": 3.1,
+            "regAwayGPGAllowed": 2.5,
+            "baseHomeScore": 2.9,
+            "baseAwayScore": 3.5,
+            "homeElo": 1467,
+            "awayElo": 1548,
+            "eloDiff": -81,
+            "eloAdj": -0.73,
+            "homeIceAdv": 0.25
+          }
+        }
+      },
+      {
+        "game": {
+          "id": "401892528",
+          "homeTeamId": "4",
+          "awayTeamId": "9",
+          "gameTime": "2026-10-17T23:00:00.000Z",
+          "status": "scheduled",
+          "venue": "United Center",
+          "season": 2027,
+          "homeTeam": {
+            "id": "4",
+            "name": "Chicago Blackhawks",
+            "abbreviation": "CHI"
+          },
+          "awayTeam": {
+            "id": "9",
+            "name": "Dallas Stars",
+            "abbreviation": "DAL"
+          }
+        },
+        "prediction": {
+          "gameId": "401892528",
+          "predictedHomeScore": 2.5,
+          "predictedAwayScore": 3.2,
+          "predictedSpread": 0.5,
+          "predictedTotal": 5.7,
+          "homeWinProbability": 0.5430664920222119,
+          "confidence": 0.5,
+          "spreadEdge": 0,
+          "totalEdge": 0,
+          "atsConfidence": "low",
+          "ouConfidence": "high",
+          "mlConfidence": "low",
+          "isAtsBestBet": false,
+          "isOuBestBet": true,
+          "isMlBestBet": false,
+          "mlEdge": 4.3,
+          "eloGap": 18,
+          "isHighConviction": false,
+          "homeElo": 1482,
+          "awayElo": 1500,
+          "calc": {
+            "homeGPG": 2.6,
+            "homeGPGAllowed": 4,
+            "awayGPG": 2.3,
+            "awayGPGAllowed": 1.9,
+            "regHomeGPG": 2.8,
+            "regHomeGPGAllowed": 3.7,
+            "regAwayGPG": 2.5,
+            "regAwayGPGAllowed": 2.3,
+            "baseHomeScore": 2.5,
+            "baseAwayScore": 3.1,
+            "homeElo": 1482,
+            "awayElo": 1500,
+            "eloDiff": -18,
+            "eloAdj": -0.16,
+            "homeIceAdv": 0.25
+          }
+        }
+      },
+      {
+        "game": {
+          "id": "401892529",
+          "homeTeamId": "27",
+          "awayTeamId": "19",
+          "gameTime": "2026-10-18T00:00:00.000Z",
+          "status": "scheduled",
+          "venue": "Bridgestone Arena",
+          "season": 2027,
+          "homeTeam": {
+            "id": "27",
+            "name": "Nashville Predators",
+            "abbreviation": "NSH"
+          },
+          "awayTeam": {
+            "id": "19",
+            "name": "St. Louis Blues",
+            "abbreviation": "STL"
+          }
+        },
+        "prediction": {
+          "gameId": "401892529",
+          "predictedHomeScore": 2.7,
+          "predictedAwayScore": 3.6,
+          "predictedSpread": 1,
+          "predictedTotal": 6.300000000000001,
+          "homeWinProbability": 0.5043172397550598,
+          "confidence": 0.5,
+          "spreadEdge": 0,
+          "totalEdge": 0,
+          "atsConfidence": "medium",
+          "ouConfidence": "low",
+          "mlConfidence": "low",
+          "isAtsBestBet": false,
+          "isOuBestBet": false,
+          "isMlBestBet": false,
+          "mlEdge": 0.4,
+          "eloGap": 45,
+          "isHighConviction": false,
+          "homeElo": 1460,
+          "awayElo": 1505,
+          "liveOdds": {
+            "consensusTotal": 0,
+            "consensusOverOdds": -110,
+            "consensusUnderOdds": -110,
+            "bookmakers": [
+              {
+                "name": "DraftKings",
+                "total": 0,
+                "overOdds": -110,
+                "underOdds": -110
+              },
+              {
+                "name": "Fanatics",
+                "total": 0,
+                "overOdds": -110,
+                "underOdds": -110
+              },
+              {
+                "name": "Caesars",
+                "total": 0,
+                "overOdds": -110,
+                "underOdds": -110
+              },
+              {
+                "name": "FanDuel",
+                "total": 0,
+                "overOdds": -110,
+                "underOdds": -110
+              },
+              {
+                "name": "BetMGM",
+                "total": 0,
+                "overOdds": -110,
+                "underOdds": -110
+              },
+              {
+                "name": "MyBookie.ag",
+                "total": 0,
+                "overOdds": -110,
+                "underOdds": -110
+              }
+            ],
+            "lastUpdated": "2026-10-16T03:00:14.621Z"
+          },
+          "calc": {
+            "homeGPG": 2.6,
+            "homeGPGAllowed": 3.1,
+            "awayGPG": 3.6,
+            "awayGPGAllowed": 3.3,
+            "regHomeGPG": 2.8,
+            "regHomeGPGAllowed": 3.1,
+            "regAwayGPG": 3.5,
+            "regAwayGPGAllowed": 3.2,
+            "baseHomeScore": 3,
+            "baseAwayScore": 3.3,
+            "homeElo": 1460,
+            "awayElo": 1505,
+            "eloDiff": -45,
+            "eloAdj": -0.4,
+            "homeIceAdv": 0.25
+          }
+        }
+      },
+      {
+        "game": {
+          "id": "401892530",
+          "homeTeamId": "8",
+          "awayTeamId": "1",
+          "gameTime": "2026-10-18T01:00:00.000Z",
+          "status": "scheduled",
+          "venue": "crypto.com Arena",
+          "season": 2027,
+          "homeTeam": {
+            "id": "8",
+            "name": "Los Angeles Kings",
+            "abbreviation": "LA"
+          },
+          "awayTeam": {
+            "id": "1",
+            "name": "Boston Bruins",
+            "abbreviation": "BOS"
+          }
+        },
+        "prediction": {
+          "gameId": "401892530",
+          "predictedHomeScore": 1.9,
+          "predictedAwayScore": 4.3,
+          "predictedSpread": 2,
+          "predictedTotal": 6.199999999999999,
+          "homeWinProbability": 0.4469531048305375,
+          "confidence": 0.5,
+          "spreadEdge": 0,
+          "totalEdge": 0,
+          "atsConfidence": "high",
+          "ouConfidence": "low",
+          "mlConfidence": "medium",
+          "isAtsBestBet": true,
+          "isOuBestBet": false,
+          "isMlBestBet": false,
+          "mlEdge": 5.3,
+          "eloGap": 85,
+          "isHighConviction": false,
+          "homeElo": 1450,
+          "awayElo": 1535,
+          "liveOdds": {
+            "consensusTotal": 6,
+            "consensusOverOdds": -39,
+            "consensusUnderOdds": 0,
+            "bookmakers": [
+              {
+                "name": "DraftKings",
+                "total": 6.5,
+                "overOdds": 105,
+                "underOdds": -125
+              },
+              {
+                "name": "Fanatics",
+                "total": 6.5,
+                "overOdds": 105,
+                "underOdds": -125
+              },
+              {
+                "name": "BetOnline.ag",
+                "total": 6,
+                "overOdds": -120,
+                "underOdds": 104
+              },
+              {
+                "name": "LowVig.ag",
+                "total": 6,
+                "overOdds": -120,
+                "underOdds": 104
+              },
+              {
+                "name": "Caesars",
+                "total": 6,
+                "overOdds": -124,
+                "underOdds": 101
+              },
+              {
+                "name": "BetMGM",
+                "total": 6,
+                "overOdds": -125,
+                "underOdds": 105
+              },
+              {
+                "name": "FanDuel",
+                "total": 6.5,
+                "overOdds": 100,
+                "underOdds": -122
+              },
+              {
+                "name": "BetRivers",
+                "total": 6.5,
+                "overOdds": -108,
+                "underOdds": -115
+              },
+              {
+                "name": "BetUS",
+                "total": 6,
+                "overOdds": -120,
+                "underOdds": 100
+              },
+              {
+                "name": "Bovada",
+                "total": 6,
+                "overOdds": -120,
+                "underOdds": 100
+              },
+              {
+                "name": "MyBookie.ag",
+                "total": 6.5,
+                "overOdds": 102,
+                "underOdds": -124
+              }
+            ],
+            "lastUpdated": "2026-10-16T03:00:14.621Z"
+          },
+          "calc": {
+            "homeGPG": 2.2,
+            "homeGPGAllowed": 4.2,
+            "awayGPG": 3.7,
+            "awayGPGAllowed": 2.3,
+            "regHomeGPG": 2.5,
+            "regHomeGPGAllowed": 3.9,
+            "regAwayGPG": 3.5,
+            "regAwayGPGAllowed": 2.5,
+            "baseHomeScore": 2.5,
+            "baseAwayScore": 3.7,
+            "homeElo": 1450,
+            "awayElo": 1535,
+            "eloDiff": -85,
+            "eloAdj": -0.76,
+            "homeIceAdv": 0.25
+          }
+        }
+      },
+      {
+        "game": {
+          "id": "401892531",
+          "homeTeamId": "129764",
+          "awayTeamId": "6",
+          "gameTime": "2026-10-18T02:00:00.000Z",
+          "status": "scheduled",
+          "venue": "Delta Center",
+          "season": 2027,
+          "homeTeam": {
+            "id": "129764",
+            "name": "Utah Mammoth",
+            "abbreviation": "UTAH"
+          },
+          "awayTeam": {
+            "id": "6",
+            "name": "Edmonton Oilers",
+            "abbreviation": "EDM"
+          }
+        },
+        "prediction": {
+          "gameId": "401892531",
+          "predictedHomeScore": 3.2,
+          "predictedAwayScore": 3.7,
+          "predictedSpread": 0.5,
+          "predictedTotal": 6.9,
+          "homeWinProbability": 0.5186997779295586,
+          "confidence": 0.5,
+          "spreadEdge": 0,
+          "totalEdge": 0,
+          "atsConfidence": "medium",
+          "ouConfidence": "high",
+          "mlConfidence": "low",
+          "isAtsBestBet": false,
+          "isOuBestBet": true,
+          "isMlBestBet": false,
+          "mlEdge": 1.9,
+          "eloGap": 35,
+          "isHighConviction": false,
+          "homeElo": 1548,
+          "awayElo": 1583,
+          "liveOdds": {
+            "consensusTotal": 7,
+            "consensusOverOdds": 65,
+            "consensusUnderOdds": -163,
+            "bookmakers": [
+              {
+                "name": "DraftKings",
+                "total": 7.5,
+                "overOdds": 140,
+                "underOdds": -180
+              },
+              {
+                "name": "Fanatics",
+                "total": 7.5,
+                "overOdds": 140,
+                "underOdds": -190
+              },
+              {
+                "name": "Caesars",
+                "total": 6.5,
+                "overOdds": -118,
+                "underOdds": -107
+              },
+              {
+                "name": "FanDuel",
+                "total": 7.5,
+                "overOdds": 138,
+                "underOdds": -182
+              },
+              {
+                "name": "BetMGM",
+                "total": 7.5,
+                "overOdds": 140,
+                "underOdds": -190
+              },
+              {
+                "name": "Bovada",
+                "total": 7.5,
+                "overOdds": 145,
+                "underOdds": -190
+              },
+              {
+                "name": "MyBookie.ag",
+                "total": 6.5,
+                "overOdds": -133,
+                "underOdds": -105
+              }
+            ],
+            "lastUpdated": "2026-10-16T03:00:14.621Z"
+          },
+          "calc": {
+            "homeGPG": 3.9,
+            "homeGPGAllowed": 2.7,
+            "awayGPG": 4.8,
+            "awayGPGAllowed": 3,
+            "regHomeGPG": 3.7,
+            "regHomeGPGAllowed": 2.8,
+            "regAwayGPG": 4.3,
+            "regAwayGPGAllowed": 3,
+            "baseHomeScore": 3.3,
+            "baseAwayScore": 3.6,
+            "homeElo": 1548,
+            "awayElo": 1583,
+            "eloDiff": -35,
+            "eloAdj": -0.31,
+            "homeIceAdv": 0.25
+          }
+        }
+      },
+      {
+        "game": {
+          "id": "401892532",
+          "homeTeamId": "37",
+          "awayTeamId": "16",
+          "gameTime": "2026-10-18T02:00:00.000Z",
+          "status": "scheduled",
+          "venue": "T-Mobile Arena",
+          "season": 2027,
+          "homeTeam": {
+            "id": "37",
+            "name": "Vegas Golden Knights",
+            "abbreviation": "VGK"
+          },
+          "awayTeam": {
+            "id": "16",
+            "name": "Pittsburgh Penguins",
+            "abbreviation": "PIT"
+          }
+        },
+        "prediction": {
+          "gameId": "401892532",
+          "predictedHomeScore": 4.2,
+          "predictedAwayScore": 2.3,
+          "predictedSpread": -1.5,
+          "predictedTotal": 6.5,
+          "homeWinProbability": 0.6712405808158318,
+          "confidence": 0.5,
+          "spreadEdge": 0,
+          "totalEdge": 0,
+          "atsConfidence": "high",
+          "ouConfidence": "low",
+          "mlConfidence": "high",
+          "isAtsBestBet": true,
+          "isOuBestBet": false,
+          "isMlBestBet": true,
+          "mlEdge": 17.1,
+          "eloGap": 76,
+          "isHighConviction": false,
+          "homeElo": 1546,
+          "awayElo": 1470,
+          "liveOdds": {
+            "consensusTotal": 6.5,
+            "consensusOverOdds": 79,
+            "consensusUnderOdds": -140,
+            "bookmakers": [
+              {
+                "name": "DraftKings",
+                "total": 6.5,
+                "overOdds": 110,
+                "underOdds": -140
+              },
+              {
+                "name": "Fanatics",
+                "total": 6.5,
+                "overOdds": 110,
+                "underOdds": -145
+              },
+              {
+                "name": "Caesars",
+                "total": 6.5,
+                "overOdds": 112,
+                "underOdds": -139
+              },
+              {
+                "name": "FanDuel",
+                "total": 6.5,
+                "overOdds": 114,
+                "underOdds": -148
+              },
+              {
+                "name": "BetMGM",
+                "total": 6.5,
+                "overOdds": 105,
+                "underOdds": -140
+              },
+              {
+                "name": "Bovada",
+                "total": 6.5,
+                "overOdds": 105,
+                "underOdds": -135
+              },
+              {
+                "name": "MyBookie.ag",
+                "total": 6.5,
+                "overOdds": -105,
+                "underOdds": -133
+              }
+            ],
+            "lastUpdated": "2026-10-16T03:00:14.621Z"
+          },
+          "calc": {
+            "homeGPG": 3.8,
+            "homeGPGAllowed": 2.5,
+            "awayGPG": 3.6,
+            "awayGPGAllowed": 3.1,
+            "regHomeGPG": 3.6,
+            "regHomeGPGAllowed": 2.7,
+            "regAwayGPG": 3.5,
+            "regAwayGPGAllowed": 3.1,
+            "baseHomeScore": 3.3,
+            "baseAwayScore": 3.1,
+            "homeElo": 1546,
+            "awayElo": 1470,
+            "eloDiff": 76,
+            "eloAdj": 0.68,
+            "homeIceAdv": 0.25
+          }
+        }
+      },
+      {
+        "game": {
+          "id": "401892533",
+          "homeTeamId": "30",
+          "awayTeamId": "29",
+          "gameTime": "2026-10-18T22:00:00.000Z",
+          "status": "scheduled",
+          "venue": "Grand Casino Arena",
+          "season": 2027,
+          "homeTeam": {
+            "id": "30",
+            "name": "Minnesota Wild",
+            "abbreviation": "MIN"
+          },
+          "awayTeam": {
+            "id": "29",
+            "name": "Columbus Blue Jackets",
+            "abbreviation": "CBJ"
+          }
+        },
+        "prediction": {
+          "gameId": "401892533",
+          "predictedHomeScore": 4.3,
+          "predictedAwayScore": 2.2,
+          "predictedSpread": -2,
+          "predictedTotal": 6.5,
+          "homeWinProbability": 0.6635740980412955,
+          "confidence": 0.5,
+          "spreadEdge": 0,
+          "totalEdge": 0,
+          "atsConfidence": "high",
+          "ouConfidence": "low",
+          "mlConfidence": "high",
+          "isAtsBestBet": true,
+          "isOuBestBet": false,
+          "isMlBestBet": true,
+          "mlEdge": 16.4,
+          "eloGap": 70,
+          "isHighConviction": false,
+          "homeElo": 1537,
+          "awayElo": 1467,
+          "liveOdds": {
+            "consensusTotal": 9,
+            "consensusOverOdds": -48,
+            "consensusUnderOdds": -130,
+            "bookmakers": [
+              {
+                "name": "DraftKings",
+                "total": 0,
+                "overOdds": -110,
+                "underOdds": -110
+              },
+              {
+                "name": "Fanatics",
+                "total": 0,
+                "overOdds": -110,
+                "underOdds": -110
+              },
+              {
+                "name": "Caesars",
+                "total": 8.5,
+                "overOdds": -235,
+                "underOdds": 182
+              },
+              {
+                "name": "FanDuel",
+                "total": 0,
+                "overOdds": -110,
+                "underOdds": -110
+              },
+              {
+                "name": "BetMGM",
+                "total": 9.5,
+                "overOdds": 325,
+                "underOdds": -500
+              }
+            ],
+            "lastUpdated": "2026-10-16T03:00:14.621Z"
+          },
+          "calc": {
+            "homeGPG": 3.3,
+            "homeGPGAllowed": 2.5,
+            "awayGPG": 3.2,
+            "awayGPGAllowed": 4.2,
+            "regHomeGPG": 3.2,
+            "regHomeGPGAllowed": 2.7,
+            "regAwayGPG": 3.2,
+            "regAwayGPGAllowed": 3.9,
+            "baseHomeScore": 3.6,
+            "baseAwayScore": 2.9,
+            "homeElo": 1537,
+            "awayElo": 1467,
+            "eloDiff": 70,
+            "eloAdj": 0.63,
+            "homeIceAdv": 0.25
+          }
+        }
+      },
+      {
+        "game": {
+          "id": "401892534",
+          "homeTeamId": "3",
+          "awayTeamId": "7",
+          "gameTime": "2026-10-19T00:00:00.000Z",
+          "status": "scheduled",
+          "venue": "Scotiabank Saddledome",
+          "season": 2027,
+          "homeTeam": {
+            "id": "3",
+            "name": "Calgary Flames",
+            "abbreviation": "CGY"
+          },
+          "awayTeam": {
+            "id": "7",
+            "name": "Carolina Hurricanes",
+            "abbreviation": "CAR"
+          }
+        },
+        "prediction": {
+          "gameId": "401892534",
+          "predictedHomeScore": 1.4,
+          "predictedAwayScore": 5,
+          "predictedSpread": 3,
+          "predictedTotal": 6.4,
+          "homeWinProbability": 0.38141587791096926,
+          "confidence": 0.5,
+          "spreadEdge": 0,
+          "totalEdge": 0,
+          "atsConfidence": "high",
+          "ouConfidence": "low",
+          "mlConfidence": "medium",
+          "isAtsBestBet": true,
+          "isOuBestBet": false,
+          "isMlBestBet": false,
+          "mlEdge": 11.9,
+          "eloGap": 132,
+          "isHighConviction": false,
+          "homeElo": 1438,
+          "awayElo": 1570,
+          "liveOdds": {
+            "consensusTotal": 6.5,
+            "consensusOverOdds": 79,
+            "consensusUnderOdds": -140,
+            "bookmakers": [
+              {
+                "name": "DraftKings",
+                "total": 6.5,
+                "overOdds": 110,
+                "underOdds": -140
+              },
+              {
+                "name": "Fanatics",
+                "total": 6.5,
+                "overOdds": 110,
+                "underOdds": -145
+              },
+              {
+                "name": "Caesars",
+                "total": 6.5,
+                "overOdds": 112,
+                "underOdds": -139
+              },
+              {
+                "name": "FanDuel",
+                "total": 6.5,
+                "overOdds": 114,
+                "underOdds": -148
+              },
+              {
+                "name": "BetMGM",
+                "total": 6.5,
+                "overOdds": 105,
+                "underOdds": -140
+              },
+              {
+                "name": "Bovada",
+                "total": 6.5,
+                "overOdds": 105,
+                "underOdds": -135
+              },
+              {
+                "name": "MyBookie.ag",
+                "total": 6.5,
+                "overOdds": -105,
+                "underOdds": -133
+              }
+            ],
+            "lastUpdated": "2026-10-16T03:00:14.621Z"
+          },
+          "calc": {
+            "homeGPG": 2,
+            "homeGPGAllowed": 4.8,
+            "awayGPG": 3.9,
+            "awayGPGAllowed": 2.4,
+            "regHomeGPG": 2.3,
+            "regHomeGPGAllowed": 4.3,
+            "regAwayGPG": 3.7,
+            "regAwayGPGAllowed": 2.6,
+            "baseHomeScore": 2.5,
+            "baseAwayScore": 4,
+            "homeElo": 1438,
+            "awayElo": 1570,
+            "eloDiff": -132,
+            "eloAdj": -1.19,
+            "homeIceAdv": 0.25
+          }
+        }
+      },
+      {
+        "game": {
+          "id": "401892535",
+          "homeTeamId": "13",
+          "awayTeamId": "25",
+          "gameTime": "2026-10-19T23:00:00.000Z",
+          "status": "scheduled",
+          "venue": "Madison Square Garden",
+          "season": 2027,
+          "homeTeam": {
+            "id": "13",
+            "name": "New York Rangers",
+            "abbreviation": "NYR"
+          },
+          "awayTeam": {
+            "id": "25",
+            "name": "Anaheim Ducks",
+            "abbreviation": "ANA"
+          }
+        },
+        "prediction": {
+          "gameId": "401892535",
+          "predictedHomeScore": 3.4,
+          "predictedAwayScore": 2.5,
+          "predictedSpread": -1,
+          "predictedTotal": 5.9,
+          "homeWinProbability": 0.6104024220946891,
+          "confidence": 0.5,
+          "spreadEdge": 0,
+          "totalEdge": 0,
+          "atsConfidence": "medium",
+          "ouConfidence": "low",
+          "mlConfidence": "medium",
+          "isAtsBestBet": false,
+          "isOuBestBet": false,
+          "isMlBestBet": false,
+          "mlEdge": 11,
+          "eloGap": 30,
+          "isHighConviction": false,
+          "homeElo": 1548,
+          "awayElo": 1518,
+          "liveOdds": {
+            "consensusTotal": 6,
+            "consensusOverOdds": -39,
+            "consensusUnderOdds": 0,
+            "bookmakers": [
+              {
+                "name": "DraftKings",
+                "total": 6.5,
+                "overOdds": 105,
+                "underOdds": -125
+              },
+              {
+                "name": "Fanatics",
+                "total": 6.5,
+                "overOdds": 105,
+                "underOdds": -125
+              },
+              {
+                "name": "BetOnline.ag",
+                "total": 6,
+                "overOdds": -120,
+                "underOdds": 104
+              },
+              {
+                "name": "LowVig.ag",
+                "total": 6,
+                "overOdds": -120,
+                "underOdds": 104
+              },
+              {
+                "name": "Caesars",
+                "total": 6,
+                "overOdds": -124,
+                "underOdds": 101
+              },
+              {
+                "name": "BetMGM",
+                "total": 6,
+                "overOdds": -125,
+                "underOdds": 105
+              },
+              {
+                "name": "FanDuel",
+                "total": 6.5,
+                "overOdds": 100,
+                "underOdds": -122
+              },
+              {
+                "name": "BetRivers",
+                "total": 6.5,
+                "overOdds": -108,
+                "underOdds": -115
+              },
+              {
+                "name": "BetUS",
+                "total": 6,
+                "overOdds": -120,
+                "underOdds": 100
+              },
+              {
+                "name": "Bovada",
+                "total": 6,
+                "overOdds": -120,
+                "underOdds": 100
+              },
+              {
+                "name": "MyBookie.ag",
+                "total": 6.5,
+                "overOdds": 102,
+                "underOdds": -124
+              }
+            ],
+            "lastUpdated": "2026-10-16T03:00:14.621Z"
+          },
+          "calc": {
+            "homeGPG": 3.1,
+            "homeGPGAllowed": 2.3,
+            "awayGPG": 3.3,
+            "awayGPGAllowed": 2.8,
+            "regHomeGPG": 3.1,
+            "regHomeGPGAllowed": 2.5,
+            "regAwayGPG": 3.2,
+            "regAwayGPGAllowed": 2.9,
+            "baseHomeScore": 3,
+            "baseAwayScore": 2.9,
+            "homeElo": 1548,
+            "awayElo": 1518,
+            "eloDiff": 30,
+            "eloAdj": 0.27,
+            "homeIceAdv": 0.25
+          }
+        }
+      },
+      {
+        "game": {
+          "id": "401892536",
+          "homeTeamId": "15",
+          "awayTeamId": "17",
+          "gameTime": "2026-10-19T23:00:00.000Z",
+          "status": "scheduled",
+          "venue": "Xfinity Mobile Arena",
+          "season": 2027,
+          "homeTeam": {
+            "id": "15",
+            "name": "Philadelphia Flyers",
+            "abbreviation": "PHI"
+          },
+          "awayTeam": {
+            "id": "17",
+            "name": "Colorado Avalanche",
+            "abbreviation": "COL"
+          }
+        },
+        "prediction": {
+          "gameId": "401892536",
+          "predictedHomeScore": 1.7,
+          "predictedAwayScore": 4.5,
+          "predictedSpread": 2.5,
+          "predictedTotal": 6.2,
+          "homeWinProbability": 0.4243130476235704,
+          "confidence": 0.5,
+          "spreadEdge": 0,
+          "totalEdge": 0,
+          "atsConfidence": "high",
+          "ouConfidence": "low",
+          "mlConfidence": "medium",
+          "isAtsBestBet": true,
+          "isOuBestBet": false,
+          "isMlBestBet": false,
+          "mlEdge": 7.6,
+          "eloGap": 101,
+          "isHighConviction": false,
+          "homeElo": 1402,
+          "awayElo": 1503,
+          "liveOdds": {
+            "consensusTotal": 6.5,
+            "consensusOverOdds": -122,
+            "consensusUnderOdds": 11,
+            "bookmakers": [
+              {
+                "name": "DraftKings",
+                "total": 6.5,
+                "overOdds": -118,
+                "underOdds": -102
+              },
+              {
+                "name": "Fanatics",
+                "total": 6.5,
+                "overOdds": -120,
+                "underOdds": 100
+              },
+              {
+                "name": "BetOnline.ag",
+                "total": 6.5,
+                "overOdds": -125,
+                "underOdds": 109
+              },
+              {
+                "name": "LowVig.ag",
+                "total": 6.5,
+                "overOdds": -125,
+                "underOdds": 109
+              },
+              {
+                "name": "Caesars",
+                "total": 6.5,
+                "overOdds": -120,
+                "underOdds": -103
+              },
+              {
+                "name": "BetMGM",
+                "total": 6.5,
+                "overOdds": -120,
+                "underOdds": 100
+              },
+              {
+                "name": "FanDuel",
+                "total": 6.5,
+                "overOdds": -120,
+                "underOdds": -102
+              },
+              {
+                "name": "BetRivers",
+                "total": 6.5,
+                "overOdds": -122,
+                "underOdds": -103
+              },
+              {
+                "name": "BetUS",
+                "total": 6.5,
+                "overOdds": -125,
+                "underOdds": 105
+              },
+              {
+                "name": "Bovada",
+                "total": 6.5,
+                "overOdds": -125,
+                "underOdds": 105
+              },
+              {
+                "name": "MyBookie.ag",
+                "total": 6.5,
+                "overOdds": -121,
+                "underOdds": -101
+              }
+            ],
+            "lastUpdated": "2026-10-16T03:00:14.621Z"
+          },
+          "calc": {
+            "homeGPG": 1.2,
+            "homeGPGAllowed": 3.7,
+            "awayGPG": 4.4,
+            "awayGPGAllowed": 3.1,
+            "regHomeGPG": 1.8,
+            "regHomeGPGAllowed": 3.5,
+            "regAwayGPG": 4,
+            "regAwayGPGAllowed": 3.1,
+            "baseHomeScore": 2.4,
+            "baseAwayScore": 3.8,
+            "homeElo": 1402,
+            "awayElo": 1503,
+            "eloDiff": -101,
+            "eloAdj": -0.91,
+            "homeIceAdv": 0.25
+          }
+        }
+      },
+      {
+        "game": {
+          "id": "401892537",
+          "homeTeamId": "21",
+          "awayTeamId": "18",
+          "gameTime": "2026-10-19T23:30:00.000Z",
+          "status": "scheduled",
+          "venue": "Scotiabank Arena",
+          "season": 2027,
+          "homeTeam": {
+            "id": "21",
+            "name": "Toronto Maple Leafs",
+            "abbreviation": "TOR"
+          },
+          "awayTeam": {
+            "id": "18",
+            "name": "San Jose Sharks",
+            "abbreviation": "SJ"
+          }
+        },
+        "prediction": {
+          "gameId": "401892537",
+          "predictedHomeScore": 3.4,
+          "predictedAwayScore": 3.1,
+          "predictedSpread": -0.5,
+          "predictedTotal": 6.5,
+          "homeWinProbability": 0.5516235473109605,
+          "confidence": 0.5,
+          "spreadEdge": 0,
+          "totalEdge": 0,
+          "atsConfidence": "low",
+          "ouConfidence": "low",
+          "mlConfidence": "medium",
+          "isAtsBestBet": false,
+          "isOuBestBet": false,
+          "isMlBestBet": false,
+          "mlEdge": 5.2,
+          "eloGap": 12,
+          "isHighConviction": false,
+          "homeElo": 1482,
+          "awayElo": 1494,
+          "liveOdds": {
+            "consensusTotal": 0,
+            "consensusOverOdds": -110,
+            "consensusUnderOdds": -110,
+            "bookmakers": [
+              {
+                "name": "DraftKings",
+                "total": 0,
+                "overOdds": -110,
+                "underOdds": -110
+              },
+              {
+                "name": "Fanatics",
+                "total": 0,
+                "overOdds": -110,
+                "underOdds": -110
+              },
+              {
+                "name": "Caesars",
+                "total": 0,
+                "overOdds": -110,
+                "underOdds": -110
+              },
+              {
+                "name": "FanDuel",
+                "total": 0,
+                "overOdds": -110,
+                "underOdds": -110
+              },
+              {
+                "name": "BetMGM",
+                "total": 0,
+                "overOdds": -110,
+                "underOdds": -110
+              },
+              {
+                "name": "MyBookie.ag",
+                "total": 0,
+                "overOdds": -110,
+                "underOdds": -110
+              }
+            ],
+            "lastUpdated": "2026-10-16T03:00:14.621Z"
+          },
+          "calc": {
+            "homeGPG": 3.5,
+            "homeGPGAllowed": 3.5,
+            "awayGPG": 2.7,
+            "awayGPGAllowed": 3.6,
+            "regHomeGPG": 3.4,
+            "regHomeGPGAllowed": 3.4,
+            "regAwayGPG": 2.8,
+            "regAwayGPGAllowed": 3.5,
+            "baseHomeScore": 3.4,
+            "baseAwayScore": 3.1,
+            "homeElo": 1482,
+            "awayElo": 1494,
+            "eloDiff": -12,
+            "eloAdj": -0.11,
+            "homeIceAdv": 0.25
+          }
+        }
+      },
+      {
+        "game": {
+          "id": "401892538",
+          "homeTeamId": "129764",
+          "awayTeamId": "16",
+          "gameTime": "2026-10-20T01:00:00.000Z",
+          "status": "scheduled",
+          "venue": "Delta Center",
+          "season": 2027,
+          "homeTeam": {
+            "id": "129764",
+            "name": "Utah Mammoth",
+            "abbreviation": "UTAH"
+          },
+          "awayTeam": {
+            "id": "16",
+            "name": "Pittsburgh Penguins",
+            "abbreviation": "PIT"
+          }
+        },
+        "prediction": {
+          "gameId": "401892538",
+          "predictedHomeScore": 4.2,
+          "predictedAwayScore": 2.3,
+          "predictedSpread": -1.5,
+          "predictedTotal": 6.5,
+          "homeWinProbability": 0.6737761878883222,
+          "confidence": 0.5,
+          "spreadEdge": 0,
+          "totalEdge": 0,
+          "atsConfidence": "high",
+          "ouConfidence": "low",
+          "mlConfidence": "high",
+          "isAtsBestBet": true,
+          "isOuBestBet": false,
+          "isMlBestBet": true,
+          "mlEdge": 17.4,
+          "eloGap": 78,
+          "isHighConviction": false,
+          "homeElo": 1548,
+          "awayElo": 1470,
+          "liveOdds": {
+            "consensusTotal": 7,
+            "consensusOverOdds": 65,
+            "consensusUnderOdds": -163,
+            "bookmakers": [
+              {
+                "name": "DraftKings",
+                "total": 7.5,
+                "overOdds": 140,
+                "underOdds": -180
+              },
+              {
+                "name": "Fanatics",
+                "total": 7.5,
+                "overOdds": 140,
+                "underOdds": -190
+              },
+              {
+                "name": "Caesars",
+                "total": 6.5,
+                "overOdds": -118,
+                "underOdds": -107
+              },
+              {
+                "name": "FanDuel",
+                "total": 7.5,
+                "overOdds": 138,
+                "underOdds": -182
+              },
+              {
+                "name": "BetMGM",
+                "total": 7.5,
+                "overOdds": 140,
+                "underOdds": -190
+              },
+              {
+                "name": "Bovada",
+                "total": 7.5,
+                "overOdds": 145,
+                "underOdds": -190
+              },
+              {
+                "name": "MyBookie.ag",
+                "total": 6.5,
+                "overOdds": -133,
+                "underOdds": -105
+              }
+            ],
+            "lastUpdated": "2026-10-16T03:00:14.621Z"
+          },
+          "calc": {
+            "homeGPG": 3.9,
+            "homeGPGAllowed": 2.7,
+            "awayGPG": 3.6,
+            "awayGPGAllowed": 3.1,
+            "regHomeGPG": 3.7,
+            "regHomeGPGAllowed": 2.8,
+            "regAwayGPG": 3.5,
+            "regAwayGPGAllowed": 3.1,
+            "baseHomeScore": 3.4,
+            "baseAwayScore": 3.1,
+            "homeElo": 1548,
+            "awayElo": 1470,
+            "eloDiff": 78,
+            "eloAdj": 0.7,
+            "homeIceAdv": 0.25
+          }
+        }
+      },
+      {
+        "game": {
+          "id": "401892539",
+          "homeTeamId": "10",
+          "awayTeamId": "18",
+          "gameTime": "2026-10-20T23:00:00.000Z",
+          "status": "scheduled",
+          "venue": "Bell Centre",
+          "season": 2027,
+          "homeTeam": {
+            "id": "10",
+            "name": "Montreal Canadiens",
+            "abbreviation": "MTL"
+          },
+          "awayTeam": {
+            "id": "18",
+            "name": "San Jose Sharks",
+            "abbreviation": "SJ"
+          }
+        },
+        "prediction": {
+          "gameId": "401892539",
+          "predictedHomeScore": 3.2,
+          "predictedAwayScore": 3.4,
+          "predictedSpread": 0,
+          "predictedTotal": 6.6,
+          "homeWinProbability": 0.5244454611206615,
+          "confidence": 0.5,
+          "spreadEdge": 0,
+          "totalEdge": 0,
+          "atsConfidence": "medium",
+          "ouConfidence": "medium",
+          "mlConfidence": "low",
+          "isAtsBestBet": false,
+          "isOuBestBet": false,
+          "isMlBestBet": false,
+          "mlEdge": 2.4,
+          "eloGap": 31,
+          "isHighConviction": false,
+          "homeElo": 1463,
+          "awayElo": 1494,
+          "liveOdds": {
+            "consensusTotal": 0,
+            "consensusOverOdds": -110,
+            "consensusUnderOdds": -110,
+            "bookmakers": [
+              {
+                "name": "DraftKings",
+                "total": 0,
+                "overOdds": -110,
+                "underOdds": -110
+              },
+              {
+                "name": "Fanatics",
+                "total": 0,
+                "overOdds": -110,
+                "underOdds": -110
+              },
+              {
+                "name": "Caesars",
+                "total": 0,
+                "overOdds": -110,
+                "underOdds": -110
+              },
+              {
+                "name": "FanDuel",
+                "total": 0,
+                "overOdds": -110,
+                "underOdds": -110
+              },
+              {
+                "name": "BetMGM",
+                "total": 0,
+                "overOdds": -110,
+                "underOdds": -110
+              },
+              {
+                "name": "MyBookie.ag",
+                "total": 0,
+                "overOdds": -110,
+                "underOdds": -110
+              }
+            ],
+            "lastUpdated": "2026-10-16T03:00:14.621Z"
+          },
+          "calc": {
+            "homeGPG": 3.3,
+            "homeGPGAllowed": 3.9,
+            "awayGPG": 2.7,
+            "awayGPGAllowed": 3.6,
+            "regHomeGPG": 3.2,
+            "regHomeGPGAllowed": 3.7,
+            "regAwayGPG": 2.8,
+            "regAwayGPGAllowed": 3.5,
+            "baseHomeScore": 3.3,
+            "baseAwayScore": 3.2,
+            "homeElo": 1463,
+            "awayElo": 1494,
+            "eloDiff": -31,
+            "eloAdj": -0.28,
+            "homeIceAdv": 0.25
+          }
+        }
+      },
+      {
+        "game": {
+          "id": "401892540",
+          "homeTeamId": "11",
+          "awayTeamId": "17",
+          "gameTime": "2026-10-20T23:00:00.000Z",
+          "status": "scheduled",
+          "venue": "Prudential Center",
+          "season": 2027,
+          "homeTeam": {
+            "id": "11",
+            "name": "New Jersey Devils",
+            "abbreviation": "NJ"
+          },
+          "awayTeam": {
+            "id": "17",
+            "name": "Colorado Avalanche",
+            "abbreviation": "COL"
+          }
+        },
+        "prediction": {
+          "gameId": "401892540",
+          "predictedHomeScore": 3.4,
+          "predictedAwayScore": 3.4,
+          "predictedSpread": 0,
+          "predictedTotal": 6.8,
+          "homeWinProbability": 0.5798997603578815,
+          "confidence": 0.5,
+          "spreadEdge": 0,
+          "totalEdge": 0,
+          "atsConfidence": "low",
+          "ouConfidence": "high",
+          "mlConfidence": "medium",
+          "isAtsBestBet": false,
+          "isOuBestBet": true,
+          "isMlBestBet": false,
+          "mlEdge": 8,
+          "eloGap": 8,
+          "isHighConviction": false,
+          "homeElo": 1511,
+          "awayElo": 1503,
+          "liveOdds": {
+            "consensusTotal": 6.5,
+            "consensusOverOdds": -122,
+            "consensusUnderOdds": 11,
+            "bookmakers": [
+              {
+                "name": "DraftKings",
+                "total": 6.5,
+                "overOdds": -118,
+                "underOdds": -102
+              },
+              {
+                "name": "Fanatics",
+                "total": 6.5,
+                "overOdds": -120,
+                "underOdds": 100
+              },
+              {
+                "name": "BetOnline.ag",
+                "total": 6.5,
+                "overOdds": -125,
+                "underOdds": 109
+              },
+              {
+                "name": "LowVig.ag",
+                "total": 6.5,
+                "overOdds": -125,
+                "underOdds": 109
+              },
+              {
+                "name": "Caesars",
+                "total": 6.5,
+                "overOdds": -120,
+                "underOdds": -103
+              },
+              {
+                "name": "BetMGM",
+                "total": 6.5,
+                "overOdds": -120,
+                "underOdds": 100
+              },
+              {
+                "name": "FanDuel",
+                "total": 6.5,
+                "overOdds": -120,
+                "underOdds": -102
+              },
+              {
+                "name": "BetRivers",
+                "total": 6.5,
+                "overOdds": -122,
+                "underOdds": -103
+              },
+              {
+                "name": "BetUS",
+                "total": 6.5,
+                "overOdds": -125,
+                "underOdds": 105
+              },
+              {
+                "name": "Bovada",
+                "total": 6.5,
+                "overOdds": -125,
+                "underOdds": 105
+              },
+              {
+                "name": "MyBookie.ag",
+                "total": 6.5,
+                "overOdds": -121,
+                "underOdds": -101
+              }
+            ],
+            "lastUpdated": "2026-10-16T03:00:14.621Z"
+          },
+          "calc": {
+            "homeGPG": 3.3,
+            "homeGPGAllowed": 3.3,
+            "awayGPG": 4.4,
+            "awayGPGAllowed": 3.1,
+            "regHomeGPG": 3.2,
+            "regHomeGPGAllowed": 3.2,
+            "regAwayGPG": 4,
+            "regAwayGPGAllowed": 3.1,
+            "baseHomeScore": 3.2,
+            "baseAwayScore": 3.6,
+            "homeElo": 1511,
+            "awayElo": 1503,
+            "eloDiff": 8,
+            "eloAdj": 0.07,
+            "homeIceAdv": 0.25
+          }
+        }
+      },
+      {
+        "game": {
+          "id": "401892541",
+          "homeTeamId": "12",
+          "awayTeamId": "25",
+          "gameTime": "2026-10-20T23:00:00.000Z",
+          "status": "scheduled",
+          "venue": "UBS Arena",
+          "season": 2027,
+          "homeTeam": {
+            "id": "12",
+            "name": "New York Islanders",
+            "abbreviation": "NYI"
+          },
+          "awayTeam": {
+            "id": "25",
+            "name": "Anaheim Ducks",
+            "abbreviation": "ANA"
+          }
+        },
+        "prediction": {
+          "gameId": "401892541",
+          "predictedHomeScore": 2.9,
+          "predictedAwayScore": 3,
+          "predictedSpread": 0,
+          "predictedTotal": 5.9,
+          "homeWinProbability": 0.5430664920222119,
+          "confidence": 0.5,
+          "spreadEdge": 0,
+          "totalEdge": 0,
+          "atsConfidence": "low",
+          "ouConfidence": "low",
+          "mlConfidence": "low",
+          "isAtsBestBet": false,
+          "isOuBestBet": false,
+          "isMlBestBet": false,
+          "mlEdge": 4.3,
+          "eloGap": 18,
+          "isHighConviction": false,
+          "homeElo": 1500,
+          "awayElo": 1518,
+          "liveOdds": {
+            "consensusTotal": 6,
+            "consensusOverOdds": -39,
+            "consensusUnderOdds": 0,
+            "bookmakers": [
+              {
+                "name": "DraftKings",
+                "total": 6.5,
+                "overOdds": 105,
+                "underOdds": -125
+              },
+              {
+                "name": "Fanatics",
+                "total": 6.5,
+                "overOdds": 105,
+                "underOdds": -125
+              },
+              {
+                "name": "BetOnline.ag",
+                "total": 6,
+                "overOdds": -120,
+                "underOdds": 104
+              },
+              {
+                "name": "LowVig.ag",
+                "total": 6,
+                "overOdds": -120,
+                "underOdds": 104
+              },
+              {
+                "name": "Caesars",
+                "total": 6,
+                "overOdds": -124,
+                "underOdds": 101
+              },
+              {
+                "name": "BetMGM",
+                "total": 6,
+                "overOdds": -125,
+                "underOdds": 105
+              },
+              {
+                "name": "FanDuel",
+                "total": 6.5,
+                "overOdds": 100,
+                "underOdds": -122
+              },
+              {
+                "name": "BetRivers",
+                "total": 6.5,
+                "overOdds": -108,
+                "underOdds": -115
+              },
+              {
+                "name": "BetUS",
+                "total": 6,
+                "overOdds": -120,
+                "underOdds": 100
+              },
+              {
+                "name": "Bovada",
+                "total": 6,
+                "overOdds": -120,
+                "underOdds": 100
+              },
+              {
+                "name": "MyBookie.ag",
+                "total": 6.5,
+                "overOdds": 102,
+                "underOdds": -124
+              }
+            ],
+            "lastUpdated": "2026-10-16T03:00:14.621Z"
+          },
+          "calc": {
+            "homeGPG": 2.9,
+            "homeGPGAllowed": 2.4,
+            "awayGPG": 3.3,
+            "awayGPGAllowed": 2.8,
+            "regHomeGPG": 3,
+            "regHomeGPGAllowed": 2.6,
+            "regAwayGPG": 3.2,
+            "regAwayGPGAllowed": 2.9,
+            "baseHomeScore": 2.9,
+            "baseAwayScore": 2.9,
+            "homeElo": 1500,
+            "awayElo": 1518,
+            "eloDiff": -18,
+            "eloAdj": -0.16,
+            "homeIceAdv": 0.25
+          }
+        }
+      },
+      {
+        "game": {
+          "id": "401892542",
+          "homeTeamId": "23",
+          "awayTeamId": "8",
+          "gameTime": "2026-10-20T23:00:00.000Z",
+          "status": "scheduled",
+          "venue": "Capital One Arena",
+          "season": 2027,
+          "homeTeam": {
+            "id": "23",
+            "name": "Washington Capitals",
+            "abbreviation": "WSH"
+          },
+          "awayTeam": {
+            "id": "8",
+            "name": "Los Angeles Kings",
+            "abbreviation": "LA"
+          }
+        },
+        "prediction": {
+          "gameId": "401892542",
+          "predictedHomeScore": 4.3,
+          "predictedAwayScore": 2,
+          "predictedSpread": -2,
+          "predictedTotal": 6.3,
+          "homeWinProbability": 0.6622877974308888,
+          "confidence": 0.5,
+          "spreadEdge": 0,
+          "totalEdge": 0,
+          "atsConfidence": "high",
+          "ouConfidence": "low",
+          "mlConfidence": "high",
+          "isAtsBestBet": true,
+          "isOuBestBet": false,
+          "isMlBestBet": true,
+          "mlEdge": 16.2,
+          "eloGap": 69,
+          "isHighConviction": false,
+          "homeElo": 1519,
+          "awayElo": 1450,
+          "calc": {
+            "homeGPG": 3.4,
+            "homeGPGAllowed": 3.1,
+            "awayGPG": 2.2,
+            "awayGPGAllowed": 4.2,
+            "regHomeGPG": 3.3,
+            "regHomeGPGAllowed": 3.1,
+            "regAwayGPG": 2.5,
+            "regAwayGPGAllowed": 3.9,
+            "baseHomeScore": 3.6,
+            "baseAwayScore": 2.8,
+            "homeElo": 1519,
+            "awayElo": 1450,
+            "eloDiff": 69,
+            "eloAdj": 0.62,
+            "homeIceAdv": 0.25
+          }
+        }
+      },
+      {
+        "game": {
+          "id": "401892543",
+          "homeTeamId": "29",
+          "awayTeamId": "21",
+          "gameTime": "2026-10-20T23:00:00.000Z",
+          "status": "scheduled",
+          "venue": "Nationwide Arena",
+          "season": 2027,
+          "homeTeam": {
+            "id": "29",
+            "name": "Columbus Blue Jackets",
+            "abbreviation": "CBJ"
+          },
+          "awayTeam": {
+            "id": "21",
+            "name": "Toronto Maple Leafs",
+            "abbreviation": "TOR"
+          }
+        },
+        "prediction": {
+          "gameId": "401892543",
+          "predictedHomeScore": 3.3,
+          "predictedAwayScore": 3.6,
+          "predictedSpread": 0.5,
+          "predictedTotal": 6.9,
+          "homeWinProbability": 0.5473485180458647,
+          "confidence": 0.5,
+          "spreadEdge": 0,
+          "totalEdge": 0,
+          "atsConfidence": "low",
+          "ouConfidence": "high",
+          "mlConfidence": "low",
+          "isAtsBestBet": false,
+          "isOuBestBet": true,
+          "isMlBestBet": false,
+          "mlEdge": 4.7,
+          "eloGap": 15,
+          "isHighConviction": false,
+          "homeElo": 1467,
+          "awayElo": 1482,
+          "calc": {
+            "homeGPG": 3.2,
+            "homeGPGAllowed": 4.2,
+            "awayGPG": 3.5,
+            "awayGPGAllowed": 3.5,
+            "regHomeGPG": 3.2,
+            "regHomeGPGAllowed": 3.9,
+            "regAwayGPG": 3.4,
+            "regAwayGPGAllowed": 3.4,
+            "baseHomeScore": 3.3,
+            "baseAwayScore": 3.6,
+            "homeElo": 1467,
+            "awayElo": 1482,
+            "eloDiff": -15,
+            "eloAdj": -0.13,
+            "homeIceAdv": 0.25
+          }
+        }
+      },
+      {
+        "game": {
+          "id": "401892544",
+          "homeTeamId": "19",
+          "awayTeamId": "28",
+          "gameTime": "2026-10-21T00:00:00.000Z",
+          "status": "scheduled",
+          "venue": "Enterprise Center",
+          "season": 2027,
+          "homeTeam": {
+            "id": "19",
+            "name": "St. Louis Blues",
+            "abbreviation": "STL"
+          },
+          "awayTeam": {
+            "id": "28",
+            "name": "Winnipeg Jets",
+            "abbreviation": "WPG"
+          }
+        },
+        "prediction": {
+          "gameId": "401892544",
+          "predictedHomeScore": 3.3,
+          "predictedAwayScore": 3,
+          "predictedSpread": -0.5,
+          "predictedTotal": 6.3,
+          "homeWinProbability": 0.5658152030692333,
+          "confidence": 0.5,
+          "spreadEdge": 0,
+          "totalEdge": 0,
+          "atsConfidence": "low",
+          "ouConfidence": "low",
+          "mlConfidence": "medium",
+          "isAtsBestBet": false,
+          "isOuBestBet": false,
+          "isMlBestBet": false,
+          "mlEdge": 6.6,
+          "eloGap": 2,
+          "isHighConviction": false,
+          "homeElo": 1505,
+          "awayElo": 1507,
+          "calc": {
+            "homeGPG": 3.6,
+            "homeGPGAllowed": 3.3,
+            "awayGPG": 3,
+            "awayGPGAllowed": 3,
+            "regHomeGPG": 3.5,
+            "regHomeGPGAllowed": 3.2,
+            "regAwayGPG": 3,
+            "regAwayGPGAllowed": 3,
+            "baseHomeScore": 3.2,
+            "baseAwayScore": 3.1,
+            "homeElo": 1505,
+            "awayElo": 1507,
+            "eloDiff": -2,
+            "eloAdj": -0.02,
+            "homeIceAdv": 0.25
+          }
+        }
+      },
+      {
+        "game": {
+          "id": "401892545",
+          "homeTeamId": "9",
+          "awayTeamId": "1",
+          "gameTime": "2026-10-21T00:00:00.000Z",
+          "status": "scheduled",
+          "venue": "American Airlines Center",
+          "season": 2027,
+          "homeTeam": {
+            "id": "9",
+            "name": "Dallas Stars",
+            "abbreviation": "DAL"
+          },
+          "awayTeam": {
+            "id": "1",
+            "name": "Boston Bruins",
+            "abbreviation": "BOS"
+          }
+        },
+        "prediction": {
+          "gameId": "401892545",
+          "predictedHomeScore": 2.4,
+          "predictedAwayScore": 3.1,
+          "predictedSpread": 0.5,
+          "predictedTotal": 5.5,
+          "homeWinProbability": 0.5186997779295586,
+          "confidence": 0.5,
+          "spreadEdge": 0,
+          "totalEdge": 0,
+          "atsConfidence": "medium",
+          "ouConfidence": "high",
+          "mlConfidence": "low",
+          "isAtsBestBet": false,
+          "isOuBestBet": true,
+          "isMlBestBet": false,
+          "mlEdge": 1.9,
+          "eloGap": 35,
+          "isHighConviction": false,
+          "homeElo": 1500,
+          "awayElo": 1535,
+          "liveOdds": {
+            "consensusTotal": 6,
+            "consensusOverOdds": -39,
+            "consensusUnderOdds": 0,
+            "bookmakers": [
+              {
+                "name": "DraftKings",
+                "total": 6.5,
+                "overOdds": 105,
+                "underOdds": -125
+              },
+              {
+                "name": "Fanatics",
+                "total": 6.5,
+                "overOdds": 105,
+                "underOdds": -125
+              },
+              {
+                "name": "BetOnline.ag",
+                "total": 6,
+                "overOdds": -120,
+                "underOdds": 104
+              },
+              {
+                "name": "LowVig.ag",
+                "total": 6,
+                "overOdds": -120,
+                "underOdds": 104
+              },
+              {
+                "name": "Caesars",
+                "total": 6,
+                "overOdds": -124,
+                "underOdds": 101
+              },
+              {
+                "name": "BetMGM",
+                "total": 6,
+                "overOdds": -125,
+                "underOdds": 105
+              },
+              {
+                "name": "FanDuel",
+                "total": 6.5,
+                "overOdds": 100,
+                "underOdds": -122
+              },
+              {
+                "name": "BetRivers",
+                "total": 6.5,
+                "overOdds": -108,
+                "underOdds": -115
+              },
+              {
+                "name": "BetUS",
+                "total": 6,
+                "overOdds": -120,
+                "underOdds": 100
+              },
+              {
+                "name": "Bovada",
+                "total": 6,
+                "overOdds": -120,
+                "underOdds": 100
+              },
+              {
+                "name": "MyBookie.ag",
+                "total": 6.5,
+                "overOdds": 102,
+                "underOdds": -124
+              }
+            ],
+            "lastUpdated": "2026-10-16T03:00:14.621Z"
+          },
+          "calc": {
+            "homeGPG": 2.3,
+            "homeGPGAllowed": 1.9,
+            "awayGPG": 3.7,
+            "awayGPGAllowed": 2.3,
+            "regHomeGPG": 2.5,
+            "regHomeGPGAllowed": 2.3,
+            "regAwayGPG": 3.5,
+            "regAwayGPGAllowed": 2.5,
+            "baseHomeScore": 2.5,
+            "baseAwayScore": 2.9,
+            "homeElo": 1500,
+            "awayElo": 1535,
+            "eloDiff": -35,
+            "eloAdj": -0.31,
+            "homeIceAdv": 0.25
+          }
+        }
+      },
+      {
+        "game": {
+          "id": "401892546",
+          "homeTeamId": "6",
+          "awayTeamId": "30",
+          "gameTime": "2026-10-21T01:00:00.000Z",
+          "status": "scheduled",
+          "venue": "Rogers Place",
+          "season": 2027,
+          "homeTeam": {
+            "id": "6",
+            "name": "Edmonton Oilers",
+            "abbreviation": "EDM"
+          },
+          "awayTeam": {
+            "id": "30",
+            "name": "Minnesota Wild",
+            "abbreviation": "MIN"
+          }
+        },
+        "prediction": {
+          "gameId": "401892546",
+          "predictedHomeScore": 4,
+          "predictedAwayScore": 2.6,
+          "predictedSpread": -1,
+          "predictedTotal": 6.6,
+          "homeWinProbability": 0.6320700121000735,
+          "confidence": 0.5,
+          "spreadEdge": 0,
+          "totalEdge": 0,
+          "atsConfidence": "medium",
+          "ouConfidence": "medium",
+          "mlConfidence": "high",
+          "isAtsBestBet": false,
+          "isOuBestBet": false,
+          "isMlBestBet": true,
+          "mlEdge": 13.2,
+          "eloGap": 46,
+          "isHighConviction": false,
+          "homeElo": 1583,
+          "awayElo": 1537,
+          "liveOdds": {
+            "consensusTotal": 9,
+            "consensusOverOdds": -48,
+            "consensusUnderOdds": -130,
+            "bookmakers": [
+              {
+                "name": "DraftKings",
+                "total": 0,
+                "overOdds": -110,
+                "underOdds": -110
+              },
+              {
+                "name": "Fanatics",
+                "total": 0,
+                "overOdds": -110,
+                "underOdds": -110
+              },
+              {
+                "name": "Caesars",
+                "total": 8.5,
+                "overOdds": -235,
+                "underOdds": 182
+              },
+              {
+                "name": "FanDuel",
+                "total": 0,
+                "overOdds": -110,
+                "underOdds": -110
+              },
+              {
+                "name": "BetMGM",
+                "total": 9.5,
+                "overOdds": 325,
+                "underOdds": -500
+              }
+            ],
+            "lastUpdated": "2026-10-16T03:00:14.621Z"
+          },
+          "calc": {
+            "homeGPG": 4.8,
+            "homeGPGAllowed": 3,
+            "awayGPG": 3.3,
+            "awayGPGAllowed": 2.5,
+            "regHomeGPG": 4.3,
+            "regHomeGPGAllowed": 3,
+            "regAwayGPG": 3.2,
+            "regAwayGPGAllowed": 2.7,
+            "baseHomeScore": 3.5,
+            "baseAwayScore": 3.1,
+            "homeElo": 1583,
+            "awayElo": 1537,
+            "eloDiff": 46,
+            "eloAdj": 0.41,
+            "homeIceAdv": 0.25
+          }
+        }
+      },
+      {
+        "game": {
+          "id": "401892547",
+          "homeTeamId": "124292",
+          "awayTeamId": "5",
+          "gameTime": "2026-10-21T01:40:00.000Z",
+          "status": "scheduled",
+          "venue": "Climate Pledge Arena",
+          "season": 2027,
+          "homeTeam": {
+            "id": "124292",
+            "name": "Seattle Kraken",
+            "abbreviation": "SEA"
+          },
+          "awayTeam": {
+            "id": "5",
+            "name": "Detroit Red Wings",
+            "abbreviation": "DET"
+          }
+        },
+        "prediction": {
+          "gameId": "401892547",
+          "predictedHomeScore": 4.3,
+          "predictedAwayScore": 1.9,
+          "predictedSpread": -2,
+          "predictedTotal": 6.199999999999999,
+          "homeWinProbability": 0.6838163141936586,
+          "confidence": 0.5,
+          "spreadEdge": 0,
+          "totalEdge": 0,
+          "atsConfidence": "high",
+          "ouConfidence": "low",
+          "mlConfidence": "high",
+          "isAtsBestBet": true,
+          "isOuBestBet": false,
+          "isMlBestBet": true,
+          "mlEdge": 18.4,
+          "eloGap": 86,
+          "isHighConviction": false,
+          "homeElo": 1536,
+          "awayElo": 1450,
+          "calc": {
+            "homeGPG": 4,
+            "homeGPGAllowed": 2.9,
+            "awayGPG": 2.3,
+            "awayGPGAllowed": 3,
+            "regHomeGPG": 3.7,
+            "regHomeGPGAllowed": 3,
+            "regAwayGPG": 2.5,
+            "regAwayGPGAllowed": 3,
+            "baseHomeScore": 3.4,
+            "baseAwayScore": 2.8,
+            "homeElo": 1536,
+            "awayElo": 1450,
+            "eloDiff": 86,
+            "eloAdj": 0.77,
+            "homeIceAdv": 0.25
+          }
+        }
+      },
+      {
+        "game": {
+          "id": "401892548",
+          "homeTeamId": "22",
+          "awayTeamId": "7",
+          "gameTime": "2026-10-21T02:00:00.000Z",
+          "status": "scheduled",
+          "venue": "Rogers Arena",
+          "season": 2027,
+          "homeTeam": {
+            "id": "22",
+            "name": "Vancouver Canucks",
+            "abbreviation": "VAN"
+          },
+          "awayTeam": {
+            "id": "7",
+            "name": "Carolina Hurricanes",
+            "abbreviation": "CAR"
+          }
+        },
+        "prediction": {
+          "gameId": "401892548",
+          "predictedHomeScore": 1.6,
+          "predictedAwayScore": 5.1,
+          "predictedSpread": 3,
+          "predictedTotal": 6.699999999999999,
+          "homeWinProbability": 0.35860988804438204,
+          "confidence": 0.5,
+          "spreadEdge": 0,
+          "totalEdge": 0,
+          "atsConfidence": "high",
+          "ouConfidence": "medium",
+          "mlConfidence": "high",
+          "isAtsBestBet": true,
+          "isOuBestBet": false,
+          "isMlBestBet": true,
+          "mlEdge": 14.1,
+          "eloGap": 149,
+          "isHighConviction": false,
+          "homeElo": 1421,
+          "awayElo": 1570,
+          "calc": {
+            "homeGPG": 3.1,
+            "homeGPGAllowed": 4.6,
+            "awayGPG": 3.9,
+            "awayGPGAllowed": 2.4,
+            "regHomeGPG": 3.1,
+            "regHomeGPGAllowed": 4.1,
+            "regAwayGPG": 3.7,
+            "regAwayGPGAllowed": 2.6,
+            "baseHomeScore": 2.9,
+            "baseAwayScore": 3.9,
+            "homeElo": 1421,
+            "awayElo": 1570,
+            "eloDiff": -149,
+            "eloAdj": -1.34,
+            "homeIceAdv": 0.25
+          }
+        }
+      },
+      {
+        "game": {
+          "id": "401892549",
+          "homeTeamId": "37",
+          "awayTeamId": "20",
+          "gameTime": "2026-10-21T02:30:00.000Z",
+          "status": "scheduled",
+          "venue": "T-Mobile Arena",
+          "season": 2027,
+          "homeTeam": {
+            "id": "37",
+            "name": "Vegas Golden Knights",
+            "abbreviation": "VGK"
+          },
+          "awayTeam": {
+            "id": "20",
+            "name": "Tampa Bay Lightning",
+            "abbreviation": "TB"
+          }
+        },
+        "prediction": {
+          "gameId": "401892549",
+          "predictedHomeScore": 3.4,
+          "predictedAwayScore": 2.7,
+          "predictedSpread": -0.5,
+          "predictedTotal": 6.1,
+          "homeWinProbability": 0.5784967523447427,
+          "confidence": 0.5,
+          "spreadEdge": 0,
+          "totalEdge": 0,
+          "atsConfidence": "low",
+          "ouConfidence": "low",
+          "mlConfidence": "medium",
+          "isAtsBestBet": false,
+          "isOuBestBet": false,
+          "isMlBestBet": false,
+          "mlEdge": 7.8,
+          "eloGap": 7,
+          "isHighConviction": false,
+          "homeElo": 1546,
+          "awayElo": 1539,
+          "liveOdds": {
+            "consensusTotal": 6.5,
+            "consensusOverOdds": 79,
+            "consensusUnderOdds": -140,
+            "bookmakers": [
+              {
+                "name": "DraftKings",
+                "total": 6.5,
+                "overOdds": 110,
+                "underOdds": -140
+              },
+              {
+                "name": "Fanatics",
+                "total": 6.5,
+                "overOdds": 110,
+                "underOdds": -145
+              },
+              {
+                "name": "Caesars",
+                "total": 6.5,
+                "overOdds": 112,
+                "underOdds": -139
+              },
+              {
+                "name": "FanDuel",
+                "total": 6.5,
+                "overOdds": 114,
+                "underOdds": -148
+              },
+              {
+                "name": "BetMGM",
+                "total": 6.5,
+                "overOdds": 105,
+                "underOdds": -140
+              },
+              {
+                "name": "Bovada",
+                "total": 6.5,
+                "overOdds": 105,
+                "underOdds": -135
+              },
+              {
+                "name": "MyBookie.ag",
+                "total": 6.5,
+                "overOdds": -105,
+                "underOdds": -133
+              }
+            ],
+            "lastUpdated": "2026-10-16T03:00:14.621Z"
+          },
+          "calc": {
+            "homeGPG": 3.8,
+            "homeGPGAllowed": 2.5,
+            "awayGPG": 3,
+            "awayGPGAllowed": 2.7,
+            "regHomeGPG": 3.6,
+            "regHomeGPGAllowed": 2.7,
+            "regAwayGPG": 3,
+            "regAwayGPGAllowed": 2.8,
+            "baseHomeScore": 3.2,
+            "baseAwayScore": 2.9,
+            "homeElo": 1546,
+            "awayElo": 1539,
+            "eloDiff": 7,
+            "eloAdj": 0.06,
+            "homeIceAdv": 0.25
+          }
+        }
+      },
+      {
+        "game": {
+          "id": "401892550",
+          "homeTeamId": "2",
+          "awayTeamId": "15",
+          "gameTime": "2026-10-21T23:30:00.000Z",
+          "status": "scheduled",
+          "venue": "KeyBank Center",
+          "season": 2027,
+          "homeTeam": {
+            "id": "2",
+            "name": "Buffalo Sabres",
+            "abbreviation": "BUF"
+          },
+          "awayTeam": {
+            "id": "15",
+            "name": "Philadelphia Flyers",
+            "abbreviation": "PHI"
+          }
+        },
+        "prediction": {
+          "gameId": "401892550",
+          "predictedHomeScore": 4.1,
+          "predictedAwayScore": 1.8,
+          "predictedSpread": -2,
+          "predictedTotal": 5.8999999999999995,
+          "homeWinProbability": 0.6800706757372215,
+          "confidence": 0.5,
+          "spreadEdge": 0,
+          "totalEdge": 0,
+          "atsConfidence": "high",
+          "ouConfidence": "medium",
+          "mlConfidence": "high",
+          "isAtsBestBet": true,
+          "isOuBestBet": false,
+          "isMlBestBet": true,
+          "mlEdge": 18,
+          "eloGap": 83,
+          "isHighConviction": false,
+          "homeElo": 1485,
+          "awayElo": 1402,
+          "calc": {
+            "homeGPG": 3,
+            "homeGPGAllowed": 3.8,
+            "awayGPG": 1.2,
+            "awayGPGAllowed": 3.7,
+            "regHomeGPG": 3,
+            "regHomeGPGAllowed": 3.6,
+            "regAwayGPG": 1.8,
+            "regAwayGPGAllowed": 3.5,
+            "baseHomeScore": 3.3,
+            "baseAwayScore": 2.7,
+            "homeElo": 1485,
+            "awayElo": 1402,
+            "eloDiff": 83,
+            "eloAdj": 0.75,
+            "homeIceAdv": 0.25
+          }
+        }
+      },
+      {
+        "game": {
+          "id": "401892551",
+          "homeTeamId": "14",
+          "awayTeamId": "26",
+          "gameTime": "2026-10-21T23:30:00.000Z",
+          "status": "scheduled",
+          "venue": "Canadian Tire Centre",
+          "season": 2027,
+          "homeTeam": {
+            "id": "14",
+            "name": "Ottawa Senators",
+            "abbreviation": "OTT"
+          },
+          "awayTeam": {
+            "id": "26",
+            "name": "Florida Panthers",
+            "abbreviation": "FLA"
+          }
+        },
+        "prediction": {
+          "gameId": "401892551",
+          "predictedHomeScore": 3.4,
+          "predictedAwayScore": 2.3,
+          "predictedSpread": -1,
+          "predictedTotal": 5.699999999999999,
+          "homeWinProbability": 0.6280448056219418,
+          "confidence": 0.5,
+          "spreadEdge": 0,
+          "totalEdge": 0,
+          "atsConfidence": "medium",
+          "ouConfidence": "high",
+          "mlConfidence": "high",
+          "isAtsBestBet": false,
+          "isOuBestBet": true,
+          "isMlBestBet": true,
+          "mlEdge": 12.8,
+          "eloGap": 43,
+          "isHighConviction": false,
+          "homeElo": 1537,
+          "awayElo": 1494,
+          "calc": {
+            "homeGPG": 2.9,
+            "homeGPGAllowed": 2.5,
+            "awayGPG": 2.8,
+            "awayGPGAllowed": 2.8,
+            "regHomeGPG": 3,
+            "regHomeGPGAllowed": 2.7,
+            "regAwayGPG": 2.9,
+            "regAwayGPGAllowed": 2.9,
+            "baseHomeScore": 2.9,
+            "baseAwayScore": 2.8,
+            "homeElo": 1537,
+            "awayElo": 1494,
+            "eloDiff": 43,
+            "eloAdj": 0.39,
+            "homeIceAdv": 0.25
+          }
+        }
+      },
+      {
+        "game": {
+          "id": "401892552",
+          "homeTeamId": "1",
+          "awayTeamId": "27",
+          "gameTime": "2026-10-22T23:00:00.000Z",
+          "status": "scheduled",
+          "venue": "TD Garden",
+          "season": 2027,
+          "homeTeam": {
+            "id": "1",
+            "name": "Boston Bruins",
+            "abbreviation": "BOS"
+          },
+          "awayTeam": {
+            "id": "27",
+            "name": "Nashville Predators",
+            "abbreviation": "NSH"
+          }
+        },
+        "prediction": {
+          "gameId": "401892552",
+          "predictedHomeScore": 4.1,
+          "predictedAwayScore": 1.8,
+          "predictedSpread": -2,
+          "predictedTotal": 5.8999999999999995,
+          "homeWinProbability": 0.6699690139034832,
+          "confidence": 0.5,
+          "spreadEdge": 0,
+          "totalEdge": 0,
+          "atsConfidence": "high",
+          "ouConfidence": "medium",
+          "mlConfidence": "high",
+          "isAtsBestBet": true,
+          "isOuBestBet": false,
+          "isMlBestBet": true,
+          "mlEdge": 17,
+          "eloGap": 75,
+          "isHighConviction": false,
+          "homeElo": 1535,
+          "awayElo": 1460,
+          "liveOdds": {
+            "consensusTotal": 0,
+            "consensusOverOdds": -110,
+            "consensusUnderOdds": -110,
+            "bookmakers": [
+              {
+                "name": "DraftKings",
+                "total": 0,
+                "overOdds": -110,
+                "underOdds": -110
+              },
+              {
+                "name": "Fanatics",
+                "total": 0,
+                "overOdds": -110,
+                "underOdds": -110
+              },
+              {
+                "name": "Caesars",
+                "total": 0,
+                "overOdds": -110,
+                "underOdds": -110
+              },
+              {
+                "name": "FanDuel",
+                "total": 0,
+                "overOdds": -110,
+                "underOdds": -110
+              },
+              {
+                "name": "BetMGM",
+                "total": 0,
+                "overOdds": -110,
+                "underOdds": -110
+              },
+              {
+                "name": "MyBookie.ag",
+                "total": 0,
+                "overOdds": -110,
+                "underOdds": -110
+              }
+            ],
+            "lastUpdated": "2026-10-16T03:00:14.621Z"
+          },
+          "calc": {
+            "homeGPG": 3.7,
+            "homeGPGAllowed": 2.3,
+            "awayGPG": 2.6,
+            "awayGPGAllowed": 3.1,
+            "regHomeGPG": 3.5,
+            "regHomeGPGAllowed": 2.5,
+            "regAwayGPG": 2.8,
+            "regAwayGPGAllowed": 3.1,
+            "baseHomeScore": 3.3,
+            "baseAwayScore": 2.6,
+            "homeElo": 1535,
+            "awayElo": 1460,
+            "eloDiff": 75,
+            "eloAdj": 0.68,
+            "homeIceAdv": 0.25
+          }
+        }
+      },
+      {
+        "game": {
+          "id": "401892553",
+          "homeTeamId": "21",
+          "awayTeamId": "13",
+          "gameTime": "2026-10-22T23:00:00.000Z",
+          "status": "scheduled",
+          "venue": "Scotiabank Arena",
+          "season": 2027,
+          "homeTeam": {
+            "id": "21",
+            "name": "Toronto Maple Leafs",
+            "abbreviation": "TOR"
+          },
+          "awayTeam": {
+            "id": "13",
+            "name": "New York Rangers",
+            "abbreviation": "NYR"
+          }
+        },
+        "prediction": {
+          "gameId": "401892553",
+          "predictedHomeScore": 2.5,
+          "predictedAwayScore": 3.7,
+          "predictedSpread": 1,
+          "predictedTotal": 6.2,
+          "homeWinProbability": 0.4741190691088309,
+          "confidence": 0.5,
+          "spreadEdge": 0,
+          "totalEdge": 0,
+          "atsConfidence": "high",
+          "ouConfidence": "low",
+          "mlConfidence": "low",
+          "isAtsBestBet": true,
+          "isOuBestBet": false,
+          "isMlBestBet": false,
+          "mlEdge": 2.6,
+          "eloGap": 66,
+          "isHighConviction": false,
+          "homeElo": 1482,
+          "awayElo": 1548,
+          "calc": {
+            "homeGPG": 3.5,
+            "homeGPGAllowed": 3.5,
+            "awayGPG": 3.1,
+            "awayGPGAllowed": 2.3,
+            "regHomeGPG": 3.4,
+            "regHomeGPGAllowed": 3.4,
+            "regAwayGPG": 3.1,
+            "regAwayGPGAllowed": 2.5,
+            "baseHomeScore": 3,
+            "baseAwayScore": 3.2,
+            "homeElo": 1482,
+            "awayElo": 1548,
+            "eloDiff": -66,
+            "eloAdj": -0.59,
+            "homeIceAdv": 0.25
+          }
+        }
+      },
+      {
+        "game": {
+          "id": "401892554",
+          "homeTeamId": "14",
+          "awayTeamId": "18",
+          "gameTime": "2026-10-22T23:00:00.000Z",
+          "status": "scheduled",
+          "venue": "Canadian Tire Centre",
+          "season": 2027,
+          "homeTeam": {
+            "id": "14",
+            "name": "Ottawa Senators",
+            "abbreviation": "OTT"
+          },
+          "awayTeam": {
+            "id": "18",
+            "name": "San Jose Sharks",
+            "abbreviation": "SJ"
+          }
+        },
+        "prediction": {
+          "gameId": "401892554",
+          "predictedHomeScore": 3.7,
+          "predictedAwayScore": 2.2,
+          "predictedSpread": -1.5,
+          "predictedTotal": 5.9,
+          "homeWinProbability": 0.6280448056219418,
+          "confidence": 0.5,
+          "spreadEdge": 0,
+          "totalEdge": 0,
+          "atsConfidence": "medium",
+          "ouConfidence": "low",
+          "mlConfidence": "high",
+          "isAtsBestBet": false,
+          "isOuBestBet": false,
+          "isMlBestBet": true,
+          "mlEdge": 12.8,
+          "eloGap": 43,
+          "isHighConviction": false,
+          "homeElo": 1537,
+          "awayElo": 1494,
+          "liveOdds": {
+            "consensusTotal": 0,
+            "consensusOverOdds": -110,
+            "consensusUnderOdds": -110,
+            "bookmakers": [
+              {
+                "name": "DraftKings",
+                "total": 0,
+                "overOdds": -110,
+                "underOdds": -110
+              },
+              {
+                "name": "Fanatics",
+                "total": 0,
+                "overOdds": -110,
+                "underOdds": -110
+              },
+              {
+                "name": "Caesars",
+                "total": 0,
+                "overOdds": -110,
+                "underOdds": -110
+              },
+              {
+                "name": "FanDuel",
+                "total": 0,
+                "overOdds": -110,
+                "underOdds": -110
+              },
+              {
+                "name": "BetMGM",
+                "total": 0,
+                "overOdds": -110,
+                "underOdds": -110
+              },
+              {
+                "name": "MyBookie.ag",
+                "total": 0,
+                "overOdds": -110,
+                "underOdds": -110
+              }
+            ],
+            "lastUpdated": "2026-10-16T03:00:14.621Z"
+          },
+          "calc": {
+            "homeGPG": 2.9,
+            "homeGPGAllowed": 2.5,
+            "awayGPG": 2.7,
+            "awayGPGAllowed": 3.6,
+            "regHomeGPG": 3,
+            "regHomeGPGAllowed": 2.7,
+            "regAwayGPG": 2.8,
+            "regAwayGPGAllowed": 3.5,
+            "baseHomeScore": 3.2,
+            "baseAwayScore": 2.8,
+            "homeElo": 1537,
+            "awayElo": 1494,
+            "eloDiff": 43,
+            "eloAdj": 0.39,
+            "homeIceAdv": 0.25
+          }
+        }
+      },
+      {
+        "game": {
+          "id": "401892555",
+          "homeTeamId": "11",
+          "awayTeamId": "25",
+          "gameTime": "2026-10-22T23:00:00.000Z",
+          "status": "scheduled",
+          "venue": "Prudential Center",
+          "season": 2027,
+          "homeTeam": {
+            "id": "11",
+            "name": "New Jersey Devils",
+            "abbreviation": "NJ"
+          },
+          "awayTeam": {
+            "id": "25",
+            "name": "Anaheim Ducks",
+            "abbreviation": "ANA"
+          }
+        },
+        "prediction": {
+          "gameId": "401892555",
+          "predictedHomeScore": 3.1,
+          "predictedAwayScore": 3.2,
+          "predictedSpread": 0,
+          "predictedTotal": 6.300000000000001,
+          "homeWinProbability": 0.558731369324761,
+          "confidence": 0.5,
+          "spreadEdge": 0,
+          "totalEdge": 0,
+          "atsConfidence": "low",
+          "ouConfidence": "low",
+          "mlConfidence": "medium",
+          "isAtsBestBet": false,
+          "isOuBestBet": false,
+          "isMlBestBet": false,
+          "mlEdge": 5.9,
+          "eloGap": 7,
+          "isHighConviction": false,
+          "homeElo": 1511,
+          "awayElo": 1518,
+          "liveOdds": {
+            "consensusTotal": 6,
+            "consensusOverOdds": -39,
+            "consensusUnderOdds": 0,
+            "bookmakers": [
+              {
+                "name": "DraftKings",
+                "total": 6.5,
+                "overOdds": 105,
+                "underOdds": -125
+              },
+              {
+                "name": "Fanatics",
+                "total": 6.5,
+                "overOdds": 105,
+                "underOdds": -125
+              },
+              {
+                "name": "BetOnline.ag",
+                "total": 6,
+                "overOdds": -120,
+                "underOdds": 104
+              },
+              {
+                "name": "LowVig.ag",
+                "total": 6,
+                "overOdds": -120,
+                "underOdds": 104
+              },
+              {
+                "name": "Caesars",
+                "total": 6,
+                "overOdds": -124,
+                "underOdds": 101
+              },
+              {
+                "name": "BetMGM",
+                "total": 6,
+                "overOdds": -125,
+                "underOdds": 105
+              },
+              {
+                "name": "FanDuel",
+                "total": 6.5,
+                "overOdds": 100,
+                "underOdds": -122
+              },
+              {
+                "name": "BetRivers",
+                "total": 6.5,
+                "overOdds": -108,
+                "underOdds": -115
+              },
+              {
+                "name": "BetUS",
+                "total": 6,
+                "overOdds": -120,
+                "underOdds": 100
+              },
+              {
+                "name": "Bovada",
+                "total": 6,
+                "overOdds": -120,
+                "underOdds": 100
+              },
+              {
+                "name": "MyBookie.ag",
+                "total": 6.5,
+                "overOdds": 102,
+                "underOdds": -124
+              }
+            ],
+            "lastUpdated": "2026-10-16T03:00:14.621Z"
+          },
+          "calc": {
+            "homeGPG": 3.3,
+            "homeGPGAllowed": 3.3,
+            "awayGPG": 3.3,
+            "awayGPGAllowed": 2.8,
+            "regHomeGPG": 3.2,
+            "regHomeGPGAllowed": 3.2,
+            "regAwayGPG": 3.2,
+            "regAwayGPGAllowed": 2.9,
+            "baseHomeScore": 3.1,
+            "baseAwayScore": 3.2,
+            "homeElo": 1511,
+            "awayElo": 1518,
+            "eloDiff": -7,
+            "eloAdj": -0.06,
+            "homeIceAdv": 0.25
+          }
+        }
+      },
+      {
+        "game": {
+          "id": "401892556",
+          "homeTeamId": "16",
+          "awayTeamId": "26",
+          "gameTime": "2026-10-22T23:00:00.000Z",
+          "status": "scheduled",
+          "venue": "PPG Paints Arena",
+          "season": 2027,
+          "homeTeam": {
+            "id": "16",
+            "name": "Pittsburgh Penguins",
+            "abbreviation": "PIT"
+          },
+          "awayTeam": {
+            "id": "26",
+            "name": "Florida Panthers",
+            "abbreviation": "FLA"
+          }
+        },
+        "prediction": {
+          "gameId": "401892556",
+          "predictedHomeScore": 3.1,
+          "predictedAwayScore": 3.1,
+          "predictedSpread": 0,
+          "predictedTotal": 6.2,
+          "homeWinProbability": 0.5344839447268315,
+          "confidence": 0.5,
+          "spreadEdge": 0,
+          "totalEdge": 0,
+          "atsConfidence": "low",
+          "ouConfidence": "low",
+          "mlConfidence": "low",
+          "isAtsBestBet": false,
+          "isOuBestBet": false,
+          "isMlBestBet": false,
+          "mlEdge": 3.4,
+          "eloGap": 24,
+          "isHighConviction": false,
+          "homeElo": 1470,
+          "awayElo": 1494,
+          "liveOdds": {
+            "consensusTotal": 6.5,
+            "consensusOverOdds": -122,
+            "consensusUnderOdds": 11,
+            "bookmakers": [
+              {
+                "name": "DraftKings",
+                "total": 6.5,
+                "overOdds": -118,
+                "underOdds": -102
+              },
+              {
+                "name": "Fanatics",
+                "total": 6.5,
+                "overOdds": -120,
+                "underOdds": 100
+              },
+              {
+                "name": "BetOnline.ag",
+                "total": 6.5,
+                "overOdds": -125,
+                "underOdds": 109
+              },
+              {
+                "name": "LowVig.ag",
+                "total": 6.5,
+                "overOdds": -125,
+                "underOdds": 109
+              },
+              {
+                "name": "Caesars",
+                "total": 6.5,
+                "overOdds": -120,
+                "underOdds": -103
+              },
+              {
+                "name": "BetMGM",
+                "total": 6.5,
+                "overOdds": -120,
+                "underOdds": 100
+              },
+              {
+                "name": "FanDuel",
+                "total": 6.5,
+                "overOdds": -120,
+                "underOdds": -102
+              },
+              {
+                "name": "BetRivers",
+                "total": 6.5,
+                "overOdds": -122,
+                "underOdds": -103
+              },
+              {
+                "name": "BetUS",
+                "total": 6.5,
+                "overOdds": -125,
+                "underOdds": 105
+              },
+              {
+                "name": "Bovada",
+                "total": 6.5,
+                "overOdds": -125,
+                "underOdds": 105
+              },
+              {
+                "name": "MyBookie.ag",
+                "total": 6.5,
+                "overOdds": -121,
+                "underOdds": -101
+              }
+            ],
+            "lastUpdated": "2026-10-16T03:00:14.621Z"
+          },
+          "calc": {
+            "homeGPG": 3.6,
+            "homeGPGAllowed": 3.1,
+            "awayGPG": 2.8,
+            "awayGPGAllowed": 2.8,
+            "regHomeGPG": 3.5,
+            "regHomeGPGAllowed": 3.1,
+            "regAwayGPG": 2.9,
+            "regAwayGPGAllowed": 2.9,
+            "baseHomeScore": 3.2,
+            "baseAwayScore": 3,
+            "homeElo": 1470,
+            "awayElo": 1494,
+            "eloDiff": -24,
+            "eloAdj": -0.22,
+            "homeIceAdv": 0.25
+          }
+        }
+      },
+      {
+        "game": {
+          "id": "401892557",
+          "homeTeamId": "12",
+          "awayTeamId": "8",
+          "gameTime": "2026-10-22T23:30:00.000Z",
+          "status": "scheduled",
+          "venue": "UBS Arena",
+          "season": 2027,
+          "homeTeam": {
+            "id": "12",
+            "name": "New York Islanders",
+            "abbreviation": "NYI"
+          },
+          "awayTeam": {
+            "id": "8",
+            "name": "Los Angeles Kings",
+            "abbreviation": "LA"
+          }
+        },
+        "prediction": {
+          "gameId": "401892557",
+          "predictedHomeScore": 4,
+          "predictedAwayScore": 2,
+          "predictedSpread": -1.5,
+          "predictedTotal": 6,
+          "homeWinProbability": 0.6374083767444845,
+          "confidence": 0.5,
+          "spreadEdge": 0,
+          "totalEdge": 0,
+          "atsConfidence": "high",
+          "ouConfidence": "low",
+          "mlConfidence": "high",
+          "isAtsBestBet": true,
+          "isOuBestBet": false,
+          "isMlBestBet": true,
+          "mlEdge": 13.7,
+          "eloGap": 50,
+          "isHighConviction": false,
+          "homeElo": 1500,
+          "awayElo": 1450,
+          "calc": {
+            "homeGPG": 2.9,
+            "homeGPGAllowed": 2.4,
+            "awayGPG": 2.2,
+            "awayGPGAllowed": 4.2,
+            "regHomeGPG": 3,
+            "regHomeGPGAllowed": 2.6,
+            "regAwayGPG": 2.5,
+            "regAwayGPGAllowed": 3.9,
+            "baseHomeScore": 3.4,
+            "baseAwayScore": 2.5,
+            "homeElo": 1500,
+            "awayElo": 1450,
+            "eloDiff": 50,
+            "eloAdj": 0.45,
+            "homeIceAdv": 0.25
+          }
+        }
+      },
+      {
+        "game": {
+          "id": "401892558",
+          "homeTeamId": "19",
+          "awayTeamId": "37",
+          "gameTime": "2026-10-23T00:00:00.000Z",
+          "status": "scheduled",
+          "venue": "Enterprise Center",
+          "season": 2027,
+          "homeTeam": {
+            "id": "19",
+            "name": "St. Louis Blues",
+            "abbreviation": "STL"
+          },
+          "awayTeam": {
+            "id": "37",
+            "name": "Vegas Golden Knights",
+            "abbreviation": "VGK"
+          }
+        },
+        "prediction": {
+          "gameId": "401892558",
+          "predictedHomeScore": 2.8,
+          "predictedAwayScore": 3.7,
+          "predictedSpread": 1,
+          "predictedTotal": 6.5,
+          "homeWinProbability": 0.5100724469274385,
+          "confidence": 0.5,
+          "spreadEdge": 0,
+          "totalEdge": 0,
+          "atsConfidence": "medium",
+          "ouConfidence": "low",
+          "mlConfidence": "low",
+          "isAtsBestBet": false,
+          "isOuBestBet": false,
+          "isMlBestBet": false,
+          "mlEdge": 1,
+          "eloGap": 41,
+          "isHighConviction": false,
+          "homeElo": 1505,
+          "awayElo": 1546,
+          "liveOdds": {
+            "consensusTotal": 6.5,
+            "consensusOverOdds": 79,
+            "consensusUnderOdds": -140,
+            "bookmakers": [
+              {
+                "name": "DraftKings",
+                "total": 6.5,
+                "overOdds": 110,
+                "underOdds": -140
+              },
+              {
+                "name": "Fanatics",
+                "total": 6.5,
+                "overOdds": 110,
+                "underOdds": -145
+              },
+              {
+                "name": "Caesars",
+                "total": 6.5,
+                "overOdds": 112,
+                "underOdds": -139
+              },
+              {
+                "name": "FanDuel",
+                "total": 6.5,
+                "overOdds": 114,
+                "underOdds": -148
+              },
+              {
+                "name": "BetMGM",
+                "total": 6.5,
+                "overOdds": 105,
+                "underOdds": -140
+              },
+              {
+                "name": "Bovada",
+                "total": 6.5,
+                "overOdds": 105,
+                "underOdds": -135
+              },
+              {
+                "name": "MyBookie.ag",
+                "total": 6.5,
+                "overOdds": -105,
+                "underOdds": -133
+              }
+            ],
+            "lastUpdated": "2026-10-16T03:00:14.621Z"
+          },
+          "calc": {
+            "homeGPG": 3.6,
+            "homeGPGAllowed": 3.3,
+            "awayGPG": 3.8,
+            "awayGPGAllowed": 2.5,
+            "regHomeGPG": 3.5,
+            "regHomeGPGAllowed": 3.2,
+            "regAwayGPG": 3.6,
+            "regAwayGPGAllowed": 2.7,
+            "baseHomeScore": 3.1,
+            "baseAwayScore": 3.4,
+            "homeElo": 1505,
+            "awayElo": 1546,
+            "eloDiff": -41,
+            "eloAdj": -0.37,
+            "homeIceAdv": 0.25
+          }
+        }
+      },
+      {
+        "game": {
+          "id": "401892559",
+          "homeTeamId": "9",
+          "awayTeamId": "28",
+          "gameTime": "2026-10-23T00:00:00.000Z",
+          "status": "scheduled",
+          "venue": "American Airlines Center",
+          "season": 2027,
+          "homeTeam": {
+            "id": "9",
+            "name": "Dallas Stars",
+            "abbreviation": "DAL"
+          },
+          "awayTeam": {
+            "id": "28",
+            "name": "Winnipeg Jets",
+            "abbreviation": "WPG"
+          }
+        },
+        "prediction": {
+          "gameId": "401892559",
+          "predictedHomeScore": 2.8,
+          "predictedAwayScore": 2.6,
+          "predictedSpread": 0,
+          "predictedTotal": 5.4,
+          "homeWinProbability": 0.558731369324761,
+          "confidence": 0.5,
+          "spreadEdge": 0,
+          "totalEdge": 0,
+          "atsConfidence": "low",
+          "ouConfidence": "high",
+          "mlConfidence": "medium",
+          "isAtsBestBet": false,
+          "isOuBestBet": true,
+          "isMlBestBet": false,
+          "mlEdge": 5.9,
+          "eloGap": 7,
+          "isHighConviction": false,
+          "homeElo": 1500,
+          "awayElo": 1507,
+          "calc": {
+            "homeGPG": 2.3,
+            "homeGPGAllowed": 1.9,
+            "awayGPG": 3,
+            "awayGPGAllowed": 3,
+            "regHomeGPG": 2.5,
+            "regHomeGPGAllowed": 2.3,
+            "regAwayGPG": 3,
+            "regAwayGPGAllowed": 3,
+            "baseHomeScore": 2.8,
+            "baseAwayScore": 2.6,
+            "homeElo": 1500,
+            "awayElo": 1507,
+            "eloDiff": -7,
+            "eloAdj": -0.06,
+            "homeIceAdv": 0.25
+          }
+        }
+      },
+      {
+        "game": {
+          "id": "401892560",
+          "homeTeamId": "3",
+          "awayTeamId": "30",
+          "gameTime": "2026-10-23T01:00:00.000Z",
+          "status": "scheduled",
+          "venue": "Scotiabank Saddledome",
+          "season": 2027,
+          "homeTeam": {
+            "id": "3",
+            "name": "Calgary Flames",
+            "abbreviation": "CGY"
+          },
+          "awayTeam": {
+            "id": "30",
+            "name": "Minnesota Wild",
+            "abbreviation": "MIN"
+          }
+        },
+        "prediction": {
+          "gameId": "401892560",
+          "predictedHomeScore": 1.7,
+          "predictedAwayScore": 4.5,
+          "predictedSpread": 2.5,
+          "predictedTotal": 6.2,
+          "homeWinProbability": 0.4271277486054956,
+          "confidence": 0.5,
+          "spreadEdge": 0,
+          "totalEdge": 0,
+          "atsConfidence": "high",
+          "ouConfidence": "low",
+          "mlConfidence": "medium",
+          "isAtsBestBet": true,
+          "isOuBestBet": false,
+          "isMlBestBet": false,
+          "mlEdge": 7.3,
+          "eloGap": 99,
+          "isHighConviction": false,
+          "homeElo": 1438,
+          "awayElo": 1537,
+          "liveOdds": {
+            "consensusTotal": 9,
+            "consensusOverOdds": -48,
+            "consensusUnderOdds": -130,
+            "bookmakers": [
+              {
+                "name": "DraftKings",
+                "total": 0,
+                "overOdds": -110,
+                "underOdds": -110
+              },
+              {
+                "name": "Fanatics",
+                "total": 0,
+                "overOdds": -110,
+                "underOdds": -110
+              },
+              {
+                "name": "Caesars",
+                "total": 8.5,
+                "overOdds": -235,
+                "underOdds": 182
+              },
+              {
+                "name": "FanDuel",
+                "total": 0,
+                "overOdds": -110,
+                "underOdds": -110
+              },
+              {
+                "name": "BetMGM",
+                "total": 9.5,
+                "overOdds": 325,
+                "underOdds": -500
+              }
+            ],
+            "lastUpdated": "2026-10-16T03:00:14.621Z"
+          },
+          "calc": {
+            "homeGPG": 2,
+            "homeGPGAllowed": 4.8,
+            "awayGPG": 3.3,
+            "awayGPGAllowed": 2.5,
+            "regHomeGPG": 2.3,
+            "regHomeGPGAllowed": 4.3,
+            "regAwayGPG": 3.2,
+            "regAwayGPGAllowed": 2.7,
+            "baseHomeScore": 2.5,
+            "baseAwayScore": 3.8,
+            "homeElo": 1438,
+            "awayElo": 1537,
+            "eloDiff": -99,
+            "eloAdj": -0.89,
+            "homeIceAdv": 0.25
+          }
+        }
+      },
+      {
+        "game": {
+          "id": "401892561",
+          "homeTeamId": "6",
+          "awayTeamId": "7",
+          "gameTime": "2026-10-23T01:00:00.000Z",
+          "status": "scheduled",
+          "venue": "Rogers Place",
+          "season": 2027,
+          "homeTeam": {
+            "id": "6",
+            "name": "Edmonton Oilers",
+            "abbreviation": "EDM"
+          },
+          "awayTeam": {
+            "id": "7",
+            "name": "Carolina Hurricanes",
+            "abbreviation": "CAR"
+          }
+        },
+        "prediction": {
+          "gameId": "401892561",
+          "predictedHomeScore": 3.7,
+          "predictedAwayScore": 3.1,
+          "predictedSpread": -0.5,
+          "predictedTotal": 6.800000000000001,
+          "homeWinProbability": 0.5868950233791,
+          "confidence": 0.5,
+          "spreadEdge": 0,
+          "totalEdge": 0,
+          "atsConfidence": "low",
+          "ouConfidence": "high",
+          "mlConfidence": "medium",
+          "isAtsBestBet": false,
+          "isOuBestBet": true,
+          "isMlBestBet": false,
+          "mlEdge": 8.7,
+          "eloGap": 13,
+          "isHighConviction": false,
+          "homeElo": 1583,
+          "awayElo": 1570,
+          "liveOdds": {
+            "consensusTotal": 7,
+            "consensusOverOdds": 65,
+            "consensusUnderOdds": -163,
+            "bookmakers": [
+              {
+                "name": "DraftKings",
+                "total": 7.5,
+                "overOdds": 140,
+                "underOdds": -180
+              },
+              {
+                "name": "Fanatics",
+                "total": 7.5,
+                "overOdds": 140,
+                "underOdds": -190
+              },
+              {
+                "name": "Caesars",
+                "total": 6.5,
+                "overOdds": -118,
+                "underOdds": -107
+              },
+              {
+                "name": "FanDuel",
+                "total": 7.5,
+                "overOdds": 138,
+                "underOdds": -182
+              },
+              {
+                "name": "BetMGM",
+                "total": 7.5,
+                "overOdds": 140,
+                "underOdds": -190
+              },
+              {
+                "name": "Bovada",
+                "total": 7.5,
+                "overOdds": 145,
+                "underOdds": -190
+              },
+              {
+                "name": "MyBookie.ag",
+                "total": 6.5,
+                "overOdds": -133,
+                "underOdds": -105
+              }
+            ],
+            "lastUpdated": "2026-10-16T03:00:14.621Z"
+          },
+          "calc": {
+            "homeGPG": 4.8,
+            "homeGPGAllowed": 3,
+            "awayGPG": 3.9,
+            "awayGPGAllowed": 2.4,
+            "regHomeGPG": 4.3,
+            "regHomeGPGAllowed": 3,
+            "regAwayGPG": 3.7,
+            "regAwayGPGAllowed": 2.6,
+            "baseHomeScore": 3.5,
+            "baseAwayScore": 3.3,
+            "homeElo": 1583,
+            "awayElo": 1570,
+            "eloDiff": 13,
+            "eloAdj": 0.12,
+            "homeIceAdv": 0.25
+          }
+        }
+      },
+      {
+        "game": {
+          "id": "401892562",
+          "homeTeamId": "124292",
+          "awayTeamId": "129764",
+          "gameTime": "2026-10-23T02:00:00.000Z",
+          "status": "scheduled",
+          "venue": "Climate Pledge Arena",
+          "season": 2027,
+          "homeTeam": {
+            "id": "124292",
+            "name": "Seattle Kraken",
+            "abbreviation": "SEA"
+          },
+          "awayTeam": {
+            "id": "129764",
+            "name": "Utah Mammoth",
+            "abbreviation": "UTAH"
+          }
+        },
+        "prediction": {
+          "gameId": "401892562",
+          "predictedHomeScore": 3.3,
+          "predictedAwayScore": 3.3,
+          "predictedSpread": 0,
+          "predictedTotal": 6.6,
+          "homeWinProbability": 0.5516235473109605,
+          "confidence": 0.5,
+          "spreadEdge": 0,
+          "totalEdge": 0,
+          "atsConfidence": "low",
+          "ouConfidence": "medium",
+          "mlConfidence": "medium",
+          "isAtsBestBet": false,
+          "isOuBestBet": false,
+          "isMlBestBet": false,
+          "mlEdge": 5.2,
+          "eloGap": 12,
+          "isHighConviction": false,
+          "homeElo": 1536,
+          "awayElo": 1548,
+          "liveOdds": {
+            "consensusTotal": 7,
+            "consensusOverOdds": 65,
+            "consensusUnderOdds": -163,
+            "bookmakers": [
+              {
+                "name": "DraftKings",
+                "total": 7.5,
+                "overOdds": 140,
+                "underOdds": -180
+              },
+              {
+                "name": "Fanatics",
+                "total": 7.5,
+                "overOdds": 140,
+                "underOdds": -190
+              },
+              {
+                "name": "Caesars",
+                "total": 6.5,
+                "overOdds": -118,
+                "underOdds": -107
+              },
+              {
+                "name": "FanDuel",
+                "total": 7.5,
+                "overOdds": 138,
+                "underOdds": -182
+              },
+              {
+                "name": "BetMGM",
+                "total": 7.5,
+                "overOdds": 140,
+                "underOdds": -190
+              },
+              {
+                "name": "Bovada",
+                "total": 7.5,
+                "overOdds": 145,
+                "underOdds": -190
+              },
+              {
+                "name": "MyBookie.ag",
+                "total": 6.5,
+                "overOdds": -133,
+                "underOdds": -105
+              }
+            ],
+            "lastUpdated": "2026-10-16T03:00:14.621Z"
+          },
+          "calc": {
+            "homeGPG": 4,
+            "homeGPGAllowed": 2.9,
+            "awayGPG": 3.9,
+            "awayGPGAllowed": 2.7,
+            "regHomeGPG": 3.7,
+            "regHomeGPGAllowed": 3,
+            "regAwayGPG": 3.7,
+            "regAwayGPGAllowed": 2.8,
+            "baseHomeScore": 3.3,
+            "baseAwayScore": 3.3,
+            "homeElo": 1536,
+            "awayElo": 1548,
+            "eloDiff": -12,
+            "eloAdj": -0.11,
+            "homeIceAdv": 0.25
+          }
+        }
+      },
+      {
+        "game": {
+          "id": "401892563",
+          "homeTeamId": "22",
+          "awayTeamId": "5",
+          "gameTime": "2026-10-23T02:00:00.000Z",
+          "status": "scheduled",
+          "venue": "Rogers Arena",
+          "season": 2027,
+          "homeTeam": {
+            "id": "22",
+            "name": "Vancouver Canucks",
+            "abbreviation": "VAN"
+          },
+          "awayTeam": {
+            "id": "5",
+            "name": "Detroit Red Wings",
+            "abbreviation": "DET"
+          }
+        },
+        "prediction": {
+          "gameId": "401892563",
+          "predictedHomeScore": 2.9,
+          "predictedAwayScore": 3.5,
+          "predictedSpread": 0.5,
+          "predictedTotal": 6.4,
+          "homeWinProbability": 0.527315973006493,
+          "confidence": 0.5,
+          "spreadEdge": 0,
+          "totalEdge": 0,
+          "atsConfidence": "medium",
+          "ouConfidence": "low",
+          "mlConfidence": "low",
+          "isAtsBestBet": false,
+          "isOuBestBet": false,
+          "isMlBestBet": false,
+          "mlEdge": 2.7,
+          "eloGap": 29,
+          "isHighConviction": false,
+          "homeElo": 1421,
+          "awayElo": 1450,
+          "calc": {
+            "homeGPG": 3.1,
+            "homeGPGAllowed": 4.6,
+            "awayGPG": 2.3,
+            "awayGPGAllowed": 3,
+            "regHomeGPG": 3.1,
+            "regHomeGPGAllowed": 4.1,
+            "regAwayGPG": 2.5,
+            "regAwayGPGAllowed": 3,
+            "baseHomeScore": 3.1,
+            "baseAwayScore": 3.3,
+            "homeElo": 1421,
+            "awayElo": 1450,
+            "eloDiff": -29,
+            "eloAdj": -0.26,
+            "homeIceAdv": 0.25
+          }
+        }
+      }
+    ],
+    "teams": [
+      {
+        "id": "6",
+        "name": "Edmonton Oilers",
+        "abbreviation": "EDM",
+        "ppgAllowed": 3,
+        "ppg": 4.8,
+        "eloRating": 1583
+      },
+      {
+        "id": "7",
+        "name": "Carolina Hurricanes",
+        "abbreviation": "CAR",
+        "ppgAllowed": 2.4,
+        "ppg": 3.9,
+        "eloRating": 1570
+      },
+      {
+        "id": "129764",
+        "name": "Utah Mammoth",
+        "abbreviation": "UTAH",
+        "ppgAllowed": 2.7,
+        "ppg": 3.9,
+        "eloRating": 1548
+      },
+      {
+        "id": "13",
+        "name": "New York Rangers",
+        "abbreviation": "NYR",
+        "ppgAllowed": 2.3,
+        "ppg": 3.1,
+        "eloRating": 1548
+      },
+      {
+        "id": "37",
+        "name": "Vegas Golden Knights",
+        "abbreviation": "VGK",
+        "ppgAllowed": 2.5,
+        "ppg": 3.8,
+        "eloRating": 1546
+      },
+      {
+        "id": "20",
+        "name": "Tampa Bay Lightning",
+        "abbreviation": "TB",
+        "ppgAllowed": 2.7,
+        "ppg": 3,
+        "eloRating": 1539
+      },
+      {
+        "id": "14",
+        "name": "Ottawa Senators",
+        "abbreviation": "OTT",
+        "ppgAllowed": 2.5,
+        "ppg": 2.9,
+        "eloRating": 1537
+      },
+      {
+        "id": "30",
+        "name": "Minnesota Wild",
+        "abbreviation": "MIN",
+        "ppgAllowed": 2.5,
+        "ppg": 3.3,
+        "eloRating": 1537
+      },
+      {
+        "id": "124292",
+        "name": "Seattle Kraken",
+        "abbreviation": "SEA",
+        "ppgAllowed": 2.9,
+        "ppg": 4,
+        "eloRating": 1536
+      },
+      {
+        "id": "1",
+        "name": "Boston Bruins",
+        "abbreviation": "BOS",
+        "ppgAllowed": 2.3,
+        "ppg": 3.7,
+        "eloRating": 1535
+      },
+      {
+        "id": "23",
+        "name": "Washington Capitals",
+        "abbreviation": "WSH",
+        "ppgAllowed": 3.1,
+        "ppg": 3.4,
+        "eloRating": 1519
+      },
+      {
+        "id": "25",
+        "name": "Anaheim Ducks",
+        "abbreviation": "ANA",
+        "ppgAllowed": 2.8,
+        "ppg": 3.3,
+        "eloRating": 1518
+      },
+      {
+        "id": "11",
+        "name": "New Jersey Devils",
+        "abbreviation": "NJ",
+        "ppgAllowed": 3.3,
+        "ppg": 3.3,
+        "eloRating": 1511
+      },
+      {
+        "id": "28",
+        "name": "Winnipeg Jets",
+        "abbreviation": "WPG",
+        "ppgAllowed": 3,
+        "ppg": 3,
+        "eloRating": 1507
+      },
+      {
+        "id": "19",
+        "name": "St. Louis Blues",
+        "abbreviation": "STL",
+        "ppgAllowed": 3.3,
+        "ppg": 3.6,
+        "eloRating": 1505
+      },
+      {
+        "id": "17",
+        "name": "Colorado Avalanche",
+        "abbreviation": "COL",
+        "ppgAllowed": 3.1,
+        "ppg": 4.4,
+        "eloRating": 1503
+      },
+      {
+        "id": "12",
+        "name": "New York Islanders",
+        "abbreviation": "NYI",
+        "ppgAllowed": 2.4,
+        "ppg": 2.9,
+        "eloRating": 1500
+      },
+      {
+        "id": "9",
+        "name": "Dallas Stars",
+        "abbreviation": "DAL",
+        "ppgAllowed": 1.9,
+        "ppg": 2.3,
+        "eloRating": 1500
+      },
+      {
+        "id": "18",
+        "name": "San Jose Sharks",
+        "abbreviation": "SJ",
+        "ppgAllowed": 3.6,
+        "ppg": 2.7,
+        "eloRating": 1494
+      },
+      {
+        "id": "26",
+        "name": "Florida Panthers",
+        "abbreviation": "FLA",
+        "ppgAllowed": 2.8,
+        "ppg": 2.8,
+        "eloRating": 1494
+      },
+      {
+        "id": "2",
+        "name": "Buffalo Sabres",
+        "abbreviation": "BUF",
+        "ppgAllowed": 3.8,
+        "ppg": 3,
+        "eloRating": 1485
+      },
+      {
+        "id": "21",
+        "name": "Toronto Maple Leafs",
+        "abbreviation": "TOR",
+        "ppgAllowed": 3.5,
+        "ppg": 3.5,
+        "eloRating": 1482
+      },
+      {
+        "id": "4",
+        "name": "Chicago Blackhawks",
+        "abbreviation": "CHI",
+        "ppgAllowed": 4,
+        "ppg": 2.6,
+        "eloRating": 1482
+      },
+      {
+        "id": "16",
+        "name": "Pittsburgh Penguins",
+        "abbreviation": "PIT",
+        "ppgAllowed": 3.1,
+        "ppg": 3.6,
+        "eloRating": 1470
+      },
+      {
+        "id": "29",
+        "name": "Columbus Blue Jackets",
+        "abbreviation": "CBJ",
+        "ppgAllowed": 4.2,
+        "ppg": 3.2,
+        "eloRating": 1467
+      },
+      {
+        "id": "10",
+        "name": "Montreal Canadiens",
+        "abbreviation": "MTL",
+        "ppgAllowed": 3.9,
+        "ppg": 3.3,
+        "eloRating": 1463
+      },
+      {
+        "id": "27",
+        "name": "Nashville Predators",
+        "abbreviation": "NSH",
+        "ppgAllowed": 3.1,
+        "ppg": 2.6,
+        "eloRating": 1460
+      },
+      {
+        "id": "5",
+        "name": "Detroit Red Wings",
+        "abbreviation": "DET",
+        "ppg": 2.3,
+        "ppgAllowed": 3,
+        "eloRating": 1450
+      },
+      {
+        "id": "8",
+        "name": "Los Angeles Kings",
+        "abbreviation": "LA",
+        "ppgAllowed": 4.2,
+        "ppg": 2.2,
+        "eloRating": 1450
+      },
+      {
+        "id": "3",
+        "name": "Calgary Flames",
+        "abbreviation": "CGY",
+        "ppgAllowed": 4.8,
+        "ppg": 2,
+        "eloRating": 1438
+      },
+      {
+        "id": "22",
+        "name": "Vancouver Canucks",
+        "abbreviation": "VAN",
+        "ppgAllowed": 4.6,
+        "ppg": 3.1,
+        "eloRating": 1421
+      },
+      {
+        "id": "15",
+        "name": "Philadelphia Flyers",
+        "abbreviation": "PHI",
+        "ppgAllowed": 3.7,
+        "ppg": 1.2,
+        "eloRating": 1402
+      }
+    ]
+  }
+}

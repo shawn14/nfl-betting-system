@@ -1,0 +1,52 @@
+{
+  "checkedAt": "2026-10-16T03:35:43.578Z",
+  "mode": "real live sources",
+  "games": 79,
+  "exactBookQuotes": 148,
+  "exactJoinedGames": 13,
+  "signalDisagreements": 18,
+  "projectionBytes": 148896,
+  "excluded": {
+    "started": 3,
+    "invalid": 0,
+    "outsideHorizon": 0,
+    "duplicates": 0,
+    "capped": 0
+  },
+  "sourceChecks": [
+    {
+      "sport": "nfl",
+      "generated": "2026-10-16T02:00:10.962Z",
+      "hash": "bbb179d308c075ef32837693e5977620b9eda57e291ec181be929c64d4b9f1fa"
+    },
+    {
+      "sport": "nba",
+      "generated": "2026-10-16T03:30:56.852Z",
+      "hash": "d6cd39e3a76a086764c43615a4694ec8c414dacc569798e358edf0cd4b340275"
+    },
+    {
+      "sport": "nhl",
+      "generated": "2026-10-16T03:30:13.455Z",
+      "hash": "bfa278e50fd749558b10c2a04ce234a645ad1003f10903670c32083f0cd5979a"
+    },
+    {
+      "sport": "cbb",
+      "generated": "2026-10-16T03:30:39.323Z",
+      "hash": "e866d0a2ab786c7a5d080796aa111d7dfe805865a13335d8bc1ed44234ae1959"
+    },
+    {
+      "sport": "wnba",
+      "generated": "2026-10-16T03:30:16.845Z",
+      "hash": "f32150b1d854eef78b8e0b4597d832c6146d8ff6d3b8226f6cd7fb2bdc09a8ce"
+    }
+  ],
+  "passed": [
+    "all displayed forecasts and exact-event board quote sides match raw source",
+    "unidentified legacy per-book totals excluded",
+    "exact identity and start time joins",
+    "duplicate/future/invalid-price guards",
+    "expired prices cannot rank as current value",
+    "bounded browser payload",
+    "unavailable sources stay unavailable"
+  ]
+}

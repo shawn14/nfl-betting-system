@@ -11,7 +11,8 @@ import {
 } from '@/services/firestore-admin-store';
 import { SportKey } from '@/services/firestore-types';
 import { MODEL_VERSION } from '@/lib/model-version';
-import { fetchCollegeBasketballOdds, getConsensusOdds } from '@/services/odds';
+import { forecastProducer } from '@/lib/forecast-provenance';
+import { fetchCollegeBasketballOdds, matchGameOdds, type EventOddsMap } from '@/services/odds';
 import { fetchCollegeBasketballTeams, fetchESPNCollegeBasketballOdds } from '@/services/espn';
 import { CBB_LEAGUE_AVG_PPG, INITIAL_ELO_BY_TIER, getConferenceTier } from '@/types/cbb';
 import { newClvAccumulator, addClv, finalizeClv } from '@/lib/clv';
@@ -668,19 +669,11 @@ export async function GET(request: Request) {
     log(`Total backtest results: ${allBacktestResults.length} games`);
 
     // Fetch live odds from The Odds API (for live page display only)
-    let oddsApiData: Map<string, Partial<import('@/types').Odds>[]> | null = null;
-    let oddsApiConsensus: Map<string, Partial<import('@/types').Odds>> = new Map();
+    let oddsApiData: EventOddsMap | null = null;
     try {
       if (process.env.NEXT_PUBLIC_ODDS_API_KEY) {
         oddsApiData = await fetchCollegeBasketballOdds();
         log(`Fetched live odds from The Odds API for ${oddsApiData.size} games`);
-
-        for (const [gameKey, oddsArray] of oddsApiData.entries()) {
-          const consensus = getConsensusOdds(oddsArray);
-          if (consensus) {
-            oddsApiConsensus.set(gameKey, consensus);
-          }
-        }
       }
     } catch (error) {
       log(`Warning: Failed to fetch The Odds API data: ${error instanceof Error ? error.message : 'Unknown error'}`);
@@ -818,29 +811,10 @@ export async function GET(request: Request) {
       }
 
       // Match with The Odds API data for live page display
-      let liveOddsData: { consensusTotal?: number; consensusOverOdds?: number; consensusUnderOdds?: number; bookmakers?: { name: string; total: number; overOdds: number; underOdds: number }[]; lastUpdated?: string } | undefined;
-      if (oddsApiData && game.gameTime) {
-        for (const [gameKey, oddsArray] of oddsApiData.entries()) {
-          if (gameKey.includes(homeTeam.name) || gameKey.includes(awayTeam.name)) {
-            const consensus = oddsApiConsensus.get(gameKey);
-            if (consensus) {
-              liveOddsData = {
-                consensusTotal: consensus.total,
-                consensusOverOdds: consensus.overOdds,
-                consensusUnderOdds: consensus.underOdds,
-                bookmakers: oddsArray.map(o => ({
-                  name: o.bookmaker || 'Unknown',
-                  total: o.total || 0,
-                  overOdds: o.overOdds || -110,
-                  underOdds: o.underOdds || -110,
-                })),
-                lastUpdated: new Date().toISOString(),
-              };
-              break;
-            }
-          }
-        }
-      }
+      // A quote belongs to this exact event, never merely to either participant.
+      const liveOddsData = matchGameOdds(oddsApiData, {
+        sport: 'cbb', home: homeTeam.name, away: awayTeam.name, commence: game.gameTime,
+      });
 
       gamesWithPredictions.push({
         game: {
@@ -859,6 +833,7 @@ export async function GET(request: Request) {
           gameTime: game.gameTime,
         },
         prediction: {
+          forecastProducer: forecastProducer(process.env.VERCEL_GIT_COMMIT_SHA),
           predictedHomeScore: predHome,
           predictedAwayScore: predAway,
           predictedSpread,
@@ -882,7 +857,7 @@ export async function GET(request: Request) {
             diff: eloDiff,
           },
           lineMovement,
-          liveOdds: liveOddsData,
+          ...(liveOddsData ? { liveOdds: liveOddsData } : {}),
         },
       });
     }

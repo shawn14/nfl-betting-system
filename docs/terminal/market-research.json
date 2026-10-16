@@ -1,0 +1,1981 @@
+{
+  "keyword": "sports betting odds",
+  "query": {
+    "raw": "sports betting odds",
+    "appStoreSearchTerm": "sports betting odds",
+    "requiredTerms": [
+      "sports",
+      "betting",
+      "odds"
+    ],
+    "excludedTerms": []
+  },
+  "country": "us",
+  "generatedAt": "2026-10-16T03:13:36.848Z",
+  "requestedWindowMonths": 3,
+  "cutoffDate": "2026-07-16T03:13:35.421Z",
+  "coverage": {
+    "appSearchResults": 24,
+    "appsExcluded": 0,
+    "appsAnalyzed": 6,
+    "pagesPerApp": 1,
+    "reviewsFetched": 250,
+    "reviewsInWindow": 82,
+    "latestReviewAt": "2026-10-13T18:41:10.000Z",
+    "oldestReviewAt": "2023-09-30T16:45:44.000Z",
+    "reachedRequestedWindow": false,
+    "throttledApps": 0,
+    "failedApps": 0,
+    "appReviewWindows": [
+      {
+        "trackId": 430671164,
+        "reviewsFetched": 0,
+        "oldestReviewAt": null,
+        "latestReviewAt": null,
+        "retrievalFailed": false,
+        "reachedRequestedWindow": false
+      },
+      {
+        "trackId": 1083677479,
+        "reviewsFetched": 50,
+        "oldestReviewAt": "2026-09-08T18:49:23.000Z",
+        "latestReviewAt": "2026-10-13T18:41:10.000Z",
+        "retrievalFailed": false,
+        "reachedRequestedWindow": false
+      },
+      {
+        "trackId": 1468109182,
+        "reviewsFetched": 50,
+        "oldestReviewAt": "2025-08-23T19:36:20.000Z",
+        "latestReviewAt": "2026-10-10T00:32:26.000Z",
+        "retrievalFailed": false,
+        "reachedRequestedWindow": true
+      },
+      {
+        "trackId": 6443885102,
+        "reviewsFetched": 50,
+        "oldestReviewAt": "2026-01-24T02:15:57.000Z",
+        "latestReviewAt": "2026-10-04T15:57:52.000Z",
+        "retrievalFailed": false,
+        "reachedRequestedWindow": true
+      },
+      {
+        "trackId": 584558459,
+        "reviewsFetched": 50,
+        "oldestReviewAt": "2023-09-30T16:45:44.000Z",
+        "latestReviewAt": "2026-09-21T21:14:46.000Z",
+        "retrievalFailed": false,
+        "reachedRequestedWindow": true
+      },
+      {
+        "trackId": 6448072108,
+        "reviewsFetched": 50,
+        "oldestReviewAt": "2025-07-12T13:26:30.000Z",
+        "latestReviewAt": "2026-09-26T02:50:05.000Z",
+        "retrievalFailed": false,
+        "reachedRequestedWindow": true
+      }
+    ],
+    "warning": "Sampled RSS pages reached the requested 3-month window for 4 of 6 apps; the remaining apps have incomplete coverage."
+  },
+  "topApps": [
+    {
+      "trackId": 430671164,
+      "trackName": "Scores and Odds Sports Betting",
+      "sellerName": "Rical LLC",
+      "primaryGenreName": "Sports",
+      "genres": [
+        "Sports",
+        "Entertainment"
+      ],
+      "averageUserRating": 4.72553,
+      "userRatingCount": 18538,
+      "rank": 1,
+      "trackViewUrl": "https://apps.apple.com/us/app/scores-and-odds-sports-betting/id430671164?uo=4",
+      "description": "ScoresAndOdds is the leading source for the latest odds and up to date scores on your phone! You’ll get the opening lines, up-to-the-minute current odds, and live scores for NFL, NBA, and MLB. -Find the best odds on your favorite game with our odds comparison tool -Keep up to date on all the latest scores -ScoresAndOdds exclusive Betting Trends show you where the smart money is going. -Use PropCast to check out all of the player props on a day and see who to use in your DFS lineups and who is crushing today -Check out line movements graphs and see which way a game is trending -Get a progress bar to quickly see which games and which props are on pace to go over their totals -Get in-game scoring summaries, play by play, and boxscores -And Much More! In-App Purchases – Monthly auto-renewing subscriptions are available. – SAO Premium – $49.99 monthly – Payment will be charged to iTunes Account at confirmation of purchase – Subscription automatically renews unless auto-renew is turned off at least 24-hours before the end of the current period – Account will be charged for renewal within 24-hours prior to the end of the current period, and identify the cost of the renewal – Subscriptions may be managed by the user and auto-renewal may be turned off by going to the user's Account Settings after purchase Privacy Policy - https://www.scoresandodds.com/privacy-policy Terms of Service - https://www.scoresandodds.com/terms-of-service ParlayIQ is a simulation tool used to estimate the probability of certain game outcomes. As such, the tool should be used for informational purposes only and in no way presents guarantees of any particular results or success. Please note: although we give our best to ensure that all information used is accurate, simulations may not contain the most up-to-date data. If you or someone you know has a gambling problem, crisis counseling and referral services can be accessed by calling/texting 1-800-GAMBLER",
+      "releaseNotes": "Bug fixes and performance improvements",
+      "releaseDate": "2011-04-15T04:34:52Z",
+      "currentVersionReleaseDate": "2026-09-24T11:13:35Z",
+      "offeredFeatures": [
+        "pricing / subscription",
+        "login / account"
+      ],
+      "artworkUrl100": "https://is1-ssl.mzstatic.com/image/thumb/Purple211/v4/a2/19/5f/a2195f65-707e-92bb-a68b-2770caefe614/AppIcon-0-0-1x_U007epad-0-1-85-220.png/100x100bb.jpg",
+      "artistId": 1015151025,
+      "price": 0,
+      "revenueValue": 215,
+      "revenueLabel": "$215/mo",
+      "downloadsValue": 3981,
+      "downloadsLabel": "4K/mo",
+      "confidence": "low"
+    },
+    {
+      "trackId": 1083677479,
+      "trackName": "Action Network: Sports Betting",
+      "sellerName": "Better Collective USA, Inc.",
+      "primaryGenreName": "Sports",
+      "genres": [
+        "Sports"
+      ],
+      "averageUserRating": 4.75662,
+      "userRatingCount": 37966,
+      "rank": 2,
+      "trackViewUrl": "https://apps.apple.com/us/app/action-network-sports-betting/id1083677479?uo=4",
+      "description": "The Action Network app has all the tools to help you to make smarter bets. Real-time odds, bet tracking, fast live scores, picks, sports betting analysis, and more. Your Sports. Your Bets. One App. TRACK YOUR BETS AND SHARE YOUR WINS Track your action across all your sportsbooks and proudly share your winning bet tickets. FOLLOW THE EXPERTS’ PICKS See where all the big names are placing their bets. Follow friends and experts to get a real time feed of betting picks. LIVE BETTING ODDS AND LINE MOVEMENTS See live odds for all sports in each betting market: Spread, moneyline, totals, player props & futures EXCLUSIVE INSIGHTS Action Network’s trusted insiders provide you with the latest news, storylines and analysis for betting any sport: - Football (NFL) - Fantasy Football - Basketball (NBA) - Baseball (MLB) - College Sports: NCAAF, NCAAB, College Baseball - Golf (PGA) REAL-TIME BETTING ALERTS Stay connected to your action when you’re on-the-go, at the game or in the bar. 2x Winner: \"Best Betting Product Experience\" (Fantasy Sports & Gaming Association Awards) \"The best app for sports fans and it's not even close\" - Big Cat (Barstool Sports) — Action PRO is your ticket to becoming a smarter bettor. Unlock a world of exclusive data, expert insights, and advanced tools designed to give you a competitive edge. Supercharge your betting with Action PRO: - Deeper insights into betting data - Expert picks and analysis - Real-time line movement alerts - Advanced stats and trends - Profitable player prop projections * If you choose to purchase Action PRO Monthly or Action PRO Annual upgrade to unlock these premium features, payment will be charged to your iTunes account at confirmation of purchase and your account will be charged for renewal within 24 hours prior to the end of the current period. The subscription period for Action PRO Monthly is 30 days and the subscription period for Action PRO Annual is 1 year. Auto-renewal may be turned off at any time by going to your settings in the iTunes Store during the trial period and after purchase. There may be a free trial of different durations offered from time to time. The prevailing free trial duration will be clearly communicated at time of upgrade. Any unused portion of a free trial period will be forfeited when you purchase the subscription. Terms of Service (www.actionnetwork.com/terms) and Privacy Policy (www.actionnetwork.com/privacy) Information is for news and entertainment purposes only. What you choose to do with the information provided here is your own decision. Pick tracking is not for real money. We do not believe in \"locks\" and do not endorse illegal betting so follow your local laws. Please enjoy responsibly. If you or someone you know has a gambling problem and wants help, call 1-800-GAMBLER. The Action Network, Inc. is not affiliated with or endorsed by Apple, Inc., the NFL, MLB, NBA, NHL, PGA, the NCAA or any other sports league, nor is it a gambling site, and does not accept or place wagers of any kind.",
+      "releaseNotes": "Bug fixes and app improvements",
+      "releaseDate": "2016-08-05T05:11:02Z",
+      "currentVersionReleaseDate": "2026-10-05T14:33:37Z",
+      "offeredFeatures": [
+        "alerts / notifications",
+        "pricing / subscription",
+        "login / account",
+        "stats / analytics"
+      ],
+      "artworkUrl100": "https://is1-ssl.mzstatic.com/image/thumb/Purple211/v4/32/65/fa/3265fa40-346a-b084-b619-459ead0be1f4/AppIcon-0-0-1x_U007epad-0-1-85-220.png/100x100bb.jpg",
+      "artistId": 1083677478,
+      "price": 0,
+      "revenueValue": 669,
+      "revenueLabel": "$669/mo",
+      "downloadsValue": 12397,
+      "downloadsLabel": "12K/mo",
+      "confidence": "low"
+    },
+    {
+      "trackId": 1468109182,
+      "trackName": "BettingPros: Picks & Odds",
+      "sellerName": "Marzen Media LLC",
+      "primaryGenreName": "Sports",
+      "genres": [
+        "Sports"
+      ],
+      "averageUserRating": 4.7842,
+      "userRatingCount": 16149,
+      "rank": 3,
+      "trackViewUrl": "https://apps.apple.com/us/app/bettingpros-picks-odds/id1468109182?uo=4",
+      "description": "BettingPros is your ultimate sports betting tracker – packed with expert picks, AI powered predictions, and seamless sportsbook syncing to help you cash in smarter bets. From tracking action across multiple books to uncovering hidden value in player props and odds, BettingPros gives you everything you need to win more and stress less. Try BettingPros free today with our 3 day free trial! No money, just wins! SEAMLESS SPORTSBOOK SYNC & BET TRACKER - Instantly sync bets, balances, and history from all major sportsbooks including FanDuel, DraftKings, PrizePicks and more. - Track every wager – including game picks, player props, parlays, and moneylines – in one place. - Visualize ROI, analyze trends, and make smarter decisions with your personalized Bet Dashboard. SMART AI INSIGHTS FOR SMARTER BETS - Ask anything – get instant betting advice with Sharp, our AI sports betting assistant. - Discover the outlier props, best odds, parlays, and top picks based on advanced analytics. - Stay ahead of the market with fast, data-driven AI betting predictions powered by our network of expert picks and betting data. EXPERT PICKS, PROPS & PRO TOOLS - Easily explore thousands of player props with expert tips and betting analysis. - Use the Prop Bet Analyzer to spot top Over/Under plays and matchup edges. - Filter by hit rate, cover probability, and more - Find high-value props.Cash more bets! LIVE ODDS, LINE MOVEMENT & SHARP ACTION - Compare real-time odds from FanDuel, DraftKings, BetMGM, and other top sportsbooks. - Simple odds checker for spreads, totals, moneylines, futures, and more. - Get notified when lines move, sharp bettors take action, or an odds jam occurs. COMMUNITY PICKS & SHARPS YOU CAN FOLLOW - Access winning picks from our network of 150 top betting experts and the BettingPros community. - Follow high-performing bettors, view hall of fame leaderboards, and track pick history. - Build smarter Same Game Parlays (SGPs) using correlated prop picks and stats. BETTING SYSTEMS & INSIGHTS - Discover profitable betting systems and props backed by historical data. - Build custom betting models and systems across NFL, NBA, MLB, NHL and more. - Find outliers and actionable angles others miss. GO PREMIUM - TRY IT FREE - Unlock premium insights like Cover Probability, EV, and more. - See our top-rated picks for spreads, totals, and player props. - Get smarter sportsbook tools and exclusive betting recommendations. - Unlock advanced tools like our Prop Bet Cheat Sheet, Prop Bet Analyzer, and Parlay Builder. - Supported for NFL, NBA, MLB, NHL, NCAA Basketball, NCAA Football, WNBA, and more. WHY THOUSANDS TRUST BETTINGPROS - One app to sync all your sportsbooks, track your money, and make data-backed bets. - Trusted picks, real-time odds, and AI that helps you bet smarter – not harder. - Built for the bettor who wants more fun, more action and more wins. Download BettingPros now and start turning data into dollars. Smarter bets start here! -------- BettingPros is a sports betting advice network created by FantasyPros, the #1 source for fantasy sports advice BettingPros content is intended for entertainment purposes only and does not include real money gambling. Picks added in the app do not include real money wagers, payouts or prizes. Please be aware of and respect the laws regarding sports betting for your jurisdiction. BettingPros is not affiliated with or endorsed by Apple, the NFL, MLB, NBA, NHL, PGA, or NCAA. BettingPros is not a gambling site and does not accept wagers. If you or someone you know has a gambling problem and wants help, call 1-800-GAMBLER. Terms of Use: https://www.bettingpros.com/terms/ Privacy Policy: https://www.bettingpros.com/privacy-policy/",
+      "releaseNotes": "- New Premium Tier: unlock additional tools, insights, and premium features with more subscription options - Performance & Stability: various quality-of-life improvements, performance enhancements, and bug fixes",
+      "releaseDate": "2019-07-27T07:00:00Z",
+      "currentVersionReleaseDate": "2026-10-06T16:41:41Z",
+      "offeredFeatures": [
+        "search / filtering",
+        "sync / backup",
+        "community / social",
+        "simplicity / ease of use",
+        "pricing / subscription",
+        "reliability / stability",
+        "stats / analytics"
+      ],
+      "artworkUrl100": "https://is1-ssl.mzstatic.com/image/thumb/Purple221/v4/1e/49/80/1e49806a-9a17-ad49-8f1c-56fb0579f912/AppIcon-0-0-1x_U007epad-0-1-0-85-220.png/100x100bb.jpg",
+      "artistId": 892964104,
+      "price": 0,
+      "revenueValue": 402,
+      "revenueLabel": "$402/mo",
+      "downloadsValue": 7444,
+      "downloadsLabel": "7K/mo",
+      "confidence": "low"
+    },
+    {
+      "trackId": 6443885102,
+      "trackName": "Outlier: Smart Sports Betting",
+      "sellerName": "Colorcast, Inc.",
+      "primaryGenreName": "Sports",
+      "genres": [
+        "Sports"
+      ],
+      "averageUserRating": 4.87291,
+      "userRatingCount": 16729,
+      "rank": 4,
+      "trackViewUrl": "https://apps.apple.com/us/app/outlier-smart-sports-betting/id6443885102?uo=4",
+      "description": "Outlier is a first of its kind sports betting research & data app for smarter, more profitable, and more efficient bettors. Try Outlier free for 7 days, then keep going with an Outlier subscription*. Join the THOUSANDS OF NEW USERS EACH MONTH improving their outcomes by leveraging Outlier’s deep stats and insights. Effortlessly visualize and filter all of the supporting stats, matchups, injuries and more to make the best picks. Outlier has all the leagues, all the props, all the betting markets, all the statistics, and all the odds. Current coverage (May 2026) - NBA - NFL - NHL - NCAA Basketball - NCAA Football - MLB - WNBA - Soccer (EPL, Bundesliga, La Liga, Serie A, Ligue 1, MLS, and more coming soon) You’ll also have access to LIVE SUPPORT and the Outlier Discord Community if you ever have questions or need guidance on our tools. Here are some of the key features you’ll have access to with your Outlier subscription - Trending Insights: Browse and tail trending picks and parlays; - Supporting Stats: Easily understand how a player has performed against particular prop lines based on minutes played, scoring composition, fouls, offensive stats, defensive stats, and more. - Player-Specific Insights: Understand how specific players perform on the road, after a loss, against a particular team, against a power-ranked defense, without a key teammate, and more; - Line Movement Tracker: Analyze how the odds have shifted since being publicly released and which side the public is betting on; - Custom Filters and Real Time Notifications; - Injury Reports: See who's starting, who's sitting, and how lineup changes are anticipated to affect gamelines and player props; - Share Betslip: Share your betslip with friends, followers, and subscribers, allowing them to tail your picks in just two clicks; - Real Time Odds Movement Charts; (Outlier Premium+ and Pro Only) - Positive EV: Browse a live feed of EV+ plays, filtered to your strategy; (Outlier Pro Only) - Sharp Book Odds: Choose which sportsbook you prefer to interpret fair odds with; (Outlier Pro Only) - Arbitrage: Thousands of lines analyzed in real-time to find you guaranteed win opportunities; (Outlier Pro Only) - Middle Betting: Low risk, high reward arbitrage events in an easy to execute interface; (Outlier Pro Only) - Boosts: Access a feed of boosted odds paired with expected value analysis. (Outlier Pro Only) We strive to release new feature requests and optimizations on a weekly basis. Have ideas for something you’d like to see? Send us a note! We're so confident that Outlier will improve your betting strategy, we are giving users full access to try it out, risk free. Find your next bet on Outlier today. ABOUT US The team behind Outlier is a small group of sports fans and engineers. Our mission is to create smarter, more confident and more enjoyable betting experiences. We don’t earn revenue from sports books or affiliates, only from constantly satisfied customers. DISCLOSURE All information and gambling related content is for informational and entertainment purposes only and is not gambling or financial advice. Outlier is not a sportsbook and does not accept wagers or real-money deposits. *Outlier is a subscription service that has three tiers. Premium costs $19.99/month or $199.99/year, Premium+ costs $29.99/month or $299.99/year, Pro costs $79.99/month or $359.99/year (prices vary by region). Payment will be charged to iTunes Account at confirmation of purchase and auto-renews at the same price unless disabled in iTunes Account Settings at least 24 hours before the end of the current period. Your subscription can be managed in your iTunes Account Settings. Any unused portion of a free trial period, if offered, will be forfeited when you purchase a subscription. Terms of Use: https://outlier.bet/terms/",
+      "releaseNotes": "Bugfixes and performance improvements",
+      "releaseDate": "2022-12-17T08:00:00Z",
+      "currentVersionReleaseDate": "2026-10-09T13:23:54Z",
+      "offeredFeatures": [
+        "alerts / notifications",
+        "search / filtering",
+        "export / sharing",
+        "community / social",
+        "pricing / subscription",
+        "login / account",
+        "stats / analytics"
+      ],
+      "artworkUrl100": "https://is1-ssl.mzstatic.com/image/thumb/Purple211/v4/37/45/6c/37456c53-c0e3-a01a-d65d-7fe2e0e9aba4/AppIcon-0-0-1x_U007ephone-0-1-0-85-220.png/100x100bb.jpg",
+      "artistId": 1532549452,
+      "price": 0,
+      "revenueValue": 785,
+      "revenueLabel": "$785/mo",
+      "downloadsValue": 14543,
+      "downloadsLabel": "15K/mo",
+      "confidence": "low"
+    },
+    {
+      "trackId": 584558459,
+      "trackName": "Live Scores and Odds",
+      "sellerName": "Luno Software, Inc.",
+      "primaryGenreName": "Sports",
+      "genres": [
+        "Sports"
+      ],
+      "averageUserRating": 4.78404,
+      "userRatingCount": 10011,
+      "rank": 5,
+      "trackViewUrl": "https://apps.apple.com/us/app/live-scores-and-odds/id584558459?uo=4",
+      "description": "Real-time odds from more than 50 top sportsbooks. Live In-Game odds for most games and tennis matches. As sports bettors we know there can be a huge difference between getting 2½ points and getting 3 points so you need to check out multiple books to get the best line. We provide you with up to the minute odds from over 50 of the top web-based and land-based sportsbooks. Get live scores & odds for all NFL, NBA, MLB, NHL, CFL, MLS, England Premier League, division 1 NCAA football and men's basketball games, in addition to men's & women's tennis and MMA. Player prop odds for each game from many stat categories Futures odds for teams and players. Get alerts for game start, final score, end of period, score changes and line moves Access matchup data such as away/home records and against the spread. View the complete line move history for point spreads, money lines, and totals. Easily add any game to your list of tracked games so you can view their scores and odds all at once. View live in-game stats for all pro and major NCAA conference games. Get access to free and paid picks from some of the top handicappers in the industry. terms of use: https://www.lunosoftware.com/sports-alerts-terms.html privacy policy: https://www.lunosoftware.com/privacy.html ** This app is not affiliated with or endorsed by any professional sports organization or the NCAA. Any trademarks used in the app are done so under \"fair use\" with the sole purpose of identifying the respective entities, and remain the property of their respective owners.",
+      "releaseNotes": "bug fixes",
+      "releaseDate": "2012-12-10T21:12:45Z",
+      "currentVersionReleaseDate": "2026-09-21T21:18:32Z",
+      "offeredFeatures": [
+        "alerts / notifications"
+      ],
+      "artworkUrl100": "https://is1-ssl.mzstatic.com/image/thumb/Purple211/v4/d5/bc/4f/d5bc4fbf-7a5b-72b9-2560-1ed15fd33258/ComposedIcon-0-0-1x_U007epad-0-1-85-220.png/100x100bb.jpg",
+      "artistId": 362314431,
+      "price": 0,
+      "revenueValue": 130,
+      "revenueLabel": "$130/mo",
+      "downloadsValue": 2407,
+      "downloadsLabel": "2K/mo",
+      "confidence": "low"
+    },
+    {
+      "trackId": 6448072108,
+      "trackName": "OddsJam: Sharp Sports Betting",
+      "sellerName": "OddsJam, Inc.",
+      "primaryGenreName": "Sports",
+      "genres": [
+        "Sports",
+        "Finance"
+      ],
+      "averageUserRating": 4.73316,
+      "userRatingCount": 2346,
+      "rank": 6,
+      "trackViewUrl": "https://apps.apple.com/us/app/oddsjam-sharp-sports-betting/id6448072108?uo=4",
+      "description": "ODDSJAM: SPORTS DATA & ANALYTICS REDEFINED Join 100,000+ sports fans, analysts, and fantasy players using OddsJam for smarter insights. We’ve rebuilt the app for speed, clarity, and powerful new data tools. If you’ve seen us on YouTube or X, you know OddsJam turns raw stats into actionable insights. Track performance, monitor market trends, and optimize your fantasy decisions — all in real time. WHAT’S NEW • Follow the money Find where pro bettors are putting serious money and tail them instantly. • Visualize performance trends Analyze player performance over the last 5, 10, or 20 games and uncover hidden patterns. • Real-time value alerts Get notified when key stats or pricing data shift across major platforms. • Fantasy insights & optimizer See your projected success rate before you play. Build smarter fantasy lineups with advanced hit-rate data. • Comprehensive data coverage Access real-time data from 150+ books and millions of odds. • Bet tracker Track your strategy and visualize long-term results to refine your approach. SUBSCRIPTIONS TRENDS — $19.99/month Advanced analytics and historical trend models. FANTASY — $59.99/month Discover top fantasy opportunities. Works with Underdog Fantasy, PrizePicks, Betr, and more. SHARP MONEY — $199.99/month Follow where professional bettors put serious money. PLATINUM — $499.99/month Unlock +EV, Arbitrage, Middles, Low Holds, and Promo Converter across supported sportsbooks. PREDICTION TRADERS — $449.99/month Unlimited picks from algorithmically selected traders on Kalshi, Polymarket, Prophet X, Novig, and more. 7-day free trial available on all plans. DISCLOSURE OddsJam is a sports data and analytics platform. It does not accept wagers or handle real-money transactions. All data is provided for entertainment and analytical purposes only. If you or someone you know has a gambling problem, call 1-800-GAMBLER. Terms: oddsjam.com/terms.pdf Privacy: oddsjam.com/privacy.pdf",
+      "releaseNotes": "Bug fixes and improvements",
+      "releaseDate": "2023-05-11T07:00:00Z",
+      "currentVersionReleaseDate": "2026-10-13T00:20:31Z",
+      "offeredFeatures": [
+        "alerts / notifications",
+        "export / sharing",
+        "pricing / subscription",
+        "stats / analytics"
+      ],
+      "artworkUrl100": "https://is1-ssl.mzstatic.com/image/thumb/Purple221/v4/de/b4/df/deb4df2a-93dd-adc6-de58-c52d9763b4d3/AppIcon-0-0-1x_U007emarketing-0-8-0-85-220.png/100x100bb.jpg",
+      "artistId": 1632668267,
+      "price": 0,
+      "revenueValue": 123,
+      "revenueLabel": "$123/mo",
+      "downloadsValue": 2275,
+      "downloadsLabel": "2K/mo",
+      "confidence": "low"
+    }
+  ],
+  "competition": {
+    "score": 33,
+    "level": "moderate",
+    "drivers": [
+      "median incumbent has 16,729 ratings",
+      "incumbents are loved (4.8★ avg)"
+    ],
+    "strongIncumbents": 0,
+    "totalRatings": 101739,
+    "medianRatings": 16729,
+    "averageRating": 4.78,
+    "topRevenueValue": 785,
+    "topRevenueLabel": "$785/mo",
+    "wedge": {
+      "trackId": 6448072108,
+      "trackName": "OddsJam: Sharp Sports Betting",
+      "averageUserRating": 4.73316,
+      "userRatingCount": 2346,
+      "reason": "least-entrenched top app (2,346 ratings in a loved market)"
+    }
+  },
+  "winnability": {
+    "verdict": "open",
+    "titleMatchers": 2,
+    "sampleSize": 24,
+    "matcherNames": [
+      "Scores and Odds Sports Betting",
+      "Goof: Sports Betting Odds"
+    ],
+    "stalenessDays": 13,
+    "bigBroken": false,
+    "bigBrokenWhy": null,
+    "newWinner": null,
+    "drivers": [
+      "2 of 24 results target this term",
+      "median matcher update <2mo ago"
+    ]
+  },
+  "nearbyKeywords": [],
+  "coreFeatures": [],
+  "offeredFeatures": [
+    {
+      "feature": "pricing / subscription",
+      "appCount": 5,
+      "apps": [
+        {
+          "trackId": 430671164,
+          "trackName": "Scores and Odds Sports Betting",
+          "rating": 4.72553,
+          "ratingCount": 18538
+        },
+        {
+          "trackId": 1083677479,
+          "trackName": "Action Network: Sports Betting",
+          "rating": 4.75662,
+          "ratingCount": 37966
+        },
+        {
+          "trackId": 1468109182,
+          "trackName": "BettingPros: Picks & Odds",
+          "rating": 4.7842,
+          "ratingCount": 16149
+        },
+        {
+          "trackId": 6443885102,
+          "trackName": "Outlier: Smart Sports Betting",
+          "rating": 4.87291,
+          "ratingCount": 16729
+        },
+        {
+          "trackId": 6448072108,
+          "trackName": "OddsJam: Sharp Sports Betting",
+          "rating": 4.73316,
+          "ratingCount": 2346
+        }
+      ]
+    },
+    {
+      "feature": "alerts / notifications",
+      "appCount": 4,
+      "apps": [
+        {
+          "trackId": 1083677479,
+          "trackName": "Action Network: Sports Betting",
+          "rating": 4.75662,
+          "ratingCount": 37966
+        },
+        {
+          "trackId": 6443885102,
+          "trackName": "Outlier: Smart Sports Betting",
+          "rating": 4.87291,
+          "ratingCount": 16729
+        },
+        {
+          "trackId": 584558459,
+          "trackName": "Live Scores and Odds",
+          "rating": 4.78404,
+          "ratingCount": 10011
+        },
+        {
+          "trackId": 6448072108,
+          "trackName": "OddsJam: Sharp Sports Betting",
+          "rating": 4.73316,
+          "ratingCount": 2346
+        }
+      ]
+    },
+    {
+      "feature": "score / stats / analytics",
+      "appCount": 4,
+      "apps": [
+        {
+          "trackId": 1083677479,
+          "trackName": "Action Network: Sports Betting",
+          "rating": 4.75662,
+          "ratingCount": 37966
+        },
+        {
+          "trackId": 1468109182,
+          "trackName": "BettingPros: Picks & Odds",
+          "rating": 4.7842,
+          "ratingCount": 16149
+        },
+        {
+          "trackId": 6443885102,
+          "trackName": "Outlier: Smart Sports Betting",
+          "rating": 4.87291,
+          "ratingCount": 16729
+        },
+        {
+          "trackId": 6448072108,
+          "trackName": "OddsJam: Sharp Sports Betting",
+          "rating": 4.73316,
+          "ratingCount": 2346
+        }
+      ]
+    },
+    {
+      "feature": "login / account",
+      "appCount": 3,
+      "apps": [
+        {
+          "trackId": 430671164,
+          "trackName": "Scores and Odds Sports Betting",
+          "rating": 4.72553,
+          "ratingCount": 18538
+        },
+        {
+          "trackId": 1083677479,
+          "trackName": "Action Network: Sports Betting",
+          "rating": 4.75662,
+          "ratingCount": 37966
+        },
+        {
+          "trackId": 6443885102,
+          "trackName": "Outlier: Smart Sports Betting",
+          "rating": 4.87291,
+          "ratingCount": 16729
+        }
+      ]
+    },
+    {
+      "feature": "export / sharing",
+      "appCount": 2,
+      "apps": [
+        {
+          "trackId": 6443885102,
+          "trackName": "Outlier: Smart Sports Betting",
+          "rating": 4.87291,
+          "ratingCount": 16729
+        },
+        {
+          "trackId": 6448072108,
+          "trackName": "OddsJam: Sharp Sports Betting",
+          "rating": 4.73316,
+          "ratingCount": 2346
+        }
+      ]
+    },
+    {
+      "feature": "search / filtering",
+      "appCount": 2,
+      "apps": [
+        {
+          "trackId": 1468109182,
+          "trackName": "BettingPros: Picks & Odds",
+          "rating": 4.7842,
+          "ratingCount": 16149
+        },
+        {
+          "trackId": 6443885102,
+          "trackName": "Outlier: Smart Sports Betting",
+          "rating": 4.87291,
+          "ratingCount": 16729
+        }
+      ]
+    },
+    {
+      "feature": "social / groups",
+      "appCount": 2,
+      "apps": [
+        {
+          "trackId": 1468109182,
+          "trackName": "BettingPros: Picks & Odds",
+          "rating": 4.7842,
+          "ratingCount": 16149
+        },
+        {
+          "trackId": 6443885102,
+          "trackName": "Outlier: Smart Sports Betting",
+          "rating": 4.87291,
+          "ratingCount": 16729
+        }
+      ]
+    },
+    {
+      "feature": "reliability / stability",
+      "appCount": 1,
+      "apps": [
+        {
+          "trackId": 1468109182,
+          "trackName": "BettingPros: Picks & Odds",
+          "rating": 4.7842,
+          "ratingCount": 16149
+        }
+      ]
+    },
+    {
+      "feature": "simplicity / ease of use",
+      "appCount": 1,
+      "apps": [
+        {
+          "trackId": 1468109182,
+          "trackName": "BettingPros: Picks & Odds",
+          "rating": 4.7842,
+          "ratingCount": 16149
+        }
+      ]
+    },
+    {
+      "feature": "sync / backup",
+      "appCount": 1,
+      "apps": [
+        {
+          "trackId": 1468109182,
+          "trackName": "BettingPros: Picks & Odds",
+          "rating": 4.7842,
+          "ratingCount": 16149
+        }
+      ]
+    }
+  ],
+  "lovedFeatures": [
+    {
+      "feature": "search / filtering",
+      "count": 1,
+      "appCount": 1,
+      "share": 0.012,
+      "averageRating": 5,
+      "topApps": [
+        {
+          "trackId": 6443885102,
+          "trackName": "Outlier: Smart Sports Betting",
+          "count": 1
+        }
+      ],
+      "examples": [
+        {
+          "id": "14311788028",
+          "trackId": 6443885102,
+          "trackName": "Outlier: Smart Sports Betting",
+          "rating": 5,
+          "updatedAt": "2026-07-16T21:48:19.000Z",
+          "excerpt": "I love the interface and the different filters for searching.",
+          "phrase": "interface and the different filters for searching",
+          "kind": "loved"
+        }
+      ]
+    }
+  ],
+  "complaintClusters": [
+    {
+      "feature": "pricing / subscription",
+      "count": 9,
+      "appCount": 4,
+      "share": 0.11,
+      "averageRating": 2.33,
+      "topApps": [
+        {
+          "trackId": 1083677479,
+          "trackName": "Action Network: Sports Betting",
+          "count": 5
+        },
+        {
+          "trackId": 6448072108,
+          "trackName": "OddsJam: Sharp Sports Betting",
+          "count": 2
+        },
+        {
+          "trackId": 1468109182,
+          "trackName": "BettingPros: Picks & Odds",
+          "count": 1
+        },
+        {
+          "trackId": 6443885102,
+          "trackName": "Outlier: Smart Sports Betting",
+          "count": 1
+        }
+      ],
+      "examples": [
+        {
+          "id": "14639050087",
+          "trackId": 1083677479,
+          "trackName": "Action Network: Sports Betting",
+          "rating": 1,
+          "updatedAt": "2026-10-07T17:49:19.000Z",
+          "excerpt": "After the update, it removed the Pro Bets and $$$ being placed. Please revert to existing format. Will be canceling my subscription.",
+          "kind": "complaint"
+        },
+        {
+          "id": "14638728339",
+          "trackId": 1083677479,
+          "trackName": "Action Network: Sports Betting",
+          "rating": 1,
+          "updatedAt": "2026-10-07T16:07:02.000Z",
+          "excerpt": "Always pushes me to I dont have a subscription.",
+          "kind": "complaint"
+        },
+        {
+          "id": "14631806961",
+          "trackId": 1083677479,
+          "trackName": "Action Network: Sports Betting",
+          "rating": 5,
+          "updatedAt": "2026-10-05T19:48:35.000Z",
+          "excerpt": "Best sports gambling site out there, and it’s not even close. Been using for a few years now. Started just tracking, now am a full premium member using all the tools and insights offered. Continues to get better.",
+          "kind": "complaint"
+        },
+        {
+          "id": "14627923807",
+          "trackId": 1083677479,
+          "trackName": "Action Network: Sports Betting",
+          "rating": 1,
+          "updatedAt": "2026-10-04T19:17:23.000Z",
+          "excerpt": "They don’t have any support. They have a fake support email that isn’t manned, I have submitted several requests over the years and never received a response. Wasn’t an issue when the app was working okay, but due to recent updates, it n...",
+          "kind": "complaint"
+        }
+      ]
+    },
+    {
+      "feature": "reliability / bugs",
+      "count": 4,
+      "appCount": 2,
+      "share": 0.049,
+      "averageRating": 1,
+      "topApps": [
+        {
+          "trackId": 1083677479,
+          "trackName": "Action Network: Sports Betting",
+          "count": 3
+        },
+        {
+          "trackId": 6448072108,
+          "trackName": "OddsJam: Sharp Sports Betting",
+          "count": 1
+        }
+      ],
+      "examples": [
+        {
+          "id": "14569441712",
+          "trackId": 1083677479,
+          "trackName": "Action Network: Sports Betting",
+          "rating": 1,
+          "updatedAt": "2026-09-19T19:00:04.000Z",
+          "excerpt": "Have been a pro subscriber for years and track everything I bet in action but that’s all most likely going to change. Futures can’t be organized anymore, upcoming bets require 18 page refreshes to hopefully appear and if you decide to be...",
+          "kind": "complaint"
+        },
+        {
+          "id": "14545752715",
+          "trackId": 1083677479,
+          "trackName": "Action Network: Sports Betting",
+          "rating": 1,
+          "updatedAt": "2026-09-13T16:46:56.000Z",
+          "excerpt": "Action network trends don’t pop up for mlb players anymore. Idk if this a glitch or if it’s because yall really work for Vegas 🤷🏽‍♂️",
+          "kind": "complaint"
+        },
+        {
+          "id": "14528778298",
+          "trackId": 1083677479,
+          "trackName": "Action Network: Sports Betting",
+          "rating": 1,
+          "updatedAt": "2026-09-09T11:25:44.000Z",
+          "excerpt": "Do not get this app! It doesn’t let you track bets half the time and the other half it just crashes!",
+          "kind": "complaint"
+        },
+        {
+          "id": "14468654662",
+          "trackId": 6448072108,
+          "trackName": "OddsJam: Sharp Sports Betting",
+          "rating": 1,
+          "updatedAt": "2026-08-25T02:18:29.000Z",
+          "excerpt": "Stuck on the opening screen after one use",
+          "kind": "complaint"
+        }
+      ]
+    },
+    {
+      "feature": "support / customer service",
+      "count": 3,
+      "appCount": 2,
+      "share": 0.037,
+      "averageRating": 1.33,
+      "topApps": [
+        {
+          "trackId": 1083677479,
+          "trackName": "Action Network: Sports Betting",
+          "count": 2
+        },
+        {
+          "trackId": 6448072108,
+          "trackName": "OddsJam: Sharp Sports Betting",
+          "count": 1
+        }
+      ],
+      "examples": [
+        {
+          "id": "14627923807",
+          "trackId": 1083677479,
+          "trackName": "Action Network: Sports Betting",
+          "rating": 1,
+          "updatedAt": "2026-10-04T19:17:23.000Z",
+          "excerpt": "They don’t have any support. They have a fake support email that isn’t manned, I have submitted several requests over the years and never received a response. Wasn’t an issue when the app was working okay, but due to recent updates, it n...",
+          "kind": "complaint"
+        },
+        {
+          "id": "14546166179",
+          "trackId": 6448072108,
+          "trackName": "OddsJam: Sharp Sports Betting",
+          "rating": 2,
+          "updatedAt": "2026-09-13T18:50:06.000Z",
+          "excerpt": "I’m stuck on the opening screen and can’t get into the app and there’s no way to talk to support :(",
+          "kind": "complaint"
+        },
+        {
+          "id": "14538774000",
+          "trackId": 1083677479,
+          "trackName": "Action Network: Sports Betting",
+          "rating": 1,
+          "updatedAt": "2026-09-11T23:08:49.000Z",
+          "excerpt": "I’ve used this for 6 years and the update legit broke the app. I can’t edit anything, and there’s no support to be found anywhere (in the app, on X, etc). How have they at least not addressed everyone saying something like “we are addres...",
+          "kind": "complaint"
+        }
+      ]
+    },
+    {
+      "feature": "login / account",
+      "count": 1,
+      "appCount": 1,
+      "share": 0.012,
+      "averageRating": 1,
+      "topApps": [
+        {
+          "trackId": 1083677479,
+          "trackName": "Action Network: Sports Betting",
+          "count": 1
+        }
+      ],
+      "examples": [
+        {
+          "id": "14588126050",
+          "trackId": 1083677479,
+          "trackName": "Action Network: Sports Betting",
+          "rating": 1,
+          "updatedAt": "2026-09-24T14:58:44.000Z",
+          "excerpt": "I’ve had a paid subscription for a couple of years. Data is only okay but now I have login issues and it blocks AI from organizing data so I can’t use that anymore. They are trying to protect their data, I get that, but now they have mad...",
+          "kind": "complaint"
+        }
+      ]
+    },
+    {
+      "feature": "performance / battery",
+      "count": 1,
+      "appCount": 1,
+      "share": 0.012,
+      "averageRating": 4,
+      "topApps": [
+        {
+          "trackId": 1468109182,
+          "trackName": "BettingPros: Picks & Odds",
+          "count": 1
+        }
+      ],
+      "examples": [
+        {
+          "id": "14453556375",
+          "trackId": 1468109182,
+          "trackName": "BettingPros: Picks & Odds",
+          "rating": 4,
+          "updatedAt": "2026-08-21T05:31:07.000Z",
+          "excerpt": "Not sure if it’s the iOS update but player props loading screen has been moving slow since today. However best sports betting app out there",
+          "kind": "complaint"
+        }
+      ]
+    }
+  ],
+  "requestClusters": [
+    {
+      "feature": "reliability / bugs",
+      "count": 1,
+      "appCount": 1,
+      "share": 0.012,
+      "averageRating": 5,
+      "topApps": [
+        {
+          "trackId": 1083677479,
+          "trackName": "Action Network: Sports Betting",
+          "count": 1
+        }
+      ],
+      "examples": [
+        {
+          "id": "14616797338",
+          "trackId": 1083677479,
+          "trackName": "Action Network: Sports Betting",
+          "rating": 5,
+          "updatedAt": "2026-10-01T23:49:50.000Z",
+          "excerpt": "Please fix it bc changing it at the start of football season is messing it up for a lot of us EDIT: The app is much better and many bugs have been fixed.",
+          "phrase": "bc changing it at the start of football season is messing it up for a lot of us EDIT: The app is much better and many bugs have been fixed",
+          "kind": "request"
+        }
+      ]
+    },
+    {
+      "feature": "search / filtering",
+      "count": 1,
+      "appCount": 1,
+      "share": 0.012,
+      "averageRating": 5,
+      "topApps": [
+        {
+          "trackId": 1083677479,
+          "trackName": "Action Network: Sports Betting",
+          "count": 1
+        }
+      ],
+      "examples": [
+        {
+          "id": "14662753570",
+          "trackId": 1083677479,
+          "trackName": "Action Network: Sports Betting",
+          "rating": 5,
+          "updatedAt": "2026-10-13T18:41:10.000Z",
+          "excerpt": "But can you please add the hit rate to the main pro props menu, its a lil extra work for me to go search it",
+          "phrase": "the hit rate to the main pro props menu, its a lil extra work for me to go search it",
+          "kind": "request"
+        }
+      ]
+    }
+  ],
+  "opportunityGaps": [
+    {
+      "feature": "pricing / subscription",
+      "priorityScore": 47.25,
+      "confidence": 0.7,
+      "opportunityType": "fix_existing",
+      "why": "Top apps already sell pricing / subscription, but review evidence says the implementation is still painful or incomplete.",
+      "evidenceCount": 9,
+      "requestCount": 0,
+      "complaintCount": 9,
+      "loveCount": 0,
+      "offeredByApps": [
+        "Scores and Odds Sports Betting",
+        "Action Network: Sports Betting",
+        "BettingPros: Picks & Odds",
+        "Outlier: Smart Sports Betting",
+        "OddsJam: Sharp Sports Betting"
+      ],
+      "examples": [
+        {
+          "id": "14639050087",
+          "trackId": 1083677479,
+          "trackName": "Action Network: Sports Betting",
+          "rating": 1,
+          "updatedAt": "2026-10-07T17:49:19.000Z",
+          "excerpt": "After the update, it removed the Pro Bets and $$$ being placed. Please revert to existing format. Will be canceling my subscription.",
+          "kind": "complaint"
+        },
+        {
+          "id": "14638728339",
+          "trackId": 1083677479,
+          "trackName": "Action Network: Sports Betting",
+          "rating": 1,
+          "updatedAt": "2026-10-07T16:07:02.000Z",
+          "excerpt": "Always pushes me to I dont have a subscription.",
+          "kind": "complaint"
+        },
+        {
+          "id": "14631806961",
+          "trackId": 1083677479,
+          "trackName": "Action Network: Sports Betting",
+          "rating": 5,
+          "updatedAt": "2026-10-05T19:48:35.000Z",
+          "excerpt": "Best sports gambling site out there, and it’s not even close. Been using for a few years now. Started just tracking, now am a full premium member using all the tools and insights offered. Continues to get better.",
+          "kind": "complaint"
+        },
+        {
+          "id": "14627923807",
+          "trackId": 1083677479,
+          "trackName": "Action Network: Sports Betting",
+          "rating": 1,
+          "updatedAt": "2026-10-04T19:17:23.000Z",
+          "excerpt": "They don’t have any support. They have a fake support email that isn’t manned, I have submitted several requests over the years and never received a response. Wasn’t an issue when the app was working okay, but due to recent updates, it n...",
+          "kind": "complaint"
+        }
+      ],
+      "trend": {
+        "status": "baseline",
+        "recentCount": 0,
+        "priorCount": 0,
+        "pctChange": null,
+        "windowDays": 30
+      }
+    },
+    {
+      "feature": "reliability / bugs",
+      "priorityScore": 30.5,
+      "confidence": 0.74,
+      "opportunityType": "missing_feature",
+      "why": "Users are asking for or complaining around reliability / bugs, but the top App Store listings do not consistently promise it.",
+      "evidenceCount": 5,
+      "requestCount": 1,
+      "complaintCount": 4,
+      "loveCount": 0,
+      "offeredByApps": [],
+      "examples": [
+        {
+          "id": "14616797338",
+          "trackId": 1083677479,
+          "trackName": "Action Network: Sports Betting",
+          "rating": 5,
+          "updatedAt": "2026-10-01T23:49:50.000Z",
+          "excerpt": "Please fix it bc changing it at the start of football season is messing it up for a lot of us EDIT: The app is much better and many bugs have been fixed.",
+          "phrase": "bc changing it at the start of football season is messing it up for a lot of us EDIT: The app is much better and many bugs have been fixed",
+          "kind": "request"
+        },
+        {
+          "id": "14569441712",
+          "trackId": 1083677479,
+          "trackName": "Action Network: Sports Betting",
+          "rating": 1,
+          "updatedAt": "2026-09-19T19:00:04.000Z",
+          "excerpt": "Have been a pro subscriber for years and track everything I bet in action but that’s all most likely going to change. Futures can’t be organized anymore, upcoming bets require 18 page refreshes to hopefully appear and if you decide to be...",
+          "kind": "complaint"
+        },
+        {
+          "id": "14545752715",
+          "trackId": 1083677479,
+          "trackName": "Action Network: Sports Betting",
+          "rating": 1,
+          "updatedAt": "2026-09-13T16:46:56.000Z",
+          "excerpt": "Action network trends don’t pop up for mlb players anymore. Idk if this a glitch or if it’s because yall really work for Vegas 🤷🏽‍♂️",
+          "kind": "complaint"
+        },
+        {
+          "id": "14528778298",
+          "trackId": 1083677479,
+          "trackName": "Action Network: Sports Betting",
+          "rating": 1,
+          "updatedAt": "2026-09-09T11:25:44.000Z",
+          "excerpt": "Do not get this app! It doesn’t let you track bets half the time and the other half it just crashes!",
+          "kind": "complaint"
+        },
+        {
+          "id": "14468654662",
+          "trackId": 6448072108,
+          "trackName": "OddsJam: Sharp Sports Betting",
+          "rating": 1,
+          "updatedAt": "2026-08-25T02:18:29.000Z",
+          "excerpt": "Stuck on the opening screen after one use",
+          "kind": "complaint"
+        }
+      ],
+      "trend": {
+        "status": "baseline",
+        "recentCount": 1,
+        "priorCount": 0,
+        "pctChange": null,
+        "windowDays": 30
+      }
+    },
+    {
+      "feature": "support / customer service",
+      "priorityScore": 19.5,
+      "confidence": 0.71,
+      "opportunityType": "missing_feature",
+      "why": "Users are asking for or complaining around support / customer service, but the top App Store listings do not consistently promise it.",
+      "evidenceCount": 3,
+      "requestCount": 0,
+      "complaintCount": 3,
+      "loveCount": 0,
+      "offeredByApps": [],
+      "examples": [
+        {
+          "id": "14627923807",
+          "trackId": 1083677479,
+          "trackName": "Action Network: Sports Betting",
+          "rating": 1,
+          "updatedAt": "2026-10-04T19:17:23.000Z",
+          "excerpt": "They don’t have any support. They have a fake support email that isn’t manned, I have submitted several requests over the years and never received a response. Wasn’t an issue when the app was working okay, but due to recent updates, it n...",
+          "kind": "complaint"
+        },
+        {
+          "id": "14546166179",
+          "trackId": 6448072108,
+          "trackName": "OddsJam: Sharp Sports Betting",
+          "rating": 2,
+          "updatedAt": "2026-09-13T18:50:06.000Z",
+          "excerpt": "I’m stuck on the opening screen and can’t get into the app and there’s no way to talk to support :(",
+          "kind": "complaint"
+        },
+        {
+          "id": "14538774000",
+          "trackId": 1083677479,
+          "trackName": "Action Network: Sports Betting",
+          "rating": 1,
+          "updatedAt": "2026-09-11T23:08:49.000Z",
+          "excerpt": "I’ve used this for 6 years and the update legit broke the app. I can’t edit anything, and there’s no support to be found anywhere (in the app, on X, etc). How have they at least not addressed everyone saying something like “we are addres...",
+          "kind": "complaint"
+        }
+      ],
+      "trend": {
+        "status": "baseline",
+        "recentCount": 0,
+        "priorCount": 0,
+        "pctChange": null,
+        "windowDays": 30
+      }
+    },
+    {
+      "feature": "search / filtering",
+      "priorityScore": 11,
+      "confidence": 0.69,
+      "opportunityType": "fix_existing",
+      "why": "Top apps already sell search / filtering, but review evidence says the implementation is still painful or incomplete.",
+      "evidenceCount": 2,
+      "requestCount": 1,
+      "complaintCount": 0,
+      "loveCount": 1,
+      "offeredByApps": [
+        "BettingPros: Picks & Odds",
+        "Outlier: Smart Sports Betting"
+      ],
+      "examples": [
+        {
+          "id": "14662753570",
+          "trackId": 1083677479,
+          "trackName": "Action Network: Sports Betting",
+          "rating": 5,
+          "updatedAt": "2026-10-13T18:41:10.000Z",
+          "excerpt": "But can you please add the hit rate to the main pro props menu, its a lil extra work for me to go search it",
+          "phrase": "the hit rate to the main pro props menu, its a lil extra work for me to go search it",
+          "kind": "request"
+        },
+        {
+          "id": "14311788028",
+          "trackId": 6443885102,
+          "trackName": "Outlier: Smart Sports Betting",
+          "rating": 5,
+          "updatedAt": "2026-07-16T21:48:19.000Z",
+          "excerpt": "I love the interface and the different filters for searching.",
+          "phrase": "interface and the different filters for searching",
+          "kind": "loved"
+        }
+      ],
+      "trend": {
+        "status": "baseline",
+        "recentCount": 1,
+        "priorCount": 0,
+        "pctChange": null,
+        "windowDays": 30
+      }
+    },
+    {
+      "feature": "performance / battery",
+      "priorityScore": 8.25,
+      "confidence": 0.57,
+      "opportunityType": "missing_feature",
+      "why": "Users are asking for or complaining around performance / battery, but the top App Store listings do not consistently promise it.",
+      "evidenceCount": 1,
+      "requestCount": 0,
+      "complaintCount": 1,
+      "loveCount": 0,
+      "offeredByApps": [],
+      "examples": [
+        {
+          "id": "14453556375",
+          "trackId": 1468109182,
+          "trackName": "BettingPros: Picks & Odds",
+          "rating": 4,
+          "updatedAt": "2026-08-21T05:31:07.000Z",
+          "excerpt": "Not sure if it’s the iOS update but player props loading screen has been moving slow since today. However best sports betting app out there",
+          "kind": "complaint"
+        }
+      ],
+      "trend": {
+        "status": "baseline",
+        "recentCount": 0,
+        "priorCount": 0,
+        "pctChange": null,
+        "windowDays": 30
+      }
+    },
+    {
+      "feature": "login / account",
+      "priorityScore": 7.25,
+      "confidence": 0.57,
+      "opportunityType": "fix_existing",
+      "why": "Top apps already sell login / account, but review evidence says the implementation is still painful or incomplete.",
+      "evidenceCount": 1,
+      "requestCount": 0,
+      "complaintCount": 1,
+      "loveCount": 0,
+      "offeredByApps": [
+        "Scores and Odds Sports Betting",
+        "Action Network: Sports Betting",
+        "Outlier: Smart Sports Betting"
+      ],
+      "examples": [
+        {
+          "id": "14588126050",
+          "trackId": 1083677479,
+          "trackName": "Action Network: Sports Betting",
+          "rating": 1,
+          "updatedAt": "2026-09-24T14:58:44.000Z",
+          "excerpt": "I’ve had a paid subscription for a couple of years. Data is only okay but now I have login issues and it blocks AI from organizing data so I can’t use that anymore. They are trying to protect their data, I get that, but now they have mad...",
+          "kind": "complaint"
+        }
+      ],
+      "trend": {
+        "status": "baseline",
+        "recentCount": 0,
+        "priorCount": 0,
+        "pctChange": null,
+        "windowDays": 30
+      }
+    }
+  ],
+  "roadmap": [
+    {
+      "feature": "pricing / subscription",
+      "priorityScore": 47.25,
+      "confidence": 0.7,
+      "opportunityType": "fix_existing",
+      "why": "Top apps already sell pricing / subscription, but review evidence says the implementation is still painful or incomplete.",
+      "evidenceCount": 9,
+      "requestCount": 0,
+      "complaintCount": 9,
+      "loveCount": 0,
+      "offeredByApps": [
+        "Scores and Odds Sports Betting",
+        "Action Network: Sports Betting",
+        "BettingPros: Picks & Odds",
+        "Outlier: Smart Sports Betting",
+        "OddsJam: Sharp Sports Betting"
+      ],
+      "examples": [
+        {
+          "id": "14639050087",
+          "trackId": 1083677479,
+          "trackName": "Action Network: Sports Betting",
+          "rating": 1,
+          "updatedAt": "2026-10-07T17:49:19.000Z",
+          "excerpt": "After the update, it removed the Pro Bets and $$$ being placed. Please revert to existing format. Will be canceling my subscription.",
+          "kind": "complaint"
+        },
+        {
+          "id": "14638728339",
+          "trackId": 1083677479,
+          "trackName": "Action Network: Sports Betting",
+          "rating": 1,
+          "updatedAt": "2026-10-07T16:07:02.000Z",
+          "excerpt": "Always pushes me to I dont have a subscription.",
+          "kind": "complaint"
+        },
+        {
+          "id": "14631806961",
+          "trackId": 1083677479,
+          "trackName": "Action Network: Sports Betting",
+          "rating": 5,
+          "updatedAt": "2026-10-05T19:48:35.000Z",
+          "excerpt": "Best sports gambling site out there, and it’s not even close. Been using for a few years now. Started just tracking, now am a full premium member using all the tools and insights offered. Continues to get better.",
+          "kind": "complaint"
+        },
+        {
+          "id": "14627923807",
+          "trackId": 1083677479,
+          "trackName": "Action Network: Sports Betting",
+          "rating": 1,
+          "updatedAt": "2026-10-04T19:17:23.000Z",
+          "excerpt": "They don’t have any support. They have a fake support email that isn’t manned, I have submitted several requests over the years and never received a response. Wasn’t an issue when the app was working okay, but due to recent updates, it n...",
+          "kind": "complaint"
+        }
+      ],
+      "trend": {
+        "status": "baseline",
+        "recentCount": 0,
+        "priorCount": 0,
+        "pctChange": null,
+        "windowDays": 30
+      }
+    },
+    {
+      "feature": "reliability / bugs",
+      "priorityScore": 30.5,
+      "confidence": 0.74,
+      "opportunityType": "missing_feature",
+      "why": "Users are asking for or complaining around reliability / bugs, but the top App Store listings do not consistently promise it.",
+      "evidenceCount": 5,
+      "requestCount": 1,
+      "complaintCount": 4,
+      "loveCount": 0,
+      "offeredByApps": [],
+      "examples": [
+        {
+          "id": "14616797338",
+          "trackId": 1083677479,
+          "trackName": "Action Network: Sports Betting",
+          "rating": 5,
+          "updatedAt": "2026-10-01T23:49:50.000Z",
+          "excerpt": "Please fix it bc changing it at the start of football season is messing it up for a lot of us EDIT: The app is much better and many bugs have been fixed.",
+          "phrase": "bc changing it at the start of football season is messing it up for a lot of us EDIT: The app is much better and many bugs have been fixed",
+          "kind": "request"
+        },
+        {
+          "id": "14569441712",
+          "trackId": 1083677479,
+          "trackName": "Action Network: Sports Betting",
+          "rating": 1,
+          "updatedAt": "2026-09-19T19:00:04.000Z",
+          "excerpt": "Have been a pro subscriber for years and track everything I bet in action but that’s all most likely going to change. Futures can’t be organized anymore, upcoming bets require 18 page refreshes to hopefully appear and if you decide to be...",
+          "kind": "complaint"
+        },
+        {
+          "id": "14545752715",
+          "trackId": 1083677479,
+          "trackName": "Action Network: Sports Betting",
+          "rating": 1,
+          "updatedAt": "2026-09-13T16:46:56.000Z",
+          "excerpt": "Action network trends don’t pop up for mlb players anymore. Idk if this a glitch or if it’s because yall really work for Vegas 🤷🏽‍♂️",
+          "kind": "complaint"
+        },
+        {
+          "id": "14528778298",
+          "trackId": 1083677479,
+          "trackName": "Action Network: Sports Betting",
+          "rating": 1,
+          "updatedAt": "2026-09-09T11:25:44.000Z",
+          "excerpt": "Do not get this app! It doesn’t let you track bets half the time and the other half it just crashes!",
+          "kind": "complaint"
+        },
+        {
+          "id": "14468654662",
+          "trackId": 6448072108,
+          "trackName": "OddsJam: Sharp Sports Betting",
+          "rating": 1,
+          "updatedAt": "2026-08-25T02:18:29.000Z",
+          "excerpt": "Stuck on the opening screen after one use",
+          "kind": "complaint"
+        }
+      ],
+      "trend": {
+        "status": "baseline",
+        "recentCount": 1,
+        "priorCount": 0,
+        "pctChange": null,
+        "windowDays": 30
+      }
+    },
+    {
+      "feature": "support / customer service",
+      "priorityScore": 19.5,
+      "confidence": 0.71,
+      "opportunityType": "missing_feature",
+      "why": "Users are asking for or complaining around support / customer service, but the top App Store listings do not consistently promise it.",
+      "evidenceCount": 3,
+      "requestCount": 0,
+      "complaintCount": 3,
+      "loveCount": 0,
+      "offeredByApps": [],
+      "examples": [
+        {
+          "id": "14627923807",
+          "trackId": 1083677479,
+          "trackName": "Action Network: Sports Betting",
+          "rating": 1,
+          "updatedAt": "2026-10-04T19:17:23.000Z",
+          "excerpt": "They don’t have any support. They have a fake support email that isn’t manned, I have submitted several requests over the years and never received a response. Wasn’t an issue when the app was working okay, but due to recent updates, it n...",
+          "kind": "complaint"
+        },
+        {
+          "id": "14546166179",
+          "trackId": 6448072108,
+          "trackName": "OddsJam: Sharp Sports Betting",
+          "rating": 2,
+          "updatedAt": "2026-09-13T18:50:06.000Z",
+          "excerpt": "I’m stuck on the opening screen and can’t get into the app and there’s no way to talk to support :(",
+          "kind": "complaint"
+        },
+        {
+          "id": "14538774000",
+          "trackId": 1083677479,
+          "trackName": "Action Network: Sports Betting",
+          "rating": 1,
+          "updatedAt": "2026-09-11T23:08:49.000Z",
+          "excerpt": "I’ve used this for 6 years and the update legit broke the app. I can’t edit anything, and there’s no support to be found anywhere (in the app, on X, etc). How have they at least not addressed everyone saying something like “we are addres...",
+          "kind": "complaint"
+        }
+      ],
+      "trend": {
+        "status": "baseline",
+        "recentCount": 0,
+        "priorCount": 0,
+        "pctChange": null,
+        "windowDays": 30
+      }
+    },
+    {
+      "feature": "search / filtering",
+      "priorityScore": 11,
+      "confidence": 0.69,
+      "opportunityType": "fix_existing",
+      "why": "Top apps already sell search / filtering, but review evidence says the implementation is still painful or incomplete.",
+      "evidenceCount": 2,
+      "requestCount": 1,
+      "complaintCount": 0,
+      "loveCount": 1,
+      "offeredByApps": [
+        "BettingPros: Picks & Odds",
+        "Outlier: Smart Sports Betting"
+      ],
+      "examples": [
+        {
+          "id": "14662753570",
+          "trackId": 1083677479,
+          "trackName": "Action Network: Sports Betting",
+          "rating": 5,
+          "updatedAt": "2026-10-13T18:41:10.000Z",
+          "excerpt": "But can you please add the hit rate to the main pro props menu, its a lil extra work for me to go search it",
+          "phrase": "the hit rate to the main pro props menu, its a lil extra work for me to go search it",
+          "kind": "request"
+        },
+        {
+          "id": "14311788028",
+          "trackId": 6443885102,
+          "trackName": "Outlier: Smart Sports Betting",
+          "rating": 5,
+          "updatedAt": "2026-07-16T21:48:19.000Z",
+          "excerpt": "I love the interface and the different filters for searching.",
+          "phrase": "interface and the different filters for searching",
+          "kind": "loved"
+        }
+      ],
+      "trend": {
+        "status": "baseline",
+        "recentCount": 1,
+        "priorCount": 0,
+        "pctChange": null,
+        "windowDays": 30
+      }
+    },
+    {
+      "feature": "performance / battery",
+      "priorityScore": 8.25,
+      "confidence": 0.57,
+      "opportunityType": "missing_feature",
+      "why": "Users are asking for or complaining around performance / battery, but the top App Store listings do not consistently promise it.",
+      "evidenceCount": 1,
+      "requestCount": 0,
+      "complaintCount": 1,
+      "loveCount": 0,
+      "offeredByApps": [],
+      "examples": [
+        {
+          "id": "14453556375",
+          "trackId": 1468109182,
+          "trackName": "BettingPros: Picks & Odds",
+          "rating": 4,
+          "updatedAt": "2026-08-21T05:31:07.000Z",
+          "excerpt": "Not sure if it’s the iOS update but player props loading screen has been moving slow since today. However best sports betting app out there",
+          "kind": "complaint"
+        }
+      ],
+      "trend": {
+        "status": "baseline",
+        "recentCount": 0,
+        "priorCount": 0,
+        "pctChange": null,
+        "windowDays": 30
+      }
+    },
+    {
+      "feature": "login / account",
+      "priorityScore": 7.25,
+      "confidence": 0.57,
+      "opportunityType": "fix_existing",
+      "why": "Top apps already sell login / account, but review evidence says the implementation is still painful or incomplete.",
+      "evidenceCount": 1,
+      "requestCount": 0,
+      "complaintCount": 1,
+      "loveCount": 0,
+      "offeredByApps": [
+        "Scores and Odds Sports Betting",
+        "Action Network: Sports Betting",
+        "Outlier: Smart Sports Betting"
+      ],
+      "examples": [
+        {
+          "id": "14588126050",
+          "trackId": 1083677479,
+          "trackName": "Action Network: Sports Betting",
+          "rating": 1,
+          "updatedAt": "2026-09-24T14:58:44.000Z",
+          "excerpt": "I’ve had a paid subscription for a couple of years. Data is only okay but now I have login issues and it blocks AI from organizing data so I can’t use that anymore. They are trying to protect their data, I get that, but now they have mad...",
+          "kind": "complaint"
+        }
+      ],
+      "trend": {
+        "status": "baseline",
+        "recentCount": 0,
+        "priorCount": 0,
+        "pctChange": null,
+        "windowDays": 30
+      }
+    }
+  ],
+  "trendWindow": {
+    "referenceDate": "2026-10-16T03:13:36.846Z",
+    "windowDays": 30
+  },
+  "risingAsks": [],
+  "rawSignals": {
+    "productThemes": [
+      {
+        "feature": "search / filtering",
+        "kind": "request",
+        "count": 1,
+        "share": 0.17,
+        "averageRating": 5,
+        "topApps": [
+          {
+            "trackId": 1083677479,
+            "trackName": "Action Network: Sports Betting",
+            "count": 1
+          }
+        ],
+        "examples": [
+          {
+            "id": "14662753570",
+            "trackId": 1083677479,
+            "trackName": "Action Network: Sports Betting",
+            "rating": 5,
+            "phrase": "the hit rate to the main pro props menu, its a lil extra work for me to go search it",
+            "evidence": "But can you please add the hit rate to the main pro props menu, its a lil extra work for me to go search it",
+            "updatedAt": "2026-10-13T18:41:10.000Z"
+          }
+        ]
+      },
+      {
+        "feature": "reliability / bugs",
+        "kind": "request",
+        "count": 1,
+        "share": 0.17,
+        "averageRating": 5,
+        "topApps": [
+          {
+            "trackId": 1083677479,
+            "trackName": "Action Network: Sports Betting",
+            "count": 1
+          }
+        ],
+        "examples": [
+          {
+            "id": "14616797338",
+            "trackId": 1083677479,
+            "trackName": "Action Network: Sports Betting",
+            "rating": 5,
+            "phrase": "bc changing it at the start of football season is messing it up for a lot of us EDIT: The app is much better and many bugs have been fixed",
+            "evidence": "Please fix it bc changing it at the start of football season is messing it up for a lot of us EDIT: The app is much better and many bugs have been fixed.",
+            "updatedAt": "2026-10-01T23:49:50.000Z"
+          }
+        ]
+      },
+      {
+        "feature": "search / filtering",
+        "kind": "loved",
+        "count": 1,
+        "share": 0.17,
+        "averageRating": 5,
+        "topApps": [
+          {
+            "trackId": 6443885102,
+            "trackName": "Outlier: Smart Sports Betting",
+            "count": 1
+          }
+        ],
+        "examples": [
+          {
+            "id": "14311788028",
+            "trackId": 6443885102,
+            "trackName": "Outlier: Smart Sports Betting",
+            "rating": 5,
+            "phrase": "interface and the different filters for searching",
+            "evidence": "I love the interface and the different filters for searching.",
+            "updatedAt": "2026-07-16T21:48:19.000Z"
+          }
+        ]
+      }
+    ],
+    "themes": [
+      {
+        "tag": "Complaint",
+        "count": 44,
+        "share": 0.54,
+        "averageRating": 1.07,
+        "sentiment": "negative",
+        "topApps": [
+          {
+            "trackId": 1083677479,
+            "trackName": "Action Network: Sports Betting",
+            "count": 31
+          },
+          {
+            "trackId": 6448072108,
+            "trackName": "OddsJam: Sharp Sports Betting",
+            "count": 6
+          },
+          {
+            "trackId": 1468109182,
+            "trackName": "BettingPros: Picks & Odds",
+            "count": 3
+          }
+        ],
+        "examples": [
+          {
+            "id": "14654410405",
+            "trackId": 1083677479,
+            "trackName": "Action Network: Sports Betting",
+            "rating": 1,
+            "excerpt": "4 pop up adds when i opened the app. Good grief.",
+            "updatedAt": "2026-10-11T16:13:03.000Z"
+          },
+          {
+            "id": "14647867902",
+            "trackId": 1083677479,
+            "trackName": "Action Network: Sports Betting",
+            "rating": 1,
+            "excerpt": "Fake Experts So Queer",
+            "updatedAt": "2026-10-10T00:55:58.000Z"
+          },
+          {
+            "id": "14646205601",
+            "trackId": 1083677479,
+            "trackName": "Action Network: Sports Betting",
+            "rating": 2,
+            "excerpt": "No DK or Bet365 on Betsync",
+            "updatedAt": "2026-10-09T15:08:12.000Z"
+          }
+        ]
+      },
+      {
+        "tag": "Praise",
+        "count": 38,
+        "share": 0.46,
+        "averageRating": 4.37,
+        "sentiment": "positive",
+        "topApps": [
+          {
+            "trackId": 1083677479,
+            "trackName": "Action Network: Sports Betting",
+            "count": 19
+          },
+          {
+            "trackId": 1468109182,
+            "trackName": "BettingPros: Picks & Odds",
+            "count": 6
+          },
+          {
+            "trackId": 6443885102,
+            "trackName": "Outlier: Smart Sports Betting",
+            "count": 6
+          }
+        ],
+        "examples": [
+          {
+            "id": "14662753570",
+            "trackId": 1083677479,
+            "trackName": "Action Network: Sports Betting",
+            "rating": 5,
+            "excerpt": "I do enjoy the app. It gives great accuracy. But can you please add the hit rate to the main pro props menu, its a lil extra work for me to go search it",
+            "updatedAt": "2026-10-13T18:41:10.000Z"
+          },
+          {
+            "id": "14659636837",
+            "trackId": 1083677479,
+            "trackName": "Action Network: Sports Betting",
+            "rating": 5,
+            "excerpt": "I was enjoying this app until I realised they removed the stats for players last 10 matches. Most users actually enjoyed that. I got people to use the app just for that. I used to click on matches a few days out and could see those stats...",
+            "updatedAt": "2026-10-12T23:29:40.000Z"
+          },
+          {
+            "id": "14647808955",
+            "trackId": 1468109182,
+            "trackName": "BettingPros: Picks & Odds",
+            "rating": 5,
+            "excerpt": "How have I not reviewed this sick app yet?? Been using this for years and they haven’t let me down. They got some great picks and insights that’s won me plenty of money. Would recommend to anyone looking to win consistently. Their NFL pi...",
+            "updatedAt": "2026-10-10T00:32:26.000Z"
+          }
+        ]
+      },
+      {
+        "tag": "Pricing / paywall",
+        "count": 9,
+        "share": 0.11,
+        "averageRating": 2.33,
+        "sentiment": "negative",
+        "topApps": [
+          {
+            "trackId": 1083677479,
+            "trackName": "Action Network: Sports Betting",
+            "count": 5
+          },
+          {
+            "trackId": 6448072108,
+            "trackName": "OddsJam: Sharp Sports Betting",
+            "count": 2
+          },
+          {
+            "trackId": 1468109182,
+            "trackName": "BettingPros: Picks & Odds",
+            "count": 1
+          }
+        ],
+        "examples": [
+          {
+            "id": "14639050087",
+            "trackId": 1083677479,
+            "trackName": "Action Network: Sports Betting",
+            "rating": 1,
+            "excerpt": "After the update, it removed the Pro Bets and $$$ being placed. Please revert to existing format. Will be canceling my subscription.",
+            "updatedAt": "2026-10-07T17:49:19.000Z"
+          },
+          {
+            "id": "14638728339",
+            "trackId": 1083677479,
+            "trackName": "Action Network: Sports Betting",
+            "rating": 1,
+            "excerpt": "Always pushes me to I dont have a subscription.",
+            "updatedAt": "2026-10-07T16:07:02.000Z"
+          },
+          {
+            "id": "14631806961",
+            "trackId": 1083677479,
+            "trackName": "Action Network: Sports Betting",
+            "rating": 5,
+            "excerpt": "Best sports gambling site out there, and it’s not even close. Been using for a few years now. Started just tracking, now am a full premium member using all the tools and insights offered. Continues to get better.",
+            "updatedAt": "2026-10-05T19:48:35.000Z"
+          }
+        ]
+      },
+      {
+        "tag": "Feature request",
+        "count": 6,
+        "share": 0.07,
+        "averageRating": 3,
+        "sentiment": "mixed",
+        "topApps": [
+          {
+            "trackId": 1083677479,
+            "trackName": "Action Network: Sports Betting",
+            "count": 4
+          },
+          {
+            "trackId": 6443885102,
+            "trackName": "Outlier: Smart Sports Betting",
+            "count": 1
+          },
+          {
+            "trackId": 584558459,
+            "trackName": "Live Scores and Odds",
+            "count": 1
+          }
+        ],
+        "examples": [
+          {
+            "id": "14662753570",
+            "trackId": 1083677479,
+            "trackName": "Action Network: Sports Betting",
+            "rating": 5,
+            "excerpt": "I do enjoy the app. It gives great accuracy. But can you please add the hit rate to the main pro props menu, its a lil extra work for me to go search it",
+            "updatedAt": "2026-10-13T18:41:10.000Z"
+          },
+          {
+            "id": "14627264810",
+            "trackId": 6443885102,
+            "trackName": "Outlier: Smart Sports Betting",
+            "rating": 5,
+            "excerpt": "Gives real time data for all betting needs",
+            "updatedAt": "2026-10-04T15:57:52.000Z"
+          },
+          {
+            "id": "14588126050",
+            "trackId": 1083677479,
+            "trackName": "Action Network: Sports Betting",
+            "rating": 1,
+            "excerpt": "I’ve had a paid subscription for a couple of years. Data is only okay but now I have login issues and it blocks AI from organizing data so I can’t use that anymore. They are trying to protect their data, I get that, but now they have mad...",
+            "updatedAt": "2026-09-24T14:58:44.000Z"
+          }
+        ]
+      },
+      {
+        "tag": "Bug / crash",
+        "count": 4,
+        "share": 0.05,
+        "averageRating": 1,
+        "sentiment": "negative",
+        "topApps": [
+          {
+            "trackId": 1083677479,
+            "trackName": "Action Network: Sports Betting",
+            "count": 3
+          },
+          {
+            "trackId": 6448072108,
+            "trackName": "OddsJam: Sharp Sports Betting",
+            "count": 1
+          }
+        ],
+        "examples": [
+          {
+            "id": "14569441712",
+            "trackId": 1083677479,
+            "trackName": "Action Network: Sports Betting",
+            "rating": 1,
+            "excerpt": "Have been a pro subscriber for years and track everything I bet in action but that’s all most likely going to change. Futures can’t be organized anymore, upcoming bets require 18 page refreshes to hopefully appear and if you decide to be...",
+            "updatedAt": "2026-09-19T19:00:04.000Z"
+          },
+          {
+            "id": "14545752715",
+            "trackId": 1083677479,
+            "trackName": "Action Network: Sports Betting",
+            "rating": 1,
+            "excerpt": "Action network trends don’t pop up for mlb players anymore. Idk if this a glitch or if it’s because yall really work for Vegas 🤷🏽‍♂️",
+            "updatedAt": "2026-09-13T16:46:56.000Z"
+          },
+          {
+            "id": "14528778298",
+            "trackId": 1083677479,
+            "trackName": "Action Network: Sports Betting",
+            "rating": 1,
+            "excerpt": "Do not get this app! It doesn’t let you track bets half the time and the other half it just crashes!",
+            "updatedAt": "2026-09-09T11:25:44.000Z"
+          }
+        ]
+      },
+      {
+        "tag": "Support",
+        "count": 4,
+        "share": 0.05,
+        "averageRating": 2.25,
+        "sentiment": "negative",
+        "topApps": [
+          {
+            "trackId": 1083677479,
+            "trackName": "Action Network: Sports Betting",
+            "count": 2
+          },
+          {
+            "trackId": 6448072108,
+            "trackName": "OddsJam: Sharp Sports Betting",
+            "count": 1
+          },
+          {
+            "trackId": 6443885102,
+            "trackName": "Outlier: Smart Sports Betting",
+            "count": 1
+          }
+        ],
+        "examples": [
+          {
+            "id": "14627923807",
+            "trackId": 1083677479,
+            "trackName": "Action Network: Sports Betting",
+            "rating": 1,
+            "excerpt": "They don’t have any support. They have a fake support email that isn’t manned, I have submitted several requests over the years and never received a response. Wasn’t an issue when the app was working okay, but due to recent updates, it n...",
+            "updatedAt": "2026-10-04T19:17:23.000Z"
+          },
+          {
+            "id": "14546166179",
+            "trackId": 6448072108,
+            "trackName": "OddsJam: Sharp Sports Betting",
+            "rating": 2,
+            "excerpt": "I’m stuck on the opening screen and can’t get into the app and there’s no way to talk to support :(",
+            "updatedAt": "2026-09-13T18:50:06.000Z"
+          },
+          {
+            "id": "14538774000",
+            "trackId": 1083677479,
+            "trackName": "Action Network: Sports Betting",
+            "rating": 1,
+            "excerpt": "I’ve used this for 6 years and the update legit broke the app. I can’t edit anything, and there’s no support to be found anywhere (in the app, on X, etc). How have they at least not addressed everyone saying something like “we are addres...",
+            "updatedAt": "2026-09-11T23:08:49.000Z"
+          }
+        ]
+      },
+      {
+        "tag": "Portfolio / watchlist",
+        "count": 3,
+        "share": 0.04,
+        "averageRating": 2.33,
+        "sentiment": "negative",
+        "topApps": [
+          {
+            "trackId": 1083677479,
+            "trackName": "Action Network: Sports Betting",
+            "count": 3
+          }
+        ],
+        "examples": [
+          {
+            "id": "14616663733",
+            "trackId": 1083677479,
+            "trackName": "Action Network: Sports Betting",
+            "rating": 5,
+            "excerpt": "This app is now pretty useless. Time to find another tracker Update to review. After the bugs were fixed post update the app is awesome. Thank you Action Network!",
+            "updatedAt": "2026-10-01T22:55:49.000Z"
+          },
+          {
+            "id": "14609117938",
+            "trackId": 1083677479,
+            "trackName": "Action Network: Sports Betting",
+            "rating": 1,
+            "excerpt": "Use to be the best bet tracker out there. After the latest update, it’s now awful. So many bugs and little details taken away that were part of what made the app so good. A real head scratching update and quite disappointing. I am yet to...",
+            "updatedAt": "2026-09-30T00:48:04.000Z"
+          },
+          {
+            "id": "14597574171",
+            "trackId": 1083677479,
+            "trackName": "Action Network: Sports Betting",
+            "rating": 1,
+            "excerpt": "I bet frequently on UFC and other sports. The app has been garbage since September. There was an update and now regularly non-graded debts that I have to track down. It’s tough managing a bank when we can’t have an accurate tracker.",
+            "updatedAt": "2026-09-27T00:30:43.000Z"
+          }
+        ]
+      },
+      {
+        "tag": "UX / onboarding",
+        "count": 3,
+        "share": 0.04,
+        "averageRating": 4.33,
+        "sentiment": "positive",
+        "topApps": [
+          {
+            "trackId": 1083677479,
+            "trackName": "Action Network: Sports Betting",
+            "count": 2
+          },
+          {
+            "trackId": 6443885102,
+            "trackName": "Outlier: Smart Sports Betting",
+            "count": 1
+          }
+        ],
+        "examples": [
+          {
+            "id": "14617455893",
+            "trackId": 1083677479,
+            "trackName": "Action Network: Sports Betting",
+            "rating": 5,
+            "excerpt": "For years and years I have been using Action to track my bets. It was the best app out there for it. Within the past week I was forced to update the app. It changed the whole interface. Manually adding bets is now more difficult, taking...",
+            "updatedAt": "2026-10-02T04:13:11.000Z"
+          },
+          {
+            "id": "14526824209",
+            "trackId": 1083677479,
+            "trackName": "Action Network: Sports Betting",
+            "rating": 3,
+            "excerpt": "Changed their interface and now it's annoying",
+            "updatedAt": "2026-09-08T21:41:30.000Z"
+          },
+          {
+            "id": "14311788028",
+            "trackId": 6443885102,
+            "trackName": "Outlier: Smart Sports Betting",
+            "rating": 5,
+            "excerpt": "Great for +EV betting, Arbitrage, Prop research and analysis across multiple sports books and DFS apps. I love the interface and the different filters for searching.",
+            "updatedAt": "2026-07-16T21:48:19.000Z"
+          }
+        ]
+      },
+      {
+        "tag": "Login / account",
+        "count": 1,
+        "share": 0.01,
+        "averageRating": 1,
+        "sentiment": "negative",
+        "topApps": [
+          {
+            "trackId": 1083677479,
+            "trackName": "Action Network: Sports Betting",
+            "count": 1
+          }
+        ],
+        "examples": [
+          {
+            "id": "14588126050",
+            "trackId": 1083677479,
+            "trackName": "Action Network: Sports Betting",
+            "rating": 1,
+            "excerpt": "I’ve had a paid subscription for a couple of years. Data is only okay but now I have login issues and it blocks AI from organizing data so I can’t use that anymore. They are trying to protect their data, I get that, but now they have mad...",
+            "updatedAt": "2026-09-24T14:58:44.000Z"
+          }
+        ]
+      },
+      {
+        "tag": "Options",
+        "count": 1,
+        "share": 0.01,
+        "averageRating": 1,
+        "sentiment": "negative",
+        "topApps": [
+          {
+            "trackId": 1083677479,
+            "trackName": "Action Network: Sports Betting",
+            "count": 1
+          }
+        ],
+        "examples": [
+          {
+            "id": "14552950339",
+            "trackId": 1083677479,
+            "trackName": "Action Network: Sports Betting",
+            "rating": 1,
+            "excerpt": "This latest update is brutal and can’t be any less user friendly. Sports action has been my go to tracking app for years but now looking into other, simpler options",
+            "updatedAt": "2026-09-15T14:52:31.000Z"
+          }
+        ]
+      },
+      {
+        "tag": "Performance / battery",
+        "count": 1,
+        "share": 0.01,
+        "averageRating": 4,
+        "sentiment": "positive",
+        "topApps": [
+          {
+            "trackId": 1468109182,
+            "trackName": "BettingPros: Picks & Odds",
+            "count": 1
+          }
+        ],
+        "examples": [
+          {
+            "id": "14453556375",
+            "trackId": 1468109182,
+            "trackName": "BettingPros: Picks & Odds",
+            "rating": 4,
+            "excerpt": "Not sure if it’s the iOS update but player props loading screen has been moving slow since today. However best sports betting app out there",
+            "updatedAt": "2026-08-21T05:31:07.000Z"
+          }
+        ]
+      },
+      {
+        "tag": "Handicap / scoring",
+        "count": 1,
+        "share": 0.01,
+        "averageRating": 5,
+        "sentiment": "positive",
+        "topApps": [
+          {
+            "trackId": 1083677479,
+            "trackName": "Action Network: Sports Betting",
+            "count": 1
+          }
+        ],
+        "examples": [
+          {
+            "id": "14617455893",
+            "trackId": 1083677479,
+            "trackName": "Action Network: Sports Betting",
+            "rating": 5,
+            "excerpt": "For years and years I have been using Action to track my bets. It was the best app out there for it. Within the past week I was forced to update the app. It changed the whole interface. Manually adding bets is now more difficult, taking...",
+            "updatedAt": "2026-10-02T04:13:11.000Z"
+          }
+        ]
+      }
+    ]
+  },
+  "sourceUrls": {
+    "appleReviewPages": [
+      "https://itunes.apple.com/us/rss/customerreviews/page=1/id=430671164/sortBy=mostRecent/json",
+      "https://itunes.apple.com/us/rss/customerreviews/page=1/id=1083677479/sortBy=mostRecent/json",
+      "https://itunes.apple.com/us/rss/customerreviews/page=1/id=1468109182/sortBy=mostRecent/json",
+      "https://itunes.apple.com/us/rss/customerreviews/page=1/id=6443885102/sortBy=mostRecent/json",
+      "https://itunes.apple.com/us/rss/customerreviews/page=1/id=584558459/sortBy=mostRecent/json",
+      "https://itunes.apple.com/us/rss/customerreviews/page=1/id=6448072108/sortBy=mostRecent/json"
+    ],
+    "humanUrl": "https://www.applecharts.com/roadmap/?q=sports%20betting%20odds&months=3",
+    "cliCommand": "pnpm roadmap 'sports betting odds' --months 3 --country us --apps 6 --pages 1 --no-nearby --json"
+  },
+  "llmBrief": "Keyword \"sports betting odds\" searched App Store term \"sports betting odds\" and analyzed 82 reviews from 6 apps (Scores and Odds Sports Betting, Action Network: Sports Betting, BettingPros: Picks & Odds, Outlier: Smart Sports Betting, Live Scores and Odds) over the requested 3 month window. Highest-priority roadmap clusters: pricing / subscription (0 requests, 9 complaints, 0 loves); reliability / bugs (1 requests, 4 complaints, 0 loves); support / customer service (0 requests, 3 complaints, 0 loves); search / filtering (1 requests, 0 complaints, 1 loves); performance / battery (0 requests, 1 complaints, 0 loves); login / account (0 requests, 1 complaints, 0 loves). Use example reviews as evidence, not generic sentiment."
+}

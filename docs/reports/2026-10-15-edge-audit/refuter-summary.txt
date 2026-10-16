@@ -1,0 +1,44 @@
+Independent Prediction Matrix refutation, October 15, 2026 (America/Chicago)
+
+Conclusion: The recorded NFL results do not prove a forward betting edge. Actual
+outcome contamination is demonstrable. Positive shopping CLV is tentative.
+
+Reproduce offline: node refuter-proof.mjs (reads nfl.json and shop-ledger.json in
+the same directory and writes refuter-proof.json). No network/API calls or
+production writes. Source reviewed at main 6af083c, confirmed serving by parent.
+
+NFL public data: generated 2026-10-16T00:00:11.884Z; 77 frozen rows, totals 54–23.
+The refuter independently read this public endpoint and confirmed those values.
+All 15 Week 5 recorded totals AND component scores exactly reproduce from current
+live team PPG, including the completed games being graded.
+
+Concrete contamination examples (same base model, same stored Elo and lines):
+CIN @ MIA 401872982: recorded 44 over 43.5, actual 55, win. Excluding that game from
+team averages gives 42 under 43.5, loss.
+SF @ SEA 401872992: recorded 47 over 46.5, actual 61, win. Excluding that game gives 45
+under 46.5, loss.
+
+Diagnostic only, NOT recovered actual published pregame picks: 63 frozen games
+have at least one prior captured regular-season game per team. Holding model
+constants, stored Elo and market lines unchanged, the recorded totals are 42–21;
+recomputing team scoring averages solely from earlier games produces 21–42.
+Exactly 21 total directions change, all recorded wins becoming losses. Weather and
+QB adjustments are omitted consistently with the result generator. Published
+forecasts include them, another reason this is not actual historical betting P&L.
+
+Shopping ledger, independently re-fetched, updated 2026-10-16T01:37:22.267Z:
+160 flags across 89 games; mean CLV +0.440 percentage points.
+16 entries have closeAt == flaggedAt; all 16 positive. 19 closes exceed 1h old; max 56.13h.
+Exclude same-snapshot closes: 144 flags, 82 games, +0.328 pp; game-cluster approximate
+95% interval [-0.111, +0.767] pp. Also require close within 1h of start: 126 flags, 72 games,
++0.325 pp; interval [-0.153, +0.803] pp. These do not establish positive forward CLV.
+Confidence intervals are approximate and CLV is not realized execution profit.
+
+See refuter-proof.json for all 15 Week 5 rows, all 63 diagnostic rows, formula,
+timestamps and exact source references. Predictions are regenerated for finals
+(blob-sync-simple route lines 314, 328, 369), stamped at 462, and overwritten by game ID
+(1144, 1194; firestore-admin-store 66). Shopping accepts stale/initial closes
+(odds-board-record 132; odds-board 42) and naive independent-flag uncertainty (46).
+
+Do not use cached-browser October 4 /ev content as a pregame prediction proof or
+as evidence of stale production. Fresh direct HTTP showed current content.

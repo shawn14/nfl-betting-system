@@ -1,5 +1,5 @@
 // Model freeze marker. Stamped on every stored result row as `modelVersion` so the edge ledger
-// can judge the model strictly on games predicted after the freeze.
+// identifies parameters only; it is NOT proof that a forecast existed before kickoff.
 //
 // 2026-09-11-freeze: mechanical fixes only (home advantage taken out of predicted totals and put
 // into the spread; NFL home field 3.0; NFL conviction count drops large-spread and Elo-mismatch;

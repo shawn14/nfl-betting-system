@@ -9,12 +9,9 @@
  *   blended prob      = model shrunk toward the market with MODEL_WEIGHT (log-odds space)
  *   EV                = blended prob vs the price you'd actually get
  *
- * MODEL_WEIGHT comes from `npm run ev-ledger` (docs/reports/2026-09-26-ev-ledger.json) under a gate
- * declared before looking at results: a market earns weight only if the model's signal beyond any
- * constant lean is |z| >= 1.5 on the first 60% of games AND it lowers held-out log loss on the last
- * 40%. Markets that fail defer to the price (weight 0): their EV is just minus the vig, so they are
- * never flagged. Re-run the ledger each season; change weights ONLY by bumping EV_RULE_VERSION and
- * recording the ledger run that justified it in CLAUDE.md.
+ * Historical weight selection is not prospective evidence: the October 15 audit found
+ * postgame forecast reconstruction. Keep these parameters frozen while the independent
+ * immutable measurement path collects a valid forward sample. Never retune on that history.
  */
 import {
   devigTwoWay, probHomeCovers, probOver, blendWithMarket, expectedValue, kellyFraction,
@@ -39,7 +36,7 @@ type MarketKey = 'ml' | 'spread' | 'total';
 
 export const MODEL_WEIGHT: Record<string, Record<MarketKey, number>> = {
   // NFL totals: signal z 2.4 on train, held-out log loss 0.692 -> 0.662, and it holds on games
-  // predicted LIVE only (n 92, z 2.9) so it is not backfill leakage. ML (z -0.1) and spread (z 0.4)
+  // Historical "live" label was invalidated by the October 15 audit. ML (z -0.1) and spread (z 0.4)
   // failed the gate.
   nfl: { ml: 0, spread: 0, total: 0.45 },
   // WNBA: no market passed (ML z 0.6, spread z 1.0, total z 1.4).

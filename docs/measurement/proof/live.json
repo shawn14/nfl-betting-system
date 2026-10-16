@@ -1,0 +1,771 @@
+{
+  "collection": "predictionMeasurementProof_37246_1792117509505",
+  "started": "2026-10-16T02:25:09.505Z",
+  "checks": [
+    "real pregame source / fresh event status / quoted prices captured",
+    "Firestore concurrent create retains one immutable first record",
+    "repeat write leaves forecast and prices byte-identical",
+    "second real collection reads first persisted capture",
+    "late server commit excluded",
+    "in-progress status cannot settle"
+  ],
+  "candidates": [
+    {
+      "sport": "nfl",
+      "gameId": "401872996",
+      "status": "eligible",
+      "eventState": "STATUS_SCHEDULED"
+    },
+    {
+      "sport": "nfl",
+      "gameId": "401872999",
+      "status": "eligible",
+      "eventState": "STATUS_SCHEDULED"
+    },
+    {
+      "sport": "nfl",
+      "gameId": "401872997",
+      "status": "eligible",
+      "eventState": "STATUS_SCHEDULED"
+    },
+    {
+      "sport": "nfl",
+      "gameId": "401873003",
+      "status": "eligible",
+      "eventState": "STATUS_SCHEDULED"
+    },
+    {
+      "sport": "nfl",
+      "gameId": "401873001",
+      "status": "eligible",
+      "eventState": "STATUS_SCHEDULED"
+    },
+    {
+      "sport": "nfl",
+      "gameId": "401873000",
+      "status": "eligible",
+      "eventState": "STATUS_SCHEDULED"
+    },
+    {
+      "sport": "nfl",
+      "gameId": "401872998",
+      "status": "eligible",
+      "eventState": "STATUS_SCHEDULED"
+    },
+    {
+      "sport": "nfl",
+      "gameId": "401873002",
+      "status": "eligible",
+      "eventState": "STATUS_SCHEDULED"
+    },
+    {
+      "sport": "nfl",
+      "gameId": "401873004",
+      "status": "eligible",
+      "eventState": "STATUS_SCHEDULED"
+    },
+    {
+      "sport": "nfl",
+      "gameId": "401873006",
+      "status": "eligible",
+      "eventState": "STATUS_SCHEDULED"
+    },
+    {
+      "sport": "nfl",
+      "gameId": "401873005",
+      "status": "eligible",
+      "eventState": "STATUS_SCHEDULED"
+    },
+    {
+      "sport": "nfl",
+      "gameId": "401873007",
+      "status": "eligible",
+      "eventState": "STATUS_SCHEDULED"
+    },
+    {
+      "sport": "nhl",
+      "gameId": "401892517",
+      "status": "eligible",
+      "eventState": "STATUS_SCHEDULED"
+    },
+    {
+      "sport": "nhl",
+      "gameId": "401892518",
+      "status": "eligible",
+      "eventState": "STATUS_SCHEDULED"
+    },
+    {
+      "sport": "nhl",
+      "gameId": "401892519",
+      "status": "excluded",
+      "eventState": "STATUS_SCHEDULED",
+      "reason": "Outside timing/status/freshness/identity/price contract"
+    },
+    {
+      "sport": "nhl",
+      "gameId": "401892520",
+      "status": "excluded",
+      "eventState": "STATUS_SCHEDULED",
+      "reason": "Outside timing/status/freshness/identity/price contract"
+    },
+    {
+      "sport": "nhl",
+      "gameId": "401892521",
+      "status": "excluded",
+      "eventState": "STATUS_SCHEDULED",
+      "reason": "Outside timing/status/freshness/identity/price contract"
+    },
+    {
+      "sport": "nhl",
+      "gameId": "401892522",
+      "status": "excluded",
+      "eventState": "STATUS_SCHEDULED",
+      "reason": "Outside timing/status/freshness/identity/price contract"
+    },
+    {
+      "sport": "nhl",
+      "gameId": "401892523",
+      "status": "excluded",
+      "eventState": "STATUS_SCHEDULED",
+      "reason": "Outside timing/status/freshness/identity/price contract"
+    },
+    {
+      "sport": "nhl",
+      "gameId": "401892524",
+      "status": "excluded",
+      "eventState": "STATUS_SCHEDULED",
+      "reason": "Outside timing/status/freshness/identity/price contract"
+    },
+    {
+      "sport": "nhl",
+      "gameId": "401892525",
+      "status": "excluded",
+      "eventState": "STATUS_SCHEDULED",
+      "reason": "Outside timing/status/freshness/identity/price contract"
+    },
+    {
+      "sport": "nhl",
+      "gameId": "401892526",
+      "status": "excluded",
+      "eventState": "STATUS_SCHEDULED",
+      "reason": "Outside timing/status/freshness/identity/price contract"
+    },
+    {
+      "sport": "nhl",
+      "gameId": "401892527",
+      "status": "excluded",
+      "eventState": "STATUS_SCHEDULED",
+      "reason": "Outside timing/status/freshness/identity/price contract"
+    },
+    {
+      "sport": "nhl",
+      "gameId": "401892528",
+      "status": "excluded",
+      "eventState": "STATUS_SCHEDULED",
+      "reason": "Outside timing/status/freshness/identity/price contract"
+    },
+    {
+      "sport": "nhl",
+      "gameId": "401892529",
+      "status": "excluded",
+      "eventState": "STATUS_SCHEDULED",
+      "reason": "Outside timing/status/freshness/identity/price contract"
+    },
+    {
+      "sport": "nhl",
+      "gameId": "401892530",
+      "status": "excluded",
+      "eventState": "STATUS_SCHEDULED",
+      "reason": "Outside timing/status/freshness/identity/price contract"
+    },
+    {
+      "sport": "nhl",
+      "gameId": "401892531",
+      "status": "excluded",
+      "eventState": "STATUS_SCHEDULED",
+      "reason": "Outside timing/status/freshness/identity/price contract"
+    },
+    {
+      "sport": "nhl",
+      "gameId": "401892532",
+      "status": "excluded",
+      "eventState": "STATUS_SCHEDULED",
+      "reason": "Outside timing/status/freshness/identity/price contract"
+    },
+    {
+      "sport": "nhl",
+      "gameId": "401892533",
+      "status": "excluded",
+      "eventState": "STATUS_SCHEDULED",
+      "reason": "Outside timing/status/freshness/identity/price contract"
+    },
+    {
+      "sport": "nhl",
+      "gameId": "401892534",
+      "status": "excluded",
+      "eventState": "STATUS_SCHEDULED",
+      "reason": "Outside timing/status/freshness/identity/price contract"
+    },
+    {
+      "sport": "nhl",
+      "gameId": "401892506",
+      "status": "missed",
+      "reason": "No immutable pregame forecast"
+    },
+    {
+      "sport": "nhl",
+      "gameId": "401892507",
+      "status": "missed",
+      "reason": "No immutable pregame forecast"
+    },
+    {
+      "sport": "nhl",
+      "gameId": "401892509",
+      "status": "missed",
+      "reason": "No immutable pregame forecast"
+    },
+    {
+      "sport": "nhl",
+      "gameId": "401892510",
+      "status": "missed",
+      "reason": "No immutable pregame forecast"
+    },
+    {
+      "sport": "nhl",
+      "gameId": "401892511",
+      "status": "missed",
+      "reason": "No immutable pregame forecast"
+    },
+    {
+      "sport": "wnba",
+      "gameId": "401918305",
+      "status": "eligible",
+      "eventState": "STATUS_SCHEDULED"
+    }
+  ],
+  "capture": {
+    "id": "model-nfl-401872996",
+    "kind": "model",
+    "version": "2026-10-16-v1",
+    "modelVersion": "2026-09-11-freeze",
+    "collectorSha": "local-unreleased",
+    "sport": "nfl",
+    "gameId": "401872996",
+    "commence": "2026-10-18T13:30:00.000Z",
+    "deadline": "2026-10-18T13:28:00.000Z",
+    "capturedAt": "2026-10-16T02:25:10.575Z",
+    "publishedAt": "2026-10-16T02:00:10.962Z",
+    "sourceUrl": "https://0luulmjdaimldet9.public.blob.vercel-storage.com/prediction-matrix-data.json",
+    "sourceHash": "bbb179d308c075ef32837693e5977620b9eda57e291ec181be929c64d4b9f1fa",
+    "entry": {
+      "game": {
+        "id": "401872996",
+        "sport": "nfl",
+        "homeTeamId": "30",
+        "awayTeamId": "34",
+        "gameTime": "2026-10-18T13:30:00.000Z",
+        "status": "scheduled",
+        "homeScore": 0,
+        "awayScore": 0,
+        "venue": "Wembley Stadium",
+        "week": 6,
+        "season": 2026,
+        "createdAt": "2026-10-16T02:00:08.409Z",
+        "updatedAt": "2026-10-16T02:00:08.409Z",
+        "homeTeam": {
+          "id": "30",
+          "name": "Jacksonville Jaguars",
+          "abbreviation": "JAX"
+        },
+        "awayTeam": {
+          "id": "34",
+          "name": "Houston Texans",
+          "abbreviation": "HOU"
+        }
+      },
+      "prediction": {
+        "gameId": "401872996",
+        "predictedHomeScore": 31.549999999999997,
+        "predictedAwayScore": 9.25,
+        "predictedSpread": -12.5,
+        "predictedTotal": 40.8,
+        "homeWinProbability": 0.7469129214289432,
+        "confidence": 0.5,
+        "vegasSpread": -2.5,
+        "vegasTotal": 42.5,
+        "lineMovement": {
+          "openingSpread": -3,
+          "openingTotal": 42.5,
+          "lastSeenSpread": -2.5,
+          "lastSeenTotal": 42.5,
+          "lastUpdatedAt": "2026-10-16T02:00:10.852Z"
+        },
+        "spreadEdge": -10,
+        "totalEdge": -1.5,
+        "atsConfidence": "high",
+        "ouConfidence": "low",
+        "mlConfidence": "high",
+        "isAtsBestBet": true,
+        "isOuBestBet": false,
+        "isMlBestBet": true,
+        "mlEdge": 24.7,
+        "isDivisional": true,
+        "isLateSeasonGame": false,
+        "isLargeSpread": false,
+        "isSmallSpread": true,
+        "isMediumSpread": false,
+        "isEloMismatch": true,
+        "sixtyPlusFactors": 2,
+        "eloDiff": 140,
+        "week": 6,
+        "weather": {
+          "temperature": 55,
+          "windSpeed": 10,
+          "conditions": "light rain",
+          "precipitation": 39,
+          "impact": 0.5,
+          "totalDelta": 1.5,
+          "perTeamDelta": 0.75
+        },
+        "weatherImpact": 0.5,
+        "injuries": {
+          "homeInjuries": {
+            "hasQBOut": false,
+            "keyOut": 0,
+            "summary": "7 GTD"
+          },
+          "awayInjuries": {
+            "hasQBOut": false,
+            "keyOut": 2,
+            "summary": "RB, S Out | 2 GTD"
+          },
+          "impactLevel": "minor"
+        },
+        "liveOdds": {
+          "consensusTotal": 42.5,
+          "consensusOverOdds": -110,
+          "consensusUnderOdds": -110,
+          "bookmakers": [
+            {
+              "name": "DraftKings",
+              "total": 42.5,
+              "overOdds": -112,
+              "underOdds": -108
+            },
+            {
+              "name": "Caesars",
+              "total": 42.5,
+              "overOdds": -110,
+              "underOdds": -110
+            },
+            {
+              "name": "FanDuel",
+              "total": 42.5,
+              "overOdds": -108,
+              "underOdds": -112
+            },
+            {
+              "name": "BetMGM",
+              "total": 42.5,
+              "overOdds": -108,
+              "underOdds": -110
+            },
+            {
+              "name": "BetUS",
+              "total": 42.5,
+              "overOdds": -110,
+              "underOdds": -110
+            },
+            {
+              "name": "MyBookie.ag",
+              "total": 42.5,
+              "overOdds": -110,
+              "underOdds": -110
+            },
+            {
+              "name": "Bovada",
+              "total": 42.5,
+              "overOdds": -110,
+              "underOdds": -110
+            },
+            {
+              "name": "LowVig.ag",
+              "total": 42.5,
+              "overOdds": -107,
+              "underOdds": -107
+            },
+            {
+              "name": "BetOnline.ag",
+              "total": 42.5,
+              "overOdds": -110,
+              "underOdds": -110
+            },
+            {
+              "name": "BetRivers",
+              "total": 42.5,
+              "overOdds": -110,
+              "underOdds": -110
+            },
+            {
+              "name": "Fanatics",
+              "total": 42.5,
+              "overOdds": -110,
+              "underOdds": -110
+            }
+          ],
+          "lastUpdated": "2026-10-16T02:00:10.862Z"
+        },
+        "calc": {
+          "homePPG": 24.6,
+          "homePPGAllowed": 14,
+          "awayPPG": 22,
+          "awayPPGAllowed": 22.4,
+          "regHomePPG": 23.8,
+          "regHomePPGAllowed": 16.4,
+          "regAwayPPG": 22,
+          "regAwayPPGAllowed": 22.3,
+          "baseHomeScore": 23,
+          "baseAwayScore": 19.2,
+          "homeElo": 1688,
+          "awayElo": 1548,
+          "eloDiff": 140,
+          "eloAdj": 7.7,
+          "homeFieldAdv": 3,
+          "weatherDelta": 1.5,
+          "perTeamDelta": 0.75
+        }
+      }
+    },
+    "status": {
+      "id": "401872996",
+      "commence": "2026-10-18T13:30Z",
+      "state": "pre",
+      "status": "STATUS_SCHEDULED",
+      "completed": false,
+      "homeId": "30",
+      "awayId": "34",
+      "homeScore": null,
+      "awayScore": null
+    },
+    "rawPrices": {
+      "$ref": "http://sports.core.api.espn.com/v2/sports/football/leagues/nfl/events/401872996/competitions/401872996/odds/100?lang=en&region=us",
+      "provider": {
+        "$ref": "http://sports.core.api.espn.com/v2/sports/football/leagues/nfl/providers/100?lang=en&region=us",
+        "id": "100",
+        "name": "DraftKings",
+        "priority": 1
+      },
+      "details": "JAX -2.5",
+      "overUnder": 42.5,
+      "spread": -2.5,
+      "overOdds": -112,
+      "underOdds": -108,
+      "awayTeamOdds": {
+        "favorite": false,
+        "underdog": true,
+        "moneyLine": 120,
+        "spreadOdds": -105,
+        "open": {
+          "favorite": true,
+          "pointSpread": {
+            "alternateDisplayValue": "-1.5",
+            "american": "-1.5"
+          },
+          "spread": {
+            "value": 1.98,
+            "displayValue": "50/51",
+            "alternateDisplayValue": "-102",
+            "decimal": 1.98,
+            "fraction": "50/51",
+            "american": "-102"
+          },
+          "moneyLine": {
+            "value": 1.86,
+            "displayValue": "20/23",
+            "alternateDisplayValue": "-115",
+            "decimal": 1.86,
+            "fraction": "20/23",
+            "american": "-115"
+          }
+        },
+        "current": {
+          "pointSpread": {
+            "alternateDisplayValue": "+2.5",
+            "american": "+2.5"
+          },
+          "spread": {
+            "value": 1.95,
+            "displayValue": "20/21",
+            "alternateDisplayValue": "-105",
+            "decimal": 1.95,
+            "fraction": "20/21",
+            "american": "-105"
+          },
+          "moneyLine": {
+            "value": 2.2,
+            "displayValue": "6/5",
+            "alternateDisplayValue": "+120",
+            "decimal": 2.2,
+            "fraction": "6/5",
+            "american": "+120"
+          }
+        },
+        "team": {
+          "$ref": "http://sports.core.api.espn.com/v2/sports/football/leagues/nfl/seasons/2026/teams/34?lang=en&region=us"
+        }
+      },
+      "homeTeamOdds": {
+        "favorite": true,
+        "underdog": false,
+        "moneyLine": -142,
+        "spreadOdds": -115,
+        "open": {
+          "favorite": false,
+          "pointSpread": {
+            "alternateDisplayValue": "+1.5",
+            "american": "+1.5"
+          },
+          "spread": {
+            "value": 1.84,
+            "displayValue": "50/59",
+            "alternateDisplayValue": "-118",
+            "decimal": 1.84,
+            "fraction": "50/59",
+            "american": "-118"
+          },
+          "moneyLine": {
+            "value": 1.95,
+            "displayValue": "20/21",
+            "alternateDisplayValue": "-105",
+            "decimal": 1.95,
+            "fraction": "20/21",
+            "american": "-105"
+          }
+        },
+        "current": {
+          "pointSpread": {
+            "alternateDisplayValue": "-2.5",
+            "american": "-2.5"
+          },
+          "spread": {
+            "value": 1.86,
+            "displayValue": "20/23",
+            "alternateDisplayValue": "-115",
+            "decimal": 1.86,
+            "fraction": "20/23",
+            "american": "-115"
+          },
+          "moneyLine": {
+            "value": 1.7,
+            "displayValue": "50/71",
+            "alternateDisplayValue": "-142",
+            "decimal": 1.7,
+            "fraction": "50/71",
+            "american": "-142"
+          }
+        },
+        "team": {
+          "$ref": "http://sports.core.api.espn.com/v2/sports/football/leagues/nfl/seasons/2026/teams/30?lang=en&region=us"
+        }
+      },
+      "links": [
+        {
+          "language": "en-US",
+          "rel": [
+            "home",
+            "desktop",
+            "bets",
+            "draftkings"
+          ],
+          "href": "https://sportsbook.draftkings.com/gateway?s=__s__&wpcid=__wpcid__&wpsrc=413&wpcn=ESPN&wpscn=Widget&wpcrn=BetSlipDeepLink&wpscid=__wpscid__&wpcrid=xx&preurl=https%3A%2F%2Fsportsbook.draftkings.com%2Fevent%2F34118244%3Foutcomes%3D0ML84695687_1",
+          "text": "Home Bet",
+          "shortText": "Home Bet",
+          "isExternal": true,
+          "isPremium": false
+        },
+        {
+          "language": "en-US",
+          "rel": [
+            "away",
+            "desktop",
+            "bets",
+            "draftkings"
+          ],
+          "href": "https://sportsbook.draftkings.com/gateway?s=__s__&wpcid=__wpcid__&wpsrc=413&wpcn=ESPN&wpscn=Widget&wpcrn=BetSlipDeepLink&wpscid=__wpscid__&wpcrid=xx&preurl=https%3A%2F%2Fsportsbook.draftkings.com%2Fevent%2F34118244%3Foutcomes%3D0ML84695687_3",
+          "text": "Away Bet",
+          "shortText": "Away Bet",
+          "isExternal": true,
+          "isPremium": false
+        },
+        {
+          "language": "en-US",
+          "rel": [
+            "homeSpread",
+            "desktop",
+            "bets"
+          ],
+          "href": "https://sportsbook.draftkings.com/gateway?s=__s__&wpcid=__wpcid__&wpsrc=413&wpcn=ESPN&wpscn=Widget&wpcrn=BetSlipDeepLink&wpscid=__wpscid__&wpcrid=xx&preurl=https%3A%2F%2Fsportsbook.draftkings.com%2Fevent%2F34118244%3Foutcomes%3D0HC84695687N250_1",
+          "text": "Home Point Spread",
+          "shortText": "Home Point Spread",
+          "isExternal": true,
+          "isPremium": false
+        },
+        {
+          "language": "en-US",
+          "rel": [
+            "awaySpread",
+            "desktop",
+            "bets"
+          ],
+          "href": "https://sportsbook.draftkings.com/gateway?s=__s__&wpcid=__wpcid__&wpsrc=413&wpcn=ESPN&wpscn=Widget&wpcrn=BetSlipDeepLink&wpscid=__wpscid__&wpcrid=xx&preurl=https%3A%2F%2Fsportsbook.draftkings.com%2Fevent%2F34118244%3Foutcomes%3D0HC84695687P250_3",
+          "text": "Away Point Spread",
+          "shortText": "Away Point Spread",
+          "isExternal": true,
+          "isPremium": false
+        },
+        {
+          "language": "en-US",
+          "rel": [
+            "over",
+            "desktop",
+            "bets"
+          ],
+          "href": "https://sportsbook.draftkings.com/gateway?s=__s__&wpcid=__wpcid__&wpsrc=413&wpcn=ESPN&wpscn=Widget&wpcrn=BetSlipDeepLink&wpscid=__wpscid__&wpcrid=xx&preurl=https%3A%2F%2Fsportsbook.draftkings.com%2Fevent%2F34118244%3Foutcomes%3D0OU84695687O4250_1",
+          "text": "Over Odds",
+          "shortText": "Over Odds",
+          "isExternal": true,
+          "isPremium": false
+        },
+        {
+          "language": "en-US",
+          "rel": [
+            "under",
+            "desktop",
+            "bets"
+          ],
+          "href": "https://sportsbook.draftkings.com/gateway?s=__s__&wpcid=__wpcid__&wpsrc=413&wpcn=ESPN&wpscn=Widget&wpcrn=BetSlipDeepLink&wpscid=__wpscid__&wpcrid=xx&preurl=https%3A%2F%2Fsportsbook.draftkings.com%2Fevent%2F34118244%3Foutcomes%3D0OU84695687U4250_3",
+          "text": "Under Odds",
+          "shortText": "Under Odds",
+          "isExternal": true,
+          "isPremium": false
+        },
+        {
+          "language": "en-US",
+          "rel": [
+            "game",
+            "desktop",
+            "bets"
+          ],
+          "href": "https://sportsbook.draftkings.com/gateway?s=__s__&wpcid=__wpcid__&wpsrc=413&wpcn=ESPN&wpscn=Widget&wpcrn=BetSlipDeepLink&wpscid=__wpscid__&wpcrid=xx&preurl=https%3A%2F%2Fsportsbook.draftkings.com%2Fevent%2F34118244",
+          "text": "Game",
+          "shortText": "Game",
+          "isExternal": true,
+          "isPremium": false
+        }
+      ],
+      "moneylineWinner": false,
+      "spreadWinner": false,
+      "open": {
+        "over": {
+          "value": 1.9,
+          "displayValue": "10/11",
+          "alternateDisplayValue": "-110",
+          "decimal": 1.9,
+          "fraction": "10/11",
+          "american": "-110"
+        },
+        "under": {
+          "value": 1.9,
+          "displayValue": "10/11",
+          "alternateDisplayValue": "-110",
+          "decimal": 1.9,
+          "fraction": "10/11",
+          "american": "-110"
+        },
+        "total": {
+          "alternateDisplayValue": "41.5",
+          "american": "41.5"
+        }
+      },
+      "current": {
+        "over": {
+          "value": 1.89,
+          "displayValue": "25/28",
+          "alternateDisplayValue": "-112",
+          "decimal": 1.89,
+          "fraction": "25/28",
+          "american": "-112"
+        },
+        "under": {
+          "value": 1.92,
+          "displayValue": "25/27",
+          "alternateDisplayValue": "-108",
+          "decimal": 1.92,
+          "fraction": "25/27",
+          "american": "-108"
+        },
+        "total": {
+          "alternateDisplayValue": "42.5",
+          "american": "42.5"
+        }
+      },
+      "propBets": {
+        "$ref": "http://sports.core.api.espn.com/v2/sports/football/leagues/nfl/events/401872996/competitions/401872996/odds/100/propBets?lang=en&region=us"
+      }
+    },
+    "provider": "DraftKings",
+    "prices": {
+      "mlHome": -142,
+      "mlAway": 120,
+      "spreadLine": -2.5,
+      "spreadHomePrice": -115,
+      "spreadAwayPrice": -105,
+      "totalLine": 42.5,
+      "overPrice": -112,
+      "underPrice": -108
+    },
+    "priceObservedAt": "2026-10-16T02:25:10.575Z",
+    "priceSourceUpdatedAt": null,
+    "markets": [
+      {
+        "market": "ml",
+        "priceA": -142,
+        "priceB": 120,
+        "side": "a",
+        "modelA": 0.7469129214289432,
+        "marketA": 0.5674365390167734
+      },
+      {
+        "market": "spread",
+        "line": -2.5,
+        "priceA": -115,
+        "priceB": -105,
+        "side": "a",
+        "modelA": 0.7863006845263477,
+        "marketA": 0.5108342361863489
+      },
+      {
+        "market": "total",
+        "line": 42.5,
+        "priceA": -112,
+        "priceB": -108,
+        "side": "b",
+        "modelA": 0.44837377194321093,
+        "marketA": 0.5043297540699689
+      }
+    ],
+    "missingMarkets": [],
+    "committedAt": "2026-10-16T02:25:15.541Z"
+  },
+  "finalEvent": {
+    "id": "401872994",
+    "commence": "2026-10-13T00:15Z",
+    "state": "post",
+    "status": "STATUS_FINAL",
+    "completed": true,
+    "homeId": "14",
+    "awayId": "2",
+    "homeScore": 34,
+    "awayScore": 37
+  }
+}

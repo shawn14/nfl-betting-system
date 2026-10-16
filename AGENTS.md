@@ -8,6 +8,30 @@ Multi-sport betting prediction system (NFL, NBA, NHL, CBB, WNBA) built with Next
 
 **Live Site:** https://www.predictionmatrix.com
 
+## Evaluation correction — 2026-10-15 audit
+
+**The `modelVersion` stamp does NOT establish a prospective prediction record.** The NFL/NHL/WNBA grading jobs refresh current scoring averages and recalculate predictions for already-final games. NFL actual-outcome leakage was independently reproduced: all 15 Week 5 scores/totals match postgame averages; on 63 eligible frozen games, recorded totals 42–21 become 21–42 using earlier-game-only averages with the same base formula, Elo and lines. That diagnostic is NOT recovered published pregame performance. Claims below calling stamped rows “live-predicted” or the freeze a forward test are **superseded for evidentiary purposes**. Preserve the model/threshold lock; do not retune to this audit.
+
+Line-shop CLV also needs a later, timely close and game-grouped uncertainty: 126 flags / 72 games average +0.325 percentage points, approximate 95% interval −0.153 to +0.803. No proven profitable edge. Before evaluation can support one, capture immutable pre-kickoff predictions, inputs, bookmaker prices and lines; grade those snapshots. NFL PPG also omits ties from the denominator. No production fixes were made in this audit.
+
+Evidence: [report](docs/reports/2026-10-15-edge-audit/edge-audit.html), [independent findings](docs/reports/2026-10-15-edge-audit/refuter-summary.txt). Offline proof: `node docs/reports/2026-10-15-edge-audit/refuter-proof.mjs`. Source / serving deployment / GitHub main verified at `6af083c277aa64fd13ec9269591fc57bdd611f68`.
+
+## Prospective measurement — preview candidate, 2026-10-16
+
+Canonical contract/proof/release path: [docs/measurement/README.md](docs/measurement/README.md). Only immutable pregame records in `predictionMeasurementsV1` can support forward claims; legacy results and `modelVersion` alone cannot. Model/weights/thresholds stay frozen. `FEATURE_MEASUREMENT_ENABLED` defaults off. New collector is free-source only; shopping reuses existing paid payloads after the existing state/output checkpoint. Never trigger paid crons as a test.
+
+Use `npm run test:measurement` and the reserved real-Firestore proof `npm run test:measurement:live`; local HTTP proof covers all five results pages and auth gates. No application evidence updates/deletes. **Firestore gotcha:** `doc.create()` with this REST SDK retried ALREADY_EXISTS for 600s. The read-before-set transaction is intentional and independently proven for concurrent and repeat writes. No real deployed postgame settlement has been proven yet.
+
+**Producer provenance:** `forecastProducer` must be written with the forecast, never inferred from collector code or an old result-row version. Unknown stays unknown. Group by full published version/source SHA; old capture headers do not attribute unstamped entries. Contract and read-only/approval-gated proofs: [provenance](docs/measurement/provenance/README.md). Shawn approved one reserved provenance proof on October15CT; it passed with cleanup and independent read-only review. Do not repeat writes under that spent one-test authorization.
+
+Review publication/preview are approved ([PR6](https://github.com/shawn14/nfl-betting-system/pull/6)); main merge, production deployment and activation still require Shawn's go. Preview client configuration and exact-SHA checks: [runbook](docs/preview/README.md). Read-only gate: `node scripts/measurement/release-check.mjs`. Use the existing GitHub branch → Vercel preview → main auto-deploy pipeline; never manual `vercel --prod` from the checkout. Report serving and GitHub main SHAs, not merely “pushed.”
+
+## Research terminal and price identity — local candidate, 2026-10-16
+
+`/terminal` is the first research-workspace slice, not proof of better picks. Contract and real browser/source proof: [docs/terminal/README.md](docs/terminal/README.md); project wiring: [os.yaml](os.yaml). Model parameters and measurement release holds remain unchanged.
+
+**Never trust `prediction.liveOdds` as game-identified prices.** Real provider snapshots showed Pittsburgh–Colorado quotes repeated on later Colorado games (WNBA too); the legacy writer matches either team and drops event identity. Terminal withholds those quotes. Both team names AND exact start time must match the odds-board event, with an unambiguous ID; collection time is not provider-update time. Source equality is necessary but cannot prove semantic identity. The upstream local repair now lives in `src/lib/event-odds.ts`; all five writers and live readers use it. Only `event-totals-v1` with exact identity and provider clocks is accepted. `test:odds:identity` replays 22 actual events/200 quotes; 13/66 forecast joins, zero NHL joins, NBA/CBB payloads unverified. See [odds contract](docs/odds-identity/README.md). Native NFL `Date` kickoffs and minute-only ISO timestamps must preserve equivalent instants. Production remains unfixed; do not claim a site-wide live repair. `test:terminal`, `test:terminal:live`, `test:terminal:http` plus the CUA browser proof guard the workspace. No paid collectors for testing.
+
 ## Commands
 
 ```bash
@@ -23,10 +47,10 @@ npm run market-history       # Crawl every priced final game from ESPN (all spor
 npm run market-lab           # What beats the close? noise, de-vig, sharpness, feature + bet-at-open tests
 npm run line-shop-proof      # Replay the line-shop rule on stored multi-book snapshots, graded by CLV
 npm run line-shop-backfill-proof  # Grade the 2025 NFL game-line backfill (Pinnacle fair) by CLV
-vercel --prod    # Deploy to production
+node scripts/measurement/release-check.mjs  # Read-only serving-source preflight
 ```
 
-There is no test suite. Verification = `npm run build` (catches the Firebase/SSR class of errors) plus hitting cron/admin endpoints and checking results pages.
+Measurement has a standing real-service proof and local HTTP suite (see runbook above). Production builds run in Vercel preview. Never hit cron/admin endpoints casually: some spend credits or mutate data.
 
 ## Multi-Sport Architecture
 
@@ -101,7 +125,7 @@ ELO_CAP = 16;                  // Max ±8 pts per team (prevents unrealistic 40-
 HOME_COURT_ADVANTAGE = 4.5;    // Increased from 2.0 to fix away team bias
 ```
 
-## Current Performance (169 games with Vegas lines)
+## Superseded historical calculations (169 games; not prospective performance)
 
 - **ATS**: 55.1% (92-75-2)
 - **ML (15%+ edge)**: 77.9% (53-15)
@@ -126,9 +150,8 @@ Do not spoof a browser User-Agent on ESPN or NFL.com calls: ESPN's edge answers 
 ## Common Tasks
 
 ### Deploy
-```bash
-vercel --prod
-```
+
+Use the approved GitHub branch → Vercel preview → main auto-deploy procedure in [the measurement runbook](docs/measurement/README.md). The former manual `vercel --prod` instruction is superseded: it could deploy source not reconciled to GitHub.
 
 ### Trigger blob sync
 ```bash
@@ -217,8 +240,7 @@ or older than 2 hours — fresh-but-empty data means off-season, not a broken cr
 
 Every stored result row now carries `modelVersion`. **Rules and thresholds are frozen**: high-conviction
 definitions, the 7-point totals edge, the 2-point NFL spread edge, the NBA/WNBA/CBB conviction ladders, the NHL
-1.5-goal rule — all unchanged from before the freeze. Judge the model only on rows with this stamp (the edge
-ledger's live view). Do not grid-search or re-tune on stored history; that is how every flattering number before
+1.5-goal rule — all unchanged from before the freeze. The version stamp identifies parameters only; it does not prove when a prediction was made. Judge forward performance only from immutable pregame captures (October audit correction). Do not grid-search or re-tune on stored history; that is how every flattering number before
 2026-09-11 was produced. If a rule must change, bump `MODEL_VERSION`, record why here, and start the clock again.
 
 Mechanical fixes shipped with the freeze (not tuning — they correct bugs the ledger exposed):

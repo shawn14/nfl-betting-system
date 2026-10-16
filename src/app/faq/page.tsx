@@ -36,7 +36,7 @@ const faqs = [
     questions: [
       {
         q: 'How is Prediction Matrix different from other sports betting sites?',
-        a: 'Unlike sites that rely on expert opinions, we use a purely mathematical Elo-based model that updates automatically after every game. Our predictions are 100% transparent - we show our model spread vs Vegas spread and track every pick publicly so you can verify our accuracy.',
+        a: 'Unlike sites that rely on expert opinions, we use a purely mathematical Elo-based model that updates automatically after every game. Our predictions are 100% transparent - we show our model spread vs Vegas spread and are collecting immutable pregame records so accuracy can be evaluated without postgame reconstruction.',
       },
       {
         q: 'What sports do you cover?',
@@ -78,7 +78,7 @@ const faqs = [
       },
       {
         q: 'What win rate do you need to be profitable?',
-        a: 'You need approximately 52.4% ATS accuracy to break even when paying standard -110 juice. Anything above 55% is considered excellent and generates consistent profit over time. Our model targets edges where we have the highest historical accuracy.',
+        a: 'You need approximately 52.4% ATS accuracy to break even when paying standard -110 juice. Actual profitability depends on the prices obtained. A historical win rate does not establish a future edge.',
       },
     ],
   },
@@ -91,7 +91,7 @@ const faqs = [
       },
       {
         q: 'How accurate are your picks?',
-        a: 'Our NFL model achieves approximately 55% ATS accuracy over the season. We track all picks transparently so you can verify our historical performance on each sport\'s results page.',
+        a: 'No prediction edge has been established. Historical results were recalculated after games and cannot prove pregame accuracy. The results pages now separate immutable pregame forecasts from price shopping.',
       },
       {
         q: 'Does overtime affect NHL puckline bets?',

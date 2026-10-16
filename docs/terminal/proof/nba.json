@@ -1,0 +1,2815 @@
+{
+  "url": "https://0luulmjdaimldet9.public.blob.vercel-storage.com/nba-prediction-data.json",
+  "fetchedAt": "2026-10-16T03:14:41.947Z",
+  "data": {
+    "generated": "2026-10-16T03:00:56.728Z",
+    "games": [
+      {
+        "game": {
+          "id": "401909088",
+          "homeTeamId": "8",
+          "awayTeamId": "2",
+          "gameTime": "2026-10-20T19:00Z",
+          "status": "scheduled",
+          "venue": "Little Caesars Arena",
+          "season": 2027,
+          "homeTeam": {
+            "id": "8",
+            "name": "Detroit Pistons",
+            "abbreviation": "DET"
+          },
+          "awayTeam": {
+            "id": "2",
+            "name": "Boston Celtics",
+            "abbreviation": "BOS"
+          }
+        },
+        "prediction": {
+          "gameId": "401909088",
+          "predictedHomeScore": 111.5,
+          "predictedAwayScore": 115.1,
+          "predictedSpread": 2.5,
+          "predictedTotal": 226.6,
+          "homeWinProbability": 0.5686413918836677,
+          "confidence": 0.5,
+          "vegasSpread": -1.5,
+          "vegasTotal": 222.5,
+          "lineMovement": {
+            "openingSpread": -2.5,
+            "openingTotal": 221.5,
+            "lastSeenSpread": -1.5,
+            "lastSeenTotal": 222.5,
+            "lastUpdatedAt": "2026-10-16T03:00:55.158Z"
+          },
+          "spreadEdge": 4,
+          "totalEdge": 4,
+          "atsConfidence": "high",
+          "ouConfidence": "medium",
+          "mlConfidence": "low",
+          "isAtsBestBet": true,
+          "isOuBestBet": false,
+          "isMlBestBet": false,
+          "mlEdge": 6.9,
+          "isDivisional": false,
+          "isLateSeasonGame": false,
+          "isLargeSpread": false,
+          "isSmallSpread": true,
+          "isMediumSpread": false,
+          "isEloMismatch": false,
+          "sixtyPlusFactors": 1,
+          "eloDiff": 0,
+          "conviction": {
+            "level": "low",
+            "isHighConviction": false,
+            "expectedWinPct": 52,
+            "picksVegasFavorite": false,
+            "eloAligned": true,
+            "eloGap": 0,
+            "restFavorsPick": false
+          },
+          "restDays": {
+            "home": 2,
+            "away": 2,
+            "homeIsB2B": false,
+            "awayIsB2B": false,
+            "advantage": "even",
+            "adjustment": 0
+          },
+          "liveOdds": {
+            "consensusTotal": 222,
+            "consensusOverOdds": -109,
+            "consensusUnderOdds": -110,
+            "bookmakers": [
+              {
+                "name": "FanDuel",
+                "total": 222.5,
+                "overOdds": -110,
+                "underOdds": -110
+              },
+              {
+                "name": "BetRivers",
+                "total": 222.5,
+                "overOdds": -113,
+                "underOdds": -109
+              },
+              {
+                "name": "BetMGM",
+                "total": 221.5,
+                "overOdds": -110,
+                "underOdds": -110
+              },
+              {
+                "name": "DraftKings",
+                "total": 222.5,
+                "overOdds": -105,
+                "underOdds": -115
+              },
+              {
+                "name": "Caesars",
+                "total": 222,
+                "overOdds": -110,
+                "underOdds": -110
+              },
+              {
+                "name": "BetOnline.ag",
+                "total": 222.5,
+                "overOdds": -110,
+                "underOdds": -110
+              },
+              {
+                "name": "LowVig.ag",
+                "total": 222.5,
+                "overOdds": -107,
+                "underOdds": -107
+              },
+              {
+                "name": "Bovada",
+                "total": 221.5,
+                "overOdds": -110,
+                "underOdds": -110
+              },
+              {
+                "name": "Fanatics",
+                "total": 222,
+                "overOdds": -110,
+                "underOdds": -110
+              },
+              {
+                "name": "MyBookie.ag",
+                "total": 221.5,
+                "overOdds": -110,
+                "underOdds": -110
+              }
+            ],
+            "lastUpdated": "2026-10-16T03:00:55.211Z"
+          },
+          "calc": {
+            "homePPG": 115,
+            "homePPGAllowed": 109,
+            "awayPPG": 127.333336,
+            "awayPPGAllowed": 104,
+            "regHomePPG": 114.1,
+            "regHomePPGAllowed": 109.9,
+            "regAwayPPG": 122.7,
+            "regAwayPPGAllowed": 106.4,
+            "baseHomeScore": 110.3,
+            "baseAwayScore": 116.3,
+            "homeElo": 1500,
+            "awayElo": 1500,
+            "eloDiff": 0,
+            "eloAdj": 0,
+            "homeCourtAdv": 2.5
+          }
+        }
+      },
+      {
+        "game": {
+          "id": "401909089",
+          "homeTeamId": "18",
+          "awayTeamId": "20",
+          "gameTime": "2026-10-20T23:00Z",
+          "status": "scheduled",
+          "venue": "Madison Square Garden",
+          "season": 2027,
+          "homeTeam": {
+            "id": "18",
+            "name": "New York Knicks",
+            "abbreviation": "NY"
+          },
+          "awayTeam": {
+            "id": "20",
+            "name": "Philadelphia 76ers",
+            "abbreviation": "PHI"
+          }
+        },
+        "prediction": {
+          "gameId": "401909089",
+          "predictedHomeScore": 113.4,
+          "predictedAwayScore": 114.8,
+          "predictedSpread": 1,
+          "predictedTotal": 228.2,
+          "homeWinProbability": 0.5686413918836677,
+          "confidence": 0.5,
+          "vegasSpread": -5.5,
+          "vegasTotal": 231.5,
+          "lineMovement": {
+            "openingSpread": -5.5,
+            "openingTotal": 231.5,
+            "lastSeenSpread": -5.5,
+            "lastSeenTotal": 231.5,
+            "lastUpdatedAt": "2026-10-16T03:00:55.217Z"
+          },
+          "spreadEdge": 6.5,
+          "totalEdge": -3.5,
+          "atsConfidence": "low",
+          "ouConfidence": "medium",
+          "mlConfidence": "low",
+          "isAtsBestBet": false,
+          "isOuBestBet": false,
+          "isMlBestBet": false,
+          "mlEdge": 6.9,
+          "isDivisional": true,
+          "isLateSeasonGame": false,
+          "isLargeSpread": false,
+          "isSmallSpread": false,
+          "isMediumSpread": true,
+          "isEloMismatch": false,
+          "sixtyPlusFactors": 1,
+          "eloDiff": 0,
+          "conviction": {
+            "level": "low",
+            "isHighConviction": false,
+            "expectedWinPct": 52,
+            "picksVegasFavorite": false,
+            "eloAligned": true,
+            "eloGap": 0,
+            "restFavorsPick": false,
+            "avoidReason": "NY at home historically unpredictable"
+          },
+          "restDays": {
+            "home": 3,
+            "away": 3,
+            "homeIsB2B": false,
+            "awayIsB2B": false,
+            "advantage": "even",
+            "adjustment": 0
+          },
+          "liveOdds": {
+            "consensusTotal": 231.5,
+            "consensusOverOdds": -109,
+            "consensusUnderOdds": -110,
+            "bookmakers": [
+              {
+                "name": "FanDuel",
+                "total": 232.5,
+                "overOdds": -106,
+                "underOdds": -114
+              },
+              {
+                "name": "BetRivers",
+                "total": 231.5,
+                "overOdds": -112,
+                "underOdds": -112
+              },
+              {
+                "name": "BetMGM",
+                "total": 231.5,
+                "overOdds": -110,
+                "underOdds": -110
+              },
+              {
+                "name": "DraftKings",
+                "total": 231.5,
+                "overOdds": -110,
+                "underOdds": -110
+              },
+              {
+                "name": "Caesars",
+                "total": 232,
+                "overOdds": -110,
+                "underOdds": -110
+              },
+              {
+                "name": "BetOnline.ag",
+                "total": 231.5,
+                "overOdds": -110,
+                "underOdds": -110
+              },
+              {
+                "name": "LowVig.ag",
+                "total": 231.5,
+                "overOdds": -107,
+                "underOdds": -107
+              },
+              {
+                "name": "Bovada",
+                "total": 230.5,
+                "overOdds": -110,
+                "underOdds": -110
+              },
+              {
+                "name": "Fanatics",
+                "total": 231.5,
+                "overOdds": -110,
+                "underOdds": -110
+              },
+              {
+                "name": "MyBookie.ag",
+                "total": 231,
+                "overOdds": -110,
+                "underOdds": -110
+              }
+            ],
+            "lastUpdated": "2026-10-16T03:00:55.334Z"
+          },
+          "calc": {
+            "homePPG": 106,
+            "homePPGAllowed": 124.2,
+            "awayPPG": 111.333336,
+            "awayPPGAllowed": 118.333336,
+            "regHomePPG": 107.8,
+            "regHomePPGAllowed": 120.5,
+            "regAwayPPG": 111.5,
+            "regAwayPPGAllowed": 116.4,
+            "baseHomeScore": 112.1,
+            "baseAwayScore": 116,
+            "homeElo": 1500,
+            "awayElo": 1500,
+            "eloDiff": 0,
+            "eloAdj": 0,
+            "homeCourtAdv": 2.5
+          }
+        }
+      },
+      {
+        "game": {
+          "id": "401909090",
+          "homeTeamId": "24",
+          "awayTeamId": "25",
+          "gameTime": "2026-10-21T01:30Z",
+          "status": "scheduled",
+          "venue": "Frost Bank Center",
+          "season": 2027,
+          "homeTeam": {
+            "id": "24",
+            "name": "San Antonio Spurs",
+            "abbreviation": "SA"
+          },
+          "awayTeam": {
+            "id": "25",
+            "name": "Oklahoma City Thunder",
+            "abbreviation": "OKC"
+          }
+        },
+        "prediction": {
+          "gameId": "401909090",
+          "predictedHomeScore": 114.8,
+          "predictedAwayScore": 109.9,
+          "predictedSpread": -3,
+          "predictedTotal": 224.7,
+          "homeWinProbability": 0.5686413918836677,
+          "confidence": 0.5,
+          "vegasSpread": -2.5,
+          "vegasTotal": 231.5,
+          "lineMovement": {
+            "openingSpread": -2.5,
+            "openingTotal": 230.5,
+            "lastSeenSpread": -2.5,
+            "lastSeenTotal": 231.5,
+            "lastUpdatedAt": "2026-10-16T03:00:55.340Z"
+          },
+          "spreadEdge": -0.5,
+          "totalEdge": -7,
+          "atsConfidence": "high",
+          "ouConfidence": "medium",
+          "mlConfidence": "low",
+          "isAtsBestBet": true,
+          "isOuBestBet": false,
+          "isMlBestBet": false,
+          "mlEdge": 6.9,
+          "isDivisional": false,
+          "isLateSeasonGame": false,
+          "isLargeSpread": false,
+          "isSmallSpread": true,
+          "isMediumSpread": false,
+          "isEloMismatch": false,
+          "sixtyPlusFactors": 1,
+          "eloDiff": 0,
+          "conviction": {
+            "level": "moderate",
+            "isHighConviction": false,
+            "expectedWinPct": 52,
+            "picksVegasFavorite": true,
+            "eloAligned": false,
+            "eloGap": 0,
+            "restFavorsPick": false
+          },
+          "restDays": {
+            "home": 3,
+            "away": 4,
+            "homeIsB2B": false,
+            "awayIsB2B": false,
+            "advantage": "away",
+            "adjustment": -0.5
+          },
+          "liveOdds": {
+            "consensusTotal": 231.5,
+            "consensusOverOdds": -110,
+            "consensusUnderOdds": -110,
+            "bookmakers": [
+              {
+                "name": "FanDuel",
+                "total": 231.5,
+                "overOdds": -115,
+                "underOdds": -105
+              },
+              {
+                "name": "BetRivers",
+                "total": 231.5,
+                "overOdds": -114,
+                "underOdds": -109
+              },
+              {
+                "name": "BetMGM",
+                "total": 232.5,
+                "overOdds": -105,
+                "underOdds": -115
+              },
+              {
+                "name": "DraftKings",
+                "total": 231.5,
+                "overOdds": -110,
+                "underOdds": -110
+              },
+              {
+                "name": "Caesars",
+                "total": 231.5,
+                "overOdds": -110,
+                "underOdds": -110
+              },
+              {
+                "name": "BetOnline.ag",
+                "total": 231.5,
+                "overOdds": -110,
+                "underOdds": -110
+              },
+              {
+                "name": "LowVig.ag",
+                "total": 231.5,
+                "overOdds": -107,
+                "underOdds": -107
+              },
+              {
+                "name": "Bovada",
+                "total": 232,
+                "overOdds": -110,
+                "underOdds": -110
+              },
+              {
+                "name": "Fanatics",
+                "total": 231.5,
+                "overOdds": -110,
+                "underOdds": -110
+              },
+              {
+                "name": "MyBookie.ag",
+                "total": 231.5,
+                "overOdds": -110,
+                "underOdds": -110
+              }
+            ],
+            "lastUpdated": "2026-10-16T03:00:55.498Z"
+          },
+          "calc": {
+            "homePPG": 111.5,
+            "homePPGAllowed": 111.75,
+            "awayPPG": 109.8,
+            "awayPPGAllowed": 117,
+            "regHomePPG": 111.7,
+            "regHomePPGAllowed": 111.8,
+            "regAwayPPG": 110.5,
+            "regAwayPPGAllowed": 115.5,
+            "baseHomeScore": 113.6,
+            "baseAwayScore": 111.1,
+            "homeElo": 1500,
+            "awayElo": 1500,
+            "eloDiff": 0,
+            "eloAdj": 0,
+            "homeCourtAdv": 2.5
+          }
+        }
+      },
+      {
+        "game": {
+          "id": "401909834",
+          "homeTeamId": "19",
+          "awayTeamId": "1",
+          "gameTime": "2026-10-21T23:00Z",
+          "status": "scheduled",
+          "venue": "Kia Center",
+          "season": 2027,
+          "homeTeam": {
+            "id": "19",
+            "name": "Orlando Magic",
+            "abbreviation": "ORL"
+          },
+          "awayTeam": {
+            "id": "1",
+            "name": "Atlanta Hawks",
+            "abbreviation": "ATL"
+          }
+        },
+        "prediction": {
+          "gameId": "401909834",
+          "predictedHomeScore": 118.3,
+          "predictedAwayScore": 115.4,
+          "predictedSpread": -2,
+          "predictedTotal": 233.7,
+          "homeWinProbability": 0.5686413918836677,
+          "confidence": 0.5,
+          "vegasSpread": -2.5,
+          "vegasTotal": 233.5,
+          "lineMovement": {
+            "openingSpread": -2.5,
+            "openingTotal": 233.5,
+            "lastSeenSpread": -2.5,
+            "lastSeenTotal": 233.5,
+            "lastUpdatedAt": "2026-10-16T03:00:55.504Z"
+          },
+          "spreadEdge": 0.5,
+          "totalEdge": 0,
+          "atsConfidence": "high",
+          "ouConfidence": "low",
+          "mlConfidence": "low",
+          "isAtsBestBet": true,
+          "isOuBestBet": false,
+          "isMlBestBet": false,
+          "mlEdge": 6.9,
+          "isDivisional": true,
+          "isLateSeasonGame": false,
+          "isLargeSpread": false,
+          "isSmallSpread": true,
+          "isMediumSpread": false,
+          "isEloMismatch": false,
+          "sixtyPlusFactors": 2,
+          "eloDiff": 0,
+          "conviction": {
+            "level": "low",
+            "isHighConviction": false,
+            "expectedWinPct": 52,
+            "picksVegasFavorite": false,
+            "eloAligned": true,
+            "eloGap": 0,
+            "restFavorsPick": false
+          },
+          "restDays": {
+            "home": 4,
+            "away": 3,
+            "homeIsB2B": false,
+            "awayIsB2B": false,
+            "advantage": "home",
+            "adjustment": 0.5
+          },
+          "liveOdds": {
+            "consensusTotal": 233.5,
+            "consensusOverOdds": -110,
+            "consensusUnderOdds": -110,
+            "bookmakers": [
+              {
+                "name": "DraftKings",
+                "total": 233.5,
+                "overOdds": -110,
+                "underOdds": -110
+              },
+              {
+                "name": "Bovada",
+                "total": 233.5,
+                "overOdds": -110,
+                "underOdds": -110
+              },
+              {
+                "name": "BetMGM",
+                "total": 233.5,
+                "overOdds": -110,
+                "underOdds": -110
+              },
+              {
+                "name": "Caesars",
+                "total": 233.5,
+                "overOdds": -110,
+                "underOdds": -110
+              },
+              {
+                "name": "BetOnline.ag",
+                "total": 233.5,
+                "overOdds": -110,
+                "underOdds": -110
+              },
+              {
+                "name": "LowVig.ag",
+                "total": 233.5,
+                "overOdds": -107,
+                "underOdds": -107
+              },
+              {
+                "name": "BetRivers",
+                "total": 233.5,
+                "overOdds": -113,
+                "underOdds": -110
+              },
+              {
+                "name": "FanDuel",
+                "total": 233.5,
+                "overOdds": -110,
+                "underOdds": -110
+              },
+              {
+                "name": "MyBookie.ag",
+                "total": 233.5,
+                "overOdds": -110,
+                "underOdds": -110
+              },
+              {
+                "name": "Fanatics",
+                "total": 233.5,
+                "overOdds": -110,
+                "underOdds": -110
+              }
+            ],
+            "lastUpdated": "2026-10-16T03:00:55.614Z"
+          },
+          "calc": {
+            "homePPG": 119.666664,
+            "homePPGAllowed": 117.666664,
+            "awayPPG": 119.5,
+            "awayPPGAllowed": 118.75,
+            "regHomePPG": 117.4,
+            "regHomePPGAllowed": 116,
+            "regAwayPPG": 117.3,
+            "regAwayPPGAllowed": 116.7,
+            "baseHomeScore": 117,
+            "baseAwayScore": 116.6,
+            "homeElo": 1500,
+            "awayElo": 1500,
+            "eloDiff": 0,
+            "eloAdj": 0,
+            "homeCourtAdv": 2.5
+          }
+        }
+      },
+      {
+        "game": {
+          "id": "401909835",
+          "homeTeamId": "27",
+          "awayTeamId": "15",
+          "gameTime": "2026-10-21T23:00Z",
+          "status": "scheduled",
+          "venue": "Capital One Arena",
+          "season": 2027,
+          "homeTeam": {
+            "id": "27",
+            "name": "Washington Wizards",
+            "abbreviation": "WSH"
+          },
+          "awayTeam": {
+            "id": "15",
+            "name": "Milwaukee Bucks",
+            "abbreviation": "MIL"
+          }
+        },
+        "prediction": {
+          "gameId": "401909835",
+          "predictedHomeScore": 116.6,
+          "predictedAwayScore": 109.6,
+          "predictedSpread": -4.5,
+          "predictedTotal": 226.2,
+          "homeWinProbability": 0.5686413918836677,
+          "confidence": 0.5,
+          "vegasSpread": -6.5,
+          "vegasTotal": 238.5,
+          "lineMovement": {
+            "openingSpread": -6.5,
+            "openingTotal": 238.5,
+            "lastSeenSpread": -6.5,
+            "lastSeenTotal": 238.5,
+            "lastUpdatedAt": "2026-10-16T03:00:55.619Z"
+          },
+          "spreadEdge": 2,
+          "totalEdge": -12.5,
+          "atsConfidence": "low",
+          "ouConfidence": "high",
+          "mlConfidence": "low",
+          "isAtsBestBet": false,
+          "isOuBestBet": true,
+          "isMlBestBet": false,
+          "mlEdge": 6.9,
+          "isDivisional": false,
+          "isLateSeasonGame": false,
+          "isLargeSpread": false,
+          "isSmallSpread": false,
+          "isMediumSpread": true,
+          "isEloMismatch": false,
+          "sixtyPlusFactors": 0,
+          "eloDiff": 0,
+          "conviction": {
+            "level": "low",
+            "isHighConviction": false,
+            "expectedWinPct": 52,
+            "picksVegasFavorite": false,
+            "eloAligned": true,
+            "eloGap": 0,
+            "restFavorsPick": true
+          },
+          "restDays": {
+            "home": 3,
+            "away": 4,
+            "homeIsB2B": false,
+            "awayIsB2B": false,
+            "advantage": "away",
+            "adjustment": -0.5
+          },
+          "liveOdds": {
+            "consensusTotal": 238.5,
+            "consensusOverOdds": -109,
+            "consensusUnderOdds": -110,
+            "bookmakers": [
+              {
+                "name": "DraftKings",
+                "total": 238.5,
+                "overOdds": -110,
+                "underOdds": -110
+              },
+              {
+                "name": "Bovada",
+                "total": 238,
+                "overOdds": -110,
+                "underOdds": -110
+              },
+              {
+                "name": "BetMGM",
+                "total": 238.5,
+                "overOdds": -110,
+                "underOdds": -110
+              },
+              {
+                "name": "Caesars",
+                "total": 238.5,
+                "overOdds": -110,
+                "underOdds": -110
+              },
+              {
+                "name": "BetOnline.ag",
+                "total": 239,
+                "overOdds": -110,
+                "underOdds": -110
+              },
+              {
+                "name": "LowVig.ag",
+                "total": 239,
+                "overOdds": -107,
+                "underOdds": -107
+              },
+              {
+                "name": "BetRivers",
+                "total": 238.5,
+                "overOdds": -112,
+                "underOdds": -112
+              },
+              {
+                "name": "FanDuel",
+                "total": 239.5,
+                "overOdds": -105,
+                "underOdds": -115
+              },
+              {
+                "name": "MyBookie.ag",
+                "total": 238.5,
+                "overOdds": -110,
+                "underOdds": -110
+              },
+              {
+                "name": "Fanatics",
+                "total": 238.5,
+                "overOdds": -110,
+                "underOdds": -110
+              }
+            ],
+            "lastUpdated": "2026-10-16T03:00:55.707Z"
+          },
+          "calc": {
+            "homePPG": 115.666664,
+            "homePPGAllowed": 116,
+            "awayPPG": 104.75,
+            "awayPPGAllowed": 118,
+            "regHomePPG": 114.6,
+            "regHomePPGAllowed": 114.8,
+            "regAwayPPG": 106.9,
+            "regAwayPPGAllowed": 116.2,
+            "baseHomeScore": 115.4,
+            "baseAwayScore": 110.9,
+            "homeElo": 1500,
+            "awayElo": 1500,
+            "eloDiff": 0,
+            "eloAdj": 0,
+            "homeCourtAdv": 2.5
+          }
+        }
+      },
+      {
+        "game": {
+          "id": "401909091",
+          "homeTeamId": "14",
+          "awayTeamId": "16",
+          "gameTime": "2026-10-21T23:30Z",
+          "status": "scheduled",
+          "venue": "Kaseya Center",
+          "season": 2027,
+          "homeTeam": {
+            "id": "14",
+            "name": "Miami Heat",
+            "abbreviation": "MIA"
+          },
+          "awayTeam": {
+            "id": "16",
+            "name": "Minnesota Timberwolves",
+            "abbreviation": "MIN"
+          }
+        },
+        "prediction": {
+          "gameId": "401909091",
+          "predictedHomeScore": 121.1,
+          "predictedAwayScore": 114.7,
+          "predictedSpread": -4,
+          "predictedTotal": 235.8,
+          "homeWinProbability": 0.5686413918836677,
+          "confidence": 0.5,
+          "vegasSpread": -1.5,
+          "vegasTotal": 242.5,
+          "lineMovement": {
+            "openingSpread": -1.5,
+            "openingTotal": 243.5,
+            "lastSeenSpread": -1.5,
+            "lastSeenTotal": 242.5,
+            "lastUpdatedAt": "2026-10-16T03:00:55.712Z"
+          },
+          "spreadEdge": -2.5,
+          "totalEdge": -6.5,
+          "atsConfidence": "high",
+          "ouConfidence": "medium",
+          "mlConfidence": "low",
+          "isAtsBestBet": true,
+          "isOuBestBet": false,
+          "isMlBestBet": false,
+          "mlEdge": 6.9,
+          "isDivisional": false,
+          "isLateSeasonGame": false,
+          "isLargeSpread": false,
+          "isSmallSpread": true,
+          "isMediumSpread": false,
+          "isEloMismatch": false,
+          "sixtyPlusFactors": 1,
+          "eloDiff": 0,
+          "conviction": {
+            "level": "moderate",
+            "isHighConviction": false,
+            "expectedWinPct": 52,
+            "picksVegasFavorite": true,
+            "eloAligned": false,
+            "eloGap": 0,
+            "restFavorsPick": true
+          },
+          "restDays": {
+            "home": 4,
+            "away": 3,
+            "homeIsB2B": false,
+            "awayIsB2B": false,
+            "advantage": "home",
+            "adjustment": 0.5
+          },
+          "liveOdds": {
+            "consensusTotal": 243,
+            "consensusOverOdds": -111,
+            "consensusUnderOdds": -109,
+            "bookmakers": [
+              {
+                "name": "DraftKings",
+                "total": 242.5,
+                "overOdds": -115,
+                "underOdds": -105
+              },
+              {
+                "name": "FanDuel",
+                "total": 243.5,
+                "overOdds": -110,
+                "underOdds": -110
+              },
+              {
+                "name": "Caesars",
+                "total": 243,
+                "overOdds": -110,
+                "underOdds": -110
+              },
+              {
+                "name": "Bovada",
+                "total": 242.5,
+                "overOdds": -110,
+                "underOdds": -110
+              },
+              {
+                "name": "BetMGM",
+                "total": 242.5,
+                "overOdds": -115,
+                "underOdds": -105
+              },
+              {
+                "name": "LowVig.ag",
+                "total": 243,
+                "overOdds": -107,
+                "underOdds": -107
+              },
+              {
+                "name": "BetOnline.ag",
+                "total": 243,
+                "overOdds": -110,
+                "underOdds": -110
+              },
+              {
+                "name": "BetRivers",
+                "total": 243.5,
+                "overOdds": -109,
+                "underOdds": -114
+              },
+              {
+                "name": "MyBookie.ag",
+                "total": 243,
+                "overOdds": -110,
+                "underOdds": -110
+              },
+              {
+                "name": "Fanatics",
+                "total": 243,
+                "overOdds": -110,
+                "underOdds": -110
+              }
+            ],
+            "lastUpdated": "2026-10-16T03:00:55.783Z"
+          },
+          "calc": {
+            "homePPG": 131.25,
+            "homePPGAllowed": 119,
+            "awayPPG": 116.2,
+            "awayPPGAllowed": 115.2,
+            "regHomePPG": 125.5,
+            "regHomePPGAllowed": 116.9,
+            "regAwayPPG": 114.9,
+            "regAwayPPGAllowed": 114.2,
+            "baseHomeScore": 119.9,
+            "baseAwayScore": 115.9,
+            "homeElo": 1500,
+            "awayElo": 1500,
+            "eloDiff": 0,
+            "eloAdj": 0,
+            "homeCourtAdv": 2.5
+          }
+        }
+      },
+      {
+        "game": {
+          "id": "401909836",
+          "homeTeamId": "17",
+          "awayTeamId": "30",
+          "gameTime": "2026-10-21T23:30Z",
+          "status": "scheduled",
+          "venue": "Barclays Center",
+          "season": 2027,
+          "homeTeam": {
+            "id": "17",
+            "name": "Brooklyn Nets",
+            "abbreviation": "BKN"
+          },
+          "awayTeam": {
+            "id": "30",
+            "name": "Charlotte Hornets",
+            "abbreviation": "CHA"
+          }
+        },
+        "prediction": {
+          "gameId": "401909836",
+          "predictedHomeScore": 116.6,
+          "predictedAwayScore": 106.5,
+          "predictedSpread": -6.5,
+          "predictedTotal": 223.1,
+          "homeWinProbability": 0.5686413918836677,
+          "confidence": 0.5,
+          "vegasSpread": 2.5,
+          "vegasTotal": 223.5,
+          "lineMovement": {
+            "openingSpread": 2.5,
+            "openingTotal": 223.5,
+            "lastSeenSpread": 2.5,
+            "lastSeenTotal": 223.5,
+            "lastUpdatedAt": "2026-10-16T03:00:55.790Z"
+          },
+          "spreadEdge": -9,
+          "totalEdge": -0.5,
+          "atsConfidence": "high",
+          "ouConfidence": "low",
+          "mlConfidence": "low",
+          "isAtsBestBet": true,
+          "isOuBestBet": false,
+          "isMlBestBet": false,
+          "mlEdge": 6.9,
+          "isDivisional": false,
+          "isLateSeasonGame": false,
+          "isLargeSpread": false,
+          "isSmallSpread": true,
+          "isMediumSpread": false,
+          "isEloMismatch": false,
+          "sixtyPlusFactors": 1,
+          "eloDiff": 0,
+          "conviction": {
+            "level": "low",
+            "isHighConviction": false,
+            "expectedWinPct": 50,
+            "picksVegasFavorite": false,
+            "eloAligned": false,
+            "eloGap": 0,
+            "restFavorsPick": true,
+            "avoidReason": "CHA on road historically unpredictable"
+          },
+          "restDays": {
+            "home": 6,
+            "away": 3,
+            "homeIsB2B": false,
+            "awayIsB2B": false,
+            "advantage": "home",
+            "adjustment": 1
+          },
+          "liveOdds": {
+            "consensusTotal": 222,
+            "consensusOverOdds": -109,
+            "consensusUnderOdds": -111,
+            "bookmakers": [
+              {
+                "name": "DraftKings",
+                "total": 223.5,
+                "overOdds": -110,
+                "underOdds": -110
+              },
+              {
+                "name": "Bovada",
+                "total": 222,
+                "overOdds": -110,
+                "underOdds": -110
+              },
+              {
+                "name": "BetMGM",
+                "total": 221.5,
+                "overOdds": -110,
+                "underOdds": -110
+              },
+              {
+                "name": "Caesars",
+                "total": 222.5,
+                "overOdds": -110,
+                "underOdds": -110
+              },
+              {
+                "name": "BetOnline.ag",
+                "total": 221.5,
+                "overOdds": -105,
+                "underOdds": -115
+              },
+              {
+                "name": "LowVig.ag",
+                "total": 221.5,
+                "overOdds": -102,
+                "underOdds": -113
+              },
+              {
+                "name": "BetRivers",
+                "total": 221,
+                "overOdds": -110,
+                "underOdds": -113
+              },
+              {
+                "name": "FanDuel",
+                "total": 220.5,
+                "overOdds": -110,
+                "underOdds": -110
+              },
+              {
+                "name": "MyBookie.ag",
+                "total": 222,
+                "overOdds": -110,
+                "underOdds": -110
+              },
+              {
+                "name": "Fanatics",
+                "total": 222,
+                "overOdds": -110,
+                "underOdds": -110
+              }
+            ],
+            "lastUpdated": "2026-10-16T03:00:55.920Z"
+          },
+          "calc": {
+            "homePPG": 124.25,
+            "homePPGAllowed": 116,
+            "awayPPG": 96,
+            "awayPPGAllowed": 109.333336,
+            "regHomePPG": 120.6,
+            "regHomePPGAllowed": 114.8,
+            "regAwayPPG": 100.8,
+            "regAwayPPGAllowed": 110.1,
+            "baseHomeScore": 115.4,
+            "baseAwayScore": 107.8,
+            "homeElo": 1500,
+            "awayElo": 1500,
+            "eloDiff": 0,
+            "eloAdj": 0,
+            "homeCourtAdv": 2.5
+          }
+        }
+      },
+      {
+        "game": {
+          "id": "401909837",
+          "homeTeamId": "28",
+          "awayTeamId": "4",
+          "gameTime": "2026-10-21T23:30Z",
+          "status": "scheduled",
+          "venue": "Scotiabank Arena",
+          "season": 2027,
+          "homeTeam": {
+            "id": "28",
+            "name": "Toronto Raptors",
+            "abbreviation": "TOR"
+          },
+          "awayTeam": {
+            "id": "4",
+            "name": "Chicago Bulls",
+            "abbreviation": "CHI"
+          }
+        },
+        "prediction": {
+          "gameId": "401909837",
+          "predictedHomeScore": 117.5,
+          "predictedAwayScore": 113.9,
+          "predictedSpread": -2.5,
+          "predictedTotal": 231.4,
+          "homeWinProbability": 0.5686413918836677,
+          "confidence": 0.5,
+          "vegasSpread": -8.5,
+          "vegasTotal": 235.5,
+          "lineMovement": {
+            "openingSpread": -8.5,
+            "openingTotal": 235.5,
+            "lastSeenSpread": -8.5,
+            "lastSeenTotal": 235.5,
+            "lastUpdatedAt": "2026-10-16T03:00:55.926Z"
+          },
+          "spreadEdge": 6,
+          "totalEdge": -4,
+          "atsConfidence": "high",
+          "ouConfidence": "medium",
+          "mlConfidence": "low",
+          "isAtsBestBet": true,
+          "isOuBestBet": false,
+          "isMlBestBet": false,
+          "mlEdge": 6.9,
+          "isDivisional": false,
+          "isLateSeasonGame": false,
+          "isLargeSpread": true,
+          "isSmallSpread": false,
+          "isMediumSpread": false,
+          "isEloMismatch": false,
+          "sixtyPlusFactors": 1,
+          "eloDiff": 0,
+          "conviction": {
+            "level": "low",
+            "isHighConviction": false,
+            "expectedWinPct": 52,
+            "picksVegasFavorite": false,
+            "eloAligned": true,
+            "eloGap": 0,
+            "restFavorsPick": false
+          },
+          "restDays": {
+            "home": 4,
+            "away": 3,
+            "homeIsB2B": false,
+            "awayIsB2B": false,
+            "advantage": "home",
+            "adjustment": 0.5
+          },
+          "liveOdds": {
+            "consensusTotal": 235.5,
+            "consensusOverOdds": -110,
+            "consensusUnderOdds": -111,
+            "bookmakers": [
+              {
+                "name": "FanDuel",
+                "total": 235.5,
+                "overOdds": -106,
+                "underOdds": -114
+              },
+              {
+                "name": "BetMGM",
+                "total": 235.5,
+                "overOdds": -110,
+                "underOdds": -110
+              },
+              {
+                "name": "DraftKings",
+                "total": 235.5,
+                "overOdds": -110,
+                "underOdds": -110
+              },
+              {
+                "name": "BetRivers",
+                "total": 235.5,
+                "overOdds": -112,
+                "underOdds": -112
+              },
+              {
+                "name": "Bovada",
+                "total": 235.5,
+                "overOdds": -110,
+                "underOdds": -110
+              },
+              {
+                "name": "Caesars",
+                "total": 235.5,
+                "overOdds": -110,
+                "underOdds": -110
+              },
+              {
+                "name": "Fanatics",
+                "total": 235.5,
+                "overOdds": -110,
+                "underOdds": -110
+              },
+              {
+                "name": "MyBookie.ag",
+                "total": 235.5,
+                "overOdds": -110,
+                "underOdds": -110
+              }
+            ],
+            "lastUpdated": "2026-10-16T03:00:55.974Z"
+          },
+          "calc": {
+            "homePPG": 121.75,
+            "homePPGAllowed": 113.75,
+            "awayPPG": 119.25,
+            "awayPPGAllowed": 114.5,
+            "regHomePPG": 118.8,
+            "regHomePPGAllowed": 113.2,
+            "regAwayPPG": 117.1,
+            "regAwayPPGAllowed": 113.8,
+            "baseHomeScore": 116.3,
+            "baseAwayScore": 115.2,
+            "homeElo": 1500,
+            "awayElo": 1500,
+            "eloDiff": 0,
+            "eloAdj": 0,
+            "homeCourtAdv": 2.5
+          }
+        }
+      },
+      {
+        "game": {
+          "id": "401909838",
+          "homeTeamId": "29",
+          "awayTeamId": "26",
+          "gameTime": "2026-10-22T00:00Z",
+          "status": "scheduled",
+          "venue": "FedExForum",
+          "season": 2027,
+          "homeTeam": {
+            "id": "29",
+            "name": "Memphis Grizzlies",
+            "abbreviation": "MEM"
+          },
+          "awayTeam": {
+            "id": "26",
+            "name": "Utah Jazz",
+            "abbreviation": "UTAH"
+          }
+        },
+        "prediction": {
+          "gameId": "401909838",
+          "predictedHomeScore": 113.8,
+          "predictedAwayScore": 111.6,
+          "predictedSpread": -1.5,
+          "predictedTotal": 225.39999999999998,
+          "homeWinProbability": 0.5686413918836677,
+          "confidence": 0.5,
+          "vegasSpread": 2.5,
+          "vegasTotal": 242.5,
+          "lineMovement": {
+            "openingSpread": 2.5,
+            "openingTotal": 242.5,
+            "lastSeenSpread": 2.5,
+            "lastSeenTotal": 242.5,
+            "lastUpdatedAt": "2026-10-16T03:00:55.980Z"
+          },
+          "spreadEdge": -4,
+          "totalEdge": -17,
+          "atsConfidence": "high",
+          "ouConfidence": "high",
+          "mlConfidence": "low",
+          "isAtsBestBet": true,
+          "isOuBestBet": true,
+          "isMlBestBet": false,
+          "mlEdge": 6.9,
+          "isDivisional": false,
+          "isLateSeasonGame": false,
+          "isLargeSpread": false,
+          "isSmallSpread": true,
+          "isMediumSpread": false,
+          "isEloMismatch": false,
+          "sixtyPlusFactors": 1,
+          "eloDiff": 0,
+          "conviction": {
+            "level": "low",
+            "isHighConviction": false,
+            "expectedWinPct": 50,
+            "picksVegasFavorite": false,
+            "eloAligned": false,
+            "eloGap": 0,
+            "restFavorsPick": true,
+            "avoidReason": "UTAH on road historically unpredictable"
+          },
+          "restDays": {
+            "home": 4,
+            "away": 3,
+            "homeIsB2B": false,
+            "awayIsB2B": false,
+            "advantage": "home",
+            "adjustment": 0.5
+          },
+          "liveOdds": {
+            "consensusTotal": 243.5,
+            "consensusOverOdds": -110,
+            "consensusUnderOdds": -110,
+            "bookmakers": [
+              {
+                "name": "DraftKings",
+                "total": 242.5,
+                "overOdds": -110,
+                "underOdds": -110
+              },
+              {
+                "name": "Bovada",
+                "total": 243.5,
+                "overOdds": -110,
+                "underOdds": -110
+              },
+              {
+                "name": "BetMGM",
+                "total": 243.5,
+                "overOdds": -110,
+                "underOdds": -110
+              },
+              {
+                "name": "Caesars",
+                "total": 242.5,
+                "overOdds": -115,
+                "underOdds": -105
+              },
+              {
+                "name": "LowVig.ag",
+                "total": 244,
+                "overOdds": -107,
+                "underOdds": -107
+              },
+              {
+                "name": "BetOnline.ag",
+                "total": 244,
+                "overOdds": -110,
+                "underOdds": -110
+              },
+              {
+                "name": "BetRivers",
+                "total": 243.5,
+                "overOdds": -110,
+                "underOdds": -113
+              },
+              {
+                "name": "FanDuel",
+                "total": 244.5,
+                "overOdds": -105,
+                "underOdds": -115
+              },
+              {
+                "name": "MyBookie.ag",
+                "total": 243,
+                "overOdds": -110,
+                "underOdds": -110
+              },
+              {
+                "name": "Fanatics",
+                "total": 243.5,
+                "overOdds": -110,
+                "underOdds": -110
+              }
+            ],
+            "lastUpdated": "2026-10-16T03:00:56.142Z"
+          },
+          "calc": {
+            "homePPG": 118,
+            "homePPGAllowed": 115,
+            "awayPPG": 111.333336,
+            "awayPPGAllowed": 107.666664,
+            "regHomePPG": 116.2,
+            "regHomePPGAllowed": 114.1,
+            "regAwayPPG": 111.5,
+            "regAwayPPGAllowed": 109,
+            "baseHomeScore": 112.6,
+            "baseAwayScore": 112.8,
+            "homeElo": 1500,
+            "awayElo": 1500,
+            "eloDiff": 0,
+            "eloAdj": 0,
+            "homeCourtAdv": 2.5
+          }
+        }
+      },
+      {
+        "game": {
+          "id": "401909839",
+          "homeTeamId": "3",
+          "awayTeamId": "11",
+          "gameTime": "2026-10-22T00:00Z",
+          "status": "scheduled",
+          "venue": "Smoothie King Center",
+          "season": 2027,
+          "homeTeam": {
+            "id": "3",
+            "name": "New Orleans Pelicans",
+            "abbreviation": "NO"
+          },
+          "awayTeam": {
+            "id": "11",
+            "name": "Indiana Pacers",
+            "abbreviation": "IND"
+          }
+        },
+        "prediction": {
+          "gameId": "401909839",
+          "predictedHomeScore": 114.2,
+          "predictedAwayScore": 112.5,
+          "predictedSpread": -1,
+          "predictedTotal": 226.7,
+          "homeWinProbability": 0.5686413918836677,
+          "confidence": 0.5,
+          "vegasSpread": 3.5,
+          "vegasTotal": 242.5,
+          "lineMovement": {
+            "openingSpread": 4.5,
+            "openingTotal": 243.5,
+            "lastSeenSpread": 3.5,
+            "lastSeenTotal": 242.5,
+            "lastUpdatedAt": "2026-10-16T03:00:56.149Z"
+          },
+          "spreadEdge": -4.5,
+          "totalEdge": -16,
+          "atsConfidence": "low",
+          "ouConfidence": "high",
+          "mlConfidence": "low",
+          "isAtsBestBet": false,
+          "isOuBestBet": true,
+          "isMlBestBet": false,
+          "mlEdge": 6.9,
+          "isDivisional": false,
+          "isLateSeasonGame": false,
+          "isLargeSpread": false,
+          "isSmallSpread": false,
+          "isMediumSpread": true,
+          "isEloMismatch": false,
+          "sixtyPlusFactors": 0,
+          "eloDiff": 0,
+          "conviction": {
+            "level": "moderate",
+            "isHighConviction": false,
+            "expectedWinPct": 52,
+            "picksVegasFavorite": false,
+            "eloAligned": false,
+            "eloGap": 0,
+            "restFavorsPick": false
+          },
+          "restDays": {
+            "home": 4,
+            "away": 4,
+            "homeIsB2B": false,
+            "awayIsB2B": false,
+            "advantage": "even",
+            "adjustment": 0
+          },
+          "liveOdds": {
+            "consensusTotal": 242.5,
+            "consensusOverOdds": -110,
+            "consensusUnderOdds": -109,
+            "bookmakers": [
+              {
+                "name": "DraftKings",
+                "total": 242.5,
+                "overOdds": -115,
+                "underOdds": -105
+              },
+              {
+                "name": "Bovada",
+                "total": 242,
+                "overOdds": -110,
+                "underOdds": -110
+              },
+              {
+                "name": "BetMGM",
+                "total": 242.5,
+                "overOdds": -110,
+                "underOdds": -110
+              },
+              {
+                "name": "Caesars",
+                "total": 241.5,
+                "overOdds": -110,
+                "underOdds": -110
+              },
+              {
+                "name": "LowVig.ag",
+                "total": 242.5,
+                "overOdds": -107,
+                "underOdds": -107
+              },
+              {
+                "name": "BetOnline.ag",
+                "total": 242.5,
+                "overOdds": -110,
+                "underOdds": -110
+              },
+              {
+                "name": "BetRivers",
+                "total": 242.5,
+                "overOdds": -112,
+                "underOdds": -112
+              },
+              {
+                "name": "FanDuel",
+                "total": 242.5,
+                "overOdds": -110,
+                "underOdds": -110
+              },
+              {
+                "name": "MyBookie.ag",
+                "total": 242.5,
+                "overOdds": -110,
+                "underOdds": -110
+              },
+              {
+                "name": "Fanatics",
+                "total": 242.5,
+                "overOdds": -110,
+                "underOdds": -110
+              }
+            ],
+            "lastUpdated": "2026-10-16T03:00:56.228Z"
+          },
+          "calc": {
+            "homePPG": 111.666664,
+            "homePPGAllowed": 111.666664,
+            "awayPPG": 117.333336,
+            "awayPPGAllowed": 115,
+            "regHomePPG": 111.8,
+            "regHomePPGAllowed": 111.8,
+            "regAwayPPG": 115.7,
+            "regAwayPPGAllowed": 114.1,
+            "baseHomeScore": 112.9,
+            "baseAwayScore": 113.8,
+            "homeElo": 1500,
+            "awayElo": 1500,
+            "eloDiff": 0,
+            "eloAdj": 0,
+            "homeCourtAdv": 2.5
+          }
+        }
+      },
+      {
+        "game": {
+          "id": "401909840",
+          "homeTeamId": "10",
+          "awayTeamId": "6",
+          "gameTime": "2026-10-22T00:30Z",
+          "status": "scheduled",
+          "venue": "Toyota Center (Houston)",
+          "season": 2027,
+          "homeTeam": {
+            "id": "10",
+            "name": "Houston Rockets",
+            "abbreviation": "HOU"
+          },
+          "awayTeam": {
+            "id": "6",
+            "name": "Dallas Mavericks",
+            "abbreviation": "DAL"
+          }
+        },
+        "prediction": {
+          "gameId": "401909840",
+          "predictedHomeScore": 118.5,
+          "predictedAwayScore": 112.2,
+          "predictedSpread": -4,
+          "predictedTotal": 230.7,
+          "homeWinProbability": 0.5686413918836677,
+          "confidence": 0.5,
+          "vegasSpread": -7.5,
+          "vegasTotal": 226.5,
+          "lineMovement": {
+            "openingSpread": -8.5,
+            "openingTotal": 227.5,
+            "lastSeenSpread": -7.5,
+            "lastSeenTotal": 226.5,
+            "lastUpdatedAt": "2026-10-16T03:00:56.235Z"
+          },
+          "spreadEdge": 3.5,
+          "totalEdge": 4,
+          "atsConfidence": "high",
+          "ouConfidence": "medium",
+          "mlConfidence": "low",
+          "isAtsBestBet": true,
+          "isOuBestBet": false,
+          "isMlBestBet": false,
+          "mlEdge": 6.9,
+          "isDivisional": true,
+          "isLateSeasonGame": false,
+          "isLargeSpread": true,
+          "isSmallSpread": false,
+          "isMediumSpread": false,
+          "isEloMismatch": false,
+          "sixtyPlusFactors": 2,
+          "eloDiff": 0,
+          "conviction": {
+            "level": "low",
+            "isHighConviction": false,
+            "expectedWinPct": 52,
+            "picksVegasFavorite": false,
+            "eloAligned": true,
+            "eloGap": 0,
+            "restFavorsPick": false,
+            "avoidReason": "HOU at home historically unpredictable"
+          },
+          "restDays": {
+            "home": 5,
+            "away": 4,
+            "homeIsB2B": false,
+            "awayIsB2B": false,
+            "advantage": "home",
+            "adjustment": 0.5
+          },
+          "liveOdds": {
+            "consensusTotal": 228.5,
+            "consensusOverOdds": -111,
+            "consensusUnderOdds": -108,
+            "bookmakers": [
+              {
+                "name": "DraftKings",
+                "total": 226.5,
+                "overOdds": -115,
+                "underOdds": -105
+              },
+              {
+                "name": "Bovada",
+                "total": 229,
+                "overOdds": -110,
+                "underOdds": -110
+              },
+              {
+                "name": "BetMGM",
+                "total": 228.5,
+                "overOdds": -115,
+                "underOdds": -105
+              },
+              {
+                "name": "Caesars",
+                "total": 228.5,
+                "overOdds": -115,
+                "underOdds": -105
+              },
+              {
+                "name": "LowVig.ag",
+                "total": 228.5,
+                "overOdds": -107,
+                "underOdds": -107
+              },
+              {
+                "name": "BetOnline.ag",
+                "total": 228.5,
+                "overOdds": -110,
+                "underOdds": -110
+              },
+              {
+                "name": "BetRivers",
+                "total": 228.5,
+                "overOdds": -113,
+                "underOdds": -110
+              },
+              {
+                "name": "FanDuel",
+                "total": 230.5,
+                "overOdds": -110,
+                "underOdds": -110
+              },
+              {
+                "name": "MyBookie.ag",
+                "total": 228,
+                "overOdds": -110,
+                "underOdds": -110
+              },
+              {
+                "name": "Fanatics",
+                "total": 228.5,
+                "overOdds": -110,
+                "underOdds": -110
+              }
+            ],
+            "lastUpdated": "2026-10-16T03:00:56.368Z"
+          },
+          "calc": {
+            "homePPG": 122,
+            "homePPGAllowed": 112.666664,
+            "awayPPG": 115.333336,
+            "awayPPGAllowed": 117,
+            "regHomePPG": 119,
+            "regHomePPGAllowed": 112.5,
+            "regAwayPPG": 114.3,
+            "regAwayPPGAllowed": 115.5,
+            "baseHomeScore": 117.3,
+            "baseAwayScore": 113.4,
+            "homeElo": 1500,
+            "awayElo": 1500,
+            "eloDiff": 0,
+            "eloAdj": 0,
+            "homeCourtAdv": 2.5
+          }
+        }
+      },
+      {
+        "game": {
+          "id": "401909092",
+          "homeTeamId": "13",
+          "awayTeamId": "9",
+          "gameTime": "2026-10-22T02:00Z",
+          "status": "scheduled",
+          "venue": "crypto.com Arena",
+          "season": 2027,
+          "homeTeam": {
+            "id": "13",
+            "name": "Los Angeles Lakers",
+            "abbreviation": "LAL"
+          },
+          "awayTeam": {
+            "id": "9",
+            "name": "Golden State Warriors",
+            "abbreviation": "GS"
+          }
+        },
+        "prediction": {
+          "gameId": "401909092",
+          "predictedHomeScore": 108.7,
+          "predictedAwayScore": 109.5,
+          "predictedSpread": 0.5,
+          "predictedTotal": 218.2,
+          "homeWinProbability": 0.5686413918836677,
+          "confidence": 0.5,
+          "vegasSpread": -5.5,
+          "vegasTotal": 235.5,
+          "lineMovement": {
+            "openingSpread": -5.5,
+            "openingTotal": 235.5,
+            "lastSeenSpread": -5.5,
+            "lastSeenTotal": 235.5,
+            "lastUpdatedAt": "2026-10-16T03:00:56.374Z"
+          },
+          "spreadEdge": 6,
+          "totalEdge": -17.5,
+          "atsConfidence": "low",
+          "ouConfidence": "high",
+          "mlConfidence": "low",
+          "isAtsBestBet": false,
+          "isOuBestBet": true,
+          "isMlBestBet": false,
+          "mlEdge": 6.9,
+          "isDivisional": true,
+          "isLateSeasonGame": false,
+          "isLargeSpread": false,
+          "isSmallSpread": false,
+          "isMediumSpread": true,
+          "isEloMismatch": false,
+          "sixtyPlusFactors": 1,
+          "eloDiff": 0,
+          "conviction": {
+            "level": "low",
+            "isHighConviction": false,
+            "expectedWinPct": 52,
+            "picksVegasFavorite": false,
+            "eloAligned": true,
+            "eloGap": 0,
+            "restFavorsPick": true
+          },
+          "restDays": {
+            "home": 3,
+            "away": 4,
+            "homeIsB2B": false,
+            "awayIsB2B": false,
+            "advantage": "away",
+            "adjustment": -0.5
+          },
+          "liveOdds": {
+            "consensusTotal": 235,
+            "consensusOverOdds": -111,
+            "consensusUnderOdds": -109,
+            "bookmakers": [
+              {
+                "name": "DraftKings",
+                "total": 235.5,
+                "overOdds": -110,
+                "underOdds": -110
+              },
+              {
+                "name": "FanDuel",
+                "total": 235.5,
+                "overOdds": -115,
+                "underOdds": -105
+              },
+              {
+                "name": "Bovada",
+                "total": 234.5,
+                "overOdds": -110,
+                "underOdds": -110
+              },
+              {
+                "name": "Caesars",
+                "total": 235.5,
+                "overOdds": -110,
+                "underOdds": -110
+              },
+              {
+                "name": "BetMGM",
+                "total": 234.5,
+                "overOdds": -115,
+                "underOdds": -105
+              },
+              {
+                "name": "LowVig.ag",
+                "total": 234,
+                "overOdds": -107,
+                "underOdds": -107
+              },
+              {
+                "name": "BetOnline.ag",
+                "total": 234,
+                "overOdds": -110,
+                "underOdds": -110
+              },
+              {
+                "name": "BetRivers",
+                "total": 235,
+                "overOdds": -109,
+                "underOdds": -114
+              },
+              {
+                "name": "MyBookie.ag",
+                "total": 235,
+                "overOdds": -110,
+                "underOdds": -110
+              },
+              {
+                "name": "Fanatics",
+                "total": 235.5,
+                "overOdds": -110,
+                "underOdds": -110
+              }
+            ],
+            "lastUpdated": "2026-10-16T03:00:56.446Z"
+          },
+          "calc": {
+            "homePPG": 107,
+            "homePPGAllowed": 109.5,
+            "awayPPG": 111,
+            "awayPPGAllowed": 104,
+            "regHomePPG": 108.5,
+            "regHomePPGAllowed": 110.3,
+            "regAwayPPG": 111.3,
+            "regAwayPPGAllowed": 106.4,
+            "baseHomeScore": 107.5,
+            "baseAwayScore": 110.8,
+            "homeElo": 1500,
+            "awayElo": 1500,
+            "eloDiff": 0,
+            "eloAdj": 0,
+            "homeCourtAdv": 2.5
+          }
+        }
+      },
+      {
+        "game": {
+          "id": "401909841",
+          "homeTeamId": "22",
+          "awayTeamId": "21",
+          "gameTime": "2026-10-22T02:00Z",
+          "status": "scheduled",
+          "venue": "Moda Center",
+          "season": 2027,
+          "homeTeam": {
+            "id": "22",
+            "name": "Portland Trail Blazers",
+            "abbreviation": "POR"
+          },
+          "awayTeam": {
+            "id": "21",
+            "name": "Phoenix Suns",
+            "abbreviation": "PHX"
+          }
+        },
+        "prediction": {
+          "gameId": "401909841",
+          "predictedHomeScore": 115.6,
+          "predictedAwayScore": 102.8,
+          "predictedSpread": -8.5,
+          "predictedTotal": 218.39999999999998,
+          "homeWinProbability": 0.5686413918836677,
+          "confidence": 0.5,
+          "vegasSpread": -4.5,
+          "vegasTotal": 235.5,
+          "lineMovement": {
+            "openingSpread": -4.5,
+            "openingTotal": 235.5,
+            "lastSeenSpread": -4.5,
+            "lastSeenTotal": 235.5,
+            "lastUpdatedAt": "2026-10-16T03:00:56.452Z"
+          },
+          "spreadEdge": -4,
+          "totalEdge": -17,
+          "atsConfidence": "low",
+          "ouConfidence": "high",
+          "mlConfidence": "low",
+          "isAtsBestBet": false,
+          "isOuBestBet": true,
+          "isMlBestBet": false,
+          "mlEdge": 6.9,
+          "isDivisional": false,
+          "isLateSeasonGame": false,
+          "isLargeSpread": false,
+          "isSmallSpread": false,
+          "isMediumSpread": true,
+          "isEloMismatch": false,
+          "sixtyPlusFactors": 0,
+          "eloDiff": 0,
+          "conviction": {
+            "level": "moderate",
+            "isHighConviction": false,
+            "expectedWinPct": 52,
+            "picksVegasFavorite": true,
+            "eloAligned": false,
+            "eloGap": 0,
+            "restFavorsPick": false
+          },
+          "restDays": {
+            "home": 4,
+            "away": 4,
+            "homeIsB2B": false,
+            "awayIsB2B": false,
+            "advantage": "even",
+            "adjustment": 0
+          },
+          "liveOdds": {
+            "consensusTotal": 234.5,
+            "consensusOverOdds": -110,
+            "consensusUnderOdds": -110,
+            "bookmakers": [
+              {
+                "name": "DraftKings",
+                "total": 235.5,
+                "overOdds": -110,
+                "underOdds": -110
+              },
+              {
+                "name": "Bovada",
+                "total": 234.5,
+                "overOdds": -110,
+                "underOdds": -110
+              },
+              {
+                "name": "BetMGM",
+                "total": 234.5,
+                "overOdds": -110,
+                "underOdds": -110
+              },
+              {
+                "name": "Caesars",
+                "total": 235,
+                "overOdds": -110,
+                "underOdds": -110
+              },
+              {
+                "name": "LowVig.ag",
+                "total": 235,
+                "overOdds": -107,
+                "underOdds": -107
+              },
+              {
+                "name": "BetOnline.ag",
+                "total": 235,
+                "overOdds": -110,
+                "underOdds": -110
+              },
+              {
+                "name": "BetRivers",
+                "total": 234,
+                "overOdds": -113,
+                "underOdds": -110
+              },
+              {
+                "name": "FanDuel",
+                "total": 233.5,
+                "overOdds": -110,
+                "underOdds": -110
+              },
+              {
+                "name": "MyBookie.ag",
+                "total": 234.5,
+                "overOdds": -110,
+                "underOdds": -110
+              },
+              {
+                "name": "Fanatics",
+                "total": 234.5,
+                "overOdds": -110,
+                "underOdds": -110
+              }
+            ],
+            "lastUpdated": "2026-10-16T03:00:56.531Z"
+          },
+          "calc": {
+            "homePPG": 117.333336,
+            "homePPGAllowed": 94,
+            "awayPPG": 107.25,
+            "awayPPGAllowed": 113.5,
+            "regHomePPG": 115.7,
+            "regHomePPGAllowed": 99.4,
+            "regAwayPPG": 108.7,
+            "regAwayPPGAllowed": 113,
+            "baseHomeScore": 114.4,
+            "baseAwayScore": 104,
+            "homeElo": 1500,
+            "awayElo": 1500,
+            "eloDiff": 0,
+            "eloAdj": 0,
+            "homeCourtAdv": 2.5
+          }
+        }
+      },
+      {
+        "game": {
+          "id": "401909842",
+          "homeTeamId": "12",
+          "awayTeamId": "23",
+          "gameTime": "2026-10-22T02:30Z",
+          "status": "scheduled",
+          "venue": "Intuit Dome",
+          "season": 2027,
+          "homeTeam": {
+            "id": "12",
+            "name": "LA Clippers",
+            "abbreviation": "LAC"
+          },
+          "awayTeam": {
+            "id": "23",
+            "name": "Sacramento Kings",
+            "abbreviation": "SAC"
+          }
+        },
+        "prediction": {
+          "gameId": "401909842",
+          "predictedHomeScore": 114,
+          "predictedAwayScore": 106.8,
+          "predictedSpread": -4.5,
+          "predictedTotal": 220.8,
+          "homeWinProbability": 0.5686413918836677,
+          "confidence": 0.5,
+          "vegasSpread": -4.5,
+          "vegasTotal": 230.5,
+          "lineMovement": {
+            "openingSpread": -4.5,
+            "openingTotal": 230.5,
+            "lastSeenSpread": -4.5,
+            "lastSeenTotal": 230.5,
+            "lastUpdatedAt": "2026-10-16T03:00:56.537Z"
+          },
+          "spreadEdge": 0,
+          "totalEdge": -9.5,
+          "atsConfidence": "low",
+          "ouConfidence": "high",
+          "mlConfidence": "low",
+          "isAtsBestBet": false,
+          "isOuBestBet": true,
+          "isMlBestBet": false,
+          "mlEdge": 6.9,
+          "isDivisional": true,
+          "isLateSeasonGame": false,
+          "isLargeSpread": false,
+          "isSmallSpread": false,
+          "isMediumSpread": true,
+          "isEloMismatch": false,
+          "sixtyPlusFactors": 1,
+          "eloDiff": 0,
+          "conviction": {
+            "level": "low",
+            "isHighConviction": false,
+            "expectedWinPct": 52,
+            "picksVegasFavorite": false,
+            "eloAligned": true,
+            "eloGap": 0,
+            "restFavorsPick": false,
+            "avoidReason": "SAC on road historically unpredictable"
+          },
+          "restDays": {
+            "home": 6,
+            "away": 4,
+            "homeIsB2B": false,
+            "awayIsB2B": false,
+            "advantage": "home",
+            "adjustment": 1
+          },
+          "liveOdds": {
+            "consensusTotal": 230.5,
+            "consensusOverOdds": -110,
+            "consensusUnderOdds": -110,
+            "bookmakers": [
+              {
+                "name": "FanDuel",
+                "total": 230.5,
+                "overOdds": -110,
+                "underOdds": -110
+              },
+              {
+                "name": "BetMGM",
+                "total": 230.5,
+                "overOdds": -110,
+                "underOdds": -110
+              },
+              {
+                "name": "DraftKings",
+                "total": 230.5,
+                "overOdds": -110,
+                "underOdds": -110
+              },
+              {
+                "name": "BetRivers",
+                "total": 230.5,
+                "overOdds": -110,
+                "underOdds": -113
+              },
+              {
+                "name": "Caesars",
+                "total": 230.5,
+                "overOdds": -110,
+                "underOdds": -110
+              },
+              {
+                "name": "Fanatics",
+                "total": 230.5,
+                "overOdds": -110,
+                "underOdds": -110
+              },
+              {
+                "name": "MyBookie.ag",
+                "total": 230.5,
+                "overOdds": -110,
+                "underOdds": -110
+              }
+            ],
+            "lastUpdated": "2026-10-16T03:00:56.622Z"
+          },
+          "calc": {
+            "homePPG": 110.666664,
+            "homePPGAllowed": 108.333336,
+            "awayPPG": 104.25,
+            "awayPPGAllowed": 115.5,
+            "regHomePPG": 111.1,
+            "regHomePPGAllowed": 109.4,
+            "regAwayPPG": 106.6,
+            "regAwayPPGAllowed": 114.5,
+            "baseHomeScore": 112.8,
+            "baseAwayScore": 108,
+            "homeElo": 1500,
+            "awayElo": 1500,
+            "eloDiff": 0,
+            "eloAdj": 0,
+            "homeCourtAdv": 2.5
+          }
+        }
+      },
+      {
+        "game": {
+          "id": "401909093",
+          "homeTeamId": "20",
+          "awayTeamId": "5",
+          "gameTime": "2026-10-22T23:00Z",
+          "status": "scheduled",
+          "venue": "Xfinity Mobile Arena",
+          "season": 2027,
+          "homeTeam": {
+            "id": "20",
+            "name": "Philadelphia 76ers",
+            "abbreviation": "PHI"
+          },
+          "awayTeam": {
+            "id": "5",
+            "name": "Cleveland Cavaliers",
+            "abbreviation": "CLE"
+          }
+        },
+        "prediction": {
+          "gameId": "401909093",
+          "predictedHomeScore": 115.9,
+          "predictedAwayScore": 114.4,
+          "predictedSpread": -1,
+          "predictedTotal": 230.3,
+          "homeWinProbability": 0.5686413918836677,
+          "confidence": 0.5,
+          "vegasSpread": -4.5,
+          "vegasTotal": 233.5,
+          "lineMovement": {
+            "openingSpread": -4.5,
+            "openingTotal": 233.5,
+            "lastSeenSpread": -4.5,
+            "lastSeenTotal": 233.5,
+            "lastUpdatedAt": "2026-10-16T03:00:56.628Z"
+          },
+          "spreadEdge": 3.5,
+          "totalEdge": -3,
+          "atsConfidence": "low",
+          "ouConfidence": "medium",
+          "mlConfidence": "low",
+          "isAtsBestBet": false,
+          "isOuBestBet": false,
+          "isMlBestBet": false,
+          "mlEdge": 6.9,
+          "isDivisional": false,
+          "isLateSeasonGame": false,
+          "isLargeSpread": false,
+          "isSmallSpread": false,
+          "isMediumSpread": true,
+          "isEloMismatch": false,
+          "sixtyPlusFactors": 0,
+          "eloDiff": 0,
+          "conviction": {
+            "level": "low",
+            "isHighConviction": false,
+            "expectedWinPct": 52,
+            "picksVegasFavorite": false,
+            "eloAligned": true,
+            "eloGap": 0,
+            "restFavorsPick": true
+          },
+          "restDays": {
+            "home": 5,
+            "away": 8,
+            "homeIsB2B": false,
+            "awayIsB2B": false,
+            "advantage": "away",
+            "adjustment": -1
+          },
+          "liveOdds": {
+            "consensusTotal": 231.5,
+            "consensusOverOdds": -109,
+            "consensusUnderOdds": -110,
+            "bookmakers": [
+              {
+                "name": "FanDuel",
+                "total": 232.5,
+                "overOdds": -106,
+                "underOdds": -114
+              },
+              {
+                "name": "BetRivers",
+                "total": 231.5,
+                "overOdds": -112,
+                "underOdds": -112
+              },
+              {
+                "name": "BetMGM",
+                "total": 231.5,
+                "overOdds": -110,
+                "underOdds": -110
+              },
+              {
+                "name": "DraftKings",
+                "total": 231.5,
+                "overOdds": -110,
+                "underOdds": -110
+              },
+              {
+                "name": "Caesars",
+                "total": 232,
+                "overOdds": -110,
+                "underOdds": -110
+              },
+              {
+                "name": "BetOnline.ag",
+                "total": 231.5,
+                "overOdds": -110,
+                "underOdds": -110
+              },
+              {
+                "name": "LowVig.ag",
+                "total": 231.5,
+                "overOdds": -107,
+                "underOdds": -107
+              },
+              {
+                "name": "Bovada",
+                "total": 230.5,
+                "overOdds": -110,
+                "underOdds": -110
+              },
+              {
+                "name": "Fanatics",
+                "total": 231.5,
+                "overOdds": -110,
+                "underOdds": -110
+              },
+              {
+                "name": "MyBookie.ag",
+                "total": 231,
+                "overOdds": -110,
+                "underOdds": -110
+              }
+            ],
+            "lastUpdated": "2026-10-16T03:00:56.669Z"
+          },
+          "calc": {
+            "homePPG": 111.333336,
+            "homePPGAllowed": 118.333336,
+            "awayPPG": 116,
+            "awayPPGAllowed": 120.333336,
+            "regHomePPG": 111.5,
+            "regHomePPGAllowed": 116.4,
+            "regAwayPPG": 114.8,
+            "regAwayPPGAllowed": 117.8,
+            "baseHomeScore": 114.7,
+            "baseAwayScore": 115.6,
+            "homeElo": 1500,
+            "awayElo": 1500,
+            "eloDiff": 0,
+            "eloAdj": 0,
+            "homeCourtAdv": 2.5
+          }
+        }
+      },
+      {
+        "game": {
+          "id": "401909094",
+          "homeTeamId": "25",
+          "awayTeamId": "7",
+          "gameTime": "2026-10-23T01:30Z",
+          "status": "scheduled",
+          "venue": "Paycom Center",
+          "season": 2027,
+          "homeTeam": {
+            "id": "25",
+            "name": "Oklahoma City Thunder",
+            "abbreviation": "OKC"
+          },
+          "awayTeam": {
+            "id": "7",
+            "name": "Denver Nuggets",
+            "abbreviation": "DEN"
+          }
+        },
+        "prediction": {
+          "gameId": "401909094",
+          "predictedHomeScore": 114,
+          "predictedAwayScore": 113.3,
+          "predictedSpread": -0.5,
+          "predictedTotal": 227.3,
+          "homeWinProbability": 0.5686413918836677,
+          "confidence": 0.5,
+          "vegasSpread": -7.5,
+          "vegasTotal": 232.5,
+          "lineMovement": {
+            "openingSpread": -7.5,
+            "openingTotal": 232.5,
+            "lastSeenSpread": -7.5,
+            "lastSeenTotal": 232.5,
+            "lastUpdatedAt": "2026-10-16T03:00:56.675Z"
+          },
+          "spreadEdge": 7,
+          "totalEdge": -5,
+          "atsConfidence": "high",
+          "ouConfidence": "medium",
+          "mlConfidence": "low",
+          "isAtsBestBet": true,
+          "isOuBestBet": false,
+          "isMlBestBet": false,
+          "mlEdge": 6.9,
+          "isDivisional": true,
+          "isLateSeasonGame": false,
+          "isLargeSpread": true,
+          "isSmallSpread": false,
+          "isMediumSpread": false,
+          "isEloMismatch": false,
+          "sixtyPlusFactors": 2,
+          "eloDiff": 0,
+          "conviction": {
+            "level": "low",
+            "isHighConviction": false,
+            "expectedWinPct": 52,
+            "picksVegasFavorite": false,
+            "eloAligned": true,
+            "eloGap": 0,
+            "restFavorsPick": false,
+            "avoidReason": "OKC at home historically unpredictable"
+          },
+          "restDays": {
+            "home": 6,
+            "away": 4,
+            "homeIsB2B": false,
+            "awayIsB2B": false,
+            "advantage": "home",
+            "adjustment": 1
+          },
+          "liveOdds": {
+            "consensusTotal": 231.5,
+            "consensusOverOdds": -110,
+            "consensusUnderOdds": -110,
+            "bookmakers": [
+              {
+                "name": "FanDuel",
+                "total": 231.5,
+                "overOdds": -115,
+                "underOdds": -105
+              },
+              {
+                "name": "BetRivers",
+                "total": 231.5,
+                "overOdds": -114,
+                "underOdds": -109
+              },
+              {
+                "name": "BetMGM",
+                "total": 232.5,
+                "overOdds": -105,
+                "underOdds": -115
+              },
+              {
+                "name": "DraftKings",
+                "total": 231.5,
+                "overOdds": -110,
+                "underOdds": -110
+              },
+              {
+                "name": "Caesars",
+                "total": 231.5,
+                "overOdds": -110,
+                "underOdds": -110
+              },
+              {
+                "name": "BetOnline.ag",
+                "total": 231.5,
+                "overOdds": -110,
+                "underOdds": -110
+              },
+              {
+                "name": "LowVig.ag",
+                "total": 231.5,
+                "overOdds": -107,
+                "underOdds": -107
+              },
+              {
+                "name": "Bovada",
+                "total": 232,
+                "overOdds": -110,
+                "underOdds": -110
+              },
+              {
+                "name": "Fanatics",
+                "total": 231.5,
+                "overOdds": -110,
+                "underOdds": -110
+              },
+              {
+                "name": "MyBookie.ag",
+                "total": 231.5,
+                "overOdds": -110,
+                "underOdds": -110
+              }
+            ],
+            "lastUpdated": "2026-10-16T03:00:56.725Z"
+          },
+          "calc": {
+            "homePPG": 109.8,
+            "homePPGAllowed": 117,
+            "awayPPG": 114.25,
+            "awayPPGAllowed": 116.25,
+            "regHomePPG": 110.5,
+            "regHomePPGAllowed": 115.5,
+            "regAwayPPG": 113.6,
+            "regAwayPPGAllowed": 115,
+            "baseHomeScore": 112.7,
+            "baseAwayScore": 114.5,
+            "homeElo": 1500,
+            "awayElo": 1500,
+            "eloDiff": 0,
+            "eloAdj": 0,
+            "homeCourtAdv": 2.5
+          }
+        }
+      }
+    ],
+    "teams": [
+      {
+        "id": "1",
+        "name": "Atlanta Hawks",
+        "abbreviation": "ATL",
+        "sport": "nba",
+        "eloRating": 1500,
+        "ppgAllowed": 118.75,
+        "ppg": 119.5,
+        "updatedAt": "2026-10-16T02:30:54.766Z"
+      },
+      {
+        "id": "10",
+        "name": "Houston Rockets",
+        "abbreviation": "HOU",
+        "sport": "nba",
+        "eloRating": 1500,
+        "ppgAllowed": 112.666664,
+        "ppg": 122,
+        "updatedAt": "2026-10-16T02:30:54.766Z"
+      },
+      {
+        "id": "11",
+        "name": "Indiana Pacers",
+        "abbreviation": "IND",
+        "sport": "nba",
+        "eloRating": 1500,
+        "ppgAllowed": 115,
+        "ppg": 117.333336,
+        "updatedAt": "2026-10-16T02:30:54.766Z"
+      },
+      {
+        "id": "12",
+        "name": "LA Clippers",
+        "abbreviation": "LAC",
+        "sport": "nba",
+        "eloRating": 1500,
+        "ppgAllowed": 108.333336,
+        "ppg": 110.666664,
+        "updatedAt": "2026-10-16T02:30:54.766Z"
+      },
+      {
+        "id": "13",
+        "name": "Los Angeles Lakers",
+        "abbreviation": "LAL",
+        "sport": "nba",
+        "eloRating": 1500,
+        "ppgAllowed": 109.5,
+        "ppg": 107,
+        "updatedAt": "2026-10-16T02:30:54.766Z"
+      },
+      {
+        "id": "14",
+        "name": "Miami Heat",
+        "abbreviation": "MIA",
+        "sport": "nba",
+        "eloRating": 1500,
+        "ppgAllowed": 119,
+        "ppg": 131.25,
+        "updatedAt": "2026-10-16T02:30:54.766Z"
+      },
+      {
+        "id": "15",
+        "name": "Milwaukee Bucks",
+        "abbreviation": "MIL",
+        "sport": "nba",
+        "eloRating": 1500,
+        "ppgAllowed": 118,
+        "ppg": 104.75,
+        "updatedAt": "2026-10-16T02:30:54.766Z"
+      },
+      {
+        "id": "16",
+        "name": "Minnesota Timberwolves",
+        "abbreviation": "MIN",
+        "sport": "nba",
+        "eloRating": 1500,
+        "ppgAllowed": 115.2,
+        "ppg": 116.2,
+        "updatedAt": "2026-10-16T02:30:54.766Z"
+      },
+      {
+        "id": "17",
+        "name": "Brooklyn Nets",
+        "abbreviation": "BKN",
+        "sport": "nba",
+        "eloRating": 1500,
+        "ppgAllowed": 116,
+        "ppg": 124.25,
+        "updatedAt": "2026-10-16T02:30:54.766Z"
+      },
+      {
+        "id": "18",
+        "name": "New York Knicks",
+        "abbreviation": "NY",
+        "sport": "nba",
+        "eloRating": 1500,
+        "ppgAllowed": 124.2,
+        "ppg": 106,
+        "updatedAt": "2026-10-16T02:30:54.766Z"
+      },
+      {
+        "id": "19",
+        "name": "Orlando Magic",
+        "abbreviation": "ORL",
+        "sport": "nba",
+        "eloRating": 1500,
+        "ppgAllowed": 117.666664,
+        "ppg": 119.666664,
+        "updatedAt": "2026-10-16T02:30:54.766Z"
+      },
+      {
+        "id": "2",
+        "name": "Boston Celtics",
+        "abbreviation": "BOS",
+        "sport": "nba",
+        "eloRating": 1500,
+        "ppgAllowed": 104,
+        "ppg": 127.333336,
+        "updatedAt": "2026-10-16T02:30:54.766Z"
+      },
+      {
+        "id": "20",
+        "name": "Philadelphia 76ers",
+        "abbreviation": "PHI",
+        "sport": "nba",
+        "eloRating": 1500,
+        "ppgAllowed": 118.333336,
+        "ppg": 111.333336,
+        "updatedAt": "2026-10-16T02:30:54.766Z"
+      },
+      {
+        "id": "21",
+        "name": "Phoenix Suns",
+        "abbreviation": "PHX",
+        "sport": "nba",
+        "eloRating": 1500,
+        "ppgAllowed": 113.5,
+        "ppg": 107.25,
+        "updatedAt": "2026-10-16T02:30:54.766Z"
+      },
+      {
+        "id": "22",
+        "name": "Portland Trail Blazers",
+        "abbreviation": "POR",
+        "sport": "nba",
+        "eloRating": 1500,
+        "ppgAllowed": 94,
+        "ppg": 117.333336,
+        "updatedAt": "2026-10-16T02:30:54.766Z"
+      },
+      {
+        "id": "23",
+        "name": "Sacramento Kings",
+        "abbreviation": "SAC",
+        "sport": "nba",
+        "eloRating": 1500,
+        "ppgAllowed": 115.5,
+        "ppg": 104.25,
+        "updatedAt": "2026-10-16T02:30:54.766Z"
+      },
+      {
+        "id": "24",
+        "name": "San Antonio Spurs",
+        "abbreviation": "SA",
+        "sport": "nba",
+        "eloRating": 1500,
+        "ppgAllowed": 111.75,
+        "ppg": 111.5,
+        "updatedAt": "2026-10-16T02:30:54.766Z"
+      },
+      {
+        "id": "25",
+        "name": "Oklahoma City Thunder",
+        "abbreviation": "OKC",
+        "sport": "nba",
+        "eloRating": 1500,
+        "ppgAllowed": 117,
+        "ppg": 109.8,
+        "updatedAt": "2026-10-16T02:30:54.766Z"
+      },
+      {
+        "id": "26",
+        "name": "Utah Jazz",
+        "abbreviation": "UTAH",
+        "sport": "nba",
+        "eloRating": 1500,
+        "ppgAllowed": 107.666664,
+        "ppg": 111.333336,
+        "updatedAt": "2026-10-16T02:30:54.766Z"
+      },
+      {
+        "id": "27",
+        "name": "Washington Wizards",
+        "abbreviation": "WSH",
+        "sport": "nba",
+        "eloRating": 1500,
+        "ppgAllowed": 116,
+        "ppg": 115.666664,
+        "updatedAt": "2026-10-16T02:30:54.766Z"
+      },
+      {
+        "id": "28",
+        "name": "Toronto Raptors",
+        "abbreviation": "TOR",
+        "sport": "nba",
+        "eloRating": 1500,
+        "ppgAllowed": 113.75,
+        "ppg": 121.75,
+        "updatedAt": "2026-10-16T02:30:54.766Z"
+      },
+      {
+        "id": "29",
+        "name": "Memphis Grizzlies",
+        "abbreviation": "MEM",
+        "sport": "nba",
+        "eloRating": 1500,
+        "ppgAllowed": 115,
+        "ppg": 118,
+        "updatedAt": "2026-10-16T02:30:54.766Z"
+      },
+      {
+        "id": "3",
+        "name": "New Orleans Pelicans",
+        "abbreviation": "NO",
+        "sport": "nba",
+        "eloRating": 1500,
+        "ppgAllowed": 111.666664,
+        "ppg": 111.666664,
+        "updatedAt": "2026-10-16T02:30:54.766Z"
+      },
+      {
+        "id": "30",
+        "name": "Charlotte Hornets",
+        "abbreviation": "CHA",
+        "sport": "nba",
+        "eloRating": 1500,
+        "ppgAllowed": 109.333336,
+        "ppg": 96,
+        "updatedAt": "2026-10-16T02:30:54.766Z"
+      },
+      {
+        "id": "4",
+        "name": "Chicago Bulls",
+        "abbreviation": "CHI",
+        "sport": "nba",
+        "eloRating": 1500,
+        "ppgAllowed": 114.5,
+        "ppg": 119.25,
+        "updatedAt": "2026-10-16T02:30:54.766Z"
+      },
+      {
+        "id": "5",
+        "name": "Cleveland Cavaliers",
+        "abbreviation": "CLE",
+        "sport": "nba",
+        "eloRating": 1500,
+        "ppg": 116,
+        "ppgAllowed": 120.333336,
+        "updatedAt": "2026-10-16T02:30:54.766Z"
+      },
+      {
+        "id": "6",
+        "name": "Dallas Mavericks",
+        "abbreviation": "DAL",
+        "sport": "nba",
+        "eloRating": 1500,
+        "ppgAllowed": 117,
+        "ppg": 115.333336,
+        "updatedAt": "2026-10-16T02:30:54.766Z"
+      },
+      {
+        "id": "7",
+        "name": "Denver Nuggets",
+        "abbreviation": "DEN",
+        "sport": "nba",
+        "eloRating": 1500,
+        "ppgAllowed": 116.25,
+        "ppg": 114.25,
+        "updatedAt": "2026-10-16T02:30:54.766Z"
+      },
+      {
+        "id": "8",
+        "name": "Detroit Pistons",
+        "abbreviation": "DET",
+        "sport": "nba",
+        "eloRating": 1500,
+        "ppgAllowed": 109,
+        "ppg": 115,
+        "updatedAt": "2026-10-16T02:30:54.766Z"
+      },
+      {
+        "id": "9",
+        "name": "Golden State Warriors",
+        "abbreviation": "GS",
+        "sport": "nba",
+        "eloRating": 1500,
+        "ppgAllowed": 104,
+        "ppg": 111,
+        "updatedAt": "2026-10-16T02:30:54.766Z"
+      }
+    ]
+  }
+}

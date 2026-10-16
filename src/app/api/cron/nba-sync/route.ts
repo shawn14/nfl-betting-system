@@ -11,9 +11,10 @@ import {
 } from '@/services/firestore-admin-store';
 import { SportKey } from '@/services/firestore-types';
 import { MODEL_VERSION } from '@/lib/model-version';
+import { forecastProducer } from '@/lib/forecast-provenance';
 import { newClvAccumulator, addClv, finalizeClv, type ClvSummary } from '@/lib/clv';
 import { getRestDaysForGame, calculateRestAdjustment, restFavorsPick } from '@/services/nba-rest-days';
-import { fetchNBAOdds, getConsensusOdds } from '@/services/odds';
+import { fetchNBAOdds, matchGameOdds, type EventOddsMap } from '@/services/odds';
 
 // NBA Constants - Optimized via grid search (659 games with Vegas lines, Jan 14 2026)
 const LEAGUE_AVG_PPG = 112;          // NBA average ~112 PPG
@@ -993,20 +994,11 @@ export async function GET(request: Request) {
     let restFetched = 0;
 
     // Fetch live odds from The Odds API for all NBA games
-    let oddsApiData: Map<string, Partial<import('@/types').Odds>[]> | null = null;
-    let oddsApiConsensus: Map<string, Partial<import('@/types').Odds>> = new Map();
+    let oddsApiData: EventOddsMap | null = null;
     try {
       if (process.env.NEXT_PUBLIC_ODDS_API_KEY) {
         oddsApiData = await fetchNBAOdds();
         log(`Fetched live odds from The Odds API for ${oddsApiData.size} games`);
-
-        // Calculate consensus for each game
-        for (const [gameKey, oddsArray] of oddsApiData.entries()) {
-          const consensus = getConsensusOdds(oddsArray);
-          if (consensus) {
-            oddsApiConsensus.set(gameKey, consensus);
-          }
-        }
       }
     } catch (error) {
       log(`Warning: Failed to fetch The Odds API data: ${error instanceof Error ? error.message : 'Unknown error'}`);
@@ -1193,34 +1185,10 @@ export async function GET(request: Request) {
           }
         }
 
-      // Try to match this game with The Odds API data
-      let liveOddsData: { consensusTotal?: number; consensusOverOdds?: number; consensusUnderOdds?: number; bookmakers?: { name: string; total: number; overOdds: number; underOdds: number }[]; lastUpdated?: string } | undefined;
-      if (oddsApiData && game.gameTime) {
-        // Try to find matching game in The Odds API data
-        // The Odds API uses full team names, not abbreviations, so we need to search by matching
-        for (const [gameKey, oddsArray] of oddsApiData.entries()) {
-          // Check if this game matches (look for home and away team in the key)
-          // The key format is: homeTeam_awayTeam_commenceTime
-          if (gameKey.includes(homeTeam.name) || gameKey.includes(awayTeam.name)) {
-            const consensus = oddsApiConsensus.get(gameKey);
-            if (consensus) {
-              liveOddsData = {
-                consensusTotal: consensus.total,
-                consensusOverOdds: consensus.overOdds,
-                consensusUnderOdds: consensus.underOdds,
-                bookmakers: oddsArray.map(o => ({
-                  name: o.bookmaker || 'Unknown',
-                  total: o.total || 0,
-                  overOdds: o.overOdds || -110,
-                  underOdds: o.underOdds || -110,
-                })),
-                lastUpdated: new Date().toISOString(),
-              };
-            }
-            break;
-          }
-        }
-      }
+      // A quote belongs to this exact event, never merely to either participant.
+      const liveOddsData = matchGameOdds(oddsApiData, {
+        sport: 'nba', home: homeTeam.name, away: awayTeam.name, commence: game.gameTime,
+      });
 
       gamesWithPredictions.push({
         game: {
@@ -1229,6 +1197,7 @@ export async function GET(request: Request) {
           awayTeam: { id: awayTeam.id, name: awayTeam.name, abbreviation: awayTeam.abbreviation },
         },
         prediction: {
+          forecastProducer: forecastProducer(process.env.VERCEL_GIT_COMMIT_SHA),
           gameId: game.id,
           predictedHomeScore: predHome,
           predictedAwayScore: predAway,

@@ -1,0 +1,20 @@
+{
+  "checkedAt": "2026-10-16T04:36:16.441Z",
+  "url": "https://nfl-betting-system-580weyvmo-stock-alarm.vercel.app/terminal?game=nhl%3A401892517",
+  "game": "Pittsburgh Penguins at Colorado Avalanche",
+  "downloadChecked": false,
+  "passed": [
+    "real game selection",
+    "shortlist and selected identity survive reload",
+    "search and empty state",
+    "sort metric matches displayed column",
+    "price provenance and disabled measurement",
+    "source refresh",
+    "390px mobile without page overflow",
+    "no browser console errors"
+  ],
+  "nativeDownload": {
+    "game": "nfl:401872996",
+    "sourceHash": "e9d860d0d068f065145f7cc7abbe63d2d0665418df29fd4e54dbb0c316860274"
+  }
+}

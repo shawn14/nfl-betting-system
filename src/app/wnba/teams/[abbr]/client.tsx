@@ -245,7 +245,7 @@ export default function WNBATeamClient() {
       {/* Betting Record */}
       {record && (
         <div className="bg-white rounded-xl border border-gray-200 p-6 shadow-sm">
-          <h2 className="text-lg font-bold text-gray-900 mb-4">Betting Record</h2>
+          <h2 className="text-lg font-bold text-gray-900 mb-4">Historical calculation · not verified picks</h2><p className="text-sm text-gray-600 mb-3">Recalculated after games; excluded from evidence of an edge. <a className="underline" href="/results">See prospective results</a>.</p>
           <div className="grid grid-cols-3 gap-4">
             <div className="bg-orange-50 rounded-lg p-4 text-center">
               <div className="text-sm text-gray-500 mb-1">Against the Spread</div>
@@ -317,7 +317,7 @@ export default function WNBATeamClient() {
       {/* Recent Results */}
       {recentGames.length > 0 && (
         <div className="bg-white rounded-xl border border-gray-200 p-6 shadow-sm">
-          <h2 className="text-lg font-bold text-gray-900 mb-4">Recent Results</h2>
+          <h2 className="text-lg font-bold text-gray-900 mb-4">Historical calculations · not pregame results</h2><p className="text-sm text-gray-600">These forecasts were rebuilt after games and cannot establish an edge.</p>
           <div className="overflow-x-auto">
             <table className="w-full text-sm">
               <thead className="text-gray-500 border-b border-gray-200">

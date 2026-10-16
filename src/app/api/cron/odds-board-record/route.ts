@@ -1,3 +1,6 @@
+import { getAdminDb } from '@/lib/firebase-admin';
+import { MeasurementStore } from '@/lib/measurement/store';
+import { recordShopEvent } from '@/lib/measurement/shop';
 import { NextResponse } from 'next/server';
 import { put, list } from '@vercel/blob';
 import { gzipSync } from 'zlib';
@@ -60,6 +63,8 @@ function authorized(request: Request): boolean {
 }
 
 export async function GET(request: Request) {
+  const secret = process.env.CRON_SECRET;
+  if (!secret || request.headers.get('authorization') !== `Bearer ${secret}`) return NextResponse.json({ok:false,error:'Unauthorized'}, {status:401});
   const started = Date.now();
   // ?force=1 ignores cadence (spends credits) and needs the cron secret; normal runs are cadence-gated.
   const force = new URL(request.url).searchParams.get('force') === '1';
@@ -76,6 +81,7 @@ export async function GET(request: Request) {
   const log: string[] = [];
   let remaining = state.lastRemaining ?? 0, spent = 0;
   const fetched: string[] = [];
+  const measurementBatches: {sport:string; data:OddsApiEvent[]; observedAt:string}[] = [];
 
   try {
     for (const [sport, apiKey] of Object.entries(SPORTS)) {
@@ -104,6 +110,9 @@ export async function GET(request: Request) {
       await put(`${PREFIX}/snap/${day}/${hhmm}-${sport}.json.gz`, gzipSync(Buffer.from(JSON.stringify({ ts: iso, sport, cost, remaining, data }))),
         { ...putOpts, contentType: 'application/gzip' });
 
+      if (process.env.FEATURE_MEASUREMENT_ENABLED === '1') {
+        measurementBatches.push({sport,data,observedAt:new Date().toISOString()});
+      }
       const evs: BoardEvent[] = data
         .filter(e => Date.parse(e.commence_time) > now.getTime())
         .map(e => ({ id: e.id, sport, commence: e.commence_time, home: e.home_team, away: e.away_team, markets: gameMarkets(e).map(shop) }))
@@ -142,6 +151,12 @@ export async function GET(request: Request) {
     await put(`${PREFIX}/latest.json`, JSON.stringify(board), { ...putOpts, contentType: 'application/json' });
     await put(`${PREFIX}/ledger.json`, JSON.stringify(ledger), { ...putOpts, contentType: 'application/json' });
     await put(`${PREFIX}/state.json`, JSON.stringify(state), { ...putOpts, contentType: 'application/json' });
+    // Persist paid-request cadence/credit accounting BEFORE the optional measurement write.
+    // A measurement failure must not cause the next cron to buy the same odds again.
+    for (const batch of measurementBatches) {
+      const measurement = new MeasurementStore(getAdminDb());
+      for (const event of batch.data) await recordShopEvent(measurement,event,batch.sport,batch.observedAt);
+    }
     const flags = Object.values(board.sports).reduce((s, x) => s + x.events.reduce((t, e) => t + e.markets.reduce((u, m) => u + m.flags.length, 0), 0), 0);
     return NextResponse.json({ ok: true, fetched, creditsSpent: spent, creditsToday: state.creditsToday, remaining, flags, ledger: ledger.entries.length, log, ms: Date.now() - started });
   } catch (error) {
