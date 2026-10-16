@@ -1,5 +1,11 @@
 # Prediction Matrix status
 
+## 2026-10-16 — continuous research goal, source diagnosis first
+
+Shawn's active goal is a system continuously searching for edge, similar to the Kalshi desk. Read-only inspection of the actual `kalshi-research-desk` identified its preregistered hypothesis/forward ledger/market comparator/research coverage pattern. No reference-repo changes. Main/live0743025 matched at14:18UTC; collection remains disabled with zero stored captures after the prior failed activation.
+
+The local candidate adds a bounded authenticated source diagnostic available while collection is off, and preserves structured source errors in collector health. Local real-source proof at14:23UTC returned200 JSON from the forecast Blob and exact ESPN odds/status endpoints, producing three transient markets forNFL401872996. This does not prove deployed reachability or establish why the earlier503 happened. [Method](docs/measurement/SOURCE-DIAGNOSIS.md). Next: verified preview build, approved main pipeline, actual serving-source probe with unchanged DB baseline, then prospective commissioning and the recurring preregistered research cycle. No bets, model tuning or extra paid odds calls.
+
 ## 2026-10-16 — approved activation hit a deployed upstream failure; rollback verified
 
 Shawn approved production paper collection. The normal06:00UTC NFL refresh provided all12 expected attributed candidates; all31 future-window forecast entries passed provenance/freshness gates. The guarded operator enabled the production-only flag and rebuilt exact main `78760202dd9ac3bde42808e5956887f4bf94409e`, serving READY deployment `dpl_HNC4AkNghh2yTzii7LvR8MXWxhzg` at06:02:11UTC. This proves the flag/deployment path, not collection.
