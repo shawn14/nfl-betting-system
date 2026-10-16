@@ -1,0 +1,58 @@
+{
+  "nfl": {
+    "url": "https://www.predictionmatrix.com/prediction-matrix-data.json",
+    "retrieved": "2026-10-16T01:41:40.750331+00:00",
+    "sha256": "7d4494a375433a7182638db36af63c3fd77138fe99d810f516d020d4203cb184",
+    "bytes": 752844,
+    "lastModified": null
+  },
+  "nba": {
+    "url": "https://www.predictionmatrix.com/nba-prediction-data.json",
+    "retrieved": "2026-10-16T01:41:41.025605+00:00",
+    "sha256": "cdaaa085ee2d87ce44c92aaf6920e82111676b04708f886302ba0bbe5a454b35",
+    "bytes": 45092,
+    "lastModified": null
+  },
+  "nhl": {
+    "url": "https://www.predictionmatrix.com/nhl-prediction-data.json",
+    "retrieved": "2026-10-16T01:41:41.389881+00:00",
+    "sha256": "b5047f68bccf42c870a0eda5a62f36596f9068986449c34bfa9613abc661352b",
+    "bytes": 157786,
+    "lastModified": null
+  },
+  "cbb": {
+    "url": "https://www.predictionmatrix.com/cbb-prediction-data.json",
+    "retrieved": "2026-10-16T01:41:41.693693+00:00",
+    "sha256": "9be62a612d3326515c794e64cb18fa9ad530b676af6702808ab28275388e58d5",
+    "bytes": 64028,
+    "lastModified": null
+  },
+  "wnba": {
+    "url": "https://www.predictionmatrix.com/wnba-prediction-data.json",
+    "retrieved": "2026-10-16T01:41:42.015118+00:00",
+    "sha256": "eaf5df53c0096ec4893b183e27f61bf10f962a76c732162de4181f8e2e233c72",
+    "bytes": 353136,
+    "lastModified": null
+  },
+  "shop-ledger": {
+    "url": "https://0luulmjdaimldet9.public.blob.vercel-storage.com/odds-board/ledger.json",
+    "retrieved": "2026-10-16T01:41:42.222994+00:00",
+    "sha256": "be5bbf447ce941466dcdae8bedf738d5096e9814e1efbd2622ea16e1b1a3218a",
+    "bytes": 82103,
+    "lastModified": null
+  },
+  "shop-board": {
+    "url": "https://0luulmjdaimldet9.public.blob.vercel-storage.com/odds-board/latest.json",
+    "retrieved": "2026-10-16T01:41:42.408177+00:00",
+    "sha256": "c0e2cf22c17cefb4aa52e5dbab7bbb53a76738cc2581676fe0b528999db5ec94",
+    "bytes": 36321,
+    "lastModified": null
+  },
+  "props-index": {
+    "url": "https://0luulmjdaimldet9.public.blob.vercel-storage.com/odds-props/index.json",
+    "retrieved": "2026-10-16T01:41:42.782493+00:00",
+    "sha256": "7190edd3d732f47a0165ce0928f6ea9e08a56d151ed2d272c9f0f031876dc6c2",
+    "bytes": 426360,
+    "lastModified": null
+  }
+}

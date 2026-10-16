@@ -8,6 +8,14 @@ Multi-sport betting prediction system (NFL, NBA, NHL, CBB, WNBA) built with Next
 
 **Live Site:** https://www.predictionmatrix.com
 
+## Evaluation correction — 2026-10-15 audit
+
+**The `modelVersion` stamp does NOT establish a prospective prediction record.** The NFL/NHL/WNBA grading jobs refresh current scoring averages and recalculate predictions for already-final games. NFL actual-outcome leakage was independently reproduced: all 15 Week 5 scores/totals match postgame averages; on 63 eligible frozen games, recorded totals 42–21 become 21–42 using earlier-game-only averages with the same base formula, Elo and lines. That diagnostic is NOT recovered published pregame performance. Claims below calling stamped rows “live-predicted” or the freeze a forward test are **superseded for evidentiary purposes**. Preserve the model/threshold lock; do not retune to this audit.
+
+Line-shop CLV also needs a later, timely close and game-grouped uncertainty: 126 flags / 72 games average +0.325 percentage points, approximate 95% interval −0.153 to +0.803. No proven profitable edge. Before evaluation can support one, capture immutable pre-kickoff predictions, inputs, bookmaker prices and lines; grade those snapshots. NFL PPG also omits ties from the denominator. No production fixes were made in this audit.
+
+Evidence: [report](docs/reports/2026-10-15-edge-audit/edge-audit.html), [independent findings](docs/reports/2026-10-15-edge-audit/refuter-summary.txt). Offline proof: `node docs/reports/2026-10-15-edge-audit/refuter-proof.mjs`. Source / serving deployment / GitHub main verified at `6af083c277aa64fd13ec9269591fc57bdd611f68`.
+
 ## Commands
 
 ```bash

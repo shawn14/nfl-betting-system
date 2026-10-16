@@ -1,0 +1,4145 @@
+{
+  "generatedAt": "2026-10-16T01:51:42.376Z",
+  "inputs": {
+    "nflGenerated": "2026-10-16T00:00:11.884Z",
+    "ledgerUpdated": "2026-10-16T01:37:22.267Z"
+  },
+  "scope": "Independent offline reconstruction from public live data captured by parent. Refuter separately fetched public NFL JSON and ledger and confirmed the same counts/timestamps. No crons, paid APIs, mutations, model fitting or optimization.",
+  "caveats": [
+    "Prior-only forecasts are diagnostic reconstructions, NOT recovered published pregame picks. Original pregame PPG/snapshot timestamps are absent.",
+    "Uses stored home/away Elo, recorded odds, current frozen constants, prior captured regular-season final games, and the same stats formula. This does not certify Elo or market data were available pregame.",
+    "Source-faithful PPG denominator is wins+losses, excluding tied games even while retaining their points. This existing defect is preserved; all retained prior-game diagnostics precede or are unaffected by the only captured tie.",
+    "Result generator omits weather and QB adjustments used in displayed predictions; diagnostics omit them too. No retrospective adjustment selection.",
+    "Hypothetical -110 ROI is only a standardized diagnostic, NOT realized return or evidence of executable historic prices.",
+    "Game-cluster confidence intervals use normal approximation and do not account for cross-game, day, book, selection, or stale-quote dependence. CLV is not realized profit.",
+    "Cached browser October4 /ev rendering is NOT evidence of published pregame content; fresh direct HTTP shows current content. No stale-production claim."
+  ],
+  "frozen": {
+    "games": 77,
+    "storedTotals": {
+      "wins": 54,
+      "losses": 23,
+      "pushes": 0,
+      "winRate": 0.7012987012987013,
+      "hypotheticalFlatMinus110Roi": 0.3388429752066116
+    },
+    "timestampFields": [
+      "gameTime",
+      "updatedAt"
+    ]
+  },
+  "week5Summary": {
+    "games": 15,
+    "currentLiveStatsTotalMatches": 15,
+    "currentLiveStatsComponentMatches": 15
+  },
+  "leakageExamples": [
+    {
+      "gameId": "401872982",
+      "gameTime": "2026-10-11T17:00:00.000Z",
+      "matchup": "CIN @ MIA",
+      "vegasTotal": 43.5,
+      "actualTotal": 55,
+      "stored": {
+        "home": 15.1,
+        "away": 28.9,
+        "total": 44,
+        "rawTotal": 44,
+        "grade": "win"
+      },
+      "currentLiveStatsBase": {
+        "home": 15.1,
+        "away": 28.9,
+        "rawTotal": 44,
+        "total": 44,
+        "spread": 7.5
+      },
+      "totalMatchesCurrent": true,
+      "componentScoresMatchCurrent": true,
+      "postgameReconstructedStats": {
+        "home": {
+          "games": 5,
+          "denominator": 5,
+          "pointsFor": 70,
+          "pointsAgainst": 132,
+          "ppg": 14,
+          "ppgAllowed": 26.4
+        },
+        "away": {
+          "games": 5,
+          "denominator": 5,
+          "pointsFor": 128,
+          "pointsAgainst": 109,
+          "ppg": 25.6,
+          "ppgAllowed": 21.8
+        }
+      },
+      "postgameReconstructedBase": {
+        "home": 15.1,
+        "away": 28.9,
+        "rawTotal": 44,
+        "total": 44,
+        "spread": 7.5
+      },
+      "priorOnlyStats": {
+        "home": {
+          "games": 4,
+          "denominator": 4,
+          "pointsFor": 46,
+          "pointsAgainst": 101,
+          "ppg": 11.5,
+          "ppgAllowed": 25.3
+        },
+        "away": {
+          "games": 4,
+          "denominator": 4,
+          "pointsFor": 97,
+          "pointsAgainst": 85,
+          "ppg": 24.3,
+          "ppgAllowed": 21.3
+        }
+      },
+      "priorOnlyBase": {
+        "home": 14,
+        "away": 28,
+        "rawTotal": 42,
+        "total": 42,
+        "spread": 7.5
+      },
+      "priorOnlyGrade": "loss",
+      "directionChanges": true
+    },
+    {
+      "gameId": "401872992",
+      "gameTime": "2026-10-11T20:25:00.000Z",
+      "matchup": "SF @ SEA",
+      "vegasTotal": 46.5,
+      "actualTotal": 61,
+      "stored": {
+        "home": 25.7,
+        "away": 21.5,
+        "total": 47,
+        "rawTotal": 47.2,
+        "grade": "win"
+      },
+      "currentLiveStatsBase": {
+        "home": 25.7,
+        "away": 21.5,
+        "rawTotal": 47.2,
+        "total": 47,
+        "spread": -2.5
+      },
+      "totalMatchesCurrent": true,
+      "componentScoresMatchCurrent": true,
+      "postgameReconstructedStats": {
+        "home": {
+          "games": 5,
+          "denominator": 5,
+          "pointsFor": 134,
+          "pointsAgainst": 105,
+          "ppg": 26.8,
+          "ppgAllowed": 21
+        },
+        "away": {
+          "games": 5,
+          "denominator": 5,
+          "pointsFor": 154,
+          "pointsAgainst": 93,
+          "ppg": 30.8,
+          "ppgAllowed": 18.6
+        }
+      },
+      "postgameReconstructedBase": {
+        "home": 25.7,
+        "away": 21.5,
+        "rawTotal": 47.2,
+        "total": 47,
+        "spread": -2.5
+      },
+      "priorOnlyStats": {
+        "home": {
+          "games": 4,
+          "denominator": 4,
+          "pointsFor": 105,
+          "pointsAgainst": 73,
+          "ppg": 26.3,
+          "ppgAllowed": 18.3
+        },
+        "away": {
+          "games": 4,
+          "denominator": 4,
+          "pointsFor": 122,
+          "pointsAgainst": 64,
+          "ppg": 30.5,
+          "ppgAllowed": 16
+        }
+      },
+      "priorOnlyBase": {
+        "home": 24.6,
+        "away": 20.5,
+        "rawTotal": 45.1,
+        "total": 45,
+        "spread": -2.5
+      },
+      "priorOnlyGrade": "loss",
+      "directionChanges": true
+    }
+  ],
+  "week5": [
+    {
+      "gameId": "401872980",
+      "gameTime": "2026-10-09T00:15:00.000Z",
+      "matchup": "TB @ DAL",
+      "vegasTotal": 48.5,
+      "actualTotal": 40,
+      "stored": {
+        "home": 29.7,
+        "away": 17.5,
+        "total": 47,
+        "rawTotal": 47.2,
+        "grade": "win"
+      },
+      "currentLiveStatsBase": {
+        "home": 29.7,
+        "away": 17.5,
+        "rawTotal": 47.2,
+        "total": 47,
+        "spread": -6.5
+      },
+      "totalMatchesCurrent": true,
+      "componentScoresMatchCurrent": true,
+      "postgameReconstructedStats": {
+        "home": {
+          "games": 5,
+          "denominator": 5,
+          "pointsFor": 138,
+          "pointsAgainst": 136,
+          "ppg": 27.6,
+          "ppgAllowed": 27.2
+        },
+        "away": {
+          "games": 5,
+          "denominator": 5,
+          "pointsFor": 100,
+          "pointsAgainst": 112,
+          "ppg": 20,
+          "ppgAllowed": 22.4
+        }
+      },
+      "postgameReconstructedBase": {
+        "home": 29.7,
+        "away": 17.5,
+        "rawTotal": 47.2,
+        "total": 47,
+        "spread": -6.5
+      },
+      "priorOnlyStats": {
+        "home": {
+          "games": 4,
+          "denominator": 4,
+          "pointsFor": 122,
+          "pointsAgainst": 112,
+          "ppg": 30.5,
+          "ppgAllowed": 28
+        },
+        "away": {
+          "games": 4,
+          "denominator": 4,
+          "pointsFor": 76,
+          "pointsAgainst": 96,
+          "ppg": 19,
+          "ppgAllowed": 24
+        }
+      },
+      "priorOnlyBase": {
+        "home": 31.3,
+        "away": 17.4,
+        "rawTotal": 48.7,
+        "total": 48.5,
+        "spread": -7.5
+      },
+      "priorOnlyGrade": "loss",
+      "directionChanges": true
+    },
+    {
+      "gameId": "401872981",
+      "gameTime": "2026-10-11T13:30:00.000Z",
+      "matchup": "PHI @ JAX",
+      "vegasTotal": 41.5,
+      "actualTotal": 36,
+      "stored": {
+        "home": 32.6,
+        "away": 8.4,
+        "total": 41,
+        "rawTotal": 41,
+        "grade": "win"
+      },
+      "currentLiveStatsBase": {
+        "home": 32.6,
+        "away": 8.4,
+        "rawTotal": 41,
+        "total": 41,
+        "spread": -13.5
+      },
+      "totalMatchesCurrent": true,
+      "componentScoresMatchCurrent": true,
+      "postgameReconstructedStats": {
+        "home": {
+          "games": 5,
+          "denominator": 5,
+          "pointsFor": 123,
+          "pointsAgainst": 70,
+          "ppg": 24.6,
+          "ppgAllowed": 14
+        },
+        "away": {
+          "games": 5,
+          "denominator": 5,
+          "pointsFor": 92,
+          "pointsAgainst": 112,
+          "ppg": 18.4,
+          "ppgAllowed": 22.4
+        }
+      },
+      "postgameReconstructedBase": {
+        "home": 32.6,
+        "away": 8.4,
+        "rawTotal": 41,
+        "total": 41,
+        "spread": -13.5
+      },
+      "priorOnlyStats": {
+        "home": {
+          "games": 4,
+          "denominator": 4,
+          "pointsFor": 104,
+          "pointsAgainst": 53,
+          "ppg": 26,
+          "ppgAllowed": 13.3
+        },
+        "away": {
+          "games": 4,
+          "denominator": 4,
+          "pointsFor": 75,
+          "pointsAgainst": 93,
+          "ppg": 18.8,
+          "ppgAllowed": 23.3
+        }
+      },
+      "priorOnlyBase": {
+        "home": 33.4,
+        "away": 8.3,
+        "rawTotal": 41.7,
+        "total": 41.5,
+        "spread": -14
+      },
+      "priorOnlyGrade": "loss",
+      "directionChanges": true
+    },
+    {
+      "gameId": "401872982",
+      "gameTime": "2026-10-11T17:00:00.000Z",
+      "matchup": "CIN @ MIA",
+      "vegasTotal": 43.5,
+      "actualTotal": 55,
+      "stored": {
+        "home": 15.1,
+        "away": 28.9,
+        "total": 44,
+        "rawTotal": 44,
+        "grade": "win"
+      },
+      "currentLiveStatsBase": {
+        "home": 15.1,
+        "away": 28.9,
+        "rawTotal": 44,
+        "total": 44,
+        "spread": 7.5
+      },
+      "totalMatchesCurrent": true,
+      "componentScoresMatchCurrent": true,
+      "postgameReconstructedStats": {
+        "home": {
+          "games": 5,
+          "denominator": 5,
+          "pointsFor": 70,
+          "pointsAgainst": 132,
+          "ppg": 14,
+          "ppgAllowed": 26.4
+        },
+        "away": {
+          "games": 5,
+          "denominator": 5,
+          "pointsFor": 128,
+          "pointsAgainst": 109,
+          "ppg": 25.6,
+          "ppgAllowed": 21.8
+        }
+      },
+      "postgameReconstructedBase": {
+        "home": 15.1,
+        "away": 28.9,
+        "rawTotal": 44,
+        "total": 44,
+        "spread": 7.5
+      },
+      "priorOnlyStats": {
+        "home": {
+          "games": 4,
+          "denominator": 4,
+          "pointsFor": 46,
+          "pointsAgainst": 101,
+          "ppg": 11.5,
+          "ppgAllowed": 25.3
+        },
+        "away": {
+          "games": 4,
+          "denominator": 4,
+          "pointsFor": 97,
+          "pointsAgainst": 85,
+          "ppg": 24.3,
+          "ppgAllowed": 21.3
+        }
+      },
+      "priorOnlyBase": {
+        "home": 14,
+        "away": 28,
+        "rawTotal": 42,
+        "total": 42,
+        "spread": 7.5
+      },
+      "priorOnlyGrade": "loss",
+      "directionChanges": true
+    },
+    {
+      "gameId": "401872983",
+      "gameTime": "2026-10-11T17:00:00.000Z",
+      "matchup": "CLE @ NYJ",
+      "vegasTotal": 38.5,
+      "actualTotal": 29,
+      "stored": {
+        "home": 14.6,
+        "away": 26.2,
+        "total": 41,
+        "rawTotal": 40.8,
+        "grade": "loss"
+      },
+      "currentLiveStatsBase": {
+        "home": 14.6,
+        "away": 26.2,
+        "rawTotal": 40.8,
+        "total": 41,
+        "spread": 6.5
+      },
+      "totalMatchesCurrent": true,
+      "componentScoresMatchCurrent": true,
+      "postgameReconstructedStats": {
+        "home": {
+          "games": 5,
+          "denominator": 5,
+          "pointsFor": 93,
+          "pointsAgainst": 96,
+          "ppg": 18.6,
+          "ppgAllowed": 19.2
+        },
+        "away": {
+          "games": 5,
+          "denominator": 5,
+          "pointsFor": 93,
+          "pointsAgainst": 112,
+          "ppg": 18.6,
+          "ppgAllowed": 22.4
+        }
+      },
+      "postgameReconstructedBase": {
+        "home": 14.6,
+        "away": 26.2,
+        "rawTotal": 40.8,
+        "total": 41,
+        "spread": 6.5
+      },
+      "priorOnlyStats": {
+        "home": {
+          "games": 4,
+          "denominator": 4,
+          "pointsFor": 76,
+          "pointsAgainst": 84,
+          "ppg": 19,
+          "ppgAllowed": 21
+        },
+        "away": {
+          "games": 4,
+          "denominator": 4,
+          "pointsFor": 81,
+          "pointsAgainst": 95,
+          "ppg": 20.3,
+          "ppgAllowed": 23.8
+        }
+      },
+      "priorOnlyBase": {
+        "home": 15.2,
+        "away": 27.4,
+        "rawTotal": 42.599999999999994,
+        "total": 42.5,
+        "spread": 6.5
+      },
+      "priorOnlyGrade": "loss",
+      "directionChanges": false
+    },
+    {
+      "gameId": "401872984",
+      "gameTime": "2026-10-11T17:00:00.000Z",
+      "matchup": "HOU @ TEN",
+      "vegasTotal": 37.5,
+      "actualTotal": 29,
+      "stored": {
+        "home": 12,
+        "away": 28.4,
+        "total": 40.5,
+        "rawTotal": 40.4,
+        "grade": "loss"
+      },
+      "currentLiveStatsBase": {
+        "home": 12,
+        "away": 28.4,
+        "rawTotal": 40.4,
+        "total": 40.5,
+        "spread": 9
+      },
+      "totalMatchesCurrent": true,
+      "componentScoresMatchCurrent": true,
+      "postgameReconstructedStats": {
+        "home": {
+          "games": 5,
+          "denominator": 5,
+          "pointsFor": 58,
+          "pointsAgainst": 109,
+          "ppg": 11.6,
+          "ppgAllowed": 21.8
+        },
+        "away": {
+          "games": 5,
+          "denominator": 5,
+          "pointsFor": 110,
+          "pointsAgainst": 112,
+          "ppg": 22,
+          "ppgAllowed": 22.4
+        }
+      },
+      "postgameReconstructedBase": {
+        "home": 12,
+        "away": 28.4,
+        "rawTotal": 40.4,
+        "total": 40.5,
+        "spread": 9
+      },
+      "priorOnlyStats": {
+        "home": {
+          "games": 4,
+          "denominator": 4,
+          "pointsFor": 55,
+          "pointsAgainst": 83,
+          "ppg": 13.8,
+          "ppgAllowed": 20.8
+        },
+        "away": {
+          "games": 4,
+          "denominator": 4,
+          "pointsFor": 84,
+          "pointsAgainst": 109,
+          "ppg": 21,
+          "ppgAllowed": 27.3
+        }
+      },
+      "priorOnlyBase": {
+        "home": 14.5,
+        "away": 27.7,
+        "rawTotal": 42.2,
+        "total": 42,
+        "spread": 7.5
+      },
+      "priorOnlyGrade": "loss",
+      "directionChanges": false
+    },
+    {
+      "gameId": "401872985",
+      "gameTime": "2026-10-11T17:00:00.000Z",
+      "matchup": "IND @ PIT",
+      "vegasTotal": 41.5,
+      "actualTotal": 56,
+      "stored": {
+        "home": 28.3,
+        "away": 18.6,
+        "total": 47,
+        "rawTotal": 46.900000000000006,
+        "grade": "win"
+      },
+      "currentLiveStatsBase": {
+        "home": 28.3,
+        "away": 18.6,
+        "rawTotal": 46.900000000000006,
+        "total": 47,
+        "spread": -5.5
+      },
+      "totalMatchesCurrent": true,
+      "componentScoresMatchCurrent": true,
+      "postgameReconstructedStats": {
+        "home": {
+          "games": 5,
+          "denominator": 5,
+          "pointsFor": 111,
+          "pointsAgainst": 109,
+          "ppg": 22.2,
+          "ppgAllowed": 21.8
+        },
+        "away": {
+          "games": 5,
+          "denominator": 5,
+          "pointsFor": 124,
+          "pointsAgainst": 138,
+          "ppg": 24.8,
+          "ppgAllowed": 27.6
+        }
+      },
+      "postgameReconstructedBase": {
+        "home": 28.3,
+        "away": 18.6,
+        "rawTotal": 46.900000000000006,
+        "total": 47,
+        "spread": -5.5
+      },
+      "priorOnlyStats": {
+        "home": {
+          "games": 4,
+          "denominator": 4,
+          "pointsFor": 77,
+          "pointsAgainst": 87,
+          "ppg": 19.3,
+          "ppgAllowed": 21.8
+        },
+        "away": {
+          "games": 4,
+          "denominator": 4,
+          "pointsFor": 102,
+          "pointsAgainst": 104,
+          "ppg": 25.5,
+          "ppgAllowed": 26
+        }
+      },
+      "priorOnlyBase": {
+        "home": 26.8,
+        "away": 18.8,
+        "rawTotal": 45.6,
+        "total": 45.5,
+        "spread": -4.5
+      },
+      "priorOnlyGrade": "win",
+      "directionChanges": false
+    },
+    {
+      "gameId": "401872986",
+      "gameTime": "2026-10-11T17:00:00.000Z",
+      "matchup": "LV @ NE",
+      "vegasTotal": 45.5,
+      "actualTotal": 62,
+      "stored": {
+        "home": 32.8,
+        "away": 12.9,
+        "total": 45.5,
+        "rawTotal": 45.699999999999996,
+        "grade": "win"
+      },
+      "currentLiveStatsBase": {
+        "home": 32.8,
+        "away": 12.9,
+        "rawTotal": 45.699999999999996,
+        "total": 45.5,
+        "spread": -11
+      },
+      "totalMatchesCurrent": true,
+      "componentScoresMatchCurrent": true,
+      "postgameReconstructedStats": {
+        "home": {
+          "games": 5,
+          "denominator": 5,
+          "pointsFor": 110,
+          "pointsAgainst": 94,
+          "ppg": 22,
+          "ppgAllowed": 18.8
+        },
+        "away": {
+          "games": 5,
+          "denominator": 5,
+          "pointsFor": 132,
+          "pointsAgainst": 129,
+          "ppg": 26.4,
+          "ppgAllowed": 25.8
+        }
+      },
+      "postgameReconstructedBase": {
+        "home": 32.8,
+        "away": 12.9,
+        "rawTotal": 45.699999999999996,
+        "total": 45.5,
+        "spread": -11
+      },
+      "priorOnlyStats": {
+        "home": {
+          "games": 4,
+          "denominator": 4,
+          "pointsFor": 65,
+          "pointsAgainst": 77,
+          "ppg": 16.3,
+          "ppgAllowed": 19.3
+        },
+        "away": {
+          "games": 4,
+          "denominator": 4,
+          "pointsFor": 115,
+          "pointsAgainst": 84,
+          "ppg": 28.8,
+          "ppgAllowed": 21
+        }
+      },
+      "priorOnlyBase": {
+        "home": 29.2,
+        "away": 13.9,
+        "rawTotal": 43.1,
+        "total": 43,
+        "spread": -8.5
+      },
+      "priorOnlyGrade": "loss",
+      "directionChanges": true
+    },
+    {
+      "gameId": "401872987",
+      "gameTime": "2026-10-11T17:00:00.000Z",
+      "matchup": "MIN @ NO",
+      "vegasTotal": 41.5,
+      "actualTotal": 36,
+      "stored": {
+        "home": 12.8,
+        "away": 31.3,
+        "total": 44,
+        "rawTotal": 44.1,
+        "grade": "loss"
+      },
+      "currentLiveStatsBase": {
+        "home": 12.8,
+        "away": 31.3,
+        "rawTotal": 44.1,
+        "total": 44,
+        "spread": 10
+      },
+      "totalMatchesCurrent": true,
+      "componentScoresMatchCurrent": true,
+      "postgameReconstructedStats": {
+        "home": {
+          "games": 5,
+          "denominator": 5,
+          "pointsFor": 118,
+          "pointsAgainst": 151,
+          "ppg": 23.6,
+          "ppgAllowed": 30.2
+        },
+        "away": {
+          "games": 5,
+          "denominator": 5,
+          "pointsFor": 109,
+          "pointsAgainst": 64,
+          "ppg": 21.8,
+          "ppgAllowed": 12.8
+        }
+      },
+      "postgameReconstructedBase": {
+        "home": 12.8,
+        "away": 31.3,
+        "rawTotal": 44.1,
+        "total": 44,
+        "spread": 10
+      },
+      "priorOnlyStats": {
+        "home": {
+          "games": 4,
+          "denominator": 4,
+          "pointsFor": 105,
+          "pointsAgainst": 128,
+          "ppg": 26.3,
+          "ppgAllowed": 32
+        },
+        "away": {
+          "games": 4,
+          "denominator": 4,
+          "pointsFor": 86,
+          "pointsAgainst": 51,
+          "ppg": 21.5,
+          "ppgAllowed": 12.8
+        }
+      },
+      "priorOnlyBase": {
+        "home": 13.8,
+        "away": 31.8,
+        "rawTotal": 45.6,
+        "total": 45.5,
+        "spread": 10
+      },
+      "priorOnlyGrade": "loss",
+      "directionChanges": false
+    },
+    {
+      "gameId": "401872988",
+      "gameTime": "2026-10-11T17:00:00.000Z",
+      "matchup": "NYG @ WSH",
+      "vegasTotal": 41.5,
+      "actualTotal": 54,
+      "stored": {
+        "home": 23.8,
+        "away": 31.3,
+        "total": 55,
+        "rawTotal": 55.1,
+        "grade": "win"
+      },
+      "currentLiveStatsBase": {
+        "home": 23.8,
+        "away": 31.3,
+        "rawTotal": 55.1,
+        "total": 55,
+        "spread": 4
+      },
+      "totalMatchesCurrent": true,
+      "componentScoresMatchCurrent": true,
+      "postgameReconstructedStats": {
+        "home": {
+          "games": 5,
+          "denominator": 4,
+          "pointsFor": 115,
+          "pointsAgainst": 149,
+          "ppg": 28.8,
+          "ppgAllowed": 37.3
+        },
+        "away": {
+          "games": 5,
+          "denominator": 4,
+          "pointsFor": 109,
+          "pointsAgainst": 106,
+          "ppg": 27.3,
+          "ppgAllowed": 26.5
+        }
+      },
+      "postgameReconstructedBase": {
+        "home": 23.8,
+        "away": 31.3,
+        "rawTotal": 55.1,
+        "total": 55,
+        "spread": 4
+      },
+      "priorOnlyStats": {
+        "home": {
+          "games": 4,
+          "denominator": 4,
+          "pointsFor": 88,
+          "pointsAgainst": 122,
+          "ppg": 22,
+          "ppgAllowed": 30.5
+        },
+        "away": {
+          "games": 4,
+          "denominator": 4,
+          "pointsFor": 82,
+          "pointsAgainst": 79,
+          "ppg": 20.5,
+          "ppgAllowed": 19.8
+        }
+      },
+      "priorOnlyBase": {
+        "home": 19.1,
+        "away": 26.6,
+        "rawTotal": 45.7,
+        "total": 45.5,
+        "spread": 4
+      },
+      "priorOnlyGrade": "win",
+      "directionChanges": false
+    },
+    {
+      "gameId": "401872990",
+      "gameTime": "2026-10-11T17:00:00.000Z",
+      "matchup": "CHI @ GB",
+      "vegasTotal": 47.5,
+      "actualTotal": 38,
+      "stored": {
+        "home": 16.1,
+        "away": 27.3,
+        "total": 43.5,
+        "rawTotal": 43.400000000000006,
+        "grade": "win"
+      },
+      "currentLiveStatsBase": {
+        "home": 16.1,
+        "away": 27.3,
+        "rawTotal": 43.400000000000006,
+        "total": 43.5,
+        "spread": 6
+      },
+      "totalMatchesCurrent": true,
+      "componentScoresMatchCurrent": true,
+      "postgameReconstructedStats": {
+        "home": {
+          "games": 5,
+          "denominator": 5,
+          "pointsFor": 104,
+          "pointsAgainst": 112,
+          "ppg": 20.8,
+          "ppgAllowed": 22.4
+        },
+        "away": {
+          "games": 5,
+          "denominator": 5,
+          "pointsFor": 119,
+          "pointsAgainst": 96,
+          "ppg": 23.8,
+          "ppgAllowed": 19.2
+        }
+      },
+      "postgameReconstructedBase": {
+        "home": 16.1,
+        "away": 27.3,
+        "rawTotal": 43.400000000000006,
+        "total": 43.5,
+        "spread": 6
+      },
+      "priorOnlyStats": {
+        "home": {
+          "games": 4,
+          "denominator": 4,
+          "pointsFor": 73,
+          "pointsAgainst": 105,
+          "ppg": 18.3,
+          "ppgAllowed": 26.3
+        },
+        "away": {
+          "games": 4,
+          "denominator": 4,
+          "pointsFor": 112,
+          "pointsAgainst": 65,
+          "ppg": 28,
+          "ppgAllowed": 16.3
+        }
+      },
+      "priorOnlyBase": {
+        "home": 14.2,
+        "away": 30.1,
+        "rawTotal": 44.3,
+        "total": 44.5,
+        "spread": 8.5
+      },
+      "priorOnlyGrade": "win",
+      "directionChanges": false
+    },
+    {
+      "gameId": "401872989",
+      "gameTime": "2026-10-11T20:05:00.000Z",
+      "matchup": "DEN @ LAC",
+      "vegasTotal": 42.5,
+      "actualTotal": 40,
+      "stored": {
+        "home": 13.8,
+        "away": 28.9,
+        "total": 42.5,
+        "rawTotal": 42.7,
+        "grade": "loss"
+      },
+      "currentLiveStatsBase": {
+        "home": 13.8,
+        "away": 28.9,
+        "rawTotal": 42.7,
+        "total": 42.5,
+        "spread": 8.5
+      },
+      "totalMatchesCurrent": true,
+      "componentScoresMatchCurrent": true,
+      "postgameReconstructedStats": {
+        "home": {
+          "games": 5,
+          "denominator": 5,
+          "pointsFor": 84,
+          "pointsAgainst": 129,
+          "ppg": 16.8,
+          "ppgAllowed": 25.8
+        },
+        "away": {
+          "games": 5,
+          "denominator": 5,
+          "pointsFor": 97,
+          "pointsAgainst": 111,
+          "ppg": 19.4,
+          "ppgAllowed": 22.2
+        }
+      },
+      "postgameReconstructedBase": {
+        "home": 13.8,
+        "away": 28.9,
+        "rawTotal": 42.7,
+        "total": 42.5,
+        "spread": 8.5
+      },
+      "priorOnlyStats": {
+        "home": {
+          "games": 4,
+          "denominator": 4,
+          "pointsFor": 67,
+          "pointsAgainst": 106,
+          "ppg": 16.8,
+          "ppgAllowed": 26.5
+        },
+        "away": {
+          "games": 4,
+          "denominator": 4,
+          "pointsFor": 74,
+          "pointsAgainst": 94,
+          "ppg": 18.5,
+          "ppgAllowed": 23.5
+        }
+      },
+      "priorOnlyBase": {
+        "home": 14.2,
+        "away": 28.9,
+        "rawTotal": 43.099999999999994,
+        "total": 43,
+        "spread": 8
+      },
+      "priorOnlyGrade": "loss",
+      "directionChanges": false
+    },
+    {
+      "gameId": "401872991",
+      "gameTime": "2026-10-11T20:25:00.000Z",
+      "matchup": "DET @ ARI",
+      "vegasTotal": 54.5,
+      "actualTotal": 66,
+      "stored": {
+        "home": 18,
+        "away": 35.9,
+        "total": 54,
+        "rawTotal": 53.9,
+        "grade": "loss"
+      },
+      "currentLiveStatsBase": {
+        "home": 18,
+        "away": 35.9,
+        "rawTotal": 53.9,
+        "total": 54,
+        "spread": 10
+      },
+      "totalMatchesCurrent": true,
+      "componentScoresMatchCurrent": true,
+      "postgameReconstructedStats": {
+        "home": {
+          "games": 5,
+          "denominator": 5,
+          "pointsFor": 108,
+          "pointsAgainst": 162,
+          "ppg": 21.6,
+          "ppgAllowed": 32.4
+        },
+        "away": {
+          "games": 5,
+          "denominator": 5,
+          "pointsFor": 164,
+          "pointsAgainst": 148,
+          "ppg": 32.8,
+          "ppgAllowed": 29.6
+        }
+      },
+      "postgameReconstructedBase": {
+        "home": 18,
+        "away": 35.9,
+        "rawTotal": 53.9,
+        "total": 54,
+        "spread": 10
+      },
+      "priorOnlyStats": {
+        "home": {
+          "games": 4,
+          "denominator": 4,
+          "pointsFor": 87,
+          "pointsAgainst": 117,
+          "ppg": 21.8,
+          "ppgAllowed": 29.3
+        },
+        "away": {
+          "games": 4,
+          "denominator": 4,
+          "pointsFor": 119,
+          "pointsAgainst": 127,
+          "ppg": 29.8,
+          "ppgAllowed": 31.8
+        }
+      },
+      "priorOnlyBase": {
+        "home": 18.9,
+        "away": 33.8,
+        "rawTotal": 52.699999999999996,
+        "total": 52.5,
+        "spread": 8
+      },
+      "priorOnlyGrade": "loss",
+      "directionChanges": false
+    },
+    {
+      "gameId": "401872992",
+      "gameTime": "2026-10-11T20:25:00.000Z",
+      "matchup": "SF @ SEA",
+      "vegasTotal": 46.5,
+      "actualTotal": 61,
+      "stored": {
+        "home": 25.7,
+        "away": 21.5,
+        "total": 47,
+        "rawTotal": 47.2,
+        "grade": "win"
+      },
+      "currentLiveStatsBase": {
+        "home": 25.7,
+        "away": 21.5,
+        "rawTotal": 47.2,
+        "total": 47,
+        "spread": -2.5
+      },
+      "totalMatchesCurrent": true,
+      "componentScoresMatchCurrent": true,
+      "postgameReconstructedStats": {
+        "home": {
+          "games": 5,
+          "denominator": 5,
+          "pointsFor": 134,
+          "pointsAgainst": 105,
+          "ppg": 26.8,
+          "ppgAllowed": 21
+        },
+        "away": {
+          "games": 5,
+          "denominator": 5,
+          "pointsFor": 154,
+          "pointsAgainst": 93,
+          "ppg": 30.8,
+          "ppgAllowed": 18.6
+        }
+      },
+      "postgameReconstructedBase": {
+        "home": 25.7,
+        "away": 21.5,
+        "rawTotal": 47.2,
+        "total": 47,
+        "spread": -2.5
+      },
+      "priorOnlyStats": {
+        "home": {
+          "games": 4,
+          "denominator": 4,
+          "pointsFor": 105,
+          "pointsAgainst": 73,
+          "ppg": 26.3,
+          "ppgAllowed": 18.3
+        },
+        "away": {
+          "games": 4,
+          "denominator": 4,
+          "pointsFor": 122,
+          "pointsAgainst": 64,
+          "ppg": 30.5,
+          "ppgAllowed": 16
+        }
+      },
+      "priorOnlyBase": {
+        "home": 24.6,
+        "away": 20.5,
+        "rawTotal": 45.1,
+        "total": 45,
+        "spread": -2.5
+      },
+      "priorOnlyGrade": "loss",
+      "directionChanges": true
+    },
+    {
+      "gameId": "401872993",
+      "gameTime": "2026-10-12T00:20:00.000Z",
+      "matchup": "BAL @ ATL",
+      "vegasTotal": 43.5,
+      "actualTotal": 53,
+      "stored": {
+        "home": 23.5,
+        "away": 25.1,
+        "total": 48.5,
+        "rawTotal": 48.6,
+        "grade": "win"
+      },
+      "currentLiveStatsBase": {
+        "home": 23.5,
+        "away": 25.1,
+        "rawTotal": 48.6,
+        "total": 48.5,
+        "spread": 1
+      },
+      "totalMatchesCurrent": true,
+      "componentScoresMatchCurrent": true,
+      "postgameReconstructedStats": {
+        "home": {
+          "games": 5,
+          "denominator": 5,
+          "pointsFor": 119,
+          "pointsAgainst": 122,
+          "ppg": 23.8,
+          "ppgAllowed": 24.4
+        },
+        "away": {
+          "games": 5,
+          "denominator": 5,
+          "pointsFor": 146,
+          "pointsAgainst": 119,
+          "ppg": 29.2,
+          "ppgAllowed": 23.8
+        }
+      },
+      "postgameReconstructedBase": {
+        "home": 23.5,
+        "away": 25.1,
+        "rawTotal": 48.6,
+        "total": 48.5,
+        "spread": 1
+      },
+      "priorOnlyStats": {
+        "home": {
+          "games": 4,
+          "denominator": 4,
+          "pointsFor": 96,
+          "pointsAgainst": 92,
+          "ppg": 24,
+          "ppgAllowed": 23
+        },
+        "away": {
+          "games": 4,
+          "denominator": 4,
+          "pointsFor": 116,
+          "pointsAgainst": 96,
+          "ppg": 29,
+          "ppgAllowed": 24
+        }
+      },
+      "priorOnlyBase": {
+        "home": 23.6,
+        "away": 24.6,
+        "rawTotal": 48.2,
+        "total": 48,
+        "spread": 0.5
+      },
+      "priorOnlyGrade": "win",
+      "directionChanges": false
+    },
+    {
+      "gameId": "401872994",
+      "gameTime": "2026-10-13T00:15:00.000Z",
+      "matchup": "BUF @ LAR",
+      "vegasTotal": 54.5,
+      "actualTotal": 71,
+      "stored": {
+        "home": 25,
+        "away": 26.3,
+        "total": 51.5,
+        "rawTotal": 51.3,
+        "grade": "loss"
+      },
+      "currentLiveStatsBase": {
+        "home": 25,
+        "away": 26.3,
+        "rawTotal": 51.3,
+        "total": 51.5,
+        "spread": 0.5
+      },
+      "totalMatchesCurrent": true,
+      "componentScoresMatchCurrent": true,
+      "postgameReconstructedStats": {
+        "home": {
+          "games": 5,
+          "denominator": 5,
+          "pointsFor": 119,
+          "pointsAgainst": 120,
+          "ppg": 23.8,
+          "ppgAllowed": 24
+        },
+        "away": {
+          "games": 5,
+          "denominator": 5,
+          "pointsFor": 164,
+          "pointsAgainst": 141,
+          "ppg": 32.8,
+          "ppgAllowed": 28.2
+        }
+      },
+      "postgameReconstructedBase": {
+        "home": 25,
+        "away": 26.3,
+        "rawTotal": 51.3,
+        "total": 51.5,
+        "spread": 0.5
+      },
+      "priorOnlyStats": {
+        "home": {
+          "games": 4,
+          "denominator": 4,
+          "pointsFor": 85,
+          "pointsAgainst": 83,
+          "ppg": 21.3,
+          "ppgAllowed": 20.8
+        },
+        "away": {
+          "games": 4,
+          "denominator": 4,
+          "pointsFor": 127,
+          "pointsAgainst": 107,
+          "ppg": 31.8,
+          "ppgAllowed": 26.8
+        }
+      },
+      "priorOnlyBase": {
+        "home": 23.6,
+        "away": 24.8,
+        "rawTotal": 48.400000000000006,
+        "total": 48.5,
+        "spread": 0.5
+      },
+      "priorOnlyGrade": "loss",
+      "directionChanges": false
+    }
+  ],
+  "priorOnlyDiagnostic": {
+    "included": 63,
+    "excludedFrozenWithoutPriorGame": 14,
+    "storedSameSubsetTotals": {
+      "wins": 42,
+      "losses": 21,
+      "pushes": 0,
+      "winRate": 0.6666666666666666,
+      "hypotheticalFlatMinus110Roi": 0.2727272727272727
+    },
+    "reconstructedTotals": {
+      "wins": 21,
+      "losses": 42,
+      "pushes": 0,
+      "winRate": 0.3333333333333333,
+      "hypotheticalFlatMinus110Roi": -0.36363636363636365
+    },
+    "storedSameSubsetSpreads": {
+      "wins": 37,
+      "losses": 22,
+      "pushes": 4,
+      "winRate": 0.6271186440677966,
+      "hypotheticalFlatMinus110Roi": 0.18470418470418465
+    },
+    "reconstructedSpreads": {
+      "wins": 33,
+      "losses": 26,
+      "pushes": 4,
+      "winRate": 0.559322033898305,
+      "hypotheticalFlatMinus110Roi": 0.06349206349206349
+    },
+    "totalDirectionChanges": 21,
+    "winsTurnedLosses": 21,
+    "lossesTurnedWins": 0,
+    "rows": [
+      {
+        "gameId": "401872932",
+        "gameTime": "2026-09-18T00:15:00.000Z",
+        "week": 2,
+        "matchup": "DET @ BUF",
+        "homePriorGames": 1,
+        "awayPriorGames": 1,
+        "homePriorStats": {
+          "games": 1,
+          "denominator": 1,
+          "pointsFor": 36,
+          "pointsAgainst": 31,
+          "ppg": 36,
+          "ppgAllowed": 31
+        },
+        "awayPriorStats": {
+          "games": 1,
+          "denominator": 1,
+          "pointsFor": 31,
+          "pointsAgainst": 30,
+          "ppg": 31,
+          "ppgAllowed": 30
+        },
+        "vegasTotal": 54.5,
+        "actualTotal": 72,
+        "vegasSpread": -5.5,
+        "actualSpread": -10,
+        "storedRawTotal": 60.8,
+        "storedTotal": 61,
+        "storedTotalGrade": "win",
+        "storedSpreadGrade": "win",
+        "reconstructed": {
+          "home": 37.1,
+          "away": 20.9,
+          "rawTotal": 58,
+          "total": 58,
+          "spread": -9
+        },
+        "reconstructedTotalGrade": "win",
+        "reconstructedSpreadGrade": "win",
+        "totalDirectionChanges": false
+      },
+      {
+        "gameId": "401872933",
+        "gameTime": "2026-09-20T17:00:00.000Z",
+        "week": 2,
+        "matchup": "CAR @ ATL",
+        "homePriorGames": 1,
+        "awayPriorGames": 1,
+        "homePriorStats": {
+          "games": 1,
+          "denominator": 1,
+          "pointsFor": 13,
+          "pointsAgainst": 20,
+          "ppg": 13,
+          "ppgAllowed": 20
+        },
+        "awayPriorStats": {
+          "games": 1,
+          "denominator": 1,
+          "pointsFor": 37,
+          "pointsAgainst": 59,
+          "ppg": 37,
+          "ppgAllowed": 59
+        },
+        "vegasTotal": 43.5,
+        "actualTotal": 37,
+        "vegasSpread": 2.5,
+        "actualSpread": 31,
+        "storedRawTotal": 48.7,
+        "storedTotal": 48.5,
+        "storedTotalGrade": "loss",
+        "storedSpreadGrade": "loss",
+        "reconstructed": {
+          "home": 36.1,
+          "away": 22.3,
+          "rawTotal": 58.400000000000006,
+          "total": 58.5,
+          "spread": -7.5
+        },
+        "reconstructedTotalGrade": "loss",
+        "reconstructedSpreadGrade": "loss",
+        "totalDirectionChanges": false
+      },
+      {
+        "gameId": "401872934",
+        "gameTime": "2026-09-20T17:00:00.000Z",
+        "week": 2,
+        "matchup": "CIN @ HOU",
+        "homePriorGames": 1,
+        "awayPriorGames": 1,
+        "homePriorStats": {
+          "games": 1,
+          "denominator": 1,
+          "pointsFor": 31,
+          "pointsAgainst": 36,
+          "ppg": 31,
+          "ppgAllowed": 36
+        },
+        "awayPriorStats": {
+          "games": 1,
+          "denominator": 1,
+          "pointsFor": 33,
+          "pointsAgainst": 27,
+          "ppg": 33,
+          "ppgAllowed": 27
+        },
+        "vegasTotal": 45.5,
+        "actualTotal": 26,
+        "vegasSpread": -3,
+        "actualSpread": 14,
+        "storedRawTotal": 44.599999999999994,
+        "storedTotal": 44.5,
+        "storedTotalGrade": "win",
+        "storedSpreadGrade": "loss",
+        "reconstructed": {
+          "home": 36.4,
+          "away": 21.2,
+          "rawTotal": 57.599999999999994,
+          "total": 57.5,
+          "spread": -8.5
+        },
+        "reconstructedTotalGrade": "loss",
+        "reconstructedSpreadGrade": "loss",
+        "totalDirectionChanges": true
+      },
+      {
+        "gameId": "401872935",
+        "gameTime": "2026-09-20T17:00:00.000Z",
+        "week": 2,
+        "matchup": "CLE @ TB",
+        "homePriorGames": 1,
+        "awayPriorGames": 1,
+        "homePriorStats": {
+          "games": 1,
+          "denominator": 1,
+          "pointsFor": 27,
+          "pointsAgainst": 33,
+          "ppg": 27,
+          "ppgAllowed": 33
+        },
+        "awayPriorStats": {
+          "games": 1,
+          "denominator": 1,
+          "pointsFor": 10,
+          "pointsAgainst": 34,
+          "ppg": 10,
+          "ppgAllowed": 34
+        },
+        "vegasTotal": 41.5,
+        "actualTotal": 42,
+        "vegasSpread": -8.5,
+        "actualSpread": 4,
+        "storedRawTotal": 46.1,
+        "storedTotal": 46,
+        "storedTotalGrade": "win",
+        "storedSpreadGrade": "win",
+        "reconstructed": {
+          "home": 31.2,
+          "away": 18.4,
+          "rawTotal": 49.599999999999994,
+          "total": 49.5,
+          "spread": -7
+        },
+        "reconstructedTotalGrade": "win",
+        "reconstructedSpreadGrade": "win",
+        "totalDirectionChanges": false
+      },
+      {
+        "gameId": "401872936",
+        "gameTime": "2026-09-20T17:00:00.000Z",
+        "week": 2,
+        "matchup": "GB @ NYJ",
+        "homePriorGames": 1,
+        "awayPriorGames": 1,
+        "homePriorStats": {
+          "games": 1,
+          "denominator": 1,
+          "pointsFor": 23,
+          "pointsAgainst": 10,
+          "ppg": 23,
+          "ppgAllowed": 10
+        },
+        "awayPriorStats": {
+          "games": 1,
+          "denominator": 1,
+          "pointsFor": 22,
+          "pointsAgainst": 39,
+          "ppg": 22,
+          "ppgAllowed": 39
+        },
+        "vegasTotal": 44.5,
+        "actualTotal": 37,
+        "vegasSpread": 3.5,
+        "actualSpread": 3,
+        "storedRawTotal": 42.6,
+        "storedTotal": 42.5,
+        "storedTotalGrade": "win",
+        "storedSpreadGrade": "loss",
+        "reconstructed": {
+          "home": 21.9,
+          "away": 24.2,
+          "rawTotal": 46.099999999999994,
+          "total": 46,
+          "spread": 1.5
+        },
+        "reconstructedTotalGrade": "loss",
+        "reconstructedSpreadGrade": "win",
+        "totalDirectionChanges": true
+      },
+      {
+        "gameId": "401872937",
+        "gameTime": "2026-09-20T17:00:00.000Z",
+        "week": 2,
+        "matchup": "MIN @ CHI",
+        "homePriorGames": 1,
+        "awayPriorGames": 1,
+        "homePriorStats": {
+          "games": 1,
+          "denominator": 1,
+          "pointsFor": 59,
+          "pointsAgainst": 37,
+          "ppg": 59,
+          "ppgAllowed": 37
+        },
+        "awayPriorStats": {
+          "games": 1,
+          "denominator": 1,
+          "pointsFor": 39,
+          "pointsAgainst": 22,
+          "ppg": 39,
+          "ppgAllowed": 22
+        },
+        "vegasTotal": 47.5,
+        "actualTotal": 12,
+        "vegasSpread": -4.5,
+        "actualSpread": 6,
+        "storedRawTotal": 44.9,
+        "storedTotal": 45,
+        "storedTotalGrade": "win",
+        "storedSpreadGrade": "win",
+        "reconstructed": {
+          "home": 37.6,
+          "away": 30.5,
+          "rawTotal": 68.1,
+          "total": 68,
+          "spread": -4
+        },
+        "reconstructedTotalGrade": "loss",
+        "reconstructedSpreadGrade": "win",
+        "totalDirectionChanges": true
+      },
+      {
+        "gameId": "401872938",
+        "gameTime": "2026-09-20T17:00:00.000Z",
+        "week": 2,
+        "matchup": "NO @ BAL",
+        "homePriorGames": 1,
+        "awayPriorGames": 1,
+        "homePriorStats": {
+          "games": 1,
+          "denominator": 1,
+          "pointsFor": 41,
+          "pointsAgainst": 23,
+          "ppg": 41,
+          "ppgAllowed": 23
+        },
+        "awayPriorStats": {
+          "games": 1,
+          "denominator": 1,
+          "pointsFor": 30,
+          "pointsAgainst": 31,
+          "ppg": 30,
+          "ppgAllowed": 31
+        },
+        "vegasTotal": 45.5,
+        "actualTotal": 41,
+        "vegasSpread": -8.5,
+        "actualSpread": 7,
+        "storedRawTotal": 49.4,
+        "storedTotal": 49.5,
+        "storedTotalGrade": "loss",
+        "storedSpreadGrade": "win",
+        "reconstructed": {
+          "home": 38.6,
+          "away": 18.3,
+          "rawTotal": 56.900000000000006,
+          "total": 57,
+          "spread": -11
+        },
+        "reconstructedTotalGrade": "loss",
+        "reconstructedSpreadGrade": "loss",
+        "totalDirectionChanges": false
+      },
+      {
+        "gameId": "401872939",
+        "gameTime": "2026-09-20T17:00:00.000Z",
+        "week": 2,
+        "matchup": "PHI @ TEN",
+        "homePriorGames": 1,
+        "awayPriorGames": 1,
+        "homePriorStats": {
+          "games": 1,
+          "denominator": 1,
+          "pointsFor": 10,
+          "pointsAgainst": 23,
+          "ppg": 10,
+          "ppgAllowed": 23
+        },
+        "awayPriorStats": {
+          "games": 1,
+          "denominator": 1,
+          "pointsFor": 24,
+          "pointsAgainst": 22,
+          "ppg": 24,
+          "ppgAllowed": 22
+        },
+        "vegasTotal": 39.5,
+        "actualTotal": 44,
+        "vegasSpread": 7,
+        "actualSpread": 4,
+        "storedRawTotal": 42.4,
+        "storedTotal": 42.5,
+        "storedTotalGrade": "win",
+        "storedSpreadGrade": "loss",
+        "reconstructed": {
+          "home": 11.3,
+          "away": 29.6,
+          "rawTotal": 40.900000000000006,
+          "total": 41,
+          "spread": 10
+        },
+        "reconstructedTotalGrade": "win",
+        "reconstructedSpreadGrade": "loss",
+        "totalDirectionChanges": false
+      },
+      {
+        "gameId": "401872946",
+        "gameTime": "2026-09-20T17:00:00.000Z",
+        "week": 2,
+        "matchup": "PIT @ NE",
+        "homePriorGames": 1,
+        "awayPriorGames": 1,
+        "homePriorStats": {
+          "games": 1,
+          "denominator": 1,
+          "pointsFor": 10,
+          "pointsAgainst": 13,
+          "ppg": 10,
+          "ppgAllowed": 13
+        },
+        "awayPriorStats": {
+          "games": 1,
+          "denominator": 1,
+          "pointsFor": 20,
+          "pointsAgainst": 13,
+          "ppg": 20,
+          "ppgAllowed": 13
+        },
+        "vegasTotal": 41.5,
+        "actualTotal": 23,
+        "vegasSpread": -5.5,
+        "actualSpread": -17,
+        "storedRawTotal": 31,
+        "storedTotal": 31,
+        "storedTotalGrade": "win",
+        "storedSpreadGrade": "win",
+        "reconstructed": {
+          "home": 21.3,
+          "away": 11.5,
+          "rawTotal": 32.8,
+          "total": 33,
+          "spread": -5.5
+        },
+        "reconstructedTotalGrade": "win",
+        "reconstructedSpreadGrade": "loss",
+        "totalDirectionChanges": false
+      },
+      {
+        "gameId": "401872940",
+        "gameTime": "2026-09-20T20:05:00.000Z",
+        "week": 2,
+        "matchup": "JAX @ DEN",
+        "homePriorGames": 1,
+        "awayPriorGames": 1,
+        "homePriorStats": {
+          "games": 1,
+          "denominator": 1,
+          "pointsFor": 10,
+          "pointsAgainst": 31,
+          "ppg": 10,
+          "ppgAllowed": 31
+        },
+        "awayPriorStats": {
+          "games": 1,
+          "denominator": 1,
+          "pointsFor": 34,
+          "pointsAgainst": 10,
+          "ppg": 34,
+          "ppgAllowed": 10
+        },
+        "vegasTotal": 45.5,
+        "actualTotal": 33,
+        "vegasSpread": -2.5,
+        "actualSpread": -7,
+        "storedRawTotal": 39.7,
+        "storedTotal": 39.5,
+        "storedTotalGrade": "win",
+        "storedSpreadGrade": "loss",
+        "reconstructed": {
+          "home": 12.5,
+          "away": 30.5,
+          "rawTotal": 43,
+          "total": 43,
+          "spread": 10
+        },
+        "reconstructedTotalGrade": "win",
+        "reconstructedSpreadGrade": "loss",
+        "totalDirectionChanges": false
+      },
+      {
+        "gameId": "401872941",
+        "gameTime": "2026-09-20T20:05:00.000Z",
+        "week": 2,
+        "matchup": "LV @ LAC",
+        "homePriorGames": 1,
+        "awayPriorGames": 1,
+        "homePriorStats": {
+          "games": 1,
+          "denominator": 1,
+          "pointsFor": 14,
+          "pointsAgainst": 26,
+          "ppg": 14,
+          "ppgAllowed": 26
+        },
+        "awayPriorStats": {
+          "games": 1,
+          "denominator": 1,
+          "pointsFor": 27,
+          "pointsAgainst": 13,
+          "ppg": 27,
+          "ppgAllowed": 13
+        },
+        "vegasTotal": 43.5,
+        "actualTotal": 40,
+        "vegasSpread": -7,
+        "actualSpread": 12,
+        "storedRawTotal": 41.2,
+        "storedTotal": 41,
+        "storedTotalGrade": "win",
+        "storedSpreadGrade": "win",
+        "reconstructed": {
+          "home": 25.5,
+          "away": 15.7,
+          "rawTotal": 41.2,
+          "total": 41,
+          "spread": -5.5
+        },
+        "reconstructedTotalGrade": "win",
+        "reconstructedSpreadGrade": "win",
+        "totalDirectionChanges": false
+      },
+      {
+        "gameId": "401872942",
+        "gameTime": "2026-09-20T20:25:00.000Z",
+        "week": 2,
+        "matchup": "MIA @ SF",
+        "homePriorGames": 1,
+        "awayPriorGames": 1,
+        "homePriorStats": {
+          "games": 1,
+          "denominator": 1,
+          "pointsFor": 27,
+          "pointsAgainst": 7,
+          "ppg": 27,
+          "ppgAllowed": 7
+        },
+        "awayPriorStats": {
+          "games": 1,
+          "denominator": 1,
+          "pointsFor": 13,
+          "pointsAgainst": 27,
+          "ppg": 13,
+          "ppgAllowed": 27
+        },
+        "vegasTotal": 44.5,
+        "actualTotal": 48,
+        "vegasSpread": -13.5,
+        "actualSpread": -22,
+        "storedRawTotal": 42.9,
+        "storedTotal": 43,
+        "storedTotalGrade": "loss",
+        "storedSpreadGrade": "win",
+        "reconstructed": {
+          "home": 35,
+          "away": 4.1,
+          "rawTotal": 39.1,
+          "total": 39,
+          "spread": -17
+        },
+        "reconstructedTotalGrade": "loss",
+        "reconstructedSpreadGrade": "win",
+        "totalDirectionChanges": false
+      },
+      {
+        "gameId": "401872943",
+        "gameTime": "2026-09-20T20:25:00.000Z",
+        "week": 2,
+        "matchup": "SEA @ ARI",
+        "homePriorGames": 1,
+        "awayPriorGames": 1,
+        "homePriorStats": {
+          "games": 1,
+          "denominator": 1,
+          "pointsFor": 26,
+          "pointsAgainst": 14,
+          "ppg": 26,
+          "ppgAllowed": 14
+        },
+        "awayPriorStats": {
+          "games": 1,
+          "denominator": 1,
+          "pointsFor": 13,
+          "pointsAgainst": 10,
+          "ppg": 13,
+          "ppgAllowed": 10
+        },
+        "vegasTotal": 41.5,
+        "actualTotal": 38,
+        "vegasSpread": 3.5,
+        "actualSpread": 24,
+        "storedRawTotal": 37.5,
+        "storedTotal": 37.5,
+        "storedTotalGrade": "win",
+        "storedSpreadGrade": "win",
+        "reconstructed": {
+          "home": 12.7,
+          "away": 22.5,
+          "rawTotal": 35.2,
+          "total": 35,
+          "spread": 5.5
+        },
+        "reconstructedTotalGrade": "win",
+        "reconstructedSpreadGrade": "win",
+        "totalDirectionChanges": false
+      },
+      {
+        "gameId": "401872944",
+        "gameTime": "2026-09-20T20:25:00.000Z",
+        "week": 2,
+        "matchup": "WSH @ DAL",
+        "homePriorGames": 1,
+        "awayPriorGames": 1,
+        "homePriorStats": {
+          "games": 1,
+          "denominator": 1,
+          "pointsFor": 20,
+          "pointsAgainst": 28,
+          "ppg": 20,
+          "ppgAllowed": 28
+        },
+        "awayPriorStats": {
+          "games": 1,
+          "denominator": 1,
+          "pointsFor": 22,
+          "pointsAgainst": 24,
+          "ppg": 22,
+          "ppgAllowed": 24
+        },
+        "vegasTotal": 51.5,
+        "actualTotal": 57,
+        "vegasSpread": -4.5,
+        "actualSpread": -17,
+        "storedRawTotal": 49.6,
+        "storedTotal": 49.5,
+        "storedTotalGrade": "loss",
+        "storedSpreadGrade": "win",
+        "reconstructed": {
+          "home": 24.9,
+          "away": 21.2,
+          "rawTotal": 46.099999999999994,
+          "total": 46,
+          "spread": -2
+        },
+        "reconstructedTotalGrade": "loss",
+        "reconstructedSpreadGrade": "loss",
+        "totalDirectionChanges": false
+      },
+      {
+        "gameId": "401872945",
+        "gameTime": "2026-09-21T00:20:00.000Z",
+        "week": 2,
+        "matchup": "IND @ KC",
+        "homePriorGames": 1,
+        "awayPriorGames": 1,
+        "homePriorStats": {
+          "games": 1,
+          "denominator": 1,
+          "pointsFor": 31,
+          "pointsAgainst": 10,
+          "ppg": 31,
+          "ppgAllowed": 10
+        },
+        "awayPriorStats": {
+          "games": 1,
+          "denominator": 1,
+          "pointsFor": 23,
+          "pointsAgainst": 41,
+          "ppg": 23,
+          "ppgAllowed": 41
+        },
+        "vegasTotal": 46.5,
+        "actualTotal": 63,
+        "vegasSpread": -6,
+        "actualSpread": -3,
+        "storedRawTotal": 53.599999999999994,
+        "storedTotal": 53.5,
+        "storedTotalGrade": "win",
+        "storedSpreadGrade": "loss",
+        "reconstructed": {
+          "home": 34.9,
+          "away": 15.1,
+          "rawTotal": 50,
+          "total": 50,
+          "spread": -11
+        },
+        "reconstructedTotalGrade": "win",
+        "reconstructedSpreadGrade": "loss",
+        "totalDirectionChanges": false
+      },
+      {
+        "gameId": "401872947",
+        "gameTime": "2026-09-22T00:15:00.000Z",
+        "week": 2,
+        "matchup": "NYG @ LAR",
+        "homePriorGames": 1,
+        "awayPriorGames": 1,
+        "homePriorStats": {
+          "games": 1,
+          "denominator": 1,
+          "pointsFor": 7,
+          "pointsAgainst": 27,
+          "ppg": 7,
+          "ppgAllowed": 27
+        },
+        "awayPriorStats": {
+          "games": 1,
+          "denominator": 1,
+          "pointsFor": 28,
+          "pointsAgainst": 20,
+          "ppg": 28,
+          "ppgAllowed": 20
+        },
+        "vegasTotal": 47.5,
+        "actualTotal": 34,
+        "vegasSpread": -6.5,
+        "actualSpread": -22,
+        "storedRawTotal": 39.400000000000006,
+        "storedTotal": 39.5,
+        "storedTotalGrade": "win",
+        "storedSpreadGrade": "win",
+        "reconstructed": {
+          "home": 25.6,
+          "away": 16.3,
+          "rawTotal": 41.900000000000006,
+          "total": 42,
+          "spread": -5
+        },
+        "reconstructedTotalGrade": "win",
+        "reconstructedSpreadGrade": "loss",
+        "totalDirectionChanges": false
+      },
+      {
+        "gameId": "401872948",
+        "gameTime": "2026-09-25T00:15:00.000Z",
+        "week": 3,
+        "matchup": "ATL @ GB",
+        "homePriorGames": 2,
+        "awayPriorGames": 2,
+        "homePriorStats": {
+          "games": 2,
+          "denominator": 2,
+          "pointsFor": 42,
+          "pointsAgainst": 56,
+          "ppg": 21,
+          "ppgAllowed": 28
+        },
+        "awayPriorStats": {
+          "games": 2,
+          "denominator": 2,
+          "pointsFor": 16,
+          "pointsAgainst": 54,
+          "ppg": 8,
+          "ppgAllowed": 27
+        },
+        "vegasTotal": 43.5,
+        "actualTotal": 49,
+        "vegasSpread": -5.5,
+        "actualSpread": 21,
+        "storedRawTotal": 44.2,
+        "storedTotal": 44,
+        "storedTotalGrade": "win",
+        "storedSpreadGrade": "win",
+        "reconstructed": {
+          "home": 28.6,
+          "away": 14,
+          "rawTotal": 42.6,
+          "total": 42.5,
+          "spread": -8
+        },
+        "reconstructedTotalGrade": "loss",
+        "reconstructedSpreadGrade": "loss",
+        "totalDirectionChanges": true
+      },
+      {
+        "gameId": "401872949",
+        "gameTime": "2026-09-27T17:00:00.000Z",
+        "week": 3,
+        "matchup": "CAR @ CLE",
+        "homePriorGames": 2,
+        "awayPriorGames": 2,
+        "homePriorStats": {
+          "games": 2,
+          "denominator": 2,
+          "pointsFor": 33,
+          "pointsAgainst": 53,
+          "ppg": 16.5,
+          "ppgAllowed": 26.5
+        },
+        "awayPriorStats": {
+          "games": 2,
+          "denominator": 2,
+          "pointsFor": 71,
+          "pointsAgainst": 62,
+          "ppg": 35.5,
+          "ppgAllowed": 31
+        },
+        "vegasTotal": 41.5,
+        "actualTotal": 39,
+        "vegasSpread": 1.5,
+        "actualSpread": -3,
+        "storedRawTotal": 47.900000000000006,
+        "storedTotal": 48,
+        "storedTotalGrade": "loss",
+        "storedSpreadGrade": "loss",
+        "reconstructed": {
+          "home": 22.2,
+          "away": 29.3,
+          "rawTotal": 51.5,
+          "total": 51.5,
+          "spread": 4
+        },
+        "reconstructedTotalGrade": "loss",
+        "reconstructedSpreadGrade": "loss",
+        "totalDirectionChanges": false
+      },
+      {
+        "gameId": "401872950",
+        "gameTime": "2026-09-27T17:00:00.000Z",
+        "week": 3,
+        "matchup": "CIN @ PIT",
+        "homePriorGames": 2,
+        "awayPriorGames": 2,
+        "homePriorStats": {
+          "games": 2,
+          "denominator": 2,
+          "pointsFor": 23,
+          "pointsAgainst": 33,
+          "ppg": 11.5,
+          "ppgAllowed": 16.5
+        },
+        "awayPriorStats": {
+          "games": 2,
+          "denominator": 2,
+          "pointsFor": 53,
+          "pointsAgainst": 33,
+          "ppg": 26.5,
+          "ppgAllowed": 16.5
+        },
+        "vegasTotal": 42.5,
+        "actualTotal": 57,
+        "vegasSpread": 3.5,
+        "actualSpread": -3,
+        "storedRawTotal": 43.1,
+        "storedTotal": 43,
+        "storedTotalGrade": "win",
+        "storedSpreadGrade": "win",
+        "reconstructed": {
+          "home": 20.2,
+          "away": 17.8,
+          "rawTotal": 38,
+          "total": 38,
+          "spread": -1.5
+        },
+        "reconstructedTotalGrade": "loss",
+        "reconstructedSpreadGrade": "win",
+        "totalDirectionChanges": true
+      },
+      {
+        "gameId": "401872951",
+        "gameTime": "2026-09-27T17:00:00.000Z",
+        "week": 3,
+        "matchup": "HOU @ IND",
+        "homePriorGames": 2,
+        "awayPriorGames": 2,
+        "homePriorStats": {
+          "games": 2,
+          "denominator": 2,
+          "pointsFor": 53,
+          "pointsAgainst": 74,
+          "ppg": 26.5,
+          "ppgAllowed": 37
+        },
+        "awayPriorStats": {
+          "games": 2,
+          "denominator": 2,
+          "pointsFor": 37,
+          "pointsAgainst": 56,
+          "ppg": 18.5,
+          "ppgAllowed": 28
+        },
+        "vegasTotal": 42.5,
+        "actualTotal": 36,
+        "vegasSpread": 1.5,
+        "actualSpread": -2,
+        "storedRawTotal": 47.3,
+        "storedTotal": 47.5,
+        "storedTotalGrade": "loss",
+        "storedSpreadGrade": "loss",
+        "reconstructed": {
+          "home": 19.2,
+          "away": 32.5,
+          "rawTotal": 51.7,
+          "total": 51.5,
+          "spread": 7.5
+        },
+        "reconstructedTotalGrade": "loss",
+        "reconstructedSpreadGrade": "loss",
+        "totalDirectionChanges": false
+      },
+      {
+        "gameId": "401872952",
+        "gameTime": "2026-09-27T17:00:00.000Z",
+        "week": 3,
+        "matchup": "KC @ MIA",
+        "homePriorGames": 2,
+        "awayPriorGames": 2,
+        "homePriorStats": {
+          "games": 2,
+          "denominator": 2,
+          "pointsFor": 26,
+          "pointsAgainst": 62,
+          "ppg": 13,
+          "ppgAllowed": 31
+        },
+        "awayPriorStats": {
+          "games": 2,
+          "denominator": 2,
+          "pointsFor": 64,
+          "pointsAgainst": 40,
+          "ppg": 32,
+          "ppgAllowed": 20
+        },
+        "vegasTotal": 45.5,
+        "actualTotal": 34,
+        "vegasSpread": 9.5,
+        "actualSpread": 14,
+        "storedRawTotal": 43.6,
+        "storedTotal": 43.5,
+        "storedTotalGrade": "win",
+        "storedSpreadGrade": "loss",
+        "reconstructed": {
+          "home": 14.9,
+          "away": 31.9,
+          "rawTotal": 46.8,
+          "total": 47,
+          "spread": 9.5
+        },
+        "reconstructedTotalGrade": "loss",
+        "reconstructedSpreadGrade": "win",
+        "totalDirectionChanges": true
+      },
+      {
+        "gameId": "401872953",
+        "gameTime": "2026-09-27T17:00:00.000Z",
+        "week": 3,
+        "matchup": "LAC @ BUF",
+        "homePriorGames": 2,
+        "awayPriorGames": 2,
+        "homePriorStats": {
+          "games": 2,
+          "denominator": 2,
+          "pointsFor": 77,
+          "pointsAgainst": 62,
+          "ppg": 38.5,
+          "ppgAllowed": 31
+        },
+        "awayPriorStats": {
+          "games": 2,
+          "denominator": 2,
+          "pointsFor": 28,
+          "pointsAgainst": 52,
+          "ppg": 14,
+          "ppgAllowed": 26
+        },
+        "vegasTotal": 50.5,
+        "actualTotal": 40,
+        "vegasSpread": -7,
+        "actualSpread": -8,
+        "storedRawTotal": 48.099999999999994,
+        "storedTotal": 48,
+        "storedTotalGrade": "win",
+        "storedSpreadGrade": "win",
+        "reconstructed": {
+          "home": 38.7,
+          "away": 12.8,
+          "rawTotal": 51.5,
+          "total": 51.5,
+          "spread": -14
+        },
+        "reconstructedTotalGrade": "loss",
+        "reconstructedSpreadGrade": "win",
+        "totalDirectionChanges": true
+      },
+      {
+        "gameId": "401872954",
+        "gameTime": "2026-09-27T17:00:00.000Z",
+        "week": 3,
+        "matchup": "NYJ @ DET",
+        "homePriorGames": 2,
+        "awayPriorGames": 2,
+        "homePriorStats": {
+          "games": 2,
+          "denominator": 2,
+          "pointsFor": 62,
+          "pointsAgainst": 71,
+          "ppg": 31,
+          "ppgAllowed": 35.5
+        },
+        "awayPriorStats": {
+          "games": 2,
+          "denominator": 2,
+          "pointsFor": 40,
+          "pointsAgainst": 30,
+          "ppg": 20,
+          "ppgAllowed": 15
+        },
+        "vegasTotal": 48.5,
+        "actualTotal": 55,
+        "vegasSpread": -6.5,
+        "actualSpread": -7,
+        "storedRawTotal": 49.8,
+        "storedTotal": 50,
+        "storedTotalGrade": "win",
+        "storedSpreadGrade": "win",
+        "reconstructed": {
+          "home": 32.2,
+          "away": 16.5,
+          "rawTotal": 48.7,
+          "total": 48.5,
+          "spread": -8.5
+        },
+        "reconstructedTotalGrade": "win",
+        "reconstructedSpreadGrade": "win",
+        "totalDirectionChanges": false
+      },
+      {
+        "gameId": "401872955",
+        "gameTime": "2026-09-27T17:00:00.000Z",
+        "week": 3,
+        "matchup": "SEA @ WSH",
+        "homePriorGames": 2,
+        "awayPriorGames": 2,
+        "homePriorStats": {
+          "games": 2,
+          "denominator": 2,
+          "pointsFor": 42,
+          "pointsAgainst": 61,
+          "ppg": 21,
+          "ppgAllowed": 30.5
+        },
+        "awayPriorStats": {
+          "games": 2,
+          "denominator": 2,
+          "pointsFor": 44,
+          "pointsAgainst": 17,
+          "ppg": 22,
+          "ppgAllowed": 8.5
+        },
+        "vegasTotal": 40.5,
+        "actualTotal": 64,
+        "vegasSpread": 8.5,
+        "actualSpread": -2,
+        "storedRawTotal": 47.3,
+        "storedTotal": 47.5,
+        "storedTotalGrade": "win",
+        "storedSpreadGrade": "loss",
+        "reconstructed": {
+          "home": 10.4,
+          "away": 31.5,
+          "rawTotal": 41.9,
+          "total": 42,
+          "spread": 11.5
+        },
+        "reconstructedTotalGrade": "win",
+        "reconstructedSpreadGrade": "loss",
+        "totalDirectionChanges": false
+      },
+      {
+        "gameId": "401872956",
+        "gameTime": "2026-09-27T17:00:00.000Z",
+        "week": 3,
+        "matchup": "TEN @ NYG",
+        "homePriorGames": 2,
+        "awayPriorGames": 2,
+        "homePriorStats": {
+          "games": 2,
+          "denominator": 2,
+          "pointsFor": 34,
+          "pointsAgainst": 48,
+          "ppg": 17,
+          "ppgAllowed": 24
+        },
+        "awayPriorStats": {
+          "games": 2,
+          "denominator": 2,
+          "pointsFor": 30,
+          "pointsAgainst": 47,
+          "ppg": 15,
+          "ppgAllowed": 23.5
+        },
+        "vegasTotal": 37.5,
+        "actualTotal": 19,
+        "vegasSpread": -2.5,
+        "actualSpread": -5,
+        "storedRawTotal": 36.2,
+        "storedTotal": 36,
+        "storedTotalGrade": "win",
+        "storedSpreadGrade": "win",
+        "reconstructed": {
+          "home": 28.3,
+          "away": 12.7,
+          "rawTotal": 41,
+          "total": 41,
+          "spread": -8.5
+        },
+        "reconstructedTotalGrade": "loss",
+        "reconstructedSpreadGrade": "win",
+        "totalDirectionChanges": true
+      },
+      {
+        "gameId": "401872957",
+        "gameTime": "2026-09-27T17:00:00.000Z",
+        "week": 3,
+        "matchup": "NE @ JAX",
+        "homePriorGames": 2,
+        "awayPriorGames": 2,
+        "homePriorStats": {
+          "games": 2,
+          "denominator": 2,
+          "pointsFor": 47,
+          "pointsAgainst": 30,
+          "ppg": 23.5,
+          "ppgAllowed": 15
+        },
+        "awayPriorStats": {
+          "games": 2,
+          "denominator": 2,
+          "pointsFor": 30,
+          "pointsAgainst": 16,
+          "ppg": 15,
+          "ppgAllowed": 8
+        },
+        "vegasTotal": 45.5,
+        "actualTotal": 41,
+        "vegasSpread": -3,
+        "actualSpread": -29,
+        "storedRawTotal": 37.1,
+        "storedTotal": 37,
+        "storedTotalGrade": "win",
+        "storedSpreadGrade": "win",
+        "reconstructed": {
+          "home": 18.1,
+          "away": 16.6,
+          "rawTotal": 34.7,
+          "total": 34.5,
+          "spread": -1
+        },
+        "reconstructedTotalGrade": "win",
+        "reconstructedSpreadGrade": "loss",
+        "totalDirectionChanges": false
+      },
+      {
+        "gameId": "401872958",
+        "gameTime": "2026-09-27T20:05:00.000Z",
+        "week": 3,
+        "matchup": "ARI @ SF",
+        "homePriorGames": 2,
+        "awayPriorGames": 2,
+        "homePriorStats": {
+          "games": 2,
+          "denominator": 2,
+          "pointsFor": 62,
+          "pointsAgainst": 20,
+          "ppg": 31,
+          "ppgAllowed": 10
+        },
+        "awayPriorStats": {
+          "games": 2,
+          "denominator": 2,
+          "pointsFor": 33,
+          "pointsAgainst": 45,
+          "ppg": 16.5,
+          "ppgAllowed": 22.5
+        },
+        "vegasTotal": 48.5,
+        "actualTotal": 66,
+        "vegasSpread": -7.5,
+        "actualSpread": -6,
+        "storedRawTotal": 47.3,
+        "storedTotal": 47.5,
+        "storedTotalGrade": "loss",
+        "storedSpreadGrade": "loss",
+        "reconstructed": {
+          "home": 34.8,
+          "away": 6.4,
+          "rawTotal": 41.199999999999996,
+          "total": 41,
+          "spread": -15.5
+        },
+        "reconstructedTotalGrade": "loss",
+        "reconstructedSpreadGrade": "loss",
+        "totalDirectionChanges": false
+      },
+      {
+        "gameId": "401872959",
+        "gameTime": "2026-09-27T20:05:00.000Z",
+        "week": 3,
+        "matchup": "MIN @ TB",
+        "homePriorGames": 2,
+        "awayPriorGames": 2,
+        "homePriorStats": {
+          "games": 2,
+          "denominator": 2,
+          "pointsFor": 46,
+          "pointsAgainst": 56,
+          "ppg": 23,
+          "ppgAllowed": 28
+        },
+        "awayPriorStats": {
+          "games": 2,
+          "denominator": 2,
+          "pointsFor": 48,
+          "pointsAgainst": 25,
+          "ppg": 24,
+          "ppgAllowed": 12.5
+        },
+        "vegasTotal": 42.5,
+        "actualTotal": 39,
+        "vegasSpread": 1.5,
+        "actualSpread": 7,
+        "storedRawTotal": 42.7,
+        "storedTotal": 42.5,
+        "storedTotalGrade": "loss",
+        "storedSpreadGrade": "win",
+        "reconstructed": {
+          "home": 12.5,
+          "away": 31.3,
+          "rawTotal": 43.8,
+          "total": 44,
+          "spread": 10.5
+        },
+        "reconstructedTotalGrade": "loss",
+        "reconstructedSpreadGrade": "win",
+        "totalDirectionChanges": false
+      },
+      {
+        "gameId": "401872960",
+        "gameTime": "2026-09-27T20:25:00.000Z",
+        "week": 3,
+        "matchup": "BAL @ DAL",
+        "homePriorGames": 2,
+        "awayPriorGames": 2,
+        "homePriorStats": {
+          "games": 2,
+          "denominator": 2,
+          "pointsFor": 57,
+          "pointsAgainst": 48,
+          "ppg": 28.5,
+          "ppgAllowed": 24
+        },
+        "awayPriorStats": {
+          "games": 2,
+          "denominator": 2,
+          "pointsFor": 58,
+          "pointsAgainst": 47,
+          "ppg": 29,
+          "ppgAllowed": 23.5
+        },
+        "vegasTotal": 53.5,
+        "actualTotal": 65,
+        "vegasSpread": 3,
+        "actualSpread": 3,
+        "storedRawTotal": 52.8,
+        "storedTotal": 53,
+        "storedTotalGrade": "loss",
+        "storedSpreadGrade": "push",
+        "reconstructed": {
+          "home": 22.7,
+          "away": 27.3,
+          "rawTotal": 50,
+          "total": 50,
+          "spread": 2.5
+        },
+        "reconstructedTotalGrade": "loss",
+        "reconstructedSpreadGrade": "push",
+        "totalDirectionChanges": false
+      },
+      {
+        "gameId": "401872961",
+        "gameTime": "2026-09-27T20:25:00.000Z",
+        "week": 3,
+        "matchup": "LV @ NO",
+        "homePriorGames": 2,
+        "awayPriorGames": 2,
+        "homePriorStats": {
+          "games": 2,
+          "denominator": 2,
+          "pointsFor": 54,
+          "pointsAgainst": 48,
+          "ppg": 27,
+          "ppgAllowed": 24
+        },
+        "awayPriorStats": {
+          "games": 2,
+          "denominator": 2,
+          "pointsFor": 53,
+          "pointsAgainst": 27,
+          "ppg": 26.5,
+          "ppgAllowed": 13.5
+        },
+        "vegasTotal": 43.5,
+        "actualTotal": 62,
+        "vegasSpread": -3.5,
+        "actualSpread": 8,
+        "storedRawTotal": 48.900000000000006,
+        "storedTotal": 49,
+        "storedTotalGrade": "win",
+        "storedSpreadGrade": "loss",
+        "reconstructed": {
+          "home": 27.2,
+          "away": 17.8,
+          "rawTotal": 45,
+          "total": 45,
+          "spread": -5
+        },
+        "reconstructedTotalGrade": "win",
+        "reconstructedSpreadGrade": "loss",
+        "totalDirectionChanges": false
+      },
+      {
+        "gameId": "401872962",
+        "gameTime": "2026-09-28T00:20:00.000Z",
+        "week": 3,
+        "matchup": "LAR @ DEN",
+        "homePriorGames": 2,
+        "awayPriorGames": 2,
+        "homePriorStats": {
+          "games": 2,
+          "denominator": 2,
+          "pointsFor": 30,
+          "pointsAgainst": 44,
+          "ppg": 15,
+          "ppgAllowed": 22
+        },
+        "awayPriorStats": {
+          "games": 2,
+          "denominator": 2,
+          "pointsFor": 35,
+          "pointsAgainst": 33,
+          "ppg": 17.5,
+          "ppgAllowed": 16.5
+        },
+        "vegasTotal": 44.5,
+        "actualTotal": 56,
+        "vegasSpread": 1.5,
+        "actualSpread": -4,
+        "storedRawTotal": 42.8,
+        "storedTotal": 43,
+        "storedTotalGrade": "loss",
+        "storedSpreadGrade": "win",
+        "reconstructed": {
+          "home": 20.6,
+          "away": 17.4,
+          "rawTotal": 38,
+          "total": 38,
+          "spread": -2
+        },
+        "reconstructedTotalGrade": "loss",
+        "reconstructedSpreadGrade": "win",
+        "totalDirectionChanges": false
+      },
+      {
+        "gameId": "401872963",
+        "gameTime": "2026-09-29T00:15:00.000Z",
+        "week": 3,
+        "matchup": "PHI @ CHI",
+        "homePriorGames": 2,
+        "awayPriorGames": 2,
+        "homePriorStats": {
+          "games": 2,
+          "denominator": 2,
+          "pointsFor": 62,
+          "pointsAgainst": 46,
+          "ppg": 31,
+          "ppgAllowed": 23
+        },
+        "awayPriorStats": {
+          "games": 2,
+          "denominator": 2,
+          "pointsFor": 48,
+          "pointsAgainst": 42,
+          "ppg": 24,
+          "ppgAllowed": 21
+        },
+        "vegasTotal": 42.5,
+        "actualTotal": 34,
+        "vegasSpread": 3.5,
+        "actualSpread": -20,
+        "storedRawTotal": 44.3,
+        "storedTotal": 44.5,
+        "storedTotalGrade": "loss",
+        "storedSpreadGrade": "win",
+        "reconstructed": {
+          "home": 26,
+          "away": 21.8,
+          "rawTotal": 47.8,
+          "total": 48,
+          "spread": -2.5
+        },
+        "reconstructedTotalGrade": "loss",
+        "reconstructedSpreadGrade": "win",
+        "totalDirectionChanges": false
+      },
+      {
+        "gameId": "401872964",
+        "gameTime": "2026-10-02T00:15:00.000Z",
+        "week": 4,
+        "matchup": "PIT @ CLE",
+        "homePriorGames": 3,
+        "awayPriorGames": 3,
+        "homePriorStats": {
+          "games": 3,
+          "denominator": 3,
+          "pointsFor": 54,
+          "pointsAgainst": 71,
+          "ppg": 18,
+          "ppgAllowed": 23.7
+        },
+        "awayPriorStats": {
+          "games": 3,
+          "denominator": 3,
+          "pointsFor": 53,
+          "pointsAgainst": 60,
+          "ppg": 17.7,
+          "ppgAllowed": 20
+        },
+        "vegasTotal": 38.5,
+        "actualTotal": 51,
+        "vegasSpread": 2.5,
+        "actualSpread": -3,
+        "storedRawTotal": 43,
+        "storedTotal": 43,
+        "storedTotalGrade": "win",
+        "storedSpreadGrade": "loss",
+        "reconstructed": {
+          "home": 15.7,
+          "away": 25.3,
+          "rawTotal": 41,
+          "total": 41,
+          "spread": 5.5
+        },
+        "reconstructedTotalGrade": "win",
+        "reconstructedSpreadGrade": "loss",
+        "totalDirectionChanges": false
+      },
+      {
+        "gameId": "401872965",
+        "gameTime": "2026-10-04T13:30:00.000Z",
+        "week": 4,
+        "matchup": "IND @ WSH",
+        "homePriorGames": 3,
+        "awayPriorGames": 3,
+        "homePriorStats": {
+          "games": 3,
+          "denominator": 3,
+          "pointsFor": 75,
+          "pointsAgainst": 92,
+          "ppg": 25,
+          "ppgAllowed": 30.7
+        },
+        "awayPriorStats": {
+          "games": 3,
+          "denominator": 3,
+          "pointsFor": 72,
+          "pointsAgainst": 91,
+          "ppg": 24,
+          "ppgAllowed": 30.3
+        },
+        "vegasTotal": 46.5,
+        "actualTotal": 43,
+        "vegasSpread": 4.5,
+        "actualSpread": 17,
+        "storedRawTotal": 49.6,
+        "storedTotal": 49.5,
+        "storedTotalGrade": "loss",
+        "storedSpreadGrade": "loss",
+        "reconstructed": {
+          "home": 24.8,
+          "away": 26.9,
+          "rawTotal": 51.7,
+          "total": 51.5,
+          "spread": 1
+        },
+        "reconstructedTotalGrade": "loss",
+        "reconstructedSpreadGrade": "loss",
+        "totalDirectionChanges": false
+      },
+      {
+        "gameId": "401872966",
+        "gameTime": "2026-10-04T17:00:00.000Z",
+        "week": 4,
+        "matchup": "ARI @ NYG",
+        "homePriorGames": 3,
+        "awayPriorGames": 3,
+        "homePriorStats": {
+          "games": 3,
+          "denominator": 3,
+          "pointsFor": 46,
+          "pointsAgainst": 55,
+          "ppg": 15.3,
+          "ppgAllowed": 18.3
+        },
+        "awayPriorStats": {
+          "games": 3,
+          "denominator": 3,
+          "pointsFor": 63,
+          "pointsAgainst": 81,
+          "ppg": 21,
+          "ppgAllowed": 27
+        },
+        "vegasTotal": 44.5,
+        "actualTotal": 60,
+        "vegasSpread": 2.5,
+        "actualSpread": -12,
+        "storedRawTotal": 45.2,
+        "storedTotal": 45,
+        "storedTotalGrade": "win",
+        "storedSpreadGrade": "win",
+        "reconstructed": {
+          "home": 25.8,
+          "away": 16,
+          "rawTotal": 41.8,
+          "total": 42,
+          "spread": -5.5
+        },
+        "reconstructedTotalGrade": "loss",
+        "reconstructedSpreadGrade": "win",
+        "totalDirectionChanges": true
+      },
+      {
+        "gameId": "401872967",
+        "gameTime": "2026-10-04T17:00:00.000Z",
+        "week": 4,
+        "matchup": "DAL @ HOU",
+        "homePriorGames": 3,
+        "awayPriorGames": 3,
+        "homePriorStats": {
+          "games": 3,
+          "denominator": 3,
+          "pointsFor": 54,
+          "pointsAgainst": 75,
+          "ppg": 18,
+          "ppgAllowed": 25
+        },
+        "awayPriorStats": {
+          "games": 3,
+          "denominator": 3,
+          "pointsFor": 88,
+          "pointsAgainst": 82,
+          "ppg": 29.3,
+          "ppgAllowed": 27.3
+        },
+        "vegasTotal": 48.5,
+        "actualTotal": 64,
+        "vegasSpread": -3,
+        "actualSpread": 4,
+        "storedRawTotal": 50.6,
+        "storedTotal": 50.5,
+        "storedTotalGrade": "win",
+        "storedSpreadGrade": "loss",
+        "reconstructed": {
+          "home": 31.7,
+          "away": 16.4,
+          "rawTotal": 48.099999999999994,
+          "total": 48,
+          "spread": -8.5
+        },
+        "reconstructedTotalGrade": "loss",
+        "reconstructedSpreadGrade": "loss",
+        "totalDirectionChanges": true
+      },
+      {
+        "gameId": "401872968",
+        "gameTime": "2026-10-04T17:00:00.000Z",
+        "week": 4,
+        "matchup": "GB @ TB",
+        "homePriorGames": 3,
+        "awayPriorGames": 3,
+        "homePriorStats": {
+          "games": 3,
+          "denominator": 3,
+          "pointsFor": 62,
+          "pointsAgainst": 79,
+          "ppg": 20.7,
+          "ppgAllowed": 26.3
+        },
+        "awayPriorStats": {
+          "games": 3,
+          "denominator": 3,
+          "pointsFor": 56,
+          "pointsAgainst": 91,
+          "ppg": 18.7,
+          "ppgAllowed": 30.3
+        },
+        "vegasTotal": 38.5,
+        "actualTotal": 31,
+        "vegasSpread": 3,
+        "actualSpread": 3,
+        "storedRawTotal": 43.9,
+        "storedTotal": 44,
+        "storedTotalGrade": "loss",
+        "storedSpreadGrade": "push",
+        "reconstructed": {
+          "home": 21.9,
+          "away": 24.9,
+          "rawTotal": 46.8,
+          "total": 47,
+          "spread": 1.5
+        },
+        "reconstructedTotalGrade": "loss",
+        "reconstructedSpreadGrade": "push",
+        "totalDirectionChanges": false
+      },
+      {
+        "gameId": "401872969",
+        "gameTime": "2026-10-04T17:00:00.000Z",
+        "week": 4,
+        "matchup": "JAX @ CIN",
+        "homePriorGames": 3,
+        "awayPriorGames": 3,
+        "homePriorStats": {
+          "games": 3,
+          "denominator": 3,
+          "pointsFor": 80,
+          "pointsAgainst": 63,
+          "ppg": 26.7,
+          "ppgAllowed": 21
+        },
+        "awayPriorStats": {
+          "games": 3,
+          "denominator": 3,
+          "pointsFor": 82,
+          "pointsAgainst": 36,
+          "ppg": 27.3,
+          "ppgAllowed": 12
+        },
+        "vegasTotal": 51.5,
+        "actualTotal": 39,
+        "vegasSpread": -2.5,
+        "actualSpread": 5,
+        "storedRawTotal": 43,
+        "storedTotal": 43,
+        "storedTotalGrade": "win",
+        "storedSpreadGrade": "win",
+        "reconstructed": {
+          "home": 13.6,
+          "away": 30,
+          "rawTotal": 43.6,
+          "total": 43.5,
+          "spread": 9
+        },
+        "reconstructedTotalGrade": "win",
+        "reconstructedSpreadGrade": "win",
+        "totalDirectionChanges": false
+      },
+      {
+        "gameId": "401872970",
+        "gameTime": "2026-10-04T17:00:00.000Z",
+        "week": 4,
+        "matchup": "LAR @ PHI",
+        "homePriorGames": 3,
+        "awayPriorGames": 3,
+        "homePriorStats": {
+          "games": 3,
+          "denominator": 3,
+          "pointsFor": 55,
+          "pointsAgainst": 69,
+          "ppg": 18.3,
+          "ppgAllowed": 23
+        },
+        "awayPriorStats": {
+          "games": 3,
+          "denominator": 3,
+          "pointsFor": 61,
+          "pointsAgainst": 63,
+          "ppg": 20.3,
+          "ppgAllowed": 21
+        },
+        "vegasTotal": 42.5,
+        "actualTotal": 44,
+        "vegasSpread": 3.5,
+        "actualSpread": 4,
+        "storedRawTotal": 42.7,
+        "storedTotal": 42.5,
+        "storedTotalGrade": "win",
+        "storedSpreadGrade": "loss",
+        "reconstructed": {
+          "home": 18.6,
+          "away": 23.5,
+          "rawTotal": 42.1,
+          "total": 42,
+          "spread": 2.5
+        },
+        "reconstructedTotalGrade": "loss",
+        "reconstructedSpreadGrade": "loss",
+        "totalDirectionChanges": true
+      },
+      {
+        "gameId": "401872971",
+        "gameTime": "2026-10-04T17:00:00.000Z",
+        "week": 4,
+        "matchup": "NE @ BUF",
+        "homePriorGames": 3,
+        "awayPriorGames": 3,
+        "homePriorStats": {
+          "games": 3,
+          "denominator": 3,
+          "pointsFor": 101,
+          "pointsAgainst": 78,
+          "ppg": 33.7,
+          "ppgAllowed": 26
+        },
+        "awayPriorStats": {
+          "games": 3,
+          "denominator": 3,
+          "pointsFor": 36,
+          "pointsAgainst": 51,
+          "ppg": 12,
+          "ppgAllowed": 17
+        },
+        "vegasTotal": 49.5,
+        "actualTotal": 55,
+        "vegasSpread": -7,
+        "actualSpread": 3,
+        "storedRawTotal": 46.2,
+        "storedTotal": 46,
+        "storedTotalGrade": "loss",
+        "storedSpreadGrade": "win",
+        "reconstructed": {
+          "home": 27.6,
+          "away": 16.7,
+          "rawTotal": 44.3,
+          "total": 44.5,
+          "spread": -6
+        },
+        "reconstructedTotalGrade": "loss",
+        "reconstructedSpreadGrade": "win",
+        "totalDirectionChanges": false
+      },
+      {
+        "gameId": "401872972",
+        "gameTime": "2026-10-04T17:00:00.000Z",
+        "week": 4,
+        "matchup": "NYJ @ CHI",
+        "homePriorGames": 3,
+        "awayPriorGames": 3,
+        "homePriorStats": {
+          "games": 3,
+          "denominator": 3,
+          "pointsFor": 89,
+          "pointsAgainst": 53,
+          "ppg": 29.7,
+          "ppgAllowed": 17.7
+        },
+        "awayPriorStats": {
+          "games": 3,
+          "denominator": 3,
+          "pointsFor": 64,
+          "pointsAgainst": 61,
+          "ppg": 21.3,
+          "ppgAllowed": 20.3
+        },
+        "vegasTotal": 43.5,
+        "actualTotal": 35,
+        "vegasSpread": -3.5,
+        "actualSpread": -11,
+        "storedRawTotal": 42.8,
+        "storedTotal": 43,
+        "storedTotalGrade": "win",
+        "storedSpreadGrade": "win",
+        "reconstructed": {
+          "home": 33.6,
+          "away": 10.8,
+          "rawTotal": 44.400000000000006,
+          "total": 44.5,
+          "spread": -12.5
+        },
+        "reconstructedTotalGrade": "loss",
+        "reconstructedSpreadGrade": "win",
+        "totalDirectionChanges": true
+      },
+      {
+        "gameId": "401872973",
+        "gameTime": "2026-10-04T17:00:00.000Z",
+        "week": 4,
+        "matchup": "TEN @ BAL",
+        "homePriorGames": 3,
+        "awayPriorGames": 3,
+        "homePriorStats": {
+          "games": 3,
+          "denominator": 3,
+          "pointsFor": 92,
+          "pointsAgainst": 78,
+          "ppg": 30.7,
+          "ppgAllowed": 26
+        },
+        "awayPriorStats": {
+          "games": 3,
+          "denominator": 3,
+          "pointsFor": 37,
+          "pointsAgainst": 59,
+          "ppg": 12.3,
+          "ppgAllowed": 19.7
+        },
+        "vegasTotal": 42.5,
+        "actualTotal": 42,
+        "vegasSpread": -11.5,
+        "actualSpread": -6,
+        "storedRawTotal": 43.8,
+        "storedTotal": 44,
+        "storedTotalGrade": "loss",
+        "storedSpreadGrade": "loss",
+        "reconstructed": {
+          "home": 33.7,
+          "away": 10.5,
+          "rawTotal": 44.2,
+          "total": 44,
+          "spread": -13
+        },
+        "reconstructedTotalGrade": "loss",
+        "reconstructedSpreadGrade": "loss",
+        "totalDirectionChanges": false
+      },
+      {
+        "gameId": "401872974",
+        "gameTime": "2026-10-04T20:05:00.000Z",
+        "week": 4,
+        "matchup": "MIA @ MIN",
+        "homePriorGames": 3,
+        "awayPriorGames": 3,
+        "homePriorStats": {
+          "games": 3,
+          "denominator": 3,
+          "pointsFor": 71,
+          "pointsAgainst": 41,
+          "ppg": 23.7,
+          "ppgAllowed": 13.7
+        },
+        "awayPriorStats": {
+          "games": 3,
+          "denominator": 3,
+          "pointsFor": 36,
+          "pointsAgainst": 86,
+          "ppg": 12,
+          "ppgAllowed": 28.7
+        },
+        "vegasTotal": 38.5,
+        "actualTotal": 25,
+        "vegasSpread": -10,
+        "actualSpread": -5,
+        "storedRawTotal": 38.1,
+        "storedTotal": 38,
+        "storedTotalGrade": "win",
+        "storedSpreadGrade": "loss",
+        "reconstructed": {
+          "home": 34.4,
+          "away": 6.1,
+          "rawTotal": 40.5,
+          "total": 40.5,
+          "spread": -15.5
+        },
+        "reconstructedTotalGrade": "loss",
+        "reconstructedSpreadGrade": "loss",
+        "totalDirectionChanges": true
+      },
+      {
+        "gameId": "401872975",
+        "gameTime": "2026-10-04T20:25:00.000Z",
+        "week": 4,
+        "matchup": "DEN @ SF",
+        "homePriorGames": 3,
+        "awayPriorGames": 3,
+        "homePriorStats": {
+          "games": 3,
+          "denominator": 3,
+          "pointsFor": 98,
+          "pointsAgainst": 50,
+          "ppg": 32.7,
+          "ppgAllowed": 16.7
+        },
+        "awayPriorStats": {
+          "games": 3,
+          "denominator": 3,
+          "pointsFor": 60,
+          "pointsAgainst": 70,
+          "ppg": 20,
+          "ppgAllowed": 23.3
+        },
+        "vegasTotal": 48.5,
+        "actualTotal": 38,
+        "vegasSpread": -3,
+        "actualSpread": -10,
+        "storedRawTotal": 44.099999999999994,
+        "storedTotal": 44,
+        "storedTotalGrade": "win",
+        "storedSpreadGrade": "win",
+        "reconstructed": {
+          "home": 28.1,
+          "away": 17.5,
+          "rawTotal": 45.6,
+          "total": 45.5,
+          "spread": -6
+        },
+        "reconstructedTotalGrade": "win",
+        "reconstructedSpreadGrade": "win",
+        "totalDirectionChanges": false
+      },
+      {
+        "gameId": "401872976",
+        "gameTime": "2026-10-04T20:25:00.000Z",
+        "week": 4,
+        "matchup": "KC @ LV",
+        "homePriorGames": 3,
+        "awayPriorGames": 3,
+        "homePriorStats": {
+          "games": 3,
+          "denominator": 3,
+          "pointsFor": 88,
+          "pointsAgainst": 54,
+          "ppg": 29.3,
+          "ppgAllowed": 18
+        },
+        "awayPriorStats": {
+          "games": 3,
+          "denominator": 3,
+          "pointsFor": 88,
+          "pointsAgainst": 50,
+          "ppg": 29.3,
+          "ppgAllowed": 16.7
+        },
+        "vegasTotal": 47.5,
+        "actualTotal": 57,
+        "vegasSpread": 4.5,
+        "actualSpread": 3,
+        "storedRawTotal": 47.7,
+        "storedTotal": 47.5,
+        "storedTotalGrade": "win",
+        "storedSpreadGrade": "loss",
+        "reconstructed": {
+          "home": 19,
+          "away": 26.8,
+          "rawTotal": 45.8,
+          "total": 46,
+          "spread": 4.5
+        },
+        "reconstructedTotalGrade": "loss",
+        "reconstructedSpreadGrade": "loss",
+        "totalDirectionChanges": true
+      },
+      {
+        "gameId": "401872977",
+        "gameTime": "2026-10-04T20:25:00.000Z",
+        "week": 4,
+        "matchup": "LAC @ SEA",
+        "homePriorGames": 3,
+        "awayPriorGames": 3,
+        "homePriorStats": {
+          "games": 3,
+          "denominator": 3,
+          "pointsFor": 75,
+          "pointsAgainst": 50,
+          "ppg": 25,
+          "ppgAllowed": 16.7
+        },
+        "awayPriorStats": {
+          "games": 3,
+          "denominator": 3,
+          "pointsFor": 44,
+          "pointsAgainst": 76,
+          "ppg": 14.7,
+          "ppgAllowed": 25.3
+        },
+        "vegasTotal": 42.5,
+        "actualTotal": 53,
+        "vegasSpread": -7,
+        "actualSpread": -7,
+        "storedRawTotal": 44,
+        "storedTotal": 44,
+        "storedTotalGrade": "win",
+        "storedSpreadGrade": "push",
+        "reconstructed": {
+          "home": 33.7,
+          "away": 8.1,
+          "rawTotal": 41.800000000000004,
+          "total": 42,
+          "spread": -14
+        },
+        "reconstructedTotalGrade": "loss",
+        "reconstructedSpreadGrade": "push",
+        "totalDirectionChanges": true
+      },
+      {
+        "gameId": "401872978",
+        "gameTime": "2026-10-05T00:20:00.000Z",
+        "week": 4,
+        "matchup": "DET @ CAR",
+        "homePriorGames": 3,
+        "awayPriorGames": 3,
+        "homePriorStats": {
+          "games": 3,
+          "denominator": 3,
+          "pointsFor": 89,
+          "pointsAgainst": 83,
+          "ppg": 29.7,
+          "ppgAllowed": 27.7
+        },
+        "awayPriorStats": {
+          "games": 3,
+          "denominator": 3,
+          "pointsFor": 93,
+          "pointsAgainst": 95,
+          "ppg": 31,
+          "ppgAllowed": 31.7
+        },
+        "vegasTotal": 51.5,
+        "actualTotal": 58,
+        "vegasSpread": 3.5,
+        "actualSpread": -6,
+        "storedRawTotal": 54.9,
+        "storedTotal": 55,
+        "storedTotalGrade": "win",
+        "storedSpreadGrade": "win",
+        "reconstructed": {
+          "home": 25.5,
+          "away": 29.8,
+          "rawTotal": 55.3,
+          "total": 55.5,
+          "spread": 2.5
+        },
+        "reconstructedTotalGrade": "win",
+        "reconstructedSpreadGrade": "win",
+        "totalDirectionChanges": false
+      },
+      {
+        "gameId": "401872979",
+        "gameTime": "2026-10-06T00:15:00.000Z",
+        "week": 4,
+        "matchup": "ATL @ NO",
+        "homePriorGames": 3,
+        "awayPriorGames": 3,
+        "homePriorStats": {
+          "games": 3,
+          "denominator": 3,
+          "pointsFor": 81,
+          "pointsAgainst": 83,
+          "ppg": 27,
+          "ppgAllowed": 27.7
+        },
+        "awayPriorStats": {
+          "games": 3,
+          "denominator": 3,
+          "pointsFor": 51,
+          "pointsAgainst": 68,
+          "ppg": 17,
+          "ppgAllowed": 22.7
+        },
+        "vegasTotal": 47.5,
+        "actualTotal": 69,
+        "vegasSpread": -1.5,
+        "actualSpread": 21,
+        "storedRawTotal": 50.1,
+        "storedTotal": 50,
+        "storedTotalGrade": "win",
+        "storedSpreadGrade": "win",
+        "reconstructed": {
+          "home": 23.4,
+          "away": 22.8,
+          "rawTotal": 46.2,
+          "total": 46,
+          "spread": -0.5
+        },
+        "reconstructedTotalGrade": "loss",
+        "reconstructedSpreadGrade": "win",
+        "totalDirectionChanges": true
+      },
+      {
+        "gameId": "401872980",
+        "gameTime": "2026-10-09T00:15:00.000Z",
+        "week": 5,
+        "matchup": "TB @ DAL",
+        "homePriorGames": 4,
+        "awayPriorGames": 4,
+        "homePriorStats": {
+          "games": 4,
+          "denominator": 4,
+          "pointsFor": 122,
+          "pointsAgainst": 112,
+          "ppg": 30.5,
+          "ppgAllowed": 28
+        },
+        "awayPriorStats": {
+          "games": 4,
+          "denominator": 4,
+          "pointsFor": 76,
+          "pointsAgainst": 96,
+          "ppg": 19,
+          "ppgAllowed": 24
+        },
+        "vegasTotal": 48.5,
+        "actualTotal": 40,
+        "vegasSpread": -9.5,
+        "actualSpread": 8,
+        "storedRawTotal": 47.2,
+        "storedTotal": 47,
+        "storedTotalGrade": "win",
+        "storedSpreadGrade": "win",
+        "reconstructed": {
+          "home": 31.3,
+          "away": 17.4,
+          "rawTotal": 48.7,
+          "total": 48.5,
+          "spread": -7.5
+        },
+        "reconstructedTotalGrade": "loss",
+        "reconstructedSpreadGrade": "win",
+        "totalDirectionChanges": true
+      },
+      {
+        "gameId": "401872981",
+        "gameTime": "2026-10-11T13:30:00.000Z",
+        "week": 5,
+        "matchup": "PHI @ JAX",
+        "homePriorGames": 4,
+        "awayPriorGames": 4,
+        "homePriorStats": {
+          "games": 4,
+          "denominator": 4,
+          "pointsFor": 104,
+          "pointsAgainst": 53,
+          "ppg": 26,
+          "ppgAllowed": 13.3
+        },
+        "awayPriorStats": {
+          "games": 4,
+          "denominator": 4,
+          "pointsFor": 75,
+          "pointsAgainst": 93,
+          "ppg": 18.8,
+          "ppgAllowed": 23.3
+        },
+        "vegasTotal": 41.5,
+        "actualTotal": 36,
+        "vegasSpread": -7.5,
+        "actualSpread": -2,
+        "storedRawTotal": 41,
+        "storedTotal": 41,
+        "storedTotalGrade": "win",
+        "storedSpreadGrade": "loss",
+        "reconstructed": {
+          "home": 33.4,
+          "away": 8.3,
+          "rawTotal": 41.7,
+          "total": 41.5,
+          "spread": -14
+        },
+        "reconstructedTotalGrade": "loss",
+        "reconstructedSpreadGrade": "loss",
+        "totalDirectionChanges": true
+      },
+      {
+        "gameId": "401872982",
+        "gameTime": "2026-10-11T17:00:00.000Z",
+        "week": 5,
+        "matchup": "CIN @ MIA",
+        "homePriorGames": 4,
+        "awayPriorGames": 4,
+        "homePriorStats": {
+          "games": 4,
+          "denominator": 4,
+          "pointsFor": 46,
+          "pointsAgainst": 101,
+          "ppg": 11.5,
+          "ppgAllowed": 25.3
+        },
+        "awayPriorStats": {
+          "games": 4,
+          "denominator": 4,
+          "pointsFor": 97,
+          "pointsAgainst": 85,
+          "ppg": 24.3,
+          "ppgAllowed": 21.3
+        },
+        "vegasTotal": 43.5,
+        "actualTotal": 55,
+        "vegasSpread": 7,
+        "actualSpread": 7,
+        "storedRawTotal": 44,
+        "storedTotal": 44,
+        "storedTotalGrade": "win",
+        "storedSpreadGrade": "push",
+        "reconstructed": {
+          "home": 14,
+          "away": 28,
+          "rawTotal": 42,
+          "total": 42,
+          "spread": 7.5
+        },
+        "reconstructedTotalGrade": "loss",
+        "reconstructedSpreadGrade": "push",
+        "totalDirectionChanges": true
+      },
+      {
+        "gameId": "401872983",
+        "gameTime": "2026-10-11T17:00:00.000Z",
+        "week": 5,
+        "matchup": "CLE @ NYJ",
+        "homePriorGames": 4,
+        "awayPriorGames": 4,
+        "homePriorStats": {
+          "games": 4,
+          "denominator": 4,
+          "pointsFor": 76,
+          "pointsAgainst": 84,
+          "ppg": 19,
+          "ppgAllowed": 21
+        },
+        "awayPriorStats": {
+          "games": 4,
+          "denominator": 4,
+          "pointsFor": 81,
+          "pointsAgainst": 95,
+          "ppg": 20.3,
+          "ppgAllowed": 23.8
+        },
+        "vegasTotal": 38.5,
+        "actualTotal": 29,
+        "vegasSpread": -2.5,
+        "actualSpread": -5,
+        "storedRawTotal": 40.8,
+        "storedTotal": 41,
+        "storedTotalGrade": "loss",
+        "storedSpreadGrade": "loss",
+        "reconstructed": {
+          "home": 15.2,
+          "away": 27.4,
+          "rawTotal": 42.599999999999994,
+          "total": 42.5,
+          "spread": 6.5
+        },
+        "reconstructedTotalGrade": "loss",
+        "reconstructedSpreadGrade": "loss",
+        "totalDirectionChanges": false
+      },
+      {
+        "gameId": "401872984",
+        "gameTime": "2026-10-11T17:00:00.000Z",
+        "week": 5,
+        "matchup": "HOU @ TEN",
+        "homePriorGames": 4,
+        "awayPriorGames": 4,
+        "homePriorStats": {
+          "games": 4,
+          "denominator": 4,
+          "pointsFor": 55,
+          "pointsAgainst": 83,
+          "ppg": 13.8,
+          "ppgAllowed": 20.8
+        },
+        "awayPriorStats": {
+          "games": 4,
+          "denominator": 4,
+          "pointsFor": 84,
+          "pointsAgainst": 109,
+          "ppg": 21,
+          "ppgAllowed": 27.3
+        },
+        "vegasTotal": 37.5,
+        "actualTotal": 29,
+        "vegasSpread": 7,
+        "actualSpread": 23,
+        "storedRawTotal": 40.4,
+        "storedTotal": 40.5,
+        "storedTotalGrade": "loss",
+        "storedSpreadGrade": "win",
+        "reconstructed": {
+          "home": 14.5,
+          "away": 27.7,
+          "rawTotal": 42.2,
+          "total": 42,
+          "spread": 7.5
+        },
+        "reconstructedTotalGrade": "loss",
+        "reconstructedSpreadGrade": "win",
+        "totalDirectionChanges": false
+      },
+      {
+        "gameId": "401872985",
+        "gameTime": "2026-10-11T17:00:00.000Z",
+        "week": 5,
+        "matchup": "IND @ PIT",
+        "homePriorGames": 4,
+        "awayPriorGames": 4,
+        "homePriorStats": {
+          "games": 4,
+          "denominator": 4,
+          "pointsFor": 77,
+          "pointsAgainst": 87,
+          "ppg": 19.3,
+          "ppgAllowed": 21.8
+        },
+        "awayPriorStats": {
+          "games": 4,
+          "denominator": 4,
+          "pointsFor": 102,
+          "pointsAgainst": 104,
+          "ppg": 25.5,
+          "ppgAllowed": 26
+        },
+        "vegasTotal": 41.5,
+        "actualTotal": 56,
+        "vegasSpread": -3,
+        "actualSpread": -12,
+        "storedRawTotal": 46.900000000000006,
+        "storedTotal": 47,
+        "storedTotalGrade": "win",
+        "storedSpreadGrade": "win",
+        "reconstructed": {
+          "home": 26.8,
+          "away": 18.8,
+          "rawTotal": 45.6,
+          "total": 45.5,
+          "spread": -4.5
+        },
+        "reconstructedTotalGrade": "win",
+        "reconstructedSpreadGrade": "win",
+        "totalDirectionChanges": false
+      },
+      {
+        "gameId": "401872986",
+        "gameTime": "2026-10-11T17:00:00.000Z",
+        "week": 5,
+        "matchup": "LV @ NE",
+        "homePriorGames": 4,
+        "awayPriorGames": 4,
+        "homePriorStats": {
+          "games": 4,
+          "denominator": 4,
+          "pointsFor": 65,
+          "pointsAgainst": 77,
+          "ppg": 16.3,
+          "ppgAllowed": 19.3
+        },
+        "awayPriorStats": {
+          "games": 4,
+          "denominator": 4,
+          "pointsFor": 115,
+          "pointsAgainst": 84,
+          "ppg": 28.8,
+          "ppgAllowed": 21
+        },
+        "vegasTotal": 45.5,
+        "actualTotal": 62,
+        "vegasSpread": -3.5,
+        "actualSpread": -28,
+        "storedRawTotal": 45.699999999999996,
+        "storedTotal": 45.5,
+        "storedTotalGrade": "win",
+        "storedSpreadGrade": "win",
+        "reconstructed": {
+          "home": 29.2,
+          "away": 13.9,
+          "rawTotal": 43.1,
+          "total": 43,
+          "spread": -8.5
+        },
+        "reconstructedTotalGrade": "loss",
+        "reconstructedSpreadGrade": "win",
+        "totalDirectionChanges": true
+      },
+      {
+        "gameId": "401872987",
+        "gameTime": "2026-10-11T17:00:00.000Z",
+        "week": 5,
+        "matchup": "MIN @ NO",
+        "homePriorGames": 4,
+        "awayPriorGames": 4,
+        "homePriorStats": {
+          "games": 4,
+          "denominator": 4,
+          "pointsFor": 105,
+          "pointsAgainst": 128,
+          "ppg": 26.3,
+          "ppgAllowed": 32
+        },
+        "awayPriorStats": {
+          "games": 4,
+          "denominator": 4,
+          "pointsFor": 86,
+          "pointsAgainst": 51,
+          "ppg": 21.5,
+          "ppgAllowed": 12.8
+        },
+        "vegasTotal": 41.5,
+        "actualTotal": 36,
+        "vegasSpread": 1.5,
+        "actualSpread": 10,
+        "storedRawTotal": 44.1,
+        "storedTotal": 44,
+        "storedTotalGrade": "loss",
+        "storedSpreadGrade": "win",
+        "reconstructed": {
+          "home": 13.8,
+          "away": 31.8,
+          "rawTotal": 45.6,
+          "total": 45.5,
+          "spread": 10
+        },
+        "reconstructedTotalGrade": "loss",
+        "reconstructedSpreadGrade": "win",
+        "totalDirectionChanges": false
+      },
+      {
+        "gameId": "401872988",
+        "gameTime": "2026-10-11T17:00:00.000Z",
+        "week": 5,
+        "matchup": "NYG @ WSH",
+        "homePriorGames": 4,
+        "awayPriorGames": 4,
+        "homePriorStats": {
+          "games": 4,
+          "denominator": 4,
+          "pointsFor": 88,
+          "pointsAgainst": 122,
+          "ppg": 22,
+          "ppgAllowed": 30.5
+        },
+        "awayPriorStats": {
+          "games": 4,
+          "denominator": 4,
+          "pointsFor": 82,
+          "pointsAgainst": 79,
+          "ppg": 20.5,
+          "ppgAllowed": 19.8
+        },
+        "vegasTotal": 41.5,
+        "actualTotal": 54,
+        "vegasSpread": -3.5,
+        "actualSpread": 0,
+        "storedRawTotal": 55.1,
+        "storedTotal": 55,
+        "storedTotalGrade": "win",
+        "storedSpreadGrade": "win",
+        "reconstructed": {
+          "home": 19.1,
+          "away": 26.6,
+          "rawTotal": 45.7,
+          "total": 45.5,
+          "spread": 4
+        },
+        "reconstructedTotalGrade": "win",
+        "reconstructedSpreadGrade": "win",
+        "totalDirectionChanges": false
+      },
+      {
+        "gameId": "401872990",
+        "gameTime": "2026-10-11T17:00:00.000Z",
+        "week": 5,
+        "matchup": "CHI @ GB",
+        "homePriorGames": 4,
+        "awayPriorGames": 4,
+        "homePriorStats": {
+          "games": 4,
+          "denominator": 4,
+          "pointsFor": 73,
+          "pointsAgainst": 105,
+          "ppg": 18.3,
+          "ppgAllowed": 26.3
+        },
+        "awayPriorStats": {
+          "games": 4,
+          "denominator": 4,
+          "pointsFor": 112,
+          "pointsAgainst": 65,
+          "ppg": 28,
+          "ppgAllowed": 16.3
+        },
+        "vegasTotal": 47.5,
+        "actualTotal": 38,
+        "vegasSpread": 1.5,
+        "actualSpread": -24,
+        "storedRawTotal": 43.400000000000006,
+        "storedTotal": 43.5,
+        "storedTotalGrade": "win",
+        "storedSpreadGrade": "loss",
+        "reconstructed": {
+          "home": 14.2,
+          "away": 30.1,
+          "rawTotal": 44.3,
+          "total": 44.5,
+          "spread": 8.5
+        },
+        "reconstructedTotalGrade": "win",
+        "reconstructedSpreadGrade": "loss",
+        "totalDirectionChanges": false
+      },
+      {
+        "gameId": "401872989",
+        "gameTime": "2026-10-11T20:05:00.000Z",
+        "week": 5,
+        "matchup": "DEN @ LAC",
+        "homePriorGames": 4,
+        "awayPriorGames": 4,
+        "homePriorStats": {
+          "games": 4,
+          "denominator": 4,
+          "pointsFor": 67,
+          "pointsAgainst": 106,
+          "ppg": 16.8,
+          "ppgAllowed": 26.5
+        },
+        "awayPriorStats": {
+          "games": 4,
+          "denominator": 4,
+          "pointsFor": 74,
+          "pointsAgainst": 94,
+          "ppg": 18.5,
+          "ppgAllowed": 23.5
+        },
+        "vegasTotal": 42.5,
+        "actualTotal": 40,
+        "vegasSpread": 3.5,
+        "actualSpread": 6,
+        "storedRawTotal": 42.7,
+        "storedTotal": 42.5,
+        "storedTotalGrade": "loss",
+        "storedSpreadGrade": "win",
+        "reconstructed": {
+          "home": 14.2,
+          "away": 28.9,
+          "rawTotal": 43.099999999999994,
+          "total": 43,
+          "spread": 8
+        },
+        "reconstructedTotalGrade": "loss",
+        "reconstructedSpreadGrade": "win",
+        "totalDirectionChanges": false
+      },
+      {
+        "gameId": "401872991",
+        "gameTime": "2026-10-11T20:25:00.000Z",
+        "week": 5,
+        "matchup": "DET @ ARI",
+        "homePriorGames": 4,
+        "awayPriorGames": 4,
+        "homePriorStats": {
+          "games": 4,
+          "denominator": 4,
+          "pointsFor": 87,
+          "pointsAgainst": 117,
+          "ppg": 21.8,
+          "ppgAllowed": 29.3
+        },
+        "awayPriorStats": {
+          "games": 4,
+          "denominator": 4,
+          "pointsFor": 119,
+          "pointsAgainst": 127,
+          "ppg": 29.8,
+          "ppgAllowed": 31.8
+        },
+        "vegasTotal": 54.5,
+        "actualTotal": 66,
+        "vegasSpread": 5.5,
+        "actualSpread": 24,
+        "storedRawTotal": 53.9,
+        "storedTotal": 54,
+        "storedTotalGrade": "loss",
+        "storedSpreadGrade": "win",
+        "reconstructed": {
+          "home": 18.9,
+          "away": 33.8,
+          "rawTotal": 52.699999999999996,
+          "total": 52.5,
+          "spread": 8
+        },
+        "reconstructedTotalGrade": "loss",
+        "reconstructedSpreadGrade": "win",
+        "totalDirectionChanges": false
+      },
+      {
+        "gameId": "401872992",
+        "gameTime": "2026-10-11T20:25:00.000Z",
+        "week": 5,
+        "matchup": "SF @ SEA",
+        "homePriorGames": 4,
+        "awayPriorGames": 4,
+        "homePriorStats": {
+          "games": 4,
+          "denominator": 4,
+          "pointsFor": 105,
+          "pointsAgainst": 73,
+          "ppg": 26.3,
+          "ppgAllowed": 18.3
+        },
+        "awayPriorStats": {
+          "games": 4,
+          "denominator": 4,
+          "pointsFor": 122,
+          "pointsAgainst": 64,
+          "ppg": 30.5,
+          "ppgAllowed": 16
+        },
+        "vegasTotal": 46.5,
+        "actualTotal": 61,
+        "vegasSpread": -3,
+        "actualSpread": 3,
+        "storedRawTotal": 47.2,
+        "storedTotal": 47,
+        "storedTotalGrade": "win",
+        "storedSpreadGrade": "win",
+        "reconstructed": {
+          "home": 24.6,
+          "away": 20.5,
+          "rawTotal": 45.1,
+          "total": 45,
+          "spread": -2.5
+        },
+        "reconstructedTotalGrade": "loss",
+        "reconstructedSpreadGrade": "win",
+        "totalDirectionChanges": true
+      },
+      {
+        "gameId": "401872993",
+        "gameTime": "2026-10-12T00:20:00.000Z",
+        "week": 5,
+        "matchup": "BAL @ ATL",
+        "homePriorGames": 4,
+        "awayPriorGames": 4,
+        "homePriorStats": {
+          "games": 4,
+          "denominator": 4,
+          "pointsFor": 96,
+          "pointsAgainst": 92,
+          "ppg": 24,
+          "ppgAllowed": 23
+        },
+        "awayPriorStats": {
+          "games": 4,
+          "denominator": 4,
+          "pointsFor": 116,
+          "pointsAgainst": 96,
+          "ppg": 29,
+          "ppgAllowed": 24
+        },
+        "vegasTotal": 43.5,
+        "actualTotal": 53,
+        "vegasSpread": -3,
+        "actualSpread": 7,
+        "storedRawTotal": 48.6,
+        "storedTotal": 48.5,
+        "storedTotalGrade": "win",
+        "storedSpreadGrade": "win",
+        "reconstructed": {
+          "home": 23.6,
+          "away": 24.6,
+          "rawTotal": 48.2,
+          "total": 48,
+          "spread": 0.5
+        },
+        "reconstructedTotalGrade": "win",
+        "reconstructedSpreadGrade": "win",
+        "totalDirectionChanges": false
+      },
+      {
+        "gameId": "401872994",
+        "gameTime": "2026-10-13T00:15:00.000Z",
+        "week": 5,
+        "matchup": "BUF @ LAR",
+        "homePriorGames": 4,
+        "awayPriorGames": 4,
+        "homePriorStats": {
+          "games": 4,
+          "denominator": 4,
+          "pointsFor": 85,
+          "pointsAgainst": 83,
+          "ppg": 21.3,
+          "ppgAllowed": 20.8
+        },
+        "awayPriorStats": {
+          "games": 4,
+          "denominator": 4,
+          "pointsFor": 127,
+          "pointsAgainst": 107,
+          "ppg": 31.8,
+          "ppgAllowed": 26.8
+        },
+        "vegasTotal": 54.5,
+        "actualTotal": 71,
+        "vegasSpread": -3.5,
+        "actualSpread": 3,
+        "storedRawTotal": 51.3,
+        "storedTotal": 51.5,
+        "storedTotalGrade": "loss",
+        "storedSpreadGrade": "win",
+        "reconstructed": {
+          "home": 23.6,
+          "away": 24.8,
+          "rawTotal": 48.400000000000006,
+          "total": 48.5,
+          "spread": 0.5
+        },
+        "reconstructedTotalGrade": "loss",
+        "reconstructedSpreadGrade": "win",
+        "totalDirectionChanges": false
+      }
+    ]
+  },
+  "lineShopping": {
+    "all": {
+      "flags": 160,
+      "games": 89,
+      "meanClvProbabilityPoints": 0.4400765547667761,
+      "positive": 101,
+      "naiveSeProbabilityPoints": 0.17419634310800325,
+      "gameClusterSeProbabilityPoints": 0.20830303822537638,
+      "approximateNormalGameCluster95ProbabilityPoints": [
+        0.03180259984503836,
+        0.8483505096885138
+      ]
+    },
+    "withoutSameSnapshot": {
+      "flags": 144,
+      "games": 82,
+      "meanClvProbabilityPoints": 0.32789677468531986,
+      "positive": 85,
+      "naiveSeProbabilityPoints": 0.19063500200274264,
+      "gameClusterSeProbabilityPoints": 0.22388709123824913,
+      "approximateNormalGameCluster95ProbabilityPoints": [
+        -0.11092192414164843,
+        0.7667154735122882
+      ]
+    },
+    "independentCloseWithin1h": {
+      "flags": 126,
+      "games": 72,
+      "meanClvProbabilityPoints": 0.32538198501083093,
+      "positive": 76,
+      "naiveSeProbabilityPoints": 0.1847788688221603,
+      "gameClusterSeProbabilityPoints": 0.24382042991851974,
+      "approximateNormalGameCluster95ProbabilityPoints": [
+        -0.15250605762946773,
+        0.8032700276511296
+      ]
+    },
+    "sameSnapshotCount": 16,
+    "sameSnapshotPositiveCount": 16,
+    "closeOlderThan1h": 19,
+    "maxCloseAgeHours": 56.12714861111111,
+    "perSport": {
+      "nfl": {
+        "flags": 23,
+        "games": 15,
+        "meanClvProbabilityPoints": -0.10926339828283259,
+        "positive": 14,
+        "naiveSeProbabilityPoints": 0.29140697336224386,
+        "gameClusterSeProbabilityPoints": 0.3058368288227445,
+        "approximateNormalGameCluster95ProbabilityPoints": [
+          -0.7087035827754117,
+          0.4901767862097466
+        ]
+      },
+      "wnba": {
+        "flags": 31,
+        "games": 14,
+        "meanClvProbabilityPoints": 0.48661284442174224,
+        "positive": 20,
+        "naiveSeProbabilityPoints": 0.5866107830680515,
+        "gameClusterSeProbabilityPoints": 0.6541760351019209,
+        "approximateNormalGameCluster95ProbabilityPoints": [
+          -0.7955721843780227,
+          1.7687978732215073
+        ]
+      },
+      "nhl": {
+        "flags": 106,
+        "games": 60,
+        "meanClvProbabilityPoints": 0.5456632900576918,
+        "positive": 67,
+        "naiveSeProbabilityPoints": 0.18975988542033764,
+        "gameClusterSeProbabilityPoints": 0.24600968553730357,
+        "approximateNormalGameCluster95ProbabilityPoints": [
+          0.06348430640457674,
+          1.0278422737108068
+        ]
+      }
+    }
+  },
+  "sourceReferences": [
+    {
+      "file": "src/services/espn.ts",
+      "line": 125,
+      "finding": "gamesPlayed = wins + losses; current standings points feed PPG at148–149"
+    },
+    {
+      "file": "src/app/api/cron/blob-sync-simple/route.ts",
+      "line": 314,
+      "finding": "Refreshes current ESPN PPG before final-game grading"
+    },
+    {
+      "file": "src/app/api/cron/blob-sync-simple/route.ts",
+      "line": 328,
+      "finding": "Selects already-completed games"
+    },
+    {
+      "file": "src/app/api/cron/blob-sync-simple/route.ts",
+      "line": 369,
+      "finding": "Computes new base prediction for each final game"
+    },
+    {
+      "file": "src/app/api/cron/blob-sync-simple/route.ts",
+      "line": 462,
+      "finding": "Stamps modelVersion at result generation"
+    },
+    {
+      "file": "src/app/api/cron/blob-sync-simple/route.ts",
+      "line": 784,
+      "finding": "Displayed forecast subtracts weather and QB adjustments; result grading does not"
+    },
+    {
+      "file": "src/app/api/cron/blob-sync-simple/route.ts",
+      "line": 1144,
+      "finding": "Prediction documents keyed only by game ID with updatedAt"
+    },
+    {
+      "file": "src/services/firestore-admin-store.ts",
+      "line": 66,
+      "finding": "Prediction records overwritten/merged at same game ID"
+    },
+    {
+      "file": "src/app/api/cron/odds-board-record/route.ts",
+      "line": 132,
+      "finding": "Initial observation can immediately become closeFair/closeAt"
+    },
+    {
+      "file": "src/lib/odds-board.ts",
+      "line": 42,
+      "finding": "Any closeFair accepted after kickoff; no later-observation/freshness gate"
+    },
+    {
+      "file": "src/lib/odds-board.ts",
+      "line": 46,
+      "finding": "Uncertainty treats flags as independent observations"
+    },
+    {
+      "file": "scripts/line-shop-proof.mjs",
+      "line": 58,
+      "finding": "Props replay repeats snapshot/book observations across47 games"
+    },
+    {
+      "file": "scripts/line-shop-proof.mjs",
+      "line": 86,
+      "finding": "Props uncertainty calculated over863 flags, without clustering"
+    }
+  ]
+}
