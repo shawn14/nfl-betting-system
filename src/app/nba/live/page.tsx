@@ -2,6 +2,7 @@
 
 import { useCallback, useEffect, useMemo, useRef, useState } from 'react';
 import RequireAuth from '@/components/RequireAuth';
+import { verifiedLiveOdds } from '@/lib/event-odds';
 
 interface LiveGame {
   id: string;
@@ -22,8 +23,6 @@ interface LiveGameWithSnapshot extends LiveGame {
 
 interface LiveOdds {
   consensusTotal?: number;
-  consensusOverOdds?: number;
-  consensusUnderOdds?: number;
   bookmakers?: { name: string; total: number; overOdds: number; underOdds: number }[];
   lastUpdated?: string;
 }
@@ -279,7 +278,10 @@ export default function NBALiveTrackerPage() {
               predMap.set(gameEntry.game.id, {
                 gameId: gameEntry.game.id,
                 predictedTotal: gameEntry.prediction.predictedTotal || 0,
-                liveOdds: gameEntry.prediction.liveOdds,
+                liveOdds: verifiedLiveOdds(gameEntry.prediction.liveOdds, {
+                  sport: 'nba', home: gameEntry.game.homeTeam?.name,
+                  away: gameEntry.game.awayTeam?.name, commence: gameEntry.game.gameTime,
+                }),
               });
             }
           }
@@ -324,7 +326,7 @@ export default function NBALiveTrackerPage() {
           <div>
             <h1 className="text-xl sm:text-2xl font-bold text-gray-900">NBA Live Pace Tracker</h1>
             <p className="text-xs sm:text-sm text-gray-500 mt-1">
-              Live pace projection vs market odds - compare model estimates with real-time betting lines.
+              Live pace projection alongside periodically observed market lines. Check the quote time before comparing.
             </p>
           </div>
           <div className="text-right">
@@ -592,12 +594,12 @@ export default function NBALiveTrackerPage() {
                     </div>
                   </div>
                   <div className="bg-blue-50 rounded-lg p-2 text-center border border-blue-200">
-                    <div className="text-[10px] uppercase text-blue-600 font-semibold">Live O/U</div>
+                    <div className="text-[10px] uppercase text-blue-600 font-semibold">Observed O/U</div>
                     <div className="text-sm sm:text-base font-bold text-blue-900">
                       {liveTotal ? liveTotal.toFixed(1) : '--'}
                     </div>
                     <div className="text-[9px] text-blue-500">
-                      {liveOdds?.consensusOverOdds && liveOdds.consensusOverOdds !== -110 ? `O: ${liveOdds.consensusOverOdds > 0 ? '+' : ''}${liveOdds.consensusOverOdds}` : ''}
+                      {liveOdds?.lastUpdated ? `Quotes as of ${new Date(liveOdds.lastUpdated).toLocaleString([], { month: 'short', day: 'numeric', hour: '2-digit', minute: '2-digit', timeZoneName: 'short' })}` : 'No verified quote'}
                     </div>
                   </div>
                   <div className={`rounded-lg p-2 text-center border ${

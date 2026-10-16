@@ -17,6 +17,7 @@
     "market-lab-report": "node --no-warnings scripts/market-lab-report.mjs",
     "line-shop-proof": "node --no-warnings scripts/line-shop-proof.mjs",
     "line-shop-backfill-proof": "node --no-warnings scripts/line-shop-backfill-proof.mjs",
+    "test:odds:identity": "node --no-warnings scripts/odds-identity/prove.mjs",
     "test:measurement": "node --no-warnings scripts/measurement/prove.mjs",
     "test:measurement:live": "node --no-warnings scripts/measurement/run-proof.mjs",
     "test:terminal": "node --no-warnings scripts/terminal/prove.mjs",

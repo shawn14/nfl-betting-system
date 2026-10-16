@@ -1,0 +1,553 @@
+{
+  "url": "https://0luulmjdaimldet9.public.blob.vercel-storage.com/odds-board/snap/2026-10-16/0307-wnba.json.gz",
+  "retrievedAt": "2026-10-16T03:51:17.145Z",
+  "sha256": "64139939fc8e09acb8a188a800b8ae0545a58448d48a77575b6b78673023820c",
+  "snapshot": {
+    "ts": "2026-10-16T03:07:22.186Z",
+    "sport": "wnba",
+    "cost": 3,
+    "remaining": 68654,
+    "data": [
+      {
+        "id": "fd0477adb898dbbdf52c129d0ea6c15e",
+        "sport_key": "basketball_wnba",
+        "sport_title": "WNBA",
+        "commence_time": "2026-10-17T19:30:00Z",
+        "home_team": "Golden State Valkyries",
+        "away_team": "Atlanta Dream",
+        "bookmakers": [
+          {
+            "key": "draftkings",
+            "title": "DraftKings",
+            "last_update": "2026-10-16T03:05:59Z",
+            "markets": [
+              {
+                "key": "h2h",
+                "last_update": "2026-10-16T03:05:59Z",
+                "outcomes": [
+                  {
+                    "name": "Atlanta Dream",
+                    "price": 120
+                  },
+                  {
+                    "name": "Golden State Valkyries",
+                    "price": -142
+                  }
+                ]
+              },
+              {
+                "key": "spreads",
+                "last_update": "2026-10-16T03:05:59Z",
+                "outcomes": [
+                  {
+                    "name": "Atlanta Dream",
+                    "price": -112,
+                    "point": 2.5
+                  },
+                  {
+                    "name": "Golden State Valkyries",
+                    "price": -108,
+                    "point": -2.5
+                  }
+                ]
+              },
+              {
+                "key": "totals",
+                "last_update": "2026-10-16T03:05:59Z",
+                "outcomes": [
+                  {
+                    "name": "Over",
+                    "price": -110,
+                    "point": 154.5
+                  },
+                  {
+                    "name": "Under",
+                    "price": -110,
+                    "point": 154.5
+                  }
+                ]
+              }
+            ]
+          },
+          {
+            "key": "fanduel",
+            "title": "FanDuel",
+            "last_update": "2026-10-16T03:07:06Z",
+            "markets": [
+              {
+                "key": "h2h",
+                "last_update": "2026-10-16T03:07:06Z",
+                "outcomes": [
+                  {
+                    "name": "Atlanta Dream",
+                    "price": 130
+                  },
+                  {
+                    "name": "Golden State Valkyries",
+                    "price": -154
+                  }
+                ]
+              },
+              {
+                "key": "spreads",
+                "last_update": "2026-10-16T03:07:06Z",
+                "outcomes": [
+                  {
+                    "name": "Atlanta Dream",
+                    "price": -114,
+                    "point": 3.5
+                  },
+                  {
+                    "name": "Golden State Valkyries",
+                    "price": -106,
+                    "point": -3.5
+                  }
+                ]
+              },
+              {
+                "key": "totals",
+                "last_update": "2026-10-16T03:07:06Z",
+                "outcomes": [
+                  {
+                    "name": "Over",
+                    "price": -110,
+                    "point": 154.5
+                  },
+                  {
+                    "name": "Under",
+                    "price": -110,
+                    "point": 154.5
+                  }
+                ]
+              }
+            ]
+          },
+          {
+            "key": "fanatics",
+            "title": "Fanatics",
+            "last_update": "2026-10-16T03:06:51Z",
+            "markets": [
+              {
+                "key": "h2h",
+                "last_update": "2026-10-16T03:06:51Z",
+                "outcomes": [
+                  {
+                    "name": "Atlanta Dream",
+                    "price": 130
+                  },
+                  {
+                    "name": "Golden State Valkyries",
+                    "price": -155
+                  }
+                ]
+              },
+              {
+                "key": "spreads",
+                "last_update": "2026-10-16T03:06:51Z",
+                "outcomes": [
+                  {
+                    "name": "Atlanta Dream",
+                    "price": -110,
+                    "point": 2.5
+                  },
+                  {
+                    "name": "Golden State Valkyries",
+                    "price": -110,
+                    "point": -2.5
+                  }
+                ]
+              },
+              {
+                "key": "totals",
+                "last_update": "2026-10-16T03:06:51Z",
+                "outcomes": [
+                  {
+                    "name": "Over",
+                    "price": -110,
+                    "point": 154.5
+                  },
+                  {
+                    "name": "Under",
+                    "price": -110,
+                    "point": 154.5
+                  }
+                ]
+              }
+            ]
+          },
+          {
+            "key": "betmgm",
+            "title": "BetMGM",
+            "last_update": "2026-10-16T03:06:25Z",
+            "markets": [
+              {
+                "key": "h2h",
+                "last_update": "2026-10-16T03:06:25Z",
+                "outcomes": [
+                  {
+                    "name": "Atlanta Dream",
+                    "price": 130
+                  },
+                  {
+                    "name": "Golden State Valkyries",
+                    "price": -155
+                  }
+                ]
+              },
+              {
+                "key": "spreads",
+                "last_update": "2026-10-16T03:06:25Z",
+                "outcomes": [
+                  {
+                    "name": "Atlanta Dream",
+                    "price": -115,
+                    "point": 2.5
+                  },
+                  {
+                    "name": "Golden State Valkyries",
+                    "price": -105,
+                    "point": -2.5
+                  }
+                ]
+              },
+              {
+                "key": "totals",
+                "last_update": "2026-10-16T03:06:25Z",
+                "outcomes": [
+                  {
+                    "name": "Over",
+                    "price": -110,
+                    "point": 154.5
+                  },
+                  {
+                    "name": "Under",
+                    "price": -110,
+                    "point": 154.5
+                  }
+                ]
+              }
+            ]
+          },
+          {
+            "key": "betrivers",
+            "title": "BetRivers",
+            "last_update": "2026-10-16T03:06:51Z",
+            "markets": [
+              {
+                "key": "h2h",
+                "last_update": "2026-10-16T03:06:51Z",
+                "outcomes": [
+                  {
+                    "name": "Atlanta Dream",
+                    "price": 125
+                  },
+                  {
+                    "name": "Golden State Valkyries",
+                    "price": -155
+                  }
+                ]
+              },
+              {
+                "key": "spreads",
+                "last_update": "2026-10-16T03:06:51Z",
+                "outcomes": [
+                  {
+                    "name": "Atlanta Dream",
+                    "price": -110,
+                    "point": 2.5
+                  },
+                  {
+                    "name": "Golden State Valkyries",
+                    "price": -113,
+                    "point": -2.5
+                  }
+                ]
+              },
+              {
+                "key": "totals",
+                "last_update": "2026-10-16T03:06:51Z",
+                "outcomes": [
+                  {
+                    "name": "Over",
+                    "price": -113,
+                    "point": 154.5
+                  },
+                  {
+                    "name": "Under",
+                    "price": -110,
+                    "point": 154.5
+                  }
+                ]
+              }
+            ]
+          },
+          {
+            "key": "betonlineag",
+            "title": "BetOnline.ag",
+            "last_update": "2026-10-16T03:07:19Z",
+            "markets": [
+              {
+                "key": "h2h",
+                "last_update": "2026-10-16T03:07:19Z",
+                "outcomes": [
+                  {
+                    "name": "Atlanta Dream",
+                    "price": 130
+                  },
+                  {
+                    "name": "Golden State Valkyries",
+                    "price": -150
+                  }
+                ]
+              },
+              {
+                "key": "spreads",
+                "last_update": "2026-10-16T03:07:19Z",
+                "outcomes": [
+                  {
+                    "name": "Atlanta Dream",
+                    "price": -110,
+                    "point": 3
+                  },
+                  {
+                    "name": "Golden State Valkyries",
+                    "price": -110,
+                    "point": -3
+                  }
+                ]
+              },
+              {
+                "key": "totals",
+                "last_update": "2026-10-16T03:07:19Z",
+                "outcomes": [
+                  {
+                    "name": "Over",
+                    "price": -110,
+                    "point": 154.5
+                  },
+                  {
+                    "name": "Under",
+                    "price": -110,
+                    "point": 154.5
+                  }
+                ]
+              }
+            ]
+          },
+          {
+            "key": "lowvig",
+            "title": "LowVig.ag",
+            "last_update": "2026-10-16T03:07:19Z",
+            "markets": [
+              {
+                "key": "h2h",
+                "last_update": "2026-10-16T03:07:19Z",
+                "outcomes": [
+                  {
+                    "name": "Atlanta Dream",
+                    "price": 130
+                  },
+                  {
+                    "name": "Golden State Valkyries",
+                    "price": -150
+                  }
+                ]
+              },
+              {
+                "key": "spreads",
+                "last_update": "2026-10-16T03:07:19Z",
+                "outcomes": [
+                  {
+                    "name": "Atlanta Dream",
+                    "price": -108,
+                    "point": 3
+                  },
+                  {
+                    "name": "Golden State Valkyries",
+                    "price": -108,
+                    "point": -3
+                  }
+                ]
+              },
+              {
+                "key": "totals",
+                "last_update": "2026-10-16T03:07:19Z",
+                "outcomes": [
+                  {
+                    "name": "Over",
+                    "price": -108,
+                    "point": 154.5
+                  },
+                  {
+                    "name": "Under",
+                    "price": -108,
+                    "point": 154.5
+                  }
+                ]
+              }
+            ]
+          },
+          {
+            "key": "williamhill_us",
+            "title": "Caesars",
+            "last_update": "2026-10-16T03:04:26Z",
+            "markets": [
+              {
+                "key": "h2h",
+                "last_update": "2026-10-16T03:04:26Z",
+                "outcomes": [
+                  {
+                    "name": "Atlanta Dream",
+                    "price": 124
+                  },
+                  {
+                    "name": "Golden State Valkyries",
+                    "price": -148
+                  }
+                ]
+              },
+              {
+                "key": "spreads",
+                "last_update": "2026-10-16T03:04:26Z",
+                "outcomes": [
+                  {
+                    "name": "Atlanta Dream",
+                    "price": -107,
+                    "point": 3
+                  },
+                  {
+                    "name": "Golden State Valkyries",
+                    "price": -112,
+                    "point": -3
+                  }
+                ]
+              },
+              {
+                "key": "totals",
+                "last_update": "2026-10-16T03:04:26Z",
+                "outcomes": [
+                  {
+                    "name": "Over",
+                    "price": -105,
+                    "point": 154.5
+                  },
+                  {
+                    "name": "Under",
+                    "price": -115,
+                    "point": 154.5
+                  }
+                ]
+              }
+            ]
+          },
+          {
+            "key": "bovada",
+            "title": "Bovada",
+            "last_update": "2026-10-16T03:04:24Z",
+            "markets": [
+              {
+                "key": "h2h",
+                "last_update": "2026-10-16T03:04:24Z",
+                "outcomes": [
+                  {
+                    "name": "Atlanta Dream",
+                    "price": 120
+                  },
+                  {
+                    "name": "Golden State Valkyries",
+                    "price": -140
+                  }
+                ]
+              },
+              {
+                "key": "spreads",
+                "last_update": "2026-10-16T03:04:24Z",
+                "outcomes": [
+                  {
+                    "name": "Atlanta Dream",
+                    "price": -110,
+                    "point": 2.5
+                  },
+                  {
+                    "name": "Golden State Valkyries",
+                    "price": -110,
+                    "point": -2.5
+                  }
+                ]
+              },
+              {
+                "key": "totals",
+                "last_update": "2026-10-16T03:04:24Z",
+                "outcomes": [
+                  {
+                    "name": "Over",
+                    "price": -110,
+                    "point": 154.5
+                  },
+                  {
+                    "name": "Under",
+                    "price": -110,
+                    "point": 154.5
+                  }
+                ]
+              }
+            ]
+          },
+          {
+            "key": "pinnacle",
+            "title": "Pinnacle",
+            "last_update": "2026-10-16T03:07:18Z",
+            "markets": [
+              {
+                "key": "h2h",
+                "last_update": "2026-10-16T03:07:18Z",
+                "outcomes": [
+                  {
+                    "name": "Atlanta Dream",
+                    "price": 130
+                  },
+                  {
+                    "name": "Golden State Valkyries",
+                    "price": -159
+                  }
+                ]
+              },
+              {
+                "key": "spreads",
+                "last_update": "2026-10-16T03:07:18Z",
+                "outcomes": [
+                  {
+                    "name": "Atlanta Dream",
+                    "price": -109,
+                    "point": 3
+                  },
+                  {
+                    "name": "Golden State Valkyries",
+                    "price": -111,
+                    "point": -3
+                  }
+                ]
+              },
+              {
+                "key": "totals",
+                "last_update": "2026-10-16T03:07:18Z",
+                "outcomes": [
+                  {
+                    "name": "Over",
+                    "price": -110,
+                    "point": 154.5
+                  },
+                  {
+                    "name": "Under",
+                    "price": -114,
+                    "point": 154.5
+                  }
+                ]
+              }
+            ]
+          }
+        ]
+      }
+    ]
+  }
+}

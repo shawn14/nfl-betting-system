@@ -1,10 +1,18 @@
 # Prediction Matrix status
 
+## 2026-10-16 — exact-event odds repair, local candidate
+
+All five writers now share strict sport/both-teams/start-time matching and preserve provider identity and per-book source clocks. Five live readers reject unidentified legacy quotes; periodic-observation copy and source timestamps replace the misleading live-price/averaged-price display. No model changes. [Contract and proof](docs/odds-identity/README.md).
+
+Actual archived replay: 22 provider events, all 200 valid book quotes preserved; 13 exact joins of 66 forecasts; 53 withheld, including all three confirmed wrong-game examples. NHL coverage is zero because start times differ; NBA/CBB provider payloads remain untested. TypeScript and odds/terminal/measurement proofs pass; all five local routes compile/HTTP200. Browser reached auth shell only, so authenticated quote layout remains unproven. Fresh independent refuter passed actual-record replay.
+
+Not pushed, deployed or enabled. GitHub main / live last checked at 04:03:52 UTC: `6af083c277aa64fd13ec9269591fc57bdd611f68`, an ancestor of this branch. Next: review local candidate; with explicit release approval, use the known preview/main pipeline, verify authenticated quote rendering and normal scheduled writer output, then begin the forward measurement proof. No paid cron tests.
+
 ## 2026-10-16 — research terminal first slice, local review
 
-`codex/prediction-terminal` builds on the immutable-measurement candidate: full-width game monitor, research/prices/record, honest disagreement and stale-data labels, device shortlist and hash-bound evidence downloads. Real sources: 79 games, 13 exact board joins, 74 markets/148 quote sides. All 79 HTTP exports checked; real browser desktop/390px, reload/shortlist, filters, sorting, native download and zero console errors verified. Independent refuter found wrong-game legacy per-book totals; terminal now suppresses all 503 unidentified quotes. Upstream writers remain unfixed. Read [terminal proof, defect, limits and commands](docs/terminal/README.md).
+`codex/prediction-terminal` builds on the immutable-measurement candidate: full-width game monitor, research/prices/record, honest disagreement and stale-data labels, device shortlist and hash-bound evidence downloads. Real sources: 79 games, 13 exact board joins, 74 markets/148 quote sides. All 79 HTTP exports checked; real browser desktop/390px, reload/shortlist, filters, sorting, native download and zero console errors verified. Independent refuter found wrong-game legacy per-book totals; terminal now suppresses all 503 unidentified quotes. Upstream repair is now a local candidate above; production remains unchanged. Read [terminal proof, defect, limits and commands](docs/terminal/README.md).
 
-No tuning, paid calls, production writes or deploy. Model edge remains unproven. Main/production source remains `6af083c277aa64fd13ec9269591fc57bdd611f68`, an ancestor of this local candidate. Publication and activation are awaiting explicit approval. Next: Shawn reviews this first slice; repair upstream odds event identity as a separate iteration, release immutable measurement through the known preview pipeline, then verify actual postgame settlement. Never use source equality alone to certify game-price identity.
+No tuning, paid calls, production writes or deploy. Model edge remains unproven. Main/production source remains `6af083c277aa64fd13ec9269591fc57bdd611f68`, an ancestor of this local candidate. Publication and activation are awaiting explicit approval. Next: Shawn reviews this first slice; review the upstream identity candidate above, release immutable measurement through the known preview pipeline, then verify actual postgame settlement. Never use source equality alone to certify game-price identity.
 
 ## 2026-10-16 — immutable measurement candidate, awaiting release approval
 

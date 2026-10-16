@@ -1,0 +1,439 @@
+{
+  "checkedAt": "2026-10-16T04:00:56.469Z",
+  "source": "real archived provider responses and real published game records",
+  "providerSports": [
+    "nfl",
+    "nhl",
+    "wnba"
+  ],
+  "unavailableProviderSports": [
+    "nba",
+    "cbb"
+  ],
+  "providerEvents": 22,
+  "providerQuotes": 200,
+  "forecastGamesChecked": 66,
+  "matchedGames": 13,
+  "withheldGames": 53,
+  "legacyQuoteObjectsRejected": 46,
+  "writerPaths": [
+    "blob-sync-simple",
+    "nba-sync",
+    "nhl-sync",
+    "cbb-sync",
+    "wnba-sync"
+  ],
+  "readerPaths": [
+    "blob-sync-simple",
+    "nba-sync",
+    "nhl-sync",
+    "cbb-sync",
+    "wnba-sync"
+  ],
+  "details": [
+    {
+      "sport": "nfl",
+      "gameId": "401872995",
+      "matchedEventId": null,
+      "quotes": 0
+    },
+    {
+      "sport": "nfl",
+      "gameId": "401872996",
+      "matchedEventId": "57418b2cf5aca558b3c98eafac1e264a",
+      "quotes": 10
+    },
+    {
+      "sport": "nfl",
+      "gameId": "401872999",
+      "matchedEventId": "7c312fdf24fb35f58b0e07c2932cc997",
+      "quotes": 10
+    },
+    {
+      "sport": "nfl",
+      "gameId": "401872997",
+      "matchedEventId": "e86227938fd3cf008fc5648fb5128344",
+      "quotes": 10
+    },
+    {
+      "sport": "nfl",
+      "gameId": "401873003",
+      "matchedEventId": "84aa9e190e625d7e9cd67e1f157a45b4",
+      "quotes": 10
+    },
+    {
+      "sport": "nfl",
+      "gameId": "401873001",
+      "matchedEventId": "0b0b582b32b09ab6ff6664ffae0c9653",
+      "quotes": 10
+    },
+    {
+      "sport": "nfl",
+      "gameId": "401873000",
+      "matchedEventId": "1cf74afd313e9fd300e1462012b174cb",
+      "quotes": 10
+    },
+    {
+      "sport": "nfl",
+      "gameId": "401872998",
+      "matchedEventId": "caca2d752fe1a1779029082e95332fcc",
+      "quotes": 10
+    },
+    {
+      "sport": "nfl",
+      "gameId": "401873002",
+      "matchedEventId": "27f3994841ce8081c0b7349cf3d1e3d7",
+      "quotes": 10
+    },
+    {
+      "sport": "nfl",
+      "gameId": "401873004",
+      "matchedEventId": "3729ac6d2a66b642850caf2044cdc658",
+      "quotes": 10
+    },
+    {
+      "sport": "nfl",
+      "gameId": "401873006",
+      "matchedEventId": "20fefae8c296247460ba5773caa42218",
+      "quotes": 10
+    },
+    {
+      "sport": "nfl",
+      "gameId": "401873005",
+      "matchedEventId": "45b2690b350ed45145c7a716b18e8e66",
+      "quotes": 10
+    },
+    {
+      "sport": "nfl",
+      "gameId": "401873007",
+      "matchedEventId": "82fd5a159fa130e67abab93a9537f70b",
+      "quotes": 10
+    },
+    {
+      "sport": "nfl",
+      "gameId": "401873008",
+      "matchedEventId": null,
+      "quotes": 0
+    },
+    {
+      "sport": "nhl",
+      "gameId": "401892515",
+      "matchedEventId": null,
+      "quotes": 0
+    },
+    {
+      "sport": "nhl",
+      "gameId": "401892516",
+      "matchedEventId": null,
+      "quotes": 0
+    },
+    {
+      "sport": "nhl",
+      "gameId": "401892517",
+      "matchedEventId": null,
+      "quotes": 0
+    },
+    {
+      "sport": "nhl",
+      "gameId": "401892518",
+      "matchedEventId": null,
+      "quotes": 0
+    },
+    {
+      "sport": "nhl",
+      "gameId": "401892519",
+      "matchedEventId": null,
+      "quotes": 0
+    },
+    {
+      "sport": "nhl",
+      "gameId": "401892520",
+      "matchedEventId": null,
+      "quotes": 0
+    },
+    {
+      "sport": "nhl",
+      "gameId": "401892521",
+      "matchedEventId": null,
+      "quotes": 0
+    },
+    {
+      "sport": "nhl",
+      "gameId": "401892522",
+      "matchedEventId": null,
+      "quotes": 0
+    },
+    {
+      "sport": "nhl",
+      "gameId": "401892523",
+      "matchedEventId": null,
+      "quotes": 0
+    },
+    {
+      "sport": "nhl",
+      "gameId": "401892524",
+      "matchedEventId": null,
+      "quotes": 0
+    },
+    {
+      "sport": "nhl",
+      "gameId": "401892525",
+      "matchedEventId": null,
+      "quotes": 0
+    },
+    {
+      "sport": "nhl",
+      "gameId": "401892526",
+      "matchedEventId": null,
+      "quotes": 0
+    },
+    {
+      "sport": "nhl",
+      "gameId": "401892527",
+      "matchedEventId": null,
+      "quotes": 0
+    },
+    {
+      "sport": "nhl",
+      "gameId": "401892528",
+      "matchedEventId": null,
+      "quotes": 0
+    },
+    {
+      "sport": "nhl",
+      "gameId": "401892529",
+      "matchedEventId": null,
+      "quotes": 0
+    },
+    {
+      "sport": "nhl",
+      "gameId": "401892530",
+      "matchedEventId": null,
+      "quotes": 0
+    },
+    {
+      "sport": "nhl",
+      "gameId": "401892531",
+      "matchedEventId": null,
+      "quotes": 0
+    },
+    {
+      "sport": "nhl",
+      "gameId": "401892532",
+      "matchedEventId": null,
+      "quotes": 0
+    },
+    {
+      "sport": "nhl",
+      "gameId": "401892533",
+      "matchedEventId": null,
+      "quotes": 0
+    },
+    {
+      "sport": "nhl",
+      "gameId": "401892534",
+      "matchedEventId": null,
+      "quotes": 0
+    },
+    {
+      "sport": "nhl",
+      "gameId": "401892535",
+      "matchedEventId": null,
+      "quotes": 0
+    },
+    {
+      "sport": "nhl",
+      "gameId": "401892536",
+      "matchedEventId": null,
+      "quotes": 0
+    },
+    {
+      "sport": "nhl",
+      "gameId": "401892537",
+      "matchedEventId": null,
+      "quotes": 0
+    },
+    {
+      "sport": "nhl",
+      "gameId": "401892538",
+      "matchedEventId": null,
+      "quotes": 0
+    },
+    {
+      "sport": "nhl",
+      "gameId": "401892539",
+      "matchedEventId": null,
+      "quotes": 0
+    },
+    {
+      "sport": "nhl",
+      "gameId": "401892540",
+      "matchedEventId": null,
+      "quotes": 0
+    },
+    {
+      "sport": "nhl",
+      "gameId": "401892541",
+      "matchedEventId": null,
+      "quotes": 0
+    },
+    {
+      "sport": "nhl",
+      "gameId": "401892542",
+      "matchedEventId": null,
+      "quotes": 0
+    },
+    {
+      "sport": "nhl",
+      "gameId": "401892543",
+      "matchedEventId": null,
+      "quotes": 0
+    },
+    {
+      "sport": "nhl",
+      "gameId": "401892544",
+      "matchedEventId": null,
+      "quotes": 0
+    },
+    {
+      "sport": "nhl",
+      "gameId": "401892545",
+      "matchedEventId": null,
+      "quotes": 0
+    },
+    {
+      "sport": "nhl",
+      "gameId": "401892546",
+      "matchedEventId": null,
+      "quotes": 0
+    },
+    {
+      "sport": "nhl",
+      "gameId": "401892547",
+      "matchedEventId": null,
+      "quotes": 0
+    },
+    {
+      "sport": "nhl",
+      "gameId": "401892548",
+      "matchedEventId": null,
+      "quotes": 0
+    },
+    {
+      "sport": "nhl",
+      "gameId": "401892549",
+      "matchedEventId": null,
+      "quotes": 0
+    },
+    {
+      "sport": "nhl",
+      "gameId": "401892550",
+      "matchedEventId": null,
+      "quotes": 0
+    },
+    {
+      "sport": "nhl",
+      "gameId": "401892551",
+      "matchedEventId": null,
+      "quotes": 0
+    },
+    {
+      "sport": "nhl",
+      "gameId": "401892552",
+      "matchedEventId": null,
+      "quotes": 0
+    },
+    {
+      "sport": "nhl",
+      "gameId": "401892553",
+      "matchedEventId": null,
+      "quotes": 0
+    },
+    {
+      "sport": "nhl",
+      "gameId": "401892554",
+      "matchedEventId": null,
+      "quotes": 0
+    },
+    {
+      "sport": "nhl",
+      "gameId": "401892555",
+      "matchedEventId": null,
+      "quotes": 0
+    },
+    {
+      "sport": "nhl",
+      "gameId": "401892556",
+      "matchedEventId": null,
+      "quotes": 0
+    },
+    {
+      "sport": "nhl",
+      "gameId": "401892557",
+      "matchedEventId": null,
+      "quotes": 0
+    },
+    {
+      "sport": "nhl",
+      "gameId": "401892558",
+      "matchedEventId": null,
+      "quotes": 0
+    },
+    {
+      "sport": "nhl",
+      "gameId": "401892559",
+      "matchedEventId": null,
+      "quotes": 0
+    },
+    {
+      "sport": "nhl",
+      "gameId": "401892560",
+      "matchedEventId": null,
+      "quotes": 0
+    },
+    {
+      "sport": "nhl",
+      "gameId": "401892561",
+      "matchedEventId": null,
+      "quotes": 0
+    },
+    {
+      "sport": "nhl",
+      "gameId": "401892562",
+      "matchedEventId": null,
+      "quotes": 0
+    },
+    {
+      "sport": "nhl",
+      "gameId": "401892563",
+      "matchedEventId": null,
+      "quotes": 0
+    },
+    {
+      "sport": "wnba",
+      "gameId": "401918305",
+      "matchedEventId": "fd0477adb898dbbdf52c129d0ea6c15e",
+      "quotes": 10
+    },
+    {
+      "sport": "wnba",
+      "gameId": "401918306",
+      "matchedEventId": null,
+      "quotes": 0
+    },
+    {
+      "sport": "wnba",
+      "gameId": "401918307",
+      "matchedEventId": null,
+      "quotes": 0
+    }
+  ],
+  "passed": [
+    "every retained quote matches exact raw provider event/line/book/price/time",
+    "all five production writers use one strict matcher",
+    "all five live readers reject legacy unidentified prices",
+    "wrong-team/other-date/time-discrepancy/duplicate/stale/future/missing-price guards",
+    "no synthetic American odds or pooled lines",
+    "all three observed wrong-game regressions withheld"
+  ]
+}
