@@ -1,15 +1,14 @@
 import { CAPTURE_HOURS, digest, eventState, makeCapture, modelId, settle, validCapture, SPORTS, type Sport, type Json, type ModelCapture, type Settlement } from './core.ts';
 import { espnOddsUrl } from '../espn-prices.ts';
 import { MeasurementStore } from './store.ts';
+import { readSource } from './source.ts';
 
 export const BLOB_BASE = 'https://0luulmjdaimldet9.public.blob.vercel-storage.com';
 export const FILES: Record<Sport,string> = { nfl:'prediction-matrix-data.json', nba:'nba-prediction-data.json', nhl:'nhl-prediction-data.json', cbb:'cbb-prediction-data.json', wnba:'wnba-prediction-data.json' };
 const PATHS: Record<Sport,string> = { nfl:'football/nfl', nba:'basketball/nba', wnba:'basketball/wnba', nhl:'hockey/nhl', cbb:'basketball/mens-college-basketball' };
 export const eventUrl = (sport: Sport, id: string) => `https://site.api.espn.com/apis/site/v2/sports/${PATHS[sport]}/summary?event=${id}`;
 export async function json(url: string): Promise<Json> {
-  const r = await fetch(url, { cache:'no-store', signal:AbortSignal.timeout(15000) });
-  if (!r.ok) throw new Error(`Measurement source HTTP ${r.status}: ${url}`);
-  return r.json();
+  return (await readSource(url)).data;
 }
 
 /** Read the actual published forecasts. Never invoke a predictor or read legacy results to grade. */
