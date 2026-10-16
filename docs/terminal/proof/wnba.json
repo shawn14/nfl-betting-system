@@ -1,0 +1,631 @@
+{
+  "url": "https://0luulmjdaimldet9.public.blob.vercel-storage.com/wnba-prediction-data.json",
+  "fetchedAt": "2026-10-16T03:14:42.401Z",
+  "data": {
+    "generated": "2026-10-16T03:00:15.607Z",
+    "games": [
+      {
+        "game": {
+          "id": "401918305",
+          "homeTeamId": "129689",
+          "awayTeamId": "20",
+          "gameTime": "2026-10-17T19:30Z",
+          "status": "scheduled",
+          "venue": "Chase Center",
+          "season": 2026,
+          "homeTeam": {
+            "id": "129689",
+            "name": "Golden State Valkyries",
+            "abbreviation": "GS"
+          },
+          "awayTeam": {
+            "id": "20",
+            "name": "Atlanta Dream",
+            "abbreviation": "ATL"
+          }
+        },
+        "prediction": {
+          "gameId": "401918305",
+          "predictedHomeScore": 84.7,
+          "predictedAwayScore": 82.3,
+          "predictedSpread": -1.5,
+          "predictedTotal": 167,
+          "homeWinProbability": 0.5629847281035958,
+          "confidence": 0.5,
+          "vegasSpread": -2.5,
+          "vegasTotal": 154.5,
+          "lineMovement": {
+            "openingSpread": -2.5,
+            "openingTotal": 153.5,
+            "lastSeenSpread": -2.5,
+            "lastSeenTotal": 154.5,
+            "lastUpdatedAt": "2026-10-16T03:00:15.594Z"
+          },
+          "spreadEdge": 1,
+          "totalEdge": 12.5,
+          "atsConfidence": "high",
+          "ouConfidence": "high",
+          "mlConfidence": "low",
+          "isAtsBestBet": true,
+          "isOuBestBet": true,
+          "isMlBestBet": false,
+          "mlEdge": 6.3,
+          "isDivisional": false,
+          "isLateSeasonGame": true,
+          "isLargeSpread": false,
+          "isSmallSpread": true,
+          "isMediumSpread": false,
+          "isEloMismatch": false,
+          "sixtyPlusFactors": 2,
+          "eloDiff": 4,
+          "conviction": {
+            "level": "low",
+            "isHighConviction": false,
+            "expectedWinPct": 52,
+            "picksVegasFavorite": false,
+            "eloAligned": true,
+            "eloGap": 4,
+            "restFavorsPick": false
+          },
+          "restDays": {
+            "home": 6,
+            "away": 6,
+            "homeIsB2B": false,
+            "awayIsB2B": false,
+            "advantage": "even",
+            "adjustment": 0
+          },
+          "liveOdds": {
+            "consensusTotal": 154.5,
+            "consensusOverOdds": -110,
+            "consensusUnderOdds": -110,
+            "bookmakers": [
+              {
+                "name": "DraftKings",
+                "total": 154.5,
+                "overOdds": -110,
+                "underOdds": -110
+              },
+              {
+                "name": "FanDuel",
+                "total": 154.5,
+                "overOdds": -110,
+                "underOdds": -110
+              },
+              {
+                "name": "Fanatics",
+                "total": 154.5,
+                "overOdds": -110,
+                "underOdds": -110
+              },
+              {
+                "name": "BetMGM",
+                "total": 154.5,
+                "overOdds": -110,
+                "underOdds": -110
+              },
+              {
+                "name": "BetRivers",
+                "total": 154.5,
+                "overOdds": -113,
+                "underOdds": -110
+              },
+              {
+                "name": "BetOnline.ag",
+                "total": 154.5,
+                "overOdds": -110,
+                "underOdds": -110
+              },
+              {
+                "name": "LowVig.ag",
+                "total": 154.5,
+                "overOdds": -108,
+                "underOdds": -108
+              },
+              {
+                "name": "BetUS",
+                "total": 154.5,
+                "overOdds": -110,
+                "underOdds": -110
+              },
+              {
+                "name": "Caesars",
+                "total": 154.5,
+                "overOdds": -105,
+                "underOdds": -115
+              },
+              {
+                "name": "Bovada",
+                "total": 154.5,
+                "overOdds": -110,
+                "underOdds": -110
+              },
+              {
+                "name": "MyBookie.ag",
+                "total": 154,
+                "overOdds": -110,
+                "underOdds": -110
+              }
+            ],
+            "lastUpdated": "2026-10-16T03:00:15.594Z"
+          },
+          "calc": {
+            "homePPG": 82.15909,
+            "homePPGAllowed": 75.11364,
+            "awayPPG": 91.34091,
+            "awayPPGAllowed": 84.47727,
+            "regHomePPG": 82.7,
+            "regHomePPGAllowed": 77.8,
+            "regAwayPPG": 89.1,
+            "regAwayPPGAllowed": 84.3,
+            "baseHomeScore": 83.5,
+            "baseAwayScore": 83.5,
+            "homeElo": 1763,
+            "awayElo": 1767,
+            "eloDiff": -4,
+            "eloAdj": -0.12,
+            "homeCourtAdv": 2.5
+          }
+        }
+      },
+      {
+        "game": {
+          "id": "401918306",
+          "homeTeamId": "129689",
+          "awayTeamId": "20",
+          "gameTime": "2026-10-20T00:00Z",
+          "status": "scheduled",
+          "venue": "Chase Center",
+          "season": 2026,
+          "homeTeam": {
+            "id": "129689",
+            "name": "Golden State Valkyries",
+            "abbreviation": "GS"
+          },
+          "awayTeam": {
+            "id": "20",
+            "name": "Atlanta Dream",
+            "abbreviation": "ATL"
+          }
+        },
+        "prediction": {
+          "gameId": "401918306",
+          "predictedHomeScore": 84.7,
+          "predictedAwayScore": 82.3,
+          "predictedSpread": -1.5,
+          "predictedTotal": 167,
+          "homeWinProbability": 0.5629847281035958,
+          "confidence": 0.5,
+          "atsConfidence": "high",
+          "ouConfidence": "low",
+          "mlConfidence": "low",
+          "isAtsBestBet": true,
+          "isOuBestBet": false,
+          "isMlBestBet": false,
+          "mlEdge": 6.3,
+          "isDivisional": false,
+          "isLateSeasonGame": true,
+          "isLargeSpread": false,
+          "isSmallSpread": true,
+          "isMediumSpread": false,
+          "isEloMismatch": false,
+          "sixtyPlusFactors": 2,
+          "eloDiff": 4,
+          "conviction": {
+            "level": "moderate",
+            "isHighConviction": false,
+            "expectedWinPct": 52,
+            "picksVegasFavorite": false,
+            "eloAligned": false,
+            "eloGap": 4,
+            "restFavorsPick": false
+          },
+          "restDays": {
+            "home": 1,
+            "away": 1,
+            "homeIsB2B": false,
+            "awayIsB2B": false,
+            "advantage": "even",
+            "adjustment": 0
+          },
+          "liveOdds": {
+            "consensusTotal": 154.5,
+            "consensusOverOdds": -110,
+            "consensusUnderOdds": -110,
+            "bookmakers": [
+              {
+                "name": "DraftKings",
+                "total": 154.5,
+                "overOdds": -110,
+                "underOdds": -110
+              },
+              {
+                "name": "FanDuel",
+                "total": 154.5,
+                "overOdds": -110,
+                "underOdds": -110
+              },
+              {
+                "name": "Fanatics",
+                "total": 154.5,
+                "overOdds": -110,
+                "underOdds": -110
+              },
+              {
+                "name": "BetMGM",
+                "total": 154.5,
+                "overOdds": -110,
+                "underOdds": -110
+              },
+              {
+                "name": "BetRivers",
+                "total": 154.5,
+                "overOdds": -113,
+                "underOdds": -110
+              },
+              {
+                "name": "BetOnline.ag",
+                "total": 154.5,
+                "overOdds": -110,
+                "underOdds": -110
+              },
+              {
+                "name": "LowVig.ag",
+                "total": 154.5,
+                "overOdds": -108,
+                "underOdds": -108
+              },
+              {
+                "name": "BetUS",
+                "total": 154.5,
+                "overOdds": -110,
+                "underOdds": -110
+              },
+              {
+                "name": "Caesars",
+                "total": 154.5,
+                "overOdds": -105,
+                "underOdds": -115
+              },
+              {
+                "name": "Bovada",
+                "total": 154.5,
+                "overOdds": -110,
+                "underOdds": -110
+              },
+              {
+                "name": "MyBookie.ag",
+                "total": 154,
+                "overOdds": -110,
+                "underOdds": -110
+              }
+            ],
+            "lastUpdated": "2026-10-16T03:00:15.600Z"
+          },
+          "calc": {
+            "homePPG": 82.15909,
+            "homePPGAllowed": 75.11364,
+            "awayPPG": 91.34091,
+            "awayPPGAllowed": 84.47727,
+            "regHomePPG": 82.7,
+            "regHomePPGAllowed": 77.8,
+            "regAwayPPG": 89.1,
+            "regAwayPPGAllowed": 84.3,
+            "baseHomeScore": 83.5,
+            "baseAwayScore": 83.5,
+            "homeElo": 1763,
+            "awayElo": 1767,
+            "eloDiff": -4,
+            "eloAdj": -0.12,
+            "homeCourtAdv": 2.5
+          }
+        }
+      },
+      {
+        "game": {
+          "id": "401918307",
+          "homeTeamId": "20",
+          "awayTeamId": "129689",
+          "gameTime": "2026-10-22T00:00Z",
+          "status": "scheduled",
+          "venue": "State Farm Arena",
+          "season": 2026,
+          "homeTeam": {
+            "id": "20",
+            "name": "Atlanta Dream",
+            "abbreviation": "ATL"
+          },
+          "awayTeam": {
+            "id": "129689",
+            "name": "Golden State Valkyries",
+            "abbreviation": "GS"
+          }
+        },
+        "prediction": {
+          "gameId": "401918307",
+          "predictedHomeScore": 84.8,
+          "predictedAwayScore": 82.2,
+          "predictedSpread": -1.5,
+          "predictedTotal": 167,
+          "homeWinProbability": 0.5742802036545245,
+          "confidence": 0.5,
+          "atsConfidence": "high",
+          "ouConfidence": "low",
+          "mlConfidence": "medium",
+          "isAtsBestBet": true,
+          "isOuBestBet": false,
+          "isMlBestBet": false,
+          "mlEdge": 7.4,
+          "isDivisional": false,
+          "isLateSeasonGame": true,
+          "isLargeSpread": false,
+          "isSmallSpread": true,
+          "isMediumSpread": false,
+          "isEloMismatch": false,
+          "sixtyPlusFactors": 2,
+          "eloDiff": 4,
+          "conviction": {
+            "level": "high",
+            "isHighConviction": true,
+            "expectedWinPct": 56,
+            "picksVegasFavorite": false,
+            "eloAligned": true,
+            "eloGap": 4,
+            "restFavorsPick": false
+          },
+          "restDays": {
+            "home": 1,
+            "away": 1,
+            "homeIsB2B": false,
+            "awayIsB2B": false,
+            "advantage": "even",
+            "adjustment": 0
+          },
+          "liveOdds": {
+            "consensusTotal": 154.5,
+            "consensusOverOdds": -110,
+            "consensusUnderOdds": -110,
+            "bookmakers": [
+              {
+                "name": "DraftKings",
+                "total": 154.5,
+                "overOdds": -110,
+                "underOdds": -110
+              },
+              {
+                "name": "FanDuel",
+                "total": 154.5,
+                "overOdds": -110,
+                "underOdds": -110
+              },
+              {
+                "name": "Fanatics",
+                "total": 154.5,
+                "overOdds": -110,
+                "underOdds": -110
+              },
+              {
+                "name": "BetMGM",
+                "total": 154.5,
+                "overOdds": -110,
+                "underOdds": -110
+              },
+              {
+                "name": "BetRivers",
+                "total": 154.5,
+                "overOdds": -113,
+                "underOdds": -110
+              },
+              {
+                "name": "BetOnline.ag",
+                "total": 154.5,
+                "overOdds": -110,
+                "underOdds": -110
+              },
+              {
+                "name": "LowVig.ag",
+                "total": 154.5,
+                "overOdds": -108,
+                "underOdds": -108
+              },
+              {
+                "name": "BetUS",
+                "total": 154.5,
+                "overOdds": -110,
+                "underOdds": -110
+              },
+              {
+                "name": "Caesars",
+                "total": 154.5,
+                "overOdds": -105,
+                "underOdds": -115
+              },
+              {
+                "name": "Bovada",
+                "total": 154.5,
+                "overOdds": -110,
+                "underOdds": -110
+              },
+              {
+                "name": "MyBookie.ag",
+                "total": 154,
+                "overOdds": -110,
+                "underOdds": -110
+              }
+            ],
+            "lastUpdated": "2026-10-16T03:00:15.607Z"
+          },
+          "calc": {
+            "homePPG": 91.34091,
+            "homePPGAllowed": 84.47727,
+            "awayPPG": 82.15909,
+            "awayPPGAllowed": 75.11364,
+            "regHomePPG": 89.1,
+            "regHomePPGAllowed": 84.3,
+            "regAwayPPG": 82.7,
+            "regAwayPPGAllowed": 77.8,
+            "baseHomeScore": 83.5,
+            "baseAwayScore": 83.5,
+            "homeElo": 1767,
+            "awayElo": 1763,
+            "eloDiff": 4,
+            "eloAdj": 0.12,
+            "homeCourtAdv": 2.5
+          }
+        }
+      }
+    ],
+    "teams": [
+      {
+        "id": "20",
+        "name": "Atlanta Dream",
+        "abbreviation": "ATL",
+        "sport": "wnba",
+        "ppgAllowed": 84.47727,
+        "ppg": 91.34091,
+        "eloRating": 1767,
+        "updatedAt": "2026-10-16T02:30:15.828Z"
+      },
+      {
+        "id": "129689",
+        "name": "Golden State Valkyries",
+        "abbreviation": "GS",
+        "sport": "wnba",
+        "ppgAllowed": 75.11364,
+        "ppg": 82.15909,
+        "eloRating": 1763,
+        "updatedAt": "2026-10-16T02:30:15.828Z"
+      },
+      {
+        "id": "8",
+        "name": "Minnesota Lynx",
+        "abbreviation": "MIN",
+        "sport": "wnba",
+        "ppgAllowed": 83.65909,
+        "ppg": 90.84091,
+        "eloRating": 1617,
+        "updatedAt": "2026-10-16T02:30:15.828Z"
+      },
+      {
+        "id": "17",
+        "name": "Las Vegas Aces",
+        "abbreviation": "LV",
+        "sport": "wnba",
+        "ppgAllowed": 85.818184,
+        "ppg": 91.47727,
+        "eloRating": 1612,
+        "updatedAt": "2026-10-16T02:30:15.828Z"
+      },
+      {
+        "id": "5",
+        "name": "Indiana Fever",
+        "abbreviation": "IND",
+        "sport": "wnba",
+        "ppgAllowed": 90.431816,
+        "ppg": 95.954544,
+        "eloRating": 1610,
+        "updatedAt": "2026-10-16T02:30:15.828Z"
+      },
+      {
+        "id": "9",
+        "name": "New York Liberty",
+        "abbreviation": "NY",
+        "sport": "wnba",
+        "ppgAllowed": 86.40909,
+        "ppg": 89.568184,
+        "eloRating": 1604,
+        "updatedAt": "2026-10-16T02:30:15.828Z"
+      },
+      {
+        "id": "16",
+        "name": "Washington Mystics",
+        "abbreviation": "WSH",
+        "sport": "wnba",
+        "ppgAllowed": 82.72727,
+        "ppg": 84,
+        "eloRating": 1602,
+        "updatedAt": "2026-10-16T02:30:15.828Z"
+      },
+      {
+        "id": "3",
+        "name": "Dallas Wings",
+        "abbreviation": "DAL",
+        "sport": "wnba",
+        "ppgAllowed": 85.25,
+        "ppg": 89.38636,
+        "eloRating": 1597,
+        "updatedAt": "2026-10-16T02:30:15.828Z"
+      },
+      {
+        "id": "132052",
+        "name": "Portland Fire",
+        "abbreviation": "POR",
+        "sport": "wnba",
+        "ppgAllowed": 91.02273,
+        "ppg": 86.22727,
+        "eloRating": 1405,
+        "updatedAt": "2026-10-16T02:30:15.828Z"
+      },
+      {
+        "id": "11",
+        "name": "Phoenix Mercury",
+        "abbreviation": "PHX",
+        "sport": "wnba",
+        "ppgAllowed": 87.59091,
+        "ppg": 84.36364,
+        "eloRating": 1397,
+        "updatedAt": "2026-10-16T02:30:15.828Z"
+      },
+      {
+        "id": "6",
+        "name": "Los Angeles Sparks",
+        "abbreviation": "LA",
+        "sport": "wnba",
+        "ppgAllowed": 91.318184,
+        "ppg": 87.045456,
+        "eloRating": 1394,
+        "updatedAt": "2026-10-16T02:30:15.828Z"
+      },
+      {
+        "id": "19",
+        "name": "Chicago Sky",
+        "abbreviation": "CHI",
+        "sport": "wnba",
+        "ppgAllowed": 90.65909,
+        "ppg": 86.77273,
+        "eloRating": 1377,
+        "updatedAt": "2026-10-16T02:30:15.828Z"
+      },
+      {
+        "id": "18",
+        "name": "Connecticut Sun",
+        "abbreviation": "CON",
+        "sport": "wnba",
+        "ppgAllowed": 88.068184,
+        "ppg": 78.86364,
+        "eloRating": 1311,
+        "updatedAt": "2026-10-16T02:30:15.828Z"
+      },
+      {
+        "id": "14",
+        "name": "Seattle Storm",
+        "abbreviation": "SEA",
+        "sport": "wnba",
+        "ppgAllowed": 88.931816,
+        "ppg": 82.181816,
+        "eloRating": 1243,
+        "updatedAt": "2026-10-16T02:30:15.828Z"
+      },
+      {
+        "id": "131935",
+        "name": "Toronto Tempo",
+        "abbreviation": "TOR",
+        "sport": "wnba",
+        "ppgAllowed": 94.36364,
+        "ppg": 85.65909,
+        "eloRating": 1201,
+        "updatedAt": "2026-10-16T02:30:15.828Z"
+      }
+    ]
+  }
+}

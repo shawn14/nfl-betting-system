@@ -1,0 +1,348 @@
+{
+  "capturedAt": "2026-10-16T03:29:31.062Z",
+  "preFixCounts": {
+    "games": 79,
+    "perBookTotals": 503
+  },
+  "counterexamples": [
+    {
+      "displayedGame": {
+        "id": "nhl:401892536",
+        "home": "Philadelphia Flyers",
+        "away": "Colorado Avalanche",
+        "commence": "2026-10-19T23:00:00.000Z",
+        "forecastSource": "https://0luulmjdaimldet9.public.blob.vercel-storage.com/nhl-prediction-data.json",
+        "forecastHash": "d3497fe0b83f7b4abf8d9e76793ac710a85dbdc9218a8a9a07f8ccb556454824",
+        "claimedObservation": "2026-10-16T03:00:14.621Z"
+      },
+      "actualProviderEvent": {
+        "id": "343be4cf732ddd9fd0a058953456d811",
+        "home": "Colorado Avalanche",
+        "away": "Pittsburgh Penguins",
+        "commence": "2026-10-17T01:10:00Z",
+        "snapshotURL": "https://0luulmjdaimldet9.public.blob.vercel-storage.com/odds-board/snap/2026-10-16/0207-nhl.json.gz",
+        "collectedAt": "2026-10-16T02:07:22.173Z"
+      },
+      "exactMatchingQuotes": [
+        {
+          "book": "BetMGM",
+          "line": 6.5,
+          "over": -120,
+          "under": 100,
+          "providerUpdated": "2026-10-16T02:06:36Z"
+        },
+        {
+          "book": "BetOnline.ag",
+          "line": 6.5,
+          "over": -125,
+          "under": 109,
+          "providerUpdated": "2026-10-16T02:06:52Z"
+        },
+        {
+          "book": "BetRivers",
+          "line": 6.5,
+          "over": -122,
+          "under": -103,
+          "providerUpdated": "2026-10-16T02:07:20Z"
+        },
+        {
+          "book": "Bovada",
+          "line": 6.5,
+          "over": -125,
+          "under": 105,
+          "providerUpdated": "2026-10-16T02:05:06Z"
+        },
+        {
+          "book": "Caesars",
+          "line": 6.5,
+          "over": -120,
+          "under": -103,
+          "providerUpdated": "2026-10-16T02:00:36Z"
+        },
+        {
+          "book": "DraftKings",
+          "line": 6.5,
+          "over": -118,
+          "under": -102,
+          "providerUpdated": "2026-10-16T02:06:54Z"
+        },
+        {
+          "book": "Fanatics",
+          "line": 6.5,
+          "over": -120,
+          "under": 100,
+          "providerUpdated": "2026-10-16T02:07:19Z"
+        },
+        {
+          "book": "FanDuel",
+          "line": 6.5,
+          "over": -120,
+          "under": -102,
+          "providerUpdated": "2026-10-16T02:07:20Z"
+        },
+        {
+          "book": "LowVig.ag",
+          "line": 6.5,
+          "over": -125,
+          "under": 109,
+          "providerUpdated": "2026-10-16T02:06:53Z"
+        }
+      ]
+    },
+    {
+      "displayedGame": {
+        "id": "nhl:401892540",
+        "home": "New Jersey Devils",
+        "away": "Colorado Avalanche",
+        "commence": "2026-10-20T23:00:00.000Z",
+        "forecastSource": "https://0luulmjdaimldet9.public.blob.vercel-storage.com/nhl-prediction-data.json",
+        "forecastHash": "d3497fe0b83f7b4abf8d9e76793ac710a85dbdc9218a8a9a07f8ccb556454824",
+        "claimedObservation": "2026-10-16T03:00:14.621Z"
+      },
+      "actualProviderEvent": {
+        "id": "343be4cf732ddd9fd0a058953456d811",
+        "home": "Colorado Avalanche",
+        "away": "Pittsburgh Penguins",
+        "commence": "2026-10-17T01:10:00Z",
+        "snapshotURL": "https://0luulmjdaimldet9.public.blob.vercel-storage.com/odds-board/snap/2026-10-16/0207-nhl.json.gz",
+        "collectedAt": "2026-10-16T02:07:22.173Z"
+      },
+      "exactMatchingQuotes": [
+        {
+          "book": "BetMGM",
+          "line": 6.5,
+          "over": -120,
+          "under": 100,
+          "providerUpdated": "2026-10-16T02:06:36Z"
+        },
+        {
+          "book": "BetOnline.ag",
+          "line": 6.5,
+          "over": -125,
+          "under": 109,
+          "providerUpdated": "2026-10-16T02:06:52Z"
+        },
+        {
+          "book": "BetRivers",
+          "line": 6.5,
+          "over": -122,
+          "under": -103,
+          "providerUpdated": "2026-10-16T02:07:20Z"
+        },
+        {
+          "book": "Bovada",
+          "line": 6.5,
+          "over": -125,
+          "under": 105,
+          "providerUpdated": "2026-10-16T02:05:06Z"
+        },
+        {
+          "book": "Caesars",
+          "line": 6.5,
+          "over": -120,
+          "under": -103,
+          "providerUpdated": "2026-10-16T02:00:36Z"
+        },
+        {
+          "book": "DraftKings",
+          "line": 6.5,
+          "over": -118,
+          "under": -102,
+          "providerUpdated": "2026-10-16T02:06:54Z"
+        },
+        {
+          "book": "Fanatics",
+          "line": 6.5,
+          "over": -120,
+          "under": 100,
+          "providerUpdated": "2026-10-16T02:07:19Z"
+        },
+        {
+          "book": "FanDuel",
+          "line": 6.5,
+          "over": -120,
+          "under": -102,
+          "providerUpdated": "2026-10-16T02:07:20Z"
+        },
+        {
+          "book": "LowVig.ag",
+          "line": 6.5,
+          "over": -125,
+          "under": 109,
+          "providerUpdated": "2026-10-16T02:06:53Z"
+        }
+      ]
+    },
+    {
+      "displayedGame": {
+        "id": "wnba:401918306",
+        "home": "Golden State Valkyries",
+        "away": "Atlanta Dream",
+        "commence": "2026-10-20T00:00:00.000Z",
+        "forecastSource": "https://0luulmjdaimldet9.public.blob.vercel-storage.com/wnba-prediction-data.json",
+        "forecastHash": "cd00ec091b02c194083c22ef46bcdf009f4e1434324221ba276cf358877db03e",
+        "claimedObservation": "2026-10-16T03:00:15.600Z"
+      },
+      "actualProviderEvent": {
+        "id": "fd0477adb898dbbdf52c129d0ea6c15e",
+        "home": "Golden State Valkyries",
+        "away": "Atlanta Dream",
+        "commence": "2026-10-17T19:30:00Z",
+        "snapshotURL": "https://0luulmjdaimldet9.public.blob.vercel-storage.com/odds-board/snap/2026-10-16/0307-wnba.json.gz",
+        "collectedAt": "2026-10-16T03:07:22.186Z"
+      },
+      "exactMatchingQuotes": [
+        {
+          "book": "BetMGM",
+          "line": 154.5,
+          "over": -110,
+          "under": -110,
+          "providerUpdated": "2026-10-16T03:06:25Z"
+        },
+        {
+          "book": "BetOnline.ag",
+          "line": 154.5,
+          "over": -110,
+          "under": -110,
+          "providerUpdated": "2026-10-16T03:07:19Z"
+        },
+        {
+          "book": "BetRivers",
+          "line": 154.5,
+          "over": -113,
+          "under": -110,
+          "providerUpdated": "2026-10-16T03:06:51Z"
+        },
+        {
+          "book": "Bovada",
+          "line": 154.5,
+          "over": -110,
+          "under": -110,
+          "providerUpdated": "2026-10-16T03:04:24Z"
+        },
+        {
+          "book": "Caesars",
+          "line": 154.5,
+          "over": -105,
+          "under": -115,
+          "providerUpdated": "2026-10-16T03:04:26Z"
+        },
+        {
+          "book": "DraftKings",
+          "line": 154.5,
+          "over": -110,
+          "under": -110,
+          "providerUpdated": "2026-10-16T03:05:59Z"
+        },
+        {
+          "book": "Fanatics",
+          "line": 154.5,
+          "over": -110,
+          "under": -110,
+          "providerUpdated": "2026-10-16T03:06:51Z"
+        },
+        {
+          "book": "FanDuel",
+          "line": 154.5,
+          "over": -110,
+          "under": -110,
+          "providerUpdated": "2026-10-16T03:07:06Z"
+        },
+        {
+          "book": "LowVig.ag",
+          "line": 154.5,
+          "over": -108,
+          "under": -108,
+          "providerUpdated": "2026-10-16T03:07:19Z"
+        }
+      ]
+    }
+  ],
+  "independentMath": {
+    "checkedAt": "2026-10-16T03:31:41.899Z",
+    "forecasts": 79,
+    "joined": 13,
+    "markets": 74,
+    "bestSides": 148,
+    "math": "Independent exact price, probability and EV calculation matched every terminal board side",
+    "providerTimestampRangeMinutes": [
+      0.03621666666666667,
+      3.21955
+    ],
+    "upstreamTimestampExposedInTerminal": false
+  },
+  "export": {
+    "checkedAt": "2026-10-16T03:32:04.614Z",
+    "exactExport": 200,
+    "id": "nfl:401872996",
+    "checks": [
+      {
+        "label": "missing hash",
+        "status": 400
+      },
+      {
+        "label": "stale forecast",
+        "status": 409
+      },
+      {
+        "label": "stale market",
+        "status": 409
+      },
+      {
+        "label": "invalid id",
+        "status": 400
+      }
+    ]
+  },
+  "malformedInput": [
+    {
+      "name": "null forecast entry",
+      "outcome": "threw",
+      "message": "Cannot read properties of null (reading 'game')"
+    },
+    {
+      "name": "null board event",
+      "outcome": "threw",
+      "message": "Cannot read properties of null (reading 'home')"
+    },
+    {
+      "name": "null market",
+      "outcome": "threw",
+      "message": "Cannot read properties of null (reading 'market')"
+    },
+    {
+      "name": "object side label",
+      "outcome": "returned",
+      "unsafeObjectPassed": false
+    }
+  ],
+  "retest": {
+    "checkedAt": "2026-10-16T03:34:37.272Z",
+    "actualAPICheck": {
+      "checkedAt": "2026-10-16T03:33:59.750Z",
+      "status": 200,
+      "games": 79,
+      "perBookQuotes": 0,
+      "exactBoardJoined": 13,
+      "withheldNoteEveryGame": true
+    },
+    "malformed": [
+      {
+        "name": "null forecast entry",
+        "outcome": "malformed row ignored;79 valid games retained"
+      },
+      {
+        "name": "null board event",
+        "outcome": "malformed row ignored;79 valid games retained"
+      },
+      {
+        "name": "null market",
+        "outcome": "malformed row ignored;79 valid games retained"
+      },
+      {
+        "name": "object side label",
+        "outcome": "malformed row ignored;79 valid games retained"
+      }
+    ]
+  }
+}

@@ -1,0 +1,2415 @@
+{
+  "url": "https://0luulmjdaimldet9.public.blob.vercel-storage.com/odds-board/latest.json",
+  "fetchedAt": "2026-10-16T03:14:42.589Z",
+  "data": {
+    "version": "2026-09-26-shop1",
+    "updated": "2026-10-16T03:07:22.186Z",
+    "sports": {
+      "nfl": {
+        "fetchedAt": "2026-10-16T02:07:22.173Z",
+        "events": [
+          {
+            "id": "57418b2cf5aca558b3c98eafac1e264a",
+            "sport": "nfl",
+            "commence": "2026-10-18T13:30:00Z",
+            "home": "Jacksonville Jaguars",
+            "away": "Houston Texans",
+            "markets": [
+              {
+                "id": "57418b2cf5aca558b3c98eafac1e264a|ml",
+                "market": "ml",
+                "fairA": 0.5759053443817,
+                "fairSource": "pinnacle",
+                "books": 10,
+                "bestA": {
+                  "label": "Jacksonville Jaguars ML",
+                  "book": "draftkings",
+                  "price": -142,
+                  "fairProb": 0.5759053443817,
+                  "ev": -0.01852751168752531,
+                  "stake": 0
+                },
+                "bestB": {
+                  "label": "Houston Texans ML",
+                  "book": "pinnacle",
+                  "price": 127,
+                  "fairProb": 0.42409465561829995,
+                  "ev": -0.03730513174645911,
+                  "stake": 0
+                },
+                "arb": null,
+                "flags": []
+              },
+              {
+                "id": "57418b2cf5aca558b3c98eafac1e264a|spread|-2.5",
+                "market": "spread",
+                "line": -2.5,
+                "fairA": 0.5148063781321185,
+                "fairSource": "pinnacle",
+                "books": 9,
+                "bestA": {
+                  "label": "Jacksonville Jaguars -2.5",
+                  "book": "fanduel",
+                  "price": -110,
+                  "fairProb": 0.5148063781321185,
+                  "ev": -0.01718782356595555,
+                  "stake": 0
+                },
+                "bestB": {
+                  "label": "Houston Texans +2.5",
+                  "book": "lowvig",
+                  "price": 101,
+                  "fairProb": 0.4851936218678815,
+                  "ev": -0.024760820045558296,
+                  "stake": 0
+                },
+                "arb": null,
+                "flags": []
+              },
+              {
+                "id": "57418b2cf5aca558b3c98eafac1e264a|total|42.5",
+                "market": "total",
+                "line": 42.5,
+                "fairA": 0.5,
+                "fairSource": "pinnacle",
+                "books": 10,
+                "bestA": {
+                  "label": "Over 42.5",
+                  "book": "lowvig",
+                  "price": -107,
+                  "fairProb": 0.5,
+                  "ev": -0.032710280373831724,
+                  "stake": 0
+                },
+                "bestB": {
+                  "label": "Under 42.5",
+                  "book": "lowvig",
+                  "price": -107,
+                  "fairProb": 0.5,
+                  "ev": -0.032710280373831724,
+                  "stake": 0
+                },
+                "arb": null,
+                "flags": []
+              },
+              {
+                "id": "57418b2cf5aca558b3c98eafac1e264a|spread|-2",
+                "market": "spread",
+                "line": -2,
+                "fairA": null,
+                "fairSource": null,
+                "books": 1,
+                "bestA": {
+                  "label": "Jacksonville Jaguars -2",
+                  "book": "betrivers",
+                  "price": -113,
+                  "fairProb": null,
+                  "ev": null,
+                  "stake": 0
+                },
+                "bestB": {
+                  "label": "Houston Texans +2",
+                  "book": "betrivers",
+                  "price": -108,
+                  "fairProb": null,
+                  "ev": null,
+                  "stake": 0
+                },
+                "arb": null,
+                "flags": []
+              }
+            ]
+          },
+          {
+            "id": "7c312fdf24fb35f58b0e07c2932cc997",
+            "sport": "nfl",
+            "commence": "2026-10-18T17:00:00Z",
+            "home": "Atlanta Falcons",
+            "away": "Chicago Bears",
+            "markets": [
+              {
+                "id": "7c312fdf24fb35f58b0e07c2932cc997|ml",
+                "market": "ml",
+                "fairA": 0.4928329857712016,
+                "fairSource": "pinnacle",
+                "books": 8,
+                "bestA": {
+                  "label": "Atlanta Falcons ML",
+                  "book": "fanduel",
+                  "price": 104,
+                  "fairProb": 0.4928329857712016,
+                  "ev": 0.005379290973251294,
+                  "stake": 0.0012930987916469456
+                },
+                "bestB": {
+                  "label": "Chicago Bears ML",
+                  "book": "pinnacle",
+                  "price": -109,
+                  "fairProb": 0.5071670142287984,
+                  "ev": -0.027542147029184727,
+                  "stake": 0
+                },
+                "arb": null,
+                "flags": []
+              },
+              {
+                "id": "7c312fdf24fb35f58b0e07c2932cc997|spread|1.5",
+                "market": "spread",
+                "line": 1.5,
+                "fairA": 0.5259839095455533,
+                "fairSource": "pinnacle",
+                "books": 4,
+                "bestA": {
+                  "label": "Atlanta Falcons +1.5",
+                  "book": "fanduel",
+                  "price": -110,
+                  "fairProb": 0.5259839095455533,
+                  "ev": 0.004151100041510869,
+                  "stake": 0.0011415525114154888
+                },
+                "bestB": {
+                  "label": "Chicago Bears -1.5",
+                  "book": "pinnacle",
+                  "price": 105,
+                  "fairProb": 0.4740160904544467,
+                  "ev": -0.02826701456838432,
+                  "stake": 0
+                },
+                "arb": null,
+                "flags": []
+              },
+              {
+                "id": "7c312fdf24fb35f58b0e07c2932cc997|total|51.5",
+                "market": "total",
+                "line": 51.5,
+                "fairA": 0.513566680233347,
+                "fairSource": "pinnacle",
+                "books": 9,
+                "bestA": {
+                  "label": "Over 51.5",
+                  "book": "lowvig",
+                  "price": -107,
+                  "fairProb": 0.513566680233347,
+                  "ev": -0.006464459735487649,
+                  "stake": 0
+                },
+                "bestB": {
+                  "label": "Under 51.5",
+                  "book": "pinnacle",
+                  "price": -101,
+                  "fairProb": 0.48643331976665305,
+                  "ev": -0.03194953194953204,
+                  "stake": 0
+                },
+                "arb": null,
+                "flags": []
+              },
+              {
+                "id": "7c312fdf24fb35f58b0e07c2932cc997|spread|0",
+                "market": "spread",
+                "line": 0,
+                "fairA": null,
+                "fairSource": null,
+                "books": 2,
+                "bestA": {
+                  "label": "Atlanta Falcons 0",
+                  "book": "lowvig",
+                  "price": -105,
+                  "fairProb": null,
+                  "ev": null,
+                  "stake": 0
+                },
+                "bestB": {
+                  "label": "Chicago Bears 0",
+                  "book": "lowvig",
+                  "price": -105,
+                  "fairProb": null,
+                  "ev": null,
+                  "stake": 0
+                },
+                "arb": null,
+                "flags": []
+              },
+              {
+                "id": "7c312fdf24fb35f58b0e07c2932cc997|spread|1",
+                "market": "spread",
+                "line": 1,
+                "fairA": null,
+                "fairSource": null,
+                "books": 3,
+                "bestA": {
+                  "label": "Atlanta Falcons +1",
+                  "book": "betrivers",
+                  "price": -109,
+                  "fairProb": null,
+                  "ev": null,
+                  "stake": 0
+                },
+                "bestB": {
+                  "label": "Chicago Bears -1",
+                  "book": "betmgm",
+                  "price": -105,
+                  "fairProb": null,
+                  "ev": null,
+                  "stake": 0
+                },
+                "arb": null,
+                "flags": []
+              },
+              {
+                "id": "7c312fdf24fb35f58b0e07c2932cc997|spread|-0.5",
+                "market": "spread",
+                "line": -0.5,
+                "fairA": null,
+                "fairSource": null,
+                "books": 1,
+                "bestA": {
+                  "label": "Atlanta Falcons -0.5",
+                  "book": "fanatics",
+                  "price": -105,
+                  "fairProb": null,
+                  "ev": null,
+                  "stake": 0
+                },
+                "bestB": {
+                  "label": "Chicago Bears +0.5",
+                  "book": "fanatics",
+                  "price": -115,
+                  "fairProb": null,
+                  "ev": null,
+                  "stake": 0
+                },
+                "arb": null,
+                "flags": []
+              },
+              {
+                "id": "7c312fdf24fb35f58b0e07c2932cc997|total|52",
+                "market": "total",
+                "line": 52,
+                "fairA": null,
+                "fairSource": null,
+                "books": 1,
+                "bestA": {
+                  "label": "Over 52",
+                  "book": "bovada",
+                  "price": -110,
+                  "fairProb": null,
+                  "ev": null,
+                  "stake": 0
+                },
+                "bestB": {
+                  "label": "Under 52",
+                  "book": "bovada",
+                  "price": -110,
+                  "fairProb": null,
+                  "ev": null,
+                  "stake": 0
+                },
+                "arb": null,
+                "flags": []
+              }
+            ]
+          },
+          {
+            "id": "e86227938fd3cf008fc5648fb5128344",
+            "sport": "nfl",
+            "commence": "2026-10-18T17:00:00Z",
+            "home": "Cleveland Browns",
+            "away": "Baltimore Ravens",
+            "markets": [
+              {
+                "id": "e86227938fd3cf008fc5648fb5128344|ml",
+                "market": "ml",
+                "fairA": 0.3413871651828023,
+                "fairSource": "pinnacle",
+                "books": 10,
+                "bestA": {
+                  "label": "Cleveland Browns ML",
+                  "book": "betrivers",
+                  "price": 185,
+                  "fairProb": 0.3413871651828023,
+                  "ev": -0.027046579229013323,
+                  "stake": 0
+                },
+                "bestB": {
+                  "label": "Baltimore Ravens ML",
+                  "book": "draftkings",
+                  "price": -205,
+                  "fairProb": 0.6586128348171977,
+                  "ev": -0.02011261161343758,
+                  "stake": 0
+                },
+                "arb": null,
+                "flags": []
+              },
+              {
+                "id": "e86227938fd3cf008fc5648fb5128344|spread|3.5",
+                "market": "spread",
+                "line": 3.5,
+                "fairA": 0.4891657638136511,
+                "fairSource": "consensus",
+                "books": 4,
+                "bestA": {
+                  "label": "Cleveland Browns +3.5",
+                  "book": "draftkings",
+                  "price": -105,
+                  "fairProb": null,
+                  "ev": null,
+                  "stake": 0
+                },
+                "bestB": {
+                  "label": "Baltimore Ravens -3.5",
+                  "book": "bovada",
+                  "price": -110,
+                  "fairProb": null,
+                  "ev": null,
+                  "stake": 0
+                },
+                "arb": null,
+                "flags": []
+              },
+              {
+                "id": "e86227938fd3cf008fc5648fb5128344|total|40.5",
+                "market": "total",
+                "line": 40.5,
+                "fairA": null,
+                "fairSource": null,
+                "books": 1,
+                "bestA": {
+                  "label": "Over 40.5",
+                  "book": "draftkings",
+                  "price": -118,
+                  "fairProb": null,
+                  "ev": null,
+                  "stake": 0
+                },
+                "bestB": {
+                  "label": "Under 40.5",
+                  "book": "draftkings",
+                  "price": -102,
+                  "fairProb": null,
+                  "ev": null,
+                  "stake": 0
+                },
+                "arb": null,
+                "flags": []
+              },
+              {
+                "id": "e86227938fd3cf008fc5648fb5128344|spread|4",
+                "market": "spread",
+                "line": 4,
+                "fairA": 0.5108342361863489,
+                "fairSource": "consensus",
+                "books": 5,
+                "bestA": {
+                  "label": "Cleveland Browns +4",
+                  "book": "betrivers",
+                  "price": -108,
+                  "fairProb": 0.5112310715815466,
+                  "ev": -0.015406825102206534,
+                  "stake": 0
+                },
+                "bestB": {
+                  "label": "Baltimore Ravens -4",
+                  "book": "williamhill_us",
+                  "price": 100,
+                  "fairProb": 0.4934854279998896,
+                  "ev": -0.013029144000220816,
+                  "stake": 0
+                },
+                "arb": null,
+                "flags": []
+              },
+              {
+                "id": "e86227938fd3cf008fc5648fb5128344|total|41",
+                "market": "total",
+                "line": 41,
+                "fairA": 0.4932249322493225,
+                "fairSource": "pinnacle",
+                "books": 8,
+                "bestA": {
+                  "label": "Over 41",
+                  "book": "pinnacle",
+                  "price": -104,
+                  "fairProb": 0.4932249322493225,
+                  "ev": -0.03252032520325193,
+                  "stake": 0
+                },
+                "bestB": {
+                  "label": "Under 41",
+                  "book": "lowvig",
+                  "price": -107,
+                  "fairProb": 0.5067750677506775,
+                  "ev": -0.019603373603829466,
+                  "stake": 0
+                },
+                "arb": null,
+                "flags": []
+              },
+              {
+                "id": "e86227938fd3cf008fc5648fb5128344|total|41.5",
+                "market": "total",
+                "line": 41.5,
+                "fairA": null,
+                "fairSource": null,
+                "books": 1,
+                "bestA": {
+                  "label": "Over 41.5",
+                  "book": "fanduel",
+                  "price": -105,
+                  "fairProb": null,
+                  "ev": null,
+                  "stake": 0
+                },
+                "bestB": {
+                  "label": "Under 41.5",
+                  "book": "fanduel",
+                  "price": -115,
+                  "fairProb": null,
+                  "ev": null,
+                  "stake": 0
+                },
+                "arb": null,
+                "flags": []
+              },
+              {
+                "id": "e86227938fd3cf008fc5648fb5128344|spread|4.5",
+                "market": "spread",
+                "line": 4.5,
+                "fairA": 0.5345716801543041,
+                "fairSource": "pinnacle",
+                "books": 1,
+                "bestA": {
+                  "label": "Cleveland Browns +4.5",
+                  "book": "pinnacle",
+                  "price": -122,
+                  "fairProb": 0.5345716801543041,
+                  "ev": -0.02725481152249576,
+                  "stake": 0
+                },
+                "bestB": {
+                  "label": "Baltimore Ravens -4.5",
+                  "book": "pinnacle",
+                  "price": 109,
+                  "fairProb": 0.4654283198456959,
+                  "ev": -0.027254811522495648,
+                  "stake": 0
+                },
+                "arb": null,
+                "flags": []
+              }
+            ]
+          },
+          {
+            "id": "caca2d752fe1a1779029082e95332fcc",
+            "sport": "nfl",
+            "commence": "2026-10-18T17:00:00Z",
+            "home": "Philadelphia Eagles",
+            "away": "Carolina Panthers",
+            "markets": [
+              {
+                "id": "caca2d752fe1a1779029082e95332fcc|ml",
+                "market": "ml",
+                "fairA": 0.3643048608957867,
+                "fairSource": "pinnacle",
+                "books": 10,
+                "bestA": {
+                  "label": "Philadelphia Eagles ML",
+                  "book": "lowvig",
+                  "price": 165,
+                  "fairProb": 0.3643048608957867,
+                  "ev": -0.0345921186261654,
+                  "stake": 0
+                },
+                "bestB": {
+                  "label": "Carolina Panthers ML",
+                  "book": "fanduel",
+                  "price": -180,
+                  "fairProb": 0.6356951391042134,
+                  "ev": -0.01114089472677915,
+                  "stake": 0
+                },
+                "arb": null,
+                "flags": []
+              },
+              {
+                "id": "caca2d752fe1a1779029082e95332fcc|spread|3.5",
+                "market": "spread",
+                "line": 3.5,
+                "fairA": 0.5022899015342339,
+                "fairSource": "pinnacle",
+                "books": 10,
+                "bestA": {
+                  "label": "Philadelphia Eagles +3.5",
+                  "book": "pinnacle",
+                  "price": -107,
+                  "fairProb": 0.5022899015342339,
+                  "ev": -0.02828028394779042,
+                  "stake": 0
+                },
+                "bestB": {
+                  "label": "Carolina Panthers -3.5",
+                  "book": "lowvig",
+                  "price": -102,
+                  "fairProb": 0.4977100984657661,
+                  "ev": -0.014338824607012246,
+                  "stake": 0
+                },
+                "arb": null,
+                "flags": []
+              },
+              {
+                "id": "caca2d752fe1a1779029082e95332fcc|total|38.5",
+                "market": "total",
+                "line": 38.5,
+                "fairA": null,
+                "fairSource": null,
+                "books": 2,
+                "bestA": {
+                  "label": "Over 38.5",
+                  "book": "draftkings",
+                  "price": -115,
+                  "fairProb": null,
+                  "ev": null,
+                  "stake": 0
+                },
+                "bestB": {
+                  "label": "Under 38.5",
+                  "book": "draftkings",
+                  "price": -105,
+                  "fairProb": null,
+                  "ev": null,
+                  "stake": 0
+                },
+                "arb": null,
+                "flags": []
+              },
+              {
+                "id": "caca2d752fe1a1779029082e95332fcc|total|39",
+                "market": "total",
+                "line": 39,
+                "fairA": 0.49774245981578474,
+                "fairSource": "pinnacle",
+                "books": 8,
+                "bestA": {
+                  "label": "Over 39",
+                  "book": "pinnacle",
+                  "price": -106,
+                  "fairProb": 0.49774245981578474,
+                  "ev": -0.032689181867437245,
+                  "stake": 0
+                },
+                "bestB": {
+                  "label": "Under 39",
+                  "book": "lowvig",
+                  "price": -107,
+                  "fairProb": 0.5022575401842153,
+                  "ev": -0.028342889550162842,
+                  "stake": 0
+                },
+                "arb": null,
+                "flags": []
+              }
+            ]
+          },
+          {
+            "id": "84aa9e190e625d7e9cd67e1f157a45b4",
+            "sport": "nfl",
+            "commence": "2026-10-18T17:00:00Z",
+            "home": "Indianapolis Colts",
+            "away": "Tennessee Titans",
+            "markets": [
+              {
+                "id": "84aa9e190e625d7e9cd67e1f157a45b4|ml",
+                "market": "ml",
+                "fairA": 0.7473792436610662,
+                "fairSource": "pinnacle",
+                "books": 10,
+                "bestA": {
+                  "label": "Indianapolis Colts ML",
+                  "book": "pinnacle",
+                  "price": -318,
+                  "fairProb": 0.7473792436610662,
+                  "ev": -0.01759583694866143,
+                  "stake": 0
+                },
+                "bestB": {
+                  "label": "Tennessee Titans ML",
+                  "book": "betrivers",
+                  "price": 275,
+                  "fairProb": 0.25262075633893377,
+                  "ev": -0.05267216372899841,
+                  "stake": 0
+                },
+                "arb": null,
+                "flags": []
+              },
+              {
+                "id": "84aa9e190e625d7e9cd67e1f157a45b4|spread|-7",
+                "market": "spread",
+                "line": -7,
+                "fairA": 0.4862385321100918,
+                "fairSource": "pinnacle",
+                "books": 8,
+                "bestA": {
+                  "label": "Indianapolis Colts -7",
+                  "book": "lowvig",
+                  "price": 102,
+                  "fairProb": 0.4862385321100918,
+                  "ev": -0.017798165137614508,
+                  "stake": 0
+                },
+                "bestB": {
+                  "label": "Tennessee Titans +7",
+                  "book": "betonlineag",
+                  "price": -112,
+                  "fairProb": 0.5137614678899082,
+                  "ev": -0.027522935779816682,
+                  "stake": 0
+                },
+                "arb": null,
+                "flags": []
+              },
+              {
+                "id": "84aa9e190e625d7e9cd67e1f157a45b4|total|44.5",
+                "market": "total",
+                "line": 44.5,
+                "fairA": 0.5021949078138719,
+                "fairSource": "consensus",
+                "books": 7,
+                "bestA": {
+                  "label": "Over 44.5",
+                  "book": "fanduel",
+                  "price": -105,
+                  "fairProb": 0.5032623309419204,
+                  "ev": -0.017440211018155405,
+                  "stake": 0
+                },
+                "bestB": {
+                  "label": "Under 44.5",
+                  "book": "bovada",
+                  "price": -105,
+                  "fairProb": 0.49890254609306406,
+                  "ev": -0.0259521719135416,
+                  "stake": 0
+                },
+                "arb": null,
+                "flags": []
+              },
+              {
+                "id": "84aa9e190e625d7e9cd67e1f157a45b4|spread|-6.5",
+                "market": "spread",
+                "line": -6.5,
+                "fairA": null,
+                "fairSource": null,
+                "books": 2,
+                "bestA": {
+                  "label": "Indianapolis Colts -6.5",
+                  "book": "betrivers",
+                  "price": -117,
+                  "fairProb": null,
+                  "ev": null,
+                  "stake": 0
+                },
+                "bestB": {
+                  "label": "Tennessee Titans +6.5",
+                  "book": "fanduel",
+                  "price": -102,
+                  "fairProb": null,
+                  "ev": null,
+                  "stake": 0
+                },
+                "arb": null,
+                "flags": []
+              },
+              {
+                "id": "84aa9e190e625d7e9cd67e1f157a45b4|total|45",
+                "market": "total",
+                "line": 45,
+                "fairA": null,
+                "fairSource": null,
+                "books": 2,
+                "bestA": {
+                  "label": "Over 45",
+                  "book": "lowvig",
+                  "price": -107,
+                  "fairProb": null,
+                  "ev": null,
+                  "stake": 0
+                },
+                "bestB": {
+                  "label": "Under 45",
+                  "book": "lowvig",
+                  "price": -107,
+                  "fairProb": null,
+                  "ev": null,
+                  "stake": 0
+                },
+                "arb": null,
+                "flags": []
+              },
+              {
+                "id": "84aa9e190e625d7e9cd67e1f157a45b4|total|44",
+                "market": "total",
+                "line": 44,
+                "fairA": 0.5278969957081545,
+                "fairSource": "pinnacle",
+                "books": 1,
+                "bestA": {
+                  "label": "Over 44",
+                  "book": "pinnacle",
+                  "price": -120,
+                  "fairProb": 0.5278969957081545,
+                  "ev": -0.03218884120171667,
+                  "stake": 0
+                },
+                "bestB": {
+                  "label": "Under 44",
+                  "book": "pinnacle",
+                  "price": 105,
+                  "fairProb": 0.4721030042918455,
+                  "ev": -0.032188841201716833,
+                  "stake": 0
+                },
+                "arb": null,
+                "flags": []
+              }
+            ]
+          },
+          {
+            "id": "0b0b582b32b09ab6ff6664ffae0c9653",
+            "sport": "nfl",
+            "commence": "2026-10-18T17:00:00Z",
+            "home": "New England Patriots",
+            "away": "New York Jets",
+            "markets": [
+              {
+                "id": "0b0b582b32b09ab6ff6664ffae0c9653|ml",
+                "market": "ml",
+                "fairA": 0.7557521660625053,
+                "fairSource": "pinnacle",
+                "books": 10,
+                "bestA": {
+                  "label": "New England Patriots ML",
+                  "book": "draftkings",
+                  "price": -325,
+                  "fairProb": 0.7557521660625053,
+                  "ev": -0.011708705918262313,
+                  "stake": 0
+                },
+                "bestB": {
+                  "label": "New York Jets ML",
+                  "book": "williamhill_us",
+                  "price": 275,
+                  "fairProb": 0.24424783393749472,
+                  "ev": -0.0840706227343948,
+                  "stake": 0
+                },
+                "arb": null,
+                "flags": []
+              },
+              {
+                "id": "0b0b582b32b09ab6ff6664ffae0c9653|spread|-7.5",
+                "market": "spread",
+                "line": -7.5,
+                "fairA": 0.4666218261308223,
+                "fairSource": "pinnacle",
+                "books": 3,
+                "bestA": {
+                  "label": "New England Patriots -7.5",
+                  "book": "pinnacle",
+                  "price": 108,
+                  "fairProb": 0.4666218261308223,
+                  "ev": -0.02942660164788946,
+                  "stake": 0
+                },
+                "bestB": {
+                  "label": "New York Jets +7.5",
+                  "book": "draftkings",
+                  "price": -115,
+                  "fairProb": 0.5333781738691776,
+                  "ev": -0.0028147184184940666,
+                  "stake": 0
+                },
+                "arb": null,
+                "flags": []
+              },
+              {
+                "id": "0b0b582b32b09ab6ff6664ffae0c9653|total|43.5",
+                "market": "total",
+                "line": 43.5,
+                "fairA": 0.4954843079701965,
+                "fairSource": "pinnacle",
+                "books": 10,
+                "bestA": {
+                  "label": "Over 43.5",
+                  "book": "pinnacle",
+                  "price": -105,
+                  "fairProb": 0.4954843079701965,
+                  "ev": -0.0326258749153307,
+                  "stake": 0
+                },
+                "bestB": {
+                  "label": "Under 43.5",
+                  "book": "lowvig",
+                  "price": -107,
+                  "fairProb": 0.5045156920298035,
+                  "ev": -0.02397431541897821,
+                  "stake": 0
+                },
+                "arb": null,
+                "flags": []
+              },
+              {
+                "id": "0b0b582b32b09ab6ff6664ffae0c9653|spread|-7",
+                "market": "spread",
+                "line": -7,
+                "fairA": 0.5021949078138719,
+                "fairSource": "consensus",
+                "books": 7,
+                "bestA": {
+                  "label": "New England Patriots -7",
+                  "book": "lowvig",
+                  "price": -105,
+                  "fairProb": 0.5021949078138719,
+                  "ev": -0.019524227601488253,
+                  "stake": 0
+                },
+                "bestB": {
+                  "label": "New York Jets +7",
+                  "book": "lowvig",
+                  "price": -105,
+                  "fairProb": 0.4978050921861281,
+                  "ev": -0.02809482001755942,
+                  "stake": 0
+                },
+                "arb": null,
+                "flags": []
+              }
+            ]
+          },
+          {
+            "id": "1cf74afd313e9fd300e1462012b174cb",
+            "sport": "nfl",
+            "commence": "2026-10-18T17:00:00Z",
+            "home": "New York Giants",
+            "away": "New Orleans Saints",
+            "markets": [
+              {
+                "id": "1cf74afd313e9fd300e1462012b174cb|ml",
+                "market": "ml",
+                "fairA": 0.4928329857712016,
+                "fairSource": "pinnacle",
+                "books": 8,
+                "bestA": {
+                  "label": "New York Giants ML",
+                  "book": "pinnacle",
+                  "price": -103,
+                  "fairProb": 0.4928329857712016,
+                  "ev": -0.02868838726646672,
+                  "stake": 0
+                },
+                "bestB": {
+                  "label": "New Orleans Saints ML",
+                  "book": "pinnacle",
+                  "price": -109,
+                  "fairProb": 0.5071670142287984,
+                  "ev": -0.027542147029184727,
+                  "stake": 0
+                },
+                "arb": null,
+                "flags": []
+              },
+              {
+                "id": "1cf74afd313e9fd300e1462012b174cb|spread|1.5",
+                "market": "spread",
+                "line": 1.5,
+                "fairA": null,
+                "fairSource": null,
+                "books": 3,
+                "bestA": {
+                  "label": "New York Giants +1.5",
+                  "book": "draftkings",
+                  "price": -120,
+                  "fairProb": null,
+                  "ev": null,
+                  "stake": 0
+                },
+                "bestB": {
+                  "label": "New Orleans Saints -1.5",
+                  "book": "williamhill_us",
+                  "price": 101,
+                  "fairProb": null,
+                  "ev": null,
+                  "stake": 0
+                },
+                "arb": null,
+                "flags": []
+              },
+              {
+                "id": "1cf74afd313e9fd300e1462012b174cb|total|45.5",
+                "market": "total",
+                "line": 45.5,
+                "fairA": 0.5,
+                "fairSource": "consensus",
+                "books": 4,
+                "bestA": {
+                  "label": "Over 45.5",
+                  "book": "betrivers",
+                  "price": -109,
+                  "fairProb": null,
+                  "ev": null,
+                  "stake": 0
+                },
+                "bestB": {
+                  "label": "Under 45.5",
+                  "book": "draftkings",
+                  "price": -108,
+                  "fairProb": null,
+                  "ev": null,
+                  "stake": 0
+                },
+                "arb": null,
+                "flags": []
+              },
+              {
+                "id": "1cf74afd313e9fd300e1462012b174cb|spread|0",
+                "market": "spread",
+                "line": 0,
+                "fairA": null,
+                "fairSource": null,
+                "books": 3,
+                "bestA": {
+                  "label": "New York Giants 0",
+                  "book": "lowvig",
+                  "price": -103,
+                  "fairProb": null,
+                  "ev": null,
+                  "stake": 0
+                },
+                "bestB": {
+                  "label": "New Orleans Saints 0",
+                  "book": "lowvig",
+                  "price": -107,
+                  "fairProb": null,
+                  "ev": null,
+                  "stake": 0
+                },
+                "arb": null,
+                "flags": []
+              },
+              {
+                "id": "1cf74afd313e9fd300e1462012b174cb|total|46",
+                "market": "total",
+                "line": 46,
+                "fairA": 0.49774245981578474,
+                "fairSource": "pinnacle",
+                "books": 6,
+                "bestA": {
+                  "label": "Over 46",
+                  "book": "pinnacle",
+                  "price": -106,
+                  "fairProb": 0.49774245981578474,
+                  "ev": -0.032689181867437245,
+                  "stake": 0
+                },
+                "bestB": {
+                  "label": "Under 46",
+                  "book": "lowvig",
+                  "price": -107,
+                  "fairProb": 0.5022575401842153,
+                  "ev": -0.028342889550162842,
+                  "stake": 0
+                },
+                "arb": null,
+                "flags": []
+              },
+              {
+                "id": "1cf74afd313e9fd300e1462012b174cb|spread|1",
+                "market": "spread",
+                "line": 1,
+                "fairA": 0.5091659028414299,
+                "fairSource": "pinnacle",
+                "books": 3,
+                "bestA": {
+                  "label": "New York Giants +1",
+                  "book": "pinnacle",
+                  "price": -110,
+                  "fairProb": 0.5091659028414299,
+                  "ev": -0.02795600366636103,
+                  "stake": 0
+                },
+                "bestB": {
+                  "label": "New Orleans Saints -1",
+                  "book": "pinnacle",
+                  "price": -102,
+                  "fairProb": 0.49083409715857007,
+                  "ev": -0.027956003666361195,
+                  "stake": 0
+                },
+                "arb": null,
+                "flags": []
+              },
+              {
+                "id": "1cf74afd313e9fd300e1462012b174cb|spread|0.5",
+                "market": "spread",
+                "line": 0.5,
+                "fairA": null,
+                "fairSource": null,
+                "books": 1,
+                "bestA": {
+                  "label": "New York Giants +0.5",
+                  "book": "fanatics",
+                  "price": -110,
+                  "fairProb": null,
+                  "ev": null,
+                  "stake": 0
+                },
+                "bestB": {
+                  "label": "New Orleans Saints -0.5",
+                  "book": "fanatics",
+                  "price": -110,
+                  "fairProb": null,
+                  "ev": null,
+                  "stake": 0
+                },
+                "arb": null,
+                "flags": []
+              }
+            ]
+          },
+          {
+            "id": "27f3994841ce8081c0b7349cf3d1e3d7",
+            "sport": "nfl",
+            "commence": "2026-10-18T17:00:00Z",
+            "home": "Tampa Bay Buccaneers",
+            "away": "Pittsburgh Steelers",
+            "markets": [
+              {
+                "id": "27f3994841ce8081c0b7349cf3d1e3d7|ml",
+                "market": "ml",
+                "fairA": 0.43058524805800696,
+                "fairSource": "pinnacle",
+                "books": 10,
+                "bestA": {
+                  "label": "Tampa Bay Buccaneers ML",
+                  "book": "bovada",
+                  "price": 125,
+                  "fairProb": 0.43058524805800696,
+                  "ev": -0.03118319186948426,
+                  "stake": 0
+                },
+                "bestB": {
+                  "label": "Pittsburgh Steelers ML",
+                  "book": "williamhill_us",
+                  "price": -139,
+                  "fairProb": 0.569414751941993,
+                  "ev": -0.020934347380314244,
+                  "stake": 0
+                },
+                "arb": null,
+                "flags": []
+              },
+              {
+                "id": "27f3994841ce8081c0b7349cf3d1e3d7|spread|2.5",
+                "market": "spread",
+                "line": 2.5,
+                "fairA": 0.4885378937233506,
+                "fairSource": "pinnacle",
+                "books": 10,
+                "bestA": {
+                  "label": "Tampa Bay Buccaneers +2.5",
+                  "book": "lowvig",
+                  "price": 100,
+                  "fairProb": 0.4885378937233506,
+                  "ev": -0.02292421255329874,
+                  "stake": 0
+                },
+                "bestB": {
+                  "label": "Pittsburgh Steelers -2.5",
+                  "book": "lowvig",
+                  "price": -110,
+                  "fairProb": 0.5114621062766493,
+                  "ev": -0.023572342562760307,
+                  "stake": 0
+                },
+                "arb": null,
+                "flags": []
+              },
+              {
+                "id": "27f3994841ce8081c0b7349cf3d1e3d7|total|39.5",
+                "market": "total",
+                "line": 39.5,
+                "fairA": 0.4932249322493225,
+                "fairSource": "pinnacle",
+                "books": 9,
+                "bestA": {
+                  "label": "Over 39.5",
+                  "book": "bovada",
+                  "price": 100,
+                  "fairProb": 0.4932249322493225,
+                  "ev": -0.013550135501354976,
+                  "stake": 0
+                },
+                "bestB": {
+                  "label": "Under 39.5",
+                  "book": "williamhill_us",
+                  "price": -108,
+                  "fairProb": 0.5067750677506775,
+                  "ev": -0.02398875840610254,
+                  "stake": 0
+                },
+                "arb": null,
+                "flags": []
+              },
+              {
+                "id": "27f3994841ce8081c0b7349cf3d1e3d7|total|39",
+                "market": "total",
+                "line": 39,
+                "fairA": null,
+                "fairSource": null,
+                "books": 1,
+                "bestA": {
+                  "label": "Over 39",
+                  "book": "fanatics",
+                  "price": -110,
+                  "fairProb": null,
+                  "ev": null,
+                  "stake": 0
+                },
+                "bestB": {
+                  "label": "Under 39",
+                  "book": "fanatics",
+                  "price": -110,
+                  "fairProb": null,
+                  "ev": null,
+                  "stake": 0
+                },
+                "arb": null,
+                "flags": []
+              }
+            ]
+          },
+          {
+            "id": "3729ac6d2a66b642850caf2044cdc658",
+            "sport": "nfl",
+            "commence": "2026-10-18T20:05:00Z",
+            "home": "Los Angeles Rams",
+            "away": "Arizona Cardinals",
+            "markets": [
+              {
+                "id": "3729ac6d2a66b642850caf2044cdc658|ml",
+                "market": "ml",
+                "fairA": 0.8819620446513672,
+                "fairSource": "pinnacle",
+                "books": 10,
+                "bestA": {
+                  "label": "Los Angeles Rams ML",
+                  "book": "betmgm",
+                  "price": -750,
+                  "fairProb": 0.8819620446513672,
+                  "ev": -0.00044301606178388797,
+                  "stake": 0
+                },
+                "bestB": {
+                  "label": "Arizona Cardinals ML",
+                  "book": "draftkings",
+                  "price": 600,
+                  "fairProb": 0.11803795534863282,
+                  "ev": -0.17373431255957028,
+                  "stake": 0
+                },
+                "arb": null,
+                "flags": []
+              },
+              {
+                "id": "3729ac6d2a66b642850caf2044cdc658|spread|-12.5",
+                "market": "spread",
+                "line": -12.5,
+                "fairA": 0.5,
+                "fairSource": "consensus",
+                "books": 7,
+                "bestA": {
+                  "label": "Los Angeles Rams -12.5",
+                  "book": "lowvig",
+                  "price": -102,
+                  "fairProb": 0.5021648770349845,
+                  "ev": -0.00551661606797188,
+                  "stake": 0
+                },
+                "bestB": {
+                  "label": "Arizona Cardinals +12.5",
+                  "book": "williamhill_us",
+                  "price": -107,
+                  "fairProb": 0.5010974539069359,
+                  "ev": -0.030587168609946314,
+                  "stake": 0
+                },
+                "arb": null,
+                "flags": []
+              },
+              {
+                "id": "3729ac6d2a66b642850caf2044cdc658|total|51.5",
+                "market": "total",
+                "line": 51.5,
+                "fairA": 0.5108342361863489,
+                "fairSource": "consensus",
+                "books": 5,
+                "bestA": {
+                  "label": "Over 51.5",
+                  "book": "draftkings",
+                  "price": -112,
+                  "fairProb": 0.5108342361863489,
+                  "ev": -0.033063767218696694,
+                  "stake": 0
+                },
+                "bestB": {
+                  "label": "Under 51.5",
+                  "book": "lowvig",
+                  "price": -102,
+                  "fairProb": 0.49025087705498005,
+                  "ev": -0.029111008185235543,
+                  "stake": 0
+                },
+                "arb": null,
+                "flags": []
+              },
+              {
+                "id": "3729ac6d2a66b642850caf2044cdc658|total|52",
+                "market": "total",
+                "line": 52,
+                "fairA": 0.5,
+                "fairSource": "consensus",
+                "books": 4,
+                "bestA": {
+                  "label": "Over 52",
+                  "book": "betmgm",
+                  "price": -108,
+                  "fairProb": null,
+                  "ev": null,
+                  "stake": 0
+                },
+                "bestB": {
+                  "label": "Under 52",
+                  "book": "betrivers",
+                  "price": -110,
+                  "fairProb": null,
+                  "ev": null,
+                  "stake": 0
+                },
+                "arb": null,
+                "flags": []
+              },
+              {
+                "id": "3729ac6d2a66b642850caf2044cdc658|spread|-12",
+                "market": "spread",
+                "line": -12,
+                "fairA": null,
+                "fairSource": null,
+                "books": 2,
+                "bestA": {
+                  "label": "Los Angeles Rams -12",
+                  "book": "fanatics",
+                  "price": -110,
+                  "fairProb": null,
+                  "ev": null,
+                  "stake": 0
+                },
+                "bestB": {
+                  "label": "Arizona Cardinals +12",
+                  "book": "fanatics",
+                  "price": -110,
+                  "fairProb": null,
+                  "ev": null,
+                  "stake": 0
+                },
+                "arb": null,
+                "flags": []
+              },
+              {
+                "id": "3729ac6d2a66b642850caf2044cdc658|spread|-13.5",
+                "market": "spread",
+                "line": -13.5,
+                "fairA": 0.4654283198456959,
+                "fairSource": "pinnacle",
+                "books": 1,
+                "bestA": {
+                  "label": "Los Angeles Rams -13.5",
+                  "book": "pinnacle",
+                  "price": 109,
+                  "fairProb": 0.4654283198456959,
+                  "ev": -0.027254811522495648,
+                  "stake": 0
+                },
+                "bestB": {
+                  "label": "Arizona Cardinals +13.5",
+                  "book": "pinnacle",
+                  "price": -122,
+                  "fairProb": 0.5345716801543041,
+                  "ev": -0.02725481152249576,
+                  "stake": 0
+                },
+                "arb": null,
+                "flags": []
+              },
+              {
+                "id": "3729ac6d2a66b642850caf2044cdc658|total|52.5",
+                "market": "total",
+                "line": 52.5,
+                "fairA": 0.4808976756612343,
+                "fairSource": "pinnacle",
+                "books": 1,
+                "bestA": {
+                  "label": "Over 52.5",
+                  "book": "pinnacle",
+                  "price": 101,
+                  "fairProb": 0.4808976756612343,
+                  "ev": -0.033395671920919134,
+                  "stake": 0
+                },
+                "bestB": {
+                  "label": "Under 52.5",
+                  "book": "pinnacle",
+                  "price": -116,
+                  "fairProb": 0.5191023243387657,
+                  "ev": -0.03339567192091908,
+                  "stake": 0
+                },
+                "arb": null,
+                "flags": []
+              }
+            ]
+          },
+          {
+            "id": "45b2690b350ed45145c7a716b18e8e66",
+            "sport": "nfl",
+            "commence": "2026-10-18T20:25:00Z",
+            "home": "Las Vegas Raiders",
+            "away": "Buffalo Bills",
+            "markets": [
+              {
+                "id": "45b2690b350ed45145c7a716b18e8e66|ml",
+                "market": "ml",
+                "fairA": 0.32538969886564656,
+                "fairSource": "pinnacle",
+                "books": 10,
+                "bestA": {
+                  "label": "Las Vegas Raiders ML",
+                  "book": "fanduel",
+                  "price": 200,
+                  "fairProb": 0.32538969886564656,
+                  "ev": -0.023830903403060266,
+                  "stake": 0
+                },
+                "bestB": {
+                  "label": "Buffalo Bills ML",
+                  "book": "draftkings",
+                  "price": -218,
+                  "fairProb": 0.6746103011343534,
+                  "ev": -0.015935432290255236,
+                  "stake": 0
+                },
+                "arb": null,
+                "flags": []
+              },
+              {
+                "id": "45b2690b350ed45145c7a716b18e8e66|spread|4.5",
+                "market": "spread",
+                "line": 4.5,
+                "fairA": 0.49541956760718214,
+                "fairSource": "pinnacle",
+                "books": 8,
+                "bestA": {
+                  "label": "Las Vegas Raiders +4.5",
+                  "book": "lowvig",
+                  "price": 100,
+                  "fairProb": 0.49541956760718214,
+                  "ev": -0.009160864785635658,
+                  "stake": 0
+                },
+                "bestB": {
+                  "label": "Buffalo Bills -4.5",
+                  "book": "pinnacle",
+                  "price": -108,
+                  "fairProb": 0.5045804323928178,
+                  "ev": -0.028215463539758234,
+                  "stake": 0
+                },
+                "arb": null,
+                "flags": []
+              },
+              {
+                "id": "45b2690b350ed45145c7a716b18e8e66|total|53.5",
+                "market": "total",
+                "line": 53.5,
+                "fairA": 0.49096371933312244,
+                "fairSource": "pinnacle",
+                "books": 9,
+                "bestA": {
+                  "label": "Over 53.5",
+                  "book": "pinnacle",
+                  "price": -103,
+                  "fairProb": 0.49096371933312244,
+                  "ev": -0.03237247548908878,
+                  "stake": 0
+                },
+                "bestB": {
+                  "label": "Under 53.5",
+                  "book": "draftkings",
+                  "price": -110,
+                  "fairProb": 0.5090362806668776,
+                  "ev": -0.028203464181415505,
+                  "stake": 0
+                },
+                "arb": null,
+                "flags": []
+              },
+              {
+                "id": "45b2690b350ed45145c7a716b18e8e66|spread|5.5",
+                "market": "spread",
+                "line": 5.5,
+                "fairA": null,
+                "fairSource": null,
+                "books": 1,
+                "bestA": {
+                  "label": "Las Vegas Raiders +5.5",
+                  "book": "fanduel",
+                  "price": -115,
+                  "fairProb": null,
+                  "ev": null,
+                  "stake": 0
+                },
+                "bestB": {
+                  "label": "Buffalo Bills -5.5",
+                  "book": "fanduel",
+                  "price": -105,
+                  "fairProb": null,
+                  "ev": null,
+                  "stake": 0
+                },
+                "arb": null,
+                "flags": []
+              },
+              {
+                "id": "45b2690b350ed45145c7a716b18e8e66|spread|5",
+                "market": "spread",
+                "line": 5,
+                "fairA": null,
+                "fairSource": null,
+                "books": 1,
+                "bestA": {
+                  "label": "Las Vegas Raiders +5",
+                  "book": "betrivers",
+                  "price": -109,
+                  "fairProb": null,
+                  "ev": null,
+                  "stake": 0
+                },
+                "bestB": {
+                  "label": "Buffalo Bills -5",
+                  "book": "betrivers",
+                  "price": -112,
+                  "fairProb": null,
+                  "ev": null,
+                  "stake": 0
+                },
+                "arb": null,
+                "flags": []
+              },
+              {
+                "id": "45b2690b350ed45145c7a716b18e8e66|total|53",
+                "market": "total",
+                "line": 53,
+                "fairA": null,
+                "fairSource": null,
+                "books": 1,
+                "bestA": {
+                  "label": "Over 53",
+                  "book": "betrivers",
+                  "price": -108,
+                  "fairProb": null,
+                  "ev": null,
+                  "stake": 0
+                },
+                "bestB": {
+                  "label": "Under 53",
+                  "book": "betrivers",
+                  "price": -113,
+                  "fairProb": null,
+                  "ev": null,
+                  "stake": 0
+                },
+                "arb": null,
+                "flags": []
+              }
+            ]
+          },
+          {
+            "id": "20fefae8c296247460ba5773caa42218",
+            "sport": "nfl",
+            "commence": "2026-10-18T20:25:00Z",
+            "home": "Kansas City Chiefs",
+            "away": "Los Angeles Chargers",
+            "markets": [
+              {
+                "id": "20fefae8c296247460ba5773caa42218|ml",
+                "market": "ml",
+                "fairA": 0.7873941831164422,
+                "fairSource": "pinnacle",
+                "books": 10,
+                "bestA": {
+                  "label": "Kansas City Chiefs ML",
+                  "book": "pinnacle",
+                  "price": -401,
+                  "fairProb": 0.7873941831164422,
+                  "ev": -0.016248165233572254,
+                  "stake": 0
+                },
+                "bestB": {
+                  "label": "Los Angeles Chargers ML",
+                  "book": "draftkings",
+                  "price": 370,
+                  "fairProb": 0.21260581688355784,
+                  "ev": -0.0007526606472780806,
+                  "stake": 0
+                },
+                "arb": null,
+                "flags": []
+              },
+              {
+                "id": "20fefae8c296247460ba5773caa42218|spread|-8.5",
+                "market": "spread",
+                "line": -8.5,
+                "fairA": null,
+                "fairSource": null,
+                "books": 2,
+                "bestA": {
+                  "label": "Kansas City Chiefs -8.5",
+                  "book": "fanduel",
+                  "price": -102,
+                  "fairProb": null,
+                  "ev": null,
+                  "stake": 0
+                },
+                "bestB": {
+                  "label": "Los Angeles Chargers +8.5",
+                  "book": "draftkings",
+                  "price": -115,
+                  "fairProb": null,
+                  "ev": null,
+                  "stake": 0
+                },
+                "arb": null,
+                "flags": []
+              },
+              {
+                "id": "20fefae8c296247460ba5773caa42218|total|41.5",
+                "market": "total",
+                "line": 41.5,
+                "fairA": 0.4808976756612343,
+                "fairSource": "pinnacle",
+                "books": 9,
+                "bestA": {
+                  "label": "Over 41.5",
+                  "book": "pinnacle",
+                  "price": 101,
+                  "fairProb": 0.4808976756612343,
+                  "ev": -0.033395671920919134,
+                  "stake": 0
+                },
+                "bestB": {
+                  "label": "Under 41.5",
+                  "book": "draftkings",
+                  "price": -105,
+                  "fairProb": 0.5191023243387657,
+                  "ev": 0.01348549037568536,
+                  "stake": 0.003539941223617407
+                },
+                "arb": null,
+                "flags": []
+              },
+              {
+                "id": "20fefae8c296247460ba5773caa42218|spread|-7.5",
+                "market": "spread",
+                "line": -7.5,
+                "fairA": null,
+                "fairSource": null,
+                "books": 2,
+                "bestA": {
+                  "label": "Kansas City Chiefs -7.5",
+                  "book": "bovada",
+                  "price": -110,
+                  "fairProb": null,
+                  "ev": null,
+                  "stake": 0
+                },
+                "bestB": {
+                  "label": "Los Angeles Chargers +7.5",
+                  "book": "williamhill_us",
+                  "price": -104,
+                  "fairProb": null,
+                  "ev": null,
+                  "stake": 0
+                },
+                "arb": null,
+                "flags": []
+              },
+              {
+                "id": "20fefae8c296247460ba5773caa42218|spread|-8",
+                "market": "spread",
+                "line": -8,
+                "fairA": 0.4908340971585702,
+                "fairSource": "pinnacle",
+                "books": 5,
+                "bestA": {
+                  "label": "Kansas City Chiefs -8",
+                  "book": "lowvig",
+                  "price": 100,
+                  "fairProb": 0.4908340971585702,
+                  "ev": -0.018331805682859637,
+                  "stake": 0
+                },
+                "bestB": {
+                  "label": "Los Angeles Chargers +8",
+                  "book": "betrivers",
+                  "price": -109,
+                  "fairProb": 0.5091659028414298,
+                  "ev": -0.023709415652671262,
+                  "stake": 0
+                },
+                "arb": null,
+                "flags": []
+              },
+              {
+                "id": "20fefae8c296247460ba5773caa42218|spread|-9",
+                "market": "spread",
+                "line": -9,
+                "fairA": null,
+                "fairSource": null,
+                "books": 1,
+                "bestA": {
+                  "label": "Kansas City Chiefs -9",
+                  "book": "betonlineag",
+                  "price": 105,
+                  "fairProb": null,
+                  "ev": null,
+                  "stake": 0
+                },
+                "bestB": {
+                  "label": "Los Angeles Chargers +9",
+                  "book": "betonlineag",
+                  "price": -125,
+                  "fairProb": null,
+                  "ev": null,
+                  "stake": 0
+                },
+                "arb": null,
+                "flags": []
+              },
+              {
+                "id": "20fefae8c296247460ba5773caa42218|total|41",
+                "market": "total",
+                "line": 41,
+                "fairA": null,
+                "fairSource": null,
+                "books": 1,
+                "bestA": {
+                  "label": "Over 41",
+                  "book": "bovada",
+                  "price": -110,
+                  "fairProb": null,
+                  "ev": null,
+                  "stake": 0
+                },
+                "bestB": {
+                  "label": "Under 41",
+                  "book": "bovada",
+                  "price": -110,
+                  "fairProb": null,
+                  "ev": null,
+                  "stake": 0
+                },
+                "arb": null,
+                "flags": []
+              }
+            ]
+          },
+          {
+            "id": "82fd5a159fa130e67abab93a9537f70b",
+            "sport": "nfl",
+            "commence": "2026-10-19T00:20:00Z",
+            "home": "Green Bay Packers",
+            "away": "Dallas Cowboys",
+            "markets": [
+              {
+                "id": "82fd5a159fa130e67abab93a9537f70b|ml",
+                "market": "ml",
+                "fairA": 0.527105427674289,
+                "fairSource": "pinnacle",
+                "books": 10,
+                "bestA": {
+                  "label": "Green Bay Packers ML",
+                  "book": "fanduel",
+                  "price": -116,
+                  "fairProb": 0.527105427674289,
+                  "ev": -0.018493341572013544,
+                  "stake": 0
+                },
+                "bestB": {
+                  "label": "Dallas Cowboys ML",
+                  "book": "pinnacle",
+                  "price": 105,
+                  "fairProb": 0.47289457232571097,
+                  "ev": -0.030566126732292587,
+                  "stake": 0
+                },
+                "arb": null,
+                "flags": []
+              },
+              {
+                "id": "82fd5a159fa130e67abab93a9537f70b|spread|-1.5",
+                "market": "spread",
+                "line": -1.5,
+                "fairA": 0.49133599029630914,
+                "fairSource": "consensus",
+                "books": 5,
+                "bestA": {
+                  "label": "Green Bay Packers -1.5",
+                  "book": "williamhill_us",
+                  "price": -104,
+                  "fairProb": 0.49566799514815457,
+                  "ev": -0.027728163363235137,
+                  "stake": 0
+                },
+                "bestB": {
+                  "label": "Dallas Cowboys +1.5",
+                  "book": "bovada",
+                  "price": -110,
+                  "fairProb": 0.5097491229450198,
+                  "ev": -0.02684258346859847,
+                  "stake": 0
+                },
+                "arb": null,
+                "flags": []
+              },
+              {
+                "id": "82fd5a159fa130e67abab93a9537f70b|total|53.5",
+                "market": "total",
+                "line": 53.5,
+                "fairA": null,
+                "fairSource": null,
+                "books": 2,
+                "bestA": {
+                  "label": "Over 53.5",
+                  "book": "draftkings",
+                  "price": -105,
+                  "fairProb": null,
+                  "ev": null,
+                  "stake": 0
+                },
+                "bestB": {
+                  "label": "Under 53.5",
+                  "book": "draftkings",
+                  "price": -115,
+                  "fairProb": null,
+                  "ev": null,
+                  "stake": 0
+                },
+                "arb": null,
+                "flags": []
+              },
+              {
+                "id": "82fd5a159fa130e67abab93a9537f70b|total|53",
+                "market": "total",
+                "line": 53,
+                "fairA": 0.5090362806668774,
+                "fairSource": "pinnacle",
+                "books": 7,
+                "bestA": {
+                  "label": "Over 53",
+                  "book": "betrivers",
+                  "price": -107,
+                  "fairProb": 0.5090362806668774,
+                  "ev": -0.01522887758837721,
+                  "stake": 0
+                },
+                "bestB": {
+                  "label": "Under 53",
+                  "book": "lowvig",
+                  "price": -102,
+                  "fairProb": 0.49096371933312255,
+                  "ev": -0.027699300928521964,
+                  "stake": 0
+                },
+                "arb": null,
+                "flags": []
+              },
+              {
+                "id": "82fd5a159fa130e67abab93a9537f70b|total|52.5",
+                "market": "total",
+                "line": 52.5,
+                "fairA": null,
+                "fairSource": null,
+                "books": 1,
+                "bestA": {
+                  "label": "Over 52.5",
+                  "book": "fanduel",
+                  "price": -112,
+                  "fairProb": null,
+                  "ev": null,
+                  "stake": 0
+                },
+                "bestB": {
+                  "label": "Under 52.5",
+                  "book": "fanduel",
+                  "price": -108,
+                  "fairProb": null,
+                  "ev": null,
+                  "stake": 0
+                },
+                "arb": null,
+                "flags": []
+              },
+              {
+                "id": "82fd5a159fa130e67abab93a9537f70b|spread|-1",
+                "market": "spread",
+                "line": -1,
+                "fairA": 0.5091659028414299,
+                "fairSource": "pinnacle",
+                "books": 5,
+                "bestA": {
+                  "label": "Green Bay Packers -1",
+                  "book": "lowvig",
+                  "price": -109,
+                  "fairProb": 0.5091659028414299,
+                  "ev": -0.02370941565267104,
+                  "stake": 0
+                },
+                "bestB": {
+                  "label": "Dallas Cowboys +1",
+                  "book": "lowvig",
+                  "price": -101,
+                  "fairProb": 0.49083409715857007,
+                  "ev": -0.02319154921908334,
+                  "stake": 0
+                },
+                "arb": null,
+                "flags": []
+              }
+            ]
+          }
+        ]
+      },
+      "wnba": {
+        "fetchedAt": "2026-10-16T03:07:22.186Z",
+        "events": [
+          {
+            "id": "fd0477adb898dbbdf52c129d0ea6c15e",
+            "sport": "wnba",
+            "commence": "2026-10-17T19:30:00Z",
+            "home": "Golden State Valkyries",
+            "away": "Atlanta Dream",
+            "markets": [
+              {
+                "id": "fd0477adb898dbbdf52c129d0ea6c15e|ml",
+                "market": "ml",
+                "fairA": 0.5917055202599281,
+                "fairSource": "pinnacle",
+                "books": 10,
+                "bestA": {
+                  "label": "Golden State Valkyries ML",
+                  "book": "bovada",
+                  "price": -140,
+                  "fairProb": 0.5917055202599281,
+                  "ev": 0.014352320445591038,
+                  "stake": 0.005023312155956862
+                },
+                "bestB": {
+                  "label": "Atlanta Dream ML",
+                  "book": "fanduel",
+                  "price": 130,
+                  "fairProb": 0.40829447974007194,
+                  "ev": -0.06092269659783467,
+                  "stake": 0
+                },
+                "arb": null,
+                "flags": []
+              },
+              {
+                "id": "fd0477adb898dbbdf52c129d0ea6c15e|spread|-2.5",
+                "market": "spread",
+                "line": -2.5,
+                "fairA": 0.5,
+                "fairSource": "consensus",
+                "books": 5,
+                "bestA": {
+                  "label": "Golden State Valkyries -2.5",
+                  "book": "betmgm",
+                  "price": -105,
+                  "fairProb": 0.5,
+                  "ev": -0.023809523809523836,
+                  "stake": 0
+                },
+                "bestB": {
+                  "label": "Atlanta Dream +2.5",
+                  "book": "fanatics",
+                  "price": -110,
+                  "fairProb": 0.5021648770349845,
+                  "ev": -0.0413215983877569,
+                  "stake": 0
+                },
+                "arb": null,
+                "flags": []
+              },
+              {
+                "id": "fd0477adb898dbbdf52c129d0ea6c15e|total|154.5",
+                "market": "total",
+                "line": 154.5,
+                "fairA": 0.495787700084246,
+                "fairSource": "pinnacle",
+                "books": 10,
+                "bestA": {
+                  "label": "Over 154.5",
+                  "book": "williamhill_us",
+                  "price": -105,
+                  "fairProb": 0.495787700084246,
+                  "ev": -0.03203353793075786,
+                  "stake": 0
+                },
+                "bestB": {
+                  "label": "Under 154.5",
+                  "book": "lowvig",
+                  "price": -108,
+                  "fairProb": 0.504212299915754,
+                  "ev": -0.02892445942151073,
+                  "stake": 0
+                },
+                "arb": null,
+                "flags": []
+              },
+              {
+                "id": "fd0477adb898dbbdf52c129d0ea6c15e|spread|-3.5",
+                "market": "spread",
+                "line": -3.5,
+                "fairA": null,
+                "fairSource": null,
+                "books": 1,
+                "bestA": {
+                  "label": "Golden State Valkyries -3.5",
+                  "book": "fanduel",
+                  "price": -106,
+                  "fairProb": null,
+                  "ev": null,
+                  "stake": 0
+                },
+                "bestB": {
+                  "label": "Atlanta Dream +3.5",
+                  "book": "fanduel",
+                  "price": -114,
+                  "fairProb": null,
+                  "ev": null,
+                  "stake": 0
+                },
+                "arb": null,
+                "flags": []
+              },
+              {
+                "id": "fd0477adb898dbbdf52c129d0ea6c15e|spread|-3",
+                "market": "spread",
+                "line": -3,
+                "fairA": 0.5021645958699511,
+                "fairSource": "pinnacle",
+                "books": 4,
+                "bestA": {
+                  "label": "Golden State Valkyries -3",
+                  "book": "lowvig",
+                  "price": -108,
+                  "fairProb": 0.5021645958699511,
+                  "ev": -0.03286818573194594,
+                  "stake": 0
+                },
+                "bestB": {
+                  "label": "Atlanta Dream +3",
+                  "book": "williamhill_us",
+                  "price": -107,
+                  "fairProb": 0.4978354041300489,
+                  "ev": -0.03689786303812964,
+                  "stake": 0
+                },
+                "arb": null,
+                "flags": []
+              }
+            ]
+          }
+        ]
+      },
+      "nhl": {
+        "fetchedAt": "2026-10-16T02:07:22.173Z",
+        "events": [
+          {
+            "id": "31352e6ab98e96d7f2505fa0432b96e2",
+            "sport": "nhl",
+            "commence": "2026-10-16T02:10:00Z",
+            "home": "Vegas Golden Knights",
+            "away": "Calgary Flames",
+            "markets": [
+              {
+                "id": "31352e6ab98e96d7f2505fa0432b96e2|ml",
+                "market": "ml",
+                "fairA": 0.7217778957771142,
+                "fairSource": "pinnacle",
+                "books": 9,
+                "bestA": {
+                  "label": "Vegas Golden Knights ML",
+                  "book": "betonlineag",
+                  "price": -273,
+                  "fairProb": 0.7217778957771142,
+                  "ev": -0.013834596612221306,
+                  "stake": 0
+                },
+                "bestB": {
+                  "label": "Calgary Flames ML",
+                  "book": "pinnacle",
+                  "price": 239,
+                  "fairProb": 0.27822210422288585,
+                  "ev": -0.05682706668441695,
+                  "stake": 0
+                },
+                "arb": null,
+                "flags": []
+              },
+              {
+                "id": "31352e6ab98e96d7f2505fa0432b96e2|spread|-1.5",
+                "market": "spread",
+                "line": -1.5,
+                "fairA": 0.4885378937233506,
+                "fairSource": "pinnacle",
+                "books": 8,
+                "bestA": {
+                  "label": "Vegas Golden Knights -1.5",
+                  "book": "betonlineag",
+                  "price": 102,
+                  "fairProb": 0.4885378937233506,
+                  "ev": -0.013153454678831722,
+                  "stake": 0
+                },
+                "bestB": {
+                  "label": "Calgary Flames +1.5",
+                  "book": "betmgm",
+                  "price": -105,
+                  "fairProb": 0.5114621062766493,
+                  "ev": -0.0014311258408274963,
+                  "stake": 0
+                },
+                "arb": null,
+                "flags": []
+              },
+              {
+                "id": "31352e6ab98e96d7f2505fa0432b96e2|total|6.5",
+                "market": "total",
+                "line": 6.5,
+                "fairA": 0.47401609045444665,
+                "fairSource": "pinnacle",
+                "books": 4,
+                "bestA": {
+                  "label": "Over 6.5",
+                  "book": "draftkings",
+                  "price": 110,
+                  "fairProb": 0.47401609045444665,
+                  "ev": -0.004566210045662045,
+                  "stake": 0
+                },
+                "bestB": {
+                  "label": "Under 6.5",
+                  "book": "pinnacle",
+                  "price": -118,
+                  "fairProb": 0.5259839095455534,
+                  "ev": -0.02826701456838443,
+                  "stake": 0
+                },
+                "arb": null,
+                "flags": []
+              },
+              {
+                "id": "31352e6ab98e96d7f2505fa0432b96e2|total|6",
+                "market": "total",
+                "line": 6,
+                "fairA": 0.5130957450927252,
+                "fairSource": "consensus",
+                "books": 4,
+                "bestA": {
+                  "label": "Over 6",
+                  "book": "betonlineag",
+                  "price": -110,
+                  "fairProb": null,
+                  "ev": null,
+                  "stake": 0
+                },
+                "bestB": {
+                  "label": "Under 6",
+                  "book": "williamhill_us",
+                  "price": 101,
+                  "fairProb": null,
+                  "ev": null,
+                  "stake": 0
+                },
+                "arb": null,
+                "flags": []
+              },
+              {
+                "id": "31352e6ab98e96d7f2505fa0432b96e2|total|4.5",
+                "market": "total",
+                "line": 4.5,
+                "fairA": null,
+                "fairSource": null,
+                "books": 1,
+                "bestA": {
+                  "label": "Over 4.5",
+                  "book": "bovada",
+                  "price": -460,
+                  "fairProb": null,
+                  "ev": null,
+                  "stake": 0
+                },
+                "bestB": {
+                  "label": "Under 4.5",
+                  "book": "bovada",
+                  "price": 340,
+                  "fairProb": null,
+                  "ev": null,
+                  "stake": 0
+                },
+                "arb": null,
+                "flags": []
+              }
+            ]
+          },
+          {
+            "id": "343be4cf732ddd9fd0a058953456d811",
+            "sport": "nhl",
+            "commence": "2026-10-17T01:10:00Z",
+            "home": "Colorado Avalanche",
+            "away": "Pittsburgh Penguins",
+            "markets": [
+              {
+                "id": "343be4cf732ddd9fd0a058953456d811|ml",
+                "market": "ml",
+                "fairA": 0.663290330358733,
+                "fairSource": "pinnacle",
+                "books": 10,
+                "bestA": {
+                  "label": "Colorado Avalanche ML",
+                  "book": "pinnacle",
+                  "price": -209,
+                  "fairProb": 0.663290330358733,
+                  "ev": -0.019345875211251196,
+                  "stake": 0
+                },
+                "bestB": {
+                  "label": "Pittsburgh Penguins ML",
+                  "book": "betrivers",
+                  "price": 190,
+                  "fairProb": 0.33670966964126703,
+                  "ev": -0.02354195804032566,
+                  "stake": 0
+                },
+                "arb": null,
+                "flags": []
+              },
+              {
+                "id": "343be4cf732ddd9fd0a058953456d811|spread|-1.5",
+                "market": "spread",
+                "line": -1.5,
+                "fairA": 0.43943870014771047,
+                "fairSource": "pinnacle",
+                "books": 9,
+                "bestA": {
+                  "label": "Colorado Avalanche -1.5",
+                  "book": "draftkings",
+                  "price": 120,
+                  "fairProb": 0.43943870014771047,
+                  "ev": -0.03323485967503692,
+                  "stake": 0
+                },
+                "bestB": {
+                  "label": "Pittsburgh Penguins +1.5",
+                  "book": "fanduel",
+                  "price": -128,
+                  "fairProb": 0.5605612998522895,
+                  "ev": -0.0015001846381093031,
+                  "stake": 0
+                },
+                "arb": null,
+                "flags": []
+              },
+              {
+                "id": "343be4cf732ddd9fd0a058953456d811|total|6.5",
+                "market": "total",
+                "line": 6.5,
+                "fairA": 0.5213305686681078,
+                "fairSource": "pinnacle",
+                "books": 10,
+                "bestA": {
+                  "label": "Over 6.5",
+                  "book": "pinnacle",
+                  "price": -117,
+                  "fairProb": 0.5213305686681078,
+                  "ev": -0.03308774870957781,
+                  "stake": 0
+                },
+                "bestB": {
+                  "label": "Under 6.5",
+                  "book": "betonlineag",
+                  "price": 109,
+                  "fairProb": 0.4786694313318922,
+                  "ev": 0.0004191114836546994,
+                  "stake": 0.00009612648707676593
+                },
+                "arb": null,
+                "flags": []
+              }
+            ]
+          },
+          {
+            "id": "7c44228f4c2e89133b34a3c70bfb30c5",
+            "sport": "nhl",
+            "commence": "2026-10-17T02:10:00Z",
+            "home": "Anaheim Ducks",
+            "away": "Boston Bruins",
+            "markets": [
+              {
+                "id": "7c44228f4c2e89133b34a3c70bfb30c5|ml",
+                "market": "ml",
+                "fairA": 0.4880526031918223,
+                "fairSource": "pinnacle",
+                "books": 10,
+                "bestA": {
+                  "label": "Anaheim Ducks ML",
+                  "book": "williamhill_us",
+                  "price": 101,
+                  "fairProb": 0.4880526031918223,
+                  "ev": -0.01901426758443725,
+                  "stake": 0
+                },
+                "bestB": {
+                  "label": "Boston Bruins ML",
+                  "book": "pinnacle",
+                  "price": -111,
+                  "fairProb": 0.5119473968081777,
+                  "ev": -0.026838732193463943,
+                  "stake": 0
+                },
+                "arb": null,
+                "flags": []
+              },
+              {
+                "id": "7c44228f4c2e89133b34a3c70bfb30c5|spread|1.5",
+                "market": "spread",
+                "line": 1.5,
+                "fairA": 0.6988749172733288,
+                "fairSource": "pinnacle",
+                "books": 8,
+                "bestA": {
+                  "label": "Anaheim Ducks +1.5",
+                  "book": "betonlineag",
+                  "price": -240,
+                  "fairProb": 0.6988749172733288,
+                  "ev": -0.00992720052945073,
+                  "stake": 0
+                },
+                "bestB": {
+                  "label": "Boston Bruins -1.5",
+                  "book": "bovada",
+                  "price": 220,
+                  "fairProb": 0.30112508272667116,
+                  "ev": -0.036399735274652234,
+                  "stake": 0
+                },
+                "arb": null,
+                "flags": []
+              },
+              {
+                "id": "7c44228f4c2e89133b34a3c70bfb30c5|total|6.5",
+                "market": "total",
+                "line": 6.5,
+                "fairA": 0.47196365865893763,
+                "fairSource": "consensus",
+                "books": 4,
+                "bestA": {
+                  "label": "Over 6.5",
+                  "book": "draftkings",
+                  "price": 105,
+                  "fairProb": null,
+                  "ev": null,
+                  "stake": 0
+                },
+                "bestB": {
+                  "label": "Under 6.5",
+                  "book": "betrivers",
+                  "price": -115,
+                  "fairProb": null,
+                  "ev": null,
+                  "stake": 0
+                },
+                "arb": null,
+                "flags": []
+              },
+              {
+                "id": "7c44228f4c2e89133b34a3c70bfb30c5|total|6",
+                "market": "total",
+                "line": 6,
+                "fairA": 0.5191023243387657,
+                "fairSource": "pinnacle",
+                "books": 6,
+                "bestA": {
+                  "label": "Over 6",
+                  "book": "pinnacle",
+                  "price": -116,
+                  "fairProb": 0.5191023243387657,
+                  "ev": -0.03339567192091908,
+                  "stake": 0
+                },
+                "bestB": {
+                  "label": "Under 6",
+                  "book": "betmgm",
+                  "price": 105,
+                  "fairProb": 0.4808976756612343,
+                  "ev": -0.014159764894469795,
+                  "stake": 0
+                },
+                "arb": null,
+                "flags": []
+              },
+              {
+                "id": "7c44228f4c2e89133b34a3c70bfb30c5|spread|-1.5",
+                "market": "spread",
+                "line": -1.5,
+                "fairA": null,
+                "fairSource": null,
+                "books": 1,
+                "bestA": {
+                  "label": "Anaheim Ducks -1.5",
+                  "book": "betmgm",
+                  "price": 225,
+                  "fairProb": null,
+                  "ev": null,
+                  "stake": 0
+                },
+                "bestB": {
+                  "label": "Boston Bruins +1.5",
+                  "book": "betmgm",
+                  "price": -285,
+                  "fairProb": null,
+                  "ev": null,
+                  "stake": 0
+                },
+                "arb": null,
+                "flags": []
+              }
+            ]
+          }
+        ]
+      }
+    }
+  }
+}

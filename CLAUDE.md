@@ -24,6 +24,12 @@ Use `npm run test:measurement` and the reserved real-Firestore proof `npm run te
 
 Publication/activation still requires Shawn's go. Read-only gate: `node scripts/measurement/release-check.mjs`. Use the existing GitHub branch → Vercel preview → main auto-deploy pipeline; never manual `vercel --prod` from the checkout. Report serving and GitHub main SHAs, not merely “pushed.”
 
+## Research terminal and price identity — local candidate, 2026-10-16
+
+`/terminal` is the first research-workspace slice, not proof of better picks. Contract and real browser/source proof: [docs/terminal/README.md](docs/terminal/README.md); project wiring: [os.yaml](os.yaml). Model parameters and measurement release holds remain unchanged.
+
+**Never trust `prediction.liveOdds` as game-identified prices.** Real provider snapshots showed Pittsburgh–Colorado quotes repeated on later Colorado games (WNBA too); the legacy writer matches either team and drops event identity. Terminal withholds those quotes. Both team names AND exact start time must match the odds-board event, with an unambiguous ID; collection time is not provider-update time. Source equality is necessary but cannot prove semantic identity. Upstream writers remain unfixed; do not claim a site-wide repair. `test:terminal`, `test:terminal:live`, `test:terminal:http` plus the CUA browser proof guard the workspace. No paid collectors for testing.
+
 ## Commands
 
 ```bash

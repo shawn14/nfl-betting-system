@@ -1,0 +1,17 @@
+{
+  "checkedAt": "2026-10-16T03:36:04.616Z",
+  "base": "http://127.0.0.1:3307",
+  "games": 79,
+  "exactBoardQuoteSides": 148,
+  "exports": 79,
+  "unidentifiedTotalQuotes": 0,
+  "passed": [
+    "every real API row renders",
+    "every research export retains exact raw forecast and board entry",
+    "source hashes match real public blobs",
+    "source version mismatch rejects export",
+    "invalid identities rejected",
+    "legacy unidentified prices excluded",
+    "measurement remains disabled"
+  ]
+}

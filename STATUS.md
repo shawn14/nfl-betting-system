@@ -1,5 +1,11 @@
 # Prediction Matrix status
 
+## 2026-10-16 — research terminal first slice, local review
+
+`codex/prediction-terminal` builds on the immutable-measurement candidate: full-width game monitor, research/prices/record, honest disagreement and stale-data labels, device shortlist and hash-bound evidence downloads. Real sources: 79 games, 13 exact board joins, 74 markets/148 quote sides. All 79 HTTP exports checked; real browser desktop/390px, reload/shortlist, filters, sorting, native download and zero console errors verified. Independent refuter found wrong-game legacy per-book totals; terminal now suppresses all 503 unidentified quotes. Upstream writers remain unfixed. Read [terminal proof, defect, limits and commands](docs/terminal/README.md).
+
+No tuning, paid calls, production writes or deploy. Model edge remains unproven. Main/production source remains `6af083c277aa64fd13ec9269591fc57bdd611f68`, an ancestor of this local candidate. Publication and activation are awaiting explicit approval. Next: Shawn reviews this first slice; repair upstream odds event identity as a separate iteration, release immutable measurement through the known preview pipeline, then verify actual postgame settlement. Never use source equality alone to certify game-price identity.
+
 ## 2026-10-16 — immutable measurement candidate, awaiting release approval
 
 Branch `codex/prediction-measurement` contains the audit plus immutable pregame capture and grading, separate model/price-shopping evaluation, authenticated collection, and removal/labeling of misleading historical accuracy claims. **Built and locally verified; not deployed or enabled. No edge established.** Model parameters, weights and thresholds remain frozen.

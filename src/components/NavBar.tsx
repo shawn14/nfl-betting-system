@@ -134,6 +134,7 @@ export default function NavBar() {
               )}
             </div>
             <div className="flex items-center gap-2 sm:gap-4">
+              <a href="/terminal" className="text-xs font-semibold text-gray-700 hover:text-gray-900">Research</a>
               {!loading && user && <a href={resultsPath} className="hidden lg:block text-xs text-gray-500">Edge unproven · Measured results</a>}
               {!loading && user ? (
                 <AccountMenu />

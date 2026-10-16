@@ -18,7 +18,10 @@
     "line-shop-proof": "node --no-warnings scripts/line-shop-proof.mjs",
     "line-shop-backfill-proof": "node --no-warnings scripts/line-shop-backfill-proof.mjs",
     "test:measurement": "node --no-warnings scripts/measurement/prove.mjs",
-    "test:measurement:live": "node --no-warnings scripts/measurement/run-proof.mjs"
+    "test:measurement:live": "node --no-warnings scripts/measurement/run-proof.mjs",
+    "test:terminal": "node --no-warnings scripts/terminal/prove.mjs",
+    "test:terminal:live": "node --no-warnings scripts/terminal/prove.mjs --live",
+    "test:terminal:http": "node --no-warnings scripts/terminal/prove-http.mjs"
   },
   "dependencies": {
     "@vercel/blob": "^2.0.0",

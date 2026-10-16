@@ -1,0 +1,21 @@
+{
+  "checkedAt": "2026-10-16T03:40:44.012Z",
+  "url": "http://127.0.0.1:3307/terminal?game=nhl%3A401892517",
+  "game": "Pittsburgh Penguins at Colorado Avalanche",
+  "downloadChecked": false,
+  "passed": [
+    "real game selection",
+    "shortlist and selected identity survive reload",
+    "search and empty state",
+    "sort metric matches displayed column",
+    "price provenance and disabled measurement",
+    "source refresh",
+    "390px mobile without page overflow",
+    "no browser console errors"
+  ],
+  "nativeDownload": {
+    "verifiedAt": "2026-10-16T03:37:43.961Z",
+    "file": "prediction-matrix-nfl-401872996.json",
+    "receiptVerified": true
+  }
+}

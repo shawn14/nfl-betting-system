@@ -1,0 +1,3276 @@
+{
+  "url": "https://0luulmjdaimldet9.public.blob.vercel-storage.com/cbb-prediction-data.json",
+  "fetchedAt": "2026-10-16T03:14:42.220Z",
+  "data": {
+    "generated": "2026-10-16T03:00:39.456Z",
+    "games": [],
+    "teams": [
+      {
+        "id": "103",
+        "name": "Boston College Eagles",
+        "abbreviation": "BC",
+        "eloRating": 1500,
+        "ppg": 65.111115,
+        "ppgAllowed": 73.55556,
+        "conference": "Atlantic Coast Conference"
+      },
+      {
+        "id": "104",
+        "name": "Boston University Terriers",
+        "abbreviation": "BU",
+        "eloRating": 1500,
+        "ppg": 77.111115,
+        "ppgAllowed": 72.833336,
+        "conference": "Patriot League"
+      },
+      {
+        "id": "107",
+        "name": "Holy Cross Crusaders",
+        "abbreviation": "HC",
+        "eloRating": 1500,
+        "ppg": 69,
+        "ppgAllowed": 73.27778,
+        "conference": "Patriot League"
+      },
+      {
+        "id": "108",
+        "name": "Harvard Crimson",
+        "abbreviation": "HARV",
+        "eloRating": 1500,
+        "ppg": 70.57143,
+        "ppgAllowed": 65.35714,
+        "conference": "Ivy League"
+      },
+      {
+        "id": "111",
+        "name": "Northeastern Huskies",
+        "abbreviation": "NE",
+        "eloRating": 1500,
+        "ppg": 74.888885,
+        "ppgAllowed": 84.333336,
+        "conference": "Coastal Athletic Association"
+      },
+      {
+        "id": "112358",
+        "name": "Long Island University Sharks",
+        "abbreviation": "LIU",
+        "eloRating": 1500,
+        "ppg": 72.27778,
+        "ppgAllowed": 64.5,
+        "conference": "Northeast Conference"
+      },
+      {
+        "id": "113",
+        "name": "Massachusetts Minutemen",
+        "abbreviation": "MASS",
+        "eloRating": 1500,
+        "ppg": 79.388885,
+        "ppgAllowed": 81,
+        "conference": "Mid-American Conference"
+      },
+      {
+        "id": "116",
+        "name": "Mount St. Mary's Mountaineers",
+        "abbreviation": "MSM",
+        "eloRating": 1500,
+        "ppg": 68.25,
+        "ppgAllowed": 67.2,
+        "conference": "Metro Conference"
+      },
+      {
+        "id": "119",
+        "name": "Towson Tigers",
+        "abbreviation": "TOW",
+        "eloRating": 1500,
+        "ppg": 66.833336,
+        "ppgAllowed": 66.333336,
+        "conference": "Coastal Athletic Association"
+      },
+      {
+        "id": "12",
+        "name": "Arizona Wildcats",
+        "abbreviation": "ARIZ",
+        "eloRating": 1500,
+        "ppg": 84.05556,
+        "ppgAllowed": 70.27778,
+        "conference": "Big 12 Conference"
+      },
+      {
+        "id": "120",
+        "name": "Maryland Terrapins",
+        "abbreviation": "MD",
+        "eloRating": 1500,
+        "ppg": 65.7,
+        "ppgAllowed": 77.6,
+        "conference": "Big Ten Conference"
+      },
+      {
+        "id": "127",
+        "name": "Michigan State Spartans",
+        "abbreviation": "MSU",
+        "eloRating": 1500,
+        "ppg": 76.95,
+        "ppgAllowed": 68.4,
+        "conference": "Big Ten Conference"
+      },
+      {
+        "id": "13",
+        "name": "Cal Poly Mustangs",
+        "abbreviation": "CP",
+        "eloRating": 1500,
+        "ppg": 83.05,
+        "ppgAllowed": 84.45,
+        "conference": "Big West Conference"
+      },
+      {
+        "id": "130",
+        "name": "Michigan Wolverines",
+        "abbreviation": "MICH",
+        "eloRating": 1500,
+        "ppg": 85.95,
+        "ppgAllowed": 70.9,
+        "conference": "Big Ten Conference"
+      },
+      {
+        "id": "135",
+        "name": "Minnesota Golden Gophers",
+        "abbreviation": "MINN",
+        "eloRating": 1500,
+        "ppg": 67.95,
+        "ppgAllowed": 71.4,
+        "conference": "Big Ten Conference"
+      },
+      {
+        "id": "139",
+        "name": "Saint Louis Billikens",
+        "abbreviation": "SLU",
+        "eloRating": 1500,
+        "ppg": 83,
+        "ppgAllowed": 70.94444,
+        "conference": "Atlantic 10 Conference"
+      },
+      {
+        "id": "140",
+        "name": "Kansas City Roos",
+        "abbreviation": "KC",
+        "eloRating": 1500,
+        "ppg": 67.875,
+        "ppgAllowed": 85.4375,
+        "conference": "Summit League"
+      },
+      {
+        "id": "142",
+        "name": "Missouri Tigers",
+        "abbreviation": "MIZ",
+        "eloRating": 1500,
+        "ppg": 77.111115,
+        "ppgAllowed": 78,
+        "conference": "Southeastern Conference"
+      },
+      {
+        "id": "145",
+        "name": "Ole Miss Rebels",
+        "abbreviation": "MISS",
+        "eloRating": 1500,
+        "ppg": 75.77778,
+        "ppgAllowed": 82.77778,
+        "conference": "Southeastern Conference"
+      },
+      {
+        "id": "147",
+        "name": "Montana State Bobcats",
+        "abbreviation": "MTST",
+        "eloRating": 1500,
+        "ppg": 77.44444,
+        "ppgAllowed": 72.611115,
+        "conference": "Big Sky Conference"
+      },
+      {
+        "id": "149",
+        "name": "Montana Grizzlies",
+        "abbreviation": "MONT",
+        "eloRating": 1500,
+        "ppg": 74.388885,
+        "ppgAllowed": 73.55556,
+        "conference": "Big Sky Conference"
+      },
+      {
+        "id": "150",
+        "name": "Duke Blue Devils",
+        "abbreviation": "DUKE",
+        "eloRating": 1500,
+        "ppg": 80.94444,
+        "ppgAllowed": 62.38889,
+        "conference": "Atlantic Coast Conference"
+      },
+      {
+        "id": "151",
+        "name": "East Carolina Pirates",
+        "abbreviation": "ECU",
+        "eloRating": 1500,
+        "ppg": 74.72222,
+        "ppgAllowed": 78.333336,
+        "conference": "American Conference"
+      },
+      {
+        "id": "152",
+        "name": "NC State Wolfpack",
+        "abbreviation": "NCSU",
+        "eloRating": 1500,
+        "ppg": 80.111115,
+        "ppgAllowed": 78.77778,
+        "conference": "Atlantic Coast Conference"
+      },
+      {
+        "id": "153",
+        "name": "North Carolina Tar Heels",
+        "abbreviation": "UNC",
+        "eloRating": 1500,
+        "ppg": 78.666664,
+        "ppgAllowed": 76.44444,
+        "conference": "Atlantic Coast Conference"
+      },
+      {
+        "id": "154",
+        "name": "Wake Forest Demon Deacons",
+        "abbreviation": "WAKE",
+        "eloRating": 1500,
+        "ppg": 75.22222,
+        "ppgAllowed": 78.72222,
+        "conference": "Atlantic Coast Conference"
+      },
+      {
+        "id": "155",
+        "name": "North Dakota Fighting Hawks",
+        "abbreviation": "UND",
+        "eloRating": 1500,
+        "ppg": 79.6875,
+        "ppgAllowed": 81.125,
+        "conference": "Summit League"
+      },
+      {
+        "id": "156",
+        "name": "Creighton Bluejays",
+        "abbreviation": "CREI",
+        "eloRating": 1500,
+        "ppg": 75.25,
+        "ppgAllowed": 76.7,
+        "conference": "Big East Conference"
+      },
+      {
+        "id": "158",
+        "name": "Nebraska Cornhuskers",
+        "abbreviation": "NEB",
+        "eloRating": 1500,
+        "ppg": 75.1,
+        "ppgAllowed": 66.2,
+        "conference": "Big Ten Conference"
+      },
+      {
+        "id": "159",
+        "name": "Dartmouth Big Green",
+        "abbreviation": "DART",
+        "eloRating": 1500,
+        "ppg": 73.35714,
+        "ppgAllowed": 79.5,
+        "conference": "Ivy League"
+      },
+      {
+        "id": "16",
+        "name": "Sacramento State Hornets",
+        "abbreviation": "SAC",
+        "eloRating": 1500,
+        "ppg": 80.22222,
+        "ppgAllowed": 84.44444,
+        "conference": "Big Sky Conference"
+      },
+      {
+        "id": "160",
+        "name": "New Hampshire Wildcats",
+        "abbreviation": "UNH",
+        "eloRating": 1500,
+        "ppg": 69.375,
+        "ppgAllowed": 75.125,
+        "conference": "America East Conference"
+      },
+      {
+        "id": "161",
+        "name": "Fairleigh Dickinson Knights",
+        "abbreviation": "FDU",
+        "eloRating": 1500,
+        "ppg": 66.388885,
+        "ppgAllowed": 67.666664,
+        "conference": "Northeast Conference"
+      },
+      {
+        "id": "163",
+        "name": "Princeton Tigers",
+        "abbreviation": "PRIN",
+        "eloRating": 1500,
+        "ppg": 68.71429,
+        "ppgAllowed": 71.71429,
+        "conference": "Ivy League"
+      },
+      {
+        "id": "164",
+        "name": "Rutgers Scarlet Knights",
+        "abbreviation": "RUTG",
+        "eloRating": 1500,
+        "ppg": 71.5,
+        "ppgAllowed": 79.95,
+        "conference": "Big Ten Conference"
+      },
+      {
+        "id": "166",
+        "name": "New Mexico State Aggies",
+        "abbreviation": "NMSU",
+        "eloRating": 1500,
+        "ppg": 75.4,
+        "ppgAllowed": 76.4,
+        "conference": "Conference USA"
+      },
+      {
+        "id": "167",
+        "name": "New Mexico Lobos",
+        "abbreviation": "UNM",
+        "eloRating": 1500,
+        "ppg": 80.35,
+        "ppgAllowed": 71.9,
+        "conference": "Mountain West Conference"
+      },
+      {
+        "id": "171",
+        "name": "Columbia Lions",
+        "abbreviation": "COLU",
+        "eloRating": 1500,
+        "ppg": 72,
+        "ppgAllowed": 76.21429,
+        "conference": "Ivy League"
+      },
+      {
+        "id": "172",
+        "name": "Cornell Big Red",
+        "abbreviation": "COR",
+        "eloRating": 1500,
+        "ppg": 84.07143,
+        "ppgAllowed": 81.07143,
+        "conference": "Ivy League"
+      },
+      {
+        "id": "179",
+        "name": "St. Bonaventure Bonnies",
+        "abbreviation": "SBU",
+        "eloRating": 1500,
+        "ppg": 75.111115,
+        "ppgAllowed": 78.94444,
+        "conference": "Atlantic 10 Conference"
+      },
+      {
+        "id": "183",
+        "name": "Syracuse Orange",
+        "abbreviation": "SYR",
+        "eloRating": 1500,
+        "ppg": 75.611115,
+        "ppgAllowed": 80.388885,
+        "conference": "Atlantic Coast Conference"
+      },
+      {
+        "id": "189",
+        "name": "Bowling Green Falcons",
+        "abbreviation": "BGSU",
+        "eloRating": 1500,
+        "ppg": 77.111115,
+        "ppgAllowed": 74.611115,
+        "conference": "Mid-American Conference"
+      },
+      {
+        "id": "193",
+        "name": "Miami (OH) RedHawks",
+        "abbreviation": "M-OH",
+        "eloRating": 1500,
+        "ppg": 87.72222,
+        "ppgAllowed": 77.833336,
+        "conference": "Mid-American Conference"
+      },
+      {
+        "id": "194",
+        "name": "Ohio State Buckeyes",
+        "abbreviation": "OSU",
+        "eloRating": 1500,
+        "ppg": 77.95,
+        "ppgAllowed": 74.95,
+        "conference": "Big Ten Conference"
+      },
+      {
+        "id": "195",
+        "name": "Ohio Bobcats",
+        "abbreviation": "OHIO",
+        "eloRating": 1500,
+        "ppg": 77.833336,
+        "ppgAllowed": 79.111115,
+        "conference": "Mid-American Conference"
+      },
+      {
+        "id": "197",
+        "name": "Oklahoma State Cowboys",
+        "abbreviation": "OKST",
+        "eloRating": 1500,
+        "ppg": 78.611115,
+        "ppgAllowed": 85.55556,
+        "conference": "Big 12 Conference"
+      },
+      {
+        "id": "198",
+        "name": "Oral Roberts Golden Eagles",
+        "abbreviation": "ORU",
+        "eloRating": 1500,
+        "ppg": 72.875,
+        "ppgAllowed": 79.5,
+        "conference": "Summit League"
+      },
+      {
+        "id": "2",
+        "name": "Auburn Tigers",
+        "abbreviation": "AUB",
+        "eloRating": 1500,
+        "ppg": 81.77778,
+        "ppgAllowed": 82.72222,
+        "conference": "Southeastern Conference"
+      },
+      {
+        "id": "2000",
+        "name": "Abilene Christian Wildcats",
+        "abbreviation": "ACU",
+        "eloRating": 1500,
+        "ppg": 67.833336,
+        "ppgAllowed": 73.611115,
+        "conference": "United Athletic Conference"
+      },
+      {
+        "id": "2005",
+        "name": "Air Force Falcons",
+        "abbreviation": "AF",
+        "eloRating": 1500,
+        "ppg": 59.8,
+        "ppgAllowed": 83.35,
+        "conference": "Mountain West Conference"
+      },
+      {
+        "id": "2006",
+        "name": "Akron Zips",
+        "abbreviation": "AKR",
+        "eloRating": 1500,
+        "ppg": 85.5,
+        "ppgAllowed": 71.05556,
+        "conference": "Mid-American Conference"
+      },
+      {
+        "id": "201",
+        "name": "Oklahoma Sooners",
+        "abbreviation": "OU",
+        "eloRating": 1500,
+        "ppg": 79.388885,
+        "ppgAllowed": 81.166664,
+        "conference": "Southeastern Conference"
+      },
+      {
+        "id": "2010",
+        "name": "Alabama A&M Bulldogs",
+        "abbreviation": "AAMU",
+        "eloRating": 1500,
+        "ppg": 75.22222,
+        "ppgAllowed": 73.55556,
+        "conference": "Southwestern Athletic Conference"
+      },
+      {
+        "id": "2011",
+        "name": "Alabama State Hornets",
+        "abbreviation": "ALST",
+        "eloRating": 1500,
+        "ppg": 72.77778,
+        "ppgAllowed": 72.666664,
+        "conference": "Southwestern Athletic Conference"
+      },
+      {
+        "id": "2016",
+        "name": "Alcorn State Braves",
+        "abbreviation": "ALCN",
+        "eloRating": 1500,
+        "ppg": 69.111115,
+        "ppgAllowed": 74.5,
+        "conference": "Southwestern Athletic Conference"
+      },
+      {
+        "id": "202",
+        "name": "Tulsa Golden Hurricane",
+        "abbreviation": "TLSA",
+        "eloRating": 1500,
+        "ppg": 83.55556,
+        "ppgAllowed": 72.833336,
+        "conference": "American Conference"
+      },
+      {
+        "id": "2026",
+        "name": "App State Mountaineers",
+        "abbreviation": "APP",
+        "eloRating": 1500,
+        "ppg": 70.5,
+        "ppgAllowed": 64.666664,
+        "conference": "Sun Belt Conference"
+      },
+      {
+        "id": "2029",
+        "name": "Arkansas-Pine Bluff Golden Lions",
+        "abbreviation": "UAPB",
+        "eloRating": 1500,
+        "ppg": 75.888885,
+        "ppgAllowed": 74,
+        "conference": "Southwestern Athletic Conference"
+      },
+      {
+        "id": "2031",
+        "name": "Little Rock Trojans",
+        "abbreviation": "LR",
+        "eloRating": 1500,
+        "ppg": 72.2,
+        "ppgAllowed": 70.85,
+        "conference": "Ohio Valley Conference"
+      },
+      {
+        "id": "2032",
+        "name": "Arkansas State Red Wolves",
+        "abbreviation": "ARST",
+        "eloRating": 1500,
+        "ppg": 83.111115,
+        "ppgAllowed": 77.833336,
+        "conference": "Sun Belt Conference"
+      },
+      {
+        "id": "204",
+        "name": "Oregon State Beavers",
+        "abbreviation": "ORST",
+        "eloRating": 1500,
+        "ppg": 70.05556,
+        "ppgAllowed": 75.5,
+        "conference": "West Coast Conference"
+      },
+      {
+        "id": "2046",
+        "name": "Austin Peay Governors",
+        "abbreviation": "APSU",
+        "eloRating": 1500,
+        "ppg": 83.611115,
+        "ppgAllowed": 76,
+        "conference": "Atlantic Sun Conference"
+      },
+      {
+        "id": "2050",
+        "name": "Ball State Cardinals",
+        "abbreviation": "BALL",
+        "eloRating": 1500,
+        "ppg": 67.388885,
+        "ppgAllowed": 71.833336,
+        "conference": "Mid-American Conference"
+      },
+      {
+        "id": "2057",
+        "name": "Belmont Bruins",
+        "abbreviation": "BEL",
+        "eloRating": 1500,
+        "ppg": 83.25,
+        "ppgAllowed": 76.1,
+        "conference": "Missouri Valley Conference"
+      },
+      {
+        "id": "2065",
+        "name": "Bethune-Cookman Wildcats",
+        "abbreviation": "BCU",
+        "eloRating": 1500,
+        "ppg": 78.888885,
+        "ppgAllowed": 71,
+        "conference": "Southwestern Athletic Conference"
+      },
+      {
+        "id": "2066",
+        "name": "Binghamton Bearcats",
+        "abbreviation": "BING",
+        "eloRating": 1500,
+        "ppg": 67.1875,
+        "ppgAllowed": 73.1875,
+        "conference": "America East Conference"
+      },
+      {
+        "id": "2083",
+        "name": "Bucknell Bison",
+        "abbreviation": "BUCK",
+        "eloRating": 1500,
+        "ppg": 69.833336,
+        "ppgAllowed": 76.27778,
+        "conference": "Patriot League"
+      },
+      {
+        "id": "2084",
+        "name": "Buffalo Bulls",
+        "abbreviation": "BUF",
+        "eloRating": 1500,
+        "ppg": 78.55556,
+        "ppgAllowed": 79.77778,
+        "conference": "Mid-American Conference"
+      },
+      {
+        "id": "2086",
+        "name": "Butler Bulldogs",
+        "abbreviation": "BTLR",
+        "eloRating": 1500,
+        "ppg": 75.45,
+        "ppgAllowed": 81.5,
+        "conference": "Big East Conference"
+      },
+      {
+        "id": "2097",
+        "name": "Campbell Fighting Camels",
+        "abbreviation": "CAM",
+        "eloRating": 1500,
+        "ppg": 77.5,
+        "ppgAllowed": 76.388885,
+        "conference": "Coastal Athletic Association"
+      },
+      {
+        "id": "2099",
+        "name": "Canisius Golden Griffins",
+        "abbreviation": "CAN",
+        "eloRating": 1500,
+        "ppg": 63.95,
+        "ppgAllowed": 70.7,
+        "conference": "Metro Conference"
+      },
+      {
+        "id": "21",
+        "name": "San Diego State Aztecs",
+        "abbreviation": "SDSU",
+        "eloRating": 1500,
+        "ppg": 78.1,
+        "ppgAllowed": 70.3,
+        "conference": "Mountain West Conference"
+      },
+      {
+        "id": "2110",
+        "name": "Central Arkansas Bears",
+        "abbreviation": "CARK",
+        "eloRating": 1500,
+        "ppg": 83.611115,
+        "ppgAllowed": 74.611115,
+        "conference": "Atlantic Sun Conference"
+      },
+      {
+        "id": "2115",
+        "name": "Central Connecticut Blue Devils",
+        "abbreviation": "CCSU",
+        "eloRating": 1500,
+        "ppg": 71.333336,
+        "ppgAllowed": 70.55556,
+        "conference": "Northeast Conference"
+      },
+      {
+        "id": "2116",
+        "name": "UCF Knights",
+        "abbreviation": "UCF",
+        "eloRating": 1500,
+        "ppg": 78.111115,
+        "ppgAllowed": 81.44444,
+        "conference": "Big 12 Conference"
+      },
+      {
+        "id": "2117",
+        "name": "Central Michigan Chippewas",
+        "abbreviation": "CMU",
+        "eloRating": 1500,
+        "ppg": 73.666664,
+        "ppgAllowed": 75.55556,
+        "conference": "Mid-American Conference"
+      },
+      {
+        "id": "2127",
+        "name": "Charleston Southern Buccaneers",
+        "abbreviation": "CHSO",
+        "eloRating": 1500,
+        "ppg": 82.125,
+        "ppgAllowed": 83.375,
+        "conference": "Big South Conference"
+      },
+      {
+        "id": "213",
+        "name": "Penn State Nittany Lions",
+        "abbreviation": "PSU",
+        "eloRating": 1500,
+        "ppg": 70.4,
+        "ppgAllowed": 84.3,
+        "conference": "Big Ten Conference"
+      },
+      {
+        "id": "2130",
+        "name": "Chicago State Cougars",
+        "abbreviation": "CHST",
+        "eloRating": 1500,
+        "ppg": 64.94444,
+        "ppgAllowed": 70.44444,
+        "conference": "Northeast Conference"
+      },
+      {
+        "id": "2132",
+        "name": "Cincinnati Bearcats",
+        "abbreviation": "CIN",
+        "eloRating": 1500,
+        "ppg": 71.666664,
+        "ppgAllowed": 69.27778,
+        "conference": "Big 12 Conference"
+      },
+      {
+        "id": "2142",
+        "name": "Colgate Raiders",
+        "abbreviation": "COLG",
+        "eloRating": 1500,
+        "ppg": 76.77778,
+        "ppgAllowed": 74.888885,
+        "conference": "Patriot League"
+      },
+      {
+        "id": "2154",
+        "name": "Coppin State Eagles",
+        "abbreviation": "COPP",
+        "eloRating": 1500,
+        "ppg": 66.85714,
+        "ppgAllowed": 71.92857,
+        "conference": "Mid-Eastern Athletic Conference"
+      },
+      {
+        "id": "2166",
+        "name": "Davidson Wildcats",
+        "abbreviation": "DAV",
+        "eloRating": 1500,
+        "ppg": 69.05556,
+        "ppgAllowed": 67.44444,
+        "conference": "Atlantic 10 Conference"
+      },
+      {
+        "id": "2168",
+        "name": "Dayton Flyers",
+        "abbreviation": "DAY",
+        "eloRating": 1500,
+        "ppg": 71.833336,
+        "ppgAllowed": 70,
+        "conference": "Atlantic 10 Conference"
+      },
+      {
+        "id": "2169",
+        "name": "Delaware State Hornets",
+        "abbreviation": "DSU",
+        "eloRating": 1500,
+        "ppg": 60.857143,
+        "ppgAllowed": 70.42857,
+        "conference": "Mid-Eastern Athletic Conference"
+      },
+      {
+        "id": "2172",
+        "name": "Denver Pioneers",
+        "abbreviation": "DEN",
+        "eloRating": 1500,
+        "ppg": 82.5625,
+        "ppgAllowed": 80.5,
+        "conference": "Summit League"
+      },
+      {
+        "id": "2174",
+        "name": "Detroit Mercy Titans",
+        "abbreviation": "DETM",
+        "eloRating": 1500,
+        "ppg": 79.2,
+        "ppgAllowed": 78.4,
+        "conference": "Horizon League"
+      },
+      {
+        "id": "218",
+        "name": "Temple Owls",
+        "abbreviation": "TEM",
+        "eloRating": 1500,
+        "ppg": 72,
+        "ppgAllowed": 70.72222,
+        "conference": "American Conference"
+      },
+      {
+        "id": "2181",
+        "name": "Drake Bulldogs",
+        "abbreviation": "DRKE",
+        "eloRating": 1500,
+        "ppg": 72.2,
+        "ppgAllowed": 78.85,
+        "conference": "Missouri Valley Conference"
+      },
+      {
+        "id": "2182",
+        "name": "Drexel Dragons",
+        "abbreviation": "DREX",
+        "eloRating": 1500,
+        "ppg": 65.22222,
+        "ppgAllowed": 64.94444,
+        "conference": "Coastal Athletic Association"
+      },
+      {
+        "id": "2184",
+        "name": "Duquesne Dukes",
+        "abbreviation": "DUQ",
+        "eloRating": 1500,
+        "ppg": 73.833336,
+        "ppgAllowed": 75.388885,
+        "conference": "Atlantic 10 Conference"
+      },
+      {
+        "id": "219",
+        "name": "Pennsylvania Quakers",
+        "abbreviation": "PENN",
+        "eloRating": 1500,
+        "ppg": 74.07143,
+        "ppgAllowed": 70.64286,
+        "conference": "Ivy League"
+      },
+      {
+        "id": "2193",
+        "name": "East Tennessee State Buccaneers",
+        "abbreviation": "ETSU",
+        "eloRating": 1500,
+        "ppg": 78,
+        "ppgAllowed": 69.94444,
+        "conference": "Southern Conference"
+      },
+      {
+        "id": "2197",
+        "name": "Eastern Illinois Panthers",
+        "abbreviation": "EIU",
+        "eloRating": 1500,
+        "ppg": 66.2,
+        "ppgAllowed": 69.65,
+        "conference": "Ohio Valley Conference"
+      },
+      {
+        "id": "2198",
+        "name": "Eastern Kentucky Colonels",
+        "abbreviation": "EKU",
+        "eloRating": 1500,
+        "ppg": 81.333336,
+        "ppgAllowed": 83,
+        "conference": "Atlantic Sun Conference"
+      },
+      {
+        "id": "2199",
+        "name": "Eastern Michigan Eagles",
+        "abbreviation": "EMU",
+        "eloRating": 1500,
+        "ppg": 70.888885,
+        "ppgAllowed": 75.77778,
+        "conference": "Mid-American Conference"
+      },
+      {
+        "id": "221",
+        "name": "Pittsburgh Panthers",
+        "abbreviation": "PITT",
+        "eloRating": 1500,
+        "ppg": 67.388885,
+        "ppgAllowed": 73.77778,
+        "conference": "Atlantic Coast Conference"
+      },
+      {
+        "id": "2210",
+        "name": "Elon Phoenix",
+        "abbreviation": "ELON",
+        "eloRating": 1500,
+        "ppg": 73.44444,
+        "ppgAllowed": 78.5,
+        "conference": "Coastal Athletic Association"
+      },
+      {
+        "id": "2217",
+        "name": "Fairfield Stags",
+        "abbreviation": "FAIR",
+        "eloRating": 1500,
+        "ppg": 71.95,
+        "ppgAllowed": 71.35,
+        "conference": "Metro Conference"
+      },
+      {
+        "id": "222",
+        "name": "Villanova Wildcats",
+        "abbreviation": "VILL",
+        "eloRating": 1500,
+        "ppg": 76.25,
+        "ppgAllowed": 72,
+        "conference": "Big East Conference"
+      },
+      {
+        "id": "2226",
+        "name": "Florida Atlantic Owls",
+        "abbreviation": "FAU",
+        "eloRating": 1500,
+        "ppg": 76.94444,
+        "ppgAllowed": 75.72222,
+        "conference": "American Conference"
+      },
+      {
+        "id": "2229",
+        "name": "Florida International Panthers",
+        "abbreviation": "FIU",
+        "eloRating": 1500,
+        "ppg": 77.25,
+        "ppgAllowed": 77.9,
+        "conference": "Conference USA"
+      },
+      {
+        "id": "2230",
+        "name": "Fordham Rams",
+        "abbreviation": "FOR",
+        "eloRating": 1500,
+        "ppg": 66.22222,
+        "ppgAllowed": 68.44444,
+        "conference": "Atlantic 10 Conference"
+      },
+      {
+        "id": "2239",
+        "name": "Cal State Fullerton Titans",
+        "abbreviation": "CSUF",
+        "eloRating": 1500,
+        "ppg": 79.95,
+        "ppgAllowed": 78.65,
+        "conference": "Big West Conference"
+      },
+      {
+        "id": "2241",
+        "name": "Gardner-Webb Runnin' Bulldogs",
+        "abbreviation": "GWEB",
+        "eloRating": 1500,
+        "ppg": 67.5625,
+        "ppgAllowed": 85.0625,
+        "conference": "Big South Conference"
+      },
+      {
+        "id": "2244",
+        "name": "George Mason Patriots",
+        "abbreviation": "GMU",
+        "eloRating": 1500,
+        "ppg": 69.27778,
+        "ppgAllowed": 68.05556,
+        "conference": "Atlantic 10 Conference"
+      },
+      {
+        "id": "2247",
+        "name": "Georgia State Panthers",
+        "abbreviation": "GAST",
+        "eloRating": 1500,
+        "ppg": 70.888885,
+        "ppgAllowed": 73.22222,
+        "conference": "Sun Belt Conference"
+      },
+      {
+        "id": "225",
+        "name": "Brown Bears",
+        "abbreviation": "BRWN",
+        "eloRating": 1500,
+        "ppg": 67.5,
+        "ppgAllowed": 75.78571,
+        "conference": "Ivy League"
+      },
+      {
+        "id": "2250",
+        "name": "Gonzaga Bulldogs",
+        "abbreviation": "GONZ",
+        "eloRating": 1500,
+        "ppg": 81.388885,
+        "ppgAllowed": 65.388885,
+        "conference": "West Coast Conference"
+      },
+      {
+        "id": "2253",
+        "name": "Grand Canyon Lopes",
+        "abbreviation": "GCU",
+        "eloRating": 1500,
+        "ppg": 75,
+        "ppgAllowed": 67.9,
+        "conference": "Mountain West Conference"
+      },
+      {
+        "id": "2261",
+        "name": "Hampton Pirates",
+        "abbreviation": "HAMP",
+        "eloRating": 1500,
+        "ppg": 67.111115,
+        "ppgAllowed": 71.94444,
+        "conference": "Coastal Athletic Association"
+      },
+      {
+        "id": "227",
+        "name": "Rhode Island Rams",
+        "abbreviation": "URI",
+        "eloRating": 1500,
+        "ppg": 66.55556,
+        "ppgAllowed": 68.888885,
+        "conference": "Atlantic 10 Conference"
+      },
+      {
+        "id": "2272",
+        "name": "High Point Panthers",
+        "abbreviation": "HPU",
+        "eloRating": 1500,
+        "ppg": 86.375,
+        "ppgAllowed": 71.75,
+        "conference": "Big South Conference"
+      },
+      {
+        "id": "2275",
+        "name": "Hofstra Pride",
+        "abbreviation": "HOF",
+        "eloRating": 1500,
+        "ppg": 73.72222,
+        "ppgAllowed": 66.111115,
+        "conference": "Coastal Athletic Association"
+      },
+      {
+        "id": "2277",
+        "name": "Houston Christian Huskies",
+        "abbreviation": "HCU",
+        "eloRating": 1500,
+        "ppg": 66.22727,
+        "ppgAllowed": 71.59091,
+        "conference": "Southland Conference"
+      },
+      {
+        "id": "228",
+        "name": "Clemson Tigers",
+        "abbreviation": "CLEM",
+        "eloRating": 1500,
+        "ppg": 70.72222,
+        "ppgAllowed": 66.611115,
+        "conference": "Atlantic Coast Conference"
+      },
+      {
+        "id": "2287",
+        "name": "Illinois State Redbirds",
+        "abbreviation": "ILST",
+        "eloRating": 1500,
+        "ppg": 72.95,
+        "ppgAllowed": 68.7,
+        "conference": "Missouri Valley Conference"
+      },
+      {
+        "id": "2294",
+        "name": "Iowa Hawkeyes",
+        "abbreviation": "IOWA",
+        "eloRating": 1500,
+        "ppg": 70.85,
+        "ppgAllowed": 69.75,
+        "conference": "Big Ten Conference"
+      },
+      {
+        "id": "2296",
+        "name": "Jackson State Tigers",
+        "abbreviation": "JKST",
+        "eloRating": 1500,
+        "ppg": 77.611115,
+        "ppgAllowed": 80.44444,
+        "conference": "Southwestern Athletic Conference"
+      },
+      {
+        "id": "23",
+        "name": "San José State Spartans",
+        "abbreviation": "SJSU",
+        "eloRating": 1500,
+        "ppg": 69.1,
+        "ppgAllowed": 80.6,
+        "conference": "Mountain West Conference"
+      },
+      {
+        "id": "2305",
+        "name": "Kansas Jayhawks",
+        "abbreviation": "KU",
+        "eloRating": 1500,
+        "ppg": 76.94444,
+        "ppgAllowed": 73.611115,
+        "conference": "Big 12 Conference"
+      },
+      {
+        "id": "2306",
+        "name": "Kansas State Wildcats",
+        "abbreviation": "KSU",
+        "eloRating": 1500,
+        "ppg": 72.5,
+        "ppgAllowed": 83.611115,
+        "conference": "Big 12 Conference"
+      },
+      {
+        "id": "2309",
+        "name": "Kent State Golden Flashes",
+        "abbreviation": "KENT",
+        "eloRating": 1500,
+        "ppg": 81.44444,
+        "ppgAllowed": 78.55556,
+        "conference": "Mid-American Conference"
+      },
+      {
+        "id": "231",
+        "name": "Furman Paladins",
+        "abbreviation": "FUR",
+        "eloRating": 1500,
+        "ppg": 74.166664,
+        "ppgAllowed": 70.27778,
+        "conference": "Southern Conference"
+      },
+      {
+        "id": "232",
+        "name": "Charleston Cougars",
+        "abbreviation": "COFC",
+        "eloRating": 1500,
+        "ppg": 76.5,
+        "ppgAllowed": 72.166664,
+        "conference": "Coastal Athletic Association"
+      },
+      {
+        "id": "2320",
+        "name": "Lamar Cardinals",
+        "abbreviation": "LAM",
+        "eloRating": 1500,
+        "ppg": 67.545456,
+        "ppgAllowed": 69.318184,
+        "conference": "Southland Conference"
+      },
+      {
+        "id": "2325",
+        "name": "La Salle Explorers",
+        "abbreviation": "LAS",
+        "eloRating": 1500,
+        "ppg": 67,
+        "ppgAllowed": 74.5,
+        "conference": "Atlantic 10 Conference"
+      },
+      {
+        "id": "2329",
+        "name": "Lehigh Mountain Hawks",
+        "abbreviation": "LEH",
+        "eloRating": 1500,
+        "ppg": 75.388885,
+        "ppgAllowed": 75.27778,
+        "conference": "Patriot League"
+      },
+      {
+        "id": "233",
+        "name": "South Dakota Coyotes",
+        "abbreviation": "SDAK",
+        "eloRating": 1500,
+        "ppg": 77,
+        "ppgAllowed": 78.6875,
+        "conference": "Summit League"
+      },
+      {
+        "id": "2330",
+        "name": "Le Moyne Dolphins",
+        "abbreviation": "LEM",
+        "eloRating": 1500,
+        "ppg": 71.388885,
+        "ppgAllowed": 68.55556,
+        "conference": "Northeast Conference"
+      },
+      {
+        "id": "2335",
+        "name": "Liberty Flames",
+        "abbreviation": "LIB",
+        "eloRating": 1500,
+        "ppg": 77.5,
+        "ppgAllowed": 72.9,
+        "conference": "Conference USA"
+      },
+      {
+        "id": "2344",
+        "name": "Longwood Lancers",
+        "abbreviation": "LONG",
+        "eloRating": 1500,
+        "ppg": 77.4375,
+        "ppgAllowed": 74.3125,
+        "conference": "Big South Conference"
+      },
+      {
+        "id": "2348",
+        "name": "Louisiana Tech Bulldogs",
+        "abbreviation": "LT",
+        "eloRating": 1500,
+        "ppg": 69,
+        "ppgAllowed": 69.7,
+        "conference": "Conference USA"
+      },
+      {
+        "id": "2349",
+        "name": "UMass Lowell River Hawks",
+        "abbreviation": "UML",
+        "eloRating": 1500,
+        "ppg": 72.9375,
+        "ppgAllowed": 71.5,
+        "conference": "America East Conference"
+      },
+      {
+        "id": "235",
+        "name": "Memphis Tigers",
+        "abbreviation": "MEM",
+        "eloRating": 1500,
+        "ppg": 75.44444,
+        "ppgAllowed": 75.94444,
+        "conference": "American Conference"
+      },
+      {
+        "id": "2350",
+        "name": "Loyola Chicago Ramblers",
+        "abbreviation": "LUC",
+        "eloRating": 1500,
+        "ppg": 64.888885,
+        "ppgAllowed": 76.166664,
+        "conference": "Atlantic 10 Conference"
+      },
+      {
+        "id": "2351",
+        "name": "Loyola Marymount Lions",
+        "abbreviation": "LMU",
+        "eloRating": 1500,
+        "ppg": 71.44444,
+        "ppgAllowed": 76.72222,
+        "conference": "West Coast Conference"
+      },
+      {
+        "id": "2352",
+        "name": "Loyola Maryland Greyhounds",
+        "abbreviation": "L-MD",
+        "eloRating": 1500,
+        "ppg": 74.72222,
+        "ppgAllowed": 76.333336,
+        "conference": "Patriot League"
+      },
+      {
+        "id": "236",
+        "name": "Chattanooga Mocs",
+        "abbreviation": "UTC",
+        "eloRating": 1500,
+        "ppg": 75.5,
+        "ppgAllowed": 77.388885,
+        "conference": "Southern Conference"
+      },
+      {
+        "id": "2363",
+        "name": "Manhattan Jaspers",
+        "abbreviation": "MAN",
+        "eloRating": 1500,
+        "ppg": 71.55,
+        "ppgAllowed": 75.85,
+        "conference": "Metro Conference"
+      },
+      {
+        "id": "2368",
+        "name": "Marist Red Foxes",
+        "abbreviation": "MRST",
+        "eloRating": 1500,
+        "ppg": 68,
+        "ppgAllowed": 63.75,
+        "conference": "Metro Conference"
+      },
+      {
+        "id": "2377",
+        "name": "McNeese Cowboys",
+        "abbreviation": "MCN",
+        "eloRating": 1500,
+        "ppg": 76.954544,
+        "ppgAllowed": 64.27273,
+        "conference": "Southland Conference"
+      },
+      {
+        "id": "2378",
+        "name": "UMBC Retrievers",
+        "abbreviation": "UMBC",
+        "eloRating": 1500,
+        "ppg": 75.8125,
+        "ppgAllowed": 63.4375,
+        "conference": "America East Conference"
+      },
+      {
+        "id": "2379",
+        "name": "Maryland Eastern Shore Hawks",
+        "abbreviation": "UMES",
+        "eloRating": 1500,
+        "ppg": 64.71429,
+        "ppgAllowed": 66.14286,
+        "conference": "Mid-Eastern Athletic Conference"
+      },
+      {
+        "id": "238",
+        "name": "Vanderbilt Commodores",
+        "abbreviation": "VAN",
+        "eloRating": 1500,
+        "ppg": 81.666664,
+        "ppgAllowed": 78.333336,
+        "conference": "Southeastern Conference"
+      },
+      {
+        "id": "2382",
+        "name": "Mercer Bears",
+        "abbreviation": "MER",
+        "eloRating": 1500,
+        "ppg": 82.5,
+        "ppgAllowed": 76.888885,
+        "conference": "Southern Conference"
+      },
+      {
+        "id": "2385",
+        "name": "Mercyhurst Lakers",
+        "abbreviation": "MERC",
+        "eloRating": 1500,
+        "ppg": 72,
+        "ppgAllowed": 68.333336,
+        "conference": "Northeast Conference"
+      },
+      {
+        "id": "239",
+        "name": "Baylor Bears",
+        "abbreviation": "BAY",
+        "eloRating": 1500,
+        "ppg": 74.72222,
+        "ppgAllowed": 78.05556,
+        "conference": "Big 12 Conference"
+      },
+      {
+        "id": "2390",
+        "name": "Miami Hurricanes",
+        "abbreviation": "MIA",
+        "eloRating": 1500,
+        "ppg": 77.833336,
+        "ppgAllowed": 72.888885,
+        "conference": "Atlantic Coast Conference"
+      },
+      {
+        "id": "2393",
+        "name": "Middle Tennessee Blue Raiders",
+        "abbreviation": "MTSU",
+        "eloRating": 1500,
+        "ppg": 74.75,
+        "ppgAllowed": 73.1,
+        "conference": "Conference USA"
+      },
+      {
+        "id": "24",
+        "name": "Stanford Cardinal",
+        "abbreviation": "STAN",
+        "eloRating": 1500,
+        "ppg": 72.44444,
+        "ppgAllowed": 73.44444,
+        "conference": "Atlantic Coast Conference"
+      },
+      {
+        "id": "2400",
+        "name": "Mississippi Valley State Delta Devils",
+        "abbreviation": "MVSU",
+        "eloRating": 1500,
+        "ppg": 64.666664,
+        "ppgAllowed": 77.5,
+        "conference": "Southwestern Athletic Conference"
+      },
+      {
+        "id": "2405",
+        "name": "Monmouth Hawks",
+        "abbreviation": "MONM",
+        "eloRating": 1500,
+        "ppg": 72.888885,
+        "ppgAllowed": 70.388885,
+        "conference": "Coastal Athletic Association"
+      },
+      {
+        "id": "2413",
+        "name": "Morehead State Eagles",
+        "abbreviation": "MORE",
+        "eloRating": 1500,
+        "ppg": 73.75,
+        "ppgAllowed": 71.1,
+        "conference": "Ohio Valley Conference"
+      },
+      {
+        "id": "2415",
+        "name": "Morgan State Bears",
+        "abbreviation": "MORG",
+        "eloRating": 1500,
+        "ppg": 76.5,
+        "ppgAllowed": 76.57143,
+        "conference": "Mid-Eastern Athletic Conference"
+      },
+      {
+        "id": "242",
+        "name": "Rice Owls",
+        "abbreviation": "RICE",
+        "eloRating": 1500,
+        "ppg": 72.27778,
+        "ppgAllowed": 76.22222,
+        "conference": "American Conference"
+      },
+      {
+        "id": "2426",
+        "name": "Navy Midshipmen",
+        "abbreviation": "NAVY",
+        "eloRating": 1500,
+        "ppg": 76.05556,
+        "ppgAllowed": 62.444443,
+        "conference": "Patriot League"
+      },
+      {
+        "id": "2427",
+        "name": "UNC Asheville Bulldogs",
+        "abbreviation": "UNCA",
+        "eloRating": 1500,
+        "ppg": 72.5625,
+        "ppgAllowed": 72.375,
+        "conference": "Big South Conference"
+      },
+      {
+        "id": "2428",
+        "name": "North Carolina Central Eagles",
+        "abbreviation": "NCCU",
+        "eloRating": 1500,
+        "ppg": 72.14286,
+        "ppgAllowed": 74.14286,
+        "conference": "Mid-Eastern Athletic Conference"
+      },
+      {
+        "id": "2429",
+        "name": "Charlotte 49ers",
+        "abbreviation": "CLT",
+        "eloRating": 1500,
+        "ppg": 74.111115,
+        "ppgAllowed": 76.22222,
+        "conference": "American Conference"
+      },
+      {
+        "id": "2430",
+        "name": "UNC Greensboro Spartans",
+        "abbreviation": "UNCG",
+        "eloRating": 1500,
+        "ppg": 78.888885,
+        "ppgAllowed": 82.5,
+        "conference": "Southern Conference"
+      },
+      {
+        "id": "2433",
+        "name": "UL Monroe Warhawks",
+        "abbreviation": "ULM",
+        "eloRating": 1500,
+        "ppg": 71.55556,
+        "ppgAllowed": 85.333336,
+        "conference": "Sun Belt Conference"
+      },
+      {
+        "id": "2437",
+        "name": "Omaha Mavericks",
+        "abbreviation": "OMA",
+        "eloRating": 1500,
+        "ppg": 76.375,
+        "ppgAllowed": 76.4375,
+        "conference": "Summit League"
+      },
+      {
+        "id": "2439",
+        "name": "UNLV Rebels",
+        "abbreviation": "UNLV",
+        "eloRating": 1500,
+        "ppg": 79.45,
+        "ppgAllowed": 78.5,
+        "conference": "Mountain West Conference"
+      },
+      {
+        "id": "2440",
+        "name": "Nevada Wolf Pack",
+        "abbreviation": "NEV",
+        "eloRating": 1500,
+        "ppg": 75.05,
+        "ppgAllowed": 71.4,
+        "conference": "Mountain West Conference"
+      },
+      {
+        "id": "2441",
+        "name": "New Haven Chargers",
+        "abbreviation": "NHVN",
+        "eloRating": 1500,
+        "ppg": 64.44444,
+        "ppgAllowed": 64.77778,
+        "conference": "Northeast Conference"
+      },
+      {
+        "id": "2443",
+        "name": "LSU New Orleans Privateers",
+        "abbreviation": "NOLA",
+        "eloRating": 1500,
+        "ppg": 77,
+        "ppgAllowed": 76.181816,
+        "conference": "Southland Conference"
+      },
+      {
+        "id": "2447",
+        "name": "Nicholls Colonels",
+        "abbreviation": "NICH",
+        "eloRating": 1500,
+        "ppg": 71.86364,
+        "ppgAllowed": 73.27273,
+        "conference": "Southland Conference"
+      },
+      {
+        "id": "2448",
+        "name": "North Carolina A&T Aggies",
+        "abbreviation": "NCAT",
+        "eloRating": 1500,
+        "ppg": 74.333336,
+        "ppgAllowed": 80.44444,
+        "conference": "Coastal Athletic Association"
+      },
+      {
+        "id": "2449",
+        "name": "North Dakota State Bison",
+        "abbreviation": "NDSU",
+        "eloRating": 1500,
+        "ppg": 82,
+        "ppgAllowed": 71,
+        "conference": "Summit League"
+      },
+      {
+        "id": "245",
+        "name": "Texas A&M Aggies",
+        "abbreviation": "TA&M",
+        "eloRating": 1500,
+        "ppg": 82.94444,
+        "ppgAllowed": 81.111115,
+        "conference": "Southeastern Conference"
+      },
+      {
+        "id": "2450",
+        "name": "Norfolk State Spartans",
+        "abbreviation": "NORF",
+        "eloRating": 1500,
+        "ppg": 77,
+        "ppgAllowed": 74.14286,
+        "conference": "Mid-Eastern Athletic Conference"
+      },
+      {
+        "id": "2453",
+        "name": "North Alabama Lions",
+        "abbreviation": "UNA",
+        "eloRating": 1500,
+        "ppg": 69.22222,
+        "ppgAllowed": 79.333336,
+        "conference": "Atlantic Sun Conference"
+      },
+      {
+        "id": "2454",
+        "name": "North Florida Ospreys",
+        "abbreviation": "UNF",
+        "eloRating": 1500,
+        "ppg": 79.72222,
+        "ppgAllowed": 86.388885,
+        "conference": "Atlantic Sun Conference"
+      },
+      {
+        "id": "2458",
+        "name": "Northern Colorado Bears",
+        "abbreviation": "UNCO",
+        "eloRating": 1500,
+        "ppg": 79,
+        "ppgAllowed": 75.77778,
+        "conference": "Big Sky Conference"
+      },
+      {
+        "id": "2459",
+        "name": "Northern Illinois Huskies",
+        "abbreviation": "NIU",
+        "eloRating": 1500,
+        "ppg": 64.388885,
+        "ppgAllowed": 77.388885,
+        "conference": "Mid-American Conference"
+      },
+      {
+        "id": "2460",
+        "name": "Northern Iowa Panthers",
+        "abbreviation": "UNI",
+        "eloRating": 1500,
+        "ppg": 67.7,
+        "ppgAllowed": 62.6,
+        "conference": "Missouri Valley Conference"
+      },
+      {
+        "id": "2463",
+        "name": "Cal State Northridge Matadors",
+        "abbreviation": "CSUN",
+        "eloRating": 1500,
+        "ppg": 81.95,
+        "ppgAllowed": 80.2,
+        "conference": "Big West Conference"
+      },
+      {
+        "id": "2464",
+        "name": "Northern Arizona Lumberjacks",
+        "abbreviation": "NAU",
+        "eloRating": 1500,
+        "ppg": 68.888885,
+        "ppgAllowed": 78.666664,
+        "conference": "Big Sky Conference"
+      },
+      {
+        "id": "2466",
+        "name": "Northwestern State Demons",
+        "abbreviation": "NWST",
+        "eloRating": 1500,
+        "ppg": 66,
+        "ppgAllowed": 69.90909,
+        "conference": "Southland Conference"
+      },
+      {
+        "id": "2473",
+        "name": "Oakland Golden Grizzlies",
+        "abbreviation": "OAK",
+        "eloRating": 1500,
+        "ppg": 83.1,
+        "ppgAllowed": 80.3,
+        "conference": "Horizon League"
+      },
+      {
+        "id": "248",
+        "name": "Houston Cougars",
+        "abbreviation": "HOU",
+        "eloRating": 1500,
+        "ppg": 76.888885,
+        "ppgAllowed": 64.72222,
+        "conference": "Big 12 Conference"
+      },
+      {
+        "id": "2483",
+        "name": "Oregon Ducks",
+        "abbreviation": "ORE",
+        "eloRating": 1500,
+        "ppg": 66.55,
+        "ppgAllowed": 74.7,
+        "conference": "Big Ten Conference"
+      },
+      {
+        "id": "249",
+        "name": "North Texas Mean Green",
+        "abbreviation": "UNT",
+        "eloRating": 1500,
+        "ppg": 69.666664,
+        "ppgAllowed": 68.77778,
+        "conference": "American Conference"
+      },
+      {
+        "id": "2492",
+        "name": "Pepperdine Waves",
+        "abbreviation": "PEPP",
+        "eloRating": 1500,
+        "ppg": 70.888885,
+        "ppgAllowed": 83.833336,
+        "conference": "West Coast Conference"
+      },
+      {
+        "id": "25",
+        "name": "California Golden Bears",
+        "abbreviation": "CAL",
+        "eloRating": 1500,
+        "ppg": 73.5,
+        "ppgAllowed": 76.77778,
+        "conference": "Atlantic Coast Conference"
+      },
+      {
+        "id": "250",
+        "name": "UT Arlington Mavericks",
+        "abbreviation": "UTA",
+        "eloRating": 1500,
+        "ppg": 68.55556,
+        "ppgAllowed": 68.5,
+        "conference": "United Athletic Conference"
+      },
+      {
+        "id": "2501",
+        "name": "Portland Pilots",
+        "abbreviation": "PORT",
+        "eloRating": 1500,
+        "ppg": 69.55556,
+        "ppgAllowed": 77,
+        "conference": "West Coast Conference"
+      },
+      {
+        "id": "2502",
+        "name": "Portland State Vikings",
+        "abbreviation": "PRST",
+        "eloRating": 1500,
+        "ppg": 74.27778,
+        "ppgAllowed": 69.5,
+        "conference": "Big Sky Conference"
+      },
+      {
+        "id": "2504",
+        "name": "Prairie View A&M Panthers",
+        "abbreviation": "PV",
+        "eloRating": 1500,
+        "ppg": 76.94444,
+        "ppgAllowed": 75.888885,
+        "conference": "Southwestern Athletic Conference"
+      },
+      {
+        "id": "2506",
+        "name": "Presbyterian Blue Hose",
+        "abbreviation": "PRES",
+        "eloRating": 1500,
+        "ppg": 74.125,
+        "ppgAllowed": 74.875,
+        "conference": "Big South Conference"
+      },
+      {
+        "id": "2507",
+        "name": "Providence Friars",
+        "abbreviation": "PROV",
+        "eloRating": 1500,
+        "ppg": 83.1,
+        "ppgAllowed": 85.15,
+        "conference": "Big East Conference"
+      },
+      {
+        "id": "2509",
+        "name": "Purdue Boilermakers",
+        "abbreviation": "PUR",
+        "eloRating": 1500,
+        "ppg": 79.8,
+        "ppgAllowed": 72.75,
+        "conference": "Big Ten Conference"
+      },
+      {
+        "id": "251",
+        "name": "Texas Longhorns",
+        "abbreviation": "TEX",
+        "eloRating": 1500,
+        "ppg": 81.77778,
+        "ppgAllowed": 80.833336,
+        "conference": "Southeastern Conference"
+      },
+      {
+        "id": "2514",
+        "name": "Quinnipiac Bobcats",
+        "abbreviation": "QUIN",
+        "eloRating": 1500,
+        "ppg": 73.65,
+        "ppgAllowed": 69.85,
+        "conference": "Metro Conference"
+      },
+      {
+        "id": "2515",
+        "name": "Radford Highlanders",
+        "abbreviation": "RAD",
+        "eloRating": 1500,
+        "ppg": 80.125,
+        "ppgAllowed": 78.1875,
+        "conference": "Big South Conference"
+      },
+      {
+        "id": "252",
+        "name": "BYU Cougars",
+        "abbreviation": "BYU",
+        "eloRating": 1500,
+        "ppg": 82.111115,
+        "ppgAllowed": 82.388885,
+        "conference": "Big 12 Conference"
+      },
+      {
+        "id": "2520",
+        "name": "Rider Broncs",
+        "abbreviation": "RID",
+        "eloRating": 1500,
+        "ppg": 64.95,
+        "ppgAllowed": 75.4,
+        "conference": "Metro Conference"
+      },
+      {
+        "id": "2523",
+        "name": "Robert Morris Colonials",
+        "abbreviation": "RMU",
+        "eloRating": 1500,
+        "ppg": 79.25,
+        "ppgAllowed": 74.8,
+        "conference": "Horizon League"
+      },
+      {
+        "id": "2529",
+        "name": "Sacred Heart Pioneers",
+        "abbreviation": "SHU",
+        "eloRating": 1500,
+        "ppg": 75.65,
+        "ppgAllowed": 76.5,
+        "conference": "Metro Conference"
+      },
+      {
+        "id": "253",
+        "name": "Southern Utah Thunderbirds",
+        "abbreviation": "SUU",
+        "eloRating": 1500,
+        "ppg": 76.05556,
+        "ppgAllowed": 79,
+        "conference": "United Athletic Conference"
+      },
+      {
+        "id": "2534",
+        "name": "Sam Houston Bearkats",
+        "abbreviation": "SHSU",
+        "eloRating": 1500,
+        "ppg": 79.65,
+        "ppgAllowed": 74.85,
+        "conference": "Conference USA"
+      },
+      {
+        "id": "2535",
+        "name": "Samford Bulldogs",
+        "abbreviation": "SAM",
+        "eloRating": 1500,
+        "ppg": 80,
+        "ppgAllowed": 74.27778,
+        "conference": "Southern Conference"
+      },
+      {
+        "id": "2539",
+        "name": "San Francisco Dons",
+        "abbreviation": "SF",
+        "eloRating": 1500,
+        "ppg": 72.5,
+        "ppgAllowed": 76.22222,
+        "conference": "West Coast Conference"
+      },
+      {
+        "id": "254",
+        "name": "Utah Utes",
+        "abbreviation": "UTAH",
+        "eloRating": 1500,
+        "ppg": 69.94444,
+        "ppgAllowed": 79.888885,
+        "conference": "Big 12 Conference"
+      },
+      {
+        "id": "2540",
+        "name": "UC Santa Barbara Gauchos",
+        "abbreviation": "UCSB",
+        "eloRating": 1500,
+        "ppg": 78.55,
+        "ppgAllowed": 74,
+        "conference": "Big West Conference"
+      },
+      {
+        "id": "2541",
+        "name": "Santa Clara Broncos",
+        "abbreviation": "SCU",
+        "eloRating": 1500,
+        "ppg": 87.166664,
+        "ppgAllowed": 73.888885,
+        "conference": "West Coast Conference"
+      },
+      {
+        "id": "2545",
+        "name": "SE Louisiana Lions",
+        "abbreviation": "SELA",
+        "eloRating": 1500,
+        "ppg": 65.454544,
+        "ppgAllowed": 71.22727,
+        "conference": "Southland Conference"
+      },
+      {
+        "id": "2546",
+        "name": "Southeast Missouri State Redhawks",
+        "abbreviation": "SEMO",
+        "eloRating": 1500,
+        "ppg": 73.4,
+        "ppgAllowed": 68.35,
+        "conference": "Ohio Valley Conference"
+      },
+      {
+        "id": "2547",
+        "name": "Seattle U Redhawks",
+        "abbreviation": "SEA",
+        "eloRating": 1500,
+        "ppg": 66.888885,
+        "ppgAllowed": 68.27778,
+        "conference": "West Coast Conference"
+      },
+      {
+        "id": "2550",
+        "name": "Seton Hall Pirates",
+        "abbreviation": "HALL",
+        "eloRating": 1500,
+        "ppg": 66.95,
+        "ppgAllowed": 66.95,
+        "conference": "Big East Conference"
+      },
+      {
+        "id": "256",
+        "name": "James Madison Dukes",
+        "abbreviation": "JMU",
+        "eloRating": 1500,
+        "ppg": 73.333336,
+        "ppgAllowed": 71.611115,
+        "conference": "Sun Belt Conference"
+      },
+      {
+        "id": "2561",
+        "name": "Siena Saints",
+        "abbreviation": "SIE",
+        "eloRating": 1500,
+        "ppg": 72.4,
+        "ppgAllowed": 66.35,
+        "conference": "Metro Conference"
+      },
+      {
+        "id": "2565",
+        "name": "SIU Edwardsville Cougars",
+        "abbreviation": "SIUE",
+        "eloRating": 1500,
+        "ppg": 66.95,
+        "ppgAllowed": 63.3,
+        "conference": "Ohio Valley Conference"
+      },
+      {
+        "id": "2567",
+        "name": "SMU Mustangs",
+        "abbreviation": "SMU",
+        "eloRating": 1500,
+        "ppg": 80.611115,
+        "ppgAllowed": 79.77778,
+        "conference": "Atlantic Coast Conference"
+      },
+      {
+        "id": "2569",
+        "name": "South Carolina State Bulldogs",
+        "abbreviation": "SCST",
+        "eloRating": 1500,
+        "ppg": 68.92857,
+        "ppgAllowed": 71.14286,
+        "conference": "Mid-Eastern Athletic Conference"
+      },
+      {
+        "id": "257",
+        "name": "Richmond Spiders",
+        "abbreviation": "RICH",
+        "eloRating": 1500,
+        "ppg": 72.77778,
+        "ppgAllowed": 76.333336,
+        "conference": "Atlantic 10 Conference"
+      },
+      {
+        "id": "2571",
+        "name": "South Dakota State Jackrabbits",
+        "abbreviation": "SDST",
+        "eloRating": 1500,
+        "ppg": 76.5625,
+        "ppgAllowed": 74.125,
+        "conference": "Summit League"
+      },
+      {
+        "id": "2572",
+        "name": "Southern Miss Golden Eagles",
+        "abbreviation": "USM",
+        "eloRating": 1500,
+        "ppg": 73.22222,
+        "ppgAllowed": 73.666664,
+        "conference": "Sun Belt Conference"
+      },
+      {
+        "id": "2579",
+        "name": "South Carolina Gamecocks",
+        "abbreviation": "SC",
+        "eloRating": 1500,
+        "ppg": 70.611115,
+        "ppgAllowed": 81.888885,
+        "conference": "Southeastern Conference"
+      },
+      {
+        "id": "258",
+        "name": "Virginia Cavaliers",
+        "abbreviation": "UVA",
+        "eloRating": 1500,
+        "ppg": 77.27778,
+        "ppgAllowed": 69.55556,
+        "conference": "Atlantic Coast Conference"
+      },
+      {
+        "id": "2582",
+        "name": "Southern Jaguars",
+        "abbreviation": "SOU",
+        "eloRating": 1500,
+        "ppg": 78.05556,
+        "ppgAllowed": 74.77778,
+        "conference": "Southwestern Athletic Conference"
+      },
+      {
+        "id": "259",
+        "name": "Virginia Tech Hokies",
+        "abbreviation": "VT",
+        "eloRating": 1500,
+        "ppg": 75.111115,
+        "ppgAllowed": 75.388885,
+        "conference": "Atlantic Coast Conference"
+      },
+      {
+        "id": "2599",
+        "name": "St. John's Red Storm",
+        "abbreviation": "SJU",
+        "eloRating": 1500,
+        "ppg": 79.35,
+        "ppgAllowed": 69.65,
+        "conference": "Big East Conference"
+      },
+      {
+        "id": "26",
+        "name": "UCLA Bruins",
+        "abbreviation": "UCLA",
+        "eloRating": 1500,
+        "ppg": 75.55,
+        "ppgAllowed": 72.25,
+        "conference": "Big Ten Conference"
+      },
+      {
+        "id": "2603",
+        "name": "Saint Joseph's Hawks",
+        "abbreviation": "JOES",
+        "eloRating": 1500,
+        "ppg": 72.77778,
+        "ppgAllowed": 69.22222,
+        "conference": "Atlantic 10 Conference"
+      },
+      {
+        "id": "2608",
+        "name": "Saint Mary's Gaels",
+        "abbreviation": "SMC",
+        "eloRating": 1500,
+        "ppg": 77.94444,
+        "ppgAllowed": 64.111115,
+        "conference": "West Coast Conference"
+      },
+      {
+        "id": "261",
+        "name": "Vermont Catamounts",
+        "abbreviation": "UVM",
+        "eloRating": 1500,
+        "ppg": 70.9375,
+        "ppgAllowed": 64.4375,
+        "conference": "America East Conference"
+      },
+      {
+        "id": "2612",
+        "name": "Saint Peter's Peacocks",
+        "abbreviation": "SPU",
+        "eloRating": 1500,
+        "ppg": 70.6,
+        "ppgAllowed": 65.6,
+        "conference": "Metro Conference"
+      },
+      {
+        "id": "2617",
+        "name": "Stephen F. Austin Lumberjacks",
+        "abbreviation": "SFA",
+        "eloRating": 1500,
+        "ppg": 75,
+        "ppgAllowed": 64.954544,
+        "conference": "Southland Conference"
+      },
+      {
+        "id": "2619",
+        "name": "Stony Brook Seawolves",
+        "abbreviation": "STBK",
+        "eloRating": 1500,
+        "ppg": 70.94444,
+        "ppgAllowed": 72.333336,
+        "conference": "Coastal Athletic Association"
+      },
+      {
+        "id": "2623",
+        "name": "Missouri State Bears",
+        "abbreviation": "MOST",
+        "eloRating": 1500,
+        "ppg": 75.7,
+        "ppgAllowed": 74.95,
+        "conference": "Conference USA"
+      },
+      {
+        "id": "2627",
+        "name": "Tarleton State Texans",
+        "abbreviation": "TAR",
+        "eloRating": 1500,
+        "ppg": 69.94444,
+        "ppgAllowed": 74.666664,
+        "conference": "United Athletic Conference"
+      },
+      {
+        "id": "2628",
+        "name": "TCU Horned Frogs",
+        "abbreviation": "TCU",
+        "eloRating": 1500,
+        "ppg": 76.22222,
+        "ppgAllowed": 76.166664,
+        "conference": "Big 12 Conference"
+      },
+      {
+        "id": "2630",
+        "name": "UT Martin Skyhawks",
+        "abbreviation": "UTM",
+        "eloRating": 1500,
+        "ppg": 67.35,
+        "ppgAllowed": 61.7,
+        "conference": "Ohio Valley Conference"
+      },
+      {
+        "id": "2633",
+        "name": "Tennessee Volunteers",
+        "abbreviation": "TENN",
+        "eloRating": 1500,
+        "ppg": 77.27778,
+        "ppgAllowed": 73.55556,
+        "conference": "Southeastern Conference"
+      },
+      {
+        "id": "2634",
+        "name": "Tennessee State Tigers",
+        "abbreviation": "TNST",
+        "eloRating": 1500,
+        "ppg": 81.05,
+        "ppgAllowed": 73.7,
+        "conference": "Ohio Valley Conference"
+      },
+      {
+        "id": "2635",
+        "name": "Tennessee Tech Golden Eagles",
+        "abbreviation": "TNTC",
+        "eloRating": 1500,
+        "ppg": 69.15,
+        "ppgAllowed": 72.55,
+        "conference": "Ohio Valley Conference"
+      },
+      {
+        "id": "2636",
+        "name": "UTSA Roadrunners",
+        "abbreviation": "UTSA",
+        "eloRating": 1500,
+        "ppg": 68.27778,
+        "ppgAllowed": 84.77778,
+        "conference": "American Conference"
+      },
+      {
+        "id": "2638",
+        "name": "UTEP Miners",
+        "abbreviation": "UTEP",
+        "eloRating": 1500,
+        "ppg": 67.65,
+        "ppgAllowed": 73.05,
+        "conference": "Conference USA"
+      },
+      {
+        "id": "264",
+        "name": "Washington Huskies",
+        "abbreviation": "WASH",
+        "eloRating": 1500,
+        "ppg": 73.55,
+        "ppgAllowed": 74.95,
+        "conference": "Big Ten Conference"
+      },
+      {
+        "id": "2640",
+        "name": "Texas Southern Tigers",
+        "abbreviation": "TXSO",
+        "eloRating": 1500,
+        "ppg": 77.111115,
+        "ppgAllowed": 73.27778,
+        "conference": "Southwestern Athletic Conference"
+      },
+      {
+        "id": "2641",
+        "name": "Texas Tech Red Raiders",
+        "abbreviation": "TTU",
+        "eloRating": 1500,
+        "ppg": 79.5,
+        "ppgAllowed": 72.111115,
+        "conference": "Big 12 Conference"
+      },
+      {
+        "id": "2643",
+        "name": "The Citadel Bulldogs",
+        "abbreviation": "CIT",
+        "eloRating": 1500,
+        "ppg": 69.111115,
+        "ppgAllowed": 78,
+        "conference": "Southern Conference"
+      },
+      {
+        "id": "2649",
+        "name": "Toledo Rockets",
+        "abbreviation": "TOL",
+        "eloRating": 1500,
+        "ppg": 81.05556,
+        "ppgAllowed": 76.27778,
+        "conference": "Mid-American Conference"
+      },
+      {
+        "id": "265",
+        "name": "Washington State Cougars",
+        "abbreviation": "WSU",
+        "eloRating": 1500,
+        "ppg": 76.5,
+        "ppgAllowed": 77.833336,
+        "conference": "West Coast Conference"
+      },
+      {
+        "id": "2653",
+        "name": "Troy Trojans",
+        "abbreviation": "TROY",
+        "eloRating": 1500,
+        "ppg": 74.833336,
+        "ppgAllowed": 69.55556,
+        "conference": "Sun Belt Conference"
+      },
+      {
+        "id": "2655",
+        "name": "Tulane Green Wave",
+        "abbreviation": "TULN",
+        "eloRating": 1500,
+        "ppg": 71.888885,
+        "ppgAllowed": 76.22222,
+        "conference": "American Conference"
+      },
+      {
+        "id": "2670",
+        "name": "VCU Rams",
+        "abbreviation": "VCU",
+        "eloRating": 1500,
+        "ppg": 79.388885,
+        "ppgAllowed": 72.166664,
+        "conference": "Atlantic 10 Conference"
+      },
+      {
+        "id": "2674",
+        "name": "Valparaiso Beacons",
+        "abbreviation": "VAL",
+        "eloRating": 1500,
+        "ppg": 71.4,
+        "ppgAllowed": 71.85,
+        "conference": "Missouri Valley Conference"
+      },
+      {
+        "id": "2678",
+        "name": "VMI Keydets",
+        "abbreviation": "VMI",
+        "eloRating": 1500,
+        "ppg": 67.666664,
+        "ppgAllowed": 82.5,
+        "conference": "Southern Conference"
+      },
+      {
+        "id": "2681",
+        "name": "Wagner Seahawks",
+        "abbreviation": "WAG",
+        "eloRating": 1500,
+        "ppg": 68.77778,
+        "ppgAllowed": 70.05556,
+        "conference": "Northeast Conference"
+      },
+      {
+        "id": "269",
+        "name": "Marquette Golden Eagles",
+        "abbreviation": "MARQ",
+        "eloRating": 1500,
+        "ppg": 72.5,
+        "ppgAllowed": 74.65,
+        "conference": "Big East Conference"
+      },
+      {
+        "id": "2692",
+        "name": "Weber State Wildcats",
+        "abbreviation": "WEB",
+        "eloRating": 1500,
+        "ppg": 79.611115,
+        "ppgAllowed": 79.333336,
+        "conference": "Big Sky Conference"
+      },
+      {
+        "id": "2697",
+        "name": "West Florida Argonauts",
+        "abbreviation": "UWF",
+        "eloRating": 1500,
+        "ppg": 72,
+        "ppgAllowed": 72
+      },
+      {
+        "id": "2698",
+        "name": "West Georgia Wolves",
+        "abbreviation": "WGA",
+        "eloRating": 1500,
+        "ppg": 76.611115,
+        "ppgAllowed": 79.05556,
+        "conference": "Atlantic Sun Conference"
+      },
+      {
+        "id": "27",
+        "name": "UC Riverside Highlanders",
+        "abbreviation": "UCR",
+        "eloRating": 1500,
+        "ppg": 72.15,
+        "ppgAllowed": 77.7,
+        "conference": "Big West Conference"
+      },
+      {
+        "id": "270",
+        "name": "Milwaukee Panthers",
+        "abbreviation": "MILW",
+        "eloRating": 1500,
+        "ppg": 75.3,
+        "ppgAllowed": 77.6,
+        "conference": "Horizon League"
+      },
+      {
+        "id": "2710",
+        "name": "Western Illinois Leathernecks",
+        "abbreviation": "WIU",
+        "eloRating": 1500,
+        "ppg": 63.05,
+        "ppgAllowed": 78.1,
+        "conference": "Ohio Valley Conference"
+      },
+      {
+        "id": "2711",
+        "name": "Western Michigan Broncos",
+        "abbreviation": "WMU",
+        "eloRating": 1500,
+        "ppg": 74.72222,
+        "ppgAllowed": 80.888885,
+        "conference": "Mid-American Conference"
+      },
+      {
+        "id": "2717",
+        "name": "Western Carolina Catamounts",
+        "abbreviation": "WCU",
+        "eloRating": 1500,
+        "ppg": 79.888885,
+        "ppgAllowed": 75.55556,
+        "conference": "Southern Conference"
+      },
+      {
+        "id": "2724",
+        "name": "Wichita State Shockers",
+        "abbreviation": "WICH",
+        "eloRating": 1500,
+        "ppg": 78.5,
+        "ppgAllowed": 73.44444,
+        "conference": "American Conference"
+      },
+      {
+        "id": "2729",
+        "name": "William & Mary Tribe",
+        "abbreviation": "W&M",
+        "eloRating": 1500,
+        "ppg": 82.5,
+        "ppgAllowed": 78.94444,
+        "conference": "Coastal Athletic Association"
+      },
+      {
+        "id": "2737",
+        "name": "Winthrop Eagles",
+        "abbreviation": "WIN",
+        "eloRating": 1500,
+        "ppg": 80.5,
+        "ppgAllowed": 74.5,
+        "conference": "Big South Conference"
+      },
+      {
+        "id": "2739",
+        "name": "Green Bay Phoenix",
+        "abbreviation": "GB",
+        "eloRating": 1500,
+        "ppg": 76.3,
+        "ppgAllowed": 74.1,
+        "conference": "Horizon League"
+      },
+      {
+        "id": "2747",
+        "name": "Wofford Terriers",
+        "abbreviation": "WOF",
+        "eloRating": 1500,
+        "ppg": 81.55556,
+        "ppgAllowed": 79.94444,
+        "conference": "Southern Conference"
+      },
+      {
+        "id": "275",
+        "name": "Wisconsin Badgers",
+        "abbreviation": "WIS",
+        "eloRating": 1500,
+        "ppg": 82.05,
+        "ppgAllowed": 77.75,
+        "conference": "Big Ten Conference"
+      },
+      {
+        "id": "2750",
+        "name": "Wright State Raiders",
+        "abbreviation": "WRST",
+        "eloRating": 1500,
+        "ppg": 81.5,
+        "ppgAllowed": 76.35,
+        "conference": "Horizon League"
+      },
+      {
+        "id": "2751",
+        "name": "Wyoming Cowboys",
+        "abbreviation": "WYO",
+        "eloRating": 1500,
+        "ppg": 71.5,
+        "ppgAllowed": 73.65,
+        "conference": "Mountain West Conference"
+      },
+      {
+        "id": "2752",
+        "name": "Xavier Musketeers",
+        "abbreviation": "XAV",
+        "eloRating": 1500,
+        "ppg": 78.35,
+        "ppgAllowed": 84.75,
+        "conference": "Big East Conference"
+      },
+      {
+        "id": "2754",
+        "name": "Youngstown State Penguins",
+        "abbreviation": "YSU",
+        "eloRating": 1500,
+        "ppg": 76.55,
+        "ppgAllowed": 75.75,
+        "conference": "Horizon League"
+      },
+      {
+        "id": "2755",
+        "name": "Grambling Tigers",
+        "abbreviation": "GRAM",
+        "eloRating": 1500,
+        "ppg": 68.888885,
+        "ppgAllowed": 69.55556,
+        "conference": "Southwestern Athletic Conference"
+      },
+      {
+        "id": "276",
+        "name": "Marshall Thundering Herd",
+        "abbreviation": "MRSH",
+        "eloRating": 1500,
+        "ppg": 81.55556,
+        "ppgAllowed": 79,
+        "conference": "Sun Belt Conference"
+      },
+      {
+        "id": "277",
+        "name": "West Virginia Mountaineers",
+        "abbreviation": "WVU",
+        "eloRating": 1500,
+        "ppg": 65.333336,
+        "ppgAllowed": 67.888885,
+        "conference": "Big 12 Conference"
+      },
+      {
+        "id": "2771",
+        "name": "Merrimack Warriors",
+        "abbreviation": "MRMK",
+        "eloRating": 1500,
+        "ppg": 72.4,
+        "ppgAllowed": 64.2,
+        "conference": "Metro Conference"
+      },
+      {
+        "id": "278",
+        "name": "Fresno State Bulldogs",
+        "abbreviation": "FRES",
+        "eloRating": 1500,
+        "ppg": 71.35,
+        "ppgAllowed": 73.85,
+        "conference": "Mountain West Conference"
+      },
+      {
+        "id": "279",
+        "name": "Pacific Tigers",
+        "abbreviation": "PAC",
+        "eloRating": 1500,
+        "ppg": 71,
+        "ppgAllowed": 70,
+        "conference": "West Coast Conference"
+      },
+      {
+        "id": "28",
+        "name": "UC San Diego Tritons",
+        "abbreviation": "UCSD",
+        "eloRating": 1500,
+        "ppg": 71.75,
+        "ppgAllowed": 69.9,
+        "conference": "Big West Conference"
+      },
+      {
+        "id": "2803",
+        "name": "Bryant Bulldogs",
+        "abbreviation": "BRY",
+        "eloRating": 1500,
+        "ppg": 65.5,
+        "ppgAllowed": 72.5,
+        "conference": "America East Conference"
+      },
+      {
+        "id": "282",
+        "name": "Indiana State Sycamores",
+        "abbreviation": "INST",
+        "eloRating": 1500,
+        "ppg": 73.15,
+        "ppgAllowed": 78.05,
+        "conference": "Missouri Valley Conference"
+      },
+      {
+        "id": "2837",
+        "name": "East Texas A&M Lions",
+        "abbreviation": "ETAM",
+        "eloRating": 1500,
+        "ppg": 66.13636,
+        "ppgAllowed": 74.22727,
+        "conference": "Southland Conference"
+      },
+      {
+        "id": "284",
+        "name": "Stonehill Skyhawks",
+        "abbreviation": "STO",
+        "eloRating": 1500,
+        "ppg": 65.27778,
+        "ppgAllowed": 66.611115,
+        "conference": "Northeast Conference"
+      },
+      {
+        "id": "2856",
+        "name": "California Baptist Lancers",
+        "abbreviation": "CBU",
+        "eloRating": 1500,
+        "ppg": 71.166664,
+        "ppgAllowed": 65.5,
+        "conference": "United Athletic Conference"
+      },
+      {
+        "id": "2870",
+        "name": "Purdue Fort Wayne Mastodons",
+        "abbreviation": "PFW",
+        "eloRating": 1500,
+        "ppg": 75.35,
+        "ppgAllowed": 78.3,
+        "conference": "Horizon League"
+      },
+      {
+        "id": "288",
+        "name": "Lipscomb Bisons",
+        "abbreviation": "LIP",
+        "eloRating": 1500,
+        "ppg": 79.666664,
+        "ppgAllowed": 75.666664,
+        "conference": "Atlantic Sun Conference"
+      },
+      {
+        "id": "2885",
+        "name": "NJIT Highlanders",
+        "abbreviation": "NJIT",
+        "eloRating": 1500,
+        "ppg": 70.8125,
+        "ppgAllowed": 70.3125,
+        "conference": "America East Conference"
+      },
+      {
+        "id": "290",
+        "name": "Georgia Southern Eagles",
+        "abbreviation": "GASO",
+        "eloRating": 1500,
+        "ppg": 78.833336,
+        "ppgAllowed": 80.72222,
+        "conference": "Sun Belt Conference"
+      },
+      {
+        "id": "2900",
+        "name": "St. Thomas Tommies",
+        "abbreviation": "STMN",
+        "eloRating": 1500,
+        "ppg": 85.6875,
+        "ppgAllowed": 73.8125,
+        "conference": "Summit League"
+      },
+      {
+        "id": "2908",
+        "name": "South Carolina Upstate Spartans",
+        "abbreviation": "UPST",
+        "eloRating": 1500,
+        "ppg": 70.75,
+        "ppgAllowed": 77.125,
+        "conference": "Big South Conference"
+      },
+      {
+        "id": "2916",
+        "name": "Incarnate Word Cardinals",
+        "abbreviation": "UIW",
+        "eloRating": 1500,
+        "ppg": 69.318184,
+        "ppgAllowed": 73.90909,
+        "conference": "Southland Conference"
+      },
+      {
+        "id": "292",
+        "name": "UT Rio Grande Valley Vaqueros",
+        "abbreviation": "RGV",
+        "eloRating": 1500,
+        "ppg": 73.90909,
+        "ppgAllowed": 68.86364,
+        "conference": "Southland Conference"
+      },
+      {
+        "id": "2934",
+        "name": "Cal State Bakersfield Roadrunners",
+        "abbreviation": "CSUB",
+        "eloRating": 1500,
+        "ppg": 73.45,
+        "ppgAllowed": 86.95,
+        "conference": "Big West Conference"
+      },
+      {
+        "id": "294",
+        "name": "Jacksonville Dolphins",
+        "abbreviation": "JAX",
+        "eloRating": 1500,
+        "ppg": 70.666664,
+        "ppgAllowed": 71.27778,
+        "conference": "Atlantic Sun Conference"
+      },
+      {
+        "id": "295",
+        "name": "Old Dominion Monarchs",
+        "abbreviation": "ODU",
+        "eloRating": 1500,
+        "ppg": 77.388885,
+        "ppgAllowed": 77.666664,
+        "conference": "Sun Belt Conference"
+      },
+      {
+        "id": "299",
+        "name": "Long Beach State Beach",
+        "abbreviation": "LBSU",
+        "eloRating": 1500,
+        "ppg": 74.9,
+        "ppgAllowed": 77.9,
+        "conference": "Big West Conference"
+      },
+      {
+        "id": "30",
+        "name": "USC Trojans",
+        "abbreviation": "USC",
+        "eloRating": 1500,
+        "ppg": 71.6,
+        "ppgAllowed": 79.65,
+        "conference": "Big Ten Conference"
+      },
+      {
+        "id": "300",
+        "name": "UC Irvine Anteaters",
+        "abbreviation": "UCI",
+        "eloRating": 1500,
+        "ppg": 76.85,
+        "ppgAllowed": 68.95,
+        "conference": "Big West Conference"
+      },
+      {
+        "id": "301",
+        "name": "San Diego Toreros",
+        "abbreviation": "USD",
+        "eloRating": 1500,
+        "ppg": 74.5,
+        "ppgAllowed": 81.05556,
+        "conference": "West Coast Conference"
+      },
+      {
+        "id": "302",
+        "name": "UC Davis Aggies",
+        "abbreviation": "UCD",
+        "eloRating": 1500,
+        "ppg": 76.25,
+        "ppgAllowed": 75.3,
+        "conference": "Big West Conference"
+      },
+      {
+        "id": "304",
+        "name": "Idaho State Bengals",
+        "abbreviation": "IDST",
+        "eloRating": 1500,
+        "ppg": 73.611115,
+        "ppgAllowed": 80.611115,
+        "conference": "Big Sky Conference"
+      },
+      {
+        "id": "305",
+        "name": "DePaul Blue Demons",
+        "abbreviation": "DEP",
+        "eloRating": 1500,
+        "ppg": 67.05,
+        "ppgAllowed": 70.85,
+        "conference": "Big East Conference"
+      },
+      {
+        "id": "3084",
+        "name": "Utah Valley Wolverines",
+        "abbreviation": "UVU",
+        "eloRating": 1500,
+        "ppg": 79.388885,
+        "ppgAllowed": 72.166664,
+        "conference": "United Athletic Conference"
+      },
+      {
+        "id": "309",
+        "name": "Louisiana Ragin' Cajuns",
+        "abbreviation": "UL",
+        "eloRating": 1500,
+        "ppg": 65.5,
+        "ppgAllowed": 69.666664,
+        "conference": "Sun Belt Conference"
+      },
+      {
+        "id": "3101",
+        "name": "Utah Tech Trailblazers",
+        "abbreviation": "UTU",
+        "eloRating": 1500,
+        "ppg": 75.666664,
+        "ppgAllowed": 75.166664,
+        "conference": "United Athletic Conference"
+      },
+      {
+        "id": "311",
+        "name": "Maine Black Bears",
+        "abbreviation": "ME",
+        "eloRating": 1500,
+        "ppg": 63.875,
+        "ppgAllowed": 67.25,
+        "conference": "America East Conference"
+      },
+      {
+        "id": "314",
+        "name": "Iona Gaels",
+        "abbreviation": "IONA",
+        "eloRating": 1500,
+        "ppg": 69.3,
+        "ppgAllowed": 69.35,
+        "conference": "Metro Conference"
+      },
+      {
+        "id": "315",
+        "name": "Niagara Purple Eagles",
+        "abbreviation": "NIA",
+        "eloRating": 1500,
+        "ppg": 63,
+        "ppgAllowed": 69.55,
+        "conference": "Metro Conference"
+      },
+      {
+        "id": "322",
+        "name": "Lafayette Leopards",
+        "abbreviation": "LAF",
+        "eloRating": 1500,
+        "ppg": 68.44444,
+        "ppgAllowed": 72.166664,
+        "conference": "Patriot League"
+      },
+      {
+        "id": "324",
+        "name": "Coastal Carolina Chanticleers",
+        "abbreviation": "CCU",
+        "eloRating": 1500,
+        "ppg": 71.44444,
+        "ppgAllowed": 71.5,
+        "conference": "Sun Belt Conference"
+      },
+      {
+        "id": "325",
+        "name": "Cleveland State Vikings",
+        "abbreviation": "CLE",
+        "eloRating": 1500,
+        "ppg": 79,
+        "ppgAllowed": 86.1,
+        "conference": "Horizon League"
+      },
+      {
+        "id": "326",
+        "name": "Texas State Bobcats",
+        "abbreviation": "TXST",
+        "eloRating": 1500,
+        "ppg": 73.111115,
+        "ppgAllowed": 73.666664,
+        "conference": "Sun Belt Conference"
+      },
+      {
+        "id": "328",
+        "name": "Utah State Aggies",
+        "abbreviation": "USU",
+        "eloRating": 1500,
+        "ppg": 81.5,
+        "ppgAllowed": 72.65,
+        "conference": "Mountain West Conference"
+      },
+      {
+        "id": "331",
+        "name": "Eastern Washington Eagles",
+        "abbreviation": "EWU",
+        "eloRating": 1500,
+        "ppg": 78.55556,
+        "ppgAllowed": 73.388885,
+        "conference": "Big Sky Conference"
+      },
+      {
+        "id": "333",
+        "name": "Alabama Crimson Tide",
+        "abbreviation": "ALA",
+        "eloRating": 1500,
+        "ppg": 90.388885,
+        "ppgAllowed": 85,
+        "conference": "Southeastern Conference"
+      },
+      {
+        "id": "338",
+        "name": "Kennesaw State Owls",
+        "abbreviation": "KENN",
+        "eloRating": 1500,
+        "ppg": 76.75,
+        "ppgAllowed": 76.1,
+        "conference": "Conference USA"
+      },
+      {
+        "id": "339",
+        "name": "Evansville Purple Aces",
+        "abbreviation": "EVAN",
+        "eloRating": 1500,
+        "ppg": 66.25,
+        "ppgAllowed": 79.05,
+        "conference": "Missouri Valley Conference"
+      },
+      {
+        "id": "344",
+        "name": "Mississippi State Bulldogs",
+        "abbreviation": "MSST",
+        "eloRating": 1500,
+        "ppg": 76.888885,
+        "ppgAllowed": 86.27778,
+        "conference": "Southeastern Conference"
+      },
+      {
+        "id": "349",
+        "name": "Army Black Knights",
+        "abbreviation": "ARMY",
+        "eloRating": 1500,
+        "ppg": 71.55556,
+        "ppgAllowed": 78.111115,
+        "conference": "Patriot League"
+      },
+      {
+        "id": "350",
+        "name": "UNC Wilmington Seahawks",
+        "abbreviation": "UNCW",
+        "eloRating": 1500,
+        "ppg": 74.94444,
+        "ppgAllowed": 68,
+        "conference": "Coastal Athletic Association"
+      },
+      {
+        "id": "356",
+        "name": "Illinois Fighting Illini",
+        "abbreviation": "ILL",
+        "eloRating": 1500,
+        "ppg": 81.65,
+        "ppgAllowed": 70.8,
+        "conference": "Big Ten Conference"
+      },
+      {
+        "id": "357",
+        "name": "Texas A&M-Corpus Christi Islanders",
+        "abbreviation": "AMCC",
+        "eloRating": 1500,
+        "ppg": 69.90909,
+        "ppgAllowed": 67.59091,
+        "conference": "Southland Conference"
+      },
+      {
+        "id": "36",
+        "name": "Colorado State Rams",
+        "abbreviation": "CSU",
+        "eloRating": 1500,
+        "ppg": 71.9,
+        "ppgAllowed": 72.35,
+        "conference": "Mountain West Conference"
+      },
+      {
+        "id": "38",
+        "name": "Colorado Buffaloes",
+        "abbreviation": "COLO",
+        "eloRating": 1500,
+        "ppg": 75.5,
+        "ppgAllowed": 80.22222,
+        "conference": "Big 12 Conference"
+      },
+      {
+        "id": "399",
+        "name": "UAlbany Great Danes",
+        "abbreviation": "UALB",
+        "eloRating": 1500,
+        "ppg": 68.9375,
+        "ppgAllowed": 67.625,
+        "conference": "America East Conference"
+      },
+      {
+        "id": "41",
+        "name": "UConn Huskies",
+        "abbreviation": "CONN",
+        "eloRating": 1500,
+        "ppg": 77.7,
+        "ppgAllowed": 67.15,
+        "conference": "Big East Conference"
+      },
+      {
+        "id": "43",
+        "name": "Yale Bulldogs",
+        "abbreviation": "YALE",
+        "eloRating": 1500,
+        "ppg": 76.35714,
+        "ppgAllowed": 66.35714,
+        "conference": "Ivy League"
+      },
+      {
+        "id": "44",
+        "name": "American University Eagles",
+        "abbreviation": "AMER",
+        "eloRating": 1500,
+        "ppg": 71.22222,
+        "ppgAllowed": 68.5,
+        "conference": "Patriot League"
+      },
+      {
+        "id": "45",
+        "name": "George Washington Revolutionaries",
+        "abbreviation": "GW",
+        "eloRating": 1500,
+        "ppg": 79,
+        "ppgAllowed": 74.22222,
+        "conference": "Atlantic 10 Conference"
+      },
+      {
+        "id": "46",
+        "name": "Georgetown Hoyas",
+        "abbreviation": "GTWN",
+        "eloRating": 1500,
+        "ppg": 71.6,
+        "ppgAllowed": 74.2,
+        "conference": "Big East Conference"
+      },
+      {
+        "id": "47",
+        "name": "Howard Bison",
+        "abbreviation": "HOW",
+        "eloRating": 1500,
+        "ppg": 80.78571,
+        "ppgAllowed": 63.285713,
+        "conference": "Mid-Eastern Athletic Conference"
+      },
+      {
+        "id": "48",
+        "name": "Delaware Blue Hens",
+        "abbreviation": "DEL",
+        "eloRating": 1500,
+        "ppg": 67.3,
+        "ppgAllowed": 74.15,
+        "conference": "Conference USA"
+      },
+      {
+        "id": "5",
+        "name": "UAB Blazers",
+        "abbreviation": "UAB",
+        "eloRating": 1500,
+        "ppg": 76.388885,
+        "ppgAllowed": 75.72222,
+        "conference": "American Conference"
+      },
+      {
+        "id": "50",
+        "name": "Florida A&M Rattlers",
+        "abbreviation": "FAMU",
+        "eloRating": 1500,
+        "ppg": 72.5,
+        "ppgAllowed": 70.5,
+        "conference": "Southwestern Athletic Conference"
+      },
+      {
+        "id": "52",
+        "name": "Florida State Seminoles",
+        "abbreviation": "FSU",
+        "eloRating": 1500,
+        "ppg": 76.27778,
+        "ppgAllowed": 76.94444,
+        "conference": "Atlantic Coast Conference"
+      },
+      {
+        "id": "526",
+        "name": "Florida Gulf Coast Eagles",
+        "abbreviation": "FGCU",
+        "eloRating": 1500,
+        "ppg": 74.5,
+        "ppgAllowed": 76,
+        "conference": "Atlantic Sun Conference"
+      },
+      {
+        "id": "55",
+        "name": "Jacksonville State Gamecocks",
+        "abbreviation": "JXST",
+        "eloRating": 1500,
+        "ppg": 72.05,
+        "ppgAllowed": 71.2,
+        "conference": "Conference USA"
+      },
+      {
+        "id": "56",
+        "name": "Stetson Hatters",
+        "abbreviation": "STET",
+        "eloRating": 1500,
+        "ppg": 76.94444,
+        "ppgAllowed": 79.833336,
+        "conference": "Atlantic Sun Conference"
+      },
+      {
+        "id": "57",
+        "name": "Florida Gators",
+        "abbreviation": "FLA",
+        "eloRating": 1500,
+        "ppg": 89.611115,
+        "ppgAllowed": 72.611115,
+        "conference": "Southeastern Conference"
+      },
+      {
+        "id": "58",
+        "name": "South Florida Bulls",
+        "abbreviation": "USF",
+        "eloRating": 1500,
+        "ppg": 86.388885,
+        "ppgAllowed": 75.22222,
+        "conference": "American Conference"
+      },
+      {
+        "id": "59",
+        "name": "Georgia Tech Yellow Jackets",
+        "abbreviation": "GT",
+        "eloRating": 1500,
+        "ppg": 71.77778,
+        "ppgAllowed": 82.55556,
+        "conference": "Atlantic Coast Conference"
+      },
+      {
+        "id": "6",
+        "name": "South Alabama Jaguars",
+        "abbreviation": "USA",
+        "eloRating": 1500,
+        "ppg": 73.5,
+        "ppgAllowed": 70.666664,
+        "conference": "Sun Belt Conference"
+      },
+      {
+        "id": "61",
+        "name": "Georgia Bulldogs",
+        "abbreviation": "UGA",
+        "eloRating": 1500,
+        "ppg": 84.166664,
+        "ppgAllowed": 84.5,
+        "conference": "Southeastern Conference"
+      },
+      {
+        "id": "62",
+        "name": "Hawai'i Rainbow Warriors",
+        "abbreviation": "HAW",
+        "eloRating": 1500,
+        "ppg": 78.9,
+        "ppgAllowed": 73.75,
+        "conference": "Big West Conference"
+      },
+      {
+        "id": "66",
+        "name": "Iowa State Cyclones",
+        "abbreviation": "ISU",
+        "eloRating": 1500,
+        "ppg": 75.55556,
+        "ppgAllowed": 67.833336,
+        "conference": "Big 12 Conference"
+      },
+      {
+        "id": "68",
+        "name": "Boise State Broncos",
+        "abbreviation": "BOIS",
+        "eloRating": 1500,
+        "ppg": 78.5,
+        "ppgAllowed": 75.15,
+        "conference": "Mountain West Conference"
+      },
+      {
+        "id": "70",
+        "name": "Idaho Vandals",
+        "abbreviation": "IDHO",
+        "eloRating": 1500,
+        "ppg": 77.44444,
+        "ppgAllowed": 75.55556,
+        "conference": "Big Sky Conference"
+      },
+      {
+        "id": "71",
+        "name": "Bradley Braves",
+        "abbreviation": "BRAD",
+        "eloRating": 1500,
+        "ppg": 78.1,
+        "ppgAllowed": 76.45,
+        "conference": "Missouri Valley Conference"
+      },
+      {
+        "id": "77",
+        "name": "Northwestern Wildcats",
+        "abbreviation": "NU",
+        "eloRating": 1500,
+        "ppg": 68.85,
+        "ppgAllowed": 75.4,
+        "conference": "Big Ten Conference"
+      },
+      {
+        "id": "79",
+        "name": "Southern Illinois Salukis",
+        "abbreviation": "SIU",
+        "eloRating": 1500,
+        "ppg": 69.3,
+        "ppgAllowed": 67.55,
+        "conference": "Missouri Valley Conference"
+      },
+      {
+        "id": "8",
+        "name": "Arkansas Razorbacks",
+        "abbreviation": "ARK",
+        "eloRating": 1500,
+        "ppg": 90,
+        "ppgAllowed": 83.666664,
+        "conference": "Southeastern Conference"
+      },
+      {
+        "id": "82",
+        "name": "UIC Flames",
+        "abbreviation": "UIC",
+        "eloRating": 1500,
+        "ppg": 73.05,
+        "ppgAllowed": 67.7,
+        "conference": "Missouri Valley Conference"
+      },
+      {
+        "id": "84",
+        "name": "Indiana Hoosiers",
+        "abbreviation": "IU",
+        "eloRating": 1500,
+        "ppg": 75.8,
+        "ppgAllowed": 76.05,
+        "conference": "Big Ten Conference"
+      },
+      {
+        "id": "85",
+        "name": "IU Indianapolis Jaguars",
+        "abbreviation": "IUIN",
+        "eloRating": 1500,
+        "ppg": 77.6,
+        "ppgAllowed": 84.7,
+        "conference": "Horizon League"
+      },
+      {
+        "id": "87",
+        "name": "Notre Dame Fighting Irish",
+        "abbreviation": "ND",
+        "eloRating": 1500,
+        "ppg": 72.833336,
+        "ppgAllowed": 80.333336,
+        "conference": "Atlantic Coast Conference"
+      },
+      {
+        "id": "9",
+        "name": "Arizona State Sun Devils",
+        "abbreviation": "ASU",
+        "eloRating": 1500,
+        "ppg": 75.22222,
+        "ppgAllowed": 79.833336,
+        "conference": "Big 12 Conference"
+      },
+      {
+        "id": "91",
+        "name": "Bellarmine Knights",
+        "abbreviation": "BELL",
+        "eloRating": 1500,
+        "ppg": 81.44444,
+        "ppgAllowed": 83.388885,
+        "conference": "Atlantic Sun Conference"
+      },
+      {
+        "id": "93",
+        "name": "Murray State Racers",
+        "abbreviation": "MUR",
+        "eloRating": 1500,
+        "ppg": 79.65,
+        "ppgAllowed": 80.1,
+        "conference": "Missouri Valley Conference"
+      },
+      {
+        "id": "94",
+        "name": "Northern Kentucky Norse",
+        "abbreviation": "NKU",
+        "eloRating": 1500,
+        "ppg": 81.25,
+        "ppgAllowed": 78,
+        "conference": "Horizon League"
+      },
+      {
+        "id": "96",
+        "name": "Kentucky Wildcats",
+        "abbreviation": "UK",
+        "eloRating": 1500,
+        "ppg": 78.55556,
+        "ppgAllowed": 78,
+        "conference": "Southeastern Conference"
+      },
+      {
+        "id": "97",
+        "name": "Louisville Cardinals",
+        "abbreviation": "LOU",
+        "eloRating": 1500,
+        "ppg": 82.27778,
+        "ppgAllowed": 75.388885,
+        "conference": "Atlantic Coast Conference"
+      },
+      {
+        "id": "98",
+        "name": "Western Kentucky Hilltoppers",
+        "abbreviation": "WKU",
+        "eloRating": 1500,
+        "ppg": 76.05,
+        "ppgAllowed": 74.75,
+        "conference": "Conference USA"
+      },
+      {
+        "id": "99",
+        "name": "LSU Tigers",
+        "abbreviation": "LSU",
+        "eloRating": 1500,
+        "ppg": 75.94444,
+        "ppgAllowed": 83.44444,
+        "conference": "Southeastern Conference"
+      },
+      {
+        "id": "2598",
+        "name": "Saint Francis Red Wolves",
+        "abbreviation": "SFPA",
+        "eloRating": 1452,
+        "ppg": 73.611115,
+        "ppgAllowed": 78.94444,
+        "conference": "Northeast Conference"
+      }
+    ]
+  }
+}
