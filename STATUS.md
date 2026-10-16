@@ -1,5 +1,11 @@
 # Prediction Matrix status
 
+## 2026-10-16 — paper collection activation approved, in progress
+
+Shawn replied “approval” to the explicit production paper-collection request. This supersedes the activation-approval hold below, but not model tuning, paid test requests or betting restrictions. Primary/main/serving source remains `78760202dd9ac3bde42808e5956887f4bf94409e`. A read-only production baseline at05:45:56UTC found zero measurement records and no heartbeat; flag absent. The guarded operator is `scripts/measurement/activate.mjs`, default read-only. It requires current source attribution before activation and deploys the same GitHub main source, never local files.
+
+Next: observe the normal06:00UTC NFL refresh with producer attribution, activate production-only collection, verify READY/domain/effective flag, then inspect the first two normal scheduled captures with `inspect-production.mjs`. Final settlement remains unverified until an actually captured game finishes. No model edge proven.
+
 ## 2026-10-16 — main deployment approved
 
 Shawn explicitly requested “push to main.” PR6 was merged as `69240a9bb7b036e7ccc5b70a2550413c500085c5`, preserving the verified `3e3ab94` review history. The actual production domain served that exact READY SHA at 05:04 UTC. All 79 exports, 144 exact quote sides, five result routes, three unsigned collector gates and desktop/390px browser controls passed. [Release evidence](docs/production/README.md). An independent review is recorded alongside the release proof. The final evidence/runbook commit changes no application source and its deployed SHA must also be checked. This supersedes prior publication/deployment holds below; collection activation was not included and the flag remains absent. No model tuning or paid test calls.
