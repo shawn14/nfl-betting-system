@@ -2,6 +2,7 @@ import { CAPTURE_HOURS, digest, eventState, makeCapture, modelId, settle, validC
 import { espnOddsUrl } from '../espn-prices.ts';
 import { MeasurementStore } from './store.ts';
 import { readSource } from './source.ts';
+import { registerResearch, registrationId, researchReport, type Registration } from './research.ts';
 
 export const BLOB_BASE = 'https://0luulmjdaimldet9.public.blob.vercel-storage.com';
 export const FILES: Record<Sport,string> = { nfl:'prediction-matrix-data.json', nba:'nba-prediction-data.json', nhl:'nhl-prediction-data.json', cbb:'cbb-prediction-data.json', wnba:'wnba-prediction-data.json' };
@@ -14,8 +15,10 @@ export async function json(url: string): Promise<Json> {
 /** Read the actual published forecasts. Never invoke a predictor or read legacy results to grade. */
 export async function collect(store: MeasurementStore, dryRun = false) {
   const started = Date.now(), observations: Json[] = [], captures: ModelCapture[] = [], settlements: Settlement[] = [];
+  const registration = dryRun ? await store.get<Registration>(registrationId()) : await registerResearch(store);
   const existing = new Map((await store.list<ModelCapture>('model')).map(c => [c.id,c]));
-  const settled = new Set((await store.list<Settlement>('settlement')).map(s => s.captureId));
+  const priorSettlements = await store.list<Settlement>('settlement');
+  const settled = new Set(priorSettlements.map(s => s.captureId));
   for (const sport of SPORTS) {
     if (Date.now()-started>240000) throw new Error('Measurement run exceeded safe time budget');
     const sourceUrl = `${BLOB_BASE}/${FILES[sport]}`;
@@ -53,8 +56,12 @@ export async function collect(store: MeasurementStore, dryRun = false) {
     if (result) settlements.push(dryRun ? result : await store.create(result));
     else observations.push({sport:c.sport,gameId:c.gameId,status:'pending-final',eventState:event.status});
   }
+  const research = researchReport(registration,[...existing.values()],[...priorSettlements,...settlements]);
   const run = { ok:true, dryRun, updated:new Date().toISOString(), ms:Date.now()-started,
-    captured:captures.length, settled:settlements.length, observations };
+    captured:captures.length, settled:settlements.length, observations,
+    research:{policyHash:research.policyHash,state:research.state,checkedAt:research.checkedAt,
+      candidateGroups:research.candidates.length,selected:research.candidates.reduce((n,c)=>n+c.selected,0),
+      graded:research.candidates.reduce((n,c)=>n+c.games,0),exclusions:research.exclusions,nextAction:research.nextAction} };
   if (!dryRun) await store.heartbeat(run);
   return {...run, captures, settlements};
 }

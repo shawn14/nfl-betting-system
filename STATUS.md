@@ -1,5 +1,11 @@
 # Prediction Matrix status
 
+## 2026-10-16 — source reachability verified; recurring research candidate
+
+PR9 merged60aab496 and actual canonical Vercel deployment `dpl_8MkXdScgPeMcEou8BtcvsWBF3fjU` served it. At14:28UTC, both builder and independent probes fromiad1 received200 JSON at the previously failing ESPN odds URL and returned three valid transient markets. Independent live env/API/Firestore proof confirms flag0, disabled, zero captures and unchanged original failure heartbeat. [Evidence](docs/measurement/SOURCE-DIAGNOSIS.md). This proves current reachability, not the cause or permanent resolution of the old503.
+
+The next local candidate adds three preregistered paper screens to the existing15-minute collector, immutable implementation identity, same-game market comparison, explicit stress costs and fixed-horizon statuses. No model/threshold tuning, new scheduler, paid source or automatic promotion. Actual deployed-record replay passes all9market/screen combinations and rejection/clock/identity checks. [Contract](docs/measurement/RESEARCH-LOOP.md). Production commissioning remains pending: the14:29read-only gate found12NFL+18NHL+1WNBA candidates still carrying the prior source. Next normal NFL producer window is16:00UTC. Finish preview/typecheck, approved main deployment, current-source preflight, two real persisted cycles and enabled browser proof; actual final settlement follows a captured game ending. The continuous goal is active; no edge established.
+
 ## 2026-10-16 — continuous research goal, source diagnosis first
 
 Shawn's active goal is a system continuously searching for edge, similar to the Kalshi desk. Read-only inspection of the actual `kalshi-research-desk` identified its preregistered hypothesis/forward ledger/market comparator/research coverage pattern. No reference-repo changes. Main/live0743025 matched at14:18UTC; collection remains disabled with zero stored captures after the prior failed activation.

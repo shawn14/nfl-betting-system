@@ -2,6 +2,7 @@ import { clustered, digest, SPORTS, validCapture, type ModelCapture, type Settle
 import { shopReport, type ShopCapture, type ShopClose } from './shop.ts';
 import { MeasurementStore } from './store.ts';
 import { forecastCohort } from '../forecast-provenance.ts';
+import { registrationId, researchReport, type Registration } from './research.ts';
 
 export function modelCohortReport(captures:ModelCapture[],settlements:Settlement[]) {
   const valid=captures.filter(validCapture);
@@ -37,18 +38,21 @@ export function modelCohortReport(captures:ModelCapture[],settlements:Settlement
 }
 
 export async function measurementReport(store:MeasurementStore,now=Date.now(), includeEvidence=false) {
-  const [captures,settlements,shopCaptures,closes]=await Promise.all([
+  const [captures,settlements,shopCaptures,closes,registrations]=await Promise.all([
     store.list<ModelCapture>('model'),store.list<Settlement>('settlement'),
     store.list<ShopCapture>('shop'),store.list<ShopClose>('shop-close',12000),
+    store.list<Registration>('research-registration',100),
   ]);
   const {valid,model}=modelCohortReport(captures,settlements);
   const health=await store.health();
+  const research=researchReport(registrations.find(r=>r.id===registrationId())??null,captures,settlements,now);
   return {health,missed:(health?.observations??[]).filter((x:{status:string})=>x.status==='missed').length,updated:new Date(now).toISOString(),model,captures:valid.length,invalidCaptures:captures.length-valid.length,
     unattributed:valid.filter(c=>!forecastCohort(c.entry).attributed).length,
     pending:valid.filter(c=>!settlements.some(s=>s.captureId===c.id)).length,
     voided:settlements.filter(s=>s.status==='void').length,
     games:shopReport(shopCaptures.filter(c=>c.market!=='prop'),closes,now),
-    props:shopReport(shopCaptures.filter(c=>c.market==='prop'),closes,now),
+    props:shopReport(shopCaptures.filter(c=>c.market==='prop'),closes,now),research,
+    priorResearchRegistrations:registrations.filter(r=>r.id!==registrationId()).map(r=>({id:r.id,sourceSha:r.sourceSha,committedAt:r.committedAt,codeHash:r.codeHash})),
     // Export only evidence from this new namespace; never joins legacy 'results'.
-    ...(includeEvidence ? {evidence:{captures,settlements,shopCaptures,closes}} : {})};
+    ...(includeEvidence ? {evidence:{captures,settlements,shopCaptures,closes,registrations}} : {})};
 }

@@ -1,0 +1,484 @@
+{
+  "checkedAt": "2026-10-16T14:38:22.049Z",
+  "scope": "Local independent arithmetic and adversarial evaluation against actual deployed raw candidate; final scores and commit/registration times are diagnostics only, not evidence.",
+  "sourceArtifact": "docs/measurement/source-diagnosis/deployed.json",
+  "researchHash": "c2aa654c3eb7fd6351245f2797b967c1d80c77cd80f98be076fa8d202723a89a",
+  "observedActualCandidate": "model-nfl-401872996",
+  "manualAccounting": [
+    {
+      "market": "ml",
+      "rule": "published-direction",
+      "side": "a",
+      "units": 0.6656756756756756,
+      "lossDifference": -0.25853828731483797
+    },
+    {
+      "market": "ml",
+      "rule": "raw-model-value",
+      "side": "a",
+      "units": 0.6656756756756756,
+      "lossDifference": -0.25853828731483797
+    },
+    {
+      "market": "spread",
+      "rule": "published-direction",
+      "side": "a",
+      "units": 0.8233333333333335,
+      "lossDifference": -0.41017155672248773
+    },
+    {
+      "market": "spread",
+      "rule": "raw-model-value",
+      "side": "a",
+      "units": 0.8233333333333335,
+      "lossDifference": -0.41017155672248773
+    },
+    {
+      "market": "total",
+      "rule": "published-direction",
+      "side": "b",
+      "units": 0.915925925925926,
+      "lossDifference": -0.10695981496454054
+    },
+    {
+      "market": "total",
+      "rule": "raw-model-value",
+      "side": "b",
+      "units": 0.915925925925926,
+      "lossDifference": -0.10695981496454054
+    }
+  ],
+  "passed": [
+    "Actual captured ML/spread/total return and same-game loss calculations independently matched for published and raw-model rules.",
+    "Pre-registration capture excluded.",
+    "Tampered grades, duplicate settlements excluded.",
+    "Interim results remain collecting; at fixed end small sample becomes insufficient.",
+    "autoPromotion=false."
+  ],
+  "trials": [
+    {
+      "name": "market_priceA_changed_from_minus148_to_plus1000_without_raw_change",
+      "exclusions": {},
+      "graded": 6,
+      "roi": [
+        {
+          "market": "ml",
+          "rule": "published-direction",
+          "roi": 9.99,
+          "loss": -0.25853828731483797
+        },
+        {
+          "market": "ml",
+          "rule": "raw-model-value",
+          "roi": 9.99,
+          "loss": -0.25853828731483797
+        },
+        {
+          "market": "spread",
+          "rule": "published-direction",
+          "roi": 0.8233333333333335,
+          "loss": -0.41017155672248773
+        },
+        {
+          "market": "spread",
+          "rule": "raw-model-value",
+          "roi": 0.8233333333333335,
+          "loss": -0.41017155672248773
+        },
+        {
+          "market": "total",
+          "rule": "published-direction",
+          "roi": 0.915925925925926,
+          "loss": -0.10695981496454054
+        },
+        {
+          "market": "total",
+          "rule": "raw-model-value",
+          "roi": 0.915925925925926,
+          "loss": -0.10695981496454054
+        }
+      ]
+    },
+    {
+      "name": "market_baseline_changed_without_raw_change",
+      "exclusions": {},
+      "graded": 6,
+      "roi": [
+        {
+          "market": "ml",
+          "rule": "published-direction",
+          "roi": 0.6656756756756756,
+          "loss": -4.313363514298247
+        },
+        {
+          "market": "ml",
+          "rule": "raw-model-value",
+          "roi": 0.6656756756756756,
+          "loss": -4.313363514298247
+        },
+        {
+          "market": "spread",
+          "rule": "published-direction",
+          "roi": 0.8233333333333335,
+          "loss": -0.41017155672248773
+        },
+        {
+          "market": "spread",
+          "rule": "raw-model-value",
+          "roi": 0.8233333333333335,
+          "loss": -0.41017155672248773
+        },
+        {
+          "market": "total",
+          "rule": "published-direction",
+          "roi": 0.915925925925926,
+          "loss": -0.10695981496454054
+        },
+        {
+          "market": "total",
+          "rule": "raw-model-value",
+          "roi": 0.915925925925926,
+          "loss": -0.10695981496454054
+        }
+      ]
+    },
+    {
+      "name": "capture_marked_postgame_but_times_unchanged",
+      "exclusions": {},
+      "graded": 6,
+      "roi": [
+        {
+          "market": "ml",
+          "rule": "published-direction",
+          "roi": 0.6656756756756756,
+          "loss": -0.25853828731483797
+        },
+        {
+          "market": "ml",
+          "rule": "raw-model-value",
+          "roi": 0.6656756756756756,
+          "loss": -0.25853828731483797
+        },
+        {
+          "market": "spread",
+          "rule": "published-direction",
+          "roi": 0.8233333333333335,
+          "loss": -0.41017155672248773
+        },
+        {
+          "market": "spread",
+          "rule": "raw-model-value",
+          "roi": 0.8233333333333335,
+          "loss": -0.41017155672248773
+        },
+        {
+          "market": "total",
+          "rule": "published-direction",
+          "roi": 0.915925925925926,
+          "loss": -0.10695981496454054
+        },
+        {
+          "market": "total",
+          "rule": "raw-model-value",
+          "roi": 0.915925925925926,
+          "loss": -0.10695981496454054
+        }
+      ]
+    },
+    {
+      "name": "published_forecast_older_than3hours",
+      "exclusions": {},
+      "graded": 6,
+      "roi": [
+        {
+          "market": "ml",
+          "rule": "published-direction",
+          "roi": 0.6656756756756756,
+          "loss": -0.25853828731483797
+        },
+        {
+          "market": "ml",
+          "rule": "raw-model-value",
+          "roi": 0.6656756756756756,
+          "loss": -0.25853828731483797
+        },
+        {
+          "market": "spread",
+          "rule": "published-direction",
+          "roi": 0.8233333333333335,
+          "loss": -0.41017155672248773
+        },
+        {
+          "market": "spread",
+          "rule": "raw-model-value",
+          "roi": 0.8233333333333335,
+          "loss": -0.41017155672248773
+        },
+        {
+          "market": "total",
+          "rule": "published-direction",
+          "roi": 0.915925925925926,
+          "loss": -0.10695981496454054
+        },
+        {
+          "market": "total",
+          "rule": "raw-model-value",
+          "roi": 0.915925925925926,
+          "loss": -0.10695981496454054
+        }
+      ]
+    },
+    {
+      "name": "event_identity_differs_from_forecast_game",
+      "exclusions": {},
+      "graded": 0,
+      "roi": []
+    }
+  ],
+  "findings": [
+    "market_priceA_changed_from_minus148_to_plus1000_without_raw_change",
+    "market_baseline_changed_without_raw_change",
+    "capture_marked_postgame_but_times_unchanged",
+    "published_forecast_older_than3hours",
+    "event_identity_differs_from_forecast_game"
+  ],
+  "limitations": [
+    "No live research collection or future outcome proven.",
+    "Corruption cases are local adversarial mutations, not allegations about production records."
+  ],
+  "frozenRuleCheck": {
+    "fixedWeight": 0.45,
+    "totalMarketA": 0.5043297540699688,
+    "totalBlendedA": 0.4790787533055559,
+    "evOver": -0.09317235981448357,
+    "evUnder": 0.0032557343744852307,
+    "decisions": [
+      {
+        "market": "ml",
+        "decision": null
+      },
+      {
+        "market": "spread",
+        "decision": null
+      },
+      {
+        "market": "total",
+        "decision": null
+      }
+    ],
+    "conclusion": "All three existing EV screens correctly abstain on actual captured input; only NFL total has nonzero frozen weight."
+  },
+  "additionalFindings": [
+    {
+      "severity": "P2",
+      "file": "src/lib/measurement/runner.ts",
+      "issue": "New captures are present in existing.values() and appended again in captures, creating spurious duplicate_capture exclusions in collector heartbeat which public report does not contain.",
+      "lines": [
+        39,
+        56
+      ]
+    }
+  ],
+  "recheck": {
+    "checkedAt": "2026-10-16T14:41:10.040Z",
+    "researchHash": "8be317ba931c3b24f7e1b6c9ed9fb3a7ca872f274527dd755f37a83d14da7df4",
+    "cleanCandidateGroups": 9,
+    "cleanSelectedGrades": 6,
+    "regressions": [
+      {
+        "name": "changed_price",
+        "rejected": true,
+        "exclusions": {
+          "invalid_or_unknown_producer": 1
+        }
+      },
+      {
+        "name": "changed_baseline",
+        "rejected": true,
+        "exclusions": {
+          "invalid_or_unknown_producer": 1
+        }
+      },
+      {
+        "name": "postgame_status",
+        "rejected": true,
+        "exclusions": {
+          "invalid_or_unknown_producer": 1
+        }
+      },
+      {
+        "name": "old_publication",
+        "rejected": true,
+        "exclusions": {
+          "invalid_or_unknown_producer": 1
+        }
+      },
+      {
+        "name": "identity_mismatch",
+        "rejected": true,
+        "exclusions": {
+          "invalid_or_unknown_producer": 1
+        }
+      },
+      {
+        "name": "bad_collector_sha",
+        "rejected": true,
+        "exclusions": {
+          "invalid_or_unknown_producer": 1
+        }
+      },
+      {
+        "name": "bad_source_hash",
+        "rejected": true,
+        "exclusions": {
+          "invalid_or_unknown_producer": 1
+        }
+      },
+      {
+        "name": "modified_model_probability",
+        "rejected": true,
+        "exclusions": {
+          "invalid_or_unknown_producer": 1
+        }
+      },
+      {
+        "name": "modified_line",
+        "rejected": true,
+        "exclusions": {
+          "invalid_or_unknown_producer": 1
+        }
+      },
+      {
+        "name": "late_commit",
+        "rejected": true,
+        "exclusions": {
+          "invalid_or_unknown_producer": 1
+        }
+      }
+    ],
+    "originalCaptureValidationGapClosed": true,
+    "runnerDuplicateGapClosed": true,
+    "registrationBeforeSourceReads": true,
+    "registrationAndCaptureFieldOrderValidation": true,
+    "hashManifestVerifiedFiles": 6,
+    "reorderedSettlementPairResult": {
+      "exclusions": {
+        "invalid_settlement": 1
+      },
+      "grades": 0
+    },
+    "remainingFindings": [
+      {
+        "severity": "P2",
+        "issue": "JSON-equivalent reordered captures fail settlement hash matching because digest(c) depends on property order.",
+        "observed": {
+          "exclusions": {
+            "invalid_settlement": 1
+          },
+          "grades": 0
+        }
+      },
+      {
+        "severity": "P1",
+        "issue": "Forecast prediction.gameId can disagree with capture/event/entry.game.id and pass consistentResearchCapture; original makeCapture does not bind prediction.gameId.",
+        "gameId": "401872996",
+        "predictionGameId": "401000000",
+        "accepted": true
+      },
+      {
+        "severity": "P2",
+        "issue": "Live proof verifies public model bodies only, not registration/settlement bodies or heartbeat numeric/exclusion summary."
+      },
+      {
+        "severity": "P2",
+        "issue": "Live proof inherits all stored captures producer/collector SHA equals current-main requirement; any later deployment makes immutable old cohorts fail standing proof."
+      }
+    ]
+  },
+  "finalRecheck": {
+    "checkedAt": "2026-10-16T14:44:25.425Z",
+    "researchHash": "e6c0b5385f4b6c98a1a3f8f1e15ff7252140cae551b2c737b6ce74047c3e6853",
+    "cleanCandidateGroups": 9,
+    "cleanSelectedGrades": 6,
+    "regressions": [
+      {
+        "name": "forecast_gameId",
+        "rejected": true
+      },
+      {
+        "name": "odds_event",
+        "rejected": true
+      },
+      {
+        "name": "odds_provider",
+        "rejected": true
+      },
+      {
+        "name": "home_team",
+        "rejected": true
+      },
+      {
+        "name": "swapped_team",
+        "rejected": true
+      },
+      {
+        "name": "changed_price",
+        "rejected": true
+      },
+      {
+        "name": "changed_baseline",
+        "rejected": true
+      },
+      {
+        "name": "postgame_status",
+        "rejected": true
+      },
+      {
+        "name": "old_publication",
+        "rejected": true
+      },
+      {
+        "name": "identity_mismatch",
+        "rejected": true
+      },
+      {
+        "name": "bad_collector_sha",
+        "rejected": true
+      },
+      {
+        "name": "bad_source_hash",
+        "rejected": true
+      },
+      {
+        "name": "modified_model_probability",
+        "rejected": true
+      },
+      {
+        "name": "modified_line",
+        "rejected": true
+      },
+      {
+        "name": "late_commit",
+        "rejected": true
+      }
+    ],
+    "reorderedEntireEvidenceEquivalent": true,
+    "allPreviouslyReportedAdmissionAndHashGapsClosed": true,
+    "runnerDuplicateGapClosed": true,
+    "registrationBeforeSources": true,
+    "hashManifestVerifiedFiles": 6,
+    "liveProofSourceReview": {
+      "allPublicEvidenceAndServerTimesCompared": true,
+      "publicHealthCompared": true,
+      "summaryCountsAndExclusionsCompared": true,
+      "currentShaOnlyFirstCommissioning": true,
+      "notExecutedAgainstLive": true
+    },
+    "remainingFinding": {
+      "severity": "P2",
+      "file": "scripts/measurement/prove-research-live.mjs",
+      "issue": "--require-final selects any final settlement in a sport with graded research candidates, instead of the exact settlement/capture admitted by current registration. A prior-registration settlement of same sport can be selected as finalProof."
+    },
+    "limitation": "Pure local review and diagnostic score replays; no prospective collection or final outcome certified."
+  }
+}

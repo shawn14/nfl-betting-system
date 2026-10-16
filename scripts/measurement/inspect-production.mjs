@@ -12,6 +12,7 @@ assert(args.includes('--sha')&&/^[a-f0-9]{40}$/.test(option('--sha')),'--sha req
 assert(args.includes('--out')&&option('--out'),'--out required');
 const sha=option('--sha'),out=path.resolve(option('--out'));
 const requireEnabled=args.includes('--require-enabled');
+const firstCommissioning=args.includes('--first-commissioning');
 const primary=process.env.PM_PRIMARY_REPO??path.join(os.homedir(),'projects/nfl-betting-system');
 const project=JSON.parse(await fs.readFile(path.join(primary,'.vercel/project.json'),'utf8'));
 const auth=JSON.parse(await fs.readFile(path.join(os.homedir(),'Library/Application Support/com.vercel.cli/auth.json'),'utf8'));
@@ -56,7 +57,7 @@ for(const d of models){
  assert(validCapture(c),`Invalid stored capture ${d.id}`);assert.equal(d.createTime,d.updateTime,`Evidence changed after creation ${d.id}`);
  const producer=publishedProducer(c.entry);assert(producer?.sourceSha,`Unattributed capture ${d.id}`);
   assert.equal(c.modelSourceSha,producer.sourceSha);assert.equal(c.modelVersion,producer.modelVersion);
-  if(requireEnabled){assert.equal(c.modelSourceSha,sha);assert.equal(c.collectorSha,sha);assert.equal(c.modelVersion,MODEL_VERSION);}
+  if(firstCommissioning){assert.equal(c.modelSourceSha,sha);assert.equal(c.collectorSha,sha);assert.equal(c.modelVersion,MODEL_VERSION);}
 }
 let comparison=null;
 if(args.includes('--compare')){
@@ -75,11 +76,19 @@ if(requireEnabled||comparison){
 }
 if(requireEnabled){
  assert(models.some(d=>d.record.sport==='nfl'),'No actual NFL captures');assert.equal(publicReport.state,'available');
- const publicModels=new Map(publicReport.report.evidence.captures.map(c=>[c.id,c]));
+  const publicModels=new Map(publicReport.report.evidence.captures.map(c=>[c.id,c]));
  for(const d of models){const c=publicModels.get(d.id);assert(c,`Public report missing ${d.id}`);const {committedAt,...record}=c;assert.equal(hash(record),d.bodyHash,`Public record differs ${d.id}`);assert.equal(committedAt,new Date(d.createTime).toISOString());}
+ const evidence=publicReport.report.evidence;
+ const publicRecords=[...evidence.captures,...evidence.settlements,...evidence.shopCaptures,...evidence.closes,...(evidence.registrations??[])];
+ const publicById=new Map(publicRecords.map(r=>[r.id,r]));
+ assert.equal(publicById.size,publicRecords.length,'Duplicate public evidence id');assert.equal(publicById.size,records.length,'Public/storage record count mismatch');
+ for(const d of records){const c=publicById.get(d.id);assert(c,`Public evidence missing ${d.id}`);const {committedAt,...record}=c;
+  assert.equal(hash(record),d.bodyHash,`Public evidence differs ${d.id}`);assert.equal(committedAt,new Date(d.createTime).toISOString());
+  assert.equal(d.createTime,d.updateTime,`Evidence changed ${d.id}`);}
+ assert.equal(hash(publicReport.report.health),hash(body(healthDoc)),'Public/storage health differs');
 }
 const result={checkedAt:new Date().toISOString(),sha,deployment:live.id,scope:'Read-only actual production Firestore evidence/server times and public report; no crons, writes, paid requests or bets',
- requireEnabled,
+ requireEnabled,firstCommissioning,
  health:healthDoc?body(healthDoc):null,healthCreateTime:healthDoc?.createTime??null,healthUpdateTime:healthDoc?.updateTime??null,
  counts:Object.fromEntries([...new Set(records.map(d=>d.record.kind))].sort().map(k=>[k,records.filter(d=>d.record.kind===k).length])),comparison,records,publicReport};
 await fs.mkdir(path.dirname(out),{recursive:true});await fs.writeFile(out,JSON.stringify(result,null,2)+'\n',{flag:'wx'});
