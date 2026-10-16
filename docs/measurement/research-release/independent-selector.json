@@ -1,0 +1,21 @@
+{
+  "checkedAt": "2026-10-16T14:46:00.204Z",
+  "sourceCommit": "44dd5bf4478dd42ccd050f93348af61f496980e8",
+  "researchHash": "e6c0b5385f4b6c98a1a3f8f1e15ff7252140cae551b2c737b6ce74047c3e6853",
+  "scope": "Local independent selector verification only; diagnostic registration/clock/outcome mutations of actual deployed input, no network or storage writes.",
+  "verdict": "Final selector finding closed; no known remaining substantive blocker from this local review.",
+  "checks": [
+    "Executed exact committed selector text with old pre-registration settlement placed before eligible one.",
+    "Orphan settlement rejected.",
+    "Pre-registration settlement rejected.",
+    "Wrong capture-hash settlement rejected.",
+    "Exact eligible current-registration settlement selected.",
+    "No eligible current-registration settlement produces no selection."
+  ],
+  "selectedCaptureId": "model-nfl-401872996",
+  "limitations": [
+    "Production commissioning remains unproven.",
+    "Upcoming game outcome is not known; replay scores are diagnostic only.",
+    "No edge, execution or profit certification."
+  ]
+}

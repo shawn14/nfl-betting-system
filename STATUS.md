@@ -1,5 +1,11 @@
 # Prediction Matrix status
 
+## 2026-10-16 — research merged and disabled production independently verified
+
+PR10 merged as `083a14576debd916a8247e8d8b8c9a8b15c9d077`; actual domain/main/READY source matched at 14:53 UTC. Independent Vercel, public API and actual Firestore checks confirmed flag 0, zero evidence and the unchanged original failure heartbeat. All five results pages passed actual desktop/390px browser checks with no console errors. [Release evidence](docs/measurement/research-release/README.md). This proves the disabled release only.
+
+Next: the normal NFL refresh at 16:00 UTC, then guarded current-source activation, two real persisted scheduled cycles, enabled browser and actual final settlement. Two same-chat follow-ups are scheduled for 11:05 a.m. and 10:05 p.m. Chicago on October 16, automation `prediction-matrix-commissioning-proofs`. Existing explicit push/activation approval persists; no bets, tuning, paid test calls or blind retries. Goal active; no edge established. This checkpoint commit contains documentation/evidence only; verify its own deployed main SHA before commissioning.
+
 ## 2026-10-16 — source reachability verified; recurring research candidate
 
 PR9 merged60aab496 and actual canonical Vercel deployment `dpl_8MkXdScgPeMcEou8BtcvsWBF3fjU` served it. At14:28UTC, both builder and independent probes fromiad1 received200 JSON at the previously failing ESPN odds URL and returned three valid transient markets. Independent live env/API/Firestore proof confirms flag0, disabled, zero captures and unchanged original failure heartbeat. [Evidence](docs/measurement/SOURCE-DIAGNOSIS.md). This proves current reachability, not the cause or permanent resolution of the old503.

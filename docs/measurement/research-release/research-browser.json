@@ -1,0 +1,77 @@
+{
+  "checkedAt": "2026-10-16T14:52:48.844Z",
+  "sha": "083a14576debd916a8247e8d8b8c9a8b15c9d077",
+  "nfl": {
+    "desktop": {
+      "scrollWidth": 1146,
+      "text": "PM\nPrediction Matrix\nNFL\nNBA\nNHL\nCBB\nWNBA\nProps\nEV\nLive\nRankings\nResults\nResearch\nEdge unproven · Measured results\nNFL Measured results\n\nNo demonstrated edge yet. Model predictions and price shopping are separate experiments.\n\nView current prices\nDownload saved evidence\nModel predictions · one saved forecast per game\n\nThe first eligible published forecast in the final 72 hours is saved with its exact bookmaker line and prices, at least two minutes before scheduled start. Results use that record only. Missing prices are excluded, never filled with assumed odds.\n\nProspective collection is not enabled. No verified record is available yet.\n\nPaper returns risk one unit at the recorded price; no execution, stake limits or slippage are assumed. Ties/pushes return the stake; equal forecasts make no directional pick. Negative log-loss difference favors the model. ESPN provides an observation time, not a bookmaker update timestamp.\n\nResearch loop · fixed paper screens\n\nEvery 15 minutes, collection and grading feed three declared screens across five sports and three markets: published picks, raw model value, and the frozen EV rule. Each producer version stays separate. Rules are registered before their games are captured.\n\nResearch registration waits for prospective collection to be enabled.\n\nThese are paper screens, not bet recommendations. Returns subtract an assumed 1% cost per unit. Review requires the fixed 56-day horizon, at least 100 settled games across 14 dates, positive early and late results, and adjusted intervals favoring both returns and predictive loss. Approximate intervals account for declared comparisons; they do not certify fills or profit. A new untouched confirmation sample and independent review are still required. Nothing promotes automatically.\n\nPrice shopping · no model involved\n\nEach book, side and exact line is recorded once. Closing value requires a separate, later quote in the final hour before start. The flagged book is excluded from consensus; uncertainty is grouped by game.\n\nNo verified closing-price sample yet.\n\nCLV is a probability-point difference, not profit. Game lines and props are reported separately. Repeated books on one game do not create independent evidence. Small samples and multiple comparisons do not establish an edge.\n\nEach published model version and source commit is measured separately. Unknown producer records are descriptive only and cannot justify a model promotion. Historical results were recalculated after games, so they cannot prove pregame performance. They are excluded from this record. Model parameters and shopping thresholds remain frozen.\n\nPrediction Matrix\nEdge unproven · View measured results\nAbout\nFAQ\nPrediction Markets\nTerms\nPrivacy\nFor entertainment only. 21+. Problem? 1-800-522-4700",
+      "width": 1146
+    },
+    "mobile": {
+      "heading": "NFL Measured results",
+      "pending": true,
+      "scrollWidth": 390,
+      "width": 390
+    }
+  },
+  "routes": [
+    {
+      "route": "/nba/results",
+      "desktop": {
+        "heading": "NBA Measured results",
+        "pending": true,
+        "scrollWidth": 1146,
+        "width": 1146
+      },
+      "mobile": {
+        "pending": true,
+        "scrollWidth": 390,
+        "width": 390
+      }
+    },
+    {
+      "route": "/nhl/results",
+      "desktop": {
+        "heading": "NHL Measured results",
+        "pending": true,
+        "scrollWidth": 1146,
+        "width": 1146
+      },
+      "mobile": {
+        "pending": true,
+        "scrollWidth": 390,
+        "width": 390
+      }
+    },
+    {
+      "route": "/cbb/results",
+      "desktop": {
+        "heading": "CBB Measured results",
+        "pending": true,
+        "scrollWidth": 1146,
+        "width": 1146
+      },
+      "mobile": {
+        "pending": true,
+        "scrollWidth": 390,
+        "width": 390
+      }
+    },
+    {
+      "route": "/wnba/results",
+      "desktop": {
+        "heading": "WNBA Measured results",
+        "pending": true,
+        "scrollWidth": 1146,
+        "width": 1146
+      },
+      "mobile": {
+        "pending": true,
+        "scrollWidth": 390,
+        "width": 390
+      }
+    }
+  ],
+  "errors": [],
+  "scope": "Actual disabled production pages; enabled research tables not yet proven"
+}

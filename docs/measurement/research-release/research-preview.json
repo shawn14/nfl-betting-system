@@ -1,0 +1,47 @@
+{
+  "checkedAt": "2026-10-16T14:47:12.340Z",
+  "sha": "44dd5bf4478dd42ccd050f93348af61f496980e8",
+  "deployment": "dpl_4DeHYHAc1eBnRsDuhS7TYAQkQqdx",
+  "base": "https://nfl-betting-system-brx5szesl-stock-alarm.vercel.app",
+  "checks": [
+    {
+      "route": "/results",
+      "status": 200,
+      "researchSection": true,
+      "registrationPending": true
+    },
+    {
+      "route": "/nba/results",
+      "status": 200,
+      "researchSection": true,
+      "registrationPending": true
+    },
+    {
+      "route": "/nhl/results",
+      "status": 200,
+      "researchSection": true,
+      "registrationPending": true
+    },
+    {
+      "route": "/cbb/results",
+      "status": 200,
+      "researchSection": true,
+      "registrationPending": true
+    },
+    {
+      "route": "/wnba/results",
+      "status": 200,
+      "researchSection": true,
+      "registrationPending": true
+    },
+    {
+      "route": "/api/cron/measurement",
+      "status": 401
+    },
+    {
+      "route": "/api/admin/measurement-source?sport=nfl&event=401872996",
+      "status": 401
+    }
+  ],
+  "scope": "Actual preview HTTP/SSR and auth gates; enabled browser and storage remain unproven"
+}

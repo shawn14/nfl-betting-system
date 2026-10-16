@@ -1,0 +1,101 @@
+{
+  "checkedAt": "2026-10-16T14:53:04.473Z",
+  "verdict": "Bounded release claim independently verified",
+  "sha": "083a14576debd916a8247e8d8b8c9a8b15c9d077",
+  "deployment": "dpl_GZWQrPecVXimqpJxEXkjWUUYFXag",
+  "mainEqualsLive": true,
+  "productionFlag": {
+    "key": "FEATURE_MEASUREMENT_ENABLED",
+    "value": "0",
+    "target": [
+      "production"
+    ]
+  },
+  "publicState": "disabled",
+  "firestore": {
+    "records": 0,
+    "health": {
+      "ok": false,
+      "updated": "2026-10-16T06:02:55.851Z",
+      "error": "Measurement source HTTP 503: https://sports.core.api.espn.com/v2/sports/football/leagues/nfl/events/401872996/competitions/401872996/odds"
+    },
+    "healthCreateTime": "2026-10-16T06:02:55.959876Z",
+    "healthUpdateTime": "2026-10-16T06:02:55.959876Z"
+  },
+  "resultsRoutes": [
+    {
+      "route": "/results",
+      "status": 200,
+      "contentType": "text/html; charset=utf-8",
+      "researchHeading": true,
+      "registrationPending": true,
+      "htmlHash": "1bd67f180f0b928a5639b23d67cff0a3b6b0135ffc74d170a27757de8e7c4456",
+      "bytes": 24908
+    },
+    {
+      "route": "/nba/results",
+      "status": 200,
+      "contentType": "text/html; charset=utf-8",
+      "researchHeading": true,
+      "registrationPending": true,
+      "htmlHash": "1b7b8a429518e2256582c4ddb855a3182e51fa037c2c7c30eafd7425ab6b32fe",
+      "bytes": 25385
+    },
+    {
+      "route": "/nhl/results",
+      "status": 200,
+      "contentType": "text/html; charset=utf-8",
+      "researchHeading": true,
+      "registrationPending": true,
+      "htmlHash": "1fbdd1b2118feaa869621c805617a2da067e45d1c9538817231591d17891bec0",
+      "bytes": 25385
+    },
+    {
+      "route": "/cbb/results",
+      "status": 200,
+      "contentType": "text/html; charset=utf-8",
+      "researchHeading": true,
+      "registrationPending": true,
+      "htmlHash": "be235a51ce50774d33903d4a6d7ca2d85d69d8e5ea76319a9d22ae493d56ad13",
+      "bytes": 25490
+    },
+    {
+      "route": "/wnba/results",
+      "status": 200,
+      "contentType": "text/html; charset=utf-8",
+      "researchHeading": true,
+      "registrationPending": true,
+      "htmlHash": "9e67376e987d994893ef0ceabe509827dd381d9687662d8b2033f28f102afccf",
+      "bytes": 25402
+    }
+  ],
+  "unsignedProtections": [
+    {
+      "route": "/api/cron/measurement",
+      "status": 401,
+      "body": "{\"error\":\"Unauthorized\"}"
+    },
+    {
+      "route": "/api/cron/odds-board-record",
+      "status": 401,
+      "body": "{\"ok\":false,\"error\":\"Unauthorized\"}"
+    },
+    {
+      "route": "/api/cron/odds-props-record",
+      "status": 401,
+      "body": "{\"ok\":false,\"error\":\"Unauthorized\"}"
+    },
+    {
+      "route": "/api/admin/measurement-source?sport=nfl&event=401872996",
+      "status": 401,
+      "body": "{\"error\":\"Unauthorized\"}"
+    }
+  ],
+  "limitations": [
+    "Results-page checks inspect live server-rendered HTML; responsive layout and hydrated browser interaction were not exercised.",
+    "No authenticated collector or diagnostic execution, production writes, paid source calls, deployment or flag change.",
+    "Collection, registration persistence, two successful cycles and actual future settlement remain unproven.",
+    "No statistical edge, execution or profit certified."
+  ],
+  "storageEvidence": "/private/tmp/pm-research-independent-release-storage.json"
+}
