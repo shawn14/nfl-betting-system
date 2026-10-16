@@ -1,0 +1,43 @@
+{
+  "checkedAt": "2026-10-16T04:29:41.124Z",
+  "sourceUrl": "https://0luulmjdaimldet9.public.blob.vercel-storage.com/prediction-matrix-data.json",
+  "sourcePublishedAt": "2026-10-16T04:00:10.467Z",
+  "sourceHash": "e9d860d0d068f065145f7cc7abbe63d2d0665418df29fd4e54dbb0c316860274",
+  "receiptSourceHash": "e9d860d0d068f065145f7cc7abbe63d2d0665418df29fd4e54dbb0c316860274",
+  "sameWholeSourceHash": true,
+  "sameForecastEntry": true,
+  "eventState": {
+    "id": "401872996",
+    "commence": "2026-10-18T13:30Z",
+    "state": "pre",
+    "status": "STATUS_SCHEDULED",
+    "completed": false,
+    "homeId": "30",
+    "awayId": "34",
+    "homeScore": null,
+    "awayScore": null
+  },
+  "capturedPriceFieldsReparseExactly": true,
+  "currentProvider": "DraftKings",
+  "currentPrices": {
+    "mlHome": -142,
+    "mlAway": 120,
+    "spreadLine": -2.5,
+    "spreadHomePrice": -115,
+    "spreadAwayPrice": -105,
+    "totalLine": 42.5,
+    "overPrice": -112,
+    "underPrice": -108
+  },
+  "receiptPrices": {
+    "mlHome": -142,
+    "mlAway": 120,
+    "spreadLine": -2.5,
+    "spreadHomePrice": -115,
+    "spreadAwayPrice": -105,
+    "totalLine": 42.5,
+    "overPrice": -112,
+    "underPrice": -108
+  },
+  "currentPricesMatchReceipt": true
+}

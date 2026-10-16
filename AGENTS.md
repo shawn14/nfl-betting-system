@@ -16,15 +16,15 @@ Line-shop CLV also needs a later, timely close and game-grouped uncertainty: 126
 
 Evidence: [report](docs/reports/2026-10-15-edge-audit/edge-audit.html), [independent findings](docs/reports/2026-10-15-edge-audit/refuter-summary.txt). Offline proof: `node docs/reports/2026-10-15-edge-audit/refuter-proof.mjs`. Source / serving deployment / GitHub main verified at `6af083c277aa64fd13ec9269591fc57bdd611f68`.
 
-## Prospective measurement — local candidate, 2026-10-16
+## Prospective measurement — preview candidate, 2026-10-16
 
 Canonical contract/proof/release path: [docs/measurement/README.md](docs/measurement/README.md). Only immutable pregame records in `predictionMeasurementsV1` can support forward claims; legacy results and `modelVersion` alone cannot. Model/weights/thresholds stay frozen. `FEATURE_MEASUREMENT_ENABLED` defaults off. New collector is free-source only; shopping reuses existing paid payloads after the existing state/output checkpoint. Never trigger paid crons as a test.
 
 Use `npm run test:measurement` and the reserved real-Firestore proof `npm run test:measurement:live`; local HTTP proof covers all five results pages and auth gates. No application evidence updates/deletes. **Firestore gotcha:** `doc.create()` with this REST SDK retried ALREADY_EXISTS for 600s. The read-before-set transaction is intentional and independently proven for concurrent and repeat writes. No real deployed postgame settlement has been proven yet.
 
-**Producer provenance:** `forecastProducer` must be written with the forecast, never inferred from collector code or an old result-row version. Unknown stays unknown. Group by full published version/source SHA; old capture headers do not attribute unstamped entries. Contract and read-only/approval-gated proofs: [provenance](docs/measurement/provenance/README.md). The new reserved Firestore proof needs explicit approval after auto-review blocked it; do not retry indirectly.
+**Producer provenance:** `forecastProducer` must be written with the forecast, never inferred from collector code or an old result-row version. Unknown stays unknown. Group by full published version/source SHA; old capture headers do not attribute unstamped entries. Contract and read-only/approval-gated proofs: [provenance](docs/measurement/provenance/README.md). Shawn approved one reserved provenance proof on October15CT; it passed with cleanup and independent read-only review. Do not repeat writes under that spent one-test authorization.
 
-Publication/activation still requires Shawn's go. Read-only gate: `node scripts/measurement/release-check.mjs`. Use the existing GitHub branch → Vercel preview → main auto-deploy pipeline; never manual `vercel --prod` from the checkout. Report serving and GitHub main SHAs, not merely “pushed.”
+Review publication/preview are approved ([PR6](https://github.com/shawn14/nfl-betting-system/pull/6)); main merge, production deployment and activation still require Shawn's go. Preview client configuration and exact-SHA checks: [runbook](docs/preview/README.md). Read-only gate: `node scripts/measurement/release-check.mjs`. Use the existing GitHub branch → Vercel preview → main auto-deploy pipeline; never manual `vercel --prod` from the checkout. Report serving and GitHub main SHAs, not merely “pushed.”
 
 ## Research terminal and price identity — local candidate, 2026-10-16
 

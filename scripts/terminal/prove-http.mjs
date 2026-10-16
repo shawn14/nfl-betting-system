@@ -1,10 +1,10 @@
 #!/usr/bin/env node
-// Exercises the real, explicitly selected local Next process and its public source data.
+// Exercises the real, explicitly selected Next process and its public source data.
 import assert from 'node:assert/strict';
 import fs from 'node:fs/promises';
 import {createHash} from 'node:crypto';
-const base=process.env.PM_HTTP_BASE;
-assert(base&&/^http:\/\/(127\.0\.0\.1|localhost):\d+$/.test(base),'Explicit verified local server required');
+import {verifiedHttpBase} from '../measurement/http-target.mjs';
+const base=await verifiedHttpBase();
 const get=path=>fetch(base+path,{signal:AbortSignal.timeout(60000)});
 const response=await get('/api/terminal');assert.equal(response.status,200);const data=await response.json();
 assert(data.games.length>0,'Current real games required');

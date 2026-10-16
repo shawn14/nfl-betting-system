@@ -1,5 +1,11 @@
 # Prediction Matrix status
 
+## 2026-10-16 — approved review publication and reserved proof
+
+Shawn approved publishing `codex/prediction-terminal` for a Vercel preview plus one reserved provenance test. [Draft PR6](https://github.com/shawn14/nfl-betting-system/pull/6) is open. The test passed at04:27UTC: exact unknown provenance survived immutability/second-reader/report checks; zero settlements and cleanup confirmed independently. [Evidence](docs/measurement/provenance/approved-proof-review.md). Prior authorization-block notes below are superseded for these two approved steps only.
+
+The initial a64803e preview built READY but its browser failed `auth/invalid-api-key`: preview had only the Blob setting. Six existing public Firebase client settings are now branch-scoped in Vercel, value-verified, with no admin/paid key/measurement flag or production-env changes. Rebuilding through GitHub and verifying actual browser/HTTP behavior is next. [Runbook](docs/preview/README.md). Production/main remains `6af083c277aa64fd13ec9269591fc57bdd611f68`, ancestor of the review branch. Production merge/deployment/activation remain unapproved. Models frozen; no predictive edge proven.
+
 ## 2026-10-16 — producer provenance repair, local candidate
 
 The collector incorrectly assigned its installed model version to unstamped published forecasts. Red/green actual-record proof and an independent replay of the previously saved real Firestore capture confirmed the gap. All five writers now stamp declared version/source; capture/report use only published provenance and keep version/source cohorts separate. All82archived entries remain unknown, preserving the original evidence. [Contract/proof](docs/measurement/provenance/README.md).

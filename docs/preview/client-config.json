@@ -1,0 +1,65 @@
+{
+  "checkedAt": "2026-10-16T04:33:04.725Z",
+  "branch": "codex/prediction-terminal",
+  "productionSha": "6af083c277aa64fd13ec9269591fc57bdd611f68",
+  "onlyPublicClientSettings": true,
+  "adminCredentialsCopied": false,
+  "paidOddsKeyCopied": false,
+  "measurementEnabled": false,
+  "settings": [
+    {
+      "key": "NEXT_PUBLIC_FIREBASE_API_KEY",
+      "id": "s3LoeI3LaMHNHWIb",
+      "target": [
+        "preview"
+      ],
+      "gitBranch": "codex/prediction-terminal",
+      "valueMatchesProduction": true
+    },
+    {
+      "key": "NEXT_PUBLIC_FIREBASE_AUTH_DOMAIN",
+      "id": "hVvNiwOGXivHfJYa",
+      "target": [
+        "preview"
+      ],
+      "gitBranch": "codex/prediction-terminal",
+      "valueMatchesProduction": true
+    },
+    {
+      "key": "NEXT_PUBLIC_FIREBASE_PROJECT_ID",
+      "id": "QVORhZh1LpGxEYb4",
+      "target": [
+        "preview"
+      ],
+      "gitBranch": "codex/prediction-terminal",
+      "valueMatchesProduction": true
+    },
+    {
+      "key": "NEXT_PUBLIC_FIREBASE_STORAGE_BUCKET",
+      "id": "V8pcefBOedMatyYs",
+      "target": [
+        "preview"
+      ],
+      "gitBranch": "codex/prediction-terminal",
+      "valueMatchesProduction": true
+    },
+    {
+      "key": "NEXT_PUBLIC_FIREBASE_MESSAGING_SENDER_ID",
+      "id": "zjTtBRavB8pD7xoX",
+      "target": [
+        "preview"
+      ],
+      "gitBranch": "codex/prediction-terminal",
+      "valueMatchesProduction": true
+    },
+    {
+      "key": "NEXT_PUBLIC_FIREBASE_APP_ID",
+      "id": "zEsSqUVsewsdO9wY",
+      "target": [
+        "preview"
+      ],
+      "gitBranch": "codex/prediction-terminal",
+      "valueMatchesProduction": true
+    }
+  ]
+}

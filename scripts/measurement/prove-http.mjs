@@ -1,8 +1,8 @@
 #!/usr/bin/env node
-// Real local Next server only; no mocks, no paid endpoints. Set PM_HTTP_BASE explicitly.
+// Real local or exact verified preview Next server only; no mocks, no paid endpoints. Set PM_HTTP_BASE explicitly.
 import assert from 'node:assert/strict';
-const base=process.env.PM_HTTP_BASE;
-assert(base && /^http:\/\/(127\.0\.0\.1|localhost):\d+$/.test(base),'Explicit verified local server required');
+import {verifiedHttpBase} from '../measurement/http-target.mjs';
+const base=await verifiedHttpBase();
 const routes=['/results','/nba/results','/nhl/results','/cbb/results','/wnba/results','/faq','/about','/ev'];
 for(const path of routes){
  const r=await fetch(base+path,{signal:AbortSignal.timeout(60000)});assert.equal(r.status,200,path);
@@ -19,4 +19,4 @@ for(const path of ['/api/cron/measurement','/api/cron/odds-board-record','/api/c
  const r=await fetch(base+path);assert.equal(r.status,401,`${path}: unauthenticated request must not collect or spend`);
  console.log(`PASS denied unauthorized ${path}`);
 }
-console.log('PASS real local HTTP proof: no fabricated performance, all five results routes, auth gates');
+console.log('PASS real HTTP proof: no fabricated performance, all five results routes, auth gates');
