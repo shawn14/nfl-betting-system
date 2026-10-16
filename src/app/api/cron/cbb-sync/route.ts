@@ -11,6 +11,7 @@ import {
 } from '@/services/firestore-admin-store';
 import { SportKey } from '@/services/firestore-types';
 import { MODEL_VERSION } from '@/lib/model-version';
+import { forecastProducer } from '@/lib/forecast-provenance';
 import { fetchCollegeBasketballOdds, matchGameOdds, type EventOddsMap } from '@/services/odds';
 import { fetchCollegeBasketballTeams, fetchESPNCollegeBasketballOdds } from '@/services/espn';
 import { CBB_LEAGUE_AVG_PPG, INITIAL_ELO_BY_TIER, getConferenceTier } from '@/types/cbb';
@@ -832,6 +833,7 @@ export async function GET(request: Request) {
           gameTime: game.gameTime,
         },
         prediction: {
+          forecastProducer: forecastProducer(process.env.VERCEL_GIT_COMMIT_SHA),
           predictedHomeScore: predHome,
           predictedAwayScore: predAway,
           predictedSpread,

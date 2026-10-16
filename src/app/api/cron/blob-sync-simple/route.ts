@@ -16,6 +16,7 @@ import {
 } from '@/services/firestore-admin-store';
 import { SportKey } from '@/services/firestore-types';
 import { MODEL_VERSION } from '@/lib/model-version';
+import { forecastProducer } from '@/lib/forecast-provenance';
 import { newClvAccumulator, addClv, finalizeClv, type ClvSummary } from '@/lib/clv';
 
 // Constants - Optimized via simulation (927 parameter combinations tested)
@@ -909,6 +910,7 @@ export async function GET(request: Request) {
           awayTeam: { id: awayTeam.id, name: awayTeam.name, abbreviation: awayTeam.abbreviation },
         },
         prediction: {
+          forecastProducer: forecastProducer(process.env.VERCEL_GIT_COMMIT_SHA),
           gameId: game.id,
           predictedHomeScore: predHome,
           predictedAwayScore: predAway,

@@ -3,7 +3,7 @@ import { createHash } from 'node:crypto';
 import { americanToDecimal, devigTwoWay, probHomeCovers, probOver, RESULT_SIGMA } from '../fair-value.ts';
 import { parseEspnPrices } from '../espn-prices.ts';
 import type { PriceSnapshot } from '../espn-prices.ts';
-import { MODEL_VERSION } from '../model-version.ts';
+import { publishedProducer } from '../forecast-provenance.ts';
 
 export const MEASUREMENT_VERSION = '2026-10-16-v1';
 export const CAPTURE_HOURS = 72;
@@ -39,7 +39,7 @@ export interface FrozenMarket {
   side: 'a' | 'b' | null; modelA: number; marketA: number;
 }
 export interface ModelCapture {
-  id: string; kind: 'model'; version: string; modelVersion: string; collectorSha: string;
+  id: string; kind: 'model'; version: string; modelVersion: string | null; modelSourceSha: string | null; collectorSha: string;
   sport: Sport; gameId: string; commence: string; capturedAt: string; deadline: string;
   publishedAt: string; sourceUrl: string; sourceHash: string;
   entry: Json; status: EventState; rawPrices: Json; provider: string; prices: PriceSnapshot;
@@ -77,7 +77,7 @@ export function makeCapture(input: { sport: Sport; entry: Json; publishedAt: str
     probOver(pred.predictedTotal, p.totalLine, RESULT_SIGMA[sport].total), p.totalLine, pred.predictedTotal - p.totalLine);
   if (!markets.length) return null;
   return clean({ id: modelId(sport, String(g.id)), kind: 'model', version: MEASUREMENT_VERSION,
-    modelVersion: MODEL_VERSION, collectorSha: input.collectorSha ?? 'local-unreleased', sport, gameId: String(g.id),
+    modelVersion: publishedProducer(entry)?.modelVersion ?? null, modelSourceSha: publishedProducer(entry)?.sourceSha ?? null, collectorSha: input.collectorSha ?? 'local-unreleased', sport, gameId: String(g.id),
     commence: new Date(kick).toISOString(), deadline: new Date(kick - SAFETY_MS).toISOString(),
     capturedAt: new Date(now).toISOString(), publishedAt: input.publishedAt, sourceUrl: input.sourceUrl,
     sourceHash: input.sourceHash, entry, status: event, rawPrices: input.rawPrices, provider: parsed.provider,

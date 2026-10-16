@@ -1,5 +1,13 @@
 # Prediction Matrix status
 
+## 2026-10-16 — producer provenance repair, local candidate
+
+The collector incorrectly assigned its installed model version to unstamped published forecasts. Red/green actual-record proof and an independent replay of the previously saved real Firestore capture confirmed the gap. All five writers now stamp declared version/source; capture/report use only published provenance and keep version/source cohorts separate. All82archived entries remain unknown, preserving the original evidence. [Contract/proof](docs/measurement/provenance/README.md).
+
+TypeScript plus provenance/measurement/odds/terminal regressions pass. Current-public read at04:12:57 UTC confirms NFL401872996 remains unattributed and uncommitted output is excluded from reporting. Independent23malformed metadata cases/7diagnostic cohorts/21market rows pass. No formulas/weights changed; no new predictive edge proven.
+
+Automatic approval review rejected the reserved real-Firestore create/delete proof because production-credential writes exceed current local-only authorization. Test saved, not run or retried. Publication remains separately unapproved. Main/live4:12:58UTC both `6af083c277aa64fd13ec9269591fc57bdd611f68`, ancestor of candidate; measurement absent. Next requires explicit branch/preview and reserved-proof approval, followed by authenticated enabled UI and separately approved deployment/activation. No further local UI breadth or model tuning substitutes for those gates and actual prospective outcomes.
+
 ## 2026-10-16 — exact-event odds repair, local candidate
 
 All five writers now share strict sport/both-teams/start-time matching and preserve provider identity and per-book source clocks. Five live readers reject unidentified legacy quotes; periodic-observation copy and source timestamps replace the misleading live-price/averaged-price display. No model changes. [Contract and proof](docs/odds-identity/README.md).

@@ -22,6 +22,8 @@ Canonical contract/proof/release path: [docs/measurement/README.md](docs/measure
 
 Use `npm run test:measurement` and the reserved real-Firestore proof `npm run test:measurement:live`; local HTTP proof covers all five results pages and auth gates. No application evidence updates/deletes. **Firestore gotcha:** `doc.create()` with this REST SDK retried ALREADY_EXISTS for 600s. The read-before-set transaction is intentional and independently proven for concurrent and repeat writes. No real deployed postgame settlement has been proven yet.
 
+**Producer provenance:** `forecastProducer` must be written with the forecast, never inferred from collector code or an old result-row version. Unknown stays unknown. Group by full published version/source SHA; old capture headers do not attribute unstamped entries. Contract and read-only/approval-gated proofs: [provenance](docs/measurement/provenance/README.md). The new reserved Firestore proof needs explicit approval after auto-review blocked it; do not retry indirectly.
+
 Publication/activation still requires Shawn's go. Read-only gate: `node scripts/measurement/release-check.mjs`. Use the existing GitHub branch → Vercel preview → main auto-deploy pipeline; never manual `vercel --prod` from the checkout. Report serving and GitHub main SHAs, not merely “pushed.”
 
 ## Research terminal and price identity — local candidate, 2026-10-16

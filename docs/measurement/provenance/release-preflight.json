@@ -1,0 +1,18 @@
+{
+  "checkedAt": "2026-10-16T04:12:58.747Z",
+  "repo": "https://github.com/shawn14/nfl-betting-system",
+  "githubMain": "6af083c277aa64fd13ec9269591fc57bdd611f68",
+  "liveSha": "6af083c277aa64fd13ec9269591fc57bdd611f68",
+  "mainMatchesLive": true,
+  "deployment": "dpl_BsncVNYf3joHMopMcH55SmfFnSDQ",
+  "state": "READY",
+  "requiredEnvNames": [
+    "CRON_SECRET",
+    "FIREBASE_ADMIN_CREDENTIALS",
+    "BLOB_READ_WRITE_TOKEN"
+  ],
+  "flagConfigured": false,
+  "measurementState": "not-deployed",
+  "health": null,
+  "captures": null
+}

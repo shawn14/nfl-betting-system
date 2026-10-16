@@ -14,6 +14,6 @@ const env=envs.envs.find(x=>x.key==='FIREBASE_ADMIN_CREDENTIALS' && x.target?.in
 if(!env)throw new Error('Verified project has no production Firebase credential');
 const secret=await read(`${base}/env/${env.id}?teamId=${project.orgId}`);
 if(!secret.value || secret.type==='sensitive')throw new Error('Existing credential unavailable for local proof');
-const child=spawnSync(process.execPath,['--no-warnings',new URL('./prove-live.mjs',import.meta.url).pathname],{
+const child=spawnSync(process.execPath,['--no-warnings',new URL(process.argv.includes('--provenance')?'./prove-provenance-live.mjs':'./prove-live.mjs',import.meta.url).pathname],{
   stdio:'inherit',env:{...process.env,FIREBASE_ADMIN_CREDENTIALS:secret.value}});
 process.exitCode=child.status??1;

@@ -11,6 +11,7 @@ import {
 } from '@/services/firestore-admin-store';
 import { SportKey } from '@/services/firestore-types';
 import { MODEL_VERSION } from '@/lib/model-version';
+import { forecastProducer } from '@/lib/forecast-provenance';
 import { fetchNHLTeams, fetchNHLSchedule, fetchNHLScheduleRange, fetchAllCompletedNHLGames } from '@/services/espn';
 import { fetchNHLOdds, matchGameOdds, type EventOddsMap } from '@/services/odds';
 
@@ -679,6 +680,7 @@ export async function GET(request: Request) {
           },
         },
         prediction: {
+          forecastProducer: forecastProducer(process.env.VERCEL_GIT_COMMIT_SHA),
           gameId: game.id,
           predictedHomeScore: predHome,
           predictedAwayScore: predAway,
