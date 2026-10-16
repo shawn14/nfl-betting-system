@@ -1,0 +1,12 @@
+{
+  "startedAt": "2026-10-16T06:02:54.395Z",
+  "completedAt": "2026-10-16T06:02:56.020Z",
+  "sha": "78760202dd9ac3bde42808e5956887f4bf94409e",
+  "deployment": "dpl_HNC4AkNghh2yTzii7LvR8MXWxhzg",
+  "httpStatus": 500,
+  "trigger": "One approved manual free-source collection; next proof is scheduled run",
+  "result": {
+    "ok": false,
+    "error": "Measurement source HTTP 503: https://sports.core.api.espn.com/v2/sports/football/leagues/nfl/events/401872996/competitions/401872996/odds"
+  }
+}

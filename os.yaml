@@ -14,6 +14,8 @@ deployment:
   method: GitHub branch to Vercel preview, approved main merge to automatic production deployment
   runbook: docs/measurement/README.md
   read_only_gate: node scripts/measurement/release-check.mjs
+  activation_operator: node scripts/measurement/activate.mjs
+  storage_inspection: node scripts/measurement/inspect-production.mjs
   preview_runbook: docs/preview/README.md
 capabilities:
   - ~/projects/CAPABILITIES.md#sports-betting-sharp-fair-value-line-shopping-clv-ledger-market-lab--home-nfl-betting-system
@@ -22,3 +24,4 @@ proof:
   - docs/measurement/README.md
   - docs/odds-identity/README.md
   - docs/measurement/provenance/README.md
+  - docs/measurement/activation/README.md

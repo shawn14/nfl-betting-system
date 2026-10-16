@@ -1,0 +1,73 @@
+{
+  "checkedAt": "2026-10-16T06:06:08.920Z",
+  "method": "Independent direct Vercel alias/env reads, fresh git remote main read, direct Firestore REST collection+server metadata, public runtime endpoint; no project verifier imported",
+  "githubMain": "78760202dd9ac3bde42808e5956887f4bf94409e",
+  "canonicalHost": "www.predictionmatrix.com",
+  "deployment": {
+    "id": "dpl_BWZSsUEH6unx7jiH7RWB8dd4kKM6",
+    "projectId": "prj_VemM1b2iqIO1rGHD4VJVJbuo07jZ",
+    "readyState": "READY",
+    "target": "production",
+    "sourceSha": "78760202dd9ac3bde42808e5956887f4bf94409e"
+  },
+  "featureFlag": {
+    "key": "FEATURE_MEASUREMENT_ENABLED",
+    "target": [
+      "production"
+    ],
+    "value": "0"
+  },
+  "publicState": "disabled",
+  "firestoreProject": "betanalytics-f095a",
+  "evidenceCollection": "predictionMeasurementsV1",
+  "evidenceDocumentCount": 0,
+  "failedHeartbeat": {
+    "ok": false,
+    "error": "Measurement source HTTP 503: https://sports.core.api.espn.com/v2/sports/football/leagues/nfl/events/401872996/competitions/401872996/odds",
+    "updated": "2026-10-16T06:02:55.851Z"
+  },
+  "heartbeatCreateTime": "2026-10-16T06:02:55.959876Z",
+  "heartbeatUpdateTime": "2026-10-16T06:02:55.959876Z",
+  "conclusion": "Rollback independently verified. Commissioning blocked by observed ESPN503; zero stored measurements, no successful first or second capture run, no enabled browser or settlement proof.",
+  "safety": {
+    "cronInvocations": 0,
+    "espnReads": 0,
+    "paidOddsRequests": 0,
+    "databaseWrites": 0,
+    "vercelWrites": 0
+  },
+  "reads": [
+    {
+      "host": "api.vercel.com",
+      "status": 200
+    },
+    {
+      "host": "api.vercel.com",
+      "status": 200
+    },
+    {
+      "host": "api.vercel.com",
+      "status": 200
+    },
+    {
+      "host": "api.vercel.com",
+      "status": 200
+    },
+    {
+      "host": "api.vercel.com",
+      "status": 200
+    },
+    {
+      "host": "firestore.googleapis.com",
+      "status": 200
+    },
+    {
+      "host": "firestore.googleapis.com",
+      "status": 200
+    },
+    {
+      "host": "www.predictionmatrix.com",
+      "status": 200
+    }
+  ]
+}

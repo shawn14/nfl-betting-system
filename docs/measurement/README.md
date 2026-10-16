@@ -1,6 +1,6 @@
 # Prospective measurement — release candidate, 2026-10-16
 
-**PR6 is deployed and production checks passed; collection remains off. No demonstrated edge.** [Release evidence](../production/README.md). Model parameters, `MODEL_VERSION`, probability transforms, blending weights and shopping thresholds are unchanged. The historical results were generated after games and cannot establish forward performance. The [audit](../reports/2026-10-15-edge-audit/edge-audit.html) explains the contamination.
+**PR6 is deployed; the approved activation failed on a deployed ESPN HTTP503 before any capture, and rollback was independently verified. Collection remains off. No demonstrated edge.** [Activation incident](activation/README.md). [Release evidence](../production/README.md). Model parameters, `MODEL_VERSION`, probability transforms, blending weights and shopping thresholds are unchanged. The historical results were generated after games and cannot establish forward performance. The [audit](../reports/2026-10-15-edge-audit/edge-audit.html) explains the contamination.
 
 ## Frozen measurement contract
 
@@ -47,9 +47,9 @@ Observed proof on October 16 UTC:
 
 **SDK gotcha:** with firebase-admin 12.7 / `preferRest`, `doc.create()` on an existing document retried ALREADY_EXISTS for 600 seconds. Do not restore that path. Read-before-set transactions with three attempts passed concurrent and repeated real-service proofs.
 
-## Release procedure — main deployment approved, activation pending
+## Release procedure — main and paper activation approved; verify actual state
 
-Canonical pipeline is a pushed branch → Vercel preview → merge into clean current main → automatic production deploy. Do not run `vercel --prod` from a local checkout. Shawn approved the review branch, Vercel preview and one reserved provenance test on October15CT. Shawn subsequently requested “push to main” on October 16; [PR6](https://github.com/shawn14/nfl-betting-system/pull/6) merged as `69240a9`. Activation still requires separate approval under global rule 7. [Preview proof/runbook](../preview/README.md).
+Canonical pipeline is a pushed branch → Vercel preview → merge into clean current main → automatic production deploy. Do not run `vercel --prod` from a local checkout. Shawn approved the review branch, Vercel preview and one reserved provenance test on October15CT. Shawn subsequently requested “push to main” on October 16; [PR6](https://github.com/shawn14/nfl-betting-system/pull/6) merged as `69240a9`. Shawn subsequently replied “approval” to the explicit paper-activation request. [Preview proof/runbook](../preview/README.md).
 
 1. Run `node scripts/measurement/release-check.mjs`. It reads the serving domain mapping and deployment SHA, freshly reads GitHub main, checks required environment names, and inspects the public measurement endpoint. Stop on drift or missing credentials. At 02:34 UTC main and the READY production alias both equaled `6af083c277aa64fd13ec9269591fc57bdd611f68`; the feature flag did not exist.
 2. After approval, push the integrated `codex/prediction-terminal` branch, open a PR, and require its Vercel preview build and real page/auth checks to pass. Keep collection disabled on preview; do not attach paid cron triggers to a preview. Stop on the first infrastructure failure or code mismatch.
@@ -65,3 +65,25 @@ Read-only production checks reuse the existing suites with an explicit full depl
 PM_HTTP_BASE=https://www.predictionmatrix.com PM_EXPECT_LIVE_SHA=<full-current-main-sha> node scripts/terminal/prove-http.mjs
 PM_HTTP_BASE=https://www.predictionmatrix.com PM_EXPECT_LIVE_SHA=<full-current-main-sha> node scripts/measurement/prove-http.mjs
 ```
+
+## Guarded activation and rollback operator
+
+Run from the operator checkout; the primary checkout must remain clean on freshly verified GitHub main. This operator changes only the production measurement flag and asks Vercel to build that **same** GitHub main SHA. No local source upload, model change, cron invocation, paid odds request, evidence deletion or wager is performed. Its first-commissioning gate requires a real nonempty, fresh NFL forecast set with declared producer attribution; do not use an empty refresh to clear it.
+
+```sh
+node --no-warnings scripts/measurement/activate.mjs --sha <full-current-main-sha> --value 1
+# With explicit activation approval, and only after readiness is true:
+node --no-warnings scripts/measurement/activate.mjs --sha <full-current-main-sha> --value 1 --apply --receipt <new-absolute-json-path>
+# Approved rollback: same guarded command, --value 0 and a new receipt path.
+```
+
+The receipt records each mutation boundary. A failure after `env-write-pending` or `deployment-request-pending` can have changed state: inspect the actual env/deployment and receipt before another action. Do not blindly rerun an ambiguous write. A READY response is accepted only when the canonical domain owns that exact deployment and its public report reflects the requested flag. First/second collector runs are separate proof.
+
+`inspect-production.mjs` reads only the two production measurement collections using the existing Vercel credential in memory. It saves every evidence body with Firestore creation/update timestamps and a canonical hash; no SDK install is needed. It also reads the public report.
+
+```sh
+node --no-warnings scripts/measurement/inspect-production.mjs --sha <full-current-main-sha> --require-enabled --out <new-first-run-json>
+node --no-warnings scripts/measurement/inspect-production.mjs --sha <full-current-main-sha> --require-enabled --out <new-second-run-json> --compare <first-run-json>
+```
+
+Enabled proof requires a fresh successful real-run heartbeat, nonzero NFL captures, exact producer/collector SHA and model version, and public evidence matching the database. The second read additionally requires a later server heartbeat update and unchanged prior evidence IDs, hashes, creation and update times. Inspect price identity and verify the enabled browser pages. A collector heartbeat does not prove shopping collectors or final settlement. The first real captured final game still needs a separate end-to-end comparison and independent review.

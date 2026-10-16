@@ -1,5 +1,13 @@
 # Prediction Matrix status
 
+## 2026-10-16 — approved activation hit a deployed upstream failure; rollback verified
+
+Shawn approved production paper collection. The normal06:00UTC NFL refresh provided all12 expected attributed candidates; all31 future-window forecast entries passed provenance/freshness gates. The guarded operator enabled the production-only flag and rebuilt exact main `78760202dd9ac3bde42808e5956887f4bf94409e`, serving READY deployment `dpl_HNC4AkNghh2yTzii7LvR8MXWxhzg` at06:02:11UTC. This proves the flag/deployment path, not collection.
+
+The first actual deployed free-source collector at06:02:54UTC failed because the ESPN NFL401872996 odds request returned503. Actual Firestore read06:03:34UTC confirms **zero evidence records** and a failed server heartbeat06:02:55.959876. No retry, paid test calls, bets, model tuning or retrospective data substitution. Rollback to flag0/same source served READY deployment `dpl_BWZSsUEH6unx7jiH7RWB8dd4kKM6` at06:04:52UTC; independent domain/env/API/Firestore proof at06:06:08UTC confirmed disabled and zero records. The real results page displays collection disabled with no console errors. [Incident/evidence](docs/measurement/activation/README.md). Operator/checks and incident evidence are in PR8; application source is unchanged from the verified main release. The final operations/docs merge needs its own exact-SHA disabled-state readback.
+
+Next: inspect the failing request from the deployed Vercel environment before another activation. Do not infer provider reachability from laptop GETs or invent fallback prices. First two successful persisted runs, enabled browser scorecard, shopping collectors and actual final-game settlement remain unproven. No prediction edge established. Earlier approval holds are superseded; this is a real observed infrastructure stop.
+
 ## 2026-10-16 — main deployment approved
 
 Shawn explicitly requested “push to main.” PR6 was merged as `69240a9bb7b036e7ccc5b70a2550413c500085c5`, preserving the verified `3e3ab94` review history. The actual production domain served that exact READY SHA at 05:04 UTC. All 79 exports, 144 exact quote sides, five result routes, three unsigned collector gates and desktop/390px browser controls passed. [Release evidence](docs/production/README.md). An independent review is recorded alongside the release proof. The final evidence/runbook commit changes no application source and its deployed SHA must also be checked. This supersedes prior publication/deployment holds below; collection activation was not included and the flag remains absent. No model tuning or paid test calls.
