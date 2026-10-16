@@ -1,0 +1,55 @@
+{
+  "startedAt": "2026-10-16T06:01:02.150Z",
+  "apply": true,
+  "sha": "78760202dd9ac3bde42808e5956887f4bf94409e",
+  "value": "1",
+  "phase": "serving-verified",
+  "updatedAt": "2026-10-16T06:02:11.649Z",
+  "liveDeployment": "dpl_2YctSEeWsP4Nw7vsUA1Jg7SoQRLa",
+  "previousValue": null,
+  "readiness": {
+    "ready": true,
+    "rows": [
+      {
+        "sport": "nfl",
+        "publishedAt": "2026-10-16T06:00:10.885Z",
+        "candidates": 12,
+        "fresh": true,
+        "mismatches": []
+      },
+      {
+        "sport": "nba",
+        "publishedAt": "2026-10-16T05:30:54.346Z",
+        "candidates": 0,
+        "fresh": true,
+        "mismatches": []
+      },
+      {
+        "sport": "nhl",
+        "publishedAt": "2026-10-16T06:00:12.769Z",
+        "candidates": 18,
+        "fresh": true,
+        "mismatches": []
+      },
+      {
+        "sport": "cbb",
+        "publishedAt": "2026-10-16T06:00:41.538Z",
+        "candidates": 0,
+        "fresh": true,
+        "mismatches": []
+      },
+      {
+        "sport": "wnba",
+        "publishedAt": "2026-10-16T06:00:15.557Z",
+        "candidates": 1,
+        "fresh": true,
+        "mismatches": []
+      }
+    ]
+  },
+  "deploymentId": "dpl_HNC4AkNghh2yTzii7LvR8MXWxhzg",
+  "readyState": "READY",
+  "measurementState": "available",
+  "health": null,
+  "captures": 0
+}

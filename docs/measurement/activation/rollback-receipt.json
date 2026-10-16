@@ -1,0 +1,16 @@
+{
+  "startedAt": "2026-10-16T06:03:43.339Z",
+  "apply": true,
+  "sha": "78760202dd9ac3bde42808e5956887f4bf94409e",
+  "value": "0",
+  "phase": "serving-verified",
+  "updatedAt": "2026-10-16T06:04:52.847Z",
+  "liveDeployment": "dpl_HNC4AkNghh2yTzii7LvR8MXWxhzg",
+  "previousValue": "1",
+  "readiness": null,
+  "deploymentId": "dpl_BWZSsUEH6unx7jiH7RWB8dd4kKM6",
+  "readyState": "READY",
+  "measurementState": "disabled",
+  "health": null,
+  "captures": null
+}

@@ -1,0 +1,16 @@
+{
+  "checkedAt": "2026-10-16T05:45:56.819Z",
+  "sha": "78760202dd9ac3bde42808e5956887f4bf94409e",
+  "deployment": "dpl_2YctSEeWsP4Nw7vsUA1Jg7SoQRLa",
+  "scope": "Read-only actual production Firestore evidence/server times and public report; no crons, writes, paid requests or bets",
+  "health": null,
+  "healthCreateTime": null,
+  "healthUpdateTime": null,
+  "counts": {},
+  "comparison": null,
+  "records": [],
+  "publicReport": {
+    "state": "disabled",
+    "report": null
+  }
+}

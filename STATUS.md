@@ -1,10 +1,12 @@
 # Prediction Matrix status
 
-## 2026-10-16 — paper collection activation approved, in progress
+## 2026-10-16 — approved activation hit a deployed upstream failure; rollback verified
 
-Shawn replied “approval” to the explicit production paper-collection request. This supersedes the activation-approval hold below, but not model tuning, paid test requests or betting restrictions. Primary/main/serving source remains `78760202dd9ac3bde42808e5956887f4bf94409e`. A read-only production baseline at05:45:56UTC found zero measurement records and no heartbeat; flag absent. The guarded operator is `scripts/measurement/activate.mjs`, default read-only. It requires current source attribution before activation and deploys the same GitHub main source, never local files.
+Shawn approved production paper collection. The normal06:00UTC NFL refresh provided all12 expected attributed candidates; all31 future-window forecast entries passed provenance/freshness gates. The guarded operator enabled the production-only flag and rebuilt exact main `78760202dd9ac3bde42808e5956887f4bf94409e`, serving READY deployment `dpl_HNC4AkNghh2yTzii7LvR8MXWxhzg` at06:02:11UTC. This proves the flag/deployment path, not collection.
 
-Next: observe the normal06:00UTC NFL refresh with producer attribution, activate production-only collection, verify READY/domain/effective flag, then inspect the first two normal scheduled captures with `inspect-production.mjs`. Final settlement remains unverified until an actually captured game finishes. No model edge proven.
+The first actual deployed free-source collector at06:02:54UTC failed because the ESPN NFL401872996 odds request returned503. Actual Firestore read06:03:34UTC confirms **zero evidence records** and a failed server heartbeat06:02:55.959876. No retry, paid test calls, bets, model tuning or retrospective data substitution. Rollback to flag0/same source served READY deployment `dpl_BWZSsUEH6unx7jiH7RWB8dd4kKM6` at06:04:52UTC; independent domain/env/API/Firestore proof at06:06:08UTC confirmed disabled and zero records. The real results page displays collection disabled with no console errors. [Incident/evidence](docs/measurement/activation/README.md). Operator/checks and incident evidence are in PR8; application source is unchanged from the verified main release. The final operations/docs merge needs its own exact-SHA disabled-state readback.
+
+Next: inspect the failing request from the deployed Vercel environment before another activation. Do not infer provider reachability from laptop GETs or invent fallback prices. First two successful persisted runs, enabled browser scorecard, shopping collectors and actual final-game settlement remain unproven. No prediction edge established. Earlier approval holds are superseded; this is a real observed infrastructure stop.
 
 ## 2026-10-16 — main deployment approved
 

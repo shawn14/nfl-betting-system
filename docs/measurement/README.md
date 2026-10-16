@@ -1,6 +1,6 @@
 # Prospective measurement — release candidate, 2026-10-16
 
-**PR6 is deployed and production checks passed; collection remains off. No demonstrated edge.** [Release evidence](../production/README.md). Model parameters, `MODEL_VERSION`, probability transforms, blending weights and shopping thresholds are unchanged. The historical results were generated after games and cannot establish forward performance. The [audit](../reports/2026-10-15-edge-audit/edge-audit.html) explains the contamination.
+**PR6 is deployed; the approved activation failed on a deployed ESPN HTTP503 before any capture, and rollback was independently verified. Collection remains off. No demonstrated edge.** [Activation incident](activation/README.md). [Release evidence](../production/README.md). Model parameters, `MODEL_VERSION`, probability transforms, blending weights and shopping thresholds are unchanged. The historical results were generated after games and cannot establish forward performance. The [audit](../reports/2026-10-15-edge-audit/edge-audit.html) explains the contamination.
 
 ## Frozen measurement contract
 
