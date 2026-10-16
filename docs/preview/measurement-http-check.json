@@ -1,0 +1,26 @@
+{
+  "observedAt": "2026-10-16T04:36Z",
+  "base": "https://nfl-betting-system-580weyvmo-stock-alarm.vercel.app",
+  "sourceSha": "bd1fb695c497f1b77e936b1609d621bdd74b4c60",
+  "passed": true,
+  "http200": [
+    "/results",
+    "/nba/results",
+    "/nhl/results",
+    "/cbb/results",
+    "/wnba/results",
+    "/faq",
+    "/about",
+    "/ev"
+  ],
+  "unauthenticated401": [
+    "/api/cron/measurement",
+    "/api/cron/odds-board-record",
+    "/api/cron/odds-props-record"
+  ],
+  "measurement": {
+    "state": "disabled",
+    "report": null
+  },
+  "paidRequests": 0
+}

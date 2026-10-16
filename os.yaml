@@ -3,7 +3,7 @@ repository: https://github.com/shawn14/nfl-betting-system
 production_url: https://www.predictionmatrix.com
 research_surface:
   path: /terminal
-  state: local_candidate_not_deployed
+  state: verified_review_preview_production_unchanged
 data_sources:
   - Existing public prediction and odds-board Vercel Blob snapshots
   - ESPN scheduled and final game records
@@ -14,6 +14,7 @@ deployment:
   method: GitHub branch to Vercel preview, approved main merge to automatic production deployment
   runbook: docs/measurement/README.md
   read_only_gate: node scripts/measurement/release-check.mjs
+  preview_runbook: docs/preview/README.md
 capabilities:
   - ~/projects/CAPABILITIES.md#sports-betting-sharp-fair-value-line-shopping-clv-ledger-market-lab--home-nfl-betting-system
 proof:
