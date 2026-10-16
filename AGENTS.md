@@ -16,6 +16,14 @@ Line-shop CLV also needs a later, timely close and game-grouped uncertainty: 126
 
 Evidence: [report](docs/reports/2026-10-15-edge-audit/edge-audit.html), [independent findings](docs/reports/2026-10-15-edge-audit/refuter-summary.txt). Offline proof: `node docs/reports/2026-10-15-edge-audit/refuter-proof.mjs`. Source / serving deployment / GitHub main verified at `6af083c277aa64fd13ec9269591fc57bdd611f68`.
 
+## Prospective measurement — local candidate, 2026-10-16
+
+Canonical contract/proof/release path: [docs/measurement/README.md](docs/measurement/README.md). Only immutable pregame records in `predictionMeasurementsV1` can support forward claims; legacy results and `modelVersion` alone cannot. Model/weights/thresholds stay frozen. `FEATURE_MEASUREMENT_ENABLED` defaults off. New collector is free-source only; shopping reuses existing paid payloads after the existing state/output checkpoint. Never trigger paid crons as a test.
+
+Use `npm run test:measurement` and the reserved real-Firestore proof `npm run test:measurement:live`; local HTTP proof covers all five results pages and auth gates. No application evidence updates/deletes. **Firestore gotcha:** `doc.create()` with this REST SDK retried ALREADY_EXISTS for 600s. The read-before-set transaction is intentional and independently proven for concurrent and repeat writes. No real deployed postgame settlement has been proven yet.
+
+Publication/activation still requires Shawn's go. Read-only gate: `node scripts/measurement/release-check.mjs`. Use the existing GitHub branch → Vercel preview → main auto-deploy pipeline; never manual `vercel --prod` from the checkout. Report serving and GitHub main SHAs, not merely “pushed.”
+
 ## Commands
 
 ```bash
@@ -31,10 +39,10 @@ npm run market-history       # Crawl every priced final game from ESPN (all spor
 npm run market-lab           # What beats the close? noise, de-vig, sharpness, feature + bet-at-open tests
 npm run line-shop-proof      # Replay the line-shop rule on stored multi-book snapshots, graded by CLV
 npm run line-shop-backfill-proof  # Grade the 2025 NFL game-line backfill (Pinnacle fair) by CLV
-vercel --prod    # Deploy to production
+node scripts/measurement/release-check.mjs  # Read-only serving-source preflight
 ```
 
-There is no test suite. Verification = `npm run build` (catches the Firebase/SSR class of errors) plus hitting cron/admin endpoints and checking results pages.
+Measurement has a standing real-service proof and local HTTP suite (see runbook above). Production builds run in Vercel preview. Never hit cron/admin endpoints casually: some spend credits or mutate data.
 
 ## Multi-Sport Architecture
 
@@ -109,7 +117,7 @@ ELO_CAP = 16;                  // Max ±8 pts per team (prevents unrealistic 40-
 HOME_COURT_ADVANTAGE = 4.5;    // Increased from 2.0 to fix away team bias
 ```
 
-## Current Performance (169 games with Vegas lines)
+## Superseded historical calculations (169 games; not prospective performance)
 
 - **ATS**: 55.1% (92-75-2)
 - **ML (15%+ edge)**: 77.9% (53-15)
@@ -134,9 +142,8 @@ Do not spoof a browser User-Agent on ESPN or NFL.com calls: ESPN's edge answers 
 ## Common Tasks
 
 ### Deploy
-```bash
-vercel --prod
-```
+
+Use the approved GitHub branch → Vercel preview → main auto-deploy procedure in [the measurement runbook](docs/measurement/README.md). The former manual `vercel --prod` instruction is superseded: it could deploy source not reconciled to GitHub.
 
 ### Trigger blob sync
 ```bash
@@ -225,8 +232,7 @@ or older than 2 hours — fresh-but-empty data means off-season, not a broken cr
 
 Every stored result row now carries `modelVersion`. **Rules and thresholds are frozen**: high-conviction
 definitions, the 7-point totals edge, the 2-point NFL spread edge, the NBA/WNBA/CBB conviction ladders, the NHL
-1.5-goal rule — all unchanged from before the freeze. Judge the model only on rows with this stamp (the edge
-ledger's live view). Do not grid-search or re-tune on stored history; that is how every flattering number before
+1.5-goal rule — all unchanged from before the freeze. The version stamp identifies parameters only; it does not prove when a prediction was made. Judge forward performance only from immutable pregame captures (October audit correction). Do not grid-search or re-tune on stored history; that is how every flattering number before
 2026-09-11 was produced. If a rule must change, bump `MODEL_VERSION`, record why here, and start the clock again.
 
 Mechanical fixes shipped with the freeze (not tuning — they correct bugs the ledger exposed):

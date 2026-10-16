@@ -1,3 +1,7 @@
+import { getAdminDb } from '@/lib/firebase-admin';
+import { MeasurementStore } from '@/lib/measurement/store';
+import { recordShopEvent } from '@/lib/measurement/shop';
+import type { OddsApiEvent } from '@/lib/line-shop';
 import { NextResponse } from 'next/server';
 import { put, list } from '@vercel/blob';
 import { gzipSync } from 'zlib';
@@ -55,6 +59,8 @@ async function loadState(): Promise<State> {
 const putOpts = { access: 'public' as const, addRandomSuffix: false, allowOverwrite: true, cacheControlMaxAge: 60 };
 
 export async function GET(request: Request) {
+  const secret = process.env.CRON_SECRET;
+  if (!secret || request.headers.get('authorization') !== `Bearer ${secret}`) return NextResponse.json({ok:false,error:'Unauthorized'}, {status:401});
   const started = Date.now();
   const force = new URL(request.url).searchParams.get('force') === '1';
   const key = (process.env.NEXT_PUBLIC_ODDS_API_KEY || '').trim();
@@ -63,6 +69,7 @@ export async function GET(request: Request) {
   const state = await loadState();
   if (state.day !== day) { state.day = day; state.creditsToday = 0; }
   const log: string[] = [];
+  const measurementBatches: {data:OddsApiEvent; observedAt:string}[] = [];
   try {
     const evRes = await fetch(`https://api.the-odds-api.com/v4/sports/${SPORT}/events?apiKey=${key}`, { cache: 'no-store' });
     if (!evRes.ok) throw new Error(`events ${evRes.status}`);
@@ -86,6 +93,9 @@ export async function GET(request: Request) {
       remaining = Number(r.headers.get('x-requests-remaining') || remaining);
       if (!r.ok) { log.push(`event ${e.id} ${r.status}`); continue; }
       const data = await r.json();
+      if (process.env.FEATURE_MEASUREMENT_ENABLED === '1') {
+        measurementBatches.push({data,observedAt:new Date().toISOString()});
+      }
       const payload = { ts: iso, source: 'the-odds-api v4', event: e, hoursToKick: Math.round(hoursToKick * 100) / 100, cost, remaining, markets: MARKETS, data };
       const gz = gzipSync(Buffer.from(JSON.stringify(payload)));
       await put(`${PREFIX}/snap/${day}/${hhmm}-${e.id}.json.gz`, gz, { ...putOpts, contentType: 'application/gzip' });
@@ -95,6 +105,10 @@ export async function GET(request: Request) {
     state.lastRemaining = remaining; state.updated = iso;
     await put(`${PREFIX}/state.json`, JSON.stringify(state), { ...putOpts, contentType: 'application/json' });
     const indexed = await rebuildBlobIndex(PREFIX); // always: readers enumerate snapshots from this file
+    // Paid-request state and reader index are durable before optional measurement.
+    for (const batch of measurementBatches) {
+      await recordShopEvent(new MeasurementStore(getAdminDb()),batch.data,'nfl',batch.observedAt,true);
+    }
     return NextResponse.json({ ok: true, upcoming: upcoming.length, fetched, skipped, creditsSpent: spent, creditsToday: state.creditsToday, remaining, indexed, log, ms: Date.now() - started });
   } catch (error) {
     console.error('odds-props-record failed:', error);

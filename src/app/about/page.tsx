@@ -1,5 +1,5 @@
 import type { Metadata } from 'next';
-import { fetchAllSportsData, getBacktestResults, type BacktestResult } from '@/lib/blob-data';
+import { type BacktestResult } from '@/lib/blob-data';
 
 export const metadata: Metadata = {
   title: 'How It Works - Prediction Model Explained',
@@ -191,12 +191,6 @@ function SportStatsSection({
 }
 
 export default async function AboutPage() {
-  const { nfl, nba, nhl } = await fetchAllSportsData();
-
-  const nflStats = nfl ? computeStats(getBacktestResults(nfl), 'nfl') : null;
-  const nbaStats = nba ? computeStats(getBacktestResults(nba), 'nba') : null;
-  const nhlStats = nhl ? computeStats(getBacktestResults(nhl), 'nhl') : null;
-
   return (
     <div className="max-w-4xl mx-auto py-8">
       <h1 className="text-2xl font-bold text-gray-900 mb-6">
@@ -235,16 +229,11 @@ export default async function AboutPage() {
             Current Season Performance
           </h2>
           <p className="text-sm text-gray-500 mb-6">
-            Live results from this season. High conviction picks are filtered to
-            our best situations. Break-even at -110 odds is 52.4%.
+            Prospective results use saved pregame forecasts and actual recorded prices.
           </p>
 
           <div className="space-y-6">
-            {nflStats && <SportStatsSection name="NFL" stats={nflStats} />}
-            {nbaStats && <SportStatsSection name="NBA" stats={nbaStats} />}
-            {nhlStats && (
-              <SportStatsSection name="NHL" stats={nhlStats} atsLabel="Puck Line" />
-            )}
+            <p>Historical results were recalculated after games and are excluded from prospective evidence. No prediction edge has been demonstrated. <a href="/results" className="underline text-blue-700">View immutable pregame measurements</a>.</p>
           </div>
         </div>
 

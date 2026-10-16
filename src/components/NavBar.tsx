@@ -1,17 +1,10 @@
 'use client';
 
-import { useEffect, useState } from 'react';
 import { usePathname } from 'next/navigation';
 import { signInWithPopup, GoogleAuthProvider } from 'firebase/auth';
 import { auth } from '@/lib/firebase';
 import { useAuth } from '@/components/AuthProvider';
 import AccountMenu from '@/components/AccountMenu';
-
-type SummaryStats = {
-  ats: number;
-  ml: number;
-  ou: number;
-};
 
 export default function NavBar() {
   const pathname = usePathname();
@@ -20,12 +13,6 @@ export default function NavBar() {
   const isNBA = pathname?.startsWith('/nba');
   const isNHL = pathname?.startsWith('/nhl');
   const isCBB = pathname?.startsWith('/cbb');
-  const [nbaStats, setNbaStats] = useState<SummaryStats | null>(null);
-  const [nflStats, setNflStats] = useState<SummaryStats | null>(null);
-  const [nhlStats, setNhlStats] = useState<SummaryStats | null>(null);
-  const [cbbStats, setCbbStats] = useState<SummaryStats | null>(null);
-  const [wnbaStats, setWnbaStats] = useState<SummaryStats | null>(null);
-
   // Determine base paths based on current section
   const rankingsPath = isWNBA ? '/wnba/rankings' : isCBB ? '/cbb/rankings' : isNHL ? '/nhl/rankings' : isNBA ? '/nba/rankings' : '/rankings';
   const resultsPath = isWNBA ? '/wnba/results' : isCBB ? '/cbb/results' : isNHL ? '/nhl/results' : isNBA ? '/nba/results' : '/results';
@@ -90,43 +77,6 @@ export default function NavBar() {
   const accentColor = isWNBA ? 'bg-pink-600' : isCBB ? 'bg-purple-600' : isNHL ? 'bg-blue-600' : isNBA ? 'bg-orange-500' : 'bg-red-600';
   const logoColor = isWNBA ? 'bg-pink-600' : isCBB ? 'bg-purple-600' : isNHL ? 'bg-blue-600' : isNBA ? 'bg-orange-500' : 'bg-red-600';
 
-  useEffect(() => {
-    if (!user) return;
-
-    let cancelled = false;
-    const loadStats = async (url: string, setStats: (stats: SummaryStats | null) => void) => {
-      try {
-        // Edge cache handles freshness via s-maxage + stale-while-revalidate
-        const response = await fetch(url);
-        const data = await response.json();
-        // Use high conviction stats (falls back to regular summary if not available yet)
-        const summary = data?.backtest?.highConvictionSummary || data?.backtest?.summary;
-        if (!summary) return;
-        const nextStats: SummaryStats = {
-          ats: summary.spread?.winPct ?? 0,
-          ml: summary.moneyline?.winPct ?? 0,
-          ou: summary.overUnder?.winPct ?? 0,
-        };
-        if (!cancelled) {
-          setStats(nextStats);
-        }
-      } catch (error) {
-        if (!cancelled) {
-          setStats(null);
-        }
-      }
-    };
-
-    loadStats('/nba-prediction-data.json', setNbaStats);
-    loadStats('/prediction-data.json', setNflStats);
-    loadStats('/nhl-prediction-data.json', setNhlStats);
-    loadStats('/cbb-prediction-data.json', setCbbStats);
-    loadStats('/wnba-prediction-data.json', setWnbaStats);
-    return () => {
-      cancelled = true;
-    };
-  }, [user]);
-
   return (
     <>
       {/* Top accent bar */}
@@ -184,27 +134,7 @@ export default function NavBar() {
               )}
             </div>
             <div className="flex items-center gap-2 sm:gap-4">
-              {!loading && user && (
-                <div className="hidden lg:flex items-center gap-1 text-xs text-gray-500">
-                  <span className="bg-green-100 text-green-700 px-1.5 py-0.5 rounded text-[10px] font-bold mr-1">HIGH CONV</span>
-                  {(() => {
-                    const stats = isWNBA ? wnbaStats : isCBB ? cbbStats : isNHL ? nhlStats : isNBA ? nbaStats : nflStats;
-                    const label = isNHL ? 'PL' : 'ATS'; // Puck Line for NHL, ATS for others
-                    return (
-                      <>
-                        <span className="font-medium">{label}:</span>
-                        <span className="font-bold text-green-600">{stats ? `${stats.ats}%` : '--'}</span>
-                        <span className="text-gray-300 mx-1">|</span>
-                        <span className="font-medium">ML:</span>
-                        <span className="font-bold text-green-600">{stats ? `${stats.ml}%` : '--'}</span>
-                        <span className="text-gray-300 mx-1">|</span>
-                        <span className="font-medium">O/U:</span>
-                        <span className="font-bold text-green-600">{stats ? `${stats.ou}%` : '--'}</span>
-                      </>
-                    );
-                  })()}
-                </div>
-              )}
+              {!loading && user && <a href={resultsPath} className="hidden lg:block text-xs text-gray-500">Edge unproven · Measured results</a>}
               {!loading && user ? (
                 <AccountMenu />
               ) : (

@@ -1,5 +1,15 @@
 # Prediction Matrix status
 
+## 2026-10-16 — immutable measurement candidate, awaiting release approval
+
+Branch `codex/prediction-measurement` contains the audit plus immutable pregame capture and grading, separate model/price-shopping evaluation, authenticated collection, and removal/labeling of misleading historical accuracy claims. **Built and locally verified; not deployed or enabled. No edge established.** Model parameters, weights and thresholds remain frozen.
+
+Real Firestore proof captured NFL 401872996 / DraftKings / three markets at 02:25:15 UTC. Concurrent/repeat write and second-run read invariants passed. An independent context repeated that proof at 02:27:26 and confirmed cleanup. Local HTTP checks passed all five results pages, FAQ/About and three unauthorized cron gates. Desktop/mobile proof is saved. The SDK duplicate-create retry problem is fixed with a transaction. Paid request accounting/output is persisted before optional measurement.
+
+Canonical [contract, evidence, commands and release/rollback](docs/measurement/README.md). Storage is a bounded pilot with explicit ceilings; old data is excluded, never silently truncated. Collection defaults off. No paid calls, bets, production collection or deploy were performed. Deployed collection and settlement after a captured game finishes remain unverified.
+
+Read-only serving preflight at 02:34 UTC: freshly queried GitHub main and READY production both `6af083c277aa64fd13ec9269591fc57bdd611f68`; feature flag absent. Main is an ancestor of this candidate; candidate is not live. Next: obtain explicit branch publication/main merge/activation approval, require Vercel preview proof, merge current main, verify the exact deployed SHA and first two collector runs, then the first real final settlement with a fresh refuter. Do not rerun paid odds collectors manually or tune the model.
+
 ## 2026-10-15 — prediction edge audit
 
 Repo: `shawn14/nfl-betting-system`; production: https://www.predictionmatrix.com.
@@ -11,4 +21,4 @@ Line shopping: 160 started flags / 89 games show +0.440pp CLV; remove same-snaps
 
 Evidence: [audit](docs/reports/2026-10-15-edge-audit/edge-audit.html), [graphic](docs/reports/2026-10-15-edge-audit/edge-audit.png), [independent proof](docs/reports/2026-10-15-edge-audit/refuter-proof.json). Reproduce without network: `node docs/reports/2026-10-15-edge-audit/refuter-proof.mjs`; broader statistics: `node --no-warnings docs/reports/2026-10-15-edge-audit/analyze.mjs`.
 
-Next work, if requested: immutable pregame prediction/price capture; grade saved predictions; fix tie denominators; strict closing-reference validity and grouped uncertainty. Keep model parameters and thresholds frozen. Do not describe historical recomputed results as forward validation. No crons, paid odds requests, bets, production data repairs or deployments were performed. Fresh HTTP/browser reload showed current EV content; an initial cached browser view is not evidence of a live freshness bug.
+Superseded next-step note: measurement work is now the local candidate above. The tie-denominator defect remains a separate frozen-model issue; do not mix it into this measurement repair. Keep model parameters and thresholds frozen. Do not describe historical recomputed results as forward validation. No crons, paid odds requests, bets, production data repairs or deployments were performed. Fresh HTTP/browser reload showed current EV content; an initial cached browser view is not evidence of a live freshness bug.

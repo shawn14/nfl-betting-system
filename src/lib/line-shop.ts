@@ -27,7 +27,7 @@ export const SHARP_BOOKS = ['pinnacle'];   // in priority order
 const MAX_OVERROUND = 1.15;                // a two-way market with more margin than this is not a real quote
 const MIN_OVERROUND = 0.995;               // both sides plus money = mismatched lines or a 3-way price
 
-export interface Quote { book: string; a: number; b: number }   // American prices, side A / side B
+export interface Quote { book: string; a: number; b: number; updatedAt?: string }   // American prices, side A / side B
 
 export interface TwoWay {
   id: string;                  // stable key, e.g. "<eventId>|spreads|-3.5"
@@ -70,7 +70,7 @@ function median(xs: number[]): number {
 }
 
 /** Fair prob of side A for pricing `forBook` (null when there is no trustworthy fair). */
-function fairFor(quotes: Quote[], method: DevigMethod, forBook?: string): { p: number; source: string } | null {
+export function fairFor(quotes: Quote[], method: DevigMethod, forBook?: string): { p: number; source: string } | null {
   for (const sharp of SHARP_BOOKS) {
     const q = quotes.find(x => x.book === sharp);
     if (q) return { p: devigTwoWay(q.a, q.b, method), source: sharp };
@@ -132,10 +132,10 @@ export function shop(tw: TwoWay): ShopResult {
 // ---------------------------------------------------------------- The Odds API adapters
 
 type Outcome = { name: string; price: number; point?: number; description?: string };
-type Market = { key: string; outcomes: Outcome[] };
+type Market = { key: string; outcomes: Outcome[]; last_update?: string };
 export type OddsApiEvent = {
   id: string; commence_time: string; home_team: string; away_team: string;
-  bookmakers: { key: string; markets: Market[] }[];
+  bookmakers: { key: string; last_update?: string; markets: Market[] }[];
 };
 
 /** Game markets (h2h, spreads, totals) of one Odds API event as exact-line two-way markets. */
@@ -149,17 +149,17 @@ export function gameMarkets(e: OddsApiEvent): TwoWay[] {
     for (const m of bk.markets) {
       if (m.key === 'h2h') {
         const h = m.outcomes.find(o => o.name === e.home_team), a = m.outcomes.find(o => o.name === e.away_team);
-        if (h && a && m.outcomes.length === 2) add(`${e.id}|ml`, { market: 'ml', labelA: `${e.home_team} ML`, labelB: `${e.away_team} ML`, method: 'power' }, { book: bk.key, a: h.price, b: a.price });
+        if (h && a && m.outcomes.length === 2) add(`${e.id}|ml`, { market: 'ml', labelA: `${e.home_team} ML`, labelB: `${e.away_team} ML`, method: 'power' }, { book: bk.key, updatedAt: m.last_update ?? bk.last_update, a: h.price, b: a.price });
       } else if (m.key === 'spreads') {
         const h = m.outcomes.find(o => o.name === e.home_team), a = m.outcomes.find(o => o.name === e.away_team);
         if (h && a && h.point != null && a.point != null && h.point === -a.point) {
           const L = h.point, fmt = (x: number) => (x > 0 ? `+${x}` : `${x}`);
-          add(`${e.id}|spread|${L}`, { market: 'spread', line: L, labelA: `${e.home_team} ${fmt(L)}`, labelB: `${e.away_team} ${fmt(-L)}`, method: 'multiplicative' }, { book: bk.key, a: h.price, b: a.price });
+          add(`${e.id}|spread|${L}`, { market: 'spread', line: L, labelA: `${e.home_team} ${fmt(L)}`, labelB: `${e.away_team} ${fmt(-L)}`, method: 'multiplicative' }, { book: bk.key, updatedAt: m.last_update ?? bk.last_update, a: h.price, b: a.price });
         }
       } else if (m.key === 'totals') {
         const o = m.outcomes.find(x => x.name === 'Over'), u = m.outcomes.find(x => x.name === 'Under');
         if (o && u && o.point != null && o.point === u.point) {
-          add(`${e.id}|total|${o.point}`, { market: 'total', line: o.point, labelA: `Over ${o.point}`, labelB: `Under ${o.point}`, method: 'multiplicative' }, { book: bk.key, a: o.price, b: u.price });
+          add(`${e.id}|total|${o.point}`, { market: 'total', line: o.point, labelA: `Over ${o.point}`, labelB: `Under ${o.point}`, method: 'multiplicative' }, { book: bk.key, updatedAt: m.last_update ?? bk.last_update, a: o.price, b: u.price });
         }
       }
     }
@@ -180,7 +180,7 @@ export function propMarkets(e: OddsApiEvent): TwoWay[] {
         if (!o || !u) continue;
         const id = `${e.id}|${m.key}|${player}|${pt}`;
         if (!byId.has(id)) byId.set(id, { id, market: 'prop', line: Number(pt), labelA: `${player} o${pt} ${m.key}`, labelB: `${player} u${pt} ${m.key}`, method: 'multiplicative', quotes: [] });
-        byId.get(id)!.quotes.push({ book: bk.key, a: o.price, b: u.price });
+        byId.get(id)!.quotes.push({ book: bk.key, updatedAt: m.last_update ?? bk.last_update, a: o.price, b: u.price });
       }
     }
   }

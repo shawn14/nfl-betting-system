@@ -849,7 +849,7 @@ export default function NBADashboard() {
         return (
           <div className="mt-8 mb-4 space-y-3">
             <div className="flex items-center gap-3 mb-3">
-              <h2 className="text-lg font-bold text-gray-500">Recent Results</h2>
+              <h2 className="text-lg font-bold text-gray-500">Historical calculations · not pregame results</h2><p className="text-sm text-gray-600">These forecasts were rebuilt after games and cannot establish an edge.</p>
               <div className="flex-1 h-px bg-gray-200"></div>
             </div>
 
