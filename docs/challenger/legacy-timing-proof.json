@@ -1,0 +1,98 @@
+{
+  "kind": "Actual historical-record replay of original market-lab functions",
+  "finding": "Same-kickoff outcome ordering changes supposedly pregame total features",
+  "evidence": [
+    {
+      "sport": "nfl",
+      "rows": 576,
+      "sameKickoffPredictionsChanged": 289,
+      "example": {
+        "id": "401671633",
+        "kickoff": "2024-10-06T17:00Z",
+        "home": "JAX",
+        "away": "IND",
+        "totalForwardOrder": 41.707157230841474,
+        "totalReverseOrder": 42.462116655670634,
+        "simultaneousGameIds": [
+          "401671626",
+          "401671633",
+          "401671700",
+          "401671718",
+          "401671859",
+          "401671872"
+        ]
+      }
+    },
+    {
+      "sport": "nba",
+      "rows": 3953,
+      "sameKickoffPredictionsChanged": 2038,
+      "example": {
+        "id": "401584797",
+        "kickoff": "2023-11-09T03:00Z",
+        "home": "DEN",
+        "away": "GS",
+        "totalForwardOrder": 221.00387336601892,
+        "totalReverseOrder": 220.7751871253304,
+        "simultaneousGameIds": [
+          "401584797",
+          "401584798"
+        ]
+      }
+    },
+    {
+      "sport": "nhl",
+      "rows": 4190,
+      "sameKickoffPredictionsChanged": 2234,
+      "example": {
+        "id": "401559363",
+        "kickoff": "2023-10-30T23:00Z",
+        "home": "PHI",
+        "away": "CAR",
+        "totalForwardOrder": 8.171036816396763,
+        "totalReverseOrder": 8.148183547070769,
+        "simultaneousGameIds": [
+          "401559363",
+          "401559365",
+          "401559366",
+          "401559367"
+        ]
+      }
+    },
+    {
+      "sport": "cbb",
+      "rows": 16899,
+      "sameKickoffPredictionsChanged": 11521,
+      "example": {
+        "id": "401575407",
+        "kickoff": "2023-11-26T22:00Z",
+        "home": "PAC",
+        "away": "MVSU",
+        "totalForwardOrder": 132.40656282866988,
+        "totalReverseOrder": 133.08872166659475,
+        "simultaneousGameIds": [
+          "401575407",
+          "401575472",
+          "401582142"
+        ]
+      }
+    },
+    {
+      "sport": "wnba",
+      "rows": 906,
+      "sameKickoffPredictionsChanged": 247,
+      "example": {
+        "id": "401620252",
+        "kickoff": "2024-05-29T23:00Z",
+        "home": "NY",
+        "away": "PHX",
+        "totalForwardOrder": 163.798249725093,
+        "totalReverseOrder": 164.28117682844638,
+        "simultaneousGameIds": [
+          "401620252",
+          "401620253"
+        ]
+      }
+    }
+  ]
+}

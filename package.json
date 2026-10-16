@@ -3,6 +3,8 @@
   "version": "0.1.0",
   "private": true,
   "scripts": {
+    "research:challenger": "node --no-warnings scripts/challenger/run.mjs",
+    "test:challenger": "node --no-warnings scripts/challenger/prove.mjs",
     "dev": "next dev",
     "build": "next build",
     "start": "next start",

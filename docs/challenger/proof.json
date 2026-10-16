@@ -1,0 +1,58 @@
+{
+  "passed": true,
+  "generatedAt": "2026-10-16T05:24:30.214Z",
+  "games": 28520,
+  "evaluationGames": 14651,
+  "evaluationMarketRows": 43653,
+  "baselineFallbacks": 4203,
+  "monthlyModelRecords": 180,
+  "selectedGames": 1788,
+  "checks": [
+    {
+      "sport": "nfl",
+      "games": 605,
+      "noCloseUsedInHistory": 28,
+      "orderInvariant": true,
+      "futureMutationInvariantPredictions": 87,
+      "lastGameExpectedUpdates": 604,
+      "allAvailabilityBounds": true
+    },
+    {
+      "sport": "nba",
+      "games": 3970,
+      "noCloseUsedInHistory": 5,
+      "orderInvariant": true,
+      "futureMutationInvariantPredictions": 2526,
+      "lastGameExpectedUpdates": 3969,
+      "allAvailabilityBounds": true
+    },
+    {
+      "sport": "nhl",
+      "games": 4202,
+      "noCloseUsedInHistory": 3,
+      "orderInvariant": true,
+      "futureMutationInvariantPredictions": 2442,
+      "lastGameExpectedUpdates": 4201,
+      "allAvailabilityBounds": true
+    },
+    {
+      "sport": "cbb",
+      "games": 18835,
+      "noCloseUsedInHistory": 1489,
+      "orderInvariant": true,
+      "futureMutationInvariantPredictions": 10819,
+      "lastGameExpectedUpdates": 18834,
+      "allAvailabilityBounds": true
+    },
+    {
+      "sport": "wnba",
+      "games": 908,
+      "noCloseUsedInHistory": 0,
+      "orderInvariant": true,
+      "futureMutationInvariantPredictions": 324,
+      "lastGameExpectedUpdates": 903,
+      "allAvailabilityBounds": true
+    }
+  ],
+  "limits": "Historical source availability remains assumed, not independently timestamp-certified. This proves the local algorithm on these records, not a production trading edge."
+}
