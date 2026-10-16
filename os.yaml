@@ -16,6 +16,7 @@ deployment:
   read_only_gate: node scripts/measurement/release-check.mjs
   activation_operator: node scripts/measurement/activate.mjs
   storage_inspection: node scripts/measurement/inspect-production.mjs
+  source_diagnostic: node scripts/measurement/diagnose.mjs
   preview_runbook: docs/preview/README.md
 capabilities:
   - ~/projects/CAPABILITIES.md#sports-betting-sharp-fair-value-line-shopping-clv-ledger-market-lab--home-nfl-betting-system
@@ -25,3 +26,5 @@ proof:
   - docs/odds-identity/README.md
   - docs/measurement/provenance/README.md
   - docs/measurement/activation/README.md
+  - docs/measurement/SOURCE-DIAGNOSIS.md
+  - docs/measurement/RESEARCH-LOOP.md

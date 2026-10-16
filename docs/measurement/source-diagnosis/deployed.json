@@ -1,0 +1,617 @@
+{
+  "checkedAt": "2026-10-16T14:28:27.116Z",
+  "sport": "nfl",
+  "eventId": "401872996",
+  "sourceSha": "60aab496ee34e4e2f622f724d0156d2bcb5066dd",
+  "region": "iad1",
+  "scope": "Read-only source diagnosis; no evidence writes or collector execution",
+  "ok": true,
+  "checks": [
+    {
+      "url": "https://0luulmjdaimldet9.public.blob.vercel-storage.com/prediction-matrix-data.json",
+      "status": 200,
+      "contentType": "application/json",
+      "elapsedMs": 160,
+      "bytes": 771295,
+      "sha256": "1268c709715fdf0327e8b7c913104d2ae605c7ade1f0ca6e56e2f7dcc6f6dfaf"
+    },
+    {
+      "url": "https://sports.core.api.espn.com/v2/sports/football/leagues/nfl/events/401872996/competitions/401872996/odds",
+      "status": 200,
+      "contentType": "application/json;charset=utf-8",
+      "elapsedMs": 269,
+      "bytes": 5844,
+      "sha256": "3d4bbd09aee8c835a3167de257df45460e03c03df6f1251e9b931dfb4f9c2c2a"
+    },
+    {
+      "url": "https://site.api.espn.com/apis/site/v2/sports/football/nfl/summary?event=401872996",
+      "status": 200,
+      "contentType": "application/json;charset=UTF-8",
+      "elapsedMs": 41,
+      "bytes": 114215,
+      "sha256": "ae8e82fabf41926548c549b480c35ca72a8b818f85682e26e4d72257f83b1636"
+    }
+  ],
+  "event": {
+    "id": "401872996",
+    "commence": "2026-10-18T13:30Z",
+    "state": "pre",
+    "status": "STATUS_SCHEDULED",
+    "completed": false,
+    "homeId": "30",
+    "awayId": "34",
+    "homeScore": null,
+    "awayScore": null
+  },
+  "publishedAt": "2026-10-16T14:00:12.746Z",
+  "entryFound": true,
+  "providers": [
+    {
+      "$ref": "http://sports.core.api.espn.com/v2/sports/football/leagues/nfl/providers/100?lang=en&region=us",
+      "id": "100",
+      "name": "Draft Kings",
+      "priority": 1
+    }
+  ],
+  "candidate": {
+    "id": "model-nfl-401872996",
+    "kind": "model",
+    "version": "2026-10-16-v1",
+    "modelVersion": "2026-09-11-freeze",
+    "modelSourceSha": "0743025cd772a7e46b823ad7d5fbeb98710d1faa",
+    "collectorSha": "60aab496ee34e4e2f622f724d0156d2bcb5066dd",
+    "sport": "nfl",
+    "gameId": "401872996",
+    "commence": "2026-10-18T13:30:00.000Z",
+    "deadline": "2026-10-18T13:28:00.000Z",
+    "capturedAt": "2026-10-16T14:28:27.614Z",
+    "publishedAt": "2026-10-16T14:00:12.746Z",
+    "sourceUrl": "https://0luulmjdaimldet9.public.blob.vercel-storage.com/prediction-matrix-data.json",
+    "sourceHash": "1268c709715fdf0327e8b7c913104d2ae605c7ade1f0ca6e56e2f7dcc6f6dfaf",
+    "entry": {
+      "game": {
+        "id": "401872996",
+        "sport": "nfl",
+        "homeTeamId": "30",
+        "awayTeamId": "34",
+        "gameTime": "2026-10-18T13:30:00.000Z",
+        "status": "scheduled",
+        "homeScore": 0,
+        "awayScore": 0,
+        "venue": "Wembley Stadium",
+        "week": 6,
+        "season": 2026,
+        "createdAt": "2026-10-16T14:00:08.545Z",
+        "updatedAt": "2026-10-16T14:00:08.545Z",
+        "homeTeam": {
+          "id": "30",
+          "name": "Jacksonville Jaguars",
+          "abbreviation": "JAX"
+        },
+        "awayTeam": {
+          "id": "34",
+          "name": "Houston Texans",
+          "abbreviation": "HOU"
+        }
+      },
+      "prediction": {
+        "forecastProducer": {
+          "schemaVersion": "forecast-producer-v1",
+          "modelVersion": "2026-09-11-freeze",
+          "sourceSha": "0743025cd772a7e46b823ad7d5fbeb98710d1faa"
+        },
+        "gameId": "401872996",
+        "predictedHomeScore": 31.549999999999997,
+        "predictedAwayScore": 9.25,
+        "predictedSpread": -12.5,
+        "predictedTotal": 40.8,
+        "homeWinProbability": 0.7469129214289432,
+        "confidence": 0.5,
+        "vegasSpread": -2.5,
+        "vegasTotal": 42.5,
+        "lineMovement": {
+          "openingSpread": -3,
+          "openingTotal": 42.5,
+          "lastSeenSpread": -2.5,
+          "lastSeenTotal": 42.5,
+          "lastUpdatedAt": "2026-10-16T14:00:11.818Z"
+        },
+        "spreadEdge": -10,
+        "totalEdge": -1.5,
+        "atsConfidence": "high",
+        "ouConfidence": "low",
+        "mlConfidence": "high",
+        "isAtsBestBet": true,
+        "isOuBestBet": false,
+        "isMlBestBet": true,
+        "mlEdge": 24.7,
+        "isDivisional": true,
+        "isLateSeasonGame": false,
+        "isLargeSpread": false,
+        "isSmallSpread": true,
+        "isMediumSpread": false,
+        "isEloMismatch": true,
+        "sixtyPlusFactors": 2,
+        "eloDiff": 140,
+        "week": 6,
+        "weather": {
+          "temperature": 55,
+          "windSpeed": 10,
+          "conditions": "scattered clouds",
+          "precipitation": 34,
+          "impact": 0.5,
+          "totalDelta": 1.5,
+          "perTeamDelta": 0.75
+        },
+        "weatherImpact": 0.5,
+        "injuries": {
+          "homeInjuries": {
+            "hasQBOut": false,
+            "keyOut": 0,
+            "summary": "7 GTD"
+          },
+          "awayInjuries": {
+            "hasQBOut": false,
+            "keyOut": 2,
+            "summary": "S, RB Out | 2 GTD"
+          },
+          "impactLevel": "minor"
+        },
+        "liveOdds": {
+          "schemaVersion": "event-totals-v1",
+          "provider": "the-odds-api",
+          "eventId": "57418b2cf5aca558b3c98eafac1e264a",
+          "sportKey": "americanfootball_nfl",
+          "homeTeam": "Jacksonville Jaguars",
+          "awayTeam": "Houston Texans",
+          "commenceTime": "2026-10-18T13:30:00Z",
+          "observedAt": "2026-10-16T14:00:11.502Z",
+          "bookmakers": [
+            {
+              "key": "draftkings",
+              "name": "DraftKings",
+              "total": 42.5,
+              "overOdds": -112,
+              "underOdds": -108,
+              "updatedAt": "2026-10-16T13:59:58Z",
+              "clockBasis": "market"
+            },
+            {
+              "key": "williamhill_us",
+              "name": "Caesars",
+              "total": 42.5,
+              "overOdds": -110,
+              "underOdds": -110,
+              "updatedAt": "2026-10-16T13:59:17Z",
+              "clockBasis": "market"
+            },
+            {
+              "key": "fanduel",
+              "name": "FanDuel",
+              "total": 42.5,
+              "overOdds": -108,
+              "underOdds": -112,
+              "updatedAt": "2026-10-16T13:59:45Z",
+              "clockBasis": "market"
+            },
+            {
+              "key": "betmgm",
+              "name": "BetMGM",
+              "total": 42.5,
+              "overOdds": -108,
+              "underOdds": -110,
+              "updatedAt": "2026-10-16T13:59:18Z",
+              "clockBasis": "market"
+            },
+            {
+              "key": "betus",
+              "name": "BetUS",
+              "total": 42.5,
+              "overOdds": -110,
+              "underOdds": -110,
+              "updatedAt": "2026-10-16T14:00:01Z",
+              "clockBasis": "market"
+            },
+            {
+              "key": "mybookieag",
+              "name": "MyBookie.ag",
+              "total": 42.5,
+              "overOdds": -110,
+              "underOdds": -110,
+              "updatedAt": "2026-10-16T13:58:53Z",
+              "clockBasis": "market"
+            },
+            {
+              "key": "bovada",
+              "name": "Bovada",
+              "total": 42.5,
+              "overOdds": -110,
+              "underOdds": -110,
+              "updatedAt": "2026-10-16T13:57:37Z",
+              "clockBasis": "market"
+            },
+            {
+              "key": "lowvig",
+              "name": "LowVig.ag",
+              "total": 42.5,
+              "overOdds": -107,
+              "underOdds": -107,
+              "updatedAt": "2026-10-16T13:59:33Z",
+              "clockBasis": "market"
+            },
+            {
+              "key": "betonlineag",
+              "name": "BetOnline.ag",
+              "total": 42.5,
+              "overOdds": -110,
+              "underOdds": -110,
+              "updatedAt": "2026-10-16T13:59:31Z",
+              "clockBasis": "market"
+            },
+            {
+              "key": "betrivers",
+              "name": "BetRivers",
+              "total": 42.5,
+              "overOdds": -110,
+              "underOdds": -110,
+              "updatedAt": "2026-10-16T13:59:17Z",
+              "clockBasis": "market"
+            },
+            {
+              "key": "fanatics",
+              "name": "Fanatics",
+              "total": 42.5,
+              "overOdds": -110,
+              "underOdds": -110,
+              "updatedAt": "2026-10-16T13:59:17Z",
+              "clockBasis": "market"
+            }
+          ],
+          "lastUpdated": "2026-10-16T13:57:37Z",
+          "consensusTotal": 42.5
+        },
+        "calc": {
+          "homePPG": 24.6,
+          "homePPGAllowed": 14,
+          "awayPPG": 22,
+          "awayPPGAllowed": 22.4,
+          "regHomePPG": 23.8,
+          "regHomePPGAllowed": 16.4,
+          "regAwayPPG": 22,
+          "regAwayPPGAllowed": 22.3,
+          "baseHomeScore": 23,
+          "baseAwayScore": 19.2,
+          "homeElo": 1688,
+          "awayElo": 1548,
+          "eloDiff": 140,
+          "eloAdj": 7.7,
+          "homeFieldAdv": 3,
+          "weatherDelta": 1.5,
+          "perTeamDelta": 0.75
+        }
+      }
+    },
+    "status": {
+      "id": "401872996",
+      "commence": "2026-10-18T13:30Z",
+      "state": "pre",
+      "status": "STATUS_SCHEDULED",
+      "completed": false,
+      "homeId": "30",
+      "awayId": "34",
+      "homeScore": null,
+      "awayScore": null
+    },
+    "rawPrices": {
+      "$ref": "http://sports.core.api.espn.com/v2/sports/football/leagues/nfl/events/401872996/competitions/401872996/odds/100?lang=en&region=us",
+      "provider": {
+        "$ref": "http://sports.core.api.espn.com/v2/sports/football/leagues/nfl/providers/100?lang=en&region=us",
+        "id": "100",
+        "name": "Draft Kings",
+        "priority": 1
+      },
+      "details": "JAX -2.5",
+      "overUnder": 42.5,
+      "spread": -2.5,
+      "overOdds": -112,
+      "underOdds": -108,
+      "awayTeamOdds": {
+        "favorite": false,
+        "underdog": true,
+        "moneyLine": 124,
+        "spreadOdds": 100,
+        "open": {
+          "favorite": true,
+          "pointSpread": {
+            "alternateDisplayValue": "-1.5",
+            "american": "-1.5"
+          },
+          "spread": {
+            "value": 1.98,
+            "displayValue": "50/51",
+            "alternateDisplayValue": "-102",
+            "decimal": 1.98,
+            "fraction": "50/51",
+            "american": "-102"
+          },
+          "moneyLine": {
+            "value": 1.86,
+            "displayValue": "20/23",
+            "alternateDisplayValue": "-115",
+            "decimal": 1.86,
+            "fraction": "20/23",
+            "american": "-115"
+          }
+        },
+        "current": {
+          "pointSpread": {
+            "alternateDisplayValue": "+2.5",
+            "american": "+2.5"
+          },
+          "spread": {
+            "value": 2,
+            "displayValue": "1/1",
+            "alternateDisplayValue": "+100",
+            "decimal": 2,
+            "fraction": "1/1",
+            "american": "+100"
+          },
+          "moneyLine": {
+            "value": 2.24,
+            "displayValue": "31/25",
+            "alternateDisplayValue": "+124",
+            "decimal": 2.24,
+            "fraction": "31/25",
+            "american": "+124"
+          }
+        },
+        "team": {
+          "$ref": "http://sports.core.api.espn.com/v2/sports/football/leagues/nfl/seasons/2026/teams/34?lang=en&region=us"
+        }
+      },
+      "homeTeamOdds": {
+        "favorite": true,
+        "underdog": false,
+        "moneyLine": -148,
+        "spreadOdds": -120,
+        "open": {
+          "favorite": false,
+          "pointSpread": {
+            "alternateDisplayValue": "+1.5",
+            "american": "+1.5"
+          },
+          "spread": {
+            "value": 1.84,
+            "displayValue": "50/59",
+            "alternateDisplayValue": "-118",
+            "decimal": 1.84,
+            "fraction": "50/59",
+            "american": "-118"
+          },
+          "moneyLine": {
+            "value": 1.95,
+            "displayValue": "20/21",
+            "alternateDisplayValue": "-105",
+            "decimal": 1.95,
+            "fraction": "20/21",
+            "american": "-105"
+          }
+        },
+        "current": {
+          "pointSpread": {
+            "alternateDisplayValue": "-2.5",
+            "american": "-2.5"
+          },
+          "spread": {
+            "value": 1.83,
+            "displayValue": "5/6",
+            "alternateDisplayValue": "-120",
+            "decimal": 1.83,
+            "fraction": "5/6",
+            "american": "-120"
+          },
+          "moneyLine": {
+            "value": 1.67,
+            "displayValue": "25/37",
+            "alternateDisplayValue": "-148",
+            "decimal": 1.67,
+            "fraction": "25/37",
+            "american": "-148"
+          }
+        },
+        "team": {
+          "$ref": "http://sports.core.api.espn.com/v2/sports/football/leagues/nfl/seasons/2026/teams/30?lang=en&region=us"
+        }
+      },
+      "links": [
+        {
+          "language": "en-US",
+          "rel": [
+            "home",
+            "desktop",
+            "bets",
+            "draft-kings"
+          ],
+          "href": "https://sportsbook.draftkings.com/gateway?s=__s__&wpcid=__wpcid__&wpsrc=413&wpcn=ESPN&wpscn=Widget&wpcrn=BetSlipDeepLink&wpscid=__wpscid__&wpcrid=xx&preurl=https%3A%2F%2Fsportsbook.draftkings.com%2Fevent%2F34118244%3Foutcomes%3D0ML84695687_1",
+          "text": "Home Bet",
+          "shortText": "Home Bet",
+          "isExternal": true,
+          "isPremium": false
+        },
+        {
+          "language": "en-US",
+          "rel": [
+            "away",
+            "desktop",
+            "bets",
+            "draft-kings"
+          ],
+          "href": "https://sportsbook.draftkings.com/gateway?s=__s__&wpcid=__wpcid__&wpsrc=413&wpcn=ESPN&wpscn=Widget&wpcrn=BetSlipDeepLink&wpscid=__wpscid__&wpcrid=xx&preurl=https%3A%2F%2Fsportsbook.draftkings.com%2Fevent%2F34118244%3Foutcomes%3D0ML84695687_3",
+          "text": "Away Bet",
+          "shortText": "Away Bet",
+          "isExternal": true,
+          "isPremium": false
+        },
+        {
+          "language": "en-US",
+          "rel": [
+            "homeSpread",
+            "desktop",
+            "bets"
+          ],
+          "href": "https://sportsbook.draftkings.com/gateway?s=__s__&wpcid=__wpcid__&wpsrc=413&wpcn=ESPN&wpscn=Widget&wpcrn=BetSlipDeepLink&wpscid=__wpscid__&wpcrid=xx&preurl=https%3A%2F%2Fsportsbook.draftkings.com%2Fevent%2F34118244%3Foutcomes%3D0HC84695687N250_1",
+          "text": "Home Point Spread",
+          "shortText": "Home Point Spread",
+          "isExternal": true,
+          "isPremium": false
+        },
+        {
+          "language": "en-US",
+          "rel": [
+            "awaySpread",
+            "desktop",
+            "bets"
+          ],
+          "href": "https://sportsbook.draftkings.com/gateway?s=__s__&wpcid=__wpcid__&wpsrc=413&wpcn=ESPN&wpscn=Widget&wpcrn=BetSlipDeepLink&wpscid=__wpscid__&wpcrid=xx&preurl=https%3A%2F%2Fsportsbook.draftkings.com%2Fevent%2F34118244%3Foutcomes%3D0HC84695687P250_3",
+          "text": "Away Point Spread",
+          "shortText": "Away Point Spread",
+          "isExternal": true,
+          "isPremium": false
+        },
+        {
+          "language": "en-US",
+          "rel": [
+            "over",
+            "desktop",
+            "bets"
+          ],
+          "href": "https://sportsbook.draftkings.com/gateway?s=__s__&wpcid=__wpcid__&wpsrc=413&wpcn=ESPN&wpscn=Widget&wpcrn=BetSlipDeepLink&wpscid=__wpscid__&wpcrid=xx&preurl=https%3A%2F%2Fsportsbook.draftkings.com%2Fevent%2F34118244%3Foutcomes%3D0OU84695687O4250_1",
+          "text": "Over Odds",
+          "shortText": "Over Odds",
+          "isExternal": true,
+          "isPremium": false
+        },
+        {
+          "language": "en-US",
+          "rel": [
+            "under",
+            "desktop",
+            "bets"
+          ],
+          "href": "https://sportsbook.draftkings.com/gateway?s=__s__&wpcid=__wpcid__&wpsrc=413&wpcn=ESPN&wpscn=Widget&wpcrn=BetSlipDeepLink&wpscid=__wpscid__&wpcrid=xx&preurl=https%3A%2F%2Fsportsbook.draftkings.com%2Fevent%2F34118244%3Foutcomes%3D0OU84695687U4250_3",
+          "text": "Under Odds",
+          "shortText": "Under Odds",
+          "isExternal": true,
+          "isPremium": false
+        },
+        {
+          "language": "en-US",
+          "rel": [
+            "game",
+            "desktop",
+            "bets"
+          ],
+          "href": "https://sportsbook.draftkings.com/gateway?s=__s__&wpcid=__wpcid__&wpsrc=413&wpcn=ESPN&wpscn=Widget&wpcrn=BetSlipDeepLink&wpscid=__wpscid__&wpcrid=xx&preurl=https%3A%2F%2Fsportsbook.draftkings.com%2Fevent%2F34118244",
+          "text": "Game",
+          "shortText": "Game",
+          "isExternal": true,
+          "isPremium": false
+        }
+      ],
+      "moneylineWinner": false,
+      "spreadWinner": false,
+      "open": {
+        "over": {
+          "value": 1.9,
+          "displayValue": "10/11",
+          "alternateDisplayValue": "-110",
+          "decimal": 1.9,
+          "fraction": "10/11",
+          "american": "-110"
+        },
+        "under": {
+          "value": 1.9,
+          "displayValue": "10/11",
+          "alternateDisplayValue": "-110",
+          "decimal": 1.9,
+          "fraction": "10/11",
+          "american": "-110"
+        },
+        "total": {
+          "alternateDisplayValue": "41.5",
+          "american": "41.5"
+        }
+      },
+      "current": {
+        "over": {
+          "value": 1.89,
+          "displayValue": "25/28",
+          "alternateDisplayValue": "-112",
+          "decimal": 1.89,
+          "fraction": "25/28",
+          "american": "-112"
+        },
+        "under": {
+          "value": 1.92,
+          "displayValue": "25/27",
+          "alternateDisplayValue": "-108",
+          "decimal": 1.92,
+          "fraction": "25/27",
+          "american": "-108"
+        },
+        "total": {
+          "alternateDisplayValue": "42.5",
+          "american": "42.5"
+        }
+      },
+      "propBets": {
+        "$ref": "http://sports.core.api.espn.com/v2/sports/football/leagues/nfl/events/401872996/competitions/401872996/odds/100/propBets?lang=en&region=us"
+      }
+    },
+    "provider": "Draft Kings",
+    "prices": {
+      "mlHome": -148,
+      "mlAway": 124,
+      "spreadLine": -2.5,
+      "spreadHomePrice": -120,
+      "spreadAwayPrice": 100,
+      "totalLine": 42.5,
+      "overPrice": -112,
+      "underPrice": -108
+    },
+    "priceObservedAt": "2026-10-16T14:28:27.607Z",
+    "priceSourceUpdatedAt": null,
+    "markets": [
+      {
+        "market": "ml",
+        "priceA": -148,
+        "priceB": 124,
+        "side": "a",
+        "modelA": 0.7469129214289432,
+        "marketA": 0.5767508206717658
+      },
+      {
+        "market": "spread",
+        "line": -2.5,
+        "priceA": -120,
+        "priceB": 100,
+        "side": "a",
+        "modelA": 0.7863006845263477,
+        "marketA": 0.5217391304347826
+      },
+      {
+        "market": "total",
+        "line": 42.5,
+        "priceA": -112,
+        "priceB": -108,
+        "side": "b",
+        "modelA": 0.44837377194321093,
+        "marketA": 0.5043297540699689
+      }
+    ],
+    "missingMarkets": []
+  },
+  "httpStatus": 200,
+  "deployment": "dpl_8MkXdScgPeMcEou8BtcvsWBF3fjU",
+  "expectedSha": "60aab496ee34e4e2f622f724d0156d2bcb5066dd"
+}

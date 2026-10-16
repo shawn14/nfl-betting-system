@@ -10,10 +10,11 @@ export async function GET(request: Request) {
   if (!secret || request.headers.get('authorization') !== `Bearer ${secret}`) return NextResponse.json({error:'Unauthorized'}, {status:401});
   if (process.env.FEATURE_MEASUREMENT_ENABLED !== '1') return NextResponse.json({enabled:false});
   const store = new MeasurementStore(getAdminDb());
-  try { return NextResponse.json(await collect(store, new URL(request.url).searchParams.get('dryRun') === '1')); }
+  const dryRun = new URL(request.url).searchParams.get('dryRun') === '1';
+  try { return NextResponse.json(await collect(store, dryRun)); }
   catch (error) {
     const message = error instanceof Error ? error.message : String(error);
-    await store.heartbeat({ok:false,updated:new Date().toISOString(),error:message,
+    if (!dryRun) await store.heartbeat({ok:false,updated:new Date().toISOString(),error:message,
       ...(error instanceof SourceFailure ? {sourceFailure:error.check} : {})});
     return NextResponse.json({ok:false,error:message}, {status:500});
   }

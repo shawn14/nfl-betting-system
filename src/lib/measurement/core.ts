@@ -1,7 +1,7 @@
 /** Prospective measurement only. Never accepts a legacy result as a forecast. */
 import { createHash } from 'node:crypto';
 import { americanToDecimal, devigTwoWay, probHomeCovers, probOver, RESULT_SIGMA } from '../fair-value.ts';
-import { parseEspnPrices } from '../espn-prices.ts';
+import { parseEspnPrices, espnOddsUrl } from '../espn-prices.ts';
 import type { PriceSnapshot } from '../espn-prices.ts';
 import { publishedProducer } from '../forecast-provenance.ts';
 
@@ -12,7 +12,11 @@ export const SPORTS = ['nfl', 'nba', 'nhl', 'cbb', 'wnba'] as const;
 export type Sport = typeof SPORTS[number];
 export type Market = 'ml' | 'spread' | 'total';
 export type Json = Record<string, any>; // Raw upstream JSON is retained, not reconstructed.
-export const digest = (value: unknown) => createHash('sha256').update(JSON.stringify(value)).digest('hex');
+// Firestore and JSON clients may reorder map fields. Object order is not evidence identity.
+const canonical = (value: unknown): unknown => value && typeof value === 'object'
+  ? Array.isArray(value) ? value.map(canonical) : Object.fromEntries(Object.keys(value).sort().map(k => [k, canonical((value as Json)[k])]))
+  : value;
+export const digest = (value: unknown) => createHash('sha256').update(JSON.stringify(canonical(value))).digest('hex');
 export const modelId = (sport: Sport, gameId: string) => `model-${sport}-${gameId}`;
 export const clean = <T>(v: T): T => JSON.parse(JSON.stringify(v));
 const finite = (n: unknown): n is number => typeof n === 'number' && Number.isFinite(n);
@@ -58,6 +62,23 @@ export function makeCapture(input: { sport: Sport; entry: Json; publishedAt: str
   if (g.status !== 'scheduled' || event.state !== 'pre' || event.status !== 'STATUS_SCHEDULED' || event.completed) return null;
   if (event.id !== String(g.id) || event.homeId !== String(g.homeTeamId) || event.awayId !== String(g.awayTeamId)
       || Date.parse(event.commence) !== kick) return null;
+  if (String(pred.gameId) !== String(g.id)) return null;
+  // Bind the returned odds payload, not only the requested URL, to this event and both teams.
+  try {
+    const expected = new URL(espnOddsUrl(sport,String(g.id))).pathname;
+    const reference = (value: unknown) => {
+      if (typeof value !== 'string') throw new Error('Missing ESPN identity');
+      const url = new URL(value);
+      if (!['http:','https:'].includes(url.protocol) || url.hostname !== 'sports.core.api.espn.com') throw new Error('Unexpected ESPN identity');
+      return url.pathname;
+    };
+    if (reference(input.rawPrices.$ref) !== `${expected}/${input.rawPrices.provider?.id}`) return null;
+    const prefix = expected.split('/events/')[0]+'/';
+    for (const [side,id] of [['home',event.homeId],['away',event.awayId]]) {
+      const team = reference(input.rawPrices[`${side}TeamOdds`]?.team?.$ref);
+      if (!team.startsWith(prefix) || !team.endsWith(`/teams/${id}`)) return null;
+    }
+  } catch { return null; }
   if (![pred.predictedHomeScore, pred.predictedAwayScore, pred.predictedSpread, pred.predictedTotal, pred.homeWinProbability].every(finite)
       || pred.homeWinProbability < 0 || pred.homeWinProbability > 1) return null;
   const parsed = parseEspnPrices(input.rawPrices);

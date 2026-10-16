@@ -1,0 +1,91 @@
+{
+  "checkedAt": "2026-10-16T14:30:02.667Z",
+  "verdict": "Bounded claim independently reproduced. Historical 503 cause and continuous collection remain unproven.",
+  "sha": "60aab496ee34e4e2f622f724d0156d2bcb5066dd",
+  "deployment": "dpl_8MkXdScgPeMcEou8BtcvsWBF3fjU",
+  "diagnosticCheckedAt": "2026-10-16T14:28:58.746Z",
+  "region": "iad1",
+  "httpStatus": 200,
+  "sourceChecks": [
+    {
+      "url": "https://0luulmjdaimldet9.public.blob.vercel-storage.com/prediction-matrix-data.json",
+      "status": 200,
+      "contentType": "application/json",
+      "elapsedMs": 184,
+      "bytes": 771295,
+      "sha256": "1268c709715fdf0327e8b7c913104d2ae605c7ade1f0ca6e56e2f7dcc6f6dfaf"
+    },
+    {
+      "url": "https://sports.core.api.espn.com/v2/sports/football/leagues/nfl/events/401872996/competitions/401872996/odds",
+      "status": 200,
+      "contentType": "application/json;charset=utf-8",
+      "elapsedMs": 250,
+      "bytes": 5844,
+      "sha256": "3d4bbd09aee8c835a3167de257df45460e03c03df6f1251e9b931dfb4f9c2c2a"
+    },
+    {
+      "url": "https://site.api.espn.com/apis/site/v2/sports/football/nfl/summary?event=401872996",
+      "status": 200,
+      "contentType": "application/json;charset=UTF-8",
+      "elapsedMs": 42,
+      "bytes": 114215,
+      "sha256": "06030b4b02502e7612bae1e8c9eac2c3032d600129a95412c2bedf1e558c5da7"
+    }
+  ],
+  "event": {
+    "id": "401872996",
+    "commence": "2026-10-18T13:30Z",
+    "state": "pre",
+    "status": "STATUS_SCHEDULED",
+    "completed": false,
+    "homeId": "30",
+    "awayId": "34",
+    "homeScore": null,
+    "awayScore": null
+  },
+  "candidate": {
+    "id": "model-nfl-401872996",
+    "transient": true,
+    "markets": [
+      "ml",
+      "spread",
+      "total"
+    ],
+    "modelVersion": "2026-09-11-freeze",
+    "modelSourceSha": "0743025cd772a7e46b823ad7d5fbeb98710d1faa",
+    "collectorSha": "60aab496ee34e4e2f622f724d0156d2bcb5066dd",
+    "publishedAt": "2026-10-16T14:00:12.746Z",
+    "capturedAt": "2026-10-16T14:28:59.254Z",
+    "priceSourceUpdatedAt": null
+  },
+  "productionFlag": {
+    "key": "FEATURE_MEASUREMENT_ENABLED",
+    "value": "0",
+    "target": [
+      "production"
+    ]
+  },
+  "publicState": "disabled",
+  "records": 0,
+  "healthUnchanged": true,
+  "health": {
+    "error": "Measurement source HTTP 503: https://sports.core.api.espn.com/v2/sports/football/leagues/nfl/events/401872996/competitions/401872996/odds",
+    "ok": false,
+    "updated": "2026-10-16T06:02:55.851Z"
+  },
+  "healthCreateTime": "2026-10-16T06:02:55.959876Z",
+  "healthUpdateTime": "2026-10-16T06:02:55.959876Z",
+  "limitations": [
+    "One independently requested diagnostic; no retry.",
+    "No collector execution, evidence write, paid source call, flag change, deployment or bet.",
+    "Candidate is transient, not a committed validCapture; no performance or profit evidence.",
+    "Forecast producer is prior 0743025 source while diagnostic collector is current 60aab496; attribution is preserved.",
+    "ESPN provides no upstream quote timestamp, so source age is unknown.",
+    "This successful current request does not identify or fix the cause of the historical 503."
+  ],
+  "evidenceFiles": [
+    "/private/tmp/pm-source-independent-probe.json",
+    "/private/tmp/pm-source-independent-after.json",
+    "/private/tmp/pm-source-before.json"
+  ]
+}

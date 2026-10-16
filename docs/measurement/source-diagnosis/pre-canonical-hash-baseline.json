@@ -1,0 +1,21 @@
+{
+  "checkedAt": "2026-10-16T14:42:15.556Z",
+  "sha": "60aab496ee34e4e2f622f724d0156d2bcb5066dd",
+  "deployment": "dpl_8MkXdScgPeMcEou8BtcvsWBF3fjU",
+  "scope": "Read-only actual production Firestore evidence/server times and public report; no crons, writes, paid requests or bets",
+  "requireEnabled": false,
+  "health": {
+    "error": "Measurement source HTTP 503: https://sports.core.api.espn.com/v2/sports/football/leagues/nfl/events/401872996/competitions/401872996/odds",
+    "updated": "2026-10-16T06:02:55.851Z",
+    "ok": false
+  },
+  "healthCreateTime": "2026-10-16T06:02:55.959876Z",
+  "healthUpdateTime": "2026-10-16T06:02:55.959876Z",
+  "counts": {},
+  "comparison": null,
+  "records": [],
+  "publicReport": {
+    "state": "disabled",
+    "report": null
+  }
+}

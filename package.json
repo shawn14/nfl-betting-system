@@ -4,7 +4,7 @@
   "private": true,
   "scripts": {
     "dev": "next dev",
-    "build": "next build",
+    "build": "node scripts/measurement/research-identity.mjs && next build",
     "start": "next start",
     "lint": "eslint",
     "line-move-backtest": "node scripts/line-move-backtest.mjs",
@@ -21,6 +21,8 @@
     "test:measurement:provenance:live": "node --no-warnings scripts/measurement/run-proof.mjs --provenance",
     "test:measurement:provenance": "node --no-warnings scripts/measurement/prove-provenance.mjs",
     "test:measurement": "node --no-warnings scripts/measurement/prove.mjs",
+    "test:research": "node scripts/measurement/research-identity.mjs && node --no-warnings scripts/measurement/prove-research.mjs",
+    "test:research:live": "node --no-warnings scripts/measurement/prove-research-live.mjs",
     "test:measurement:live": "node --no-warnings scripts/measurement/run-proof.mjs",
     "test:terminal": "node --no-warnings scripts/terminal/prove.mjs",
     "test:terminal:live": "node --no-warnings scripts/terminal/prove.mjs --live",
