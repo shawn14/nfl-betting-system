@@ -16,6 +16,12 @@ Line-shop CLV also needs a later, timely close and game-grouped uncertainty: 126
 
 Evidence: [report](docs/reports/2026-10-15-edge-audit/edge-audit.html), [independent findings](docs/reports/2026-10-15-edge-audit/refuter-summary.txt). Offline proof: `node docs/reports/2026-10-15-edge-audit/refuter-proof.mjs`. Source / serving deployment / GitHub main verified at `6af083c277aa64fd13ec9269591fc57bdd611f68`.
 
+## Retrospective challenger — local research, 2026-10-16
+
+`docs/challenger/README.md` records a fixed market-offset challenger and a reproducible rejection. On 14,651 evaluation games (43,653 market observations), market log loss 0.648394 beats challenger 0.648881; 1,788 paper selections return −4.71% before extra costs. Do not promote or tune to this history. All periods were already inspected; timestamps do not certify source availability. The 24-hour outcome lag is an explicit assumption.
+
+The original `scripts/market-lab.mjs` is a legacy diagnostic, not timing-safe evidence: reversing simultaneous game ordering changes 16,329 pregame total features on real records. New isolated commands: `npm run research:challenger` and `npm run test:challenger`; no production imports/writes, paid calls or model changes. The exhaustive proof covers 28,520 non-preseason games, source hashes, delayed outcomes, future-outcome mutation, monthly training and saved payout arithmetic. Keep the production model freeze and separate activation gate. Do not run the old lab to refresh user-facing claims.
+
 ## Prospective measurement — production release, collection off, 2026-10-16
 
 Canonical contract/proof/release path: [docs/measurement/README.md](docs/measurement/README.md). Only immutable pregame records in `predictionMeasurementsV1` can support forward claims; legacy results and `modelVersion` alone cannot. Model/weights/thresholds stay frozen. `FEATURE_MEASUREMENT_ENABLED` defaults off. New collector is free-source only; shopping reuses existing paid payloads after the existing state/output checkpoint. Never trigger paid crons as a test.

@@ -1,5 +1,11 @@
 # Prediction Matrix status
 
+## 2026-10-16 — fixed challenger rejected, isolated research
+
+The chronology-safe research candidate is separate from production. Across 14,651 evaluation games/43,653 market rows, its probabilities are worse than the market baseline; 1,788 hypothetical bets return −4.71% before an extra 1% cost sensitivity. It is rejected, not deployed or retuned. [Protocol, all metrics, raw forecasts and proof](docs/challenger/README.md). All prior history was already inspected; no untouched holdout or executable-price claim.
+
+Actual-record red proof found 16,329 old-lab same-kickoff total features change with game ordering. New feature state uses all 28,520 non-preseason results, delayed 24h (assumption, not source timestamp proof), training-only transforms and monthly frozen coefficients. Exhaustive local proof passed. Fresh independent Python reconstruction verified every evaluation row, all 180 model fits and the payout/uncertainty arithmetic; no mismatches. Production/main remains 78760202dd9ac3bde42808e5956887f4bf94409e; no production code, model, activation, paid requests or bets changed. Separate collection activation approval is pending. Next: independently review this bounded result; forward collection and actual settlements are the missing evidence. Do not search these periods for a profitable variant.
+
 ## 2026-10-16 — main deployment approved
 
 Shawn explicitly requested “push to main.” PR6 was merged as `69240a9bb7b036e7ccc5b70a2550413c500085c5`, preserving the verified `3e3ab94` review history. The actual production domain served that exact READY SHA at 05:04 UTC. All 79 exports, 144 exact quote sides, five result routes, three unsigned collector gates and desktop/390px browser controls passed. [Release evidence](docs/production/README.md). An independent review is recorded alongside the release proof. The final evidence/runbook commit changes no application source and its deployed SHA must also be checked. This supersedes prior publication/deployment holds below; collection activation was not included and the flag remains absent. No model tuning or paid test calls.

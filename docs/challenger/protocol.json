@@ -1,0 +1,33 @@
+{
+  "version": "market-residual-research-v1",
+  "declaredAt": "2026-10-16T05:18:00Z",
+  "purpose": "Retrospective development comparison, not an untouched holdout or proof of tradeable edge",
+  "markets": ["moneyline", "spread", "total"],
+  "sports": ["nfl", "nba", "nhl", "cbb", "wnba"],
+  "outcomeAvailabilityLagHours": 24,
+  "firstEvaluationMonth": "2025-01",
+  "refit": "At each UTC month boundary using only rows whose assumed outcome availability precedes the boundary",
+  "minimumTrainNonPush": 150,
+  "ridgePenalty": 20,
+  "maxAdjustmentLogOdds": 0.25,
+  "features": {
+    "moneyline": ["elo log odds minus market log odds", "EWMA neutral margin", "home minus away rest"],
+    "spread": ["Elo margin plus home line", "EWMA neutral margin plus home line", "home minus away rest"],
+    "total": ["EWMA expected total minus market total", "sum of team rest"]
+  },
+  "featureTransforms": "Mean and standard deviation from training rows only; clip standardized inputs to +/-3; no variable selection",
+  "baseline": "Power de-vig for moneyline, proportional de-vig for spread/total; archived closing quotes only",
+  "primaryMetric": "Pooled paired log-loss gain versus market across all 15 sport-market cells; no cherry-picked promotion",
+  "secondaryMetrics": ["Brier score", "calibration", "one-unit paper return at recorded closing price, including pushes"],
+  "paperSelection": { "minimumExpectedReturn": 0.02, "maximumSelectionsPerGame": 1, "stakeUnits": 1, "additionalCostPerUnit": 0.01 },
+  "uncertainty": "UTC-week clustered approximate normal 95% intervals; report dependence and normal-approximation limitations",
+  "promotion": "Never from this retrospective experiment. Require separately approved prospective capture and positive evidence against the contemporaneous market before any model/risk allocation change.",
+  "limits": [
+    "All these historical periods have already been inspected in prior research.",
+    "Historical quote observation/publication timestamps and actual game finish timestamps are absent.",
+    "24-hour outcome delay is a conservative modeling assumption, not certified source availability.",
+    "Closing-price evaluation cannot prove the price could have been executed; no opener backtest or CLV claim.",
+    "Historical data revisions, missing games and bookmaker settlement differences can affect results.",
+    "No paid calls, production model changes, bets, or collector activation."
+  ]
+}

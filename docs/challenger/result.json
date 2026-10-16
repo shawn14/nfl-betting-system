@@ -1,0 +1,538 @@
+{
+  "generatedAt": "2026-10-16T05:24:07.418Z",
+  "classification": "Retrospective development comparison, not an untouched holdout or proof of tradeable edge",
+  "protocolSha256": "2839c2126b90fba7a6a4802a0593fdb9f2f0691a09be7cc7f1300d3e60a5040e",
+  "engineSha256": "b46be5eaa3627a6535e07b392146bb95703ab46c378bef18a51776e9baaea3b8",
+  "codeSources": [
+    {
+      "file": "scripts/challenger/engine.mjs",
+      "sha256": "b46be5eaa3627a6535e07b392146bb95703ab46c378bef18a51776e9baaea3b8"
+    },
+    {
+      "file": "scripts/challenger/run.mjs",
+      "sha256": "7c2bfcba953bbe6b6ce9b6e94e557cc79f3ff73f95c4901cd111be10f83456fc"
+    },
+    {
+      "file": "src/lib/fair-value.ts",
+      "sha256": "088775718051e346371a5a93471bdd3d6539a26f5635160612bff7aef1aa1982"
+    }
+  ],
+  "sources": [
+    {
+      "file": "data/market-history/nfl.json",
+      "sha256": "fc59b0c25999567cfd9241b15c5c517f95f05d78b5d072ecf293ee2f93e81871",
+      "bytes": 106897
+    },
+    {
+      "file": "data/market-history/nba.json",
+      "sha256": "d91688f477b18dad67902ecb48a10245e62c86141e1910c32181c0787aac83a8",
+      "bytes": 757397
+    },
+    {
+      "file": "data/market-history/nhl.json",
+      "sha256": "75353fd460008f0b5d5e0bb65c366d059e471d34791753cf3d24192568c73699",
+      "bytes": 719626
+    },
+    {
+      "file": "data/market-history/cbb.json",
+      "sha256": "bfc8df2f017368ac6ca5a748ca92b51664d77d7c90ea9fdf03cf2a97e3f15ae1",
+      "bytes": 3314115
+    },
+    {
+      "file": "data/market-history/wnba.json",
+      "sha256": "0a607cb5e292815b06feae821305cd46a8c8147310e267a9e32f10ed403edb36",
+      "bytes": 170808
+    }
+  ],
+  "inventory": [
+    {
+      "sport": "nfl",
+      "raw": 605,
+      "nonPreseason": 605,
+      "withClose": 577,
+      "marketRows": 1709,
+      "first": "2024-09-06T00:40Z",
+      "last": "2026-09-25T00:15Z"
+    },
+    {
+      "sport": "nba",
+      "raw": 4187,
+      "nonPreseason": 3970,
+      "withClose": 3965,
+      "marketRows": 11856,
+      "first": "2023-10-24T23:30Z",
+      "last": "2026-06-14T00:30Z"
+    },
+    {
+      "sport": "nhl",
+      "raw": 4312,
+      "nonPreseason": 4202,
+      "withClose": 4199,
+      "marketRows": 11235,
+      "first": "2023-10-10T21:30Z",
+      "last": "2026-06-15T00:00Z"
+    },
+    {
+      "sport": "cbb",
+      "raw": 18835,
+      "nonPreseason": 18835,
+      "withClose": 17346,
+      "marketRows": 49406,
+      "first": "2023-11-06T16:00Z",
+      "last": "2026-04-07T00:50Z"
+    },
+    {
+      "sport": "wnba",
+      "raw": 940,
+      "nonPreseason": 908,
+      "withClose": 908,
+      "marketRows": 2707,
+      "first": "2024-05-14T23:00Z",
+      "last": "2026-09-25T02:00Z"
+    }
+  ],
+  "limits": [
+    "All these historical periods have already been inspected in prior research.",
+    "Historical quote observation/publication timestamps and actual game finish timestamps are absent.",
+    "24-hour outcome delay is a conservative modeling assumption, not certified source availability.",
+    "Closing-price evaluation cannot prove the price could have been executed; no opener backtest or CLV claim.",
+    "Historical data revisions, missing games and bookmaker settlement differences can affect results.",
+    "No paid calls, production model changes, bets, or collector activation."
+  ],
+  "providerRows": {
+    "ESPN BET": 21890,
+    "DraftKings": 21760,
+    "DraftKings - Live Odds": 3
+  },
+  "overall": {
+    "n": 43653,
+    "pushes": 2,
+    "adjusted": 39450,
+    "logLossMarket": 0.6483941675739255,
+    "logLossChallenger": 0.6488807452701995,
+    "pairedLogLossGain": {
+      "n": 43651,
+      "mean": -0.0004865776962077066,
+      "clusters": 91,
+      "approximate95": [
+        -0.000777954325079313,
+        -0.00019520106733610012
+      ]
+    },
+    "brierMarket": 0.23016641594668796,
+    "brierChallenger": 0.23039505596516058
+  },
+  "cells": {
+    "nfl:moneyline": {
+      "n": 333,
+      "pushes": 1,
+      "adjusted": 252,
+      "logLossMarket": 0.6108914135159473,
+      "logLossChallenger": 0.6135149968164336,
+      "pairedLogLossGain": {
+        "n": 332,
+        "mean": -0.0026235833004866,
+        "clusters": 30,
+        "approximate95": [
+          -0.008287833775776132,
+          0.0030406671748029325
+        ]
+      },
+      "brierMarket": 0.2124665263599892,
+      "brierChallenger": 0.21334338621201876
+    },
+    "nfl:spread": {
+      "n": 344,
+      "pushes": 1,
+      "adjusted": 263,
+      "logLossMarket": 0.6919375079268953,
+      "logLossChallenger": 0.6920364870870183,
+      "pairedLogLossGain": {
+        "n": 343,
+        "mean": -0.00009897916012473985,
+        "clusters": 30,
+        "approximate95": [
+          -0.0049853710666124965,
+          0.004787412746363017
+        ]
+      },
+      "brierMarket": 0.24939806168028275,
+      "brierChallenger": 0.2494465908469333
+    },
+    "nfl:total": {
+      "n": 345,
+      "pushes": 0,
+      "adjusted": 264,
+      "logLossMarket": 0.6918999575929125,
+      "logLossChallenger": 0.6914457012335401,
+      "pairedLogLossGain": {
+        "n": 345,
+        "mean": 0.00045425635937082704,
+        "clusters": 30,
+        "approximate95": [
+          -0.009386427748728467,
+          0.01029494046747012
+        ]
+      },
+      "brierMarket": 0.2493766224020195,
+      "brierChallenger": 0.2491467628120623
+    },
+    "nba:moneyline": {
+      "n": 2151,
+      "pushes": 0,
+      "adjusted": 2025,
+      "logLossMarket": 0.5766128733521353,
+      "logLossChallenger": 0.5776656427947272,
+      "pairedLogLossGain": {
+        "n": 2151,
+        "mean": -0.0010527694425948846,
+        "clusters": 61,
+        "approximate95": [
+          -0.0027751772055957693,
+          0.0006696383204060001
+        ]
+      },
+      "brierMarket": 0.19767036615911035,
+      "brierChallenger": 0.19825778910466052
+    },
+    "nba:spread": {
+      "n": 2153,
+      "pushes": 0,
+      "adjusted": 2027,
+      "logLossMarket": 0.6927956432746817,
+      "logLossChallenger": 0.6930609369060525,
+      "pairedLogLossGain": {
+        "n": 2153,
+        "mean": -0.00026529363136480435,
+        "clusters": 61,
+        "approximate95": [
+          -0.001743997822343844,
+          0.0012134105596142352
+        ]
+      },
+      "brierMarket": 0.24982422213481448,
+      "brierChallenger": 0.2499555958251839
+    },
+    "nba:total": {
+      "n": 2153,
+      "pushes": 0,
+      "adjusted": 2027,
+      "logLossMarket": 0.6928570538817092,
+      "logLossChallenger": 0.6936798786129428,
+      "pairedLogLossGain": {
+        "n": 2153,
+        "mean": -0.0008228247312183377,
+        "clusters": 61,
+        "approximate95": [
+          -0.001571911021725104,
+          -0.00007373844071157135
+        ]
+      },
+      "brierMarket": 0.24985495963628482,
+      "brierChallenger": 0.25026615606833047
+    },
+    "nhl:spread": {
+      "n": 2204,
+      "pushes": 0,
+      "adjusted": 2062,
+      "logLossMarket": 0.6394272453770753,
+      "logLossChallenger": 0.6398394925870543,
+      "pairedLogLossGain": {
+        "n": 2204,
+        "mean": -0.0004122472099768634,
+        "clusters": 60,
+        "approximate95": [
+          -0.00238343525025678,
+          0.0015589408303030533
+        ]
+      },
+      "brierMarket": 0.22378271852012271,
+      "brierChallenger": 0.22396309837215894
+    },
+    "nhl:total": {
+      "n": 2204,
+      "pushes": 0,
+      "adjusted": 2062,
+      "logLossMarket": 0.6919312022920838,
+      "logLossChallenger": 0.6926632398228393,
+      "pairedLogLossGain": {
+        "n": 2204,
+        "mean": -0.000732037530745967,
+        "clusters": 60,
+        "approximate95": [
+          -0.0022119798016345844,
+          0.0007479047401426507
+        ]
+      },
+      "brierMarket": 0.24938856299788784,
+      "brierChallenger": 0.249749467576552
+    },
+    "nhl:moneyline": {
+      "n": 2208,
+      "pushes": 0,
+      "adjusted": 2066,
+      "logLossMarket": 0.6707741792152764,
+      "logLossChallenger": 0.6706728711960445,
+      "pairedLogLossGain": {
+        "n": 2208,
+        "mean": 0.00010130801923435297,
+        "clusters": 60,
+        "approximate95": [
+          -0.002801899780918428,
+          0.003004515819387134
+        ]
+      },
+      "brierMarket": 0.2391629945245267,
+      "brierChallenger": 0.23913104253960843
+    },
+    "cbb:moneyline": {
+      "n": 9076,
+      "pushes": 0,
+      "adjusted": 8179,
+      "logLossMarket": 0.5348278028234358,
+      "logLossChallenger": 0.5352874589378294,
+      "pairedLogLossGain": {
+        "n": 9076,
+        "mean": -0.00045965611439267715,
+        "clusters": 38,
+        "approximate95": [
+          -0.0008525656790121955,
+          -0.00006674654977315876
+        ]
+      },
+      "brierMarket": 0.18103952146612734,
+      "brierChallenger": 0.18123245850541
+    },
+    "cbb:spread": {
+      "n": 9265,
+      "pushes": 0,
+      "adjusted": 8279,
+      "logLossMarket": 0.692929461232685,
+      "logLossChallenger": 0.6931435883300676,
+      "pairedLogLossGain": {
+        "n": 9265,
+        "mean": -0.0002141270974107156,
+        "clusters": 38,
+        "approximate95": [
+          -0.0005956725649258859,
+          0.0001674183701044547
+        ]
+      },
+      "brierMarket": 0.2498912208545738,
+      "brierChallenger": 0.2499981219700699
+    },
+    "cbb:total": {
+      "n": 9285,
+      "pushes": 0,
+      "adjusted": 8291,
+      "logLossMarket": 0.6930121016836301,
+      "logLossChallenger": 0.6931826661377373,
+      "pairedLogLossGain": {
+        "n": 9285,
+        "mean": -0.00017056445415244433,
+        "clusters": 38,
+        "approximate95": [
+          -0.0003273717245069283,
+          -0.000013757183797960315
+        ]
+      },
+      "brierMarket": 0.24993189625838116,
+      "brierChallenger": 0.25001712010992
+    },
+    "wnba:moneyline": {
+      "n": 644,
+      "pushes": 0,
+      "adjusted": 551,
+      "logLossMarket": 0.5956407823068124,
+      "logLossChallenger": 0.5987344055410536,
+      "pairedLogLossGain": {
+        "n": 644,
+        "mean": -0.003093623234241913,
+        "clusters": 41,
+        "approximate95": [
+          -0.007227403319057508,
+          0.0010401568505736818
+        ]
+      },
+      "brierMarket": 0.20480445274259468,
+      "brierChallenger": 0.20595957533278342
+    },
+    "wnba:spread": {
+      "n": 644,
+      "pushes": 0,
+      "adjusted": 551,
+      "logLossMarket": 0.6935544315670529,
+      "logLossChallenger": 0.6967347984260391,
+      "pairedLogLossGain": {
+        "n": 644,
+        "mean": -0.003180366858984729,
+        "clusters": 41,
+        "approximate95": [
+          -0.005763158999389993,
+          -0.000597574718579465
+        ]
+      },
+      "brierMarket": 0.25020338621491367,
+      "brierChallenger": 0.25178671220695925
+    },
+    "wnba:total": {
+      "n": 644,
+      "pushes": 0,
+      "adjusted": 551,
+      "logLossMarket": 0.6929536899915851,
+      "logLossChallenger": 0.6957579346455204,
+      "pairedLogLossGain": {
+        "n": 644,
+        "mean": -0.0028042446539325635,
+        "clusters": 41,
+        "approximate95": [
+          -0.007436018284934173,
+          0.0018275289770690456
+        ]
+      },
+      "brierMarket": 0.24990321494281797,
+      "brierChallenger": 0.2513028471561649
+    }
+  },
+  "calibration": [
+    {
+      "from": 0,
+      "to": 0.1,
+      "n": 226,
+      "predicted": 0.06502877709056173,
+      "observed": 0.030973451327433628
+    },
+    {
+      "from": 0.1,
+      "to": 0.2,
+      "n": 500,
+      "predicted": 0.15477277718439872,
+      "observed": 0.152
+    },
+    {
+      "from": 0.2,
+      "to": 0.3,
+      "n": 861,
+      "predicted": 0.25505578010916213,
+      "observed": 0.26713124274099886
+    },
+    {
+      "from": 0.3,
+      "to": 0.4,
+      "n": 2102,
+      "predicted": 0.35381005468703136,
+      "observed": 0.34776403425309227
+    },
+    {
+      "from": 0.4,
+      "to": 0.5,
+      "n": 15924,
+      "predicted": 0.48041756421125914,
+      "observed": 0.48630997236875156
+    },
+    {
+      "from": 0.5,
+      "to": 0.6,
+      "n": 16205,
+      "predicted": 0.5176899117437302,
+      "observed": 0.5133600740512188
+    },
+    {
+      "from": 0.6,
+      "to": 0.7,
+      "n": 2932,
+      "predicted": 0.6490692089240946,
+      "observed": 0.6504092769440655
+    },
+    {
+      "from": 0.7,
+      "to": 0.8,
+      "n": 1988,
+      "predicted": 0.7450326832875462,
+      "observed": 0.7369215291750503
+    },
+    {
+      "from": 0.8,
+      "to": 0.9,
+      "n": 1505,
+      "predicted": 0.8496159862668674,
+      "observed": 0.8338870431893688
+    },
+    {
+      "from": 0.9,
+      "to": 1,
+      "n": 1408,
+      "predicted": 0.9495252883935978,
+      "observed": 0.9467329545454546
+    }
+  ],
+  "paper": {
+    "selections": 1788,
+    "pushes": 0,
+    "grossReturn": {
+      "n": 1788,
+      "mean": -0.04705708385047217,
+      "clusters": 90,
+      "approximate95": [
+        -0.09139430759573564,
+        -0.0027198601052087143
+      ]
+    },
+    "costAdjustedReturn": {
+      "n": 1788,
+      "mean": -0.05705708385047228,
+      "clusters": 90,
+      "approximate95": [
+        -0.10139430759573573,
+        -0.01271986010520882
+      ]
+    },
+    "bySport": {
+      "nfl": {
+        "n": 243,
+        "mean": 0.01227322418512364,
+        "clusters": 24,
+        "approximate95": [
+          -0.08743621052699126,
+          0.11198265889723853
+        ]
+      },
+      "nba": {
+        "n": 370,
+        "mean": -0.09889603337319097,
+        "clusters": 49,
+        "approximate95": [
+          -0.2075999011514553,
+          0.009807834405073351
+        ]
+      },
+      "nhl": {
+        "n": 928,
+        "mean": -0.026760380718660305,
+        "clusters": 51,
+        "approximate95": [
+          -0.09602439764299342,
+          0.042503636205672816
+        ]
+      },
+      "cbb": {
+        "n": 25,
+        "mean": -0.10956614104269555,
+        "clusters": 10,
+        "approximate95": [
+          -0.5050928828738882,
+          0.28596060078849717
+        ]
+      },
+      "wnba": {
+        "n": 222,
+        "mean": -0.18394657757010974,
+        "clusters": 34,
+        "approximate95": [
+          -0.31932816517020846,
+          -0.04856498997001099
+        ]
+      }
+    }
+  }
+}

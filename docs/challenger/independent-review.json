@@ -1,0 +1,162 @@
+{
+  "reviewer": "fresh independent Python reconstruction, no challenger engine or shared fair-value imports",
+  "generatedAt": "2026-10-16T05:24:24.706516+00:00",
+  "passedIndependentArithmeticAndChronology": true,
+  "errors": [],
+  "errorCount": 0,
+  "sourceChecks": [
+    {
+      "sport": "nfl",
+      "sha256": "fc59b0c25999567cfd9241b15c5c517f95f05d78b5d072ecf293ee2f93e81871",
+      "bytes": 106897
+    },
+    {
+      "sport": "nba",
+      "sha256": "d91688f477b18dad67902ecb48a10245e62c86141e1910c32181c0787aac83a8",
+      "bytes": 757397
+    },
+    {
+      "sport": "nhl",
+      "sha256": "75353fd460008f0b5d5e0bb65c366d059e471d34791753cf3d24192568c73699",
+      "bytes": 719626
+    },
+    {
+      "sport": "cbb",
+      "sha256": "bfc8df2f017368ac6ca5a748ca92b51664d77d7c90ea9fdf03cf2a97e3f15ae1",
+      "bytes": 3314115
+    },
+    {
+      "sport": "wnba",
+      "sha256": "0a607cb5e292815b06feae821305cd46a8c8147310e267a9e32f10ed403edb36",
+      "bytes": 170808
+    }
+  ],
+  "inventory": [
+    {
+      "sport": "nfl",
+      "raw": 605,
+      "nonPreseason": 605,
+      "withClose": 577,
+      "marketRows": 1709
+    },
+    {
+      "sport": "nba",
+      "raw": 4187,
+      "nonPreseason": 3970,
+      "withClose": 3965,
+      "marketRows": 11856
+    },
+    {
+      "sport": "nhl",
+      "raw": 4312,
+      "nonPreseason": 4202,
+      "withClose": 4199,
+      "marketRows": 11235
+    },
+    {
+      "sport": "cbb",
+      "raw": 18835,
+      "nonPreseason": 18835,
+      "withClose": 17346,
+      "marketRows": 49406
+    },
+    {
+      "sport": "wnba",
+      "raw": 940,
+      "nonPreseason": 908,
+      "withClose": 908,
+      "marketRows": 2707
+    }
+  ],
+  "evaluationRowsIndependentlyReconstructed": 43653,
+  "activeMonthlyModelsChecked": 180,
+  "totalMonthlyModels": 180,
+  "maxTrainingTransformDifference": 8.881784197001252e-16,
+  "maxPenalizedGradientAbsolute": 3.365480637229634e-13,
+  "maxPredictionDifference": 2.220446049250313e-16,
+  "metrics": {
+    "rows": 43653,
+    "uniqueGames": 14651,
+    "nonPushRows": 43651,
+    "pushRows": 2,
+    "logLossMarket": 0.6483941675739255,
+    "logLossChallenger": 0.6488807452701995,
+    "pairedLogLossGain": {
+      "n": 43651,
+      "mean": -0.00048657769620770723,
+      "clusters": 91,
+      "approximate95": [
+        -0.0007779543250793142,
+        -0.00019520106733610023
+      ]
+    },
+    "brierMarket": 0.23016641594668796,
+    "brierChallenger": 0.23039505596516058,
+    "paper": {
+      "selections": 1788,
+      "gross": {
+        "n": 1788,
+        "mean": -0.04705708385047217,
+        "clusters": 90,
+        "approximate95": [
+          -0.09139430759573564,
+          -0.0027198601052087074
+        ]
+      },
+      "costAdjusted": {
+        "n": 1788,
+        "mean": -0.05705708385047228,
+        "clusters": 90,
+        "approximate95": [
+          -0.10139430759573573,
+          -0.01271986010520882
+        ]
+      },
+      "grossProfitUnits": -84.13806592464424,
+      "netProfitUnits": -102.01806592464443
+    },
+    "activePairedLogLossGain": -0.0005384066267120238,
+    "fallbackRows": 4203,
+    "cbbShare": 0.6328545575332738,
+    "equalWeightedCellLogLossGain": -0.0010249835360681375
+  },
+  "limits": [
+    "Retrospective development history already inspected; not an untouched holdout.",
+    "Archived close quotes have no observation/publication timestamps, so execution or genuine pregame availability cannot be proven.",
+    "24-hour outcome availability is an explicit assumption; archived final-time/publication evidence is absent.",
+    "UTC weeks use seven-day Unix-epoch buckets (Thursday boundaries); normal intervals do not handle dependence across weeks.",
+    "One-unit hypothetical returns omit actual execution constraints; extra 1% cost is an assumed stress cost.",
+    "Pooled score is row-weighted: CBB supplies about 63% of rows; it is not equal-weighted across sports.",
+    "Evaluation NBA/NHL/CBB/WNBA spread/total quotes are half-point lines; the result does not establish general push-market calibration. Only two evaluation rows push (one NFL tie moneyline and one NFL spread)."
+  ],
+  "provenanceCaveat": {
+    "liveLabeledEvaluationRows": 3,
+    "liveLabeledGameIds": [
+      "cbb:401828284"
+    ],
+    "liveLabeledSelectedGames": 0
+  },
+  "mutationProofAssessment": "Builder future-mutation test covers outcomes at/after 2025-07-01 versus earlier predictions; independent reconstruction here verifies every saved row and every monthly training transform. The mutation itself changes score fields inconsistently (total +11 independent of hs/as); useful as an adversarial invariant test, not a physically possible game replay.",
+  "baselineFallbacksIndependentlyChecked": 4203,
+  "reviewedArtifactSha256": {
+    "docs/challenger/protocol.json": "2839c2126b90fba7a6a4802a0593fdb9f2f0691a09be7cc7f1300d3e60a5040e",
+    "docs/challenger/result.json": "141c69f2cbbc92b5086a5e7ecee571ba3a65a33b8f41aae55e654129b76a9f20",
+    "docs/challenger/models.json": "2fa71132e15a38f7e6d7a8c57f159bf307b80f3c77e43c24c991527b207ee2ab",
+    "docs/challenger/predictions.jsonl.gz": "3fa4ae33801afe714727b4a32c081792f14053c068e02fcbfc9255fdca858861",
+    "docs/challenger/paper-selections.json": "76f036b6f265da2d03880fddbd7ba179a760e04b7e206c53a26f38425c41b80e"
+  },
+  "codeSourceHashesIndependentlyVerified": [
+    {
+      "file": "scripts/challenger/engine.mjs",
+      "sha256": "b46be5eaa3627a6535e07b392146bb95703ab46c378bef18a51776e9baaea3b8"
+    },
+    {
+      "file": "scripts/challenger/run.mjs",
+      "sha256": "7c2bfcba953bbe6b6ce9b6e94e557cc79f3ff73f95c4901cd111be10f83456fc"
+    },
+    {
+      "file": "src/lib/fair-value.ts",
+      "sha256": "088775718051e346371a5a93471bdd3d6539a26f5635160612bff7aef1aa1982"
+    }
+  ]
+}
